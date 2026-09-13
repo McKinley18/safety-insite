@@ -17,10 +17,9 @@ import {
 } from './expert-analysis-audit';
 import {
   SETTLEMENT_CONTRACT_VERSION, type ReplacementInput, type SettledEntry,
-  type SettlementDecision, type SubjectEntry,
+  type SettlementDecision, type SubjectEntry, type SubjectResolution,
   resolveConfirmationSubject, settleEntries, validateReplacements,
 } from './expert-settlement-contract';
-import { deriveEffectiveDecision, type EffectiveDecision } from './expert-effective-decision';
 import {
   type AnalysisState, type ExecutionClaimOutcome, type ExpertExecutionState,
   type ExpertOutcomeForState, classifyExistingExecution, claimPermitsProviderSpend,
@@ -525,30 +524,101 @@ export class ExpertAnalysisService {
   }
 
   /**
-   * THE AUTHORITATIVE CONSEQUENTIAL CONCLUSION FOR ONE ANALYSIS.
+   * §265 — THE SERVER-SIDE READ THE FRONTEND WORKFLOW DEPENDS ON.
    *
-   * The one place downstream features ask "is there a settled conclusion here". It reads the
-   * settlement record where one exists and hands both to the pure derivation; it decides nothing
-   * itself, so the rule stays testable without a database.
+   * ---------------------------------------------------------------------------------------------
+   * WHY A READ EXISTS AT ALL, WHEN §262 AND §264 SHIPPED ONLY WRITES.
+   *
+   * A reviewer closes the tab, comes back, and the browser holds nothing. Without a read the only
+   * ways for the interface to know what state an analysis is in are to re-execute it — which spends
+   * two provider legs to answer a question the database already answers — or to cache the last
+   * response and keep believing it. The second is how a settled conclusion gets rendered from a
+   * stale client copy, so the read is not a convenience; it is what makes "the server response is
+   * authoritative" survive a page reload.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * IT RETURNS THE WHOLE AUTHORITY PICTURE IN ONE ANSWER, INCLUDING THE SUBJECT.
+   *
+   * The confirmation SUBJECT — which named entries a person is being asked to settle — is derived
+   * here, by `resolveConfirmationSubject`, under the same rule-version check §264 applies at
+   * settlement time. A frontend that had to work out for itself which parts of a posture needed
+   * confirming would be re-implementing the confirmation rule in a browser, which §265 forbids in
+   * the strongest terms available to it. It is the server's question; the client only renders it.
+   *
+   * A subject that cannot be established is returned as a NAMED REFUSAL rather than as an empty
+   * list, because an empty list and "the rule version drifted" render identically otherwise, and
+   * one of them means the confirm button must not be offered.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * IT AUTHORIZES THROUGH THE SAME CHOKE POINT AS EVERY OTHER OBSERVATION READ.
+   *
+   * `authorizeObservation` answers NotFound rather than Forbidden, so a cross-workspace caller
+   * cannot learn whether the observation exists — the §262 property, unchanged, because this
+   * introduces no second implementation of it.
    */
-  async effectiveDecisionFor(analysis: HazLenzAnalysis): Promise<EffectiveDecision> {
-    const settlementReview = analysis.settlementReviewId
-      ? await this.reviews.findOne({
-        where: { id: analysis.settlementReviewId, analysisId: analysis.id },
+  async readExpertAnalysisForObservation(
+    rawUser: unknown,
+    observationId: string,
+  ): Promise<ExpertAnalysisReadModel> {
+    const user = requireAuthenticatedUser(rawUser);
+    await this.inspections.authorizeObservation(user, observationId);
+
+    // THE WHOLE SERVER-AUTHORED HISTORY, NEWEST FIRST. Client-supplied rows are deliberately
+    // included: §265 requires a reviewer to be able to tell a legacy client-held analysis from a
+    // server-authored one, and hiding the legacy rows would make that distinction unavailable
+    // exactly where it matters.
+    const all = await this.analyses.find({
+      where: { observationId },
+      order: { requestVersion: 'DESC' },
+    });
+    const current = all.find(row => row.status === 'current' && row.producer === 'server_authored')
+      ?? null;
+
+    if (current === null) {
+      return {
+        observationId,
+        analysis: null,
+        execution: null,
+        settlement: null,
+        subject: null,
+        history: all,
+      };
+    }
+
+    const execution = current.expertExecutionId
+      ? await this.executions.findOne({
+        where: { id: current.expertExecutionId, observationId },
       })
       : null;
-    const conclusion = settlementReview?.reviewedConclusion as
-      { entries?: SettledEntry[] } | null | undefined;
-    return deriveEffectiveDecision({
-      analysisState: analysis.analysisState,
-      settlement: settlementReview === null || settlementReview === undefined ? null : {
-        decision: settlementReview.decision as SettlementDecision,
-        entries: conclusion?.entries ?? [],
-        reviewedByUserId: settlementReview.reviewedByUserId,
-        createdAt: settlementReview.createdAt,
-      },
-    });
+    const settlement = current.settlementReviewId
+      ? await this.reviews.findOne({
+        where: { id: current.settlementReviewId, analysisId: current.id },
+      })
+      : null;
+
+    // The subject is resolved ONLY where the stored flag says a person is being asked something.
+    // Deriving it on an analysis that requires no confirmation would manufacture a question, and
+    // deriving it on a refused one would ask about a conclusion that does not exist.
+    const snapshot = current.resultSnapshot as Record<string, unknown> | null;
+    const subject = current.confirmationRequired
+      ? resolveConfirmationSubject(
+        snapshot?.posture ?? null, execution?.confirmationRuleVersion ?? null,
+      )
+      : null;
+
+    return { observationId, analysis: current, execution, settlement, subject, history: all };
   }
+
+  /**
+   * §265 MOVED THE EFFECTIVE-DECISION DERIVATION OUT OF THIS SERVICE.
+   *
+   * It now lives in `ExpertEffectiveDecisionService`, in a leaf module that imports nothing but the
+   * two repositories it reads. The reason is structural rather than cosmetic: the first real
+   * downstream consumer is finding finalization inside `InspectionService`, and this module already
+   * imports `InspectionModule` — so leaving the one derivation here would have forced the consumer
+   * to re-derive authority locally to avoid a module cycle. There is still exactly one
+   * implementation; it is simply reachable from both sides now.
+   */
 
   /**
    * PERSIST THE AUTHORITATIVE EXPERT RESULT. One transaction covering the analysis row, the
@@ -800,6 +870,21 @@ export interface AuthoritativeExpertResult {
 }
 
 /** What a settlement attempt produced. `REPLAYED` is a retry resolving to its own earlier row. */
+/**
+ * §265 — WHAT THE READ RETURNS TO THE RESPONSE SHAPER. Entities and a subject resolution, not a
+ * wire shape: the shaper decides what is product-safe to send, and keeping that decision in one
+ * place is what stops a raw provider payload leaking through a read the way it cannot through a
+ * write.
+ */
+export interface ExpertAnalysisReadModel {
+  readonly observationId: string;
+  readonly analysis: HazLenzAnalysis | null;
+  readonly execution: ExpertAnalysisExecution | null;
+  readonly settlement: HumanReview | null;
+  readonly subject: SubjectResolution | null;
+  readonly history: readonly HazLenzAnalysis[];
+}
+
 export interface ExpertSettlementOutcome {
   readonly outcome: 'SETTLED' | 'REPLAYED';
   readonly analysis: HazLenzAnalysis;

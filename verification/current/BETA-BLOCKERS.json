@@ -1,19 +1,10 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "\u00a7263",
+  "establishedBy": "§263, refreshed at §265",
   "role": "THE ONLY register of what currently blocks external beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the Expert HazLenz layer and its product integration. The deterministic HazLenz product has its own release history and is not re-litigated here.",
   "asOf": "2026-09-12",
   "blocksExternalBetaNow": [
-    {
-      "id": "NO_EXPERT_FRONTEND",
-      "severity": "BLOCKER",
-      "statement": "No user interface reaches the Expert route, presents an Expert analysis, or renders the confirmation prompt. The route exists and nothing calls it.",
-      "why": "\u00a7260 slice 8; not authorized yet. Its dependency (the confirmation action) was closed by \u00a7264.",
-      "evidence": "verification/expert-hazlenz-260-product-integration-architecture-2026-09-12/SECTION-260-FROZEN-DESIGN.json",
-      "canRunInParallel": true,
-      "nextAction": "authorized next: the confirmation action it depended on now exists"
-    },
     {
       "id": "REPORT_GENERATION_BLOCKED",
       "severity": "BLOCKER",
@@ -39,6 +30,22 @@
       "severity": "DESIGN_QUESTION",
       "dependsOn": "nothing",
       "evidence": "verification/expert-hazlenz-262-authoritative-execution-route-2026-09-12/SECTION-262-REPORT.md"
+    },
+    {
+      "id": "REMAINING_DOWNSTREAM_AUTHORITY_GUARDS",
+      "statement": "§260 section 11 names six downstream consumers that must be blocked pre-confirmation. §265 activated ONE of them (finding finalization). Completion readiness / transition-to-completed, corrective-action creation, report finalization and export, notifications, and the executive summary are NOT yet guarded on the Expert path.",
+      "severity": "CAPABILITY_GAP",
+      "whyNotABlockerToday": "each of the five reaches an Expert conclusion only through a finalized finding, and finalization is now gated. That is containment, not a guard: a future feature that reads an Expert analysis directly would bypass it.",
+      "dependsOn": "nothing; the derivation and the leaf module both exist",
+      "evidence": "verification/expert-hazlenz-260-product-integration-architecture-2026-09-12/SECTION-260-ARCHITECTURE.md section 11"
+    },
+    {
+      "id": "REVIEWER_REVISION_OF_A_SETTLED_ANALYSIS",
+      "statement": "An ANALYSIS_CONFIRMED or ANALYSIS_OVERRIDDEN analysis cannot be re-opened or revised. The beta workflow is one settlement per analysis.",
+      "severity": "PRODUCT_DECISION_DEFERRED",
+      "whyNotABlockerToday": "§265 was instructed to carry it as deferred rather than implement it. It is not a statement that irreversibility is permanent product policy.",
+      "dependsOn": "a product-owner decision about what re-opening means for an already-consumed downstream finding",
+      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-REPORT.md"
     }
   ],
   "liveUnverified": [
@@ -72,33 +79,45 @@
   "resolvedOrSuperseded": [
     {
       "id": "NO_PRODUCTION_CALLER_FOR_EXPERT",
-      "resolvedBy": "\u00a7246 productionized the validated contract; \u00a7262 exposed the authoritative route",
-      "wasRecordedIn": "docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md \u00a7229-era text and docs/hazlenz/governance/SOURCE_OF_TRUTH_MAP.md"
+      "resolvedBy": "§246 productionized the validated contract; §262 exposed the authoritative route",
+      "wasRecordedIn": "docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md §229-era text and docs/hazlenz/governance/SOURCE_OF_TRUTH_MAP.md"
     },
     {
       "id": "NO_SERVER_AUTHORED_PROVENANCE",
-      "resolvedBy": "\u00a7261 producer vocabulary plus the CHECK constraint"
+      "resolvedBy": "§261 producer vocabulary plus the CHECK constraint"
     },
     {
       "id": "SPEND_UNPROTECTED_BEFORE_THE_WRITE",
-      "resolvedBy": "\u00a7261 pre-spend execution claim, proven in \u00a7262"
+      "resolvedBy": "§261 pre-spend execution claim, proven in §262"
     },
     {
       "id": "ANALYSIS_CREATION_UNAUDITED",
-      "resolvedBy": "\u00a7261 analysis_created audit event across both producers"
+      "resolvedBy": "§261 analysis_created audit event across both producers"
     },
     {
       "id": "CROSS_TENANT_EXISTENCE_DISCLOSURE_BY_MESSAGE",
-      "resolvedBy": "\u00a7263 normalized accessibleObservation to one indistinguishable NotFound"
+      "resolvedBy": "§263 normalized accessibleObservation to one indistinguishable NotFound"
     },
     {
       "id": "ACCEPTED_EVIDENCE_SILENTLY_MUTABLE",
-      "resolvedBy": "\u00a7263 evidence-integrity guard plus the machine-derived mutating-script registry"
+      "resolvedBy": "§263 evidence-integrity guard plus the machine-derived mutating-script registry"
     },
     {
       "id": "NO_HUMAN_CONFIRMATION_ACTION",
-      "resolvedBy": "\u00a7264 confirmation and override, with one-settlement concurrency and retry idempotency",
+      "resolvedBy": "§264 confirmation and override, with one-settlement concurrency and retry idempotency",
       "evidence": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/"
+    },
+    {
+      "id": "NO_EXPERT_FRONTEND",
+      "resolvedBy": "§265 added the Expert workflow to the inspection workspace: execution, the eight state presentations, the confirm and change actions, and the traceability surface. The browser derives no authority; it renders the server's fields and captures a decision.",
+      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/",
+      "residual": "The workflow is proven against the local stack only. No deployed instance has served it, which is covered by RUNNING_PRODUCTION_SHA under liveUnverified."
+    },
+    {
+      "id": "NO_DOWNSTREAM_CONSUMER_OF_EFFECTIVE_DECISION",
+      "resolvedBy": "§265 activated finding finalization as the first consumer. It asks ExpertEffectiveDecisionService and refuses to finalize a finding that rests on an Expert analysis with no settled operational conclusion.",
+      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-ACCEPTANCE.json cases L, M, N",
+      "residual": "ONE consumer is activated. Completion readiness, report finalization, notifications and the executive summary remain unguarded on the Expert path, and are listed under canRunInParallelWithTheBlockers."
     }
   ]
 }

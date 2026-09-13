@@ -1,4 +1,4 @@
-import { Body, Controller, Param, ParseUUIDPipe, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Req, UseGuards } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 
 import { JwtGuard } from '../../auth/guards/jwt.guard';
@@ -10,10 +10,14 @@ import { SettleExpertAnalysisDto } from './dto/settle-expert-analysis.dto';
 import { ExpertAnalysisExecutionService } from './expert-analysis-execution.service';
 import { ExpertAnalysisService } from './expert-analysis.service';
 import {
-  toExpertAnalysisResponse, toExpertSettlementResponse,
-  type ExpertAnalysisResponse, type ExpertSettlementResponse,
+  toExpertAnalysisReadResponse, toExpertAnalysisResponse, toExpertSettlementResponse,
+  type ExpertAnalysisReadResponse, type ExpertAnalysisResponse, type ExpertSettlementResponse,
 } from './expert-analysis-response';
+import { ExpertEffectiveDecisionService } from './expert-effective-decision.service';
+import { resolveConfirmationSubject } from './expert-settlement-contract';
 import type { SettlementDecision } from './expert-settlement-contract';
+import { deriveEffectiveDecision } from './expert-effective-decision';
+import type { AnalysisState } from './expert-analysis-authority';
 
 /**
  * §262 — THE PROTECTED EXPERT PRODUCT ROUTE.
@@ -59,6 +63,9 @@ export class ExpertAnalysisController {
   constructor(
     private readonly executions: ExpertAnalysisExecutionService,
     private readonly authority: ExpertAnalysisService,
+    // §265. The ONE derivation of whether a conclusion is settled, shared with the downstream
+    // consumer. The controller asks it rather than holding an opinion of its own.
+    private readonly effective: ExpertEffectiveDecisionService,
   ) {}
 
   @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
@@ -77,7 +84,57 @@ export class ExpertAnalysisController {
       taskContext: dto.taskContext ?? null,
       answeredClarifications: dto.answeredClarifications ?? [],
     });
-    return toExpertAnalysisResponse(result);
+    // §265. The response carries the server's own derivation and the server's own question. The
+    // browser is handed both so it never has to compute either — the whole point of the frontend
+    // authority boundary this slice implements.
+    const effective = result.analysis === null
+      ? null
+      : await this.effective.forAnalysis(result.analysis);
+    const subject = result.analysis !== null && result.analysis.confirmationRequired
+      ? resolveConfirmationSubject(
+        (result.analysis.resultSnapshot as Record<string, unknown>)?.posture ?? null,
+        result.execution.confirmationRuleVersion ?? null,
+      )
+      : null;
+    return toExpertAnalysisResponse(
+      result,
+      // No analysis row means no analysis to decide about: a failed or refused execution that
+      // persisted nothing. The execution state carries the reason, and the derivation is asked
+      // about the execution's own state rather than being handed a benign default.
+      effective ?? deriveEffectiveDecision({
+        analysisState: result.execution.executionState as AnalysisState, settlement: null,
+      }),
+      subject,
+    );
+  }
+
+  /**
+   * §265 — READ THE CURRENT EXPERT ANALYSIS FOR AN OBSERVATION.
+   *
+   * SAME GUARD PROFILE AS THE TWO WRITES. A read of a safety analysis is not a lesser act than
+   * producing one, and giving it a weaker profile would put the analysis behind the strongest gate
+   * in the product and its contents behind a weaker one. The throttle is the settlement route's,
+   * because a read costs no provider legs and an interface polling a running execution must not be
+   * starved.
+   *
+   * IT IS A READ AND IT WRITES NOTHING — in particular it never re-executes, so an interface that
+   * refreshes cannot spend. That is why the frontend has a way to recover state that is not
+   * "request the analysis again".
+   */
+  @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
+  @RequireEntitlement('fullSafeScope')
+  @Roles('INDIVIDUAL', 'MEMBER', 'MANAGER', 'ORGANIZATION_ADMIN', 'ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
+  @Throttle({ default: { limit: 60, ttl: 60000 } })
+  @Get(':id/expert-analyses/current')
+  async readCurrentExpertAnalysis(
+    @Req() req: { user?: unknown },
+    @Param('id', new ParseUUIDPipe()) observationId: string,
+  ): Promise<ExpertAnalysisReadResponse> {
+    const model = await this.authority.readExpertAnalysisForObservation(req.user, observationId);
+    const effective = model.analysis === null
+      ? null
+      : await this.effective.forAnalysis(model.analysis);
+    return toExpertAnalysisReadResponse(model, effective);
   }
 
   /**
@@ -120,7 +177,7 @@ export class ExpertAnalysisController {
       replacements: dto.replacements ?? [],
       comment: dto.comment ?? null,
     });
-    const effective = await this.authority.effectiveDecisionFor(result.analysis);
+    const effective = await this.effective.forAnalysis(result.analysis);
     return toExpertSettlementResponse(result, effective);
   }
 

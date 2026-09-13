@@ -13,6 +13,7 @@ import { ExpertAnalysisContextService } from './expert-analysis-context';
 import { ExpertAnalysisExecutionService } from './expert-analysis-execution.service';
 import { ExpertAnalysisController } from './expert-analysis.controller';
 import { expertSemanticTransportProvider } from './expert-semantic-transport.provider';
+import { ExpertEffectiveDecisionModule } from './expert-effective-decision.module';
 
 /**
  * §261/§262 — the Expert product-integration module.
@@ -44,6 +45,9 @@ import { expertSemanticTransportProvider } from './expert-semantic-transport.pro
     InspectionModule,
     SitesModule,
     SafescopeV2Module,
+    // §265. The one effective-decision derivation, in a leaf module so that `InspectionModule` can
+    // depend on it too without a cycle. This module and the finding consumer ask the SAME service.
+    ExpertEffectiveDecisionModule,
   ],
   controllers: [ExpertAnalysisController],
   providers: [
@@ -52,6 +56,9 @@ import { expertSemanticTransportProvider } from './expert-semantic-transport.pro
     ExpertAnalysisExecutionService,
     expertSemanticTransportProvider,
   ],
-  exports: [ExpertAnalysisService, ExpertAnalysisExecutionService, TypeOrmModule],
+  exports: [
+    ExpertAnalysisService, ExpertAnalysisExecutionService, ExpertEffectiveDecisionModule,
+    TypeOrmModule,
+  ],
 })
 export class ExpertHazLenzProductModule {}

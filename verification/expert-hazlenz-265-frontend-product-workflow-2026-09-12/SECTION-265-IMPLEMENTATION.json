@@ -1,0 +1,182 @@
+{
+  "section": "265",
+  "generated": "2026-09-12",
+  "kind": "FRONTEND_EXPERT_WORKFLOW_AND_FIRST_DOWNSTREAM_CONSUMER",
+  "providerCalls": 0,
+  "productionDatabaseOperations": 0,
+  "pushes": 0,
+  "tags": 0,
+  "deploys": 0,
+  "predecessor": {
+    "successorIdentity259": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "commit264": "2712749a",
+    "packageDigest264": "a5cc5de113566d79de071457d245b735d87cd70ac38fa456420a3c0cad778ec3",
+    "packageDigest264Note": "sha256 of verification/expert-hazlenz-264-.../REPORT-264.sha256, recomputed from the file at §265 and matching the value the §265 authorization carried. verification/current/EXPERT-HAZLENZ-STATE.json recorded 0be6f8c33bc494cf0bf50440de4a3a933f3a00843e09183ed674358c596bfdae for §264, which does NOT reproduce; the §264 package itself verifies clean under `shasum -c REPORT-264.sha256` (4/4 OK), so the frozen bytes are intact and only the living index carried a value that cannot be derived from them. Recorded here rather than silently replaced."
+  },
+  "candidateIntegrity": {
+    "successorIdentity259Before": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "successorIdentity259After": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "elementsChecked": 22,
+    "elementDrift": 0,
+    "candidateChanged": false,
+    "protectedModulesPresent": 29,
+    "protectedModulesMissing": 0,
+    "protectedModulesModifiedBy265": 0,
+    "expertSemanticsChanged": false,
+    "confirmationTriggerRuleChanged": false,
+    "providerOrchestrationChanged": false
+  },
+  "serverChanges": {
+    "newRoute": {
+      "method": "GET",
+      "path": "/inspections/observations/:id/expert-analyses/current",
+      "guards": [
+        "JwtGuard",
+        "EntitlementGuard('fullSafeScope')",
+        "RolesGuard"
+      ],
+      "throttle": {
+        "limit": 60,
+        "ttl": 60000
+      },
+      "writes": "nothing; it never re-executes",
+      "why": "a browser holds nothing after a reload. Without a read the only ways to learn an analysis's state are to re-execute it — two provider legs to answer a question the database already answers — or to keep believing a cached copy. The second is how a settled conclusion gets rendered from stale client state."
+    },
+    "responseContractAdditions": {
+      "onExecution": [
+        "confirmationSubject",
+        "effectiveDecision"
+      ],
+      "onRead": [
+        "present",
+        "analysisId",
+        "analysisState",
+        "producer",
+        "confirmationRequired",
+        "confirmationSubject",
+        "answerOptions",
+        "effectiveDecision",
+        "authorityStatement",
+        "analysis",
+        "settlement",
+        "provenance",
+        "failure",
+        "history",
+        "findingsReconciled"
+      ],
+      "confirmationSubjectIsServerDerived": true,
+      "confirmationSubjectUnresolvableIsNamedNotEmptied": "resolvable:false with a refusal code is a different fact from 'there is nothing to confirm', and only one of them means the confirm control must be withdrawn",
+      "rawProviderPayloadServed": false
+    },
+    "effectiveDecisionRelocation": {
+      "from": "ExpertAnalysisService.effectiveDecisionFor",
+      "to": "ExpertEffectiveDecisionService.forAnalysis",
+      "module": "ExpertEffectiveDecisionModule",
+      "moduleImports": [
+        "TypeOrmModule.forFeature([HazLenzAnalysis, HumanReview])"
+      ],
+      "behaviourChanged": false,
+      "why": "the first real consumer is InspectionService.finalizeFinding, and ExpertHazLenzProductModule already imports InspectionModule. Leaving the derivation there would have forced the consumer to re-derive authority locally to escape the module cycle — the exact failure deriveEffectiveDecision exists to prevent, arriving through the module graph rather than through carelessness. One implementation remains; it is now reachable from both sides.",
+      "implementationsOfTheDerivation": 1
+    },
+    "downstreamConsumer": {
+      "selected": "InspectionService.finalizeFinding",
+      "whySelected": "the first point in the existing product flow where an Expert posture stops being analysis and becomes a consequential product fact: finalization writes the finding the report reads and, on the finalized branch, creates a corrective action whose urgency derives from that conclusion. §260 section 11 froze it as BLOCKED pre-confirmation.",
+      "asks": "ExpertEffectiveDecisionService.authorizeFindingFinalization",
+      "readsAnalysisStateItself": false,
+      "readsResultSnapshotItself": false,
+      "refusalStatus": 409,
+      "refusalSentenceSource": "the derivation's own statement, not one composed at the consumer",
+      "scopedToTheExpertPath": true,
+      "legacyDeterministicPathAffected": false,
+      "runsBeforeTheTransactionOpens": true,
+      "findingsCreatedFromAnExpertAnalysis": 0
+    },
+    "filesChanged": [
+      "backend/src/safescope-v2/expert-hazlenz-product/expert-effective-decision.service.ts (new)",
+      "backend/src/safescope-v2/expert-hazlenz-product/expert-effective-decision.module.ts (new)",
+      "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis.controller.ts",
+      "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis.service.ts",
+      "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-response.ts",
+      "backend/src/safescope-v2/expert-hazlenz-product/expert-hazlenz-product.module.ts",
+      "backend/src/inspection/inspection.service.ts",
+      "backend/src/inspection/inspection.module.ts",
+      "backend/scripts/test-265-expert-product-acceptance.ts (new)",
+      "backend/scripts/test-261-expert-persistence-foundation.ts (constructor wiring only)",
+      "backend/package.json"
+    ]
+  },
+  "frontendChanges": {
+    "route": "frontend-next/app/inspection-workspace/page.tsx, the `hazlenz` step",
+    "relationshipToTheLegacyPath": "ADDITIVE. The deterministic analysis is unchanged and still rendered in full beneath the Expert panel. saveAnalysisSnapshot is NOT used for Expert and a source check fails if it ever is — routing a server-authored result through the legacy client-supplied path would hand the client authorship of the thing that makes Expert trustworthy.",
+    "filesAdded": [
+      "frontend-next/lib/expert/expertTypes.ts",
+      "frontend-next/lib/expert/expertApi.ts",
+      "frontend-next/lib/expert/expertPresentation.ts",
+      "frontend-next/lib/expert/__tests__/expertPresentation.test.ts",
+      "frontend-next/components/inspection/expert/ExpertAnalysisPanel.tsx",
+      "frontend-next/components/inspection/expert/ExpertConfirmationCard.tsx",
+      "frontend-next/scripts/check-expert-frontend-authority-boundary.mjs"
+    ],
+    "clientSideAuthorityLogic": {
+      "present": false,
+      "mayPresentAsSettled": "a verbatim copy of effectiveDecision.settledForUse",
+      "humanSettled": "a verbatim copy of effectiveDecision.humanSettled",
+      "confirmationRequired": "read from the response; never assigned in the client",
+      "confirmationSubject": "server-derived; the client renders it and never computes it",
+      "answerVocabulary": "served in answerOptions. An empty list offers no answers rather than falling back on a hardcoded pair, because a client-held vocabulary that drifts from the server's is a reviewer answering in words the server will reject or misread.",
+      "stateMapIsTotal": true,
+      "unrecognisedStateRendersAs": "UNRECOGNISED, with no content — never as an available analysis",
+      "enforcedBy": "frontend-next/scripts/check-expert-frontend-authority-boundary.mjs",
+      "guardWasNegativelyTested": "mayPresentAsSettled was temporarily replaced with `read.analysisState === \"ANALYSIS_CONFIRMED\"`; the check failed with 2 errors and exit 1, then passed again once reverted. It is a live guard rather than a decoration."
+    },
+    "loadingBehaviour": "the held result is dropped BEFORE the request goes out, so no previous analysis is on screen while a new one is in flight. The running view renders its own message and nothing else — no hazards, no posture, no partial result.",
+    "failedStateReachability": "ANALYSIS_FAILED exists only on the execution response, because a provider failure writes no analysis row. The execution response is ADAPTED into the read shape (readFromExecution) and passed through the SAME total state map, rather than through a second presenter that could drift.",
+    "internalVocabularySuppressed": [
+      "driverRole",
+      "refKind:ref pairs",
+      "RR-7",
+      "C2",
+      "epistemicCharacter",
+      "roleJustification",
+      "admission dispositions",
+      "conformance and posture refusal codes",
+      "raw provider JSON",
+      "the candidate hash as primary UX"
+    ],
+    "provenanceSurface": "a collapsed 'Show analysis record' details panel, never the headline",
+    "idempotency": "the key is derived from the observation and the action and is reused on retry, so an accidental double-click or a retried fetch resolves to the execution that already ran. It increments only when the inspector deliberately asks again after a failure."
+  },
+  "acceptance": {
+    "serverSuite": "backend/scripts/test-265-expert-product-acceptance.ts",
+    "serverAssertions": {
+      "pass": 76,
+      "fail": 0
+    },
+    "frontendSuite": "frontend-next/lib/expert/__tests__/expertPresentation.test.ts",
+    "frontendAssertions": {
+      "pass": 59,
+      "fail": 0
+    },
+    "authorityBoundaryChecks": {
+      "pass": 8,
+      "fail": 0
+    },
+    "caseKIsFrontendOnly": "a browser rendering rule cannot be proven by a server suite. The server suite proves the server said the conclusion is unsettled; case K proves the browser does not turn that into a conclusion anyway.",
+    "staleExpectationCorrectedBeforeExecution": {
+      "case": "F",
+      "wasExpected": "ANALYSIS_AVAILABLE or ANALYSIS_AWAITING_CONFIRMATION, per §260's design table",
+      "isActually": "ANALYSIS_UNRESOLVED",
+      "whyNotADefect": "§252 gave PRESERVE_UNRESOLVED precedence deliberately after §260's table was written, so both the contained shape and the whole-output shape surface as ANALYSIS_UNRESOLVED. The current-state document records this as accepted v1.0 limitation 3.",
+      "whatWasDoneInstead": "§265 asserts the behaviour the product actually has, and CHECKS the limitation's own claim rather than repeating it: G-5 measures that the two shapes remain distinguishable in the record. They are — F carries postureRefusalCodes [] and G carries [\"DECLARATION_NOT_COVERED\"], with admission PRESERVE_UNRESOLVED on both."
+    }
+  },
+  "deliberatelyNotDone": {
+    "reviewerRevisionOfASettledAnalysis": "PRODUCT DECISION DEFERRED. One settlement per analysis in the beta workflow. Not a claim that irreversibility is permanent product policy.",
+    "remainingDownstreamGuards": "five of the six §260 section 11 consumers are contained by the finalization gate rather than guarded in their own right",
+    "findingReconciliationFromAnExpertAnalysis": "still zero; §265 added a refusal, not a creation",
+    "governedEvidenceLoader": "unchanged; Expert still transmits zero governed records and may cite nothing",
+    "hostedProviderCall": "zero; every leg was answered by the substituted deterministic transport",
+    "deployment": "none"
+  }
+}

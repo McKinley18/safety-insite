@@ -36,6 +36,7 @@ import { RISK_BAND_DUE_DAYS, governedDueDate, riskBandForScore, type RiskBandLab
 import { likelihoodScale, severityScale } from "@/lib/inspection/inspectionConstants";
 import { getRegulatorySection, type RegulatorySectionRecord } from "@/lib/canonicalWorkflowApi";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
+import ExpertAnalysisPanel from "@/components/inspection/expert/ExpertAnalysisPanel";
 import { getStoredPlanCode, getVerifiedPlanCode, hasPlanEntitlement, type BillingTier } from "@/lib/planEntitlements";
 
 /**
@@ -2510,6 +2511,21 @@ export default function InspectionWorkspacePage() {
               </p>
             ) : null}
           </div>
+
+          {/* §265 — HAZLENZ EXPERT REVIEW.
+              ADDITIVE, and deliberately placed after the heading and before the deterministic
+              standards: Expert is a second opinion on the same observation, not a replacement for
+              the customer-authoritative analysis rendered below it. The panel holds no authority
+              logic of its own -- it renders what the server said and captures the reviewer's
+              decision -- and it is only offered once the observation has actually been persisted,
+              because the Expert route addresses an observation by id. */}
+          {observationId && (
+            <ExpertAnalysisPanel
+              key={observationId}
+              observationId={observationId}
+              taskContext={workActivity}
+            />
+          )}
 
           {/* APPLICABLE STANDARDS.
               Collapsed to citation number + title. Expanding one fetches its regulatory text on

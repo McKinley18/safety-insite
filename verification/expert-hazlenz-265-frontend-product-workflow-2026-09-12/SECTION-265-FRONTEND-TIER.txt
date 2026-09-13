@@ -1,0 +1,100 @@
+# §265 — FRONTEND TIER (3F). Run from frontend-next/.
+
+$ npm run test:expert-presentation
+
+---- K. the frontend never exposes a settled decision while awaiting ----
+
+ok  An awaiting analysis renders its own view, not the ordinary available one.
+ok  K: an awaiting analysis may NOT be presented as settled.
+ok  K: an awaiting analysis reports that no human has settled it.
+ok  K: the awaiting headline does not call the conclusion approved, final or cleared.
+ok  K: the awaiting statement does not call the conclusion approved, final or cleared.
+ok  The proposed posture is still SHOWN while awaiting -- withholding the analysis would be the opposite failure from overstating it.
+ok  The hazards and the unresolved fact are both available to render while awaiting.
+ok  The confirm / change controls are offered when the server says the subject is resolvable.
+ok  `mayPresentAsSettled` is a COPY of the server's settledForUse, not a local inference from the state name.
+ok  An AVAILABLE state whose derivation says unsettled is NOT presentable as settled.
+ok  A response carrying no effective decision fails closed rather than defaulting to settled.
+
+---- awaiting-confirmation card ----
+
+ok  The confirmation subject is shown as the unresolved fact it points at.
+ok  The internal refKind:ref pair is never shown to the reviewer.
+ok  An unresolvable reference says so rather than printing an internal identifier.
+ok  A subject the server could not establish withdraws the confirm control rather than offering a decision on an unknown question.
+ok  An unresolvable subject still leaves the conclusion unsettled.
+
+---- confirmed and overridden ----
+
+ok  A confirmed analysis is settled and renders as confirmed.
+ok  A confirmed analysis records that a human settled it.
+ok  A confirmation that changed nothing produces no reviewer-change entries.
+ok  An overridden analysis is settled and renders as overridden.
+ok  An override produces exactly one reviewer-change entry for the one changed subject.
+ok  The change entry states BOTH what HazLenz proposed and what the reviewer decided, so the human value is never attributed to HazLenz.
+ok  The change entry names the subject in the reviewer's language.
+
+---- refusal, unresolved and failure ----
+
+ok  A refused analysis is not settled.
+ok  NO part of a refused output is rendered as a result -- not one hazard, not one control, not a posture -- even though the snapshot still carries them.
+ok  A refusal is never turned into 'no hazards found'.
+ok  An unresolved analysis is not settled.
+ok  No posture is presented for an unresolved analysis.
+ok  The PRESERVED unresolved fact IS shown -- that is what RR-7 preserved it for.
+ok  The count of declarations the engine refused to use is surfaced rather than hidden.
+ok  An unresolved result is never described as an absence of hazards.
+ok  An absent analysis is not settled.
+ok  An absent analysis is never described as an absence of hazards.
+ok  A null response renders the absent view rather than throwing.
+ok  A provider failure renders the FAILED view, NOT the absent one -- a system failure and 'nothing has been run' are different facts.
+ok  A failed analysis is not settled.
+ok  A failure is never turned into an absence of hazards.
+ok  A failed analysis renders no content.
+ok  No provider or transport internals reach the failure's customer-facing strings.
+ok  The execution response and the read response produce the SAME presentation for one state.
+ok  A running analysis is not settled.
+ok  A running analysis renders NO partial result -- there is nothing yet to show.
+ok  An unrecognised server state renders as unrecognised, never as an available analysis.
+ok  An unrecognised state renders no content.
+
+---- internal implementation noise stays internal ----
+
+ok  No internal contract vocabulary reaches the awaiting view's customer-facing strings.
+ok  No internal contract vocabulary reaches the confirmed view's customer-facing strings.
+ok  No internal contract vocabulary reaches the overridden view's customer-facing strings.
+ok  No internal contract vocabulary reaches the refused view's customer-facing strings.
+ok  No internal contract vocabulary reaches the unresolved view's customer-facing strings.
+ok  No internal contract vocabulary reaches the running view's customer-facing strings.
+ok  No internal contract vocabulary reaches the absent view's customer-facing strings.
+ok  No internal contract vocabulary reaches the unrecognised view's customer-facing strings.
+ok  A hazard family is formatted rather than looked up in a client-held copy of the taxonomy.
+ok  An empty hazard family falls back to a neutral word rather than rendering blank.
+ok  An unreadable posture says so rather than being guessed at.
+ok  An unknown classification is passed through rather than relabelled into a meaning it may not have.
+
+---- history keeps the two trust boundaries apart ----
+
+ok  A server-authored analysis and a client-supplied one are described differently.
+ok  A settled analysis is marked as settled by a person in the history.
+ok  A legacy client-supplied row is not rewritten into the new authority model.
+
+ALL CHECKS PASSED
+
+$ npm run check:expert-authority-boundary
+ok    no Expert frontend file derives server authority locally
+ok    `mayPresentAsSettled` is a direct copy of the server's `settledForUse`
+ok    `humanSettled` is a direct copy of the server's field
+ok    VIEW_FOR_STATE covers all 8 server states
+ok    expertApi.ts sends only the accepted §262/§264 request fields
+ok    no Expert frontend file routes an Expert result through the legacy snapshot path
+ok    no Expert component labels a conclusion approved, final, cleared or safe to proceed
+ok    the panel qualifies an unsettled posture rather than presenting it bare
+
+EXPERT FRONTEND AUTHORITY BOUNDARY: PASS
+
+$ npx tsc --noEmit -p tsconfig.json
+(no output: PASS)
+
+$ npx eslint lib/expert components/inspection/expert
+(no output: clean)

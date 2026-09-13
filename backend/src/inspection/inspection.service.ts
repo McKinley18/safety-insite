@@ -32,6 +32,9 @@ import {
 import {
   CLIENT_SUPPLIED_ANALYSIS_STATE,
 } from '../safescope-v2/expert-hazlenz-product/expert-analysis-authority';
+import {
+  ExpertEffectiveDecisionService,
+} from '../safescope-v2/expert-hazlenz-product/expert-effective-decision.service';
 import { HumanReview } from './entities/human-review.entity';
 import { InspectionAssignment } from './entities/inspection-assignment.entity';
 import { InspectionFinding } from './entities/inspection-finding.entity';
@@ -128,6 +131,15 @@ export class InspectionService {
     @InjectRepository(CorrectiveAction) private readonly correctiveActions: Repository<CorrectiveAction>,
     private readonly sites: SitesService,
     private readonly dataSource: DataSource,
+    /**
+     * §265. THE ONE PLACE THIS SERVICE MAY LEARN WHETHER AN EXPERT CONCLUSION IS SETTLED.
+     *
+     * It is injected rather than reimplemented because the alternative — reading `analysisState`
+     * here and deciding what it means — is precisely the second opinion that
+     * `deriveEffectiveDecision` exists to make impossible. Required, not optional: an optional
+     * dependency on a safety gate is a gate that fails open the first time wiring changes.
+     */
+    private readonly expertAuthority: ExpertEffectiveDecisionService,
   ) {}
 
   private async canAccessDraft(user: AuthenticatedUser, inspection: Inspection) {
@@ -1281,6 +1293,35 @@ export class InspectionService {
     const reviewedAnalysis = review.analysisId
       ? await this.analyses.findOne({ where: { id: review.analysisId, observationId } })
       : null;
+
+    // ---------------------------------------------------------------------------------------
+    // §265. THE DOWNSTREAM AUTHORITY GATE — THE FIRST ACTIVATED CONSUMER OF `effectiveDecision`.
+    //
+    // FINALIZATION IS WHERE A POSTURE STOPS BEING ANALYSIS AND BECOMES A PRODUCT FACT. It writes a
+    // finding the report reads, and on the `finalized` branch it creates a corrective action whose
+    // urgency derives from that conclusion. §260 section 11 froze finalization as BLOCKED while an
+    // Expert classification is unsettled, and this is the mechanism.
+    //
+    // IT ASKS; IT DOES NOT DECIDE. The verdict, the reason and the customer-facing sentence all come
+    // from the one derivation. Nothing here reads `analysisState`, `confirmationRequired` or
+    // `resultSnapshot`, so this consumer cannot prefer the raw Expert proposal over a human
+    // settlement — there is no code path by which the proposal reaches it.
+    //
+    // IT IS SCOPED TO THE EXPERT PATH, DELIBERATELY. A review citing no analysis, or a
+    // `client_supplied` one, is allowed exactly as before: the deterministic path is the
+    // customer-authoritative one and §265 imposes no new precondition on it.
+    //
+    // IT RUNS BEFORE THE TRANSACTION OPENS. A refusal must not leave a partially written finding,
+    // and the check needs no lock — it reads rows a settlement can only move FORWARD, and a
+    // settlement landing after this point produces a retryable refusal rather than a wrong write.
+    const expertVerdict = await this.expertAuthority.authorizeFindingFinalization(
+      review.analysisId, observationId,
+    );
+    if (!expertVerdict.allowed) {
+      throw new ConflictException(expertVerdict.refusal ?? 'This Expert analysis carries no settled '
+        + 'operational conclusion, so a finding cannot be finalized from it.');
+    }
+
     return this.dataSource.transaction(async manager => {
       const repository = manager.getRepository(InspectionFinding);
       const existing = await repository.findOne({

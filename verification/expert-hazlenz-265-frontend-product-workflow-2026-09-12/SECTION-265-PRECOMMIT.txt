@@ -1,0 +1,943 @@
+
+> safety-insite-backend@1.0.0 hazlenz:precommit
+> npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence
+
+
+> safety-insite-backend@1.0.0 hazlenz:verify
+> ts-node scripts/hazlenz/verify.ts
+
+Expert HazLenz — current state verification (read-only, 0 provider calls)
+
+  Candidate identity                  PASS                      22 elements, drift 0
+  Identity constant in the build      PASS                      the compiled-in identity equals the recomputation
+  Protected modules                   PASS                      29/29 present, 1 digest(s) newer than the §229 snapshot (anthropicAdapterModule)
+  Accepted evidence drift             PASS                      0 new (5542 members over 90 manifests; 0 pre-existing, 8 baselined, 66 external pointers)
+  Current-state manifest              PASS                      agrees with the recomputed identity
+  Provider transport (live)           UNVERIFIED_LIVE           no provider is called by any §263 command
+  Object storage / report generation  ENVIRONMENTALLY_BLOCKED   STORAGE_S3_BUCKET and STORAGE_LOCAL_ROOT are unset; test:knowledge-release-provenance cannot reach report generation
+  Billing and deployment              UNVERIFIED_LIVE           no live environment is contacted
+
+VERIFICATION PASS  —  2 unverified live, 1 environmentally blocked
+
+> safety-insite-backend@1.0.0 hazlenz:test
+> npm run test:261-confirmation-rule && npm run test:264-settlement-contract && npm run test:expert-nocall-harness
+
+
+> safety-insite-backend@1.0.0 test:261-confirmation-rule
+> ts-node scripts/test-261-confirmation-rule.ts
+
+
+---- R1. the frozen total posture-permissiveness map is used, not restated ----
+
+ok    R1-A the map is total over the four postures  [4 postures]
+ok    R1-B the map is exactly CONTINUE/CONTINUE_WITH_CONTROLS permitting, HOLD/STOP not
+ok    R1-C every admitted posture value maps deterministically, none is guessed
+
+---- R2 (req. 4 and 7). no relevant unresolved driver: confirmation NOT required ----
+
+ok    R2-A ordinary CONTINUE with an established-condition driver requires no confirmation
+ok    R2-B CONTINUE_WITH_CONTROLS driven only by an established condition requires no confirmation
+ok    R2-C an established-condition cessation driver ALONE never triggers confirmation  [§255 bounded the continuation-controlling/follow-up distinction, not established conditions]
+ok    R2-D an empty requiredBy requires no confirmation and does not fail closed
+
+---- R3 (req. 5). branch (a): an unresolved-property-controlling claim ----
+
+ok    R3-A HOLD driven by a controlling unresolved claim REQUIRES confirmation
+ok    R3-B the trigger is identified structurally by refKind:ref, never by prose
+ok    R3-C branch (a) fires on a NON-permitting posture too; it is not gated on permissiveness  [this is the over-restriction direction §254 observed]
+ok    R3-D branch (a) fires on a HAZARD_CANDIDATE carrier as well as a declaration carrier  [§239 binds the role to both ref kinds]
+
+---- R4 (req. 6). branch (b): follow-up classification while work continues ----
+
+ok    R4-A a permitted posture with an unresolved follow-up REQUIRES confirmation  [the under-restriction direction §254 did not observe and nothing excludes]
+ok    R4-B branch (b) fires on CONTINUE as well, because CONTINUE permits work
+ok    R4-C RESTRAINT: a follow-up under a NON-permitting posture does NOT trigger confirmation  [work is already held, so nothing continues on the follow-up classification]
+ok    R4-D RESTRAINT: the same under STOP does not trigger confirmation either
+
+---- R5. BOTH directions are preserved; neither branch is the whole rule ----
+
+ok    R5-A branch (a) alone is insufficient: R4-A would be missed without branch (b)
+ok    R5-B branch (b) alone is insufficient: R3-C would be missed without branch (a)
+ok    R5-C a mixed posture collects EVERY triggering entry, not the first  [the confirmation subject binds to all of them]
+
+---- R6 (req. 8). unknown or invalid structured state FAILS CLOSED ----
+
+ok    R6 posture absent fails closed  [POSTURE_ABSENT]
+ok    R6 posture undefined fails closed  [POSTURE_ABSENT]
+ok    R6 posture is a string fails closed  [POSTURE_NOT_AN_OBJECT]
+ok    R6 posture is an array fails closed  [POSTURE_NOT_AN_OBJECT]
+ok    R6 posture value outside the closed vocabulary fails closed  [POSTURE_VALUE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 posture value is not a string fails closed  [POSTURE_VALUE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 requiredBy is not an array fails closed  [REQUIRED_BY_NOT_AN_ARRAY]
+ok    R6 requiredBy is absent fails closed  [REQUIRED_BY_NOT_AN_ARRAY]
+ok    R6 a requiredBy entry is not an object fails closed  [REQUIRED_BY_ENTRY_NOT_AN_OBJECT]
+ok    R6 a driverRole is outside the closed vocabulary fails closed  [DRIVER_ROLE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 a driverRole is absent fails closed  [DRIVER_ROLE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 a refKind is outside the closed vocabulary fails closed  [REF_KIND_NOT_IN_CLOSED_VOCABULARY]
+ok    R6-Z a failed-closed determination is DISTINGUISHABLE from a substantive requirement  [same flag, different meaning, and both are recorded]
+
+---- R7. the rule reads structure only; prose cannot move it ----
+
+ok    R7-A prose asserting a controlling unresolved property does NOT trigger confirmation  [no prose is read and no model is asked]
+ok    R7-B prose asserting nothing is needed does NOT suppress a structural trigger
+ok    R7-C the whole-analysis entry point reads the posture field and agrees with the direct call
+ok    R7-D an analysis carrying no posture field fails closed rather than reading as settled
+
+---- R8. the §260 design check against the §254 shapes ----
+
+ok    R8 H1 CONTINUE -> confirmation not required  [ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION]
+ok    R8 H2 STOP -> confirmation not required  [ESTABLISHED_CONDITION_REQUIRING_CESSATION]
+ok    R8 H3 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8 H4 CONTINUE_WITH_CONTROLS -> confirmation required  [UNRESOLVED_RESPONSE_OR_FOLLOW_UP]
+ok    R8 H5 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8 H6 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8-Z the rule fires on exactly the four unresolved-classification shapes and no others
+
+---- R9. the state derivation is total and availability is the last conclusion ----
+
+ok    R9-A PROVIDER_FAILED -> ANALYSIS_FAILED
+ok    R9-B FIRST_PASS_REFUSED -> ANALYSIS_REFUSED
+ok    R9-C COMPLETE + REFUSE -> ANALYSIS_REFUSED, never a generic success
+ok    R9-D COMPLETE + PRESERVE_UNRESOLVED -> ANALYSIS_UNRESOLVED
+ok    R9-E PRESERVE_UNRESOLVED outranks a refused status rather than reading as a plain refusal  [RR-7 exists to keep the preserved truth visible]
+ok    R9-F COMPLETE + ADMIT + no confirmation -> ANALYSIS_AVAILABLE
+ok    R9-G COMPLETE + ADMIT + confirmation -> ANALYSIS_AWAITING_CONFIRMATION
+ok    R9-H COMPLETE with no admission disposition THROWS rather than defaulting to available  [no benign default is permitted]
+ok    R9-I the eight §261 states are all representable and distinct
+ok    R9-J this slice can derive only the six machine states; the human two are unreachable here
+
+---- R10. the producer vocabulary is closed, and pre-spend classification ----
+
+ok    R10-A the producer vocabulary is exactly two values
+ok    R10-B a running execution is discovered as ALREADY_RUNNING and may not spend
+ok    R10-C a completed execution may not spend again
+ok    R10-D a transport failure is RETRYABLE: no semantic answer was ever obtained
+ok    R10-E a refusal is TERMINAL: the provider answered and admission refused it  [re-spending would be shopping for a different answer to the same question]
+ok    R10-F only a fresh CLAIMED outcome permits provider spend
+
+---- R11. the rule carries its own identity ----
+
+ok    R11-A every determination carries the rule version that produced it
+ok    R11-B the rule version names §261 and the boundary it enforces
+
+================ §261 confirmation rule: 60 passed, 0 failed
+
+> safety-insite-backend@1.0.0 test:264-settlement-contract
+> ts-node scripts/test-264-settlement-contract.ts
+
+---- S1. the subject is the triggering entries and nothing else ----
+
+ok    S1-A the subject resolves
+ok    S1-B exactly the ONE triggering entry is the subject, not every driver  [1 entries]
+ok    S1-C it is identified by the refKind:ref pair the analysis already carries
+ok    S1-D the claim is stated in product language, never as the internal driver role
+ok    S1-E the established-condition driver is NOT put in front of a human
+
+---- S2. a drifted rule version refuses rather than re-deriving ----
+
+ok    S2-A a subject is not produced under a rule version this build does not implement  [CONFIRMATION_RULE_VERSION_DRIFTED]
+ok    S2-B a null persisted version also refuses
+
+---- S3. an unreadable or empty posture refuses ----
+
+ok    S3-A no posture refuses
+ok    S3-B a posture outside the closed vocabulary refuses  [POSTURE_UNREADABLE]
+ok    S3-C a posture with no triggering entry refuses rather than presenting an empty question  [NO_SUBJECT_ENTRIES]
+
+---- S4. the override contract is closed ----
+
+ok    S4-A a change with no replacement is refused
+ok    S4-B a reference the analysis does not ask about is refused  [REPLACEMENT_NOT_A_SUBJECT_ENTRY]
+ok    S4-C a value outside the two-member vocabulary is refused, not coerced  [REPLACEMENT_CLASSIFICATION_NOT_IN_VOCABULARY]
+ok    S4-D a "change" that changes nothing is refused, so no false disagreement is recorded  [REPLACEMENT_CHANGES_NOTHING]
+ok    S4-E a duplicated reference is refused rather than last-one-wins  [REPLACEMENT_DUPLICATED]
+ok    S4-F a genuine change is accepted
+
+---- S5. both sides are carried into the settled record ----
+
+ok    S5-A a confirmation records the human value equal to the Expert value, and changed=false
+ok    S5-B a change records BOTH the Expert claim and the human replacement
+
+---- S6. the effective decision is total and never manufactures a conclusion ----
+
+ok    S6 ANALYSIS_RUNNING yields no settled conclusion  [NONE_RUNNING]
+ok    S6 ANALYSIS_FAILED yields no settled conclusion  [NONE_EXPERT_UNAVAILABLE]
+ok    S6 ANALYSIS_REFUSED yields no settled conclusion  [NONE_REFUSED]
+ok    S6 ANALYSIS_UNRESOLVED yields no settled conclusion  [NONE_UNRESOLVED_TRUTH_PRESERVED]
+ok    S6 ANALYSIS_AWAITING_CONFIRMATION yields no settled conclusion  [NONE_AWAITING_HUMAN_CONFIRMATION]
+ok    S6-F ANALYSIS_AVAILABLE is settled without a human, under the existing authority rules
+ok    S6-G awaiting confirmation says it is neither confirmed nor rejected
+ok    S6-H a failed execution never reads as "no hazards"
+ok    S6-I a confirmed analysis is settled by a human and uses the confirmed conclusion
+ok    S6-J an overridden analysis uses the HUMAN replacement as the effective value
+ok    S6-K the Expert proposal is still readable from the effective decision itself
+ok    S6-L the reviewer and timestamp are carried
+ok    S6-M a settled STATE with no settlement RECORD aborts rather than yielding a conclusion
+
+---- S7. the vocabularies are closed and mutually consistent ----
+
+ok    S7-A exactly two human classifications exist
+ok    S7-B exactly two settlement decisions exist
+ok    S7-C the driver-role map covers exactly the two trigger roles and no others
+ok    S7-D the map is injective, so the answer space has not collapsed
+
+================ §264 settlement contract: 35 passed, 0 failed
+{"providerCalls":0,"databaseOperations":0,"passed":35,"failed":0}
+
+> safety-insite-backend@1.0.0 test:expert-nocall-harness
+> ts-node scripts/test-expert-nocall-harness.ts
+
+
+--- A. the ten scenarios
+ok    A.0 ten representative scenarios
+ok    A.1 S01 single obvious hazard: layer status PRESENT (got PRESENT)
+ok    A.2 S01 single obvious hazard: 0 advisory candidate(s)
+ok    A.3 S01 single obvious hazard: 0 clarification(s)
+ok    A.4 S01 single obvious hazard: 0 cross-hazard insight(s)
+ok    A.5 S01 single obvious hazard: 0 disagreement(s)
+ok    A.6 S01 single obvious hazard: required issue codes present []
+ok    A.7 S01 single obvious hazard: every deterministic finding retained
+ok    A.8 S01 single obvious hazard: deterministic findings are source-labelled
+ok    A.9 S01 single obvious hazard: knowledge release id unchanged
+ok    A.10 S01 single obvious hazard: governed citations retained and source-labelled
+ok    A.11 S01 single obvious hazard: no merge invariant violated []
+ok    A.1 S02 genuine multi-hazard observation with a cross-hazard interaction: layer status PRESENT (got PRESENT)
+ok    A.2 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 advisory candidate(s)
+ok    A.3 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 clarification(s)
+ok    A.4 S02 genuine multi-hazard observation with a cross-hazard interaction: 1 cross-hazard insight(s)
+ok    A.5 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 disagreement(s)
+ok    A.6 S02 genuine multi-hazard observation with a cross-hazard interaction: required issue codes present []
+ok    A.7 S02 genuine multi-hazard observation with a cross-hazard interaction: every deterministic finding retained
+ok    A.8 S02 genuine multi-hazard observation with a cross-hazard interaction: deterministic findings are source-labelled
+ok    A.9 S02 genuine multi-hazard observation with a cross-hazard interaction: knowledge release id unchanged
+ok    A.10 S02 genuine multi-hazard observation with a cross-hazard interaction: governed citations retained and source-labelled
+ok    A.11 S02 genuine multi-hazard observation with a cross-hazard interaction: no merge invariant violated []
+ok    A.1 S03 negated / safe-state observation, Expert proposes a candidate anyway: layer status PRESENT (got PRESENT)
+ok    A.2 S03 negated / safe-state observation, Expert proposes a candidate anyway: 1 advisory candidate(s)
+ok    A.3 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 clarification(s)
+ok    A.4 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 cross-hazard insight(s)
+ok    A.5 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 disagreement(s)
+ok    A.6 S03 negated / safe-state observation, Expert proposes a candidate anyway: required issue codes present []
+ok    A.7 S03 negated / safe-state observation, Expert proposes a candidate anyway: every deterministic finding retained
+ok    A.8 S03 negated / safe-state observation, Expert proposes a candidate anyway: deterministic findings are source-labelled
+ok    A.9 S03 negated / safe-state observation, Expert proposes a candidate anyway: knowledge release id unchanged
+ok    A.10 S03 negated / safe-state observation, Expert proposes a candidate anyway: governed citations retained and source-labelled
+ok    A.11 S03 negated / safe-state observation, Expert proposes a candidate anyway: no merge invariant violated []
+ok    A.1 S04 ZERO hazard candidates and a decision-critical clarification: layer status PRESENT (got PRESENT)
+ok    A.2 S04 ZERO hazard candidates and a decision-critical clarification: 0 advisory candidate(s)
+ok    A.3 S04 ZERO hazard candidates and a decision-critical clarification: 1 clarification(s)
+ok    A.4 S04 ZERO hazard candidates and a decision-critical clarification: 0 cross-hazard insight(s)
+ok    A.5 S04 ZERO hazard candidates and a decision-critical clarification: 0 disagreement(s)
+ok    A.6 S04 ZERO hazard candidates and a decision-critical clarification: required issue codes present []
+ok    A.7 S04 ZERO hazard candidates and a decision-critical clarification: every deterministic finding retained
+ok    A.8 S04 ZERO hazard candidates and a decision-critical clarification: deterministic findings are source-labelled
+ok    A.9 S04 ZERO hazard candidates and a decision-critical clarification: knowledge release id unchanged
+ok    A.10 S04 ZERO hazard candidates and a decision-critical clarification: governed citations retained and source-labelled
+ok    A.11 S04 ZERO hazard candidates and a decision-critical clarification: no merge invariant violated []
+ok    A.1 S05 Expert-only plausible candidate the deterministic set missed: layer status PRESENT (got PRESENT)
+ok    A.2 S05 Expert-only plausible candidate the deterministic set missed: 1 advisory candidate(s)
+ok    A.3 S05 Expert-only plausible candidate the deterministic set missed: 0 clarification(s)
+ok    A.4 S05 Expert-only plausible candidate the deterministic set missed: 1 cross-hazard insight(s)
+ok    A.5 S05 Expert-only plausible candidate the deterministic set missed: 0 disagreement(s)
+ok    A.6 S05 Expert-only plausible candidate the deterministic set missed: required issue codes present []
+ok    A.7 S05 Expert-only plausible candidate the deterministic set missed: every deterministic finding retained
+ok    A.8 S05 Expert-only plausible candidate the deterministic set missed: deterministic findings are source-labelled
+ok    A.9 S05 Expert-only plausible candidate the deterministic set missed: knowledge release id unchanged
+ok    A.10 S05 Expert-only plausible candidate the deterministic set missed: governed citations retained and source-labelled
+ok    A.11 S05 Expert-only plausible candidate the deterministic set missed: no merge invariant violated []
+ok    A.1 S06 Expert disagrees with the deterministic condition state: layer status PRESENT (got PRESENT)
+ok    A.2 S06 Expert disagrees with the deterministic condition state: 0 advisory candidate(s)
+ok    A.3 S06 Expert disagrees with the deterministic condition state: 0 clarification(s)
+ok    A.4 S06 Expert disagrees with the deterministic condition state: 0 cross-hazard insight(s)
+ok    A.5 S06 Expert disagrees with the deterministic condition state: 1 disagreement(s)
+ok    A.6 S06 Expert disagrees with the deterministic condition state: required issue codes present []
+ok    A.7 S06 Expert disagrees with the deterministic condition state: every deterministic finding retained
+ok    A.8 S06 Expert disagrees with the deterministic condition state: deterministic findings are source-labelled
+ok    A.9 S06 Expert disagrees with the deterministic condition state: knowledge release id unchanged
+ok    A.10 S06 Expert disagrees with the deterministic condition state: governed citations retained and source-labelled
+ok    A.11 S06 Expert disagrees with the deterministic condition state: no merge invariant violated []
+ok    A.1 S07 Expert disagrees with a governed interpretation; approval is untouched: layer status PRESENT (got PRESENT)
+ok    A.2 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 advisory candidate(s)
+ok    A.3 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 clarification(s)
+ok    A.4 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 cross-hazard insight(s)
+ok    A.5 S07 Expert disagrees with a governed interpretation; approval is untouched: 1 disagreement(s)
+ok    A.6 S07 Expert disagrees with a governed interpretation; approval is untouched: required issue codes present []
+ok    A.7 S07 Expert disagrees with a governed interpretation; approval is untouched: every deterministic finding retained
+ok    A.8 S07 Expert disagrees with a governed interpretation; approval is untouched: deterministic findings are source-labelled
+ok    A.9 S07 Expert disagrees with a governed interpretation; approval is untouched: knowledge release id unchanged
+ok    A.10 S07 Expert disagrees with a governed interpretation; approval is untouched: governed citations retained and source-labelled
+ok    A.11 S07 Expert disagrees with a governed interpretation; approval is untouched: no merge invariant violated []
+ok    A.1 S08 malformed Expert output is rejected at the boundary: layer status OUTPUT_REJECTED (got OUTPUT_REJECTED)
+ok    A.2 S08 malformed Expert output is rejected at the boundary: 0 advisory candidate(s)
+ok    A.3 S08 malformed Expert output is rejected at the boundary: 0 clarification(s)
+ok    A.4 S08 malformed Expert output is rejected at the boundary: 0 cross-hazard insight(s)
+ok    A.5 S08 malformed Expert output is rejected at the boundary: 0 disagreement(s)
+ok    A.6 S08 malformed Expert output is rejected at the boundary: required issue codes present []
+ok    A.7 S08 malformed Expert output is rejected at the boundary: every deterministic finding retained
+ok    A.8 S08 malformed Expert output is rejected at the boundary: deterministic findings are source-labelled
+ok    A.9 S08 malformed Expert output is rejected at the boundary: knowledge release id unchanged
+ok    A.10 S08 malformed Expert output is rejected at the boundary: governed citations retained and source-labelled
+ok    A.11 S08 malformed Expert output is rejected at the boundary: no merge invariant violated []
+ok    A.1 S09 provider unavailable; the inspection is unaffected: layer status NOT_CONFIGURED (got NOT_CONFIGURED)
+ok    A.2 S09 provider unavailable; the inspection is unaffected: 0 advisory candidate(s)
+ok    A.3 S09 provider unavailable; the inspection is unaffected: 0 clarification(s)
+ok    A.4 S09 provider unavailable; the inspection is unaffected: 0 cross-hazard insight(s)
+ok    A.5 S09 provider unavailable; the inspection is unaffected: 0 disagreement(s)
+ok    A.6 S09 provider unavailable; the inspection is unaffected: required issue codes present []
+ok    A.7 S09 provider unavailable; the inspection is unaffected: every deterministic finding retained
+ok    A.8 S09 provider unavailable; the inspection is unaffected: deterministic findings are source-labelled
+ok    A.9 S09 provider unavailable; the inspection is unaffected: knowledge release id unchanged
+ok    A.10 S09 provider unavailable; the inspection is unaffected: governed citations retained and source-labelled
+ok    A.11 S09 provider unavailable; the inspection is unaffected: no merge invariant violated []
+ok    A.1 S10 life-critical deterministic hazard plus total Expert omission: layer status PRESENT (got PRESENT)
+ok    A.2 S10 life-critical deterministic hazard plus total Expert omission: 0 advisory candidate(s)
+ok    A.3 S10 life-critical deterministic hazard plus total Expert omission: 0 clarification(s)
+ok    A.4 S10 life-critical deterministic hazard plus total Expert omission: 0 cross-hazard insight(s)
+ok    A.5 S10 life-critical deterministic hazard plus total Expert omission: 0 disagreement(s)
+ok    A.6 S10 life-critical deterministic hazard plus total Expert omission: required issue codes present []
+ok    A.7 S10 life-critical deterministic hazard plus total Expert omission: every deterministic finding retained
+ok    A.8 S10 life-critical deterministic hazard plus total Expert omission: deterministic findings are source-labelled
+ok    A.9 S10 life-critical deterministic hazard plus total Expert omission: knowledge release id unchanged
+ok    A.10 S10 life-critical deterministic hazard plus total Expert omission: governed citations retained and source-labelled
+ok    A.11 S10 life-critical deterministic hazard plus total Expert omission: no merge invariant violated []
+
+--- B. the scenarios that carry a specific proof
+ok    B.1 S04: zero deterministic findings, zero Expert candidates, and the clarification SURVIVES the merge
+ok    B.2 S04: the clarification keeps its criticality through the merge
+ok    B.3 S03: an Expert candidate on a safe state stays ADVISORY and creates no finding
+ok    B.4 S03: it is labelled so a consumer cannot mistake it for authority
+ok    B.5 S06: a challenge to the condition state is recorded and the state is unchanged
+ok    B.6 S07: a governed challenge is recorded and approval is NOT conferred
+ok    B.7 S08: rejected Expert output leaves the required action intact
+ok    B.8 S09: the inspection is unaffected by an absent provider
+ok    B.9 S10: a life-critical finding survives a total Expert omission with all four actions
+ok    B.10 S10: the omission is recorded as a PRESENT layer that added nothing -- not as a failure
+ok    B.11 S02: a cross-hazard insight is added beside two unchanged deterministic findings
+
+--- C. the evaluation plan is specified and NOT executed
+ok    C.1 seventeen measures pre-registered (the fourteen required, split where precision and recall differ)
+ok    C.2 four independent gate families
+ok    C.3 every hard gate carries a direction and a threshold
+ok    C.4 every measure states why its threshold is where it is
+ok    C.5 M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY is a zero-tolerance gate
+ok    C.5 M05_FABRICATED_CITATIONS is a zero-tolerance gate
+ok    C.5 M08_GOVERNED_PROVENANCE_INTEGRITY is a zero-tolerance gate
+ok    C.6 life-critical retention is a 100% floor
+ok    C.7 cross-process reproducibility is REPORTED, not a hard gate -- the G9 lesson
+ok    C.8 a determinism-control precondition exists and is established before a corpus is opened
+ok    C.9 a pre-spend authorization is a precondition, not an assumption
+ok    C.10 with nothing measured, every gated family fails -- an unmeasured gate is not a passed one
+ok    C.11 there is no aggregate score that could hide a safety failure
+ok    C.12 the corpus policy names what is burnt and what is reserved
+ok    C.13 the spent Run-2 holdout is CLOSED and cannot be re-scored
+
+--- D. zero provider calls, proved from the source
+      replay provider invocations this run: 18
+ok    D.1 the replay provider was actually exercised (a harness that ran nothing proves nothing)
+ok    D.2 the module has 90 source files to scan
+ok    D.3 no network primitive, endpoint or credential appears anywhere in the module []
+ok    D.4 no vendor name appears in module CODE []
+
+141 passed, 0 failed
+
+> safety-insite-backend@1.0.0 hazlenz:build
+> npm run build && npm run build:render
+
+
+> safety-insite-backend@1.0.0 build
+> tsc
+
+
+> safety-insite-backend@1.0.0 build:render
+> node --max-old-space-size=1024 ./node_modules/typescript/bin/tsc
+
+
+> safety-insite-backend@1.0.0 hazlenz:integration:test
+> ts-node scripts/hazlenz/with-disposable-db.ts hazlenz:integration:inner
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789268319908_9764
+
+> safety-insite-backend@1.0.0 hazlenz:integration:inner
+> npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance
+
+
+> safety-insite-backend@1.0.0 test:261-expert-persistence-foundation
+> ts-node scripts/test-261-expert-persistence-foundation.ts
+
+resolved target host=127.0.0.1 port=5432 database=test_insite_1789268319908_9764
+target proven disposable
+
+
+---- P0. the service that owns Expert authority makes no provider call ----
+
+ok    P0-A the service does not import the Expert entry point  [14 imports, none of them the entry point]
+ok    P0-B the service imports no provider adapter
+ok    P0-D the service uses no dynamic import or require to reach a provider
+ok    P0-C the service issues no outbound HTTP
+
+---- P1 (req. 1). a client-supplied analysis persists as client_supplied ----
+
+ok    P1-A the legacy snapshot path persists producer = client_supplied  [client_supplied]
+ok    P1-B it carries no execution linkage, because no server-owned execution ran
+ok    P1-C it is ANALYSIS_AVAILABLE with confirmationRequired false
+
+---- P2 (req. 2). a client CANNOT forge server_authored ----
+
+ok    P2-A a body asserting producer = server_authored still persists as client_supplied  [client_supplied]
+ok    P2-B a body asserting an execution id still persists no execution linkage
+ok    P2-C a body asserting confirmationRequired = true still persists false
+ok    P2-D a body asserting an authoritative state still persists ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    P2-E even raw SQL cannot mint server_authored without a real execution row  [the trust boundary is enforced in the database, not only in TypeScript]
+ok    P2-F the producer vocabulary is closed; free text is rejected
+
+---- P3 (req. 10). pre-spend execution identity contains duplicates ----
+
+ok    P3-A the first claim is CLAIMED and is the only one permitted to spend
+ok    P3-B the execution exists in ANALYSIS_RUNNING before any provider call  [attempts 0 proves the provider was never reached]
+ok    P3-C it is server_authored and names the workspace the server authorized
+ok    P3-D a duplicate under the same identity discovers ALREADY_RUNNING and MUST NOT spend
+ok    P3-E the duplicate resolves to the SAME execution, it does not create a second
+ok    P3-F three concurrent claims produce exactly one spender  [CLAIMED/ALREADY_RUNNING/ALREADY_RUNNING]
+ok    P3-G exactly one execution row exists for the contended identity  [rows=1]
+
+---- P4 (req. 3). the Expert path assigns server_authored internally ----
+
+ok    P4-A the Expert path persists producer = server_authored  [server_authored]
+ok    P4-B the analysis names the execution that authored it
+ok    P4-C the execution names the analysis it produced
+ok    P4-D candidate provenance is persisted, not engineVersion alone
+ok    P4-E a controlling unresolved claim yields ANALYSIS_AWAITING_CONFIRMATION
+ok    P4-F the execution records WHICH confirmation rule produced the flag
+ok    P4-G the prior current analysis was superseded, not duplicated
+
+---- P5 (req. 9). the confirmation flag is STORED, never recomputed on read ----
+
+ok    P5-A the stored flag survives a snapshot whose content would now score differently  [a later rule or content change must not alter what an earlier reviewer was asked]
+ok    P5-B the stored state survives with it
+ok    P5-C the live rule genuinely disagrees with the stored flag, so P5-A is not vacuous
+
+---- P6 (req. 11 and 12). H3/H4 structural identity survives persistence ----
+
+ok    P6-A unresolved declaration IDs survive persistence
+ok    P6-B resumeCondition.resolvedByDeclarationIds survives as declaration REFERENCES
+ok    P6-C the resume condition still resolves against the persisted declaration IDs  [the binding is by identity, not by paraphrase]
+ok    P6-D controlId survives on every required control
+ok    P6-E dischargingControlRef survives AS THE ID, not resolved to prose
+ok    P6-F the discharging reference resolves against a persisted controlId
+ok    P6-G the refKind:ref pair on the driver survives for the confirmation subject
+ok    P6-H nothing was flattened: the persisted snapshot round-trips with no loss at all  [there is no mapper between the admitted structure and the column]
+ok    P6-J array ORDER survives, so declaration and control sequencing is not reshuffled
+ok    P6-I branch (b) on a permitting posture produced AWAITING_CONFIRMATION through the service
+
+---- P7 (req. 13). the analysis-creation audit event ----
+
+ok    P7-A a server-authored analysis emits an analysis_created event
+ok    P7-B it records who initiated it
+ok    P7-C it records the workspace, inspection and observation
+ok    P7-D it records the execution and analysis identities
+ok    P7-E it records candidate/version provenance
+ok    P7-F it records the resulting state and confirmation status
+ok    P7-G it records the producer that distinguishes the two paths
+ok    P7-H NO raw provider payload or model prose is written into generic audit metadata  [raw output stays on the execution record, under the analysis access controls]
+ok    P7-I the execution record is where raw output would live  [null here because this slice makes no provider call]
+ok    P7-J the legacy client-supplied path also emits the event, closing the gap for both
+ok    P7-K the legacy event records the engineVersion AS A CLIENT CLAIM, not as provenance
+ok    P7-L one action name covers both producers, distinguished by the producer field
+
+---- P8 (req. 14). cross-workspace linkage cannot be created ----
+
+ok    P8-A a user from another workspace cannot claim an execution on this observation  [NotFound, so no existence is leaked]
+ok    P8-B a cross-workspace read of a known execution id is refused
+ok    P8-C a cross-workspace persistence attempt is refused
+ok    P8-D workspace B can legitimately claim on its own observation
+ok    P8-E presenting another workspace's execution id under an authorized observation is refused  [findOne({ id, observationId }), never findOne({ id })]
+ok    P8-F no cross-workspace execution linkage was created
+
+---- P9. refusal and failure are persisted OUTCOMES, never generic success ----
+
+ok    P9-A a refused output persists as ANALYSIS_REFUSED, never as available
+ok    P9-B a refused analysis is still server_authored: the server owns the refusal
+ok    P9-C the structured refusal codes are persisted on the execution
+ok    P9-D a refused execution is TERMINAL for re-spend
+ok    P9-E a transport failure settles the execution as ANALYSIS_FAILED
+ok    P9-F a transport failure creates NO analysis row, so nothing can render as a result
+ok    P9-G a transport failure is RETRYABLE, unlike a refusal
+ok    P9-H an already-settled execution cannot be settled twice
+
+---- P10. every server-authored row satisfies the trust boundary ----
+
+ok    P10-A no server-authored analysis lacks an execution
+ok    P10-B no client-supplied analysis names an execution
+ok    P10-C both producers are actually present, so P10-A/B are not vacuous  [server_authored=3 client_supplied=2]
+
+================ §261 persistence foundation: 69 passed, 0 failed
+{"providerCalls":0,"database":"test_insite_1789268319908_9764","disposable":true,"passed":69,"failed":0}
+
+> safety-insite-backend@1.0.0 test:262-expert-authoritative-route
+> ts-node scripts/test-262-expert-authoritative-route.ts
+
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+resolved target host=127.0.0.1 port=5432 database=test_insite_1789268319908_9764
+target proven disposable
+
+application listening on http://127.0.0.1:49751
+
+---- R0. the route carries the analysis-production authorization profile ----
+
+ok    R0-A JwtGuard is attached to the route  [JwtGuard,EntitlementGuard,RolesGuard]
+ok    R0-B EntitlementGuard is attached
+ok    R0-C RolesGuard is attached
+ok    R0-D the required entitlement is fullSafeScope  [fullSafeScope]
+ok    R0-E a dedicated throttle is attached and stricter than classify's 30/60s  [limit=10 ttl=60000]
+ok    R0-F the route declares the same role list the classify route does  [INDIVIDUAL,MEMBER,MANAGER,ORGANIZATION_ADMIN,ORG_OWNER,SAFETY_DIRECTOR,SUPERVISOR,AUDITOR,WORKER]
+
+---- R1. authorization (§262 cases A-F of the authorization matrix) ----
+
+ok    R1-B an unauthenticated caller is rejected  [401]
+ok    R1-C a caller without fullSafeScope is rejected with PAYMENT_REQUIRED  [402 PAID_SUBSCRIPTION_REQUIRED]
+ok    R1-D a caller whose role is outside the route's list is rejected  [403]
+ok    R1-E a cross-workspace observation answers NotFound  [404]
+ok    R1-E2 and it is INDISTINGUISHABLE from an observation that does not exist  [404:Observation not found. vs 404:Observation not found.]
+ok    R1-E3 the refused cross-workspace attempt created no execution in the target workspace  [executions=0]
+ok    R1-F an idempotency key is scoped to its observation and cannot reach another workspace's execution  [201/201 14f8d730-4cf4-4ad8-9050-bebf4b0ac5f0 vs 1dcc576a-95f1-4f61-a056-872ed51f7c16]
+
+---- R2. acceptance A: an ordinary admitted analysis requiring no confirmation ----
+
+ok    R2-A the route answers 201  [201]
+ok    R2-B the stored analysis state is ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    R2-C confirmation is not required, and the stored row says so
+ok    R2-D the row is server_authored
+ok    R2-E the row names the execution that authored it
+ok    R2-F the response states the authority position without calling it approved or final  [This Expert analysis is available for review. No human confirmation of its operational conclusion is required.]
+
+---- R3. acceptance B: an admitted analysis that requires confirmation ----
+
+ok    R3-A the stored analysis state is ANALYSIS_AWAITING_CONFIRMATION  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    R3-B confirmation is required, and the flag was computed once and stored
+ok    R3-C the rule that produced the flag is recorded on the execution  [hazlenz.expert.confirmation-required.261-unresolved-classification-boundary]
+ok    R3-D the client is TOLD confirmation is required and never has to infer it  [This Expert analysis is available for review, and its operational conclusion requires a person to confirm it before it is acted on. It has not been confirmed.]
+ok    R3-E the verifier leg was reached and recorded  [reached=true factKey=FP.REQUIRED_CONTROL.observation.133-181.1]
+
+---- R3b. H3 and H4 structural identity survive persistence and the response ----
+
+ok    R3b-H3a declarationId survives into the persisted snapshot  [["decl-stored-energy-state"]]
+ok    R3b-H3b the projected posture references the declaration by ID, not by prose  [["HAZARD_CANDIDATE:drive-stored-energy","UNRESOLVED_DECLARATION:decl-stored-energy-state"]]
+ok    R3b-H4a controlId survives into the persisted snapshot  [["ctl-isolate-drive"]]
+ok    R3b-H4b dischargingControlRef carries the control ID and NOT the control prose  [ctl-isolate-drive]
+ok    R3b-H4c the same identities survive into the response the client receives
+
+---- R3c. acceptance J: server-authored provenance ----
+
+ok    R3c-A the frozen §259 candidate identity is persisted  [0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee]
+ok    R3c-B contract, entry, admission and projection versions are persisted  [hazlenz.expert.first-pass.259 | hazlenz.expert.production-entry.v1 | hazlenz.expert.252.structural-admission.v1 | hazlenz.expert.239.posture-projection.v1]
+ok    R3c-C the transmitted system prompt digest is the frozen §259 element  [680f5127776427963d89244eafa32ce57973575ffbfae2f3326ed92fc17be34a]
+ok    R3c-D the transmitted wire schema digest is recorded
+ok    R3c-E the organization, inspection and observation are the SERVER's, not the request's
+ok    R3c-F the admission disposition and timestamps are persisted
+ok    R3c-G the server-established basis is recorded on the snapshot  ["osha-general-industry"]
+
+---- R3d. the analysis-creation audit event ----
+
+ok    R3d-A an analysis_created audit event was written  [present]
+ok    R3d-B it names the actor and the organization the server established
+ok    R3d-C no raw provider payload reached generic audit metadata  [874 chars]
+
+---- R4. acceptance E: whole-analysis refusal ----
+
+ok    R4-A a refused output is ANALYSIS_REFUSED and never ANALYSIS_AVAILABLE  [ANALYSIS_REFUSED]
+ok    R4-B the refusal is still server_authored: the server owns its own refusal
+ok    R4-C confirmation is NOT required of a refusal
+ok    R4-D the structured refusal codes are persisted  [["DECLARATION_NOT_COVERED"]]
+ok    R4-E no admitted Expert content is carried in the snapshot
+ok    R4-F the response says the answer was refused, not that no hazards were found  [The Expert layer answered and the answer did not meet the contract, so it was refused in full and no part of it is shown. The deterministic analysis is unaffected.]
+
+---- R5. acceptance F: a CONTAINED declaration refusal ----
+
+ok    R5-A the contained refusal does not present as an available analysis  [ANALYSIS_UNRESOLVED]
+ok    R5-B exactly one declaration was refused, and it is recorded  [[{"codes":["EVIDENCE_SPAN_NOT_VERBATIM"],"declarationId":"decl-stored-energy-state"}]]
+ok    R5-C the analysis was otherwise usable: the posture ADMITTED and survives in the snapshot  [[]]
+
+---- R6. acceptance G: preserved unresolved truth ----
+
+ok    R6-A a preserved-unresolved outcome is ANALYSIS_UNRESOLVED  [ANALYSIS_UNRESOLVED]
+ok    R6-B the admission disposition PRESERVE_UNRESOLVED is persisted, not flattened to REFUSE  [PRESERVE_UNRESOLVED]
+ok    R6-C nothing was admitted, and the response offers no operational conclusion
+ok    R6-D the declaration whose truth was preserved is recorded
+
+---- R7. provider/transport failure is an OUTCOME, not a generic error ----
+
+ok    R7-A the execution settles as ANALYSIS_FAILED  [ANALYSIS_FAILED]
+ok    R7-B no analysis row is created, so nothing can render as a result  [analysisRow=none]
+ok    R7-C the failure kind is preserved, distinguishable from a refusal  [TRANSPORT_TIMEOUT]
+ok    R7-D the response says the layer was unavailable, not that there are no hazards  [The Expert layer could not be reached, so it produced no analysis. This is not a finding that there are no hazards. The deterministic analysis is unaffected.]
+
+---- R8. a verifier-leg failure does not invalidate an admitted first pass ----
+
+ok    R8-A the first pass is still admitted  [ADMIT]
+ok    R8-B the verifier is recorded as NOT REACHED, never as a pass  [VERIFIER_LEG_FAILED:TRANSPORT_TIMEOUT]
+ok    R8-C the analysis still carries its confirmation requirement
+
+---- R9. acceptance I: pre-spend idempotency under concurrent duplicates ----
+
+ok    R9-A exactly ONE execution identity governs the operation  [executions=1]
+ok    R9-B exactly one caller won spend authority  [executed=1 reused=2]
+ok    R9-C every other caller was answered without entering the provider seam
+ok    R9-D the simulated provider-entry count is the ONE winner's legs, not three callers' legs  [{"total":1,"firstPass":1,"verifier":0}]
+ok    R9-E no duplicate server-authored analysis was created  [analyses=1]
+ok    R9-F all three callers resolve to the same execution identity  [201:EXECUTED 201:REUSED_RUNNING 201:REUSED_RUNNING]
+ok    R9-G a later duplicate reuses the authoritative result and still does not spend  [REUSED_SETTLED entries 1 -> 1]
+
+---- R10. every server-owned field is unreachable from the request body ----
+
+ok    R10 forging producer is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging candidateIdentity is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging confirmationRequired is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging analysisState is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging expertExecutionId is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging resultSnapshot is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging providerId/respondedModel is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging engineVersion is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging contractVersion is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging admission is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10-Z every server-owned field attempted was refused  [10/10]
+ok    R10-Y raw SQL cannot mint server_authored without a real execution  [new row for relation "hazlenz_analyses" violates check constraint "ck_hazlenz_analysis_producer_execution"]
+
+---- R11. no downstream finding is materialized from an unconfirmed conclusion ----
+
+ok    R11-A the awaiting-confirmation analysis reconciled no findings  [findings=0]
+ok    R11-B no server-authored analysis reconciled findings in this slice at all  [findings=0]
+ok    R11-C the response states it, so no client infers a finding was created
+
+---- R12. server-authored rows coexist with historical client_supplied rows ----
+
+ok    R12-A the legacy snapshot persisted as client_supplied and was not rewritten  [[{"producer":"client_supplied","status":"superseded","analysisState":"ANALYSIS_AVAILABLE"},{"producer":"server_authored","status":"current","analysisState":"ANALYSIS_AVAILABLE"}]]
+ok    R12-B the server-authored row coexists with it
+ok    R12-C the legacy row was superseded by revision, not deleted or relabelled
+ok    R12-D no server-authored analysis exists without an execution
+ok    R12-E no client-supplied analysis names an execution
+ok    R12-F both producers are present, so the invariants are not vacuous  [server_authored=13 client_supplied=3]
+
+---- R13. the response never labels an unconfirmed conclusion as settled ----
+
+ok    R13-A no response labels an Expert result approved, final, settled or completed
+ok    R13-B no response carries the raw provider payload
+ok    R13-C the raw provider output IS retained on the execution record for later comparison
+
+---- T1. the route is actually behind its throttle ----
+
+ok    T1-A the route returns 429 once its own limit is exceeded  [first 429 at attempt 11]
+
+---- Z. spend accounting ----
+
+simulated provider entries, whole run: {"total":23,"firstPass":21,"verifier":2,"windowsReset":2}
+simulated provider entries since the idempotency window was opened: {"total":12,"firstPass":12,"verifier":0}
+ok    Z-A the deterministic transport was in force for the whole run
+ok    Z-B every settled execution records the local deterministic seam, and none records a hosted one  [{"local":20,"other":0,"total":21}]
+ok    Z-C this run contains a genuine opportunity to have spent, so Z-B is not vacuous  [legs=23 (verifier 2) credentialPresent=true]
+
+================ §262 acceptance cases, reported individually
+
+  A  PASS  ordinary admitted analysis requiring no confirmation
+        ANALYSIS_AVAILABLE, confirmationRequired=false, server_authored
+  B  PASS  admitted analysis requiring confirmation
+        ANALYSIS_AWAITING_CONFIRMATION, confirmationRequired=true, stated in the response
+  E  PASS  whole-analysis refusal
+        ANALYSIS_REFUSED, no Expert content rendered, refusal codes persisted
+  F  PASS  contained declaration refusal / partially usable analysis
+        ANALYSIS_UNRESOLVED with the posture contained and one declaration refused
+  G  PASS  preserved unresolved truth
+        ANALYSIS_UNRESOLVED, PRESERVE_UNRESOLVED persisted, no conclusion offered
+  H  PASS  unauthorized cross-workspace access
+        NotFound, indistinguishable from a non-existent observation, no execution created
+  I  PASS  duplicate / idempotent execution behaviour
+        1 execution, 1 spender, 1 simulated provider entry, 1 analysis
+  J  PASS  candidate and version provenance persistence
+        candidate identity, contract/entry/admission/projection versions, transmitted prompt digest
+  C  RESERVED  human confirmation accepted unchanged (the confirmation action does not exist yet; not faked)
+  D  RESERVED  human override / change (the override action does not exist yet; not faked)
+
+================ §262 route acceptance: 94 passed, 0 failed
+{"realProviderCalls":0,"simulatedProviderEntries":{"total":23,"firstPass":21,"verifier":2,"windowsReset":2},"simulatedProviderEntriesInIdempotencyWindow":{"total":12,"firstPass":12,"verifier":0},"productionDatabaseOperations":0,"database":"test_insite_1789268319908_9764","disposable":true,"passed":94,"failed":0,"casesPassed":["A","B","E","F","G","H","I","J"],"casesFailed":[],"casesReserved":["C","D"]}
+
+> safety-insite-backend@1.0.0 test:264-expert-human-confirmation
+> ts-node scripts/test-264-expert-human-confirmation.ts
+
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+resolved target host=127.0.0.1 database=test_insite_1789268319908_9764
+target proven disposable
+
+application listening on http://127.0.0.1:49765
+
+ok    SETUP both reviewer tokens carry the shared organization  [A=organization_admin B=manager]
+ok    SETUP both reviewers share one organization-scoped workspace  [28dca6fe-61e7-45bb-b419-f22b4cec3445]
+---- G0. the settlement route carries the analysis-production profile ----
+
+ok    G0-A JwtGuard, EntitlementGuard and RolesGuard are all attached  [JwtGuard,EntitlementGuard,RolesGuard]
+ok    G0-B the required entitlement is fullSafeScope
+ok    G0-C a dedicated throttle is attached
+ok    G0-D the role list matches the execution route exactly
+
+---- ACCEPTANCE C. human confirmation accepted unchanged ----
+
+ok    C-1 the analysis starts awaiting confirmation  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    C-2 and it is server-authored with no settlement yet
+ok    C-3 the confirmation is accepted  [201 ""]
+ok    C-4 the state becomes ANALYSIS_CONFIRMED  [ANALYSIS_CONFIRMED]
+ok    C-5 THE ORIGINAL EXPERT RESULT IS BYTE-FOR-BYTE UNCHANGED
+ok    C-6 the Expert provenance fields are unchanged  [confirmationRequired still true]
+ok    C-7 the execution record is untouched by the human decision
+ok    C-8 the human decision is persisted SEPARATELY, as its own review row
+ok    C-9 the review records what HazLenz claimed and what the human settled
+ok    C-10 an audit event records the transition and that nothing changed
+ok    C-11 no raw provider output reached the audit metadata
+ok    C-12 the effective decision now resolves to a human-settled conclusion  [HUMAN_CONFIRMED_AS_AUTHORED]
+ok    C-13 a retry under the same key replays and creates NO duplicate review or audit row  [outcome=REPLAYED reviews=1 audits=1]
+ok    C-14 the replay returns the same review and the same settled state
+
+---- ACCEPTANCE D. human override / change ----
+
+ok    D-1 the override is accepted  [201 ""]
+ok    D-2 the state becomes ANALYSIS_OVERRIDDEN  [ANALYSIS_OVERRIDDEN]
+ok    D-3 THE ORIGINAL EXPERT PROPOSAL IS BYTE-FOR-BYTE PRESERVED
+ok    D-4 the human replacement is independently attributable
+ok    D-5 the effective decision uses the HUMAN replacement  [HUMAN_REPLACED]
+ok    D-6 the response carries the original-versus-effective distinction for the frontend
+ok    D-7 the audit records the override and that the conclusion changed
+ok    D-8 no unrelated Expert field changed
+
+---- N. the fourteen negative tests ----
+
+ok    N1 a client_supplied analysis cannot enter the Expert confirmation action  [409 This analysis was supplied by a client and carries no server-authored operational conclusion. The Expert confirmation action does not apply to it.]
+ok    N2 ANALYSIS_AVAILABLE reached  [ANALYSIS_AVAILABLE]
+ok    N2 ANALYSIS_AVAILABLE cannot be confirmed  [409 This analysis is ANALYSIS_AVAILABLE and is not awaiting confirmation.]
+ok    N3 ANALYSIS_REFUSED reached  [ANALYSIS_REFUSED]
+ok    N3 ANALYSIS_REFUSED cannot be confirmed  [409 This analysis is ANALYSIS_REFUSED and is not awaiting confirmation.]
+ok    N4 ANALYSIS_UNRESOLVED reached  [ANALYSIS_UNRESOLVED]
+ok    N4 ANALYSIS_UNRESOLVED cannot be confirmed  [409 This analysis is ANALYSIS_UNRESOLVED and is not awaiting confirmation.]
+ok    N5 ANALYSIS_FAILED creates no analysis row at all, so there is nothing to confirm  [analysisRow=none]
+ok    N6 an already CONFIRMED analysis cannot be re-settled through this route  [409 This analysis is ANALYSIS_CONFIRMED and is not awaiting confirmation.]
+ok    N7 an already OVERRIDDEN analysis cannot be re-settled through this route  [409 This analysis is ANALYSIS_OVERRIDDEN and is not awaiting confirmation.]
+ok    N8 a cross-tenant settlement is non-disclosing and identical to a non-existent resource  [404:Observation not found. vs 404:Observation not found.]
+ok    N8b and the target analysis is untouched
+ok    N9/N10/N11 forging reviewedByUserId is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9/N10/N11 forging reviewerId is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9/N10/N11 forging candidateIdentity is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9/N10/N11 forging resultSnapshot is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9/N10/N11 forging analysisState is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9/N10/N11 forging confirmationRequired is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9/N10/N11 forging producer is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9/N10/N11 forging expertExecutionId is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9-Z every server-owned field attempted was refused  [8/8]
+ok    N12 an unknown classification is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+ok    N12 a reference the analysis does not ask about is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+ok    N12 a change that changes nothing is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+ok    N12 a change with no replacement at all is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+ok    N12 a confirmation carrying a replacement is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+ok    N12 a decision outside the vocabulary is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+ok    N12 a rationale below the minimum is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+ok    N13-0 reviewer B can genuinely settle in this workspace, so the race is a real race  [201 ]
+ok    N13-A exactly one of two concurrent reviewers settles the analysis  [201:"SETTLED" | 409:"This analysis is ANALYSIS_CONFIRMED and is not awaiting confirmation."]
+ok    N13-B the loser gets a deterministic conflict, not a silent overwrite  [This analysis is ANALYSIS_CONFIRMED and is not awaiting confirmation.]
+ok    N13-C exactly one review row and one audit row exist  [reviews=1 audits=1]
+ok    N13-D the analysis is in exactly one settled state naming that one review  [ANALYSIS_CONFIRMED]
+ok    N13-F2 the loser never sees a raw database error  [This analysis was settled by another reviewer while your decision was in flight. (Adjudicated by the]
+ok    N13-E two settlements reading the same pending state produce exactly one winner  [1 won / 1 lost]
+ok    N13-F the loser is rejected deterministically, never by last-write-wins  [This analysis was settled by another reviewer while your decision was in flight. (Adjudicated by the one-settlement-per-]
+ok    N13-G exactly one review row survives; the loser's transaction left nothing behind  [reviews=1]
+ok    N13-H the rejection came from an in-transaction guard, not merely from the earlier read  [ONE_SETTLEMENT_UNIQUE_INDEX]
+      concurrency guard that fired: ONE_SETTLEMENT_UNIQUE_INDEX
+ok    N14 retrying the winning request creates no duplicate rows  [201 REPLAYED reviews=1]
+
+---- V. version binding: a superseded analysis is detected, not silently settled ----
+
+ok    V-1 a second Expert analysis supersedes the first
+ok    V-2 confirming the superseded analysis is REFUSED with a specific reason  [409 A newer Expert analysis exists for this observation. Review the current analysis instead; confirming a superseded one would settle a conclusion the product has already replaced.]
+ok    V-3 and the NEWER analysis was not settled by the attempt on the older one  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    V-4 settling the newer analysis leaves the older one exactly as it was  [newer=201 older=ANALYSIS_AWAITING_CONFIRMATION]
+
+---- W. no premature findings, and authority is exposed rather than activated ----
+
+ok    W-1 a confirmed analysis still reconciles NO findings in this slice  [findings=0]
+ok    W-1 a overridden analysis still reconciles NO findings in this slice  [findings=0]
+ok    W-2 an awaiting-confirmation analysis reconciles no findings either
+ok    W-3 the settlement response states that nothing downstream was activated
+ok    W-4 the CHECK constraint refuses a settled state minted without a review row
+
+simulated provider entries: {"total":52,"firstPass":28,"verifier":24,"windowsReset":0}
+ok    Z-A no execution reached a hosted transport  [{"other":0,"total":28}]
+ok    Z-B this run had a genuine opportunity to spend, so Z-A is not vacuous  [legs=52]
+
+================ §264 acceptance cases
+
+  C  PASS  human confirmation accepted unchanged
+        ANALYSIS_CONFIRMED, Expert result byte-identical, one review, one audit, retry replayed
+  D  PASS  human override / change
+        ANALYSIS_OVERRIDDEN, Expert proposal preserved, human replacement authoritative
+
+================ §264 human confirmation: 78 passed, 0 failed
+{"realProviderCalls":0,"simulatedProviderEntries":{"total":52,"firstPass":28,"verifier":24,"windowsReset":0},"productionDatabaseOperations":0,"database":"test_insite_1789268319908_9764","disposable":true,"passed":78,"failed":0,"concurrencyRejectionMechanism":"ONE_SETTLEMENT_UNIQUE_INDEX","casesPassed":["C","D"],"casesFailed":[]}
+
+> safety-insite-backend@1.0.0 test:265-expert-product-acceptance
+> ts-node scripts/test-265-expert-product-acceptance.ts
+
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+resolved target host=127.0.0.1 database=test_insite_1789268319908_9764
+target proven disposable
+
+application listening on http://127.0.0.1:49777
+
+---- P0. the read route carries the analysis-production guard profile ----
+
+ok    P0-A the read route attaches JwtGuard, EntitlementGuard and RolesGuard  [JwtGuard,EntitlementGuard,RolesGuard]
+ok    P0-B the read route requires the same fullSafeScope entitlement as the writes  [fullSafeScope]
+ok    P0-C an unauthenticated read is rejected  [401]
+
+---- A. ordinary admitted analysis, no confirmation required ----
+
+ok    A-1 the read reports the analysis present  [200]
+ok    A-2 the state is ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    A-3 the producer is server_authored  [server_authored]
+ok    A-4 no confirmation is required and no question is asked
+ok    A-5 the effective decision is the admitted-no-confirmation source  [EXPERT_ADMITTED_NO_CONFIRMATION_REQUIRED]
+ok    A-6 it is settled for use and no human settled it
+ok    A-7 the execution response carried the same derivation as the read
+ok    A-8 no finding is reconciled by the analysis itself
+
+---- B. admitted analysis requiring confirmation ----
+
+ok    B-1 the state is ANALYSIS_AWAITING_CONFIRMATION  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    B-2 the stored confirmation flag is served as true
+ok    B-3 the server supplies the confirmation subject and it is resolvable  [null]
+ok    B-4 the subject names the entry the rule fired on, by refKind:ref  [[{"refKind":"UNRESOLVED_DECLARATION","ref":"decl-stored-energy-state","expertClassification":"DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES"}]]
+ok    B-5 the subject carries what HazLenz claimed, in the product vocabulary  [DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES]
+ok    B-6 the answer vocabulary is served by the server, not assumed by the client  [["CONTROLS_WHETHER_WORK_CONTINUES","DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES"]]
+ok    B-7 NO settled conclusion is offered while it awaits a person  [NONE_AWAITING_HUMAN_CONFIRMATION]
+ok    B-8 neither served sentence calls the unconfirmed conclusion approved or final  [This Expert analysis is available for review, and its operational conclusion requires a person to confirm it before it is acted on. It has not been confirmed. / This analysis requires a person to settle its operational conclusion, and no one has. It is not confirmed and it is not rejected.]
+ok    B-9 no settlement record exists yet
+
+---- L. the downstream consumer refuses an unsettled Expert conclusion ----
+
+ok    L-1 finalizing a finding from an unsettled Expert analysis is refused  [409]
+ok    L-2 the refusal states WHY, in the derivation's own words  [This finding rests on an Expert analysis with no settled operational conclusion. This analysis requires a person to settle its operational conclusion, and no one has. It is not confirmed and it is not rejected.]
+ok    L-3 NO finding row was written  [0]
+ok    L-4 no corrective action was created from the unsettled posture  [0]
+
+---- C. confirmation accepted unchanged ----
+
+ok    C-1 the settlement succeeded  [201]
+ok    C-2 the state is ANALYSIS_CONFIRMED  [ANALYSIS_CONFIRMED]
+ok    C-3 the effective decision is HUMAN_CONFIRMED_AS_AUTHORED and settled  [HUMAN_CONFIRMED_AS_AUTHORED]
+ok    C-4 the reviewer and the time of the decision are served
+ok    C-5 nothing was changed by the human, and the read says so
+ok    C-6 the Expert result is byte-identical after settlement
+
+---- M. the downstream consumer consumes the CONFIRMED decision ----
+
+ok    M-1 the SAME review that was refused now finalizes  [201]
+ok    M-2 exactly one finding exists, and only after the human settled  [1]
+
+---- D. human override of the classification ----
+
+ok    D-1 the override succeeded  [201]
+ok    D-2 the state is ANALYSIS_OVERRIDDEN  [ANALYSIS_OVERRIDDEN]
+ok    D-3 the effective decision is HUMAN_REPLACED and settled  [HUMAN_REPLACED]
+ok    D-4 the read carries BOTH sides, so the UI never implies HazLenz authored the replacement  [[{"refKind":"UNRESOLVED_DECLARATION","ref":"decl-stored-energy-state","expertClassification":"DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES","effectiveClassification":"CONTROLS_WHETHER_WORK_CONTINUES","changedByHuman":true}]]
+ok    D-5 the Expert proposal is preserved byte-identically under the override
+
+---- N. the downstream consumer consumes the OVERRIDE, not the proposal ----
+
+ok    N-1 finalization proceeds on the human replacement  [201]
+ok    N-2 the effective decision the consumer read carries the HUMAN value, not the Expert one  [[{"refKind":"UNRESOLVED_DECLARATION","ref":"decl-stored-energy-state","expertClassification":"DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES","effectiveClassification":"CONTROLS_WHETHER_WORK_CONTINUES","changedByHuman":true}]]
+ok    N-3 the source records that a human replaced it, so the proposal can never be preferred
+
+---- E. whole-analysis refusal ----
+
+ok    E-1 the state is ANALYSIS_REFUSED  [ANALYSIS_REFUSED]
+ok    E-2 no settled conclusion is offered  [NONE_REFUSED]
+ok    E-3 the served sentence does not say "no hazards"  [The Expert layer answered and the answer was refused in full. No conclusion is offered.]
+ok    E-4 no confirmation is asked about a conclusion that does not exist
+ok    E-5 the downstream consumer refuses a refused analysis too  [409]
+
+---- F. contained declaration refusal, truth preserved ----
+
+    F admission=PRESERVE_UNRESOLVED state=ANALYSIS_UNRESOLVED postureRefusalCodes=[] conformance=[]
+ok    F-1 the state is ANALYSIS_UNRESOLVED, so the preserved truth is visible rather than dropped  [ANALYSIS_UNRESOLVED]
+ok    F-2 the contained refusal is surfaced to the reviewer, by declaration id and code  [[{"codes":["EVIDENCE_SPAN_NOT_VERBATIM"],"declarationId":"decl-stored-energy-state"}]]
+ok    F-3 no operational conclusion is manufactured from a refused declaration  [NONE_UNRESOLVED_TRUTH_PRESERVED]
+ok    F-4 no confirmation is asked about a conclusion that was not admitted
+
+---- G. preserved unresolved truth ----
+
+    G admission=PRESERVE_UNRESOLVED state=ANALYSIS_UNRESOLVED postureRefusalCodes=["DECLARATION_NOT_COVERED"] conformance=[]
+ok    G-1 the state is ANALYSIS_UNRESOLVED  [ANALYSIS_UNRESOLVED]
+ok    G-2 the effective decision names truth preservation, not plain refusal  [NONE_UNRESOLVED_TRUTH_PRESERVED]
+ok    G-3 no settled conclusion is offered
+ok    G-4 the preserved record reached the client  [[{"codes":["EVIDENCE_SPAN_NOT_VERBATIM"],"declarationId":"decl-stored-energy-state"}]]
+ok    G-5 the contained shape and the whole-output shape are distinguishable in the record  [F.conformance=[] G.conformance=[]]
+
+---- FAILED. a provider failure is a system failure, not a safety refusal ----
+
+ok    FAILED-1 no analysis row exists at all  [false]
+ok    FAILED-2 the execution response names it a failure, distinctly from a refusal  [ANALYSIS_FAILED/null]
+ok    FAILED-3 the sentence does not report an absence of hazards  [The Expert layer could not be reached, so it produced no analysis. This is not a finding that there are no hazards. The deterministic analysis is unaffected.]
+ok    FAILED-4 no provider or transport internals reach the client
+
+---- H. cross-tenant and unentitled access ----
+
+ok    H-1 reading another workspace's observation answers NotFound, not Forbidden  [404]
+ok    H-2 the refusal discloses nothing about the observation  [{"message":"Observation not found.","error":"Not Found","statusCode":404}]
+ok    H-3 settling across the boundary answers NotFound  [404]
+ok    H-4 a body naming its own reviewer is rejected structurally  [400]
+
+---- I. duplicate / idempotent execution ----
+
+ok    I-1 the replay resolves to the same execution  [b64450af-8b64-43ec-af05-874d42fe6fcc / b64450af-8b64-43ec-af05-874d42fe6fcc]
+ok    I-2 the replay resolves to the same analysis
+ok    I-3 exactly one first-pass leg was spent for the two requests  [1]
+ok    I-4 exactly one analysis row exists  [1]
+ok    I-5 a settlement retry under the same key replays rather than conflicting  [201 REPLAYED]
+ok    I-6 the retry created no second settlement row  [1]
+
+---- J. provenance and version persistence ----
+
+ok    J-1 the read serves the frozen §259 candidate identity  [0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee]
+ok    J-2 the contract, entry, admission, projection and confirmation-rule versions all persist  [{"candidateIdentity":"0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee","contractVersion":"hazlenz.expert.first-pass.259","entryVersion":"hazlenz.expert.production-entry.v1","admissionVersion":"hazlenz.expert.252.structural-admission.v1","projectionVersion":"hazlenz.expert.239.posture-projection.v1","confirmationRuleVersion":"hazlenz.expert.confirmation-required.261-unresolved-classification-boundary","admission":"ADMIT","verifierReached":false,"verifierNotReachedBecause":"NO_ADMITTED_DECLARATION","requestedAt":"2026-09-13T02:59:11.574Z","completedAt":"2026-09-13T02:59:12.065Z"}]
+ok    J-3 the raw provider payload is NOT served by the read
+ok    J-4 the history distinguishes the producers rather than normalising them  [["server_authored"]]
+
+---- HISTORY. the two trust boundaries stay distinguishable ----
+
+ok    HIST-1 both producers appear in the history  [server_authored,client_supplied]
+ok    HIST-2 the legacy row was NOT rewritten into the new authority model
+ok    HIST-3 the current analysis served is the server-authored one  [server_authored]
+
+provider legs that reached the seam: total=11 firstPass=9 verifier=2
+ok    SPEND every leg was answered by the substituted deterministic transport, so zero hosted calls were made  [11 local legs]
+
+76 passed, 0 failed
+dropped test_insite_1789268319908_9764
+
+> safety-insite-backend@1.0.0 hazlenz:evidence
+> ts-node scripts/hazlenz/evidence-integrity.ts
+
+Accepted evidence drift: PASS (0)
+  manifests checked          90
+  members verified           5542
+  worktree drift vs HEAD     0 new (0 pre-existing, see EVIDENCE-BASELINE.json)
+  in-package mismatches      8 (0 new, rest baseline)
+  external pointer drift     66 (informational)
+  living index updated       3 (verification/current/, by design)
+  untracked (not a fault)    34

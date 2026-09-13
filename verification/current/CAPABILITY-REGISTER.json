@@ -1,7 +1,7 @@
 {
   "artifact": "EXPERT_HAZLENZ_CAPABILITY_REGISTER",
-  "establishedBy": "\u00a7263",
-  "role": "ONE row per capability. The single answer to 'what can this thing do, and what is that claim worth'. Supersedes reading \u00a7\u00a7229-262 to reconstruct it.",
+  "establishedBy": "§263, refreshed at §265",
+  "role": "ONE row per capability. The single answer to 'what can this thing do, and what is that claim worth'. Supersedes reading §§229-262 to reconstruct it.",
   "statuses": {
     "ACCEPTED": "proven and usable as it stands",
     "ACCEPTED_WITH_HUMAN_CONFIRMATION": "proven, and its operational conclusion is not authoritative until a person settles it",
@@ -15,12 +15,12 @@
       "capability": "Deterministic HazLenz hazard analysis",
       "status": "ACCEPTED",
       "evidence": "test:canonical-workflow, test:persisted-decomposition-findings, test:finding-scoped-reviews",
-      "productConsequence": "the customer-authoritative analysis path; unchanged by \u00a7\u00a7259-263",
+      "productConsequence": "the customer-authoritative analysis path; unchanged by §§259-263",
       "boundary": "advisory; the snapshot is client_supplied and the server does not verify it equals what it returned",
       "nextAction": null
     },
     {
-      "capability": "Expert first-pass semantic analysis (\u00a7259 candidate)",
+      "capability": "Expert first-pass semantic analysis (§259 candidate)",
       "status": "ACCEPTED_WITH_HUMAN_CONFIRMATION",
       "evidence": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/",
       "productConsequence": "Expert may propose hazards, controls and a safety posture the deterministic layer did not reach",
@@ -28,7 +28,7 @@
       "nextAction": "the confirmation action"
     },
     {
-      "capability": "Deterministic structural admission (\u00a7252)",
+      "capability": "Deterministic structural admission (§252)",
       "status": "ACCEPTED",
       "evidence": "verification/expert-hazlenz-252-nonstrict-admission-architecture-2026-09-12/",
       "productConsequence": "a non-conforming provider output is refused whole and no part of it is rendered",
@@ -38,15 +38,15 @@
     {
       "capability": "RR-7 unresolved-truth preservation",
       "status": "ACCEPTED",
-      "evidence": "\u00a7205, \u00a7210J suites; exercised end to end in \u00a7262 cases F and G",
+      "evidence": "§205, §210J suites; exercised end to end in §262 cases F and G",
       "productConsequence": "a refused declaration does not silently delete the property it identified",
       "boundary": "preservation records; it never repairs the declaration",
       "nextAction": null
     },
     {
-      "capability": "Verifier leg (\u00a7218 property review)",
+      "capability": "Verifier leg (§218 property review)",
       "status": "ACCEPTED",
-      "evidence": "\u00a7218-\u00a7221; reached and persisted in \u00a7262",
+      "evidence": "§218-§221; reached and persisted in §262",
       "productConsequence": "an admitted declaration gets a second, independent structured review",
       "boundary": "a verifier failure does not invalidate an admitted first pass; it is recorded as NOT REACHED and never as a pass",
       "nextAction": null
@@ -62,7 +62,7 @@
     {
       "capability": "Pre-spend idempotency",
       "status": "ACCEPTED",
-      "evidence": "\u00a7262 case I \u2014 3 concurrent duplicates, 1 provider entry",
+      "evidence": "§262 case I — 3 concurrent duplicates, 1 provider entry",
       "productConsequence": "a duplicate request cannot spend a second pair of provider legs",
       "boundary": "adjudicated by a unique index, not by application logic",
       "nextAction": null
@@ -70,7 +70,7 @@
     {
       "capability": "Tenant isolation on the Expert route",
       "status": "ACCEPTED",
-      "evidence": "\u00a7262 case H; \u00a7263 closed the residual message-level disclosure",
+      "evidence": "§262 case H; §263 closed the residual message-level disclosure",
       "productConsequence": "a cross-workspace caller learns nothing, including whether the observation exists",
       "boundary": "an unauthenticated caller is still answered 401, not 404",
       "nextAction": null
@@ -78,25 +78,25 @@
     {
       "capability": "Human confirmation of an Expert operational conclusion",
       "status": "ACCEPTED",
-      "evidence": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/ (78/78, cases C and D)",
+      "evidence": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/ (78/78, cases C and D); reachable by a user since §265",
       "productConsequence": "an analysis held in ANALYSIS_AWAITING_CONFIRMATION can now be settled by a person, as confirmed or as changed",
       "boundary": "the reviewer settles the named classification entries only; hazard identification, citations, control text, declarations, raw output and provenance are not addressable by the action",
-      "nextAction": "the frontend workflow, and the downstream slice that consumes effectiveDecision"
+      "nextAction": null
     },
     {
       "capability": "Downstream finding reconciliation from an Expert result",
       "status": "DEFERRED",
-      "evidence": "\u00a7261 and \u00a7262 both refuse it deliberately",
-      "productConsequence": "no finding is created from an Expert analysis, settled or not. \u00a7264 exposes effectiveDecision without activating any consumer.",
+      "evidence": "§261 and §262 both refuse creation deliberately; §265 cases L, M, N prove the guard",
+      "productConsequence": "No finding is CREATED from an Expert analysis, settled or not. §265 did not change that: what it added is a GUARD — a finding whose review cites a server-authored Expert analysis cannot be finalized unless that analysis carries a settled operational conclusion. Reconciliation and guarding are different acts and only the second is built.",
       "boundary": "must not be enabled before the authority guards exist",
-      "nextAction": "the authority-guard slice, which consumes effectiveDecision"
+      "nextAction": "a product decision about whether an Expert result should create a finding at all"
     },
     {
       "capability": "Governed regulatory citation by Expert",
       "status": "BLOCKED",
-      "evidence": "\u00a7262 transmits zero governed records in every execution",
+      "evidence": "§262 transmits zero governed records in every execution",
       "productConsequence": "Expert may cite nothing at all; its output carries no regulatory citation",
-      "boundary": "fail-closed on purpose \u2014 the only available source was a client-supplied snapshot, which would let a request inject text labelled as governed",
+      "boundary": "fail-closed on purpose — the only available source was a client-supplied snapshot, which would let a request inject text labelled as governed",
       "nextAction": "a server-side governed-evidence loader bound to the inspection's release binding"
     },
     {
@@ -104,15 +104,15 @@
       "status": "BLOCKED",
       "evidence": "test:knowledge-release-provenance exits 1; no STORAGE_* variable is set",
       "productConsequence": "reports cannot be generated in this environment",
-      "boundary": "environmental, not a code defect; \u00a7\u00a7261-263 changed 0 files under src/storage and src/reports",
+      "boundary": "environmental, not a code defect; §§261-263 changed 0 files under src/storage and src/reports",
       "nextAction": "configure storage deliberately, in a section authorized to do so"
     },
     {
       "capability": "Live provider transport from a deployed instance",
       "status": "UNVERIFIED_LIVE",
-      "evidence": "\u00a7260 contemplated one justified live call; it has not been spent",
+      "evidence": "§260 contemplated one justified live call; it has not been spent",
       "productConsequence": "the hosted transport has never been exercised from the product route",
-      "boundary": "every \u00a7262 execution used the deterministic seam",
+      "boundary": "every §262 execution used the deterministic seam",
       "nextAction": "one live call, if the product owner judges it justified"
     },
     {
@@ -120,13 +120,13 @@
       "status": "UNVERIFIED_LIVE",
       "evidence": "none",
       "productConsequence": "unknown whether the Expert path is correctly metered or deployed",
-      "boundary": "no \u00a7263 command contacts a live environment",
+      "boundary": "no §263 command contacts a live environment",
       "nextAction": "a live-environment section"
     },
     {
-      "capability": "Pre-\u00a7246 Expert contract under backend/scripts/lib/",
+      "capability": "Pre-§246 Expert contract under backend/scripts/lib/",
       "status": "SUPERSEDED",
-      "evidence": "\u00a7246 productionized the validated contract into src/safescope-v2/expert-hazlenz/",
+      "evidence": "§246 productionized the validated contract into src/safescope-v2/expert-hazlenz/",
       "productConsequence": "none; the production path does not import it",
       "boundary": "kept because byte-for-byte identity reconstruction depends on the additive chain",
       "nextAction": "do not use as a current entry point; see docs/hazlenz/current/CONTEXT_INDEX.md"
@@ -134,10 +134,42 @@
     {
       "capability": "Effective-decision derivation",
       "status": "ACCEPTED",
-      "evidence": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/ (35/35 pure, exercised end to end)",
+      "evidence": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/ (35/35 pure, exercised end to end); §265 moved it into ExpertEffectiveDecisionService and activated its first consumer",
       "productConsequence": "one deterministic function answers whether an analysis carries a settled operational conclusion, so downstream features cannot each reconstruct authority and disagree",
-      "boundary": "total over the state vocabulary with no default branch; five distinct \"no settled conclusion\" answers, none of which reads as \"no hazards\"",
+      "boundary": "total over the state vocabulary with no default branch; five distinct \"no settled conclusion\" answers, none of which reads as \"no hazards\". ONE implementation, in a leaf module both InspectionModule and ExpertHazLenzProductModule import.",
       "nextAction": null
+    },
+    {
+      "capability": "Expert frontend workflow",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/ (76/76 server, 59/59 frontend presentation, 8/8 authority-boundary source checks)",
+      "productConsequence": "an inspector can request an Expert review from the inspection workspace, read the result, and settle a classification the analysis turns on",
+      "boundary": "the browser derives NO authority. It renders analysisState, confirmationRequired, the server-supplied confirmation subject and effectiveDecision.settledForUse as served, and a source check fails the build if a local derivation of any of them reappears.",
+      "nextAction": null
+    },
+    {
+      "capability": "Downstream authority guard on finding finalization",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-ACCEPTANCE.json cases L, M, N",
+      "productConsequence": "a finding cannot be finalized from an Expert analysis whose operational conclusion no person has settled; once settled, the SAME review finalizes, and an override is consumed as the human value rather than the Expert proposal",
+      "boundary": "ONE consumer. The deterministic path is untouched — a review citing no analysis, or a client_supplied one, is unaffected. Completion readiness, report finalization, notifications and the executive summary are not yet guarded.",
+      "nextAction": "the remaining §260 section 11 guards"
+    },
+    {
+      "capability": "Server-side read of the current Expert analysis",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/ P0 and cases A-J",
+      "productConsequence": "an interface can recover the whole authority picture after a reload without re-executing, so a page refresh costs nothing and cannot be served from a stale client copy",
+      "boundary": "same guard profile as the two writes; writes nothing; never returns the raw provider payload",
+      "nextAction": null
+    },
+    {
+      "capability": "Reviewer revision of a settled Expert analysis",
+      "status": "DEFERRED",
+      "evidence": "not built; §265 was instructed to carry it as a deferred product decision",
+      "productConsequence": "an ANALYSIS_CONFIRMED or ANALYSIS_OVERRIDDEN analysis cannot be re-opened. The beta workflow is one settlement per analysis.",
+      "boundary": "this is a deliberate beta scope decision, NOT a statement that the decision is permanently irreversible",
+      "nextAction": "a product-owner decision, including what re-opening means for a downstream finding already finalized on the settled conclusion"
     }
   ]
 }

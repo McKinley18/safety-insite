@@ -2,8 +2,9 @@ import type { HazLenzAnalysis } from '../../inspection/entities/hazlenz-analysis
 import type { ExpertAnalysisExecution } from './expert-analysis-execution.entity';
 import type { AnalysisState } from './expert-analysis-authority';
 import type { ExpertExecutionOutcome, } from './expert-analysis-execution.service';
-import type { ExpertSettlementOutcome } from './expert-analysis.service';
+import type { ExpertAnalysisReadModel, ExpertSettlementOutcome } from './expert-analysis.service';
 import type { EffectiveDecision } from './expert-effective-decision';
+import type { SubjectResolution } from './expert-settlement-contract';
 
 /**
  * §262 — THE PRODUCT-SAFE REPRESENTATION OF A SERVER-AUTHORED EXPERT ANALYSIS.
@@ -64,6 +65,76 @@ const AUTHORITY_STATEMENT: Readonly<Record<AnalysisState, string>> = {
     'A person replaced this Expert analysis\'s operational conclusion.',
 };
 
+/**
+ * §265 — THE CONFIRMATION SUBJECT, AS THE CLIENT RECEIVES IT.
+ *
+ * THE QUESTION IS THE SERVER'S AND THE CLIENT ONLY RENDERS IT. `entries` are the named
+ * `refKind:ref` pairs the confirmation rule actually fired on, each carrying what HazLenz claimed
+ * in the two-member product vocabulary. A client cannot compute this list — it would have to
+ * implement the confirmation rule over a posture to do so — and §265 requires that it never try.
+ *
+ * A SUBJECT THAT CANNOT BE ESTABLISHED IS NAMED, NOT EMPTIED. `resolvable: false` with a refusal
+ * code is a different fact from "there is nothing to confirm", and only one of them means the
+ * confirm control must not be offered. Collapsing them into an empty array is how a reviewer ends
+ * up pressing Confirm on a question nobody can prove was asked.
+ */
+export interface ExpertConfirmationSubject {
+  readonly resolvable: boolean;
+  readonly entries: readonly {
+    readonly refKind: string;
+    readonly ref: string;
+    readonly expertClassification: string;
+  }[];
+  readonly refusalCode: string | null;
+  /** Plain language for the interface. Never a code on its own. */
+  readonly statement: string;
+}
+
+/** The two values a reviewer may answer with, served so the client never hardcodes a vocabulary. */
+export const CONFIRMATION_ANSWER_OPTIONS: readonly {
+  readonly value: string; readonly label: string; readonly detail: string;
+}[] = [
+  {
+    value: 'CONTROLS_WHETHER_WORK_CONTINUES',
+    label: 'It decides whether work continues',
+    detail: 'Work does not simply continue until this is resolved.',
+  },
+  {
+    value: 'DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES',
+    label: 'It is a follow-up',
+    detail: 'It still needs resolving, but it does not decide whether work continues now.',
+  },
+];
+
+export function toConfirmationSubject(
+  resolution: SubjectResolution | null,
+): ExpertConfirmationSubject | null {
+  if (resolution === null) return null;
+  if (!resolution.ok) {
+    return {
+      resolvable: false,
+      entries: [],
+      refusalCode: resolution.code,
+      statement: 'This analysis needs a person to settle its operational conclusion, and the '
+        + 'product cannot currently establish exactly what it is asking. No decision can be '
+        + 'recorded against it until that is resolved.',
+    };
+  }
+  return {
+    resolvable: true,
+    entries: resolution.entries.map(entry => ({
+      refKind: entry.refKind,
+      ref: entry.ref,
+      expertClassification: entry.expertClassification,
+    })),
+    refusalCode: null,
+    statement: resolution.entries.length === 1
+      ? 'HazLenz classified one unresolved item. Confirm whether it decides if work continues.'
+      : `HazLenz classified ${resolution.entries.length} unresolved items. Confirm whether each `
+        + 'decides if work continues.',
+  };
+}
+
 export interface ExpertAnalysisResponse {
   readonly responseVersion: typeof EXPERT_ANALYSIS_RESPONSE_VERSION;
   readonly outcome: ExpertExecutionOutcome['outcome'];
@@ -71,6 +142,20 @@ export interface ExpertAnalysisResponse {
   readonly executionState: string;
   readonly analysisState: AnalysisState | null;
   readonly confirmationRequired: boolean;
+  /**
+   * §265. WHAT THE REVIEWER IS BEING ASKED, WHEN ANYTHING IS. Null where `confirmationRequired` is
+   * false — there is no question — and a named refusal where the subject cannot be established.
+   */
+  readonly confirmationSubject: ExpertConfirmationSubject | null;
+  /**
+   * §265. THE SERVER-DERIVED AUTHORITY, SERVED ON THE EXECUTION RESPONSE TOO.
+   *
+   * §264 returned it only from the settlement route, which left the client that had just executed
+   * an analysis with a state name and no answer to "may this be acted on". Every such client would
+   * have derived one. It is the same value the downstream consumer reads, so the browser and the
+   * server cannot form different opinions about whether a conclusion is settled.
+   */
+  readonly effectiveDecision: EffectiveDecision;
   readonly authorityStatement: string;
   readonly analysisId: string | null;
   readonly producer: string | null;
@@ -101,6 +186,8 @@ export interface ExpertAnalysisResponse {
 
 export function toExpertAnalysisResponse(
   result: ExpertExecutionOutcome,
+  effective: EffectiveDecision,
+  subject: SubjectResolution | null,
 ): ExpertAnalysisResponse {
   const execution: ExpertAnalysisExecution = result.execution;
   const analysis: HazLenzAnalysis | null = result.analysis;
@@ -118,6 +205,8 @@ export function toExpertAnalysisResponse(
     // so that a later rule change cannot alter what an earlier reviewer was asked, and recomputing
     // it on read would undo that in the one place a reviewer actually looks.
     confirmationRequired: analysis?.confirmationRequired ?? false,
+    confirmationSubject: analysis?.confirmationRequired ? toConfirmationSubject(subject) : null,
+    effectiveDecision: effective,
     authorityStatement: AUTHORITY_STATEMENT[effectiveState],
     analysisId: analysis?.id ?? null,
     producer: analysis?.producer ?? null,
@@ -230,5 +319,189 @@ export function toExpertSettlementResponse(
     },
     findingsReconciled: false,
     authorityStatement: effective.statement,
+  };
+}
+
+
+// ================================================================ §265 read
+
+/**
+ * §265 — WHAT THE FRONTEND READS, AND WHY IT IS A DIFFERENT SHAPE FROM THE EXECUTION RESPONSE.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * IT ANSWERS "WHAT IS TRUE NOW", NOT "WHAT DID THAT REQUEST DO".
+ *
+ * The execution response describes an act — an outcome, an execution id, a failure. This describes
+ * a STATE, and it is what the interface renders on a fresh page load, after a retry, and after a
+ * settlement. `present: false` is a first-class answer: this observation has no server-authored
+ * Expert analysis, which is not an error and is not "no hazards".
+ *
+ * ---------------------------------------------------------------------------------------------
+ * IT CARRIES THE SETTLEMENT AND THE PROPOSAL SEPARATELY, ALWAYS.
+ *
+ * `analysis` is the Expert proposal exactly as it was admitted — settlement never rewrites it —
+ * and `settlement` is the human decision. A client rendering "HazLenz proposed X / the reviewer
+ * decided Y" reads two fields; it never subtracts one from the other, and it can never present the
+ * human value as something HazLenz authored.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * THE HISTORY DISTINGUISHES THE TWO TRUST BOUNDARIES, AND DOES NOT REWRITE THE OLDER ONE.
+ *
+ * Legacy rows are `client_supplied`: the server does not establish that what it stored equals what
+ * it returned. Expert rows are `server_authored`. §265 requires that distinction to remain visible
+ * rather than be normalised away, so `producer` is served per row and nothing back-fills it.
+ *
+ * The raw provider payload is absent here for the same reason it is absent from the execution
+ * response: it is stored for comparison, not served because it is stored.
+ */
+export const EXPERT_ANALYSIS_READ_RESPONSE_VERSION = 'hazlenz.expert.265.read-response.v1' as const;
+
+export interface ExpertAnalysisHistoryEntry {
+  readonly analysisId: string;
+  readonly producer: string;
+  readonly analysisState: string;
+  readonly requestVersion: number;
+  readonly status: string;
+  readonly createdAt: string;
+  readonly humanSettled: boolean;
+}
+
+export interface ExpertAnalysisReadResponse {
+  readonly responseVersion: typeof EXPERT_ANALYSIS_READ_RESPONSE_VERSION;
+  /** FALSE means no server-authored Expert analysis exists here. Not an error, not "no hazards". */
+  readonly present: boolean;
+  readonly analysisId: string | null;
+  readonly analysisState: AnalysisState | null;
+  readonly producer: string | null;
+  readonly confirmationRequired: boolean;
+  readonly confirmationSubject: ExpertConfirmationSubject | null;
+  readonly answerOptions: typeof CONFIRMATION_ANSWER_OPTIONS;
+  readonly effectiveDecision: EffectiveDecision | null;
+  readonly authorityStatement: string | null;
+  /** The ADMITTED Expert proposal. Unchanged by any settlement. Never the raw provider payload. */
+  readonly analysis: Record<string, unknown> | null;
+  readonly settlement: {
+    readonly reviewId: string;
+    readonly decision: string;
+    readonly reviewedByUserId: string;
+    readonly reviewedAt: string;
+    readonly rationale: string;
+    readonly entries: readonly {
+      readonly refKind: string;
+      readonly ref: string;
+      readonly expertClassification: string;
+      readonly effectiveClassification: string;
+      readonly changedByHuman: boolean;
+    }[];
+  } | null;
+  readonly provenance: {
+    readonly candidateIdentity: string | null;
+    readonly contractVersion: string | null;
+    readonly entryVersion: string | null;
+    readonly admissionVersion: string | null;
+    readonly projectionVersion: string | null;
+    readonly confirmationRuleVersion: string | null;
+    readonly admission: string | null;
+    readonly verifierReached: boolean;
+    readonly verifierNotReachedBecause: string | null;
+    readonly requestedAt: string | null;
+    readonly completedAt: string | null;
+  } | null;
+  readonly failure: { readonly kind: string; readonly detail: string } | null;
+  readonly history: readonly ExpertAnalysisHistoryEntry[];
+  readonly findingsReconciled: false;
+}
+
+export function toExpertAnalysisReadResponse(
+  model: ExpertAnalysisReadModel,
+  effective: EffectiveDecision | null,
+): ExpertAnalysisReadResponse {
+  const history: ExpertAnalysisHistoryEntry[] = model.history.map(row => ({
+    analysisId: row.id,
+    producer: row.producer,
+    analysisState: row.analysisState,
+    requestVersion: row.requestVersion,
+    status: row.status,
+    createdAt: row.createdAt ? row.createdAt.toISOString() : '',
+    humanSettled: row.settlementReviewId !== null && row.settlementReviewId !== undefined,
+  }));
+
+  const analysis = model.analysis;
+  if (analysis === null) {
+    return {
+      responseVersion: EXPERT_ANALYSIS_READ_RESPONSE_VERSION,
+      present: false,
+      analysisId: null,
+      analysisState: null,
+      producer: null,
+      confirmationRequired: false,
+      confirmationSubject: null,
+      answerOptions: CONFIRMATION_ANSWER_OPTIONS,
+      effectiveDecision: null,
+      authorityStatement: null,
+      analysis: null,
+      settlement: null,
+      provenance: null,
+      failure: null,
+      history,
+      findingsReconciled: false,
+    };
+  }
+
+  const execution = model.execution;
+  const review = model.settlement;
+  const conclusion = review?.reviewedConclusion as {
+    entries?: {
+      refKind: string; ref: string; expertClassification: string;
+      humanClassification: string; changed: boolean;
+    }[];
+  } | null | undefined;
+
+  return {
+    responseVersion: EXPERT_ANALYSIS_READ_RESPONSE_VERSION,
+    present: true,
+    analysisId: analysis.id,
+    analysisState: analysis.analysisState,
+    producer: analysis.producer,
+    // The STORED flag, never recomputed on read — the §261 guarantee, preserved on the one surface
+    // a reviewer actually looks at.
+    confirmationRequired: analysis.confirmationRequired,
+    confirmationSubject: toConfirmationSubject(model.subject),
+    answerOptions: CONFIRMATION_ANSWER_OPTIONS,
+    effectiveDecision: effective,
+    authorityStatement: AUTHORITY_STATEMENT[analysis.analysisState],
+    analysis: analysis.resultSnapshot as Record<string, unknown>,
+    settlement: review === null || review === undefined ? null : {
+      reviewId: review.id,
+      decision: review.decision,
+      reviewedByUserId: review.reviewedByUserId,
+      reviewedAt: review.createdAt.toISOString(),
+      rationale: review.rationale,
+      entries: (conclusion?.entries ?? []).map(entry => ({
+        refKind: entry.refKind,
+        ref: entry.ref,
+        expertClassification: entry.expertClassification,
+        effectiveClassification: entry.humanClassification,
+        changedByHuman: entry.changed,
+      })),
+    },
+    provenance: execution === null ? null : {
+      candidateIdentity: execution.candidateIdentity,
+      contractVersion: execution.contractVersion,
+      entryVersion: execution.entryVersion,
+      admissionVersion: execution.admissionVersion,
+      projectionVersion: execution.projectionVersion,
+      confirmationRuleVersion: execution.confirmationRuleVersion,
+      admission: execution.admission,
+      verifierReached: execution.verifierReached,
+      verifierNotReachedBecause: execution.verifierNotReachedBecause,
+      requestedAt: execution.createdAt ? execution.createdAt.toISOString() : null,
+      completedAt: execution.completedAt ? execution.completedAt.toISOString() : null,
+    },
+    failure: execution?.failureKind === null || execution?.failureKind === undefined
+      ? null
+      : { kind: execution.failureKind, detail: execution.failureDetail ?? '' },
+    history,
+    findingsReconciled: false,
   };
 }

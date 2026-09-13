@@ -1,0 +1,179 @@
+{
+  "responseVersion": "hazlenz.expert.265.read-response.v1",
+  "present": true,
+  "analysisId": "7ee60087-d61d-4339-94ee-da518f1a0788",
+  "analysisState": "ANALYSIS_AVAILABLE",
+  "producer": "server_authored",
+  "confirmationRequired": false,
+  "confirmationSubject": null,
+  "answerOptions": [
+    {
+      "value": "CONTROLS_WHETHER_WORK_CONTINUES",
+      "label": "It decides whether work continues",
+      "detail": "Work does not simply continue until this is resolved."
+    },
+    {
+      "value": "DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES",
+      "label": "It is a follow-up",
+      "detail": "It still needs resolving, but it does not decide whether work continues now."
+    }
+  ],
+  "effectiveDecision": {
+    "version": "hazlenz.expert.264.effective-decision.v1",
+    "source": "EXPERT_ADMITTED_NO_CONFIRMATION_REQUIRED",
+    "settledForUse": true,
+    "humanSettled": false,
+    "entries": [],
+    "reviewer": null,
+    "statement": "This Expert analysis was admitted and required no human confirmation."
+  },
+  "authorityStatement": "This Expert analysis is available for review. No human confirmation of its operational conclusion is required.",
+  "analysis": {
+    "kind": "EXPERT_HAZLENZ_SERVER_AUTHORED_ANALYSIS",
+    "basis": {
+      "inspectionId": "618fa782-e443-4393-a71f-7c960765fd4e",
+      "jurisdiction": "osha-general-industry",
+      "observationId": "3b24dedf-8b5c-4723-a2d3-460cd40ba2b4",
+      "organizationId": null,
+      "governedRecordCount": 0,
+      "contextBuilderVersion": "hazlenz.expert.262.server-context.v1",
+      "jurisdictionProvenance": "USER_CONFIRMED",
+      "allowedHazardFamilyCount": 41,
+      "deterministicBasisDigest": "6d6cdbb7e6891bd07afaf872a56da6e28968a4f8aa9e6e3aba3b5f2f790d3236",
+      "deterministicFindingCount": 1,
+      "deterministicFamilyDispositionCount": 2
+    },
+    "status": "COMPLETE",
+    "posture": {
+      "posture": "CONTINUE_WITH_CONTROLS",
+      "requiredBy": [
+        {
+          "ref": "drive-stored-energy",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CONTROLS"
+        }
+      ],
+      "whatHappensNow": "the drive is isolated and locked out before the millwright continues work inside the guard opening",
+      "resumeCondition": {
+        "correctionsRequired": [],
+        "resolvedByDeclarationIds": []
+      },
+      "requiredControls": [
+        {
+          "timing": "BEFORE_WORK_RESUMES",
+          "control": "isolate and lock out the drive motor before any further work inside the guard opening"
+        }
+      ],
+      "acceptedWithoutImmediateAction": []
+    },
+    "analysis": {
+      "outcome": "ANALYZED",
+      "uncertainty": {
+        "statements": [
+          "whether stored energy in the drive has been dissipated"
+        ]
+      },
+      "disagreements": [],
+      "expertExplanation": {
+        "summary": "the drive must be isolated before work inside the guard opening continues"
+      },
+      "crossHazardInsights": [],
+      "expertHazardCandidates": [
+        {
+          "evidence": [
+            {
+              "sourceId": "observation",
+              "quotedText": "the drive motor is still connected to power with no lock or tag applied"
+            }
+          ],
+          "reasoning": "a person working inside a guard opening on a drive that is still connected to power is exposed to unexpected start-up for as long as the work continues",
+          "confidence": "HIGH",
+          "candidateKey": "drive-stored-energy",
+          "hazardFamily": "lockout_tagout",
+          "evidenceBasis": "the observation states the drive motor is still connected to power with no lock or tag applied",
+          "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+          "assertedConditionState": "ACTIVE",
+          "requiresUserConfirmation": false,
+          "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC"
+        }
+      ],
+      "immediateSafetyPosture": {
+        "posture": "CONTINUE_WITH_CONTROLS",
+        "requiredBy": [
+          {
+            "ref": "drive-stored-energy",
+            "refKind": "HAZARD_CANDIDATE",
+            "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CONTROLS",
+            "roleJustification": {
+              "factualBasis": "the observation states the drive motor is still connected to power with no lock or tag applied",
+              "unresolvedElement": null,
+              "epistemicCharacter": "ESTABLISHED_CONDITION",
+              "whyDecisionMaterial": "whether a control is required now for the person inside the guard opening",
+              "dischargingControlRef": "ctl-isolate-drive",
+              "whyControllingNotFollowUp": "without the control the drive could start while the millwright is inside the opening during this shift",
+              "alongsideControlConsidered": null,
+              "whyAlongsideControlInsufficient": null
+            }
+          }
+        ],
+        "whatHappensNow": "the drive is isolated and locked out before the millwright continues work inside the guard opening",
+        "resumeCondition": {
+          "correctionsRequired": [],
+          "resolvedByDeclarationIds": []
+        },
+        "requiredControls": [
+          {
+            "timing": "BEFORE_WORK_RESUMES",
+            "control": "isolate and lock out the drive motor before any further work inside the guard opening",
+            "controlId": "ctl-isolate-drive"
+          }
+        ],
+        "acceptedWithoutImmediateAction": []
+      },
+      "unresolvedFactDeclarations": [],
+      "decisionCriticalClarifications": []
+    },
+    "verifier": {
+      "factKey": null,
+      "reached": false,
+      "notReachedBecause": "NO_ADMITTED_DECLARATION"
+    },
+    "admission": "ADMIT",
+    "entryVersion": "hazlenz.expert.production-entry.v1",
+    "admittedFacts": [],
+    "contractVersion": "hazlenz.expert.first-pass.259",
+    "candidateIdentity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "semanticInventions": [],
+    "declarationRefusals": [],
+    "postureRefusalCodes": [],
+    "conformanceViolations": [],
+    "roleJustificationCodes": []
+  },
+  "settlement": null,
+  "provenance": {
+    "candidateIdentity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "contractVersion": "hazlenz.expert.first-pass.259",
+    "entryVersion": "hazlenz.expert.production-entry.v1",
+    "admissionVersion": "hazlenz.expert.252.structural-admission.v1",
+    "projectionVersion": "hazlenz.expert.239.posture-projection.v1",
+    "confirmationRuleVersion": "hazlenz.expert.confirmation-required.261-unresolved-classification-boundary",
+    "admission": "ADMIT",
+    "verifierReached": false,
+    "verifierNotReachedBecause": "NO_ADMITTED_DECLARATION",
+    "requestedAt": "2026-09-13T02:59:11.574Z",
+    "completedAt": "2026-09-13T02:59:12.065Z"
+  },
+  "failure": null,
+  "history": [
+    {
+      "analysisId": "7ee60087-d61d-4339-94ee-da518f1a0788",
+      "producer": "server_authored",
+      "analysisState": "ANALYSIS_AVAILABLE",
+      "requestVersion": 1,
+      "status": "current",
+      "createdAt": "2026-09-13T02:59:12.061Z",
+      "humanSettled": false
+    }
+  ],
+  "findingsReconciled": false
+}

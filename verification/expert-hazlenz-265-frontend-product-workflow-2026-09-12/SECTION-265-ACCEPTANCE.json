@@ -1,0 +1,96 @@
+{
+  "artifact": "SECTION-265-LOCAL-PRODUCT-ACCEPTANCE",
+  "candidateIdentity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+  "providerCalls": 0,
+  "localTransportLegs": {
+    "total": 11,
+    "firstPass": 9,
+    "verifier": 2,
+    "windowsReset": 0
+  },
+  "assertions": {
+    "pass": 76,
+    "fail": 0
+  },
+  "cases": [
+    {
+      "id": "A",
+      "title": "ordinary admitted analysis, no confirmation",
+      "passed": true,
+      "detail": "state=ANALYSIS_AVAILABLE source=EXPERT_ADMITTED_NO_CONFIRMATION_REQUIRED"
+    },
+    {
+      "id": "B",
+      "title": "admitted analysis requiring confirmation",
+      "passed": true,
+      "detail": "subject=[{\"refKind\":\"UNRESOLVED_DECLARATION\",\"ref\":\"decl-stored-energy-state\",\"expertClassification\":\"DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES\"}]"
+    },
+    {
+      "id": "L",
+      "title": "downstream consumer blocks an unsettled decision",
+      "passed": true,
+      "detail": "status=409 findings=0"
+    },
+    {
+      "id": "C",
+      "title": "confirmation accepted unchanged",
+      "passed": true,
+      "detail": "source=HUMAN_CONFIRMED_AS_AUTHORED"
+    },
+    {
+      "id": "M",
+      "title": "downstream consumer consumes the confirmed decision",
+      "passed": true,
+      "detail": "status=201 findings=1"
+    },
+    {
+      "id": "D",
+      "title": "override / change",
+      "passed": true,
+      "detail": "expert=DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES human=CONTROLS_WHETHER_WORK_CONTINUES"
+    },
+    {
+      "id": "N",
+      "title": "downstream consumer consumes the override, not the Expert proposal",
+      "passed": true,
+      "detail": "status=201"
+    },
+    {
+      "id": "E",
+      "title": "whole-analysis refusal",
+      "passed": true,
+      "detail": "source=NONE_REFUSED"
+    },
+    {
+      "id": "F",
+      "title": "contained refusal / preserved truth",
+      "passed": true,
+      "detail": "state=ANALYSIS_UNRESOLVED admission=PRESERVE_UNRESOLVED refusals=1"
+    },
+    {
+      "id": "G",
+      "title": "preserved unresolved truth",
+      "passed": true,
+      "detail": "source=NONE_UNRESOLVED_TRUTH_PRESERVED"
+    },
+    {
+      "id": "H",
+      "title": "unauthorized / cross-tenant behaviour",
+      "passed": true,
+      "detail": "read=404 settle=404 forge=400"
+    },
+    {
+      "id": "I",
+      "title": "duplicate / idempotent execution",
+      "passed": true,
+      "detail": "legs=1 settlements=1"
+    },
+    {
+      "id": "J",
+      "title": "provenance / version persistence",
+      "passed": true,
+      "detail": "identity=0b12adf6e44e4586"
+    }
+  ],
+  "note": "Case K is a frontend rendering rule and is executed by frontend-next/lib/expert/__tests__/expertPresentation.test.ts, not by this suite."
+}

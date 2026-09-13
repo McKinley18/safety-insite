@@ -24,6 +24,8 @@ import { OrganizationMembership } from '../src/organizations/entities/organizati
 import { SecurityAuditEvent } from '../src/audit/entities/security-audit-event.entity';
 import { CorrectiveAction } from '../src/corrective-actions/entities/corrective-action.entity';
 import { InspectionService } from '../src/inspection/inspection.service';
+import { ExpertEffectiveDecisionService }
+  from '../src/safescope-v2/expert-hazlenz-product/expert-effective-decision.service';
 import { ExpertAnalysisExecution }
   from '../src/safescope-v2/expert-hazlenz-product/expert-analysis-execution.entity';
 import {
@@ -186,6 +188,11 @@ async function main(): Promise<void> {
     // instead of silently passing against a fake.
     null as any,
     ds,
+    // §265 added the downstream Expert authority gate to this constructor. §261 exercises no
+    // finding finalization, so the real service is wired from the same DataSource rather than
+    // stubbed — a stub here would be a second implementation of the one derivation, which is the
+    // thing §265 exists to prevent.
+    new ExpertEffectiveDecisionService(repo(HazLenzAnalysis), repo(HumanReview)),
   );
   // §264 added the HumanReview repository to this constructor so the settlement action can write
   // the human decision into the EXISTING review table rather than a competing subsystem. The

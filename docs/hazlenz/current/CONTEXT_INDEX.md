@@ -3,7 +3,7 @@
 Read the smallest set that answers the question in front of you. Loading the validation archive into
 an ordinary development prompt is the single largest avoidable token cost in this repository.
 
-Refreshed at **§263**. The §229 version of this file pointed at `backend/scripts/lib/` as the home
+Refreshed at **§263**, extended at **§265**. The §229 version of this file pointed at `backend/scripts/lib/` as the home
 of the live contract; that has been wrong since §246 productionized it into `src/`.
 
 ---
@@ -26,7 +26,8 @@ About 2,500 words. That is the whole default context. For a machine consumer the
 |---|---|---|
 | **Expert engine (candidate-defining)** | `backend/src/safescope-v2/expert-hazlenz/` | contract, projections, admission, owed facts, the production entry point. **Changing anything here moves the candidate identity.** |
 | **Expert transport adapters** | `backend/src/safescope-v2/expert-hazlenz-adapters/` | the vendor lives here and nowhere else |
-| **Product integration** | `backend/src/safescope-v2/expert-hazlenz-product/` | route, execution service, authority, persistence, confirmation rule, response |
+| **Product integration** | `backend/src/safescope-v2/expert-hazlenz-product/` | routes, execution service, authority, persistence, confirmation rule, response, the effective-decision service and its leaf module |
+| **Expert frontend** | `frontend-next/lib/expert/` and `frontend-next/components/inspection/expert/` | §265. Presentation and decision capture. Derives no authority; a source check enforces that. |
 | **Deterministic HazLenz** | `backend/src/safescope-v2/` (the rest) | the customer-authoritative path |
 | **Migrations** | `backend/src/database/migrations/` | §261 added `1800000019000-ExpertAnalysisAuthorityFoundation` |
 | **Current verification and tooling** | `backend/scripts/hazlenz/` | the §263 command surface; everything here is read-only except the disposable-DB wrapper |
@@ -75,6 +76,25 @@ expect it to change deliberately, not by surprise.
 - `expert-hazlenz-product/expert-confirmation-rule.ts` — the deterministic confirmation rule
 
 Then: `npm run hazlenz:check`, and `npm run hazlenz:integration:test` before a commit.
+
+## WHEN MODIFYING THE EXPERT FRONTEND
+
+- `frontend-next/lib/expert/expertPresentation.ts` — the ONLY place a server response becomes
+  something renderable. The authority fields are copied, never computed.
+- `frontend-next/lib/expert/expertApi.ts` — the three calls; sends only accepted request fields
+- `frontend-next/components/inspection/expert/ExpertAnalysisPanel.tsx` — the eight state views
+- `frontend-next/components/inspection/expert/ExpertConfirmationCard.tsx` — confirm and change
+
+Then, from `frontend-next/`: `npm run test:expert-presentation` and
+`npm run check:expert-authority-boundary`. The second is what stops a second authority derivation
+from appearing somewhere the first does not look.
+
+## WHEN ADDING A DOWNSTREAM CONSUMER OF AN EXPERT CONCLUSION
+
+Ask `ExpertEffectiveDecisionService`. Do not read `analysisState`, `confirmationRequired` or
+`resultSnapshot` to work out whether a conclusion may be acted on — that is the second opinion
+`deriveEffectiveDecision` exists to make unnecessary. `InspectionService.finalizeFinding` is the
+worked example, added at §265.
 
 ## WHEN VERIFYING THE BASELINE
 

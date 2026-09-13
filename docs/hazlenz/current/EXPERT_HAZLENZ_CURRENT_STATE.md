@@ -3,7 +3,7 @@
 **Read this and `HAZLENZ_INVARIANTS.md`. That is the default context.** Together about 2,500 words.
 Machine-readable equivalent: `verification/current/EXPERT-HAZLENZ-STATE.json`.
 
-Refreshed at **§264** (2026-09-12). Supersedes the §229 text, which described a layer with no
+Refreshed at **§265** (2026-09-12). Supersedes the §229 text, which described a layer with no
 production caller — that has not been true since §246.
 
 Everything below is **current truth only**. It is not a history. Evidence pointers are at the end.
@@ -38,9 +38,15 @@ and writes nothing.
 ```
 POST /inspections/observations/:id/expert-analyses                          execute
 POST /inspections/observations/:id/expert-analyses/:analysisId/settlement   confirm or override
+GET  /inspections/observations/:id/expert-analyses/current                  read state   §265
 
-both: JwtGuard · EntitlementGuard('fullSafeScope') · RolesGuard · Throttle
+all three: JwtGuard · EntitlementGuard('fullSafeScope') · RolesGuard · Throttle
 ```
+
+The read carries the same profile as the two writes deliberately — a read of a safety analysis is
+not a lesser act than producing one — and it writes nothing, so refreshing an interface cannot
+spend. It exists because a browser holds nothing after a reload: without it the only ways to learn
+an analysis's state are to re-execute it or to keep believing a cached copy.
 
 The settlement route serves confirm and override as **one** action with two outcomes: one
 eligibility rule, one concurrency guarantee, one audit path, one state-machine edge.
@@ -72,6 +78,10 @@ Source: `backend/src/safescope-v2/expert-hazlenz-product/`.
 | two co-authorized reviewers racing one pending analysis produce exactly one settlement | §264 N13 |
 | a retry creates no duplicate review or audit row | §264 C-13 |
 | a settled state cannot be minted without a real review row | `ck_hazlenz_analysis_settlement` |
+| the browser withholds an unsettled conclusion, and fails closed with no derivation at all | §265 case K |
+| a finding cannot be finalized from an unsettled Expert analysis — 0 findings, 0 corrective actions | §265 case L |
+| the same review finalizes once a person settles it | §265 case M |
+| an override is consumed as the human value, never the Expert proposal | §265 case N |
 
 ## 5. What is deliberately not proven
 
@@ -79,9 +89,16 @@ Source: `backend/src/safescope-v2/expert-hazlenz-product/`.
   Expert may cite nothing. Fail-closed on purpose — the only available source of approved regulatory
   text was the client-supplied snapshot, and accepting that would let a request inject text labelled
   as governed.
-- **The frontend:** no user interface reaches either Expert route.
-- **Downstream activation:** §264 exposes `effectiveDecision` and activates no consumer of it. A
-  settled analysis still reconciles **zero** findings.
+- **The frontend against a deployed instance:** §265 built the workflow and proved it against the
+  local stack over real HTTP with a substituted transport. No deployed instance has served it.
+- **Downstream activation beyond one consumer.** §265 activated **finding finalization** and
+  nothing else. The other five consumers §260 section 11 names — completion readiness,
+  corrective-action creation, report finalization and export, notifications, the executive summary
+  — are **contained** rather than guarded: they reach an Expert conclusion only through a finalized
+  finding today, and a future feature that reads an analysis directly would bypass that. A settled
+  analysis still reconciles **zero** findings; the guard **refuses**, it does not create.
+- **Reviewer revision of a settled analysis.** Not built. One settlement per analysis, carried as a
+  deferred product decision rather than as a claim that the decision is permanently irreversible.
 - **Live provider transport from a deployed instance:** never spent.
 - **Report generation:** blocked, no object storage configured.
 
@@ -137,7 +154,9 @@ The human decision lives in `human_reviews` under two new decision values. The E
 the proposal and the decision remain separately attributable.
 
 **No finding is reconciled from any Expert analysis**, settled or not. The API says so explicitly
-(`findingsReconciled: false`).
+(`findingsReconciled: false`). §265 did not change that. What it added is the opposite act: a
+finding that cites a server-authored Expert analysis cannot be **finalized** unless that analysis
+carries a settled conclusion.
 
 ## 9b. The effective decision — ask this, do not reconstruct it
 
@@ -148,6 +167,13 @@ refused with truth preserved, unavailable, still running — so a consumer can n
 "no hazards".
 
 Downstream features must consume it rather than reading `analysisState` themselves.
+
+§265 moved the derivation and its one settlement lookup into `ExpertEffectiveDecisionService`, in a
+leaf module that imports two repositories and nothing else. The reason is structural: the first real
+consumer is `InspectionService.finalizeFinding`, and the Expert product module already imports
+`InspectionModule` — leaving the derivation there would have forced the consumer to re-derive
+authority locally to escape the cycle, which is the exact failure the function exists to prevent.
+There is still one implementation; it is now reachable from both sides.
 
 ## 10. Known environmental and live gaps
 
@@ -161,20 +187,45 @@ Downstream features must consume it rather than reading `analysisState` themselv
 `hazlenz:verify` reports these as their own outcomes. They are never converted into a pass or a
 failure.
 
+## 10b. The frontend, as of §265
+
+`frontend-next/components/inspection/expert/`, reached from the HazLenz step of the inspection
+workspace. It is **additive**: the deterministic analysis is unchanged and is still rendered in full
+beneath it.
+
+**The browser derives no authority.** `lib/expert/expertPresentation.ts` copies
+`effectiveDecision.settledForUse`, `confirmationRequired` and the server's confirmation subject
+rather than computing any of them. The single line that matters is a copy, not an expression:
+
+```ts
+const mayPresentAsSettled = decision?.settledForUse === true;
+```
+
+`frontend-next/scripts/check-expert-frontend-authority-boundary.mjs` fails if that line becomes an
+expression, if a state name is used to produce an authority flag anywhere in the feature, if the
+driver-role vocabulary appears, if a server-owned field is added to a request body, or if an
+Expert result is routed through the legacy `saveAnalysisSnapshot` path. It was checked against a
+deliberately reintroduced violation and failed, so it is a live guard rather than a decoration.
+
+All eight states render distinctly. `ANALYSIS_FAILED` is reachable only from the execution
+response — a provider failure writes no analysis row — so the execution response is adapted into
+the read shape and passed through the same total state map rather than through a second presenter.
+
 ## 11. Current beta blockers
 
-Two. See `verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
+**One.** See `verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
 `RELEASE_BLOCKERS.md` files under `verification/` record blockers that were live at the time and are
 not current status.
 
-1. no Expert frontend
-2. report generation blocked (environmental, can be worked in parallel)
+1. report generation blocked (environmental, can be worked in parallel)
+
+§265 closed `NO_EXPERT_FRONTEND`.
 
 ## 12. Next implementation step
 
-**The frontend Expert workflow, and the downstream authority-guard slice that consumes
-`effectiveDecision`.** Blocked until product-owner authorization. The server-side authority
-lifecycle frozen in §260 is complete; nothing consumes it and no user can reach it.
+**Beta readiness closure review.** Carried forward, none of it blocking the local workflow: the
+remaining five §260 section 11 downstream guards; the governed-evidence loader; reviewer revision of
+a settled analysis; and everything under section 10 that needs a live environment.
 
 ## 13. Safe commands
 
@@ -204,6 +255,7 @@ Do not load these for ordinary development.
 | authoritative route §262 | `verification/expert-hazlenz-262-.../` |
 | recall optimization §263 | `verification/expert-hazlenz-263-.../` |
 | human confirmation boundary §264 | `verification/expert-hazlenz-264-.../` |
+| frontend workflow and first downstream consumer §265 | `verification/expert-hazlenz-265-.../` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |
 | what to read for a given task | `docs/hazlenz/current/CONTEXT_INDEX.md` |
 | rules that must not be violated | `docs/hazlenz/current/HAZLENZ_INVARIANTS.md` |

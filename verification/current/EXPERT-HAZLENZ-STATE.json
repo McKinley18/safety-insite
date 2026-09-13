@@ -1,12 +1,12 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_STATE",
-  "establishedBy": "\u00a7263",
-  "role": "POINTER AND INDEX. This file states current truth and points at the evidence that established it. It does not reproduce evidence, and a future session should be able to answer the ordinary questions from this file alone without reading \u00a7\u00a7229-262.",
+  "establishedBy": "§263, refreshed at §265",
+  "role": "POINTER AND INDEX. This file states current truth and points at the evidence that established it. It does not reproduce evidence, and a future session should be able to answer the ordinary questions from this file alone without reading §§229-262.",
   "asOf": "2026-09-12",
   "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
   "candidate": {
     "identity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
-    "label": "\u00a7259 successor",
+    "label": "§259 successor",
     "contractVersion": "hazlenz.expert.first-pass.259",
     "entryVersion": "hazlenz.expert.production-entry.v1",
     "admissionVersion": "hazlenz.expert.252.structural-admission.v1",
@@ -18,10 +18,10 @@
     "frozenRecord": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/SECTION-259-SUCCESSOR-IDENTITY.json"
   },
   "integration": {
-    "stage": "HUMAN CONFIRMATION AND OVERRIDE BOUNDARY IMPLEMENTED",
-    "commit": "\u00a7264 (see evidencePointers.humanConfirmation264)",
-    "packageDigest": "0be6f8c33bc494cf0bf50440de4a3a933f3a00843e09183ed674358c596bfdae",
-    "terminal": "EXPERT_HAZLENZ_HUMAN_CONFIRMATION_BOUNDARY_IMPLEMENTED \u2014 FRONTEND_EXPERT_WORKFLOW_AUTHORIZATION_REQUIRED",
+    "stage": "LOCAL EXPERT PRODUCT WORKFLOW IMPLEMENTED",
+    "commit": "§265 (see evidencePointers.frontendProductWorkflow265)",
+    "packageDigest": "d6ed5f7153e9b2031204b4b19f7dfad3e0dc715c6ccbed7738a4ad986aaab237",
+    "terminal": "EXPERT_HAZLENZ_LOCAL_PRODUCT_WORKFLOW_IMPLEMENTED — BETA_READINESS_CLOSURE_REVIEW_AUTHORIZATION_REQUIRED",
     "route": {
       "method": "POST",
       "path": "/inspections/observations/:id/expert-analyses",
@@ -78,6 +78,19 @@
         "path": "/inspections/observations/:id/expert-analyses/:analysisId/settlement",
         "throttle": "60 per 60s",
         "servesBoth": "confirm and override, as one transition"
+      },
+      "read": {
+        "method": "GET",
+        "path": "/inspections/observations/:id/expert-analyses/current",
+        "throttle": "60 per 60s",
+        "addedBy": "§265",
+        "guards": [
+          "JwtGuard",
+          "EntitlementGuard('fullSafeScope')",
+          "RolesGuard"
+        ],
+        "writes": "nothing; it never re-executes, so refreshing an interface cannot spend",
+        "serves": "state, the stored confirmation flag, the server-derived confirmation subject, the effective decision, the settlement, provenance and the producer-distinguishing history"
       }
     },
     "humanSettlement": {
@@ -111,6 +124,27 @@
         "NONE_EXPERT_UNAVAILABLE",
         "NONE_RUNNING"
       ]
+    },
+    "downstreamAuthorityGuard": {
+      "activatedBy": "§265",
+      "consumer": "InspectionService.finalizeFinding",
+      "asks": "ExpertEffectiveDecisionService.authorizeFindingFinalization",
+      "behaviour": "a finding whose review cites a server-authored Expert analysis cannot be finalized unless effectiveDecision.settledForUse is true",
+      "scope": "the Expert path only; a review citing no analysis or a client_supplied one is unaffected",
+      "readsTheRawExpertProposal": false,
+      "notYetGuarded": [
+        "completion readiness / transition to completed",
+        "corrective-action creation",
+        "report finalization and export",
+        "notifications",
+        "executive summary"
+      ]
+    },
+    "packageDigestMethod": "sha256 of the section package's REPORT-<n>.sha256 file",
+    "predecessorPackageDigest264": {
+      "reproducible": "a5cc5de113566d79de071457d245b735d87cd70ac38fa456420a3c0cad778ec3",
+      "previouslyRecordedHere": "0be6f8c33bc494cf0bf50440de4a3a933f3a00843e09183ed674358c596bfdae",
+      "note": "the previously recorded value does not reproduce under the established method, which derives §263's recorded digest exactly. The §264 package itself verifies clean (shasum -c REPORT-264.sha256, 4/4 OK), so the frozen bytes are intact and only this living index held a value that cannot be derived from them. Recorded rather than silently replaced. See §265 report section 9."
     }
   },
   "confirmationTrigger": {
@@ -120,7 +154,7 @@
     "computedAt": "persistence time, stored once, never recomputed on read",
     "runsOnlyOn": "an ADMITTED analysis; every other outcome records not-applicable",
     "rule": "confirmation is REQUIRED when the admitted posture's requiredBy contains (a) a driverRole of UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION, or (b) a driverRole of UNRESOLVED_RESPONSE_OR_FOLLOW_UP while POSTURE_PERMITS_CONTINUED_WORK[posture] is true",
-    "bothBranchesRequired": "branch (a) catches over-restriction, the only direction \u00a7254 observed; branch (b) catches under-restriction, which is the dangerous direction and must not be dropped"
+    "bothBranchesRequired": "branch (a) catches over-restriction, the only direction §254 observed; branch (b) catches under-restriction, which is the dangerous direction and must not be dropped"
   },
   "trustBoundary": {
     "deterministicPath": "the client calls /safescope-v2/classify, holds the result and posts it back; the server does not establish that what it stores equals what it returned. Acceptable for the advisory deterministic path, and the reason every historical row is client_supplied.",
@@ -128,28 +162,33 @@
     "clientMayAuthorTheExpertResult": false
   },
   "provenWithEvidence": {
-    "preSpendIdempotency": "3 concurrent duplicates -> 1 execution, 1 spender, 1 simulated provider entry, 1 analysis \u2014 \u00a7262",
-    "clientForgeryBlocked": "10 server-owned fields attempted over HTTP, 10 refused, 0 rows created; raw SQL refused by ck_hazlenz_analysis_producer_execution \u2014 \u00a7262",
-    "structuralIdentityH3H4": "declarationId, resumeCondition.resolvedByDeclarationIds, controlId and dischargingControlRef survive into the persisted row and the response \u2014 \u00a7262",
-    "stateMapping": "refusal never presented as available; provider failure creates no analysis row \u2014 \u00a7262",
-    "tenantIsolation": "cross-workspace answers NotFound, indistinguishable from a non-existent observation \u2014 \u00a7262",
-    "executionDerivedCandidateBinding": "the transmitted first-pass system prompt digest is compared with frozen element 2 before attribution \u2014 \u00a7262",
-    "humanConfirmation": "ANALYSIS_AWAITING_CONFIRMATION -> ANALYSIS_CONFIRMED with the Expert result byte-identical \u2014 \u00a7264 case C",
-    "humanOverride": "-> ANALYSIS_OVERRIDDEN with the human replacement authoritative and the Expert proposal preserved \u2014 \u00a7264 case D",
-    "oneSettlementUnderConcurrency": "two co-authorized reviewers reading the same pending analysis produce exactly one settlement; the loser gets a deterministic conflict \u2014 \u00a7264 N13",
-    "settlementRetryIdempotency": "a retry under the same key replays and creates no duplicate review or audit row \u2014 \u00a7264 C-13"
+    "preSpendIdempotency": "3 concurrent duplicates -> 1 execution, 1 spender, 1 simulated provider entry, 1 analysis — §262",
+    "clientForgeryBlocked": "10 server-owned fields attempted over HTTP, 10 refused, 0 rows created; raw SQL refused by ck_hazlenz_analysis_producer_execution — §262",
+    "structuralIdentityH3H4": "declarationId, resumeCondition.resolvedByDeclarationIds, controlId and dischargingControlRef survive into the persisted row and the response — §262",
+    "stateMapping": "refusal never presented as available; provider failure creates no analysis row — §262",
+    "tenantIsolation": "cross-workspace answers NotFound, indistinguishable from a non-existent observation — §262",
+    "executionDerivedCandidateBinding": "the transmitted first-pass system prompt digest is compared with frozen element 2 before attribution — §262",
+    "humanConfirmation": "ANALYSIS_AWAITING_CONFIRMATION -> ANALYSIS_CONFIRMED with the Expert result byte-identical — §264 case C",
+    "humanOverride": "-> ANALYSIS_OVERRIDDEN with the human replacement authoritative and the Expert proposal preserved — §264 case D",
+    "oneSettlementUnderConcurrency": "two co-authorized reviewers reading the same pending analysis produce exactly one settlement; the loser gets a deterministic conflict — §264 N13",
+    "settlementRetryIdempotency": "a retry under the same key replays and creates no duplicate review or audit row — §264 C-13",
+    "frontendWithholdsAnUnsettledConclusion": "the browser copies effectiveDecision.settledForUse rather than deriving it; a response whose state says awaiting but whose derivation says settled follows the DERIVATION, and one carrying no derivation fails closed — §265 case K",
+    "downstreamRefusesAnUnsettledConclusion": "a finding review citing an awaiting-confirmation Expert analysis is refused 409 with 0 finding rows and 0 corrective actions written; the SAME review finalizes after the human settles — §265 cases L and M",
+    "downstreamConsumesTheHumanValue": "after an override the consumer reads effectiveClassification = the human value with the Expert claim preserved alongside it, sourced HUMAN_REPLACED — §265 case N",
+    "readSurvivesAReload": "the read returns the whole authority picture including the server-derived confirmation subject, and serves neither rawFirstPass nor rawVerifier — §265 cases A-J"
   },
   "deliberatelyNotProven": {
-    "governedCitation": "NOT EXERCISED AT ALL. Every \u00a7262 execution transmits zero governed records, so Expert may cite nothing. Fail-closed by design: the only unbuilt-loader source of approved regulatory text was the client-supplied snapshot, and accepting that would let a request inject text labelled as governed.",
-    "liveProviderTransportFromADeployedInstance": "one live call was contemplated by \u00a7260 and has not been spent",
+    "governedCitation": "NOT EXERCISED AT ALL. Every §262 execution transmits zero governed records, so Expert may cite nothing. Fail-closed by design: the only unbuilt-loader source of approved regulatory text was the client-supplied snapshot, and accepting that would let a request inject text labelled as governed.",
+    "liveProviderTransportFromADeployedInstance": "one live call was contemplated by §260 and has not been spent",
     "reportGenerationAndObjectStorage": "environmentally blocked, see knownGaps",
-    "expertFrontend": "no user interface reaches either Expert route",
-    "downstreamActivation": "\u00a7264 exposes effectiveDecision and activates no consumer of it; a settled analysis still reconciles zero findings"
+    "downstreamActivation": "§265 activated ONE consumer of effectiveDecision — finding finalization. The other five §260 section 11 consumers are contained by it rather than guarded in their own right: they reach an Expert conclusion only through a finalized finding today, which a future feature reading an analysis directly would bypass. A settled analysis still reconciles ZERO findings; the guard refuses, it does not create.",
+    "expertFrontendAgainstADeployedInstance": "the workflow is proven against the local stack over real HTTP with a substituted transport. No deployed instance has served it, and no hosted provider leg has ever been spent from it.",
+    "reviewerRevisionOfASettledAnalysis": "not built. One settlement per analysis in the beta workflow, carried as PRODUCT DECISION DEFERRED rather than as a claim that the decision is permanently irreversible."
   },
   "acceptedLimitations": [
     {
       "id": "DRIVER_ROLE_CLASSIFICATION",
-      "statement": "The model classifies an unresolved fact as continuation-controlling or as routine follow-up, and \u00a7254 observed it erring toward over-restriction. The product does not rely on that classification being right: an admitted analysis whose posture turns on it is held in ANALYSIS_AWAITING_CONFIRMATION until a person settles it.",
+      "statement": "The model classifies an unresolved fact as continuation-controlling or as routine follow-up, and §254 observed it erring toward over-restriction. The product does not rely on that classification being right: an admitted analysis whose posture turns on it is held in ANALYSIS_AWAITING_CONFIRMATION until a person settles it.",
       "containedBy": "the deterministic confirmation rule, both branches",
       "evidence": "verification/expert-hazlenz-260-product-integration-architecture-2026-09-12/SECTION-260-FROZEN-DESIGN.json"
     },
@@ -161,7 +200,7 @@
     },
     {
       "id": "UNRESOLVED_STATE_COVERS_TWO_SHAPES",
-      "statement": "A contained declaration refusal with an admitted posture and a whole-output refusal with preserved truth both derive to ANALYSIS_UNRESOLVED, because \u00a7252 gives PRESERVE_UNRESOLVED precedence deliberately. They stay distinguishable on the execution record, not in the product state.",
+      "statement": "A contained declaration refusal with an admitted posture and a whole-output refusal with preserved truth both derive to ANALYSIS_UNRESOLVED, because §252 gives PRESERVE_UNRESOLVED precedence deliberately. They stay distinguishable on the execution record, not in the product state.",
       "containedBy": "expert_analysis_executions.admission, postureRefusalCodes and declarationRefusals",
       "evidence": "verification/expert-hazlenz-262-authoritative-execution-route-2026-09-12/SECTION-262-TEST-ROUTE-ACCEPTANCE.txt"
     }
@@ -171,7 +210,7 @@
       "id": "OBJECT_STORAGE",
       "status": "ENVIRONMENTALLY_BLOCKED",
       "detail": "test:knowledge-release-provenance reaches POST /inspections/:id/reports and receives 500. Neither STORAGE_S3_BUCKET nor STORAGE_LOCAL_ROOT is set; src/storage/storage.service.ts picks the provider from NODE_ENV, so the message differs by runner while the cause does not.",
-      "notARegression": "\u00a7261 and \u00a7262 changed 0 files under src/storage and src/reports"
+      "notARegression": "§261 and §262 changed 0 files under src/storage and src/reports"
     },
     {
       "id": "RUNNING_PRODUCTION_SHA",
@@ -217,18 +256,10 @@
     "recallOptimization263": "verification/expert-hazlenz-263-repository-recall-optimization-2026-09-12/",
     "historicalArchiveIndex": "verification/expert-hazlenz-229-baseline-compartmentalization-2026-09-11/SECTION-229-HISTORICAL-ARCHIVE-INDEX.md",
     "protectedIdentities": "PROTECTED-IDENTITIES.json",
-    "humanConfirmation264": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/"
+    "humanConfirmation264": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/",
+    "frontendProductWorkflow265": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/"
   },
-  "nextAuthorizedWork": {
-    "item": "the frontend Expert workflow, and the downstream authority-guard slice that consumes effectiveDecision",
-    "why": "the server-side authority lifecycle frozen in \u00a7260 is now complete; nothing consumes it and no user can reach it",
-    "blockedUntil": "product-owner authorization",
-    "alsoOwedLater": [
-      "server-side governed-evidence loading bound to the inspection release",
-      "downstream authority guards including completion readiness",
-      "one live transport call if justified"
-    ]
-  },
+  "nextAuthorizedWork": "Beta readiness closure review. The two §263 beta blockers are now one: report generation remains environmentally blocked. Carried forward and not blocking the local workflow: the remaining §260 section 11 downstream guards, the governed-evidence loader, reviewer revision of a settled analysis, and everything under knownGaps that requires a live environment.",
   "sectionsThatMustNotBeReRunCasually": {
     "reason": "252 scripts write into accepted historical evidence packages; 101 more have write behaviour a static reader could not resolve",
     "registry": "verification/current/MUTATING-SCRIPTS.json"

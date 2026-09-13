@@ -42,9 +42,16 @@ npm run hazlenz:integration:test
 ```
 
 Creates its own `test_insite_*` database, migrates it from zero, forces `NODE_ENV=test` and
-`DEV_AUTH_BYPASS=false`, runs `test:261-expert-persistence-foundation` (69) and
-`test:262-expert-authoritative-route` (94), then drops the database whether the suite passed or
+`DEV_AUTH_BYPASS=false`, runs `test:261-expert-persistence-foundation` (69),
+`test:262-expert-authoritative-route` (94), `test:264-expert-human-confirmation` (78) and
+`test:265-expert-product-acceptance` (76), then drops the database whether the suite passed or
 failed.
+
+§265 added the last of those. It re-establishes the §260 acceptance set **through the read surface
+the frontend actually uses** — which is a different assertion from §262's "the write returned the
+right thing" — and adds the downstream cases L, M and N. Case K is **not** here: it is a browser
+rendering rule, it is executed by the frontend suite below, and claiming it in a server suite would
+be the weaker evidence pretending to be the stronger.
 
 `DEV_AUTH_BYPASS=false` is forced rather than left to the operator: the developer `.env` enables the
 bypass, and an authorization suite run under it measures the bypass instead of the route.
@@ -56,6 +63,26 @@ npm run hazlenz:build
 ```
 
 `npm run build` and `npm run build:render`, the two production TypeScript paths.
+
+## TIER 3F — FRONTEND (added at §265)
+
+**No `hazlenz:*` command runs this tier**, because it lives in the other workspace. From
+`frontend-next/`:
+
+```
+npm run test:expert-presentation          59 assertions, including acceptance case K
+npm run check:expert-authority-boundary   8 structural checks over the Expert frontend source
+npx tsc --noEmit -p tsconfig.json
+npm run build
+```
+
+The first is behavioural: given a server response, does the browser report what the server said. The
+second is structural and covers what the first cannot — the ABSENCE of a second authority derivation
+elsewhere in the feature. A component that quietly computed `state === "CONFIRMED"` would pass every
+assertion in the first and is caught by the second.
+
+`npm run lint` is **not** a gate in this workspace and never has been: it reports 520 pre-existing
+errors across the app. The four files §265 added lint clean.
 
 ## TIER 4 — LIVE ENVIRONMENT
 
