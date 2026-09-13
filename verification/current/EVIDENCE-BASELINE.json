@@ -1,0 +1,76 @@
+{
+  "artifact": "HAZLENZ_EVIDENCE_INTEGRITY_BASELINE",
+  "establishedBy": "\u00a7263",
+  "checkedBy": "backend/scripts/hazlenz/evidence-integrity.ts",
+  "purpose": "The in-package digest mismatches that ALREADY EXIST in the committed tree. Recorded as data rather than excluded in code, so the guard fails on a NEW one without failing forever on an old one that cannot be corrected without rewriting an accepted package.",
+  "howEachWasEstablished": "For every entry the working tree byte-for-byte equals HEAD, and neither equals the digest the same commit recorded. So the disagreement was baked in when the package was committed; nothing in the working tree mutated it, and \u00a7263 did not cause it.",
+  "notARepair": "\u00a7263 does NOT rewrite these manifests or these members. Correcting a frozen manifest to agree with the bytes it failed to describe would destroy the only record that they ever disagreed.",
+  "knownInPackageMismatches": [
+    {
+      "manifest": "verification/expert-hazlenz-234-posture-discrimination-2026-09-11/SECTION-234-JUDGMENT.sha256",
+      "member": "SECTION-234-JUDGMENT.json",
+      "kind": "DIGEST_MISMATCH",
+      "worktreeEqualsHead": true,
+      "note": "the recorded digest does not describe the bytes that were committed alongside it"
+    },
+    {
+      "manifest": "verification/expert-hazlenz-236-stabilized-confirmation-2026-09-11/SECTION-236-JUDGMENT.sha256",
+      "member": "SECTION-236-JUDGMENT.json",
+      "kind": "DIGEST_MISMATCH",
+      "worktreeEqualsHead": true,
+      "note": "the recorded digest does not describe the bytes that were committed alongside it"
+    },
+    {
+      "manifest": "verification/expert-hazlenz-238-final-posture-confirmation-2026-09-11/SECTION-238-JUDGMENT.sha256",
+      "member": "SECTION-238-JUDGMENT.json",
+      "kind": "DIGEST_MISMATCH",
+      "worktreeEqualsHead": true,
+      "note": "the recorded digest does not describe the bytes that were committed alongside it"
+    },
+    {
+      "manifest": "verification/expert-hazlenz-249-executable-binding-and-identity-hardening-2026-09-12/REPORT-249.sha256",
+      "member": "SECTION-249-CANDIDATE-IDENTITY-V2.json",
+      "kind": "DIGEST_MISMATCH",
+      "worktreeEqualsHead": true,
+      "note": "the recorded digest does not describe the bytes that were committed alongside it. NOTE: this is a candidate-identity artifact of a SUPERSEDED candidate; the CURRENT \u00a7259 identity is verified independently and read-only by npm run hazlenz:verify, which recomputes all 22 elements from live sources and does not consult this file."
+    },
+    {
+      "manifest": "verification/expert-hazlenz-checkpoint-consolidation-2026-09-07/POST-CONSOLIDATION-MANIFEST.sha256",
+      "member": "backend/src/safescope-v2/tests/hazlenz-inspection-context-autonomy-regression 2.ts",
+      "kind": "MEMBER_ABSENT",
+      "worktreeEqualsHead": true,
+      "note": "a duplicate file the consolidation itself removed; the manifest correctly records that it existed at that moment"
+    },
+    {
+      "manifest": "verification/expert-hazlenz-checkpoint-consolidation-2026-09-07/POST-CONSOLIDATION-MANIFEST.sha256",
+      "member": "docs/INSITE_ENGINEERING_BLUEPRINT 2.md",
+      "kind": "MEMBER_ABSENT",
+      "worktreeEqualsHead": true,
+      "note": "a duplicate file the consolidation itself removed"
+    },
+    {
+      "manifest": "verification/expert-hazlenz-checkpoint-consolidation-2026-09-07/PRE-CONSOLIDATION-BASELINE.sha256",
+      "member": "backend/src/safescope-v2/tests/hazlenz-inspection-context-autonomy-regression 2.ts",
+      "kind": "MEMBER_ABSENT",
+      "worktreeEqualsHead": true,
+      "note": "a duplicate file the consolidation itself removed"
+    },
+    {
+      "manifest": "verification/expert-hazlenz-checkpoint-consolidation-2026-09-07/PRE-CONSOLIDATION-BASELINE.sha256",
+      "member": "docs/INSITE_ENGINEERING_BLUEPRINT 2.md",
+      "kind": "MEMBER_ABSENT",
+      "worktreeEqualsHead": true,
+      "note": "a duplicate file the consolidation itself removed"
+    }
+  ],
+  "preExistingWorktreeState": {
+    "deleted": [
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml"
+    ],
+    "diagnosis": "NOT EVIDENCE LOSS. The tracked file is absent, and an untracked file in the same directory, 'ecfr-1910-146 4.xml', is byte-identical to the deleted file in HEAD -- both digest to d3dc555e5e783af729b8243ba7932aff... A sibling 'ecfr-1910-146 2.xml' is also present. This is a filename duplication performed outside git, not a deletion of regulatory source evidence.",
+    "predates": "\u00a7262 and \u00a7263; it was present in the working tree before either section began",
+    "sectionAction": "\u00a7263 does NOT rename, restore or delete it. It is unrelated worktree content, and correcting it is a deliberate act for the product owner: `git mv 'ecfr-1910-146 4.xml' ecfr-1910-146.xml` after confirming which duplicate is wanted.",
+    "guardTreatment": "Reported on every run as PRE-EXISTING and excluded from the exit code, so the guard fails on drift introduced by the CURRENT session rather than failing forever on a condition it is not authorized to fix."
+  },
+  "externalReferenceDriftIsNotAFault": "66 manifest lines name files OUTSIDE their package -- live source under backend/, documents under docs/. Their digests record what those files were when the section froze. The files have legitimately moved on. Treating that as corruption would mean every future source edit corrupts the evidence base."
+}

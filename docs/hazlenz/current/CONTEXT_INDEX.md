@@ -1,8 +1,10 @@
-# CONTEXT INDEX — WHAT TO READ
+# CONTEXT INDEX — WHAT TO READ, AND WHERE THINGS LIVE
 
-Read the smallest set that answers the engineering question in front of you. Loading the validation
-archive into an ordinary development prompt is the single largest avoidable token cost in this
-repository.
+Read the smallest set that answers the question in front of you. Loading the validation archive into
+an ordinary development prompt is the single largest avoidable token cost in this repository.
+
+Refreshed at **§263**. The §229 version of this file pointed at `backend/scripts/lib/` as the home
+of the live contract; that has been wrong since §246 productionized it into `src/`.
 
 ---
 
@@ -11,108 +13,119 @@ repository.
 - `docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md`
 - `docs/hazlenz/current/HAZLENZ_INVARIANTS.md`
 
-Together about 2,600 words. That is the whole default context.
+Read `docs/hazlenz/current/TEST_TIERS.md` when you need to know which suite to run.
+
+About 2,500 words. That is the whole default context. For a machine consumer the equivalent is
+`verification/current/EXPERT-HAZLENZ-STATE.json`, and `npm run hazlenz:status` prints it.
 
 ---
 
-## WHEN MODIFYING THE FIRST PASS
+## DIRECTORY MAP
 
-- `backend/scripts/lib/expert-210j-first-pass-contract.ts` — the pinned contract and wire schema
-- `backend/scripts/lib/expert-210j-declaration-projection.ts` — validate / project / refuse
+| domain | where | note |
+|---|---|---|
+| **Expert engine (candidate-defining)** | `backend/src/safescope-v2/expert-hazlenz/` | contract, projections, admission, owed facts, the production entry point. **Changing anything here moves the candidate identity.** |
+| **Expert transport adapters** | `backend/src/safescope-v2/expert-hazlenz-adapters/` | the vendor lives here and nowhere else |
+| **Product integration** | `backend/src/safescope-v2/expert-hazlenz-product/` | route, execution service, authority, persistence, confirmation rule, response |
+| **Deterministic HazLenz** | `backend/src/safescope-v2/` (the rest) | the customer-authoritative path |
+| **Migrations** | `backend/src/database/migrations/` | §261 added `1800000019000-ExpertAnalysisAuthorityFoundation` |
+| **Current verification and tooling** | `backend/scripts/hazlenz/` | the §263 command surface; everything here is read-only except the disposable-DB wrapper |
+| **Current state, machine-readable** | `verification/current/` | state, capability register, beta register, mutating-script registry, evidence baseline |
+| **Historical evidence** | `verification/expert-hazlenz-*/` | frozen. Never edited, never deleted. |
+| **Superseded contract ancestry** | `backend/scripts/lib/` | kept because byte-for-byte identity reconstruction depends on the additive chain. **Not a current entry point.** |
+| **Superseded state package** | `docs/hazlenz/validation/superseded-209/` | pre-§209, archived at §229 |
+
+---
+
+## WHEN MODIFYING THE EXPERT CONTRACT OR PROMPT
+
+- `backend/src/safescope-v2/expert-hazlenz/contract/expert-259-control-identity-contract.ts` — the
+  current first-pass contract and wire schema
+- `backend/src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext.ts` — the
+  user prompt builder
 - `backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts` — input contract types
-- focused regressions only: §205 declaration preservation, §210E, §210J projection
 
-Do not read the ancestor instruction modules (`210b2`, `210c`, `210e`, `210g`, `vnext`) unless you
-are changing the additive chain itself. §210J composes them; reading the composed output is enough.
+Do not read the ancestor instruction modules (`210b2`, `210c`, `210e`, `210g`, `247`, `253`) unless
+you are changing the additive chain itself. §259 composes them.
+
+**Any change here moves the candidate identity.** Run `npm run hazlenz:verify` before and after and
+expect it to change deliberately, not by surprise.
+
+## WHEN MODIFYING ADMISSION, PROJECTION OR RR-7
+
+- `contract/expert-252-structural-admission.ts` — the whole-output conformance gate and disposition
+- `contract/expert-239-posture-projection.ts` — posture projection
+- `contract/expert-210j-declaration-projection.ts` — declaration projection and RR-7 preservation
+- `contract/expert-235-wire-normalization.ts` — container normalization, never repair
 
 ## WHEN MODIFYING THE VERIFIER
 
-- `backend/scripts/lib/expert-218-property-review-contract.ts` — response schema
-- `backend/scripts/lib/expert-218-property-instruction.ts` — verifier instruction
-- `backend/scripts/lib/expert-218-property-consistency.ts` — whole-output refusal on inconsistency
-- `backend/scripts/lib/expert-212-verifier-payload.ts` — what the verifier is shown
-- `backend/src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts`
-- focused regressions only: §218 structured verifier, §214 sibling containment
+- `contract/expert-218-property-review-contract.ts` — response schema
+- `contract/expert-218-property-instruction.ts` — system prompt
+- `contract/expert-212-verifier-payload.ts` — payload construction
 
-## WHEN MODIFYING AUTHORITY OR SETTLEMENT
+## WHEN MODIFYING THE PRODUCT INTEGRATION
 
-- `backend/src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts`
-- `backend/src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts`
-- `backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts`
-- `backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts`
-- focused regressions only: §220 property-authority boundary, the human settlement and review state
-  machines
+- `expert-hazlenz-product/expert-analysis.controller.ts` — the one route and its guard profile
+- `expert-hazlenz-product/expert-analysis-execution.service.ts` — orchestration; the ONLY thing that
+  can reach a provider
+- `expert-hazlenz-product/expert-analysis.service.ts` — authority, persistence, audit. **Has no
+  provider dependency, deliberately and checkably.**
+- `expert-hazlenz-product/expert-analysis-context.ts` — what the server establishes for itself
+- `expert-hazlenz-product/expert-confirmation-rule.ts` — the deterministic confirmation rule
 
-## WHEN MODIFYING REGULATORY GROUNDING
-
-- `backend/src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation.ts`
-- `backend/scripts/lib/expert-first-pass-instruction-vnext.ts` — governed binding construction
-- `backend/scripts/lib/expert-governed-citation-reuse.ts`
-- `backend/scripts/lib/expert-verifier-citation-boundary.ts`
-- focused regressions only: governed-binding and grounding suites
-
-## WHEN MODIFYING THE OWED-FACT LEDGER OR RR-7
-
-- `owed-facts/owed-fact-ledger.ts`, `owed-fact-binding.ts`, `owed-fact.types.ts`
-- `backend/scripts/lib/expert-205-declaration-preservation.ts`
-- focused regressions only: §205 preservation, RR-7
-
-## WHEN ASSEMBLING OR RUNNING AN EXPERIMENT
-
-- `backend/scripts/lib/expert-221-assembly.ts` — the one assembly path, both legs
-- `backend/scripts/lib/expert-228a-integrated-instrument.ts` — the current instrument: cases, hard
-  requirements, applicability, coverage map, machine-checked truth preflight
-- `backend/scripts/lib/expert-221-integrated-instrument.ts` — its frozen base
-- `docs/hazlenz/governance/VALIDATION_EFFICIENCY_PLAN.md` — pick the lowest ladder level that
-  answers the question
+Then: `npm run hazlenz:check`, and `npm run hazlenz:integration:test` before a commit.
 
 ## WHEN VERIFYING THE BASELINE
 
-- `backend/scripts/verify-229-protected-identities.ts` — recomputes all 29 protected module digests,
-  prompt identities, schema identities and assembled call identities, and prints one composite
-- `backend/scripts/run-229-protected-ladder.ts` — runs the 17 protected suites, local only
+```
+npm run hazlenz:verify
+```
 
-Both are zero provider calls and zero database operations. Run them before and after any structural
-change; the composite identity and the 17/17 result must be identical.
+One command. Recomputes the candidate identity from live sources, checks the 29 protected modules,
+runs the evidence-integrity guard, and confirms the current-state manifest still agrees with all of
+it. Zero provider calls, zero database operations, and it writes nothing.
+
+The §229-era pair `verify-229-protected-identities.ts` and `run-229-protected-ladder.ts` still exist
+and are still correct for their own baseline. They are not the current entry point.
+
+---
+
+## BEFORE RUNNING ANY OTHER VERIFICATION SCRIPT
+
+Check `verification/current/MUTATING-SCRIPTS.json`.
+
+252 scripts write into accepted historical evidence packages. 101 more have write behaviour that a
+static reader could not resolve, and are therefore sandbox-required by default. §258 ran two of them
+and did not notice, because the bytes happened to match that time; §259 ran the same two and the
+numbers moved.
+
+Regenerate the registry with `npm run hazlenz:scripts:classify -- --write` after adding a script.
 
 ---
 
 ## READ HISTORICAL VALIDATION EVIDENCE ONLY WHEN
 
-- investigating provenance of a pinned identity or digest;
+- investigating the provenance of a pinned identity or digest;
 - reproducing a historical defect;
 - auditing a frozen decision;
 - changing an invariant that a specific piece of evidence established.
 
 **Start at the archive index**, not at a directory listing:
 `verification/expert-hazlenz-229-baseline-compartmentalization-2026-09-11/SECTION-229-HISTORICAL-ARCHIVE-INDEX.md`.
-It carries all 142 Expert HazLenz evidence directories with purpose, result, terminal, manifest and
-supersession, and separates the 33-section auditable spine from the exploratory remainder.
 
-Never load a raw `*.jsonl` provider leg, a `RAW-*` file, or a frozen preregistration into a
-development prompt. Query it with a script and read the answer.
+Never load a raw `*.jsonl` provider leg, a `RAW-*` file, or a frozen preregistration into a prompt.
+Query it with a script and read the answer.
 
 ---
 
 ## DO NOT READ BY DEFAULT
 
 - `docs/INSITE_ENGINEERING_BLUEPRINT.md` — about 308,000 words. Grep it; never load it.
-- `docs/hazlenz/validation/superseded-209/*` — the pre-§209 state package, archived in §229. The old
-  path `docs/expert-hazlenz/` now holds only a redirect.
+- `docs/hazlenz/validation/superseded-209/*` — pre-§209, archived at §229.
+- `docs/hazlenz/governance/SOURCE_OF_TRUTH_MAP.md` — §223. Superseded twice: by the §229 map, and
+  by the directory map above. Its statement that Expert "has no NestJS consumer at all" has been
+  false since §246.
+- `docs/hazlenz/governance/REPOSITORY_COMPARTMENTALIZATION_PLAN.md` — §223 proposals; §229 measured
+  them and refused most of the moves.
 - Any `verification/**` directory, unless one of the four reasons above applies.
-- Superseded prompt variants under `backend/scripts/lib/` other than those named above.
-
----
-
-## GOVERNANCE AND PLANNING DOCUMENTS
-
-Read when doing the work they describe, not otherwise.
-
-- `verification/expert-hazlenz-229-baseline-compartmentalization-2026-09-11/SECTION-229-SOURCE-OF-TRUTH-MAP.md`
-  — **the current map. Supersedes the §223 one below.**
-- `verification/expert-hazlenz-229-baseline-compartmentalization-2026-09-11/SECTION-229-IMPROVEMENT-REGISTER.md`
-- `docs/hazlenz/governance/REPOSITORY_COMPARTMENTALIZATION_PLAN.md` — §223 proposals. §229 measured
-  them and refused most of the moves; read the §229 cleanup log for which and why.
-- `docs/hazlenz/governance/SOURCE_OF_TRUTH_MAP.md` — superseded by the §229 map above.
-- `docs/hazlenz/governance/PROMPT_CONTEXT_OPTIMIZATION.md`
-- `docs/hazlenz/governance/VALIDATION_EFFICIENCY_PLAN.md`

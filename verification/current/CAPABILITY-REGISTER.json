@@ -1,0 +1,135 @@
+{
+  "artifact": "EXPERT_HAZLENZ_CAPABILITY_REGISTER",
+  "establishedBy": "§263",
+  "role": "ONE row per capability. The single answer to 'what can this thing do, and what is that claim worth'. Supersedes reading §§229-262 to reconstruct it.",
+  "statuses": {
+    "ACCEPTED": "proven and usable as it stands",
+    "ACCEPTED_WITH_HUMAN_CONFIRMATION": "proven, and its operational conclusion is not authoritative until a person settles it",
+    "BLOCKED": "cannot proceed without a decision or a missing capability",
+    "UNVERIFIED_LIVE": "not contradicted, and never exercised against a live environment",
+    "DEFERRED": "deliberately not built yet",
+    "SUPERSEDED": "replaced by a later representation"
+  },
+  "capabilities": [
+    {
+      "capability": "Deterministic HazLenz hazard analysis",
+      "status": "ACCEPTED",
+      "evidence": "test:canonical-workflow, test:persisted-decomposition-findings, test:finding-scoped-reviews",
+      "productConsequence": "the customer-authoritative analysis path; unchanged by §§259-263",
+      "boundary": "advisory; the snapshot is client_supplied and the server does not verify it equals what it returned",
+      "nextAction": null
+    },
+    {
+      "capability": "Expert first-pass semantic analysis (§259 candidate)",
+      "status": "ACCEPTED_WITH_HUMAN_CONFIRMATION",
+      "evidence": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/",
+      "productConsequence": "Expert may propose hazards, controls and a safety posture the deterministic layer did not reach",
+      "boundary": "the driver-role classification is not relied upon: an analysis whose posture turns on it is held in ANALYSIS_AWAITING_CONFIRMATION",
+      "nextAction": "the confirmation action"
+    },
+    {
+      "capability": "Deterministic structural admission (§252)",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-252-nonstrict-admission-architecture-2026-09-12/",
+      "productConsequence": "a non-conforming provider output is refused whole and no part of it is rendered",
+      "boundary": "admission judges representation, never whether a workplace fact is true",
+      "nextAction": null
+    },
+    {
+      "capability": "RR-7 unresolved-truth preservation",
+      "status": "ACCEPTED",
+      "evidence": "§205, §210J suites; exercised end to end in §262 cases F and G",
+      "productConsequence": "a refused declaration does not silently delete the property it identified",
+      "boundary": "preservation records; it never repairs the declaration",
+      "nextAction": null
+    },
+    {
+      "capability": "Verifier leg (§218 property review)",
+      "status": "ACCEPTED",
+      "evidence": "§218-§221; reached and persisted in §262",
+      "productConsequence": "an admitted declaration gets a second, independent structured review",
+      "boundary": "a verifier failure does not invalidate an admitted first pass; it is recorded as NOT REACHED and never as a pass",
+      "nextAction": null
+    },
+    {
+      "capability": "Server-authored Expert execution and persistence",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-262-authoritative-execution-route-2026-09-12/ (94/94)",
+      "productConsequence": "what is stored as server_authored is what the server obtained from the frozen path",
+      "boundary": "a client may initiate and supply observation context; it may never author the result",
+      "nextAction": null
+    },
+    {
+      "capability": "Pre-spend idempotency",
+      "status": "ACCEPTED",
+      "evidence": "§262 case I — 3 concurrent duplicates, 1 provider entry",
+      "productConsequence": "a duplicate request cannot spend a second pair of provider legs",
+      "boundary": "adjudicated by a unique index, not by application logic",
+      "nextAction": null
+    },
+    {
+      "capability": "Tenant isolation on the Expert route",
+      "status": "ACCEPTED",
+      "evidence": "§262 case H; §263 closed the residual message-level disclosure",
+      "productConsequence": "a cross-workspace caller learns nothing, including whether the observation exists",
+      "boundary": "an unauthenticated caller is still answered 401, not 404",
+      "nextAction": null
+    },
+    {
+      "capability": "Human confirmation of an Expert operational conclusion",
+      "status": "DEFERRED",
+      "evidence": "§260 slice 6; §262 cases C and D RESERVED",
+      "productConsequence": "ANALYSIS_AWAITING_CONFIRMATION is reachable and nothing can move an analysis out of it",
+      "boundary": "no action exists; the states ANALYSIS_CONFIRMED and ANALYSIS_OVERRIDDEN are unreachable",
+      "nextAction": "the next authorized implementation slice"
+    },
+    {
+      "capability": "Downstream finding reconciliation from an Expert result",
+      "status": "DEFERRED",
+      "evidence": "§261 and §262 both refuse it deliberately",
+      "productConsequence": "no finding is created from an Expert analysis, confirmed or not",
+      "boundary": "must not be enabled before the authority guards exist",
+      "nextAction": "the authority-guard slice, after confirmation"
+    },
+    {
+      "capability": "Governed regulatory citation by Expert",
+      "status": "BLOCKED",
+      "evidence": "§262 transmits zero governed records in every execution",
+      "productConsequence": "Expert may cite nothing at all; its output carries no regulatory citation",
+      "boundary": "fail-closed on purpose — the only available source was a client-supplied snapshot, which would let a request inject text labelled as governed",
+      "nextAction": "a server-side governed-evidence loader bound to the inspection's release binding"
+    },
+    {
+      "capability": "Report generation and object storage",
+      "status": "BLOCKED",
+      "evidence": "test:knowledge-release-provenance exits 1; no STORAGE_* variable is set",
+      "productConsequence": "reports cannot be generated in this environment",
+      "boundary": "environmental, not a code defect; §§261-263 changed 0 files under src/storage and src/reports",
+      "nextAction": "configure storage deliberately, in a section authorized to do so"
+    },
+    {
+      "capability": "Live provider transport from a deployed instance",
+      "status": "UNVERIFIED_LIVE",
+      "evidence": "§260 contemplated one justified live call; it has not been spent",
+      "productConsequence": "the hosted transport has never been exercised from the product route",
+      "boundary": "every §262 execution used the deterministic seam",
+      "nextAction": "one live call, if the product owner judges it justified"
+    },
+    {
+      "capability": "Billing and deployment posture",
+      "status": "UNVERIFIED_LIVE",
+      "evidence": "none",
+      "productConsequence": "unknown whether the Expert path is correctly metered or deployed",
+      "boundary": "no §263 command contacts a live environment",
+      "nextAction": "a live-environment section"
+    },
+    {
+      "capability": "Pre-§246 Expert contract under backend/scripts/lib/",
+      "status": "SUPERSEDED",
+      "evidence": "§246 productionized the validated contract into src/safescope-v2/expert-hazlenz/",
+      "productConsequence": "none; the production path does not import it",
+      "boundary": "kept because byte-for-byte identity reconstruction depends on the additive chain",
+      "nextAction": "do not use as a current entry point; see docs/hazlenz/current/CONTEXT_INDEX.md"
+    }
+  ]
+}

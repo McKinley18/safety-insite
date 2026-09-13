@@ -127,14 +127,42 @@ the semantic request contract.
 ## Production boundary
 
 **30. Deterministic HazLenz is the only customer-authoritative analysis path** until a product owner
-authorises otherwise. Expert HazLenz has no production activation, and the production build must not
-be able to reach experiment modules.
+authorises otherwise, and the production build must not be able to reach experiment modules.
+
+> **§263 factual correction — the invariant is unchanged, its status clause was stale.** The §229
+> text continued "Expert HazLenz has no production activation", which has been false since §246
+> productionized the validated contract and §262 exposed an authenticated, entitlement-gated route.
+>
+> The invariant itself still holds, and §262 is what keeps it holding: an Expert analysis reconciles
+> **no** findings, confirmed or not; `ANALYSIS_AWAITING_CONFIRMATION` withholds any operational
+> conclusion that turns on the driver-role classification; and the API states
+> `findingsReconciled: false` rather than leaving a client to infer it. Expert is activated and it
+> is still not customer-authoritative. Those are different things and the distinction is the
+> product's safety position, not an accident of sequencing.
 
 ---
 
-## Status at §229
+## Status
 
-**No invariant was added, removed or changed by §229.** All thirty stand exactly as established.
+**§263 added, removed and changed no invariant.** All thirty stand exactly as established. §263
+corrected one stale STATUS CLAUSE inside invariant 30 (see the note there); the rule it states is
+untouched.
+
+Exercised end to end since §229, against the real product path rather than a harness:
+
+| invariant | exercised by |
+|---|---|
+| 4 provider output alone cannot settle | §262 — an admitted analysis whose posture turns on an unresolved classification is held in `ANALYSIS_AWAITING_CONFIRMATION` and reconciles nothing |
+| 9 unresolved truth must not silently disappear | §262 cases F and G — RR-7 preservation through the real route and into persistence |
+| 11 RR-7 preserves what was identified | §262 case G |
+| 13 a structurally defective result is named | §262 case E — refused whole, no part rendered |
+| 23 `NOT_EXERCISED` is never a pass | §262 — cases C and D recorded RESERVED rather than faked; §263 — governed citation recorded as not exercised at all |
+| 26 additive successors, immutable history | §263 — the evidence-integrity guard makes this checkable rather than trusted |
+| 30 production boundary | §262 — activated behind the analysis-production guard profile, with no downstream authority |
+
+## Status at §229 (historical)
+
+All thirty stood at §229. The §228B/§228C exercise table for that section is preserved below.
 
 Which of them have now been exercised end to end against live provider output, rather than only
 asserted by a local suite:

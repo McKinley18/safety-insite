@@ -1,0 +1,159 @@
+{
+  "section": "263",
+  "generated": "2026-09-12",
+  "kind": "REPOSITORY_RECALL_AND_COMMAND_SURFACE_OPTIMIZATION",
+  "providerCalls": 0,
+  "productionDatabaseOperations": 0,
+  "pushes": 0, "tags": 0, "deploys": 0,
+  "evidencePackagesDeleted": 0,
+  "historicalCommitsSquashed": 0,
+  "filesMoved": 0,
+  "productionSourceFilesChanged": 0,
+  "predecessor": {
+    "successorIdentity259": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "commit262": "a32a2f67",
+    "packageDigest262": "0be6f8c33bc494cf0bf50440de4a3a933f3a00843e09183ed674358c596bfdae"
+  },
+  "candidateIntegrity": {
+    "successorIdentity259Before": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "successorIdentity259After": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "elementsChecked": 22,
+    "elementDrift": 0,
+    "candidateChanged": false,
+    "protectedModulesPresent": 29,
+    "protectedModulesMissing": 0,
+    "protectedModulesModifiedBy263": 0,
+    "candidateDefiningFilesModified": 0,
+    "expertSemanticsChanged": false,
+    "productAuthoritySemanticsChanged": false
+  },
+
+  "recallSurfaceInventory": {
+    "evidencePackages": 326,
+    "scriptFiles": 1005,
+    "npmScriptsBefore": 362,
+    "npmScriptsAfter": 372,
+    "npmEntryPointsNotPlainReadOnly": 149,
+    "scriptsWritingAcceptedHistoricalEvidence": 252,
+    "scriptsWithUnresolvedWriteBehaviour": 101,
+    "providerCallingScripts": 61,
+    "databaseMutatingScripts": 39,
+    "liveEnvironmentScripts": 33,
+    "evidenceManifests": 88,
+    "evidenceMemberDigests": 5533
+  },
+
+  "artifactsCreated": {
+    "machineReadableState": "verification/current/EXPERT-HAZLENZ-STATE.json",
+    "capabilityRegister": "verification/current/CAPABILITY-REGISTER.json",
+    "betaRegister": "verification/current/BETA-BLOCKERS.json",
+    "mutatingScriptRegistry": "verification/current/MUTATING-SCRIPTS.json",
+    "evidenceBaseline": "verification/current/EVIDENCE-BASELINE.json",
+    "testTiers": "docs/hazlenz/current/TEST_TIERS.md",
+    "tooling": [
+      "backend/scripts/hazlenz/verify.ts",
+      "backend/scripts/hazlenz/status.ts",
+      "backend/scripts/hazlenz/evidence-integrity.ts",
+      "backend/scripts/hazlenz/classify-scripts.ts",
+      "backend/scripts/hazlenz/with-disposable-db.ts"
+    ]
+  },
+  "artifactsRefreshedInPlace": {
+    "reason": "§229 had already built docs/hazlenz/current/. Creating a second current-state document beside it would have been the competing-register defect §263 forbids, so the existing canonical documents were refreshed rather than duplicated.",
+    "files": [
+      "docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md",
+      "docs/hazlenz/current/CONTEXT_INDEX.md",
+      "docs/hazlenz/current/HAZLENZ_INVARIANTS.md"
+    ]
+  },
+
+  "commandSurface": {
+    "hazlenz:status": "read the current-state manifest; computes nothing",
+    "hazlenz:verify": "TIER 0 read-only: identity, protected modules, evidence integrity, manifest agreement",
+    "hazlenz:evidence": "the evidence-integrity guard alone",
+    "hazlenz:test": "TIER 1: confirmation rule 60, no-call harness 141",
+    "hazlenz:integration:test": "TIER 2: creates and drops its own disposable database; 69 + 94",
+    "hazlenz:build": "TIER 3: build and build:render",
+    "hazlenz:check": "fast after a small change: verify + tier 1 + build",
+    "hazlenz:precommit": "verify + tier 1 + tier 3 + tier 2 + evidence guard",
+    "hazlenz:scripts:classify": "regenerate the mutating-script registry from source"
+  },
+
+  "readOnlyVerification": {
+    "command": "npm run hazlenz:verify",
+    "writesAnyFile": false,
+    "callsProvider": false,
+    "touchesProductionDatabase": false,
+    "rewritesHistoricalPackageMembers": false,
+    "exitsNonZeroOnRealMismatch": true,
+    "distinctOutcomes": ["PASS", "FAIL", "UNVERIFIED_LIVE", "ENVIRONMENTALLY_BLOCKED"],
+    "unknownsConvertedToPassOrFail": 0
+  },
+
+  "evidenceIntegrityGuard": {
+    "command": "npm run hazlenz:evidence",
+    "mechanism": "two independent checks: every tracked file under verification/ against HEAD, and every member of all 88 package manifests recomputed",
+    "membersVerified": 5533,
+    "provenNonVacuous": "a deliberate one-line mutation of SECTION-259-REPORT.md was detected by BOTH mechanisms simultaneously (worktree drift and manifest mismatch), and the guard returned to PASS after the file was restored from a saved copy, with git reporting no residue",
+    "buckets": {
+      "worktreeDrift": "the §258 failure mode; fatal",
+      "inPackageMismatch": "committed-state disagreement; 8 pre-existing, baselined by name, fatal if a new one appears",
+      "externalReferenceDrift": "66 manifest lines naming live source outside the package; informational, never a fault"
+    },
+    "preExistingConditionsNamed": 9,
+    "newDrift": 0
+  },
+
+  "classifierIntegrity": {
+    "groundTruthSelfCheck": "the classifier refuses to emit a registry unless it reproduces the two accepted-evidence mutators §259 established by observation",
+    "falseNegativeFoundAndFixed": "the first version missed verify-252-admission-matrix, whose write path is assembled from segments so that no single literal contains 'verification/'. Bare package-name literals are now matched against the real directory listing.",
+    "falsePositiveFoundAndFixed": "the first version classified its own source and the read-only verifier as PROVIDER_CALLING, because detection patterns and explanatory comments matched themselves. Comments and regex literals are now stripped before matching. The ground-truth check confirms this did not become under-reading.",
+    "documentedLimitation": "a write through a computed path cannot be resolved and is recorded UNKNOWN_WRITE_BEHAVIOR, which the registry treats as sandbox-required"
+  },
+
+  "defectFoundAndFixedInThisSection": {
+    "what": "backend/scripts/test-262-expert-authoritative-route.ts assertion Z-B counted provider seams across the WHOLE expert_analysis_executions table",
+    "howFound": "§263 made the integration tier run §261 and §262 against ONE disposable database; §261's fixtures set providerId='anthropic' on rows no provider produced, and the unscoped count read them as escapes",
+    "fix": "the assertion is scoped to executions this suite created",
+    "isATestFix": true,
+    "productBehaviourChanged": false
+  },
+
+  "sharedSourceChanges": {
+    "productionSource": 0,
+    "testSource": 1,
+    "packageJson": "10 hazlenz:* scripts added; 0 existing scripts removed or renamed"
+  },
+
+  "notDoneInThisSection": [
+    "any Expert semantic change",
+    "any product-behaviour change",
+    "the human-confirmation action",
+    "provider prompt or token compaction — explicitly out of scope, it can affect capability",
+    "evidence deletion or commit squashing",
+    "physical movement of candidate source, evidence packages or fixture trees",
+    "removal of any historical npm script"
+  ],
+
+  "statedLimitations": [
+    "THE MUTATING-SCRIPT REGISTRY IS A STATIC READ. 101 scripts have write behaviour it could not resolve and are recorded UNKNOWN_WRITE_BEHAVIOR rather than assumed safe. That is the honest state, not a completed audit.",
+    "`hazlenz:verify` still classifies the Anthropic adapter as a digest newer than the §229 snapshot rather than a failure. That is correct — the current §259 identity records the newer value — but it means PROTECTED-IDENTITIES.json is stale and §263 did not rewrite it, because an additive successor does not edit a historical record.",
+    "VERIFICATION RAN ON A WORKTREE THAT ALSO CONTAINS UNRELATED UNCOMMITTED §117 CHANGES to evidence-foundation.ts and shared-evidence-facts.ts, carried over from before §262. They are not in the §263 commit.",
+    "The evidence guard's `externalReferenceDrift` bucket is informational by design. A genuine corruption of a file that lives outside its package would land in that bucket and not fail the guard.",
+    "Nine disposable databases from August 2026 sections remain on the local server. They are not §263's to drop; the new wrapper is what prevents future ones."
+  ],
+
+  "verification": {
+    "hazlenzVerify": "PASS — 2 unverified live, 1 environmentally blocked",
+    "confirmationRule261": { "passed": 60, "failed": 0 },
+    "expertNoCallHarness": { "passed": 141, "failed": 0 },
+    "persistenceFoundation261": { "passed": 69, "failed": 0 },
+    "authoritativeRoute262": { "passed": 94, "failed": 0 },
+    "build": "exit 0",
+    "buildRender": "exit 0",
+    "acceptedEvidenceDrift": 0,
+    "precommitWallClockSeconds": 22
+  },
+
+  "terminal": "EXPERT_HAZLENZ_REPOSITORY_RECALL_OPTIMIZED — HUMAN_CONFIRMATION_ACTION_AUTHORIZATION_REQUIRED"
+}

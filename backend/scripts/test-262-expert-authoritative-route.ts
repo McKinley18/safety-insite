@@ -793,13 +793,19 @@ async function main(): Promise<void> {
     expertTransportIsSubstituted() === true);
   // MEASURED, NOT ASSERTED. Every execution the run settled records which seam answered it, so a
   // single leg that had escaped to the hosted transport would show up here as a different value.
+  // SCOPED TO THE EXECUTIONS THIS SUITE CREATED, not to every row in the database. §263 made the
+  // integration tier run §261 and §262 against ONE disposable database, and §261's persistence
+  // fixtures set providerId='anthropic' on rows no provider ever produced — that suite has no
+  // provider dependency at all. An unscoped count read those as escapes. What this assertion must
+  // measure is whether anything THIS suite executed reached a hosted transport.
   const [seams] = await q(`
     SELECT
       count(*) FILTER (WHERE "providerId" = 'local-deterministic-transport')::int AS local,
       count(*) FILTER (WHERE "providerId" IS NOT NULL
                          AND "providerId" <> 'local-deterministic-transport')::int AS other,
       count(*)::int AS total
-    FROM "expert_analysis_executions"`);
+    FROM "expert_analysis_executions"
+    WHERE "requestedByUserId" = ANY($1::uuid[])`, [[userA.userId, userB.userId]]);
   ok('Z-B every settled execution records the local deterministic seam, and none records a hosted one',
     seams.other === 0 && seams.local > 0, JSON.stringify(seams));
   ok('Z-C this run contains a genuine opportunity to have spent, so Z-B is not vacuous',

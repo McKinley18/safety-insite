@@ -1,0 +1,41 @@
+Expert HazLenz — current state verification (read-only, 0 provider calls)
+  Candidate identity                  PASS                      22 elements, drift 0
+  Identity constant in the build      PASS                      the compiled-in identity equals the recomputation
+  Protected modules                   PASS                      29/29 present, 1 digest(s) newer than the §229 snapshot (anthropicAdapterModule)
+  Accepted evidence drift             PASS                      0 new (5533 members over 88 manifests; 1 pre-existing, 8 baselined, 66 external pointers)
+  Current-state manifest              PASS                      agrees with the recomputed identity
+  Provider transport (live)           UNVERIFIED_LIVE           no provider is called by any §263 command
+  Object storage / report generation  ENVIRONMENTALLY_BLOCKED   STORAGE_S3_BUCKET and STORAGE_LOCAL_ROOT are unset; test:knowledge-release-provenance cannot reach report generation
+  Billing and deployment              UNVERIFIED_LIVE           no live environment is contacted
+VERIFICATION PASS  —  2 unverified live, 1 environmentally blocked
+
+
+EXPERT HAZLENZ — CURRENT STATE
+  as of              2026-09-12   branch beta/expert-hazlenz-validated-candidate-2026-09-12
+  candidate          §259 successor  0b12adf6e44e4586…
+  contract           hazlenz.expert.first-pass.259
+  protected modules  29
+  integration        AUTHORITATIVE SERVER-SIDE EXECUTION ROUTE IMPLEMENTED (a32a2f67)
+  route              POST /inspections/observations/:id/expert-analyses
+  throttle           10 per 60s, stricter than classify's 30 per 60s
+  states reachable   6 of 8 (CONFIRMED and OVERRIDDEN await the confirmation action)
+  accepted limits    DRIVER_ROLE_CLASSIFICATION, DETERMINISTIC_BASIS_RUN_TWICE, UNRESOLVED_STATE_COVERS_TWO_SHAPES
+  beta blockers      3: NO_HUMAN_CONFIRMATION_ACTION, NO_EXPERT_FRONTEND, REPORT_GENERATION_BLOCKED
+  live gaps          4 unverified, 1 environmentally blocked
+  next              the human-confirmation action and the override action
+                     blocked until product-owner authorization
+
+  terminal          EXPERT_HAZLENZ_AUTHORITATIVE_EXECUTION_ROUTE_IMPLEMENTED — HUMAN_CONFIRMATION_ACTION_AUTHORIZATION_REQUIRED
+
+Commands
+  status                     npm run hazlenz:status
+  verifyReadOnly             npm run hazlenz:verify
+  evidenceGuard              npm run hazlenz:evidence
+  unitTier01                 npm run hazlenz:test
+  integrationTier2           npm run hazlenz:integration:test
+  buildTier3                 npm run hazlenz:build
+  fastAfterASmallChange      npm run hazlenz:check
+  beforeAnAuthorizedCommit   npm run hazlenz:precommit
+  reclassifyScripts          npm run hazlenz:scripts:classify
+
+Full detail: verification/current/EXPERT-HAZLENZ-STATE.json · docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md
