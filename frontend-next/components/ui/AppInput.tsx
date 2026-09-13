@@ -26,7 +26,7 @@ type AppTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 export function AppInput({ className = "", fieldSize = "md", ...props }: AppInputProps) {
   return (
     <input
-      className={["app-input font-bold", sizeClasses[fieldSize], className]
+      className={["app-input w-full font-bold", sizeClasses[fieldSize], className]
         .filter(Boolean)
         .join(" ")}
       {...props}
@@ -37,7 +37,7 @@ export function AppInput({ className = "", fieldSize = "md", ...props }: AppInpu
 export function AppSelect({ className = "", fieldSize = "md", children, ...props }: AppSelectProps) {
   return (
     <select
-      className={["app-input font-bold", sizeClasses[fieldSize], className]
+      className={["app-input w-full font-bold", sizeClasses[fieldSize], className]
         .filter(Boolean)
         .join(" ")}
       {...props}
@@ -50,7 +50,7 @@ export function AppSelect({ className = "", fieldSize = "md", children, ...props
 export function AppTextarea({ className = "", fieldSize = "md", ...props }: AppTextareaProps) {
   return (
     <textarea
-      className={["app-input font-bold", sizeClasses[fieldSize], className]
+      className={["app-input w-full font-bold", sizeClasses[fieldSize], className]
         .filter(Boolean)
         .join(" ")}
       {...props}

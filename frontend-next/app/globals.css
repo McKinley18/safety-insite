@@ -965,8 +965,19 @@ body {
   border-radius: 999px;
 }
 
+/* §275. `width: 100%` used to live here, and it silently beat every width utility a
+   caller passed to AppInput/AppSelect/AppTextarea. Both are single-class selectors, so
+   specificity ties and this file's later source order decided — `sm:w-32` on a select
+   did nothing, and the only way anyone had found to win was `!important` (see the two
+   `!w-16` / `!w-auto` fields in CustomRiskMatrixBuilder, which were written against this
+   bug). On the Home page the consequence was visible: the priority select took 687px of
+   an 935px row, starving the `flex-1` task-title label to ZERO width and squeezing its
+   text into a six-line vertical column.
+
+   The default is unchanged — `w-full` now ships in the components' own base class list —
+   but it is a Tailwind utility, so a caller's responsive override sorts after it and
+   wins, which is how it should have behaved all along. */
 .app-input {
-  width: 100%;
   border-radius: 0.9rem;
   border: 1px solid var(--app-border);
   background: var(--app-surface);

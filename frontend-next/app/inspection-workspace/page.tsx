@@ -2553,20 +2553,31 @@ export default function InspectionWorkspacePage() {
               const confidenceOpen = confidenceOpenFor === candidate.citation;
               return (
                 <article key={candidate.citation} className="rounded-lg border border-slate-300 p-3">
-                  <button
-                    type="button"
-                    aria-expanded={expanded}
-                    onClick={() => void toggleStandardText(candidate.citation)}
-                    className="flex w-full items-start justify-between gap-3 text-left"
-                  >
-                    <span>
-                      <StandardCitationHeading
-                        citation={candidate.citation}
-                        title={candidate.title || candidate.family}
-                      />
-                    </span>
-                    <span aria-hidden className="mt-1 shrink-0 text-lg font-black">{expanded ? "−" : "+"}</span>
-                  </button>
+                  {/* §275. These were NESTED BUTTONS: this card toggle wrapped
+                      StandardCitationHeading, which renders its own disclosure button. React
+                      reported it as a hydration error ("<button> cannot be a descendant of
+                      <button>"), and it is invalid HTML besides — a control inside a control has
+                      no defined activation behaviour, so which of the two expanders a keyboard or
+                      screen-reader user reached was undefined. They are siblings now: the heading
+                      keeps its own disclosure, and the card toggle is a separate control with a
+                      real accessible name instead of a bare "+" glyph. */}
+                  <div className="flex w-full items-start justify-between gap-3">
+                    <StandardCitationHeading
+                      citation={candidate.citation}
+                      title={candidate.title || candidate.family}
+                    />
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      onClick={() => void toggleStandardText(candidate.citation)}
+                      className="mt-3 shrink-0 rounded-full px-2 text-lg font-black leading-none"
+                    >
+                      <span aria-hidden>{expanded ? "−" : "+"}</span>
+                      <span className="sr-only">
+                        {expanded ? `Hide details for ${candidate.citation}` : `Show details for ${candidate.citation}`}
+                      </span>
+                    </button>
+                  </div>
 
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-bold">
                     <span className={candidate.applicability === "direct"

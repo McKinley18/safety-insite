@@ -47,6 +47,22 @@ export function getTodayDateKey() {
   return toDateKey(new Date());
 }
 
+/**
+ * A `YYYY-MM-DD` key rendered the way a person reads a date.
+ *
+ * §275. Date KEYS are an internal storage format and were reaching the interface as-is
+ * ("Add task for 2026-09-13"). Formatting goes through `parseLocalCalendarDate` rather
+ * than `new Date(key)` deliberately: the latter parses a bare date string as UTC, so
+ * every user west of Greenwich would be shown the PREVIOUS day.
+ */
+export function formatCalendarDateLabel(
+  dateKey: string,
+  options: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "numeric" },
+) {
+  const parsed = parseLocalCalendarDate(dateKey);
+  return parsed ? parsed.toLocaleDateString(undefined, options) : dateKey;
+}
+
 function normalizePriority(value?: string): SafetyCalendarPriority {
   if (value === "Critical" || value === "High" || value === "Low") return value;
   return "Medium";

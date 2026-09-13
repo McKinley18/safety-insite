@@ -4,7 +4,7 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { createPersonalCalendarTask, getTodayDateKey } from "@/lib/safetyCalendar";
+import { createPersonalCalendarTask, formatCalendarDateLabel, getTodayDateKey } from "@/lib/safetyCalendar";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 
 export function WeekAtAGlancePanel({
@@ -114,7 +114,7 @@ export function WeekAtAGlancePanel({
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
           <label className="min-w-0 flex-1">
             <span className="mb-1 block text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
-              Add task for {selectedWeekDateKey}
+              Add task for {formatCalendarDateLabel(selectedWeekDateKey, { weekday: "long", month: "long", day: "numeric" })}
             </span>
             <AppInput
               value={taskTitle}
