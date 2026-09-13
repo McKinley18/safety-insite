@@ -174,10 +174,20 @@ function manifestAgreement(identityChecks: Check[]): Check[] {
     }];
   }
   const state = JSON.parse(readFileSync(path, 'utf8')) as { candidate?: { identity?: string } };
-  const frozen = JSON.parse(readFileSync(join(REPO, 'verification',
-    'expert-hazlenz-259-carrier-coherence-2026-09-12',
-    'SECTION-259-SUCCESSOR-IDENTITY.json'), 'utf8')) as { successorCandidateIdentity259: string };
-  const agrees = state.candidate?.identity === frozen.successorCandidateIdentity259
+  // §274: compare against the LIVE identity, not the superseded one. Until this changed, the check
+  // compared the current-state manifest to the frozen §259 artifact, which after the successor
+  // migration would have passed only while the manifest still recorded a superseded identity and
+  // failed the moment it was corrected — agreement with the wrong number is not agreement.
+  const successorPath = join(REPO, 'verification', 'current',
+    'SECTION-274-SUCCESSOR-IDENTITY.json');
+  const live = existsSync(successorPath)
+    ? (JSON.parse(readFileSync(successorPath, 'utf8')) as
+        { successorCandidateIdentity: string }).successorCandidateIdentity
+    : (JSON.parse(readFileSync(join(REPO, 'verification',
+        'expert-hazlenz-259-carrier-coherence-2026-09-12',
+        'SECTION-259-SUCCESSOR-IDENTITY.json'), 'utf8')) as
+        { successorCandidateIdentity259: string }).successorCandidateIdentity259;
+  const agrees = state.candidate?.identity === live
     && identityChecks.every(c => c.status === 'PASS');
   return [{
     name: 'Current-state manifest',

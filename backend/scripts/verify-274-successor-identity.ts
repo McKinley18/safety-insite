@@ -48,17 +48,28 @@ const AUTHORISED_DELTA: Readonly<Record<string, string>> = {
 const OLD_PREFIX = 'src/safescope-v2/';
 const NEW_PREFIX = 'src/hazlenz/';
 
-function headBytes(newRelative: string): string | null {
+/**
+ * The pre-migration bytes, read at the RECORDED BASE COMMIT rather than at HEAD.
+ *
+ * Anchoring to HEAD would make this proof self-destructing: it would pass while the rename sat
+ * uncommitted and fail forever after, because HEAD would then hold the new paths and the old ones
+ * would not exist. A proof that only holds before the commit it certifies is not a proof.
+ */
+function baseBytes(newRelative: string): string | null {
+  const migration = JSON.parse(readFileSync(join(REPO, 'verification', 'current',
+    'SECTION-274-PATH-MIGRATION.json'), 'utf8')) as { preMigrationBaseCommit?: string };
+  const base = migration.preMigrationBaseCommit;
+  if (!base) return null;
   const oldRelative = newRelative.replace(NEW_PREFIX, OLD_PREFIX);
   try {
-    return execFileSync('git', ['show', `HEAD:backend/${oldRelative}`],
+    return execFileSync('git', ['show', `${base}:backend/${oldRelative}`],
       { cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   } catch { return null; }
 }
 
 /** Every changed line must be the old line with the authorised rename applied. Nothing else. */
 function diffIsRenameOnly(newRelative: string): { ok: boolean; changed: number; unexplained: number } {
-  const before = headBytes(newRelative);
+  const before = baseBytes(newRelative);
   if (before === null) return { ok: false, changed: -1, unexplained: -1 };
   const after = readFileSync(join(BACKEND, newRelative), 'utf8');
   const b = before.split('\n');

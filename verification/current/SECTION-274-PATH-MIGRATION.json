@@ -1,21 +1,48 @@
 {
   "artifact": "SECTION-274-PATH-MIGRATION",
-  "section": "§274",
-  "authorization": "Product-owner authorised a bounded successor-baseline migration removing the active SafeScope code/API namespace, explicitly permitting the §259 candidate identity to change for naming/path changes with no semantic behaviour change.",
+  "section": "\u00a7274",
+  "authorization": "Product-owner authorised a bounded successor-baseline migration removing the active SafeScope code/API namespace, explicitly permitting the \u00a7259 candidate identity to change for naming/path changes with no semantic behaviour change.",
   "whyThisFileExists": "Frozen verification manifests record 1246 members by repository-relative path under backend/src/safescope-v2/. An authorised rename makes those paths absent, and the evidence guard correctly treats an absent member as a fault. This record is NOT a baseline and does not excuse absence: it states where each member moved, and the guard must still find a file at the migrated path. A member that resolves nowhere still fails. Content drift at the migrated path is tolerated exactly as it already is for any repository source a manifest points at.",
   "notABaseline": "Nothing here is added to verification/current/EVIDENCE-BASELINE.json. Absorbing these into the baseline would have been weakening a gate to obtain a pass.",
   "orderedRules": [
-    ["backend/src/safescope-v2/safescope-v2.module.ts", "backend/src/hazlenz/hazlenz.module.ts"],
-    ["backend/src/safescope-v2/safescope-v2.controller.ts", "backend/src/hazlenz/hazlenz.controller.ts"],
-    ["backend/src/safescope-v2/safescope-v2.service.ts", "backend/src/hazlenz/hazlenz.service.ts"],
-    ["backend/src/safescope-v2/", "backend/src/hazlenz/"],
-    ["backend/src/safescope-knowledge/", "backend/src/hazlenz-knowledge/"],
-    ["backend/src/safescope-source-intelligence/", "backend/src/hazlenz-source-intelligence/"]
+    [
+      "backend/src/safescope-v2/safescope-v2.module.ts",
+      "backend/src/hazlenz/hazlenz.module.ts"
+    ],
+    [
+      "backend/src/safescope-v2/safescope-v2.controller.ts",
+      "backend/src/hazlenz/hazlenz.controller.ts"
+    ],
+    [
+      "backend/src/safescope-v2/safescope-v2.service.ts",
+      "backend/src/hazlenz/hazlenz.service.ts"
+    ],
+    [
+      "backend/src/safescope-v2/",
+      "backend/src/hazlenz/"
+    ],
+    [
+      "backend/src/safescope-knowledge/",
+      "backend/src/hazlenz-knowledge/"
+    ],
+    [
+      "backend/src/safescope-source-intelligence/",
+      "backend/src/hazlenz-source-intelligence/"
+    ]
   ],
   "basenameRules": [
-    ["reviewcore-knowledge-", "knowledge-"],
-    ["reviewcore-governed-seed-records", "governed-seed-records"],
-    ["safescope-", "hazlenz-"]
+    [
+      "reviewcore-knowledge-",
+      "knowledge-"
+    ],
+    [
+      "reviewcore-governed-seed-records",
+      "governed-seed-records"
+    ],
+    [
+      "safescope-",
+      "hazlenz-"
+    ]
   ],
   "deliberateDeletions": [
     {
@@ -24,5 +51,7 @@
       "why": "dead subsystem: exported nothing, was imported only by app.module, and its /safescope/analyze and /safescope/feedback routes had zero consumers anywhere in the repository",
       "digestedMembers": 0
     }
-  ]
+  ],
+  "preMigrationBaseCommit": "f5736f0ebdaf15704e718745fcb857b2ea0947a8",
+  "preMigrationBaseCommitNote": "The last commit before the \u00a7274 rename. The rename-only proof resolves each pre-migration path at THIS commit rather than at HEAD, because once the rename is committed HEAD no longer contains the old paths and a HEAD-anchored proof would only ever pass once \u2014 before the commit it certifies."
 }
