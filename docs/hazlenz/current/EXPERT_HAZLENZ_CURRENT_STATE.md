@@ -192,9 +192,9 @@ unverified only because no section had looked.
 |---|---|
 | object storage / report generation | **RESOLVED §269.** Cloudflare R2, bucket `insite-production`, verified live: upload, authorised download with sha256 match, unsigned GET and LIST refused, no public policy, delete, zero residue. The bucket already holds `evidence/` and `report/` objects |
 | running production SHA | **RESOLVED §269.** `de655d2f6e4c0ff7b0de17f9ccfbd3668138a936`, = `origin/main`, `versionSourceStatus: RENDER_GIT_COMMIT`. The mechanism was already deployed |
-| production instance plan | **RESOLVED §269.** Render free plan, 1 instance, oregon. Measured cold start 39.8 s → 503, then 5.2 s |
+| production instance plan | **RESOLVED §269, SUPERSEDED §272.** §269 measured the Render **free** plan, 1 instance, oregon: cold start 39.8 s → 503, then 5.2 s. §272: the plan was changed in the Render Dashboard to the smallest paid compute plan, **`0.5c-512mb`**, still 1 instance, still oregon. The change auto-triggered deploy `dep-dajckf3m8hqs73fp3u90` (trigger `service_updated`) on the **same artifact** — SHA still `de655d2f6e4c0ff7b0de17f9ccfbd3668138a936`, no new code. Re-measured `/health/ready`: **41.8 s cold on free immediately before the change, 0.27 s / 0.22 s / 0.23 s after**. Paid instances do not spin down, so the free-tier sleeping / cold-start blocker is **CLOSED**. Not a beta-release authorization |
 | error-monitoring ingestion | **RESOLVED §269.** Render ingests and indexes; verified by inducing a production request and retrieving it by exact path |
-| live provider transport | UNVERIFIED LIVE — and `ANTHROPIC_API_KEY` is **absent in production**, so the smoke cannot run until it is set |
+| live provider transport | UNVERIFIED LIVE. **§270 superseded the credential half:** `ANTHROPIC_API_KEY` is now **set in production** and was validated against the provider model-list endpoint, which invokes no model and bills nothing. The transport itself is still unexercised, because no §272 command calls a provider |
 | live billing | UNVERIFIED LIVE |
 
 `hazlenz:verify` reports the remaining two as their own outcomes. They are never converted into a
@@ -277,8 +277,10 @@ Three independent mechanisms, and only the third is not procedural:
    `ts-node`, no `src/`, no devDependency — verifies the schema in the same command, and exits
    non-zero on failure. `migrate && start` never reaches `start`.
 2. `docs/operations/BETA_DEPLOYMENT_RUNBOOK.md` orders MIGRATE → VERIFY SCHEMA → DEPLOY, with
-   autoDeploy disabled first. **Render autoDeploy is still ON** — §268 changed no live
-   configuration, so this is a precondition of any push, not a completed act.
+   autoDeploy disabled first. **Superseded at §272: Render autoDeploy is OFF**
+   (`autoDeploy: "no"`, `autoDeployTrigger: "off"`, read from the service API), as is Vercel Git
+   auto-deploy. The ordering remains a precondition of any push; what changed is that the platform
+   no longer deploys on its own while that ordering is being followed.
 3. **`/health/ready` fails closed** when required migrations are absent, so an instance that
    skipped 1 and 2 never becomes ready rather than silently serving broken reads. A schema *ahead*
    of the build is READY — that is a deliberate code rollback, not a fault.
@@ -350,7 +352,7 @@ time and are not current status.
 | `NO_TERMS_NO_PRIVACY_POLICY` | DRAFTED at §269 / counsel review required |
 | `NO_THIRD_PARTY_MODEL_DISCLOSURE` | DRAFTED at §269 / counsel review required |
 | `BETA_CANDIDATE_NOT_PUSHED` | unchanged — HEAD is **12** ahead of `origin/main` (was 9 at §266) |
-| `PRODUCTION_PROVIDER_CREDENTIAL_ABSENT` | **new at §269.** `ANTHROPIC_API_KEY` is not set in production; blocks the smoke, not the deploy |
+| `PRODUCTION_PROVIDER_CREDENTIAL_ABSENT` | **raised §269, CLOSED §270.** `ANTHROPIC_API_KEY` is set in production and was validated against the provider model-list endpoint. Retained here as the record of a closed blocker |
 
 §269 closed `REPORT_GENERATION_BLOCKED` — its premise was false for production, which has had object
 storage configured all along — and `NO_ERROR_MONITORING`. It also closed deployment control on
@@ -385,13 +387,12 @@ release by design; what is left in Lane B is not engineering at all.
    P0 that is not a release execution step. All seven currently read
    `INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED`, and engineering cannot
    change that by doing more engineering.
-2. **Set `ANTHROPIC_API_KEY`** on the Render service — absent today; blocks only the smoke.
-3. **Set `healthCheckPath` to `/health/ready`** — empty today, so Render neither probes readiness nor
-   restarts an unready instance. Deferred from §269 because changing it risks triggering a deploy.
-4. **Decide `ENABLE_MAINTENANCE_SEED`** — `true` today. It gates a route that runs `ALTER TABLE` and
-   `dataSource.synchronize(false)` against production, bypassing `TYPEORM_SYNCHRONIZE=false`. Three
-   factors defend it, so it is not remotely exploitable, but it should be `false` once participants
-   have accounts.
+2. ~~**Set `ANTHROPIC_API_KEY`** on the Render service~~ — **DONE at §270.** Present and validated against the provider model-list endpoint; the smoke itself is still unrun.
+3. ~~**Set `healthCheckPath` to `/health/ready`**~~ — **DONE.** The service reports
+   `healthCheckPath: "/health/ready"`, so Render probes readiness and restarts an unready instance.
+4. ~~**Decide `ENABLE_MAINTENANCE_SEED`**~~ — **DONE.** It is `false` in production. It gates a
+   route that runs `ALTER TABLE` and `dataSource.synchronize(false)` against production, bypassing
+   `TYPEORM_SYNCHRONIZE=false`; with the flag off, that route is unreachable.
 5. **Execute `docs/operations/BETA_DEPLOYMENT_RUNBOOK.md`**, whose §269 preamble records which steps
    are already closed, ending with the one authorised Expert live smoke (1 analysis, ≤2 provider
    legs, ≤ USD 0.50).
@@ -407,7 +408,8 @@ a local session, §269 did against the live environment.
 
 **Beta infrastructure and operations.** The Expert workflow now functions against a real
 observation, so the remaining lanes are no longer blocked behind it. In dependency order: the
-production migration mechanism **before any push** (Render autoDeploy is on); object storage, which
+production migration mechanism **before any push** (autoDeploy is OFF as of §272, so the push
+itself is the deliberate act); object storage, which
 production cannot boot without; a spend ceiling and an explicit Expert enable flag; error
 monitoring. The **legal** lane has no engineering prerequisite and should already be running in
 parallel.

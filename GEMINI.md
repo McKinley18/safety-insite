@@ -2,9 +2,9 @@
 
 Use these current InSite / HazLenz AI transition documents as the source of truth:
 
-1. INSITE_HAZLENZ_TRANSITION_PHASES.md
-2. INSITE_CURRENT_BUILD_BLUEPRINT_REVISED.md
-3. INSITE_CURRENT_BUILD_BLUEPRINT.md
+1. project-docs/historical-blueprints/INSITE_HAZLENZ_TRANSITION_PHASES.md
+2. project-docs/historical-blueprints/INSITE_CURRENT_BUILD_BLUEPRINT_REVISED.md
+3. project-docs/historical-blueprints/INSITE_CURRENT_BUILD_BLUEPRINT.md
 
 Current product identity:
 - App/platform: InSite
