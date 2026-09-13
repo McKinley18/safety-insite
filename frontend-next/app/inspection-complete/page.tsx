@@ -15,6 +15,7 @@ import {
   type PersistedInspection,
 } from "@/lib/canonicalWorkflowApi";
 import { RISK_BAND_DUE_DAYS, governedDueDate, type RiskBandLabel } from "@/lib/inspection/riskBands";
+import { effectiveSeverityLabel } from "@/lib/risk/effectiveSeverity";
 
 /**
  * THE COMPLETED INSPECTION.
@@ -50,9 +51,15 @@ function selectedInspectionId() {
   }
 }
 
+/**
+ * §276 / D-008. The finding's authoritative severity, from the shared rule.
+ *
+ * The previous `overallRisk || riskBand` was the right preference and the PDF renderer's
+ * `riskBand || overallRisk` was the wrong one -- but having two orders at all is the
+ * defect, because only one of them can be the product's answer.
+ */
 function findingRiskBand(finding: PersistedFinding) {
-  const snapshot = finding.riskSnapshot as { overallRisk?: string; riskBand?: string } | null;
-  return snapshot?.overallRisk || snapshot?.riskBand || "Risk not set";
+  return effectiveSeverityLabel(finding.riskSnapshot as Record<string, unknown> | null);
 }
 
 /** The standards the engine attached to this finding, strongest first. */

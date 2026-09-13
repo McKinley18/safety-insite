@@ -57,6 +57,49 @@ import { enforceShadowProvenanceInvariant } from '../standards/cutover/shadow-pr
 import { shadowMetrics } from '../standards/cutover/shadow-operational-metrics';
 
 /**
+ * §276 / D-008 — WRITE A REVIEWER-CONFIRMED SNAPSHOT THAT IS TRUE ABOUT ITS OWN CONTENTS.
+ *
+ * The reviewer's matrix values are merged ON TOP of the finding's system snapshot, so the
+ * finding keeps its corrective-action intelligence, hazard key and evidence. That part was
+ * already right. What was wrong is that the merged object was then stamped
+ * `source: 'reviewer_confirmed'` WHOLE -- including the `riskBand` key, which carries
+ * HazLenz's ESCALATION band and no person ever chose.
+ *
+ * §275 read that record back as: Critical, attributed to `reviewer_confirmed`, beside the
+ * rationale "severity 4 x likelihood 4 = 16" -- and 16 is High. The record named a person
+ * as the author of a number they did not pick, and the report printed it.
+ *
+ * The escalation band is not discarded: it moves to `analysisRiskBand`, where it is
+ * plainly HazLenz's and is still available to the report as labelled provenance. What it
+ * can no longer do is sit inside a reviewer-confirmed object under a name that every
+ * consumer reads as "the band".
+ *
+ * `resolveEffectiveSeverity` reads BOTH shapes correctly, so rows written before this
+ * repair resolve to the reviewer's band without a data migration. This makes the stored
+ * record honest going forward; it is not what makes the product agree with itself.
+ */
+function withReviewerConfirmedRisk(
+  existingSnapshot: Record<string, unknown> | null,
+  reviewerRisk: Record<string, unknown>,
+  reviewerUserId: string,
+): Record<string, unknown> {
+  const base = { ...((existingSnapshot || {}) as Record<string, unknown>) };
+  const analysisBand =
+    (typeof base.analysisRiskBand === 'string' && base.analysisRiskBand) ||
+    (typeof base.riskBand === 'string' && base.riskBand) ||
+    null;
+  delete base.riskBand;
+
+  return {
+    ...base,
+    ...(analysisBand ? { analysisRiskBand: analysisBand } : {}),
+    ...reviewerRisk,
+    source: 'reviewer_confirmed',
+    reviewerConfirmedByUserId: reviewerUserId,
+  };
+}
+
+/**
  * KG-4A. Every governed release id stamped onto a customer-visible standard decision in a result
  * snapshot, deduplicated.
  *
@@ -1446,10 +1489,11 @@ export class InspectionService {
           // Keep the finding-scoped system fields (correctiveActionIntelligence, hazardKey,
           // evidenceUsed...) beneath the reviewer's confirmed risk values -- replacing the whole
           // snapshot silently discarded the finding's own corrective-action basis.
-          existing.riskSnapshot = {
-            ...((existing.riskSnapshot || {}) as Record<string, unknown>),
-            ...dto.riskAssessment, source: 'reviewer_confirmed', reviewerConfirmedByUserId: user.userId,
-          };
+          existing.riskSnapshot = withReviewerConfirmedRisk(
+            existing.riskSnapshot as Record<string, unknown> | null,
+            dto.riskAssessment,
+            user.userId,
+          );
         }
         const saved = await repository.save(existing);
         await manager.getRepository(SecurityAuditEvent).save(manager.getRepository(SecurityAuditEvent).create({
@@ -1475,7 +1519,7 @@ export class InspectionService {
         hazardKey: segmentKey,
         sourceCandidate: dto.sourceCandidate || null,
         riskSnapshot: dto.riskAssessment
-          ? { ...dto.riskAssessment, source: 'reviewer_confirmed', reviewerConfirmedByUserId: user.userId }
+          ? withReviewerConfirmedRisk(null, dto.riskAssessment, user.userId)
           : null,
         reviewerDisposition: dto.reviewerDisposition || 'single',
         conclusion: dto.conclusion.trim(),

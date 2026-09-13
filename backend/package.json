@@ -214,6 +214,7 @@
     "test:auth-rate-limit": "ts-node scripts/test-auth-rate-limit.ts",
     "test:authenticated-entitlement-path": "ts-node scripts/test-authenticated-entitlement-path.ts",
     "test:calendar-date-boundary": "ts-node src/tasks/tests/calendar-date-boundary-regression.ts",
+    "test:effective-severity": "ts-node src/inspection/tests/effective-severity-regression.ts",
     "test:canonical-authorization": "ts-node scripts/test-canonical-organization-authorization.ts",
     "test:canonical-workflow": "ts-node scripts/test-canonical-workflow.ts",
     "test:cross-user-isolation": "ts-node scripts/test-cross-user-isolation.ts",

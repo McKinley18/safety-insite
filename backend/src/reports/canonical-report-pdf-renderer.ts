@@ -1,5 +1,7 @@
 import PDFDocument = require('pdfkit');
 
+import { resolveEffectiveSeverity, severityBasisLine } from '../common/effective-severity';
+
 // Professional inspection-report PDF renderer (InSite Production Polish Phase 2).
 // Renders directly from an immutable report snapshot (see CanonicalReportsService.snapshotInspection) —
 // no risk/classification recalculation happens here; every value shown is read verbatim from the
@@ -49,17 +51,20 @@ function shortRef(id: string): string {
 }
 
 /**
- * The guided-review UI's reviewer-confirmed risk override (inspection-workspace's
- * "Confirm risk and finalize finding" flow) persists the chosen band under
- * riskSnapshot.overallRisk, not riskSnapshot.riskBand -- only the earlier,
- * system-generated snapshot (computeFindingRisk) uses riskBand. Without this fallback,
- * every finding whose risk was reviewer-confirmed through the primary workflow renders
- * as "Not rated" here, silently dropping it from the Critical/High counts and Risk
- * Distribution even though a qualified person recorded a real band.
+ * §276 / D-008. The finding's AUTHORITATIVE severity, from the one shared rule.
+ *
+ * This used to read `riskSnapshot.riskBand || riskSnapshot.overallRisk`, and that order is
+ * the whole of D-008: `riskBand` carries HazLenz's ESCALATION band and `overallRisk`
+ * carries the band the reviewer confirmed on the matrix, so on any finding where they
+ * differed the document that left the building contradicted the screen the inspector had
+ * approved. §275 measured it: report "Critical", screen "High", stored rationale
+ * "severity 4 x likelihood 4 = 16" -- and 16 is High on that profile.
+ *
+ * The report now asks `resolveEffectiveSeverity`, which every other surface also asks.
+ * There is no local preference order here to drift from anyone else's.
  */
 function findingRiskBand(riskSnapshot: Snapshot | null | undefined): string | undefined {
-  const band = riskSnapshot?.riskBand || riskSnapshot?.overallRisk;
-  return band && band !== 'Not established' ? band : undefined;
+  return resolveEffectiveSeverity(riskSnapshot as Record<string, unknown> | null).severity || undefined;
 }
 
 /**
@@ -737,10 +742,20 @@ function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analyse
 
     const risk = f.riskSnapshot;
     if (risk) {
-      const band = findingRiskBand(risk);
-      const detail = risk.operationalRisk
-        ? `Severity ${risk.operationalRisk.severity}  ·  Likelihood ${risk.operationalRisk.likelihood}  ·  Risk score ${risk.operationalRisk.matrixScore}`
-        : '';
+      const resolved = resolveEffectiveSeverity(risk as Record<string, unknown>);
+      const band = resolved.severity || undefined;
+      /**
+       * §276 / D-008. How the stated band was reached, drawn entirely from the
+       * AUTHORITATIVE side, plus -- only when it says something the band does not --
+       * HazLenz's own escalation band, named as HazLenz's.
+       *
+       * This used to read severity, likelihood and score straight off `operationalRisk`,
+       * which holds the SYSTEM's computation and is not rewritten when a reviewer confirms
+       * a different cell. §276 measured the result: a finding the reviewer had set to
+       * 3 x 3 = 9 printed "Severity 4 · Likelihood 4 · Risk score 16 · Reviewer-confirmed".
+       * Every number on that line was the machine's, on a line labelled as the person's.
+       */
+      const detail = severityBasisLine(resolved);
       // Band and its severity/likelihood breakdown are one atom: a risk level separated from
       // the matrix that produced it invites the reader to treat the number on the next page as
       // belonging to a different finding.

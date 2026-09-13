@@ -34,6 +34,7 @@ import RiskReviewSection from "@/components/inspection/RiskReviewSection";
 import { getStandardBackingPresentation } from "@/lib/inspection/standardDisplay";
 import { getInspectionRiskScale } from "@/lib/inspection/inspectionPageHelpers";
 import { RISK_BAND_DUE_DAYS, governedDueDate, riskBandForScore, type RiskBandLabel } from "@/lib/inspection/riskBands";
+import { effectiveSeverityLabel, resolveEffectiveSeverity } from "@/lib/risk/effectiveSeverity";
 import { likelihoodScale, severityScale } from "@/lib/inspection/inspectionConstants";
 import { getRegulatorySection, type RegulatorySectionRecord } from "@/lib/canonicalWorkflowApi";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
@@ -129,12 +130,38 @@ function humanizeHazardKey(key: string) {
   return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
+/**
+ * Whether a string is a NAME a person would put at the top of a card, rather than a clause
+ * lifted out of the engine's reasoning.
+ *
+ * §276. §275 photographed a finding headed
+ *
+ *   "required machine-guarding component missing, defeated or out of adjustment"
+ *
+ * which is HazLenz's internal `mechanism` text: lowercase, clause-shaped, comma-separated,
+ * and used as the page heading for a hazard. The previous test here was only "is this a
+ * bare slug?", and a mechanism clause is not a slug, so it passed straight through.
+ *
+ * A title starts like a title and is short enough to be one. Anything else is description,
+ * and description belongs under the heading, not in it.
+ */
+function readsAsTitle(value: string) {
+  if (!value) return false;
+  if (value.length > 60) return false;
+  if (/^[a-z0-9_-]+$/.test(value)) return false;
+  if (!/^[A-Z0-9]/.test(value)) return false;
+  // A comma or a trailing clause marker means this is a sentence fragment.
+  if (/[,;]/.test(value)) return false;
+  return true;
+}
+
 function findingDisplayTitle(finding: { hazardCategory?: string | null; conclusion?: string | null; hazardKey: string }) {
   const category = (finding.hazardCategory || "").trim();
-  if (category && !/^[a-z0-9_-]+$/.test(category)) return category;
+  if (readsAsTitle(category)) return category;
   const conclusion = (finding.conclusion || "").trim();
-  if (conclusion && conclusion.length <= 120 && !/^[a-z0-9_-]+$/.test(conclusion)) return conclusion;
-  return humanizeHazardKey(category || finding.hazardKey);
+  if (readsAsTitle(conclusion)) return conclusion;
+  // The hazard family, humanised: "machine-guarding" -> "Machine guarding". Always a name.
+  return humanizeHazardKey(finding.hazardKey || category);
 }
 
 function materialQuestionReason(question: unknown) {
@@ -315,7 +342,10 @@ function riskSnapshotToReviewerRisk(riskSnapshot: Record<string, unknown> | null
     if (n >= 3) return "Possible";
     return "Unlikely";
   };
-  const overallRisk = String(riskSnapshot.riskBand || "Not established");
+  // §276 / D-008. Seeds the reviewer's form from the finding's AUTHORITATIVE severity
+  // rather than from HazLenz's escalation band alone, so re-opening a reviewed finding
+  // shows the reviewer what they confirmed instead of what the engine proposed.
+  const overallRisk = resolveEffectiveSeverity(riskSnapshot).severity || "Not established";
   const reasoning = Array.isArray(riskSnapshot.reasoning) ? (riskSnapshot.reasoning as string[]) : [];
   return {
     severity: numericToSeverity(operational.severity),
@@ -542,6 +572,28 @@ export default function InspectionWorkspacePage() {
   const [evidenceObjectId, setEvidenceObjectId] = useState("");
   const [analysis, setAnalysis] = useState<HazLenzAnalysisResult | null>(null);
   const [reviewFacts, setReviewFacts] = useState<HazLenzEvidenceFact[]>([]);
+  /**
+   * §276. The fact values exactly as HazLenz extracted them, keyed by fact id.
+   *
+   * A fact the reviewer never touched is not a fact the reviewer confirmed. Without this
+   * record there is no way to tell the two apart, and `reanalyze()` re-labelled EVERY
+   * extracted fact `source: "user_confirmation"`, `reviewerStatus: "user_confirmed"`,
+   * `confidence: 1` on any re-run -- including one triggered by answering a clarification
+   * question, where the reviewer never opened the fact list at all.
+   *
+   * Two things went wrong as a result, and they are the same thing twice:
+   *
+   *   PROVENANCE  a machine-extracted fact was recorded as human-confirmed. That is the
+   *               D-008 failure in a different place: an engine value wearing a person's
+   *               name.
+   *   LEAKAGE     those facts are rendered into the analysis text as
+   *               `User-confirmed facts: guardstate=absent_or_ineffective; ...`, which
+   *               decomposition then splits into a hazard FRAGMENT -- so the interface
+   *               quoted a machine token back at the inspector as
+   *               "Flagged from what you recorded: 'guardstate=absent_or_ineffective'",
+   *               and the finding lost the standard it previously carried.
+   */
+  const extractedFactValues = useRef<Map<string, string>>(new Map());
   // reanalyze() only sends ONE round's clarification answer at a time (the button just clicked),
   // never the full answer history. The backend's per-finding standards evaluation is re-derived from
   // scratch on every round from the current request alone, so an earlier round's answer (e.g.
@@ -555,6 +607,22 @@ export default function InspectionWorkspacePage() {
   const [observationId, setObservationId] = useState("");
   const [analysisId, setAnalysisId] = useState("");
   const analysisRequestVersion = useRef(0);
+
+  /** A fact value as a single comparable string, however the engine shaped it. */
+  function factValueText(value: unknown) {
+    return Array.isArray(value) ? value.join(", ") : String(value ?? "");
+  }
+
+  /**
+   * Adopt a fresh set of engine-extracted facts, and remember what they said.
+   *
+   * Every path that seeds `reviewFacts` goes through here, so the "was this edited?"
+   * comparison can never be made against a baseline that was itself an edit.
+   */
+  function rememberExtractedFacts(facts: HazLenzEvidenceFact[]) {
+    extractedFactValues.current = new Map(facts.map((item) => [item.id, factValueText(item.value)]));
+    setReviewFacts(facts);
+  }
   const [findingIds, setFindingIds] = useState<string[]>([]);
   const [selectedFindingId, setSelectedFindingId] = useState<string>("");
   const [selectedSegmentKeys, setSelectedSegmentKeys] = useState<string[]>([]);
@@ -717,10 +785,12 @@ export default function InspectionWorkspacePage() {
     const fragment = candidate?.observationFragment;
     return typeof fragment === "string" && fragment.trim() ? fragment.trim() : "";
   })();
-  const selectedFindingRiskBand = (() => {
-    const snapshot = selectedFindingDetail?.riskSnapshot as { riskBand?: string; overallRisk?: string } | null;
-    return snapshot?.riskBand || snapshot?.overallRisk || "Not established";
-  })();
+  // §276 / D-008. One rule, asked here and everywhere else. This previously read
+  // `riskBand || overallRisk`, which prefers HazLenz's escalation band over the band the
+  // reviewer confirmed -- the opposite of what two other sites on this same page did.
+  const selectedFindingRiskBand = effectiveSeverityLabel(
+    selectedFindingDetail?.riskSnapshot as Record<string, unknown> | null,
+  );
 
   async function persistRegulatoryContext(next: RegulatoryContext) {
     if (!inspection || next === jurisdiction) return inspection;
@@ -878,7 +948,7 @@ export default function InspectionWorkspacePage() {
     setSelectedSegmentKeys(
       candidates.filter((candidate) => candidate.applicability === "direct").map(candidateKey).slice(0, 6),
     );
-    setReviewFacts(restored.evidenceSnapshot?.facts || []);
+    rememberExtractedFacts(restored.evidenceSnapshot?.facts || []);
     if (restored.guidedFinding) {
       setActionDraft({
         immediateAction: restored.guidedFinding.correctiveAction.immediateAction,
@@ -949,8 +1019,8 @@ export default function InspectionWorkspacePage() {
     const primaryKey = decomposition?.primaryHazard?.domainId || decomposition?.primaryHazard?.hazardFamily || "";
     if (primaryKey && familySlug(primaryKey) === finding.hazardKey) return true;
     if (resolveFindingStandards(finding).some((candidate) => candidate.applicability === "direct")) return true;
-    const snapshot = finding.riskSnapshot as { riskBand?: string; overallRisk?: string } | null;
-    const band = String(snapshot?.riskBand || snapshot?.overallRisk || "");
+    // §276 / D-008. The authoritative severity, not whichever field was read first.
+    const band = resolveEffectiveSeverity(finding.riskSnapshot as Record<string, unknown> | null).severity || "";
     return band === "High" || band === "Critical";
   }
 
@@ -1200,7 +1270,7 @@ export default function InspectionWorkspacePage() {
       // Seed the matrix cell and the corrective-action list from THIS finding's own computed
       // risk and action intelligence, so steps 3 and 4 open pre-filled rather than blank.
       prepareFindingWorkingState(firstFinding);
-      setReviewFacts(result.evidenceSnapshot?.facts || []);
+      rememberExtractedFacts(result.evidenceSnapshot?.facts || []);
       if (result.guidedFinding) {
         const proposal = {
           severity: result.guidedFinding.riskAssessment.severity,
@@ -1299,13 +1369,18 @@ export default function InspectionWorkspacePage() {
     setBusy(true);
     setStatus("Re-evaluating the evidence and applicability predicates…");
     try {
-      const correctedFacts = reviewFacts.map((item) => ({
-        ...item,
-        source: "user_confirmation",
-        status: "confirmed",
-        reviewerStatus: "user_confirmed",
-        confidence: 1,
-      }));
+      /**
+       * §276. Only a fact whose value the reviewer actually CHANGED is a correction, and
+       * only a correction may be labelled user-confirmed. Everything else keeps the
+       * provenance HazLenz gave it and travels back unchanged.
+       */
+      const editedFacts = reviewFacts.filter(
+        (item) => factValueText(item.value) !== (extractedFactValues.current.get(item.id) ?? factValueText(item.value)),
+      );
+      const editedIds = new Set(editedFacts.map((item) => item.id));
+      const correctedFacts = reviewFacts.map((item) => (editedIds.has(item.id)
+        ? { ...item, source: "user_confirmation", status: "confirmed", reviewerStatus: "user_confirmed", confidence: 1 }
+        : item));
       const nextAnswerHistory = clarificationAnswer
         ? [
             ...clarificationAnswerHistory.filter((item) => item.questionId !== clarificationAnswer.questionId),
@@ -1328,7 +1403,10 @@ export default function InspectionWorkspacePage() {
           controlsMissing: [],
           unknownFacts: [],
           unresolvedContradictions: [],
-          userConfirmedFacts: correctedFacts.map((item) => ({
+          // Only genuine corrections. Sending the engine's own extraction back as
+          // "user-confirmed facts" is what put `guardstate=absent_or_ineffective` into the
+          // analysis text and then into a hazard fragment the interface quoted to the user.
+          userConfirmedFacts: editedFacts.map((item) => ({
             field: item.type,
             value: item.value,
           })),
@@ -1348,7 +1426,7 @@ export default function InspectionWorkspacePage() {
         .filter((finding) => finding.status !== "superseded")
         .map((finding) => finding.id));
       setSelectedFindingId((nextInspection.findings || []).find((finding) => finding.status !== "superseded")?.id || "");
-      setReviewFacts(result.evidenceSnapshot?.facts || correctedFacts);
+      rememberExtractedFacts(result.evidenceSnapshot?.facts || reviewFacts);
       if (result.guidedFinding) {
         const proposal = {
           severity: result.guidedFinding.riskAssessment.severity,
@@ -1457,7 +1535,7 @@ export default function InspectionWorkspacePage() {
       setInspection(refreshed);
       setFindingIds((refreshed.findings || []).filter(finding => finding.status !== "superseded").map(finding => finding.id));
       setSelectedFindingId((refreshed.findings || []).find(finding => finding.status !== "superseded")?.id || "");
-      setReviewFacts(result.evidenceSnapshot?.facts || []);
+      rememberExtractedFacts(result.evidenceSnapshot?.facts || []);
       setStep("hazlenz");
       setStatus("New HazLenz analysis saved; current findings were reconciled and may require review.");
     } catch (error) {
@@ -1716,6 +1794,17 @@ export default function InspectionWorkspacePage() {
       }
       const dueDays = riskPolicy.dueDays;
       const dueDate = new Date(Date.now() + dueDays * 86400000).toISOString();
+      /**
+       * §276 / D-007. The same due date as a CALENDAR DAY.
+       *
+       * `tasks.dueDate` is a `date` column and takes the instant happily; corrective
+       * actions store a timestamp, and sending an instant there re-enters the §275
+       * off-by-one the shared `parseDueDate`/`toCalendarDayKey` pair exists to close.
+       * Built from the LOCAL components, because the UTC day is not the day the
+       * inspector is standing in.
+       */
+      const dueOn = new Date(Date.now() + dueDays * 86400000);
+      const dueDayKey = `${dueOn.getFullYear()}-${String(dueOn.getMonth() + 1).padStart(2, "0")}-${String(dueOn.getDate()).padStart(2, "0")}`;
       for (const [index, findingId] of reportableFindingIds.entries()) {
         const finding = (inspection.findings || []).find(item => item.id === findingId);
         // Each finding now carries its OWN reviewer-confirmed corrective action, persisted on its
@@ -1755,6 +1844,9 @@ export default function InspectionWorkspacePage() {
             `Verification: ${findingAction.verificationStep}`,
           ].join("\n"),
           priorityCode: riskPolicy.priority,
+          // §276 / D-007. Without this the action is persisted undated and can never reach
+          // the Safety Calendar, which is half of why §275 saw zero events there.
+          dueDate: dueDayKey,
           // The responsible party the customer named for THIS finding, or omitted entirely.
           // Omitted means unassigned: the server no longer substitutes the inspector, and the
           // report renders a missing owner as "Unassigned" rather than naming them.
@@ -2159,7 +2251,7 @@ export default function InspectionWorkspacePage() {
             </summary>
             <ul className="mt-2 space-y-1">
               {savedFindings.map((finding) => {
-                const band = finding.riskSnapshot as { overallRisk?: string; riskBand?: string } | null;
+                const bandLabel = effectiveSeverityLabel(finding.riskSnapshot as Record<string, unknown> | null);
                 return (
                   <li key={finding.id}>
                     <button
@@ -2169,7 +2261,7 @@ export default function InspectionWorkspacePage() {
                       className="w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-900"
                     >
                       {findingDisplayTitle(finding)}
-                      <span className="guided-muted"> — {band?.overallRisk || band?.riskBand || "Risk not set"}</span>
+                      <span className="guided-muted"> — {bandLabel}</span>
                     </button>
                   </li>
                 );
@@ -2412,8 +2504,7 @@ export default function InspectionWorkspacePage() {
             {proposedCandidates.map((finding) => {
               const fragment = (finding.sourceCandidate as { observationFragment?: string } | null)?.observationFragment;
               const standards = resolveFindingStandards(finding);
-              const snapshot = finding.riskSnapshot as { riskBand?: string; overallRisk?: string } | null;
-              const band = snapshot?.riskBand || snapshot?.overallRisk || "Not established";
+              const band = effectiveSeverityLabel(finding.riskSnapshot as Record<string, unknown> | null);
               const checked = !!candidateSelection[finding.id];
               return (
                 <label
@@ -3188,8 +3279,7 @@ export default function InspectionWorkspacePage() {
               risk, the standard, the remediation plan, who is responsible and when it is due. */}
           {savedFindings.map((finding) => {
             const standards = resolveFindingStandards(finding);
-            const band = finding.riskSnapshot as { overallRisk?: string; riskBand?: string } | null;
-            const bandLabel = band?.overallRisk || band?.riskBand || "Risk not set";
+            const bandLabel = effectiveSeverityLabel(finding.riskSnapshot as Record<string, unknown> | null);
             const plan = reviewedPlanFor(finding);
             return (
               <article key={finding.id} className="guided-card space-y-2" data-testid="finalize-finding-card">
