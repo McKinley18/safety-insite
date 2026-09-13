@@ -55,9 +55,15 @@ export default function RiskReviewSection({
         Risk matrix: <span className="font-black text-slate-800 dark:text-slate-100">{activeRiskScale.label}</span>. Select one cell to confirm severity and likelihood.
       </p>
 
+      {/* §275. The panel below had a FIXED light-blue background with no dark counterpart, while
+          its body text carried `dark:text-slate-200`. In dark mode that put near-white #F8FAFC on
+          #E8F4FF — measured 1.07:1, against the 4.5:1 AA floor for normal text — so HazLenz's
+          suggested severity, the number the inspector is being asked to confirm, was effectively
+          invisible. The background and border now move with the theme alongside the text, which
+          is the invariant that was missing rather than a new colour choice. */}
       {safeScopeResult?.risk?.operationalRisk && (
-        <div className="mb-4 border-l-4 border-[#1D72B8] bg-[#E8F4FF] px-3 py-2">
-          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+        <div className="mb-4 border-l-4 border-[#1D72B8] bg-[#E8F4FF] px-3 py-2 dark:border-[#5DB7FF] dark:bg-[#132238]">
+          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8] dark:text-[#5DB7FF]">
             HazLenz AI Suggested Risk
           </p>
           <p className="mt-1 text-sm font-bold text-slate-800 dark:text-slate-200">

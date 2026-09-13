@@ -186,7 +186,14 @@ export default function InspectionCompletePage() {
 
       {inspection && (
         <>
-          <header className="rounded-2xl border border-emerald-300 bg-emerald-50 p-5 text-emerald-950">
+          {/* §275. This success panel was light-theme-only: `bg-emerald-50` with
+              `text-emerald-950`. In dark mode the surface resolved to a translucent dark green
+              while the text stayed near-black emerald, measuring 1.95:1 — below the 3.0:1 floor
+              even for large text. The completion screen is where the product tells an inspector
+              their work is finished, and its heading, completion time, jurisdiction and report
+              status were all effectively unreadable. The dark counterparts keep the same green
+              meaning rather than introducing a new palette. */}
+          <header className="rounded-2xl border border-emerald-300 bg-emerald-50 p-5 text-emerald-950 dark:border-emerald-400/40 dark:bg-emerald-950/40 dark:text-emerald-50">
             <p className="text-xs font-black uppercase tracking-widest">
               {inspection.status === "completed" ? "Inspection complete" : "Inspection reopened"}
             </p>
@@ -229,7 +236,7 @@ export default function InspectionCompletePage() {
                 {(["Critical", "High", "Moderate", "Low"] as const)
                   .filter((band) => riskCounts[band])
                   .map((band) => (
-                    <span key={band} className="rounded-full bg-white px-3 py-1 text-emerald-900 ring-1 ring-emerald-300">
+                    <span key={band} className="rounded-full bg-white px-3 py-1 text-emerald-900 ring-1 ring-emerald-300 dark:bg-emerald-900 dark:text-emerald-50 dark:ring-emerald-400/50">
                       {riskCounts[band]} {band}
                     </span>
                   ))}
