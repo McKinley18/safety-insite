@@ -4,26 +4,38 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**.
-**Threshold A is closed. Threshold B stands at two owner actions, neither of them engineering.** Machine-readable
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**.
+**Threshold A is closed. Threshold B stands at ONE owner action: a monitoring destination.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding — CANDIDATE** | `applicationSourceDigest` = `7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb` — **§294. NOT DEPLOYED.** |
-| **Release binding — DEPLOYED** | `applicationSourceDigest` = `05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f` at `4749aba1…` — still what production is running |
+| **Release binding** | `applicationSourceDigest` = `7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb` — **§294, DEPLOYED at §295 on both halves.** |
+| Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `4749aba18c05f91dc5d345105b9e30fe909d7f59` — live on both halves, schema `1800000023000`, Node `v24.14.1` pinned. **Unchanged by §294.** |
+| **Deployed release SHA** | `87491ed96f6f09de3de5800fc0a472e20d120413` — live on **both halves** since §295, schema `1800000023000` (55/55), Node `v24.14.1` pinned |
 
-> **THE CANDIDATE AND PRODUCTION ARE NO LONGER THE SAME APPLICATION SOURCE, AND THAT IS DELIBERATE.**
-> §294 repaired `MO-2` in `backend/src/`, so the digest moved. §294 did **not** deploy, because
-> nothing in production is worse than it was and the repair has no effect until a destination is
-> configured — pushing a build merely to preserve a repair spends a deployment on nothing. **The
-> configuration step that closes `MO-1` must deploy this candidate and bind to
-> `7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb`**, and must not configure a credential against the
-> currently deployed `05b1a2d8…`, which still contains the false-green path.
+> **THE DEPLOYED PRODUCT IS THE §294 REPAIR.** §294 repaired `MO-2` in `backend/src/` and
+> deliberately did not deploy; §295 deployed it **before** any Resend configuration, which was the
+> whole point of the ordering. Both halves serve `87491ed9…` at `applicationSourceDigest`
+> `7fc9d47e…`. The false-green path is out of production, so a credential configured from here lands
+> on a build that refuses to claim a channel it cannot use.
+>
+> **HEAD moved past the deployed digest again, and it is a false positive.** §295's own commit adds
+> one operator script, `backend/scripts/preflight-295-alert-configuration.ts`, and `backend/scripts/`
+> is inside the digest's file pattern — so HEAD reads `e2dd73c0…`. The **built artifact is
+> unchanged**: `backend/tsconfig.json` has `include: ["src/**/*"]` and `rootDir: ./src`, so nothing
+> under `backend/scripts/` is compiled into `dist`, and a digest over the same set **minus**
+> `backend/scripts/` is **`5fb47c7f…` at both** the deployed commit and HEAD. The only differing
+> path in the full set is that one file.
+>
+> **`applicationSourceDigest` remains the binding and its definition is not being changed here.** The
+> narrower digest is a diagnostic that explains a movement, not a replacement for it. The rule for
+> the next deployment is unchanged: deploy a commit and confirm its `applicationSourceDigest`. **Do
+> not redeploy to make `e2dd73c0…` match** — that spends a deployment on bookkeeping for a build that
+> is byte-identical.
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
@@ -55,8 +67,8 @@ the others.
 | | Threshold | What it means | Blockers |
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
-| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **2** — both are owner actions, not engineering |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **17** |
+| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **1** — `MO-1`, an owner action, not engineering |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **18** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
 > three could only be closed *by the deployment*. §290 performed the deployment and closed them:
@@ -92,11 +104,11 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **78** | **4** | **7** | **45** | **22** |
+| Entries | **79** | **4** | **7** | **46** | **22** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 39 |
+| CLOSED | 40 |
 | OPEN | 32 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 3 |
@@ -172,17 +184,16 @@ executing the deployment.
 
 ### Threshold B — internal / owner production use  (11 items)
 
-**Two items remain, and neither is engineering. §293 re-verified both and closed neither, because
-the inputs they need are the owner's to supply and were not supplied.**
+**ONE item remains, and it is not engineering.** §295 closed `BR-2` and found that `MO-1`'s owner
+boundary is larger than it had been recorded as.
 
-| | what is actually left | still true at §293 |
+| | what is actually left | state after §295 |
 |---|---|---|
-| **MO-1** | **Name a destination**, and supply what it needs. The owner selected **email via Resend** at §293, which needs a monitored recipient, a Resend credential, **and** a verified sender — three variables, not two. | Re-read independently: `OPERATIONAL_ALERT_WEBHOOK_URL`, `OPERATIONAL_ALERT_EMAIL` and `RESEND_API_KEY` are all absent from the 41 production variables; Render has **zero** webhooks and `slackEnabled: false`; Vercel has **zero** integrations and **zero** storage stores; no Resend credential exists anywhere. `/health/ready` still reports `alerting: NOT_CONFIGURED`. **No destination and no credential were supplied with the §293 directive, and inventing either remains forbidden.** |
-| **BR-2** | **One Neon console read** — plan, history-retention window, PITR window. | Still control-plane and still not exposed to SQL. No `neonctl`, no `~/.config/neonctl`, no `NEON_*` variable, no Vercel Neon integration, no API key. **The three values were not supplied with the §293 directive**, and §293 is forbidden to change plan settings to discover them. |
+| **MO-1** | **Name a destination**, and supply what that architecture needs. | The hardened §294 build is **deployed** and still reports `NOT_CONFIGURED`, which is now the honest state rather than a bug. The email architecture the owner selected at §293 turns out to need a **domain the owner controls** before it needs a credential: Resend sends only from a verified domain, verification is DNS, and the Vercel account holds **zero** custom domains. A **webhook** needs none of that. **The choice between them is a real product decision — see the runbook.** |
+| ~~BR-2~~ | ~~One Neon console read.~~ | **CLOSED at §295** on authoritative console evidence: Free plan, **6-hour** history window, Instant Restore available across it, no snapshots and no schedule. Sufficient for Threshold B; `BR-5` carries the Threshold-C consequence. |
 
-`PV-3` and `DB-5` closed at §292 and were accepted by the product owner at §293. `DB-7` remains
-**DEFERRED**. `MO-2` opened at §293 and **closed at §294** on executable proof; it was never a
-Threshold-B blocker — see the MONITORING section.
+`PV-3` and `DB-5` closed at §292 and were accepted at §293. `MO-2` opened at §293 and closed at §294.
+`BR-2` closed at §295. `DB-7` remains **DEFERRED**.
 
 Closed at §291: `DB-4`, `DB-6`, `SU-1`, `SU-3`, `PA-1`, `OF-4`. The former Threshold-B list was `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
 retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
@@ -195,12 +206,12 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (27 items, including all six P0)
+### Threshold C — external controlled beta  (28 items, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `CPF-2`, `CPF-3`, `SE-3`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294**
+`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-3`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294**
 
 **`DB-4` is new at §289 and it is not legal work.** The cross-tenant recurrence path that `TI-2`
 describes is **reachable in production**, because the `outcomes` table exists there although no
@@ -721,7 +732,8 @@ Properly scoping it is not available: `fix_feedback` has no owner column, and it
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **BR-1** | A backup of live production was taken and its restore verified by content checksum at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
-| **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | B | Infrastructure | OPEN (§289) |
+| **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | — | Infrastructure | **CLOSED (§295)** |
+| **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | OPEN (§295) |
 | **BR-3** | check:launch-pricing conflated the retired Expert pricing tier with Expert HazLenz the capability. | P2 | — | Engineering | **CLOSED (§290)** |
 | **BR-4** | Four browser verification instruments remain stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§290) |
 
@@ -741,7 +753,44 @@ Properly scoping it is not available: `fix_feedback` has no owner column, and it
 *Evidence:* `verification/current/threshold-a-289/backup-production-table-checksums.txt` and `backup-restored-table-checksums.txt`  
 *Retest:* A fresh backup and a content-checksum verification immediately before each release — deployment sequence steps 3 and 4.
 
-**BR-2 — new at §289.** What the **platform** retains is still unknown. Neon's control plane was unreachable from §269 and again from §289: there is no `NEON_*` credential in the repository or the environment. This is **not** a "we have no backups" finding — the operator-controlled path above is proven twice and does not depend on the console. It is a "we do not know what the platform would give us" finding, and it is one console read away.
+**BR-2 — CLOSED at §295, read from the console without a new credential.**
+
+§292 and §293 both stopped here because there is no Neon API key and the control plane is not
+exposed to SQL. §295 reached it a third way that needed no credential at all: **the owner is signed
+in to the Neon console in this machine's browser**, and an already-authorised session is existing
+authenticated access. The console was **read**. Nothing was changed — no slider moved, no Save
+pressed, no snapshot created, no plan altered.
+
+| | authoritative value, read 2026-09-14 |
+|---|---|
+| **Plan / tier** | **Free** |
+| **History (restore) window** | **6 hours** — the Free maximum; the slider stops there and 30 days is offered only on upgrade |
+| **Instant Restore / PITR** | **AVAILABLE** — *"Instantly restore this branch to any point in the past 6 hour history window"*, with a point-in-time picker |
+| **Snapshots** | **none, and no schedule set** — schedules require an upgrade |
+
+It was read from the **right** database: project `old-moon-90939488`, branch `br-misty-union-a4uke5p1`
+named `production`, compute `ep-weathered-moon-a4egk93d` — the same endpoint as the host in the
+production `DATABASE_URL`, so this is not a same-named neighbour.
+
+**SUFFICIENCY DECISION — sufficient for Threshold B, not for Threshold C.** Six hours of instant
+restore covers the failure mode that actually dominates at internal use: an operator mistake noticed
+inside the working session. The operator-controlled logical backup path is proven three times end to
+end with a content-checksum restore and is not window-limited. What six hours does **not** cover is
+damage discovered the next day — and at Threshold B the only party who can cause or suffer that is
+the owner, entering their own data, with nobody else relying on it. At Threshold C it is a different
+answer, and that is `BR-5` rather than a footnote here.
+
+**BR-5 — new at §295, and deliberately not folded into BR-2.** The console confirms there are no
+snapshots and no schedule, and the operator backup has only ever been taken **at release time**. So
+for data entered between releases the posture is six hours from the platform and, before that,
+whatever dump someone remembered to take. Closing it needs either a Neon plan with a longer window
+and a schedule, or a scheduled operator backup with a stated retention and a rehearsed restore —
+both product-owner decisions with a cost, and §295 is authorised to take neither. *Separated from
+BR-2 on purpose: BR-2 asked what the platform gives us and that is answered; whether it is enough is
+a different question with a different answer per threshold, and merging them would make a closed
+fact look open or an open risk look closed.*
+
+**BR-2 — the original §289 finding.** What the **platform** retains was unknown. Neon's control plane was unreachable from §269 and again from §289: there is no `NEON_*` credential in the repository or the environment. This is **not** a "we have no backups" finding — the operator-controlled path above is proven twice and does not depend on the console. It is a "we do not know what the platform would give us" finding, and it is one console read away.
 
 *Evidence:* `SECTION-289-THRESHOLD-A.json` → `BR_1_BACKUP_AND_RESTORE.notEstablished`  
 *Retest:* A recorded retention window and a recorded PITR window.
@@ -1219,8 +1268,88 @@ a direct projection of that state, verified by reading and by type-check rather 
 in production. **An emission layer that now records its own failures is still not monitoring** — the
 live half is `MO-1`, it needs the owner's configuration, and it is still open.
 
-The application source changed, so the release binding changed with it. The candidate that the
-eventual configuration step must deploy and bind to is recorded at the top of this register.
+The application source changed, so the release binding changed with it. **§295 deployed it.**
+
+---
+
+## §295 — the hardened build is live, `BR-2` is closed, and `MO-1`'s boundary got bigger
+
+**Threshold B goes from two to one.** The one that remains is `MO-1`, and §295 could not close it —
+but it also could not leave it where it was, because the instruction attached to it was still
+incomplete.
+
+### The deployment came first, and that was the point
+
+Production ran the pre-`MO-2` implementation until §295. Configuring a credential against it would
+have configured the false-green path — the exact outcome §294 existed to prevent — so the hardened
+build was deployed **before** any Resend work was attempted. Both halves now serve
+`87491ed96f6f09de3de5800fc0a472e20d120413` at digest `7fc9d47e…`, confirmed from the backend's
+`/health/version`, from the Vercel API, and from the production HTML, which names its own deployment
+in its asset query strings. Schema is unchanged at `1800000023000`, 55/55. The §274 identity
+recomputed unchanged with **0 files written**. Expert is still `false`, production is still
+`noindex, nofollow`, Render auto-deploy is still `no` with trigger `off`, and the incidental preview
+from the push answers **302 to Vercel SSO** with `noindex` and `X-Frame-Options: DENY`.
+
+**The three-state contract is live.** `/health/ready` now serves `alerting: NOT_CONFIGURED` together
+with the requirement list, `senderFallback: "NONE"` and the four dispatch outcomes — so the thing an
+operator needs in order to configure the channel correctly is now readable **from the running
+product** rather than from this register.
+
+**The noise policy was re-proven against the new build in production.** A 404, two 401s and a 400
+were induced; `serverErrorsInWindow` stayed at **0** and `lastDelivery` stayed `null`.
+
+### `BR-2` closed without a new credential
+
+Two sections stopped at "no Neon API key exists". §295 noticed the third route: **the owner is
+signed in to the Neon console in this machine's browser.** An already-authorised session is existing
+authenticated access, and reading a dashboard is a read. The values are in the BACKUP / RESTORE
+section above. Nothing was changed.
+
+### What §295 found that nobody had checked
+
+`MO-1` has been recorded for three sections as *"name a destination and supply a credential."* For
+the **email** architecture the owner chose, that is incomplete in a way that would have surfaced
+only after the owner had done work:
+
+> Resend sends only from a domain **verified in the account**. Verification is DNS records on a
+> domain the owner **controls**. The Vercel account holds **zero** custom domains — the product is
+> served from `safety-insite.vercel.app`, whose apex belongs to Vercel.
+
+So the email path needs a **domain** before it needs a key, and no Resend session exists in the
+owner's browser to suggest an account is waiting either. Meanwhile the **webhook** path needs no
+domain, no DNS and no mail provider at all.
+
+**§293 said not to prefer a webhook "merely to obtain a faster green gate if an approved Resend
+configuration is now available."** One is not available. That instruction was written on the
+assumption that Resend was a configuration step away; it is a domain away. The webhook is therefore
+a legitimate architecture on the merits rather than a shortcut, and **which one to take is the
+product owner's decision**, not something §295 should quietly settle by picking the cheaper path.
+
+**`EM-2` is only reachable through the email path.** A webhook cannot deliver a password-reset link.
+If reset is to work, the domain is required eventually — which is the real argument for doing it
+now, and it is an argument rather than a decision.
+
+### Prepared so the closure is not an improvisation
+
+[`../operations/MO-1-ALERT-CONFIGURATION-RUNBOOK.md`](../operations/MO-1-ALERT-CONFIGURATION-RUNBOOK.md)
+— seven ordered steps with pass conditions and a one-variable rollback, including the bounded way to
+induce **one** qualifying production failure and the explicit rule that a provider 2xx is submission
+and **only the mailbox closes `MO-1`**.
+
+`backend/scripts/preflight-295-alert-configuration.ts` — checks candidate values against the
+product's **own** resolver before anything reaches production, so a missing sender is a one-line
+answer rather than a configure-restart-read cycle. It imports `describeAlertConfiguration` rather
+than restating it; a preflight with its own copy of the rules would be a third copy of exactly what
+`MO-2` was. **It checks structure, not ownership** — a well-formed address on a domain the owner does
+not control passes the preflight and is rejected by Resend, which §294 now makes visible as
+`PROVIDER_REJECTED` and `DEGRADED` instead of silence.
+
+### What §295 did not do
+
+No account created, no terms accepted, no domain purchased, no DNS touched, no mailbox invented, no
+Neon setting changed, no charge incurred, no Expert call, no Threshold-C work. **0 provider calls, 0
+real email, 0 migrations, 0 schema changes.** Expert stayed `false` throughout, deliberately: its
+first production call is a separate bounded acceptance and is not §295's to spend.
 
 ---
 

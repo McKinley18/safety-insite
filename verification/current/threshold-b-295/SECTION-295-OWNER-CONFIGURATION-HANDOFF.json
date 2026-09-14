@@ -1,0 +1,75 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_295_OWNER_CONFIGURATION_HANDOFF",
+  "section": "295",
+  "generated": "2026-09-14T22:55:00Z",
+  "outcome": "THRESHOLD B GOES FROM TWO TO ONE. The hardened §294 build is DEPLOYED to both halves before any Resend work, exactly as the ordering required. BR-2 is CLOSED on authoritative Neon console evidence read through the owner's existing authenticated session. MO-1 remains OPEN and its owner boundary is LARGER than three sections had recorded: the email architecture needs a domain the owner controls before it needs a credential, and no custom domain exists. EM-2 remains OPEN, blocked on the same prerequisite.",
+  "startingHead": "87491ed96f6f09de3de5800fc0a472e20d120413",
+  "deployment": {
+    "push": { "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12", "from": "4749aba18c05f91dc5d345105b9e30fe909d7f59", "to": "87491ed96f6f09de3de5800fc0a472e20d120413", "originMainUnchanged": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936" },
+    "backend": { "platform": "Render", "deployId": "dep-dak7c82fngtc73c2b2bg", "service": "srv-d7kl74jeo5us73deaor0", "trigger": "api", "status": "live", "deployedSha": "87491ed96f6f09de3de5800fc0a472e20d120413", "healthVersionGitCommit": "87491ed96f6f09de3de5800fc0a472e20d120413", "versionSourceStatus": "RENDER_GIT_COMMIT", "shaGate": "RUNNING SHA OK", "nodeVersion": "v24.14.1", "nodeVersionPinned": ">=24.14.1 <25.0.0", "envVarCount": 41, "envVarsChanged": 0, "migrationsRun": 0 },
+    "frontend": { "platform": "Vercel", "deploymentId": "dpl_ADmCVxYDwEsLg2v8fF8tTwm5nVSe", "target": "production", "state": "READY", "metaGithubCommitSha": "87491ed96f6f09de3de5800fc0a472e20d120413", "aliasVerification": "The served production HTML names dpl_ADmCVxYDwEsLg2v8fF8tTwm5nVSe in data-dpl-id and in its asset query strings, so the alias is confirmed from the bytes and not only from the API.", "whyDeployedAtAll": "§294 changed nothing under frontend-next/, but applicationSourceDigest covers both halves and the register binds the release to it. Leaving the halves on different SHAs would have made production unable to state one release identity." },
+    "incidentalPreview": { "id": "dpl_2sw5MQPyPn7zqJveFUFAdsgiBTsr", "sha": "87491ed9", "ssoProtected": "YES — HTTP 302 to vercel.com/sso-api", "xRobotsTag": "noindex", "xFrameOptions": "DENY", "productionAliasAltered": false },
+    "backupTaken": false,
+    "backupRationale": "No migration, no schema change, and the change touches only the observability layer, so there is no data-loss mode for a logical backup to protect against. Rollback is redeploying the previous SHA with auto-deploy off. Render's own health check on /health/ready gates promotion, so a build that could not become ready could not have replaced the running one."
+  },
+  "postDeploymentVerification": {
+    "backendSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+    "frontendSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+    "halvesAgree": true,
+    "applicationSourceDigest": "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
+    "digestRecomputedAtDeployedSha": true,
+    "schemaHead": "1800000023000",
+    "migrationsApplied": "55/55",
+    "section274Identity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+    "section274FilesWritten": 0,
+    "expertExecutionEnabled": "false",
+    "alerting": "NOT_CONFIGURED",
+    "alertingIsNowTheThreeStateContract": "/health/ready serves state NOT_CONFIGURED with emailChannelRequires (three values), senderFallback NONE, and the four dispatch outcomes — the §294 contract is live and readable from the running product.",
+    "productionIndexing": "x-robots-tag: noindex, nofollow",
+    "renderAutoDeploy": "no, autoDeployTrigger off",
+    "renderHealthCheckPath": "/health/ready",
+    "previewProtections": "302 to Vercel SSO, x-robots-tag noindex, X-Frame-Options DENY",
+    "noisePolicyReProvenInProduction": { "induced": ["GET unknown path -> 404", "GET /auth/me -> 401", "POST /auth/login bad credentials -> 401", "POST /auth/login bad payload -> 400"], "serverErrorsInWindowAfter": 0, "lastDeliveryAfter": null, "alertsRaised": 0 }
+  },
+  "BR_2": {
+    "verdict": "CLOSED",
+    "howItWasReached": "Not through a new credential. The product owner is signed in to the Neon console in this machine's browser, and an already-authorised session is existing authenticated access. The console was READ.",
+    "readAt": "2026-09-14",
+    "database": { "org": "org-hidden-wave-13823592", "project": "old-moon-90939488", "projectName": "Sentinel Safety", "branch": "br-misty-union-a4uke5p1 (production)", "compute": "ep-weathered-moon-a4egk93d", "region": "AWS us-east-1", "identityCheck": "the compute matches the host in the production DATABASE_URL, so these are the right database's settings and not a same-named neighbour's" },
+    "plan": "FREE",
+    "historyRetentionWindow": "6 hours — the Free maximum; the console slider stops at 6h and offers up to 30 days only on upgrade",
+    "pitrAvailability": "AVAILABLE — Instant Restore, stated by the console as 'Instantly restore this branch to any point in the past 6 hour history window', with a point-in-time picker",
+    "pitrWindow": "6 hours",
+    "snapshots": "none; no snapshot schedule set — schedules require an upgrade",
+    "changesMade": 0,
+    "sufficiencyDecision": "SUFFICIENT FOR CONTROLLED INTERNAL / OWNER PRODUCTION USE. NOT sufficient for external controlled beta.",
+    "reasoning": "Six hours of instant restore covers the failure mode that dominates at internal use — an operator mistake noticed inside the working session — and the operator-controlled logical backup path is proven three times end to end (§269, §289, §291) with a content-checksum restore and is not window-limited. What six hours does not cover is damage discovered the next day; at Threshold B the only party who can cause or suffer that is the owner, entering their own data, with nobody else relying on it. At Threshold C, external inspectors entering real workplace records against a 6-hour window with no schedule is not an acceptable posture.",
+    "consequenceRegisteredSeparately": "BR-5"
+  },
+  "BR_5": { "status": "OPEN, NEW", "severity": "P2", "blocks": "C", "finding": "There are no snapshots and no snapshot schedule, and the operator-controlled logical backup has only ever been taken at release time. For data entered between releases the recovery posture is six hours from the platform and, before that, whatever dump someone remembered to take.", "whySeparateFromBR2": "BR-2 asked what the platform gives us and that is now answered and closed. Whether it is enough is a different question with a different answer per threshold. Merging them would make a closed fact look open, or an open risk look closed." },
+  "MO_1": {
+    "verdict": "OPEN",
+    "whatChanged": "The hardened build is deployed, so a credential configured from here can no longer land on the false-green path. The owner boundary is now stated correctly for the first time.",
+    "findingThatNobodyHadChecked": "Resend sends only from a domain VERIFIED IN THE ACCOUNT; verification is DNS records on a domain the owner CONTROLS; and the Vercel account holds ZERO custom domains — the product is served from safety-insite.vercel.app, whose apex vercel.app belongs to Vercel and cannot be verified by this owner. The email architecture therefore needs a DOMAIN BEFORE IT NEEDS A CREDENTIAL. No Resend session exists in the owner's browser either, so no account is evidenced.",
+    "evidence": "Vercel API: project domains are safety-insite.vercel.app and sentinelsafety.vercel.app (both apex vercel.app); account-level domains count = 0. resend.com served the unauthenticated marketing page with Log in / Get started.",
+    "limitOfThatEvidence": "An unauthenticated browser proves there is no SESSION, not that no Resend account exists; and a domain registered outside Vercel would not appear in the Vercel API. Both are owner knowledge, so the handoff ASKS rather than asserts.",
+    "architectureChoiceNowGenuine": {
+      "A_webhook": "one URL for a receiver the owner controls. No domain, no DNS, no mail provider. Closes MO-1. Does nothing for EM-2.",
+      "B_email_on_an_owned_domain": "a domain the owner controls, its DNS published for Resend, an account, and a Sending-Access key restricted to that domain. Closes MO-1 and unblocks EM-2.",
+      "C_resend_dev": "REJECTED AND NOT OFFERED AS EQUAL. onboarding@resend.dev is Resend's shared, rate-limited test sender and can only deliver to the account holder's own address. It would close MO-1 on an affordance that breaks the moment a second recipient exists, and does nothing for EM-2. §294's structural test would ACCEPT it — .dev is not a reserved TLD — which is precisely why this is a judgement call recorded here rather than a rule the code can make.",
+      "whySection293sInstructionDoesNotBite": "§293 said not to prefer a webhook merely to obtain a faster green gate IF an approved Resend configuration is now available. It is not available: there is no verified domain. That instruction assumed Resend was a configuration step away; it is a domain away. The webhook is therefore legitimate on the merits, and choosing between A and B is the product owner's decision rather than something §295 should settle by picking the cheaper path."
+    },
+    "preparedForClosure": {
+      "runbook": "project-docs/operations/MO-1-ALERT-CONFIGURATION-RUNBOOK.md — seven ordered steps with pass conditions and a one-variable rollback, including the bounded way to induce ONE qualifying production failure and the explicit rule that a provider 2xx is submission and only the mailbox closes MO-1.",
+      "preflight": "backend/scripts/preflight-295-alert-configuration.ts — checks candidate values against the product's OWN resolver before anything reaches production. It imports describeAlertConfiguration rather than restating it, because a preflight with its own copy of the rules would be a third copy of exactly what MO-2 was.",
+      "preflightLimit": "It checks STRUCTURE, not OWNERSHIP. A well-formed address on a domain the owner does not control passes the preflight and is rejected by Resend at send time — which §294 now surfaces as PROVIDER_REJECTED and DEGRADED rather than as silence."
+    }
+  },
+  "EM_2": { "verdict": "OPEN", "blockedOn": "the same prerequisite as MO-1 option B — a verified sending domain. A webhook cannot deliver a password-reset link, so EM-2 is reachable only through the email architecture.", "exercised": false, "realPasswordResetSends": 0 },
+  "constraints": { "providerCalls": 0, "providerSpendUsd": 0, "expertCalls": 0, "expertExecutionEnabled": false, "realEmailSends": 0, "accountsCreated": 0, "termsAccepted": 0, "domainsPurchased": 0, "dnsChanges": 0, "mailboxesInvented": 0, "neonChanges": 0, "newChargesIncurred": 0, "productionWrites": 0, "migrations": 0, "schemaChanges": 0, "productionConfigurationChanges": 0, "thresholdCWork": 0, "deployments": 3, "deploymentsDetail": "Render dep-dak7c82fngtc73c2b2bg (backend), Vercel dpl_ADmCVxYDwEsLg2v8fF8tTwm5nVSe (frontend production), Vercel dpl_2sw5MQPyPn7zqJveFUFAdsgiBTsr (incidental preview from the push)", "rollbackEvents": 0 },
+  "blockers": { "thresholdA": 0, "thresholdBBefore": ["MO-1", "BR-2"], "thresholdBAfter": ["MO-1"], "thresholdCAfter": 18 },
+  "counts": { "total": 79, "P0": 4, "P1": 7, "P2": 46, "P3": 22, "CLOSED": 40, "OPEN": 32, "BLOCKED": 4, "DEFERRED": 3 },
+  "thresholdBStatus": "NOT CLOSED — one blocker remains and it is an owner action.",
+  "internalProductionAuthorization": "NOT AUTHORIZED",
+  "terminal": "SAFETY_INSITE_THRESHOLD_B_AT_ONE — MONITORING_DESTINATION_ARCHITECTURE_DECISION_REQUIRED_AND_SENDING_DOMAIN_ABSENT"
+}
