@@ -1,8 +1,8 @@
 {
   "artifact": "SAFETY_INSITE_V1_BETA_RELEASE_MANIFEST",
-  "generatedBy": "§289, superseded at §290 (deployment) and §291 (Threshold-B engineering)",
+  "generatedBy": "§289, superseded at §290 (deployment), §291 (Threshold-B engineering), §292 (configuration closure)",
   "generatedAt": "2026-09-14T17:17:21Z",
-  "status": "DEPLOYED — THRESHOLD A CLOSED, THRESHOLD B ENGINEERING CLOSED",
+  "status": "DEPLOYED — THRESHOLD A CLOSED; THRESHOLD B AT TWO OWNER ACTIONS",
   "productVersion": "1.0.0",
   "gitSha": "PENDING — see releaseSha",
   "gitShaNote": "THE RELEASE SHA. The §289 artifact commit, which adds this preservation package, the controlled-production deployment sequence, the operations corrections and the §289 evidence. It is COMMITTED LOCALLY AND NOT PUSHED; see deployment.pushState.",
@@ -17,14 +17,15 @@
     "why": "Recorded for completeness and deliberately NOT used as the release binding. It covers documentation and evidence, so it changes on every §289 artifact commit including the one that would record it. applicationSourceDigest is the release binding."
   },
   "applicationSourceDigest": {
-    "value": "da76108cf2da2cc9c635859f517d542a57b42f67e6ccf25961f734c98689d0b1",
+    "value": "05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f",
     "algorithm": "sha256",
     "recompute": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256",
     "definition": "sha256 over the LC_ALL=C-sorted `git ls-tree -r` lines for the files that determine the BUILT ARTIFACTS.",
     "why": "THE RELEASE BINDING. It changes only when the deployable product changes.",
     "supersededValues": [
       "2ce8a1d7…(§289)",
-      "7c4b5e40…(§290)"
+      "7c4b5e40…(§290)",
+      "da76108c…(§291)"
     ]
   },
   "retiredDigestMustNotBeUsed": {
@@ -52,11 +53,13 @@
     "appliedAt§291": "1800000023000 AgreementAcceptance — additive, one new table and two indexes"
   },
   "nodeVersion": {
-    "buildHostUsedForThisManifest": "v20.20.2",
-    "vercelProduction": "24.x (project setting)",
-    "renderProduction": "NOT READ — Render exposes no runtime Node version through its API, the service prints none at startup, and the repository pins none.",
-    "pinnedInRepository": false,
-    "risk": "Neither package has an `engines.node`, a `.nvmrc` or a `.node-version`. A rebuild is therefore NOT guaranteed to reproduce these artifacts on a different Node major. See knownLimitations.PV-NODE-UNPINNED."
+    "pinned": ">=24.14.1 <25.0.0 (engines.node, both packages)",
+    "exact": "24.14.1 (backend/.node-version)",
+    "productionRuntime": "v24.14.1 — reported by the running process at /health/version",
+    "renderBuildLog": "Using Node.js version 24.14.1 via /opt/render/project/src/backend/.node-version",
+    "vercelProjectSetting": "24.x — consistent",
+    "provenOn": "clean npm ci + builds + 15 gates on node v24.14.1",
+    "note": "§289 recorded v20.20.2 and the gates were in fact on v26.7.0; the pin closes that drift."
   },
   "npmVersion": "10.8.2",
   "databaseVersion": {
@@ -80,20 +83,20 @@
     "incidentalPreview": "dpl_DRhjpmPGnEyhsgBb7AHm6gDVrdvC — SSO-protected, noindex, DENY-framed, no production secret, production alias untouched"
   },
   "knownLimitations": {
-    "PV-NODE-UNPINNED": "No Node version is pinned in either package and the Render runtime version could not be read. A rebuild reproduces the source digest but not, provably, the artifact.",
     "OPS-DB-PROVIDER-MISSTATED": "Two operations documents name Render as the database platform; production is Neon. An operator following deployment-runbook step 3 would look for a Render Postgres instance that does not exist.",
     "DB-4-OUTCOMES-TABLE-PRESENT": "RESOLVED at §291. The recurrence query is workspace-scoped and proven on a production-shaped database with a negative control. The table remains outside the migration lineage; adopting it is a registered product-owner decision.",
     "EXPERT-DISABLED": "EXPERT_EXECUTION_ENABLED=false in production. Live provider transport has never been exercised; hazlenz:verify reports UNVERIFIED_LIVE for provider transport.",
     "STORAGE-REPORT-ROUNDTRIP-NOT-DONE": "CLOSED at §290. A generated report round-tripped through production storage from the deployed candidate with the R2 bytes, the database record and the served bytes all hashing to 59ce3cd1…, and an unsigned read of that object refused HTTP 400.",
-    "NO-MONITORING-AGGREGATION": "The alerting mechanism exists and is proven (error-severity events dispatched, 5xx burst raises one rate event, de-duplicated, 401/402/404/400/409 never alert). NO DESTINATION IS CONFIGURED IN PRODUCTION, and /health/ready reports alerting: NOT_CONFIGURED so this is visible rather than assumed. MO-1 remains open on one configuration step.",
-    "NEON-RETENTION-UNREAD": "Neon's control plane was not reachable from this session (no NEON_* credential). The platform backup retention window and point-in-time-recovery setting are UNREAD. The operator-controlled logical backup path is proven independently.",
+    "NO-MONITORING-AGGREGATION": "The alerting mechanism is built and re-proven on the §292 build (expected client failures silent; one qualifying 500 delivered two alerts in 4 ms carrying no content). NO DESTINATION EXISTS TO CONFIGURE: §292 searched documentation, the repository, Render and Vercel and found none, and inventing one was forbidden. /health/ready reports alerting: NOT_CONFIGURED. MO-1 awaits a product-owner decision.",
+    "NEON-RETENTION-UNREAD": "Still unread at §292 and not for want of trying: control-plane settings are not exposed to SQL, and there is no neonctl, no NEON_* variable, no Vercel integration and no API key. The operator-controlled backup path is proven three times. BR-2 awaits one console read.",
     "LEGAL-NOT-CLEARED": "Terms, Privacy Notice, third-party model disclosure, contracting entity and trademark clearance are all open at Threshold C. Nothing here asserts legal clearance.",
     "NO-EXTERNAL-BETA": "External beta remains BLOCKED regardless of Threshold A status.",
     "BR-3-CLOSED": "Closed at §290. check:launch-pricing no longer conflates the retired Expert pricing tier with Expert HazLenz the capability; 49 passed, 0 failed.",
     "INDEXING-WITHHELD": "Production serves X-Robots-Tag: noindex, nofollow on every route until External Beta is authorised. NEXT_PUBLIC_ALLOW_INDEXING=true lifts it.",
     "SYNTHETIC-RELEASE-RESIDUE": "§290 left two synthetic accounts on @release-test.invalid, one site/inspection/observation/finding, and one report revision with its PDF in R2. The entitlement grant was revoked. The report was deliberately NOT deleted because report immutability (RR-2) is the guarantee §290 verified, and deleting the R2 object alone would orphan its storage_objects row.",
     "PRODUCTION-SCHEMA-DIVERGENCE": "Migration replay does NOT reproduce production. Production has 77 tables; a clean replay of all 55 migrations produces 56. Twenty-one entity-derived tables predate the lineage, created by TypeORM synchronize before that switch was turned off. See PRODUCTION-SCHEMA-PROVENANCE.md. A rebuild following this guide will produce a SMALLER schema than production, and `outcomes` in particular must be created for the corrective-action closure path to function.",
-    "EM-2-NO-RESEND-CREDENTIAL": "PASSWORD_RESET_PROVIDER=resend but RESEND_API_KEY and PASSWORD_RESET_FROM_EMAIL are absent from production, so password reset cannot deliver and the email alerting channel is unavailable."
+    "EM-2-NO-RESEND-CREDENTIAL": "PASSWORD_RESET_PROVIDER=resend but RESEND_API_KEY and PASSWORD_RESET_FROM_EMAIL are absent from production, so password reset cannot deliver and the email alerting channel is unavailable.",
+    "NODE-PINNED": "CLOSED at §292. Node is pinned to >=24.14.1 <25.0.0 and the running process reports v24.14.1, so a rebuild reproduces the artifact runtime as well as the source."
   },
   "canonicalDocs": [
     "project-docs/current/PRE-PRODUCTION-RELEASE-REGISTER.md — THE release authority",
@@ -121,15 +124,15 @@
   "productionMigrations": 0,
   "deployments": 0,
   "productSourceCommit": {
-    "sha": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
-    "why": "The §291 gate set ran against this commit.",
-    "applicationSourceDigest": "da76108cf2da2cc9c635859f517d542a57b42f67e6ccf25961f734c98689d0b1",
+    "sha": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
+    "why": "The §292 gate set ran against this commit, on Node v24.14.1.",
+    "applicationSourceDigest": "05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f",
     "recompute": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256"
   },
   "releaseSha": {
-    "value": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
+    "value": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
     "observedFrom": "production after deployment",
-    "backendConfirmation": "/health/version gitCommit; release:verify-sha RUNNING SHA OK",
-    "frontendConfirmation": "Vercel dpl_Ba1MBn41Pd8r6ujCSUcNhSBHSyDa meta.githubCommitSha; production alias confirmed from the served HTML"
+    "backendConfirmation": "/health/version gitCommit",
+    "frontendConfirmation": "Vercel dpl_GXxNSdRXqvxj28k7Y4FKuURigoN3 meta.githubCommitSha — equal to the backend"
   }
 }

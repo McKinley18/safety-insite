@@ -1,0 +1,183 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_292_CONFIGURATION_CLOSURE",
+  "section": "292",
+  "generated": "2026-09-14T18:51:54Z",
+  "outcome": "THRESHOLD B REDUCED FROM 3 TO 2. DB-5 and PV-3 closed on evidence. MO-1 and BR-2 both require a product-owner action that §292 is forbidden to take on the owner's behalf. THRESHOLD B DOES NOT CLOSE.",
+  "startingSha": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
+  "endingSha": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
+  "applicationSourceDigest": "05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f",
+  "schemaHead": "1800000023000",
+  "migrationsRun": 0,
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "constraints": {
+    "providerCalls": 0,
+    "expertCalls": 0,
+    "expertExecutionEnabled": false,
+    "productionConfigurationChanges": 0,
+    "productionSecretsAltered": 0,
+    "rollbackEvents": 0,
+    "externalUsersInvited": 0
+  },
+  "DB_5": {
+    "reconciliation": "The §291 report was internally inconsistent — prose said 'now fail-closed' while the return listed DB-5 as NEW and not repaired, and the register said OPEN. Reconciling it found something worse than an inconsistent report.",
+    "defectInTheRepairItself": "§291 added an OPTIONAL `scope` parameter and returned early when it was absent. The query underneath was NEVER scoped. So the guard held only because no caller passed a scope, and would have become FAIL-OPEN the moment one did: the caller would believe it had asked for one workspace and would receive every workspace. A guard that inverts when someone starts using it is worse than no guard, because it reads as protection.",
+    "correction": "The parameter is removed. There is no way to ASK for cross-tenant data, because there is nothing to ask with.",
+    "whyNotProperlyScoped": "fix_feedback has no owner column, and its report_id is not reliably a report — OutcomeService writes a corrective ACTION id into it. No correct predicate exists over this schema, and §292 does not authorise the migration that would create one.",
+    "proof": {
+      "fixture": "production-shaped database (55 migrations + production's own outcomes DDL), fix_feedback populated with 2 approved rows per workspace under distinctive wording",
+      "oldQueryReplicatedVerbatim": "returns BOTH ['WORKSPACE_A_CONFIDENTIAL_REMEDIATION_WORDING','WORKSPACE_B_CONFIDENTIAL_REMEDIATION_WORDING'] — the defect was real",
+      "A_cannot_appear_in_B": "PASS",
+      "B_cannot_appear_in_A": "PASS",
+      "missingOrAmbiguousScopeFailsClosed": "PASS — structurally: declared parameter count is 1, and forcing an extra argument in still returns []",
+      "noIdentifierOrContentLeak": "PASS — returns nothing at all",
+      "realReadPath": "ActionEngineService.generateActionsFromReport produced 1 action containing neither workspace's wording",
+      "ownScopeEligibleFeedback": "NOT INTENDED at v1 and therefore not enabled — carried as DB-7. This is stated rather than claimed as working.",
+      "writesRetained": "4 rows, untouched"
+    },
+    "classification": "CLOSED — no cross-tenant path remains. The capability question is DB-7."
+  },
+  "BR_2": {
+    "result": "CANNOT PERFORM THE READ — returned as an exact deficiency rather than guessed at.",
+    "establishedFromSQL": {
+      "provider": "Neon",
+      "postgres": "17.11 (c4ba6b8)",
+      "region": "us-east-1",
+      "endpoint": "ep-weathered-moon-a4egk93d",
+      "branch": "br-misty-union-a4uke5p1",
+      "timeline": "ee18de24df1cae2c62e918f771e9e88c",
+      "compute": "compute-small-dream-a4z4u8tu",
+      "maxClusterSize": 512,
+      "readAt": "2026-09-14T18:51:54Z",
+      "source": "authenticated SQL client against the production database"
+    },
+    "notReadable": [
+      "plan / tier",
+      "history retention window",
+      "PITR availability and window",
+      "platform backup mechanism detail"
+    ],
+    "why": "control-plane settings, not exposed to a SQL client",
+    "routesExhausted": [
+      "neonctl not installed, no ~/.config/neonctl",
+      "no NEON_* environment variable",
+      "0 Vercel marketplace integrations (a Neon integration would carry a key)",
+      "no Neon API key anywhere in the environment",
+      "neon.* GUCs expose identity, not retention"
+    ],
+    "whatIsNotInDoubt": "The operator-controlled logical backup path is proven three times — §269, §289, and §291's fresh pre-migration backup with a full content-checksum restore into PostgreSQL 17.11.",
+    "exactDeficiency": "A Neon API key in the environment, or one console read by the product owner recording plan, history-retention window, PITR availability and window.",
+    "verdict": "OPEN"
+  },
+  "PV_3": {
+    "problemFirst": "The production runtime was not observable, so §292 made it observable rather than pinning a guess.",
+    "howTheVersionWasLearned": "Without a deploy: the Render build log states it — \"==> Using Node.js version 24.14.1 (default)\". \"(default)\" is itself the finding: nothing in the repository chose it.",
+    "runtimesActuallyUsedSuccessfully": {
+      "renderBackendBuildAndRuntime": "24.14.1 (default)",
+      "vercelFrontendBuild": "24.x (project setting)",
+      "localGates": "v26.7.0 — and v20.20.2 in earlier sections; both worked, which is the reproducibility gap"
+    },
+    "correctionToSection289": "§289 reported the gates running on Node v20.20.2. They were on v26.7.0 after a PATH change moved `node` to the Homebrew build partway through the session.",
+    "pin": {
+      "backend/package.json engines.node": ">=24.14.1 <25.0.0",
+      "frontend-next/package.json engines.node": ">=24.14.1 <25.0.0",
+      "backend/.node-version": "24.14.1",
+      "vercelProjectSetting": "24.x — consistent, not contradictory: 24.14.1 satisfies both",
+      "nvmrc": "deliberately NOT added — a third declaration of the same fact is how declarations start contradicting each other",
+      "rationale": "Pins what BOTH production halves already run. Makes an implicit default explicit rather than changing what executes."
+    },
+    "proofOnThePinnedRuntime": {
+      "runtime": "node v24.14.1 / npm 11.11.0, installed locally for the purpose",
+      "backendCleanInstall": "npm ci exit 0, 0 EBADENGINE warnings",
+      "backendBuild": "exit 0",
+      "frontendCleanInstall": "npm ci exit 0, 0 EBADENGINE warnings",
+      "frontendTypecheck": "exit 0",
+      "frontendBuild": "exit 0, 25/25 static pages",
+      "gates": "15/15 pass"
+    },
+    "productionVerification": {
+      "buildLogAfterDeploy": "==> Using Node.js version 24.14.1 via /opt/render/project/src/backend/.node-version",
+      "runningProcess": "/health/version reports nodeVersion v24.14.1 and nodeVersionPinned >=24.14.1 <25.0.0",
+      "meaning": "The declared pin and the executed runtime are the same fact, verifiable from production rather than assumed."
+    },
+    "verdict": "CLOSED"
+  },
+  "MO_1": {
+    "destinationSearch": {
+      "projectDocumentation": "MONITORING.md names exactly one established destination — the Render service notification (notifyOnFail, email to the workspace owner). That is a PLATFORM channel for deploy and service failure; the application cannot publish into it.",
+      "repository": "no Slack, PagerDuty, Sentry, Opsgenie or webhook configuration anywhere",
+      "render": "0 webhooks configured; no log stream endpoint available on this plan",
+      "vercel": "0 marketplace integrations",
+      "resend": "no credential exists (EM-2)"
+    },
+    "conclusion": "NO legitimate application-level alert destination exists. §292 did not invent one.",
+    "noisePolicyReproofOnTheSection292Build": {
+      "expectedClientFailures": {
+        "401": "no alert",
+        "404": "no alert",
+        "400 bad payload": "no alert",
+        "400 duplicate register": "no alert",
+        "402 entitlement refusal": "no alert"
+      },
+      "alertsAfterAllExpectedFailures": 0,
+      "qualifyingFailure": "report generation against unwritable storage -> HTTP 500",
+      "alertsAfterQualifyingFailure": 2,
+      "byKind": {
+        "storage.operation_failed": 1,
+        "report.generation_failed": 1
+      },
+      "dedupeIdentity": "event kind, one per 15-minute window",
+      "latencyMs": 4,
+      "destinationClass": "HTTP webhook receiver (local, for this proof only)",
+      "metadataCarriesContent": false,
+      "thresholdsUnchanged": "5 x 5xx in 5 minutes, dedupe 1/kind/15 min, ceiling 12/window — not tuned to obtain a pass"
+    },
+    "alertingReadiness": "MECHANISM READY, DESTINATION ABSENT. /health/ready reports alerting: NOT_CONFIGURED in production.",
+    "return": "MONITORING_DESTINATION_OWNER_DECISION_REQUIRED",
+    "verdict": "OPEN"
+  },
+  "EM_2": {
+    "checkedForAnAlreadyOwnedCredential": true,
+    "found": "none — no RESEND_API_KEY in any local env file, in the environment, or in production",
+    "whyNotConfigured": "Configuring it would require creating an account and accepting terms on the owner's behalf, which §292 forbids.",
+    "consequence": "Password reset cannot deliver; the email option for MO-1 is unavailable.",
+    "passwordResetExercised": false,
+    "verdict": "OPEN — carried to Threshold C, does not block Threshold B"
+  },
+  "productionControlsPreserved": {
+    "EXPERT_EXECUTION_ENABLED": "false",
+    "productionXRobotsTag": "noindex, nofollow",
+    "renderAutoDeploy": "no / trigger off",
+    "vercelCreateDeployments": "disabled",
+    "ssoProtection": "all_except_custom_domains",
+    "vercelEnvVars": "4, all public-prefixed — no backend secret reaches Preview",
+    "productionEnvVarCount": "41 — unchanged, §292 added none"
+  },
+  "deployment": {
+    "backendDeployId": "dep-dak41kjl550s73buvibg",
+    "frontendDeploymentId": "dpl_GXxNSdRXqvxj28k7Y4FKuURigoN3",
+    "bothHalvesSha": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
+    "shaEqual": true,
+    "migrationsPending": "none — confirmed by dry run before deploying",
+    "rollbackEvents": 0
+  },
+  "registerOutcome": {
+    "thresholdA": 0,
+    "thresholdBBefore": 3,
+    "thresholdBAfter": 2,
+    "thresholdCAfter": 17,
+    "closed": [
+      "DB-5",
+      "PV-3"
+    ],
+    "opened": [
+      "DB-7 (DEFERRED)"
+    ],
+    "stillOpenAtB": [
+      "MO-1",
+      "BR-2"
+    ],
+    "thresholdBCloses": false,
+    "why": "Both remaining items require a product-owner action §292 is explicitly forbidden to take: naming an alert destination, and reading the Neon console."
+  },
+  "nextAuthorizationRequired": "Two owner actions close Threshold B. Neither is engineering."
+}

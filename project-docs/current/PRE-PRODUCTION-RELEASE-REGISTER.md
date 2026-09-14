@@ -4,17 +4,17 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live production evidence at **§289**, **deployed at §290**, Threshold-B engineering closed at **§291**.
-**Threshold A is closed. Threshold B stands at three configuration actions.** Machine-readable
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**.
+**Threshold A is closed. Threshold B stands at two owner actions, neither of them engineering.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
 | | |
 |---|---|
-| Candidate — **product source commit** | `eb12dc50a266dba5d4ba2d638ef2c568c3a4f027` — the §291 gate set ran against this |
-| **Release binding** | `applicationSourceDigest` = `da76108cf2da2cc9c635859f517d542a57b42f67e6ccf25961f734c98689d0b1` |
+| Candidate — **product source commit** | `4749aba18c05f91dc5d345105b9e30fe909d7f59` — the §292 gate set ran against this, on Node v24.14.1 |
+| **Release binding** | `applicationSourceDigest` = `05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f` |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `eb12dc50a266dba5d4ba2d638ef2c568c3a4f027` — live on both halves, schema `1800000023000` |
+| **Deployed release SHA** | `4749aba18c05f91dc5d345105b9e30fe909d7f59` — live on both halves, schema `1800000023000`, Node `v24.14.1` pinned |
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
@@ -46,7 +46,7 @@ the others.
 | | Threshold | What it means | Blockers |
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
-| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **3** — and none of the three is engineering |
+| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **2** — both are owner actions, not engineering |
 | **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **17** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
@@ -83,14 +83,14 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **76** | **4** | **7** | **44** | **21** |
+| Entries | **77** | **4** | **7** | **44** | **22** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 36 |
-| OPEN | 34 |
+| CLOSED | 38 |
+| OPEN | 32 |
 | BLOCKED (waiting on a decision or another item) | 4 |
-| DEFERRED (deliberately not v1) | 2 |
+| DEFERRED (deliberately not v1) | 3 |
 
 **A threshold's blocker count is the number of entries still flagged for it.** Closing an entry
 clears its threshold flags and records what it used to block in `wasBlockingThresholds`, so an
@@ -165,11 +165,12 @@ executing the deployment.
 
 **Three items remain, and every one is a configuration or console action rather than engineering:**
 
-| | what is actually left |
-|---|---|
-| **MO-1** | The alerting mechanism is built and proven. **Set one destination** — a webhook URL, or an email address plus the credential `EM-2` says is missing — then induce one failure and watch it arrive. |
-| **BR-2** | **One read** of the Neon console: the history-retention window and the PITR setting. |
-| **PV-3** | Pin a Node version in both packages and read back the Render runtime version. |
+| | what is actually left | why §292 could not do it |
+|---|---|---|
+| **MO-1** | **Name a destination.** A webhook URL for a receiver the owner controls, or an alert email plus a Resend credential. | §292 searched and found none: documentation names only Render's own platform notification, which the application cannot publish into; there is no Slack/PagerDuty/Sentry/webhook anywhere; Render has zero webhooks; Vercel has zero integrations; no Resend credential exists. **Inventing one was forbidden, and would have been wrong.** |
+| **BR-2** | **One Neon console read** — plan, history-retention window, PITR window. | Control-plane settings are not exposed to SQL, and no Neon credential exists: no `neonctl`, no `NEON_*` variable, no Vercel integration, no API key. |
+
+`PV-3` closed at §292.
 
 Closed at §291: `DB-4`, `DB-6`, `SU-1`, `SU-3`, `PA-1`, `OF-4`. The former Threshold-B list was `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
 retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
@@ -591,7 +592,8 @@ Four observations registered rather than fixed: the service slug and public host
 | **DB-2** | The §287 corrective-action lifecycle migration had a DUPLICATE, out-of-order timestamp (1800000006000, colliding with AddUserProfileNames) which also left schemaCompatibilityVersion blind to the schema change. | P2 | — | Engineering | CLOSED |
 | **DB-3** | The outcomes table is absent from the MIGRATION SET but PRESENT in the production database. The reachability conclusion drawn from its absence does not hold. | P2 | — | Security | OPEN — premise corrected at §289 |
 | **DB-4** | Recurrence is scoped to one workspace, proven on a production-shaped database. | P2 | — | Mixed | **CLOSED (§291)** |
-| **DB-5** | Learned corrective-action fixes were selected across every tenant. Leak closed; the capability is a product decision. | P2 | — | Mixed | OPEN (§291) |
+| **DB-5** | Learned corrective-action fixes were selected across every tenant. | P2 | — | Mixed | **CLOSED (§292)** |
+| **DB-7** | Workspace-scoped learning from outcomes is not implemented and is not a v1 capability. | P3 | — | Product | DEFERRED (§292) |
 | **DB-6** | Closure intelligence failed for every hand-created corrective action. | P2 | — | Engineering | **CLOSED (§291)** |
 
 **DB-1 — CLOSED at §289.** The read §288 was forbidden to take. Production head `1800000018000`, **50 applied**, and — the fact that actually matters — **zero drift**: every applied row matches a migration file in the candidate, and the four pending ones are strictly newer than the head.
@@ -668,7 +670,33 @@ Exercised in production after deployment: a real closure wrote a clean outcome w
 
 **DB-5 — the same family, found while looking.** `findLearnedFix` selected approved `fix_feedback` across **every tenant** and put the resulting remediation titles at the **top** of the actions HazLenz proposes. That leaked **content**, not just influence. `fix_feedback` carries no owner and its `report_id` is not reliably a report — the outcome path writes an *action* id into it — so no correct scoping predicate exists over the current schema, and the only read path carries no workspace. The read is now **fail-closed**: no scope, no suggestions. Behaviour-preserving in production, where the table has zero rows and this has never once returned a fix.
 
-*Remediation:* a product decision. If workspace-scoped learning is a v1 capability, add a workspace column, populate it at write time, thread a scope into the HazLenz pipeline, and prove both directions as DB-4 was proven. If not, remove the read path.
+**DB-5 — CLOSED at §292, and getting there required correcting the §291 repair itself.**
+
+§291 reported *"now fail-closed"* while listing DB-5 as new and unrepaired. Reconciling that inconsistency found something worse than an inconsistent report.
+
+§291 had added an **optional `scope` parameter** and returned early when it was absent — but **the query underneath was never scoped**. The guard held only because no caller happened to pass a scope, and it would have become **fail-open** the moment one did: the caller would believe it had asked for one workspace and would receive every workspace. *A guard that inverts when someone starts using it is worse than no guard, because it reads as protection.*
+
+The parameter is removed. **There is now no way to ask for cross-tenant data, because there is nothing to ask with.**
+
+Properly scoping it is not available: `fix_feedback` has no owner column, and its `report_id` is not reliably a report — `OutcomeService` writes a corrective *action* id into it — so no correct predicate exists over this schema, and §292 does not authorise the migration that would create one.
+
+**Proven on production-shaped data**, `fix_feedback` populated with two approved rows per workspace under distinctive wording:
+
+| | |
+|---|---|
+| the OLD query, replicated verbatim | returns **both** workspaces' confidential remediation wording — the defect was real |
+| A wording cannot reach B | **PASS** |
+| B wording cannot reach A | **PASS** |
+| missing or ambiguous scope fails closed | **PASS — structurally.** Declared parameter count is 1, and forcing an extra argument in still returns `[]` |
+| identifier or content leak | **PASS** — returns nothing at all |
+| the real read path (actions HazLenz would propose) | **PASS** — contains neither workspace's wording |
+| writes retained | 4 rows, untouched |
+
+**Own-scope eligible feedback is not intended at v1 and is therefore not enabled** — stated rather than claimed as working, and carried as `DB-7`.
+
+*Evidence:* `verification/current/threshold-b-292/SECTION-292-CONFIGURATION-CLOSURE.json` → `DB_5`
+
+**DB-7 — the capability question, carried separately so DB-5 is unambiguous.** The loop still *writes* `fix_feedback`; nothing reads it. Making it work needs a workspace column populated at write time and a scope threaded from the HazLenz pipeline, which carries none — a migration plus a pipeline change, and a product decision about whether the loop ships at all. **DEFERRED, not a defect: there is no cross-tenant path left to close.**
 
 **DB-6 — why the loop had never actually run.** `outcomes."originalRecommendation"` is `jsonb NOT NULL` and `action.originalSuggestion` is NULL for every **hand-created** action, so the insert violated the constraint — caught by the §286 guard, emitted as `action.closure_intelligence_failed`, and invisible to the customer, who saw a successful closure. Six of six failed this way under test. `{}` is now written for *"no original recommendation was recorded"*, which fabricates nothing.
 
@@ -853,7 +881,7 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **PV-1** | project-docs/preservation/v1-beta/ created at §289 with the build-and-restore guide and the release manifest. | P2 | — | Engineering | **CLOSED (§289)** |
-| **PV-3** | No Node version is pinned, and the Render runtime Node version cannot be read. | P2 | B | Engineering | OPEN (§289) |
+| **PV-3** | Node is pinned to 24.14.1 and the running process reports it. | P2 | — | Engineering | **CLOSED (§292)** |
 | **PV-2** | The historical digest 3c2c5974... is MISATTRIBUTED and must not be used as a current integrity assertion. | P3 | — | Engineering | CLOSED |
 
 **PV-1 — CLOSED at §289.** `project-docs/preservation/v1-beta/` now holds `SAFETY-INSITE-V1-BETA-BUILD-AND-RESTORE-GUIDE.md` and `release-manifest.json`, with every field the entry named.
@@ -865,10 +893,32 @@ Two choices in the manifest are worth stating. **The source digest is defined, n
 *Evidence:* `project-docs/preservation/v1-beta/release-manifest.json`  
 *Retest:* A rebuild from the guide reproducing the recorded digests — but read PV-3 first.
 
-**PV-3 — new at §289.** Neither package declares `engines.node`; there is no `.nvmrc` and no `.node-version`. Vercel is set to **24.x**, the §289 build host was **v20.20.2**, and Render exposes its runtime version through neither its API nor the service's startup output. So the preservation guide can promise that the **source** reproduces exactly and cannot promise that the **artifact** does. That is a real limitation of a preservation package and it is stated in the manifest rather than glossed.
+**PV-3 — CLOSED at §292. The runtime was made observable before anything was pinned.**
 
-*Evidence:* `project-docs/preservation/v1-beta/release-manifest.json` → `nodeVersion`  
-*Retest:* A recorded Render runtime Node version matching a pin in the repository.
+Pinning a version nobody had measured would have been a guess dressed as a control, so the first change was to report `process.version` at request time, alongside whether the repository declares a pin at all — the difference between *"we run 24 and meant to"* and *"we run 24 and nobody chose it"*.
+
+**It did not need a deploy to find out.** The Render build log said it outright:
+
+```
+==> Using Node.js version 24.14.1 (default)
+```
+
+`(default)` is itself the finding. And it means **both production halves already run Node 24** — Render `24.14.1` by default, Vercel `24.x` by project setting — so the pin makes an implicit default explicit rather than changing what executes.
+
+| declaration | value | why |
+|---|---|---|
+| `backend/package.json` `engines.node` | `>=24.14.1 <25.0.0` | floors at the version production proves, forbids a surprise jump to 25, allows patches |
+| `frontend-next/package.json` `engines.node` | `>=24.14.1 <25.0.0` | same contract for the other deployable |
+| `backend/.node-version` | `24.14.1` | Render resolves *exactly*, rather than "newest 24.x at build time" |
+| `.nvmrc` | **deliberately absent** | a third declaration of the same fact is how declarations start contradicting each other |
+
+**Proven on that exact runtime**, installed locally for the purpose: clean `npm ci` in both packages with **zero `EBADENGINE` warnings**, backend `tsc`, frontend `tsc --noEmit`, `next build` 25/25, and all 15 gates.
+
+**Verified in production after deploy.** The build log now reads `via /opt/render/project/src/backend/.node-version`, and the running process reports `nodeVersion: v24.14.1` with `nodeVersionPinned: >=24.14.1 <25.0.0`. The declared pin and the executed runtime are the same fact, checkable from production rather than assumed.
+
+> **A correction this closes.** §289 reported the gates running on Node `v20.20.2`. They were in fact on `v26.7.0` — a `PATH` change moved `node` to the Homebrew build partway through the session, and nothing noticed. That drift, in the middle of a release programme, is precisely what PV-3 exists to prevent.
+
+*Evidence:* `verification/current/threshold-b-292/SECTION-292-CONFIGURATION-CLOSURE.json` → `PV_3`; live `/health/version`
 
 ### RELEASE / ROLLBACK
 
@@ -929,6 +979,64 @@ together. Any section that closes an entry must:
 
 **Do not restate release status anywhere else.** `BETA-BLOCKERS.json`, `BETA-READINESS.md` and
 `CURRENT-STATE.md` point here; they do not carry a competing verdict.
+
+---
+
+## §292 — two closed on evidence, two that are not mine to close
+
+**Threshold B went from three to two, and it does not close.** Both remaining items need the product
+owner to do something §292 was explicitly forbidden to do on their behalf.
+
+### The DB-5 reconciliation found a defect in the §291 repair
+
+The §291 report said *"now fail-closed"* while listing DB-5 as new and unrepaired. That
+inconsistency was worth chasing, because underneath it was something worse.
+
+§291 had given `findLearnedFix` an **optional `scope` parameter** and returned early when it was
+absent — **but the query underneath was never scoped.** The guard held only because no caller
+happened to pass a scope. It would have become **fail-open** the first time one did, and the caller
+would have believed it was asking for a single workspace.
+
+> A guard that inverts when someone starts using it is worse than no guard, because it reads as
+> protection.
+
+The parameter is gone. There is no way to ask for cross-tenant data because there is nothing to ask
+with, and the proof now runs against `fix_feedback` actually populated from two workspaces rather
+than against an empty table.
+
+### PV-3 closed by measuring before pinning
+
+The production runtime was not observable, so §292 made it observable first. The Render build log
+then answered the question without a deploy — `Using Node.js version 24.14.1 (default)` — and
+`(default)` was the finding: both halves already ran 24, and nothing in the repository had chosen
+it. The pin makes an implicit default explicit.
+
+It also caught a live drift: §289 reported the gates running on Node `v20.20.2`; they were on
+`v26.7.0`. Nothing noticed, mid-release-programme. That is the gap PV-3 exists to close.
+
+### What is left, and why it is not engineering
+
+**MO-1 — `MONITORING_DESTINATION_OWNER_DECISION_REQUIRED`.** §292 searched properly before
+declaring this. Project documentation names exactly one established destination — Render's own
+service notification, which is a *platform* channel the application cannot publish into. There is no
+Slack, PagerDuty, Sentry or webhook configuration anywhere; Render has zero webhooks and no log
+stream; Vercel has zero integrations; and the Resend credential that would open the email channel
+does not exist. **Inventing a destination was forbidden, and would have been the wrong thing to do**
+— an alert address nobody reads is worse than an honest `NOT_CONFIGURED`.
+
+The mechanism was re-proven on the §292 build against a real receiver: 401, 404, 400, a duplicate
+registration and a 402 entitlement refusal produced **zero** alerts; one qualifying 500 produced
+**two**, one per event kind, delivered in **4 ms**, carrying no content. Thresholds were not touched.
+
+**BR-2 — one console read.** Neon's retention and PITR settings are control-plane and are not
+exposed to SQL. No `neonctl`, no `NEON_*` variable, no Vercel integration, no API key. What *is* out
+of doubt is the operator-controlled backup path, now proven three times including a fresh
+content-checksum-verified restore immediately before the §291 migration.
+
+### Threshold B does not close, and that is the honest answer
+
+Internal production use remains **NOT YET AUTHORIZED**. Nothing in Threshold C changed, no legal
+item was reclassified, and **external beta remains BLOCKED**.
 
 ---
 

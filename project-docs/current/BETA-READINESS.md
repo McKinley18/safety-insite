@@ -1,6 +1,6 @@
 # Beta readiness
 
-> ### RELEASE AUTHORITY MOVED — §288, live evidence §289, DEPLOYED §290, Threshold-B engineering §291
+> ### RELEASE AUTHORITY MOVED — §288, live evidence §289, DEPLOYED §290, engineering §291, configuration §292
 >
 > The authoritative statement of what prevents release is now
 > [`PRE-PRODUCTION-RELEASE-REGISTER.md`](PRE-PRODUCTION-RELEASE-REGISTER.md), which answers the
