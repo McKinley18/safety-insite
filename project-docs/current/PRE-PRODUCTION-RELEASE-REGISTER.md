@@ -4,16 +4,17 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, updated with live production evidence at **§289**, and **deployed at §290**. **Threshold A is closed.** Machine-readable
+Established at **§288**, live production evidence at **§289**, **deployed at §290**, Threshold-B engineering closed at **§291**.
+**Threshold A is closed. Threshold B stands at three configuration actions.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
 | | |
 |---|---|
-| Candidate — **product source commit** | `c695376a30f72985897cc9da2631511c3212c7ef` — the §290 gate set ran against this, and it does not move |
-| **Release binding** | `applicationSourceDigest` = `7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1` |
+| Candidate — **product source commit** | `eb12dc50a266dba5d4ba2d638ef2c568c3a4f027` — the §291 gate set ran against this |
+| **Release binding** | `applicationSourceDigest` = `da76108cf2da2cc9c635859f517d542a57b42f67e6ccf25961f734c98689d0b1` |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `990a26b70dc625514bc081bfb7b2bb2ce4a19569` — live on both halves since 2026-09-14T17:26Z |
+| **Deployed release SHA** | `eb12dc50a266dba5d4ba2d638ef2c568c3a4f027` — live on both halves, schema `1800000023000` |
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
@@ -45,8 +46,8 @@ the others.
 | | Threshold | What it means | Blockers |
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
-| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **7** |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **20** |
+| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **3** — and none of the three is engineering |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **17** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
 > three could only be closed *by the deployment*. §290 performed the deployment and closed them:
@@ -69,7 +70,7 @@ threshold with P0 items.
 
 | | Meaning |
 |---|---|
-| **P0** | Release is unsafe or indefensible without it. Six items, all at Threshold C, all legal/consent. |
+| **P0** | Release is unsafe or indefensible without it. **Four** items after §291 — all at Threshold C, all legal. `SU-1` and `SU-3` were P0 **engineering** items and closed on evidence; `SU-2`, `LG-1`, `LG-2` and `LG-3` remain, and no legal item was reclassified because engineering capability now exists. |
 | **P1** | Must be closed before the threshold it blocks; a real gap with a known shape. |
 | **P2** | Registered and scheduled. Not a blocker unless paired with something else. |
 | **P3** | Recorded fact, closed item, or accepted position. Carried so it is not rediscovered. |
@@ -82,12 +83,12 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **73** | **6** | **9** | **37** | **21** |
+| Entries | **76** | **4** | **7** | **44** | **21** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 30 |
-| OPEN | 37 |
+| CLOSED | 36 |
+| OPEN | 34 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
 
@@ -162,7 +163,15 @@ executing the deployment.
 
 ### Threshold B — internal / owner production use  (11 items)
 
-All of A — now closed — plus `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
+**Three items remain, and every one is a configuration or console action rather than engineering:**
+
+| | what is actually left |
+|---|---|
+| **MO-1** | The alerting mechanism is built and proven. **Set one destination** — a webhook URL, or an email address plus the credential `EM-2` says is missing — then induce one failure and watch it arrive. |
+| **BR-2** | **One read** of the Neon console: the history-retention window and the PITR setting. |
+| **PV-3** | Pin a Node version in both packages and read back the Render runtime version. |
+
+Closed at §291: `DB-4`, `DB-6`, `SU-1`, `SU-3`, `PA-1`, `OF-4`. The former Threshold-B list was `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
 retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
 pinned and the Render runtime version cannot be read, so a rebuild reproduces the source but not
 provably the artifact).
@@ -266,11 +275,25 @@ are retained so a later section does not rediscover them as new.
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **SU-1** | Agreement acceptance is evaluated CLIENT-SIDE ONLY and is never transmitted to the server. | P0 | BC | Engineering | OPEN |
+| **SU-1** | Acceptance is transmitted, validated server-side, and recorded by the server. Registration without it is refused. | P2 | — | Engineering | **CLOSED (§291)** |
 | **SU-2** | The signup checkbox is a SAFETY-RESPONSIBILITY acknowledgement, not an acceptance of Terms, and links to nothing. | P0 | C | Mixed | OPEN |
-| **SU-3** | No agreement version, acceptance timestamp, identity binding, re-acceptance mechanism, or means of later evidencing acceptance exists. | P0 | BC | Engineering | OPEN |
+| **SU-3** | Version, timestamp, identity binding, workspace, document digest, re-acceptance and evidence retrieval all exist and are proven. | P2 | — | Engineering | **CLOSED (§291)** |
 
-**SU-1 — remediation / decision.** Transmit and persist the acceptance: agreement id, version, timestamp, and the user id it binds to.
+**SU-1 / SU-3 — CLOSED at §291. The server now decides what was accepted.**
+
+The defect was that a tick in a browser *was* the evidential record, and it vanished with the page. Inverting that is the whole design: the client sends an **assertion**, the server checks it against its own registry, and the server writes the row.
+
+| refused | why |
+|---|---|
+| registration with **no** acceptance | **400**, naming the agreement and version — and refused **before any account row exists**, so nothing is left behind |
+| a **superseded** version | **400** — otherwise a cached page could accept old text forever and re-acceptance would quietly stop working |
+| an **unknown** agreement | **400** |
+
+Every stored field comes from the server: agreement id, version, a **sha256 of the exact text accepted**, the counsel status at the time, the timestamp, the user, the workspace. The digest matters because in a year the question is not *"did they tick a box"* but *"what did the document say when they did"*.
+
+**Re-acceptance needs no policy engine.** It is one comparison — is there a row at the version currently required? Raising a version makes prior acceptances outstanding **without touching a stored row**, so no account is reset, and re-acceptance is an `INSERT`: the earlier acceptance survives because it remains true that the person accepted that text on that date. Proven: stored versions went from `[2026-01-01.0]` to `[2026-01-01.0, 2026-09-14.1]`. Accepting the same version twice is one fact, enforced by a unique index — 2 rows stayed 2 rows.
+
+**Nothing here is counsel-approved, and the product says so in a field rather than a comment.** The agreement is `counselStatus: NOT_COUNSEL_REVIEWED` and is named an internal pre-beta acknowledgement. **`SU-2`, `LG-1`, `LG-2` and `LG-3` remain open at Threshold C**, and this closes none of them.
 
 *Evidence:* `frontend-next/app/register/page.tsx:79 and the POST body at :90-102; backend auth.service register records nothing`  
 *Retest:* A registration that is refused server-side without acceptance, and an acceptance row that can be produced for a named user.
@@ -411,7 +434,7 @@ are retained so a later section does not rediscover them as new.
 | **OF-1** | OFFLINE CAPTURE and OFFLINE PERSISTENCE work: field capture stores observations and photos in per-user IndexedDB behind a controlling service worker. | P3 | — | Engineering | CLOSED |
 | **OF-2** | OFFLINE MUTATION OUTBOX exists for calendar TASKS only. Corrective-action create, edit and close are REQUIRES_NETWORK. | P2 | — | Product | OPEN |
 | **OF-3** | OFFLINE CONFLICT RESOLUTION does not exist, and OFFLINE HAZLENZ INTELLIGENCE does not exist. | P3 | — | Product | DEFERRED |
-| **OF-4** | D-053 residual: corrective-action EDIT and CLOSE carry no idempotency key. | P1 | — | Engineering | OPEN |
+| **OF-4** | D-053: EDIT is naturally idempotent; CLOSE side effects now fire on the transition, not the request. | P2 | — | Engineering | **CLOSED (§291)** |
 
 **OF-2 — remediation / decision.** Recommended v1 beta minimum is capture+persistence offline and honest refusal for everything else, which is what ships. A mutation outbox for actions is v1.1/v2.
 
@@ -423,7 +446,13 @@ are retained so a later section does not rediscover them as new.
 *Evidence:* `no conflict-resolution module`  
 *Retest:* None for v1. Guarded by CM-1.
 
-**OF-4 — remediation / decision.** Extend the clientRequestId pattern to the two mutation routes, OR accept last-write-wins and state it. This is a PRECONDITION for any future offline outbox, not a live defect: no duplicate has been produced by either route.
+**OF-4 — CLOSED at §291. The transition was idempotent; its side effects were not, and that is where the harm was.**
+
+**EDIT — naturally idempotent, reclassified.** Every field is assigned absolutely, so a replayed `PATCH` leaves the row **byte-identical**: zero differing columns, zero duplicate side effects. The extra audit row is a true record of two requests, not a state change.
+
+**CLOSE — this one was genuinely unsafe.** `recordClosureIntelligence` **inserted a new outcome row on every request**. A client that commits a close, loses the response and retries therefore wrote *two* outcomes for one closure — and because `checkRecurrence` counts rows in a window, **a retry could manufacture a recurrence that never happened and escalate the customer's own action on the strength of its own duplicate.** The feedback write has a sharper threshold still: a remediation is promoted at **two** occurrences, so two retries of a single closure could mint a "learned" fix from one event.
+
+Closure side effects now fire on the **transition**, not the request. `close()` had no gate at all. Proven: a retry leaves outcomes at 1, and a genuine reopen-then-reclose records a second outcome (1 → 2) — so it is not over-corrected. Two closures are two closures; one closure twice is one.
 
 *Evidence:* `verification/current/action-lifecycle-287 I0-I4, U8, F4-F5`  
 *Retest:* A duplicate-submission measurement on both routes.
@@ -561,7 +590,9 @@ Four observations registered rather than fixed: the service slug and public host
 | **DB-1** | Production migration head READ at §289: `1800000018000`, 50 applied, zero drift, 4 pending, none destructive. | P2 | — | Engineering | **CLOSED (§289)** |
 | **DB-2** | The §287 corrective-action lifecycle migration had a DUPLICATE, out-of-order timestamp (1800000006000, colliding with AddUserProfileNames) which also left schemaCompatibilityVersion blind to the schema change. | P2 | — | Engineering | CLOSED |
 | **DB-3** | The outcomes table is absent from the MIGRATION SET but PRESENT in the production database. The reachability conclusion drawn from its absence does not hold. | P2 | — | Security | OPEN — premise corrected at §289 |
-| **DB-4** | The cross-tenant recurrence path is REACHABLE in production, because the outcomes table exists there. | P1 | **BC** | Mixed | OPEN — §290 product-owner hold |
+| **DB-4** | Recurrence is scoped to one workspace, proven on a production-shaped database. | P2 | — | Mixed | **CLOSED (§291)** |
+| **DB-5** | Learned corrective-action fixes were selected across every tenant. Leak closed; the capability is a product decision. | P2 | — | Mixed | OPEN (§291) |
+| **DB-6** | Closure intelligence failed for every hand-created corrective action. | P2 | — | Engineering | **CLOSED (§291)** |
 
 **DB-1 — CLOSED at §289.** The read §288 was forbidden to take. Production head `1800000018000`, **50 applied**, and — the fact that actually matters — **zero drift**: every applied row matches a migration file in the candidate, and the four pending ones are strictly newer than the head.
 
@@ -610,7 +641,40 @@ So on production, `PATCH /actions/:id/status` with `closed` does **not** fail wi
 *Remediation:* Scope the recurrence query to tenant/workspace and prove both directions (the TI-2 remediation), **or** decide the outcome loop is deliberately global and state that as a product position. Dropping the production table to restore the original containment is a production **write** and belongs to its own authorised section.  
 *Retest:* A two-workspace regression proving same-tenant history CAN influence a recurrence and other-tenant history CANNOT.
 
-**§290 PRODUCT-OWNER HOLD.** DB-4 is **real** and must not be described as unreachable. It does **not** block Threshold A, because Threshold A authorises *deployment*, not ordinary product use. It **does** block unrestricted Threshold B corrective-action operation and External Beta, and the register now records it as blocking both. Until it is repaired and validated in production shape, **corrective-action closure must not be exercised in production** except as a deliberately bounded synthetic release test — and §290 judged such a test unnecessary and did not perform one.
+**DB-4 — CLOSED at §291. The root cause was not the missing table.**
+
+§286 reasoned that the branch could not run because no migration creates `outcomes`. §289 found the table present. §291 measured **why**: TypeORM `synchronize` created it before the switch was turned off, and it is one of **twenty-one** production tables outside the migration lineage — production has 77 tables, a clean replay of all 55 migrations produces 56.
+
+So the defect was never a missing table. It was a query counting outcomes **across every tenant** that nothing was stopping.
+
+**The repair is scope, not unreachability.** `outcomes` has no owner of its own, so the scope comes from the authoritative relationship that does exist — `outcomes.actionId → corrective_actions` — and applies the product's *own* workspace predicate, the one already used for every list, read and mutation. The scope is a **required argument**, so a recurrence figure cannot be computed without one. **No column was added** to a table outside the lineage, and no migration was created for it.
+
+**Validated on a production-SHAPED database**, not the historical local state where the table is absent: the clean rebuild plus production's own `outcomes` DDL, verified column-for-column identical before any test ran.
+
+| | |
+|---|---|
+| A history **may** influence A | **PASS** — `true`, escalated to `urgent`, which is the intended behaviour |
+| A history **cannot** influence B | **PASS** — `false`, B's action stayed `medium` |
+| B history **cannot** influence A | **PASS** — `false`, A's action stayed `medium` |
+| Zero history | **PASS** — `false` |
+| No identifier escapes | **PASS** |
+
+**And the negative control, because a test that cannot fail proves nothing:** the OLD query, run verbatim against the same fixtures and evaluated for B, returns **1 matching row** and would have set recurrence `true`. The new one returns 0 for B and 1 for A — neither under- nor over-corrected.
+
+Exercised in production after deployment: a real closure wrote a clean outcome with `recurrenceDetected=false`, the priority was unchanged, and no failure event was emitted.
+
+*Evidence:* `verification/current/threshold-b-291/SECTION-291-THRESHOLD-B.json` → `DB_4`  
+*Retest:* The two-workspace proof, including the negative control, on any change to the recurrence path.
+
+**DB-5 — the same family, found while looking.** `findLearnedFix` selected approved `fix_feedback` across **every tenant** and put the resulting remediation titles at the **top** of the actions HazLenz proposes. That leaked **content**, not just influence. `fix_feedback` carries no owner and its `report_id` is not reliably a report — the outcome path writes an *action* id into it — so no correct scoping predicate exists over the current schema, and the only read path carries no workspace. The read is now **fail-closed**: no scope, no suggestions. Behaviour-preserving in production, where the table has zero rows and this has never once returned a fix.
+
+*Remediation:* a product decision. If workspace-scoped learning is a v1 capability, add a workspace column, populate it at write time, thread a scope into the HazLenz pipeline, and prove both directions as DB-4 was proven. If not, remove the read path.
+
+**DB-6 — why the loop had never actually run.** `outcomes."originalRecommendation"` is `jsonb NOT NULL` and `action.originalSuggestion` is NULL for every **hand-created** action, so the insert violated the constraint — caught by the §286 guard, emitted as `action.closure_intelligence_failed`, and invisible to the customer, who saw a successful closure. Six of six failed this way under test. `{}` is now written for *"no original recommendation was recorded"*, which fabricates nothing.
+
+> It would **not** have saved us: an action created from a HazLenz finding carries an `originalSuggestion`, so for those the cross-tenant query ran.
+
+**§290 PRODUCT-OWNER HOLD (superseded by the repair above).** DB-4 was **real** and must not be described as unreachable. It does **not** block Threshold A, because Threshold A authorises *deployment*, not ordinary product use. It **does** block unrestricted Threshold B corrective-action operation and External Beta, and the register now records it as blocking both. Until it is repaired and validated in production shape, **corrective-action closure must not be exercised in production** except as a deliberately bounded synthetic release test — and §290 judged such a test unnecessary and did not perform one.
 
 ### BACKUP / RESTORE
 
@@ -668,9 +732,26 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **MO-1** | Structured operational events are emitted to stdout/stderr with redaction, but there is no aggregation, alerting, error tracking or incident runbook. | P1 | BC | Infrastructure | OPEN |
+| **MO-1** | The alerting mechanism is built and proven. No destination is configured in production. | P1 | BC | Infrastructure | OPEN — one configuration step |
 
-**MO-1 — remediation / decision.** Aggregate the operational event stream, alert on the error-severity events that already exist (report.generation_failed, action.audit_write_failed, schema.readiness_failed, migration.failed), and write a minimal incident runbook with an owner and a contact path.
+**MO-1 — §291 built the push half, and production still has nowhere to push to.**
+
+§290 could only say failures were *retrievable*. §291 made them *deliverable*: every error-severity operational event is dispatched to a configured destination, and the log line is always written first, so alerting can fail without taking the evidence with it.
+
+**The noise policy is the hard part, and it is encoded rather than intended.** §290 counted 15 × 401 and 1 × 402 during a completely successful release — alerting on those would bury the real signal and train the operator to ignore the channel.
+
+| | |
+|---|---|
+| **Alerts** | every `error`-severity operational event |
+| **Never alerts** | 401, 402, 404, ordinary 400 validation, expected 409 conflict |
+| **Alerts on a pattern** | 5 × 5xx in 5 minutes raises **one** `service.error_rate_exceeded`, not one alert per failed request |
+| **De-duplicates** | one alert per event kind per 15 minutes, with a hard ceiling of 12 per window so an alerting bug cannot become a mail bomb |
+
+**Proven against a real failure, not a mock.** Pointing storage at an unwritable root and generating reports produced **six consecutive HTTP 500s** and **three alerts** — `storage.operation_failed` ×1, `report.generation_failed` ×1, and one `service.error_rate_exceeded` carrying path, method, status and count and no content. In the same run, 401, 404 and 400 produced **zero**.
+
+**Why it is still open.** No destination is configured in production, and §291 forbids adding mutable production configuration casually — choosing an alerting channel has a cost and an account attached. So `/health/ready` now reports `alerting: NOT_CONFIGURED` with the reason and the full policy: **"nothing is watching" is a visible fact rather than a silent assumption.**
+
+*Remediation:* **one configuration step.** Set `OPERATIONAL_ALERT_WEBHOOK_URL` (any receiver), or `OPERATIONAL_ALERT_EMAIL` plus the `RESEND_API_KEY` that `EM-2` says is missing. Then induce one failure and confirm it arrives.
 
 *Evidence:* `backend/src/observability/operational-events.ts; no APM dependency`  
 *Retest:* One alert fired end to end from a deliberately induced error-severity event.
@@ -754,6 +835,13 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **EM-1** | The only outbound email is password reset, via Resend, and production refuses to run without PASSWORD_RESET_PROVIDER=resend. All other notifications are in-app database rows with no delivery. | P2 | — | Product | OPEN |
+| **EM-2** | Production has no Resend credential, so password reset cannot deliver. | P1 | C | Infrastructure | OPEN (§291) |
+
+**EM-2 — new at §291.** `PASSWORD_RESET_PROVIDER=resend` in production, but `RESEND_API_KEY` and `PASSWORD_RESET_FROM_EMAIL` are both **absent** from the 41 production environment variables. `checkProductionConfiguration()` is written to require all three and the service starts anyway, so that check is not enforced as a boot refusal. **A user who forgets their password cannot recover it** — and this also removes the most obvious destination for `MO-1`.
+
+*Remediation:* configure both variables and exercise one reset end to end. Separately, decide whether the boot contract should **refuse** rather than merely report.
+
+*Retest:* A password reset requested and received.
 
 **EM-1 — remediation / decision.** Decide whether the beta needs any outbound notification beyond password reset. If not, ensure no surface implies a user will be emailed when work is assigned to them.
 
@@ -817,9 +905,13 @@ The rollback itself is no longer theoretical: §289 rehearsed all four `down()` 
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **PA-1** | No production acceptance procedure is defined: after deploying, nothing states what must be true before a human is allowed to use the system. | P1 | BC | Mixed | OPEN |
+| **PA-1** | A bounded internal production acceptance was executed against the deployed release. | P2 | — | Mixed | **CLOSED (§291)** |
 
-**PA-1 — remediation / decision.** Define a short post-deploy acceptance: health and readiness, version/SHA match, one real inspection to a generated report, storage round-trip, entitlement boundary, and the operational event stream visible.
+**PA-1 — EXECUTED at §291 against the deployed release.** A synthetic owner account, no external user.
+
+Consent-gated registration (refused without acceptance, accepted with it) → login → site → inspection → observation → user-authored finding → human review → finalization → completion readiness → `in_review` → `completed` → corrective-action create → update → **close** → calendar → report generation → checksum-matched download → revision identity → logout → fresh login → **every authoritative record still there**: the completed inspection with its observation, the closed action with its closure notes and completion stamp and its priority unchanged, the byte-identical report, and the consent evidence.
+
+**Zero 5xx and zero operational failure events for the entire acceptance.** The closure in particular is the one that would previously have emitted `action.closure_intelligence_failed` — see `DB-6`.
 
 *Evidence:* `verification/current/LOCAL-PRODUCT-BASELINE.json is explicitly the LOCAL baseline`  
 *Retest:* The acceptance executed against the controlled production environment and recorded.
@@ -837,6 +929,68 @@ together. Any section that closes an entry must:
 
 **Do not restate release status anywhere else.** `BETA-BLOCKERS.json`, `BETA-READINESS.md` and
 `CURRENT-STATE.md` point here; they do not carry a competing verdict.
+
+---
+
+## §291 — Threshold-B engineering, and the three things that are left
+
+**Threshold B went from seven to three, and not one of the three is engineering.** `MO-1` needs a
+destination set. `BR-2` needs one read of the Neon console. `PV-3` needs a Node version pinned.
+
+### The finding that reframed DB-4
+
+§288 recorded the cross-tenant recurrence path as contained because no migration creates `outcomes`.
+§289 found the table present. §291 asked the question neither had: **how did it get there, and is it
+alone?**
+
+It is not. **Production has 77 tables; replaying all 55 migrations into an empty database produces
+56.** Twenty-one tables exist in production that no migration creates, all derived from live
+`@Entity` classes by TypeORM `synchronize` before that switch was turned off — `outcomes` matches its
+entity exactly, defaults included, which is that mechanism's signature and nothing else's.
+
+So the build-and-restore guide was implying something untrue, and
+[`PRODUCTION-SCHEMA-PROVENANCE.md`](../preservation/v1-beta/PRODUCTION-SCHEMA-PROVENANCE.md) now
+records the divergence, the method for re-measuring it, and the rule it exists to enforce:
+
+> **"No migration creates it" does not mean "it does not exist."**
+
+That inference is what produced DB-4, and the repair deliberately does **not** replace it with
+another unreachability claim. The branch *is* reachable. It is safe because it is scoped.
+
+### Two defects found while proving the first one
+
+Neither was in scope when §291 began, and both were in the same closure handler.
+
+**`DB-5`** — `findLearnedFix` selected approved feedback across every tenant and put other
+customers' remediation wording at the *top* of the actions HazLenz proposes. That is a **content**
+leak, not an influence leak. Now fail-closed.
+
+**`DB-6`** — the closure intelligence loop had been failing on **every hand-created action** for a
+`NOT NULL` violation, caught by a guard, logged, and invisible to the customer who saw a successful
+close. Six of six failed under test. It would not have saved us: an action created from a HazLenz
+finding carries the missing field, so for those the cross-tenant query ran.
+
+### What was deliberately not done
+
+`EXPERT_EXECUTION_ENABLED` stayed `false` — **0 provider calls, 0 Expert calls**. No production
+configuration was changed and no secret altered: the env var count is still 41. No migration was
+created for `outcomes`, because the repair needed **scope, not schema**, and §291 is explicit that a
+migration must not be written merely to recreate a table that already exists.
+
+`BUILD_FALLBACK` was left alone. `gitCommit` is platform-sourced and the release is bound by
+`applicationSourceDigest`, which answers *"is this the same product"* rather than *"is this the same
+commit someone wrote down"*. Setting a wall-clock variable would add mutable production
+configuration to make a cosmetic field green.
+
+### What closing SU-1 and SU-3 does and does not mean
+
+They were **P0**, and they are closed — which is why the P0 count fell from six to four. They were
+also explicitly **engineering** items, and §288 said so: *recording that someone accepted version X
+at time T is independent of what the document says.*
+
+**No legal item was reclassified because engineering capability now exists.** `SU-2`, `LG-1`, `LG-2`
+and `LG-3` remain open, the agreement the product ships is `NOT_COUNSEL_REVIEWED` in a field rather
+than a comment, and **external beta remains BLOCKED**.
 
 ---
 

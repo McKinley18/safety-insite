@@ -1,0 +1,243 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_291_THRESHOLD_B",
+  "section": "291",
+  "generated": "2026-09-14T18:20:29Z",
+  "outcome": "THRESHOLD B REDUCED FROM 7 TO 3. All Threshold-B ENGINEERING is closed. The three that remain are configuration or console reads, not engineering.",
+  "startingProductionSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+  "endingProductionSha": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
+  "applicationSourceDigest": "da76108cf2da2cc9c635859f517d542a57b42f67e6ccf25961f734c98689d0b1",
+  "schemaHead": "1800000023000",
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "constraints": {
+    "providerCalls": 0,
+    "expertCalls": 0,
+    "expertExecutionEnabled": false,
+    "externalUsersInvited": 0,
+    "productionConfigurationChanges": 0,
+    "productionSecretsAltered": 0,
+    "rollbackEvents": 0,
+    "productionEnvVarCount": 41
+  },
+  "DB_4": {
+    "rootCause": "NOT the missing table. §286 reasoned the branch was unreachable because no migration creates `outcomes`; §289 found the table present; §291 measured why — TypeORM `synchronize` created it before the switch was turned off. The production column set matches the entity exactly, defaults included, which is that mechanism's signature. TWENTY-ONE production tables are outside the migration lineage, all entity-derived. The actual defect was `checkRecurrence` counting outcomes by category ACROSS EVERY TENANT and escalating a customer's action to `urgent` on the strength of it.",
+    "intendedSemantics": "Recurrence means: this hazard category has come back FOR THIS CUSTOMER. The product already has exactly one definition of workspace — an organization scopes by organizationId, a personal account by organizationId IS NULL plus ownerUserId — and it is the predicate CorrectiveActionsService applies to every list, read and mutation. Recurrence now uses the same one.",
+    "repair": "checkRecurrence joins outcomes to corrective_actions on outcomes.actionId (cast to uuid behind a regex guard, so a malformed id counts for nobody rather than raising) and applies that predicate. The scope is a REQUIRED argument: a recurrence figure cannot be computed without one. NO column was added to `outcomes`, which sits outside the migration lineage, and no migration was created for it.",
+    "productionShapedValidation": {
+      "howTheShapeWasAchieved": "A clean database built by replaying all 55 migrations into an empty PostgreSQL 17, then production's own `outcomes` DDL applied by pg_dump --schema-only. Verified column-for-column identical to production before any test ran.",
+      "whyThatMatters": "§291 forbids validating only against the historical local state where the table is absent. This reproduces the production fact.",
+      "workspaceA": "personal account, one historical outcome backdated into the 7-30 day window",
+      "workspaceB": "personal account, same hazard category, no history",
+      "test1_A_influences_A": "PASS — recurrenceDetected true, action escalated to urgent, which is the INTENDED behaviour",
+      "test2_A_cannot_influence_B": "PASS — recurrenceDetected false, B's action stayed at medium",
+      "test3_B_cannot_influence_A": "PASS — recurrenceDetected false, A's action stayed at medium",
+      "test4_zero_history": "PASS — recurrenceDetected false",
+      "test5_no_identifier_escapes": "PASS — the outcome row mentions no other workspace's user id or action id",
+      "negativeControl": "The OLD unscoped query, run verbatim against the same fixtures and evaluated for B, returns 1 matching row and would have set recurrenceDetected TRUE. The NEW query returns 0 for B and 1 for A. The defect was real and the repair is neither under- nor over-corrected."
+    },
+    "productionExercise": "Deployed and exercised: a real corrective-action closure in production wrote a clean outcome row with recurrenceDetected=false, the action's priority was unchanged by any other tenant's history, and zero operational failure events were emitted.",
+    "verdict": "CLOSED"
+  },
+  "DB_5": {
+    "finding": "findLearnedFix selected approved fix_feedback across EVERY tenant and placed the resulting remediation titles at the TOP of the actions HazLenz proposes, reachable from hazlenz.service.ts. Same family as DB-4 and more serious: it leaked CONTENT, not influence.",
+    "whyFailClosedRatherThanScoped": "fix_feedback carries no owner, and its `report_id` is not reliably a report — OutcomeService writes a corrective ACTION id into it — so no correct scoping predicate exists over the current schema. The only read path runs inside the HazLenz analysis pipeline, which carries no workspace, and threading one through it is the large change §291 warns against.",
+    "repair": "The read requires a workspace scope and returns nothing without one. Writes retained.",
+    "productionImpact": "NONE — fix_feedback has 0 rows and has never had any, so this method has never once returned a learned fix.",
+    "verdict": "Leak eliminated. Whether workspace-scoped learning is a v1 capability is a registered product decision."
+  },
+  "DB_6": {
+    "finding": "outcomes.\"originalRecommendation\" is jsonb NOT NULL; action.originalSuggestion is NULL for every hand-created corrective action. Six of six hand-created closures failed the insert under test — caught by the §286 guard, emitted as action.closure_intelligence_failed, and invisible to the customer, who saw a successful closure.",
+    "repair": "`{}` for \"no original recommendation was recorded\" — the honest value, fabricating nothing.",
+    "note": "This is why the cross-tenant path had never fired for hand-created actions. It WOULD have fired for any action created from a HazLenz finding, which carries an originalSuggestion.",
+    "verdict": "CLOSED — verified in production by a real closure that wrote a clean outcome and emitted no failure event."
+  },
+  "outcomesProvenance": {
+    "conclusion": "ACTIVE FEATURE DEPENDENCY, entity-derived, outside the migration lineage. Also a candidate for governed migration adoption, which is a product-owner decision and was not taken.",
+    "notDeadResidue": "OutcomesModule is wired into AppModule and recordOutcome runs on every corrective-action closure.",
+    "notLegacy": "The production column set matches the CURRENT entity exactly, defaults included.",
+    "evidence": "Production 77 tables vs 56 from a clean migration replay. See project-docs/preservation/v1-beta/PRODUCTION-SCHEMA-PROVENANCE.md.",
+    "sourceCommentCorrected": "The 'unreachable because no migration creates the table' reasoning is removed from corrective-actions.service.ts and replaced with the measured provenance. It was NOT replaced with another unreachability claim: the branch IS reachable and is made safe by being scoped."
+  },
+  "productionSchemaDivergence": {
+    "productionTables": 77,
+    "cleanRebuildTables": 56,
+    "divergent": 21,
+    "cause": "TypeORM synchronize, before TYPEORM_SYNCHRONIZE was set to false. All 21 are entity-derived.",
+    "nonEmpty": {
+      "corrective_action_templates": 31,
+      "standards": 31,
+      "users": 1
+    },
+    "registered": "project-docs/preservation/v1-beta/PRODUCTION-SCHEMA-PROVENANCE.md",
+    "ruleItEnforces": "\"No migration creates it\" does not mean \"it does not exist.\" That inference is what produced DB-4."
+  },
+  "D_053": {
+    "edit": {
+      "result": "NATURALLY IDEMPOTENT — RECLASSIFIED",
+      "proof": "Every field is assigned absolutely. A replayed PATCH leaves the row byte-identical (zero differing columns excluding updatedAt/version) with zero duplicate side effects. The extra audit row is a true record of two requests, not a state change."
+    },
+    "close": {
+      "resultBefore": "NOT IDEMPOTENT — harmful duplicate side effects",
+      "harm": "recordClosureIntelligence INSERTED a new outcome row on every request. A lost-response retry wrote two outcomes for one closure, and checkRecurrence counts rows in a window — so a retry could manufacture a recurrence that never happened and escalate the customer's own action on its own duplicate. findLearnedFix promotes at TWO occurrences, so two retries could mint a learned fix from one event.",
+      "repair": "Closure side effects fire on the TRANSITION, not the request. close() had no gate at all and now has the same one.",
+      "proof": "Retry leaves outcomes at 1. A genuine reopen-then-reclose records a second outcome (1 -> 2), so it is not over-corrected."
+    },
+    "verdict": "CLOSED (register OF-4)"
+  },
+  "MO_1": {
+    "implemented": true,
+    "productionDestinationConfigured": false,
+    "mechanism": "Error-severity operational events are dispatched to a configured destination (generic webhook, or Resend email). Never throws, never awaits the caller, and the log line is always written first so alerting can fail without taking the evidence with it.",
+    "noisePolicy": {
+      "alertsOn": "every error-severity operational event, plus a burst of 5xx",
+      "neverAlertsOn": [
+        "401",
+        "402",
+        "404",
+        "ordinary 400 validation",
+        "expected 409 conflict"
+      ],
+      "serverErrorThreshold": "5 in 5 minutes, raising ONE service.error_rate_exceeded rather than one alert per request",
+      "dedupe": "one alert per event kind per 15 minutes",
+      "hardCeiling": "12 alerts per window, so an alerting bug cannot become a mail bomb"
+    },
+    "proof": "A real induced storage failure (unwritable storage root) produced six consecutive HTTP 500s and THREE alerts: storage.operation_failed x1, report.generation_failed x1, service.error_rate_exceeded x1 carrying path, method, statusCode and countInWindow — no content. 401, 404 and 400 produced ZERO alerts.",
+    "visibility": "/health/ready now reports alerting: NOT_CONFIGURED with the reason and the full policy, so \"nothing is watching\" is a visible fact rather than a silent assumption.",
+    "whyStillOpen": "No destination is configured in production. §291 forbids adding mutable production configuration casually, and choosing an alerting channel has a cost and an account attached. The engineering is done and proven; ONE configuration step remains, and EM-2 blocks the easiest of the two options.",
+    "verdict": "OPEN — reduced to a single product-owner configuration decision."
+  },
+  "SU_1_SU_3": {
+    "capability": [
+      "agreement identifier",
+      "version",
+      "sha256 digest of the exact text accepted",
+      "acceptance timestamp",
+      "accepting user identity",
+      "workspace context",
+      "counsel status at acceptance",
+      "acceptance channel"
+    ],
+    "serverEnforcement": "Registration WITHOUT a valid acceptance is refused — with a message naming the agreement and version — BEFORE any account row exists, so a refused registration leaves nothing behind. A SUPERSEDED version is refused, and an UNKNOWN agreement is refused. Every stored field comes from the server's own registry; the client sends an assertion to be checked, not a record to be stored.",
+    "reAcceptance": "One comparison, no policy engine: is there a row at the version the registry currently requires? Raising a version makes prior acceptances outstanding without touching a stored row, so no account is reset. Re-acceptance is an INSERT and the earlier acceptance survives, because it remains true that the person accepted that text on that date. Proven: stored versions went from [2026-01-01.0] to [2026-01-01.0, 2026-09-14.1].",
+    "idempotence": "Accepting the same version twice is one fact, enforced by a unique index. Proven: 2 rows -> 2 rows.",
+    "counselHonesty": "The agreement is counselStatus NOT_COUNSEL_REVIEWED in a FIELD, not a comment, and is named an internal pre-beta acknowledgement. Nothing here is presented as Terms of Service, and SU-2, LG-1, LG-2 and LG-3 remain open at Threshold C.",
+    "productionProof": "Verified against the deployed release: registration refused without acceptance, accepted with it, evidence retrievable, outstanding empty.",
+    "verdict": "CLOSED (engineering half only)"
+  },
+  "PA_1": {
+    "account": "synthetic owner on a @internal-acceptance.invalid domain; no external user",
+    "steps": {
+      "consent-gated registration": "refused without acceptance (400), succeeded with it (201)",
+      "login/session": "201",
+      "site": "201",
+      "inspection": "201",
+      "observation": "201",
+      "user-authored finding": "201",
+      "human review": "201",
+      "finalize finding": "201",
+      "completion readiness": "ready=true reportable=1",
+      "transition in_review": "201",
+      "transition completed": "201",
+      "action create": "201 priority=medium",
+      "action update": "200 priority=high",
+      "ACTION CLOSE": "200 — did not 500, wrote a clean outcome, emitted no failure event",
+      "calendar": "200, the scheduled action appears",
+      "report generation": "201 revision 1",
+      "report download": "200, 8331 bytes, application/pdf, sha256 matches the recorded checksum",
+      "revision identity": "revisionCount 1, currentRevision 1",
+      "logout": "201",
+      "fresh login": "201 with a different token",
+      "persistence across the new session": "inspection completed with its observation; closed action present with closureNotes and closedAt and priority high; report byte-identical; consent evidence intact"
+    },
+    "errors": "0 x 5xx and 0 operational failure events for the entire acceptance",
+    "verdict": "CLOSED"
+  },
+  "safetyControlsPreserved": {
+    "EXPERT_EXECUTION_ENABLED": "false",
+    "productionEnvVarCount": "41 (unchanged — §291 added none)",
+    "renderAutoDeploy": "no / trigger off",
+    "vercelCreateDeployments": "disabled",
+    "ssoProtection": "all_except_custom_domains",
+    "productionXRobotsTag": "noindex, nofollow",
+    "previewProbe": "HTTP 302 to SSO, x-frame-options DENY, x-robots-tag noindex",
+    "vercelEnvVars": "4, all public-prefixed — no backend secret reaches Preview"
+  },
+  "BR_4_buildTimestamp": {
+    "question": "Does reproducible deployment identity already provide sufficient operational authority?",
+    "answer": "YES. /health/version reports gitCommit with versionSourceStatus RENDER_GIT_COMMIT — platform-sourced, not a checked-in literal — and the release is bound by applicationSourceDigest, which answers \"is this the same PRODUCT\" rather than \"is this the same commit someone wrote down\". buildTimestampSourceStatus: BUILD_FALLBACK is SELF-DESCRIBING: it says on its face that the timestamp is not a stamp, which is the property that matters. Setting BUILD_TIMESTAMP would add mutable production configuration to make a cosmetic field green, which §291 explicitly warns against.",
+    "decision": "ACCEPTED POSITION — no change made.",
+    "note": "BR-4 in the canonical register is a DIFFERENT entry: four stale browser instruments. That remains OPEN and was not touched."
+  },
+  "syntheticResidue": {
+    "section290": "one report revision and its 7317-byte PDF in R2, two accounts, one site/inspection/observation/finding",
+    "section291": "one owner account, one site, one inspection with one observation and one finding, two corrective actions (one closed), one report revision and its 8331-byte PDF in R2, one outcome row, one agreement acceptance",
+    "classification": "CONTROLLED PRODUCTION ACCEPTANCE EVIDENCE",
+    "entitlementGrants": "both §290 and §291 pilot grants REVOKED and confirmed ineffective",
+    "notDeleted": "Report immutability (RR-2) is a product guarantee and §291 is explicit that it must not be violated for cleanup. Deleting the R2 object alone would orphan its storage_objects row, which is worse than a labelled synthetic record in a system with no users. No R2 object was orphaned.",
+    "productionRowsAfter": {
+      "outcomes": 1,
+      "agreement_acceptances": 1,
+      "fix_feedback": 0
+    }
+  },
+  "deployment": {
+    "push": "990a26b7 -> eb12dc50; origin/main unchanged at de655d2f",
+    "backup": {
+      "takenAt": "2026-09-14T18:11:24Z",
+      "bytes": 7826595,
+      "sha256": "eea00bd13bebced70d3fe6ef8b02adeee585eb8012cc56671e6101982f76e82c",
+      "tables": 77,
+      "rows": 7086,
+      "verification": "restored into a disposable PostgreSQL 17.11, 0 errors, all 77 tables content-identical"
+    },
+    "migrations": {
+      "applied": [
+        "1800000023000 AgreementAcceptance"
+      ],
+      "headBefore": "1800000022000",
+      "headAfter": "1800000023000",
+      "appliedCount": 55,
+      "destructive": "NONE — one new table and two indexes"
+    },
+    "backend": {
+      "deployId": "dep-dak3hvmq1p3s73cg1qe0",
+      "status": "live",
+      "sha": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
+      "shaGate": "RUNNING SHA OK",
+      "ready": "ready, schema current 55/55"
+    },
+    "frontend": {
+      "deploymentId": "dpl_Ba1MBn41Pd8r6ujCSUcNhSBHSyDa",
+      "target": "production",
+      "sha": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
+      "alias": "safety-insite.vercel.app serves it, confirmed from the served HTML"
+    },
+    "rollbackEvents": 0
+  },
+  "gates": "18 of 18 pass, plus both clean builds.",
+  "registerOutcome": {
+    "thresholdA": 0,
+    "thresholdBBefore": 7,
+    "thresholdBAfter": 3,
+    "thresholdCAfter": 17,
+    "closed": [
+      "DB-4",
+      "DB-6",
+      "SU-1",
+      "SU-3",
+      "PA-1",
+      "OF-4 (D-053)"
+    ],
+    "opened": [
+      "DB-5",
+      "DB-6 (closed same section)",
+      "EM-2"
+    ],
+    "stillOpenAtB": [
+      "MO-1 — one configuration step",
+      "BR-2 — one Neon console read",
+      "PV-3 — pin a Node version and read the runtime one"
+    ],
+    "legalUntouched": "No Threshold-C legal classification was changed. SU-2, LG-1, LG-2 and LG-3 remain open and nothing is counsel-approved."
+  },
+  "nextAuthorizationRequired": "Threshold B closes on three configuration/console actions, none of which is engineering. External Beta remains BLOCKED."
+}

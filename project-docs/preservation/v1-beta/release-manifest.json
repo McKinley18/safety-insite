@@ -1,8 +1,8 @@
 {
   "artifact": "SAFETY_INSITE_V1_BETA_RELEASE_MANIFEST",
-  "generatedBy": "§289, superseded by §290 — controlled production deployment executed",
+  "generatedBy": "§289, superseded at §290 (deployment) and §291 (Threshold-B engineering)",
   "generatedAt": "2026-09-14T17:17:21Z",
-  "status": "DEPLOYED_TO_CONTROLLED_PRODUCTION",
+  "status": "DEPLOYED — THRESHOLD A CLOSED, THRESHOLD B ENGINEERING CLOSED",
   "productVersion": "1.0.0",
   "gitSha": "PENDING — see releaseSha",
   "gitShaNote": "THE RELEASE SHA. The §289 artifact commit, which adds this preservation package, the controlled-production deployment sequence, the operations corrections and the §289 evidence. It is COMMITTED LOCALLY AND NOT PUSHED; see deployment.pushState.",
@@ -17,12 +17,15 @@
     "why": "Recorded for completeness and deliberately NOT used as the release binding. It covers documentation and evidence, so it changes on every §289 artifact commit including the one that would record it. applicationSourceDigest is the release binding."
   },
   "applicationSourceDigest": {
-    "value": "7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1",
+    "value": "da76108cf2da2cc9c635859f517d542a57b42f67e6ccf25961f734c98689d0b1",
     "algorithm": "sha256",
     "recompute": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256",
     "definition": "sha256 over the LC_ALL=C-sorted `git ls-tree -r` lines for the files that determine the BUILT ARTIFACTS.",
     "why": "THE RELEASE BINDING. It changes only when the deployable product changes.",
-    "supersededValue": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618"
+    "supersededValues": [
+      "2ce8a1d7…(§289)",
+      "7c4b5e40…(§290)"
+    ]
   },
   "retiredDigestMustNotBeUsed": {
     "value": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -39,16 +42,14 @@
   "backendVersion": "1.0.0",
   "minimumSupportedFrontendVersion": "1.0.0",
   "releaseContractParity": "PASS — check:release-contract-parity confirms SHIPPED_FRONTEND_VERSION equals frontend-next/package.json version",
-  "schemaCompatibilityVersion": "1800000022000",
+  "schemaCompatibilityVersion": "1800000023000",
   "schemaCompatibilityVersionNote": "DERIVED from the migration files shipped in the artifact (backend/src/common/release-identity.ts), not declared.",
   "migrationHead": {
-    "productionApplied": "1800000022000",
-    "productionAppliedCount": 54,
-    "candidateExpects": "1800000022000",
-    "appliedAt": "2026-09-14T17:21Z",
+    "productionApplied": "1800000023000",
+    "productionAppliedCount": 55,
     "pending": [],
     "drift": "NONE",
-    "destructiveOperations": "NONE — proven table by table against the pre-migration backup"
+    "appliedAt§291": "1800000023000 AgreementAcceptance — additive, one new table and two indexes"
   },
   "nodeVersion": {
     "buildHostUsedForThisManifest": "v20.20.2",
@@ -81,16 +82,18 @@
   "knownLimitations": {
     "PV-NODE-UNPINNED": "No Node version is pinned in either package and the Render runtime version could not be read. A rebuild reproduces the source digest but not, provably, the artifact.",
     "OPS-DB-PROVIDER-MISSTATED": "Two operations documents name Render as the database platform; production is Neon. An operator following deployment-runbook step 3 would look for a Render Postgres instance that does not exist.",
-    "DB-4-OUTCOMES-TABLE-PRESENT": "The `outcomes` table EXISTS in production (13 columns) although no migration creates it, so the corrective-action recurrence query IS REACHABLE in production and is NOT workspace/tenant scoped. This does not block Threshold A, which authorises deployment rather than ordinary product use. It DOES block unrestricted Threshold B corrective-action operation and External Beta. Corrective-action CLOSURE must not be exercised in production until DB-4 is repaired and production-shape validated.",
+    "DB-4-OUTCOMES-TABLE-PRESENT": "RESOLVED at §291. The recurrence query is workspace-scoped and proven on a production-shaped database with a negative control. The table remains outside the migration lineage; adopting it is a registered product-owner decision.",
     "EXPERT-DISABLED": "EXPERT_EXECUTION_ENABLED=false in production. Live provider transport has never been exercised; hazlenz:verify reports UNVERIFIED_LIVE for provider transport.",
     "STORAGE-REPORT-ROUNDTRIP-NOT-DONE": "CLOSED at §290. A generated report round-tripped through production storage from the deployed candidate with the R2 bytes, the database record and the served bytes all hashing to 59ce3cd1…, and an unsigned read of that object refused HTTP 400.",
-    "NO-MONITORING-AGGREGATION": "Failures ARE detectable and retrievable: the Render log store captures method/path/statusCode/level and §290 queried the release window for each failure class. Nothing aggregates or alerts, and every catalogued operational event is a failure or Expert event, so a clean release emits none. MO-1 stays open.",
+    "NO-MONITORING-AGGREGATION": "The alerting mechanism exists and is proven (error-severity events dispatched, 5xx burst raises one rate event, de-duplicated, 401/402/404/400/409 never alert). NO DESTINATION IS CONFIGURED IN PRODUCTION, and /health/ready reports alerting: NOT_CONFIGURED so this is visible rather than assumed. MO-1 remains open on one configuration step.",
     "NEON-RETENTION-UNREAD": "Neon's control plane was not reachable from this session (no NEON_* credential). The platform backup retention window and point-in-time-recovery setting are UNREAD. The operator-controlled logical backup path is proven independently.",
     "LEGAL-NOT-CLEARED": "Terms, Privacy Notice, third-party model disclosure, contracting entity and trademark clearance are all open at Threshold C. Nothing here asserts legal clearance.",
     "NO-EXTERNAL-BETA": "External beta remains BLOCKED regardless of Threshold A status.",
     "BR-3-CLOSED": "Closed at §290. check:launch-pricing no longer conflates the retired Expert pricing tier with Expert HazLenz the capability; 49 passed, 0 failed.",
     "INDEXING-WITHHELD": "Production serves X-Robots-Tag: noindex, nofollow on every route until External Beta is authorised. NEXT_PUBLIC_ALLOW_INDEXING=true lifts it.",
-    "SYNTHETIC-RELEASE-RESIDUE": "§290 left two synthetic accounts on @release-test.invalid, one site/inspection/observation/finding, and one report revision with its PDF in R2. The entitlement grant was revoked. The report was deliberately NOT deleted because report immutability (RR-2) is the guarantee §290 verified, and deleting the R2 object alone would orphan its storage_objects row."
+    "SYNTHETIC-RELEASE-RESIDUE": "§290 left two synthetic accounts on @release-test.invalid, one site/inspection/observation/finding, and one report revision with its PDF in R2. The entitlement grant was revoked. The report was deliberately NOT deleted because report immutability (RR-2) is the guarantee §290 verified, and deleting the R2 object alone would orphan its storage_objects row.",
+    "PRODUCTION-SCHEMA-DIVERGENCE": "Migration replay does NOT reproduce production. Production has 77 tables; a clean replay of all 55 migrations produces 56. Twenty-one entity-derived tables predate the lineage, created by TypeORM synchronize before that switch was turned off. See PRODUCTION-SCHEMA-PROVENANCE.md. A rebuild following this guide will produce a SMALLER schema than production, and `outcomes` in particular must be created for the corrective-action closure path to function.",
+    "EM-2-NO-RESEND-CREDENTIAL": "PASSWORD_RESET_PROVIDER=resend but RESEND_API_KEY and PASSWORD_RESET_FROM_EMAIL are absent from production, so password reset cannot deliver and the email alerting channel is unavailable."
   },
   "canonicalDocs": [
     "project-docs/current/PRE-PRODUCTION-RELEASE-REGISTER.md — THE release authority",
@@ -103,7 +106,8 @@
     "project-docs/operations/ROLLBACK-MODEL.md",
     "project-docs/operations/BACKUP-AND-RESTORE.md",
     "project-docs/operations/MONITORING.md",
-    "project-docs/preservation/v1-beta/SAFETY-INSITE-V1-BETA-BUILD-AND-RESTORE-GUIDE.md"
+    "project-docs/preservation/v1-beta/SAFETY-INSITE-V1-BETA-BUILD-AND-RESTORE-GUIDE.md",
+    "project-docs/preservation/v1-beta/PRODUCTION-SCHEMA-PROVENANCE.md — where production differs from migration replay"
   ],
   "validationEvidence": {
     "section285": "verification/current/completion-report-285/ — inspection completion and reports",
@@ -117,24 +121,15 @@
   "productionMigrations": 0,
   "deployments": 0,
   "productSourceCommit": {
-    "sha": "c695376a30f72985897cc9da2631511c3212c7ef",
-    "why": "THE STABLE IDENTITY for the §290 release. The §290 gate set ran against this commit and it does not move.",
-    "applicationSourceDigest": "7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1",
-    "supersedes": {
-      "sha": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
-      "applicationSourceDigest": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
-      "why": "§290 required two bounded source closures before deployment — the BR-3 launch-pricing repair and the X-Robots-Tag indexing control — so the application source legitimately changed and the digest with it."
-    },
-    "equivalence": "Any §290 commit after this one touches only project-docs/ and verification/ and changes no backend or frontend source, so applicationSourceDigest is unchanged and the gate results obtained here bind whatever tip is deployed.",
+    "sha": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
+    "why": "The §291 gate set ran against this commit.",
+    "applicationSourceDigest": "da76108cf2da2cc9c635859f517d542a57b42f67e6ccf25961f734c98689d0b1",
     "recompute": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256"
   },
   "releaseSha": {
-    "value": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
-    "observedFrom": "production, after deployment — which is why it can be recorded at all",
-    "binding": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
-    "verify": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256",
-    "mustEqual": "7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1",
-    "backendConfirmation": "/health/version gitCommit, versionSourceStatus RENDER_GIT_COMMIT; release:verify-sha RUNNING SHA OK",
-    "frontendConfirmation": "Vercel dpl_14HTnchjHhcrMp5aHFSzut5miJRR meta.githubCommitSha; production alias confirmed from the served HTML"
+    "value": "eb12dc50a266dba5d4ba2d638ef2c568c3a4f027",
+    "observedFrom": "production after deployment",
+    "backendConfirmation": "/health/version gitCommit; release:verify-sha RUNNING SHA OK",
+    "frontendConfirmation": "Vercel dpl_Ba1MBn41Pd8r6ujCSUcNhSBHSyDa meta.githubCommitSha; production alias confirmed from the served HTML"
   }
 }

@@ -1,6 +1,6 @@
 # Safety InSite — current state
 
-> ### RELEASE AUTHORITY MOVED — §288, live production evidence at §289, DEPLOYED at §290
+> ### RELEASE AUTHORITY MOVED — §288, live evidence §289, DEPLOYED §290, Threshold-B engineering §291
 >
 > The authoritative statement of what prevents release is now
 > [`PRE-PRODUCTION-RELEASE-REGISTER.md`](PRE-PRODUCTION-RELEASE-REGISTER.md), which answers the
