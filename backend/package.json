@@ -412,6 +412,7 @@
     "verify:standards-source-metadata": "ts-node src/hazlenz/standards-intelligence/verify-standards-source-metadata.ts",
     "test:279-release-compatibility": "npx ts-node scripts/test-279-release-compatibility.ts",
     "test:294-monitoring-email-channel": "ts-node scripts/test-294-monitoring-email-channel.ts",
+    "test:296-webhook-channel": "ts-node scripts/test-296-webhook-channel.ts",
     "review:stack": "ts-node scripts/review/review-stack.ts",
     "review:stack:release": "ts-node scripts/review/release-review-stack.ts"
   },

@@ -1,0 +1,221 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_296_WEBHOOK_ARCHITECTURE",
+  "section": "296",
+  "generated": "2026-09-14T23:15:38Z",
+  "outcome": "THRESHOLD B DOES NOT CLOSE AND STAYS AT ONE. The webhook architecture is SELECTED and its code branch is PROVEN for the first time since §294 rewrote the dispatcher. The destination itself does not exist and could not be created: no monitored receiver is available through already-authorised access, and inventing, faking or under-monitoring one were each forbidden and would each have reproduced MO-2 with a different cause.",
+  "productionUnchanged": true,
+  "startingProductionSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+  "endingProductionSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+  "applicationSourceDigestDeployed": "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
+  "schemaHead": "1800000023000",
+  "migrationsApplied": "55/55",
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "architecture": {
+    "chosen": "WEBHOOK (Option A)",
+    "chosenBy": "product owner at §296",
+    "rationale": "Not cost and not speed. The product name is to be replaced before external beta, and a verified sending domain entrenches a name — the domain, its DNS, its warmed sending reputation and every address on it — whereas a webhook URL is one environment variable to replace.",
+    "consequence": "EM-2 stays OPEN and is not partially satisfied. A webhook cannot deliver a password-reset link. Transactional email waits for the brand decision or for Threshold C, whichever comes first.",
+    "configurationSurface": "OPERATIONAL_ALERT_WEBHOOK_URL — one server-side Render variable. The URL is the credential: the dispatcher sends no auth header, so it must never appear in frontend-next, in any NEXT_PUBLIC_* variable, in Preview, in source control or in an evidence file. Record its host, never its path."
+  },
+  "webhookBranchProof": {
+    "whyItWasNeeded": "§291 and §292 proved the webhook branch against a local receiver BEFORE §294 rewrote the dispatcher, and §294 proved the new outcome machinery entirely on the EMAIL branch — the string \"webhook\" does not appear in test-294-monitoring-email-channel.ts. At the moment the architecture was selected, the webhook branch outcome recording had never been executed by anything. Closing MO-1 on an unexercised code path would have been the same kind of assumption MO-2 was.",
+    "command": "npm run test:296-webhook-channel",
+    "script": "backend/scripts/test-296-webhook-channel.ts",
+    "separateFileRationale": "A separate file rather than four more cases in the §294 gate: §294 records 21/21 and is cited in the register, and editing it to say something else would rewrite a finished result to describe work it did not do.",
+    "casesRun": 15,
+    "failures": 0,
+    "network": 0,
+    "providerCalls": 0,
+    "productionContact": "NONE",
+    "cases": [
+      {
+        "id": "W1",
+        "pass": true,
+        "title": "a webhook URL alone -> CONFIGURED, channel webhook"
+      },
+      {
+        "id": "W2",
+        "pass": true,
+        "title": "webhook takes precedence when both channels are configured"
+      },
+      {
+        "id": "W3",
+        "pass": true,
+        "title": "receiver 204 No Content -> DELIVERY_ACCEPTED evidence"
+      },
+      {
+        "id": "W4",
+        "pass": true,
+        "title": "receiver 4xx -> PROVIDER_REJECTED evidence  (a revoked or deleted webhook)"
+      },
+      {
+        "id": "W5",
+        "pass": true,
+        "title": "receiver 5xx -> PROVIDER_REJECTED evidence"
+      },
+      {
+        "id": "W6",
+        "pass": true,
+        "title": "transport failure -> NETWORK_FAILURE evidence, no unhandled rejection"
+      },
+      {
+        "id": "W-ASYM",
+        "pass": true,
+        "title": "2xx with a non-JSON body is ACCEPTED on the webhook branch, unlike email"
+      },
+      {
+        "id": "W3b",
+        "pass": true,
+        "title": "receiver 200 with a plain-text body -> DELIVERY_ACCEPTED  (the Slack shape)"
+      },
+      {
+        "id": "W7",
+        "pass": true,
+        "title": "a failed delivery reports DEGRADED; a clean window reports CONFIGURED"
+      },
+      {
+        "id": "W8",
+        "pass": true,
+        "title": "the transmitted payload carries identifiers and no content or secret"
+      },
+      {
+        "id": "W9",
+        "pass": true,
+        "title": "a receiver failure leaves the primary operation successful"
+      },
+      {
+        "id": "W10",
+        "pass": true,
+        "title": "ordinary 400/401/402/404/409 generate no webhook traffic"
+      },
+      {
+        "id": "W11",
+        "pass": true,
+        "title": "five real 500s raise exactly one alert and send it exactly once"
+      },
+      {
+        "id": "W12",
+        "pass": true,
+        "title": "dedupe and the hard ceiling hold on the webhook channel"
+      },
+      {
+        "id": "W-AV",
+        "pass": true,
+        "title": "the retired .catch(() => undefined) would have recorded NOTHING here"
+      }
+    ],
+    "realReceiverShapesAsserted": {
+      "204 No Content (Discord)": "DELIVERY_ACCEPTED",
+      "200 with plain-text body ok (Slack)": "DELIVERY_ACCEPTED"
+    },
+    "deliberateAsymmetry": "The webhook branch does NOT apply the email branch MALFORMED_RESPONSE rule. An arbitrary receiver has no acknowledgement schema, so 2xx IS the acknowledgement. A dispatcher demanding a JSON acknowledgement would report every successful Slack delivery as a failure. Recorded as a decision (case W-ASYM) rather than left to read as an oversight.",
+    "wirePayloadMeasured": "A payload carrying a planted observation text, a planted Authorization header and a planted API key transmitted the identifiers and [redacted], and none of the three planted strings.",
+    "harnessBugFoundAndFixed": "The first run failed W3: a 204 came back as NETWORK_FAILURE. The cause was the harness — new Response(\"\", {status:204}) throws, because a 204 has a null body by definition — and the product had behaved correctly by classifying a thrown fetch as a transport failure. Fixing it turned a harness bug into the most operationally relevant case in the file, since 204 is what a real Discord webhook returns. Recorded rather than quietly corrected.",
+    "antiVacuity": "Case W-AV: a receiver 404 now yields PROVIDER_REJECTED with a warning-severity line; before §294 this exact case produced no observation, no event and no readiness change — the webhook simply stopped working silently."
+  },
+  "destinationSearch": {
+    "result": "NO MONITORED RECEIVER AVAILABLE THROUGH ALREADY-AUTHORISED ACCESS",
+    "slack": "no session; the sign-in page asks for a workspace URL, so no workspace is evidenced",
+    "discord": "no session; redirected to login",
+    "github": "authenticated, but offers no inbound receiver that accepts an unauthenticated POST",
+    "render": "0 webhooks, slackEnabled false; its own notification email is a platform channel the application cannot publish into",
+    "vercel": "0 marketplace integrations, 0 storage stores",
+    "neon": "console session available and read for BR-2, but it is not a webhook receiver",
+    "stripe": "credential present in production, but Stripe provides no inbound receiver for arbitrary payloads",
+    "forbiddenAndNotDone": [
+      "invented a URL",
+      "created a paid account",
+      "accepted third-party terms",
+      "used an ephemeral receiver such as webhook.site or requestbin",
+      "used a receiver nobody would monitor"
+    ],
+    "whyEachShortcutIsTheSameDefect": "Every one of them yields /health/ready reporting alerting CONFIGURED over nothing watching. That is MO-2 with a different cause. Three sections were spent making that state impossible to reach by accident; reaching it on purpose to close a gate would have been worse.",
+    "alsoRejected": "A receiver inside the Safety InSite stack itself — a monitoring destination that dies with the thing it monitors is not a monitoring destination."
+  },
+  "smallestPracticalChoices": [
+    {
+      "option": "Slack free workspace + Incoming Webhook",
+      "cost": "$0",
+      "newAccount": "yes",
+      "terms": "yes",
+      "monitored": "genuinely — mobile app push",
+      "note": "the standard answer; the URL is replaceable when the product is renamed",
+      "recommended": true
+    },
+    {
+      "option": "ntfy.sh with a long random topic",
+      "cost": "$0",
+      "newAccount": "no",
+      "terms": "none",
+      "monitored": "push to the phone",
+      "note": "public server: anyone holding the topic can read the alerts. Bounded because the payload is MEASURED to carry identifiers and no content — but it is an exposure judgement that is the owner's to make."
+    },
+    {
+      "option": "Discord server webhook",
+      "cost": "$0",
+      "newAccount": "yes unless one exists",
+      "terms": "yes",
+      "monitored": "if the owner already lives there",
+      "note": "returns 204, which case W3 now covers"
+    }
+  ],
+  "liveMO1Proof": {
+    "attempted": false,
+    "reason": "no destination exists, so there was nothing to prove receipt against. The runbook step that induces a qualifying production failure was deliberately NOT run: inducing a production 500 to watch an alert go nowhere would have degraded production for no evidence."
+  },
+  "noiseAndDedupe": {
+    "reProvenInProduction": false,
+    "reason": "the configuration did not change, so there was no change whose effect on production behaviour needed re-measuring. The §295 production re-proof (404/401/401/400 -> serverErrorsInWindow 0) remains the current live evidence, and §296 re-proved the full policy against the deployed code path locally, including five real 500s through the real ServerErrorAlertFilter raising exactly one alert and one send."
+  },
+  "failureContainment": "PRESERVED AND RE-PROVEN on the webhook branch: a receiver that throws leaves the primary operation completed, nothing thrown, 0 unhandled rejections, and the alert genuinely attempted and genuinely failed.",
+  "results": {
+    "MO-1": "OPEN — architecture chosen, branch proven, destination outstanding",
+    "BR-2": "CLOSED (§295), accepted, unchanged",
+    "BR-5": "OPEN — Threshold C",
+    "EM-2": "OPEN — deliberately, per the brand decision",
+    "MO-2": "CLOSED (§294), proof extended at §296"
+  },
+  "blockers": {
+    "thresholdA": 0,
+    "thresholdBBefore": [
+      "MO-1"
+    ],
+    "thresholdBAfter": [
+      "MO-1"
+    ],
+    "thresholdC": 18
+  },
+  "counts": {
+    "total": 79,
+    "P0": 4,
+    "P1": 7,
+    "P2": 46,
+    "P3": 22,
+    "CLOSED": 40,
+    "OPEN": 32,
+    "BLOCKED": 4,
+    "DEFERRED": 3
+  },
+  "authorization": {
+    "internalProduction": "NOT AUTHORIZED — MO-1 open",
+    "externalBeta": "NOT AUTHORIZED"
+  },
+  "constraints": {
+    "expertExecutionEnabled": false,
+    "expertCalls": 0,
+    "providerCalls": 0,
+    "spendUsd": 0,
+    "productionWrites": 0,
+    "deployments": 0,
+    "migrations": 0,
+    "productionConfigurationChanges": 0,
+    "accountsCreated": 0,
+    "termsAccepted": 0,
+    "domainsPurchased": 0,
+    "neonChanges": 0,
+    "renameOperations": 0,
+    "thresholdCWork": 0
+  },
+  "brandingStatus": "UNCHANGED AND UNTOUCHED. No Safety InSite string replaced, HazLenz not renamed, no domain registered, no package identifier, deployment name, repository, database identifier, compatibility identifier or historical evidence altered. The rename is a separate bounded authorization after naming and clearance work.",
+  "terminal": "SAFETY_INSITE_THRESHOLD_B_AT_ONE — WEBHOOK_ARCHITECTURE_SELECTED_AND_PROVEN_AND_MONITORED_RECEIVER_REQUIRED"
+}

@@ -4,8 +4,9 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**.
-**Threshold A is closed. Threshold B stands at ONE owner action: a monitoring destination.** Machine-readable
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**.
+**Threshold A is closed. Threshold B stands at ONE owner action: a monitoring destination. The
+architecture is chosen; the receiver does not yet exist.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
@@ -31,11 +32,19 @@ equivalent, generated from the same entry list so the two cannot disagree:
 > `backend/scripts/` is **`5fb47c7f…` at both** the deployed commit and HEAD. The only differing
 > path in the full set is that one file.
 >
+> **§296 moved it again, and this time the narrower digest moved too.** §296 added a second operator
+> script *and* one npm script entry to `backend/package.json` — which **is** a legitimate build
+> input, so the artifact-only digest went from `5fb47c7f…` to `fa0330d9…`. The diagnostic is right to
+> report a movement; what it cannot say is whether the movement matters, so the build-relevant fields
+> were compared **field by field** against the deployed commit instead: `dependencies`,
+> `devDependencies`, `engines`, `build:render` and `start:render` are **all identical**, and the only
+> delta is one added `scripts` key that neither the build command nor the start command invokes.
+>
 > **`applicationSourceDigest` remains the binding and its definition is not being changed here.** The
 > narrower digest is a diagnostic that explains a movement, not a replacement for it. The rule for
 > the next deployment is unchanged: deploy a commit and confirm its `applicationSourceDigest`. **Do
-> not redeploy to make `e2dd73c0…` match** — that spends a deployment on bookkeeping for a build that
-> is byte-identical.
+> not redeploy to reconcile either movement** — that spends a deployment on bookkeeping for a build
+> that is produced identically.
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
@@ -189,7 +198,7 @@ boundary is larger than it had been recorded as.
 
 | | what is actually left | state after §295 |
 |---|---|---|
-| **MO-1** | **Name a destination**, and supply what that architecture needs. | The hardened §294 build is **deployed** and still reports `NOT_CONFIGURED`, which is now the honest state rather than a bug. The email architecture the owner selected at §293 turns out to need a **domain the owner controls** before it needs a credential: Resend sends only from a verified domain, verification is DNS, and the Vercel account holds **zero** custom domains. A **webhook** needs none of that. **The choice between them is a real product decision — see the runbook.** |
+| **MO-1** | **A receiver URL the owner will actually read.** | **Architecture CHOSEN at §296: webhook** — and chosen on a product argument, not on cost. The product name is to be replaced before external beta, and a verified sending domain entrenches a name in a way a webhook URL does not. §296 then **proved the webhook branch**, which had never been executed since §294 rewrote the dispatcher (`test:296-webhook-channel`, **15/15**). What is left is the destination itself: §296 searched the already-authorised surface and found **no Slack workspace, no Discord session**, and no inbound receiver on GitHub, Render, Vercel, Neon or Stripe. **Inventing one, standing up an ephemeral one, or pointing it at something nobody reads were each forbidden — and each would have produced a green gate over nothing watching, which is exactly MO-2.** |
 | ~~BR-2~~ | ~~One Neon console read.~~ | **CLOSED at §295** on authoritative console evidence: Free plan, **6-hour** history window, Instant Restore available across it, no snapshots and no schedule. Sufficient for Threshold B; `BR-5` carries the Threshold-C consequence. |
 
 `PV-3` and `DB-5` closed at §292 and were accepted at §293. `MO-2` opened at §293 and closed at §294.
@@ -856,6 +865,28 @@ the missing sender named**, rather than reporting a configured channel that deli
 itself is untouched by that — no destination, credential or sender was supplied and none was
 invented, and production configuration is unchanged.
 
+**§296 chose the architecture, proved the branch, and still could not close it.** The owner selected
+the **webhook** path — deliberately, and not for speed: the product is to be renamed before external
+beta, and a verified sending domain is precisely the infrastructure that entrenches a name, whereas
+a webhook URL is one environment variable to replace. §296 then found that **the webhook branch had
+never been executed since §294 rewrote the dispatcher** — §291 and §292 proved it against a local
+receiver *before* the rewrite, and §294's gate proved the new outcome machinery entirely on the
+**email** branch; the string `webhook` appears nowhere in it. Closing `MO-1` on an unexercised code
+path would have been the same kind of assumption `MO-2` was, so the branch was proven first:
+`npm run test:296-webhook-channel` — **15/15**, 0 network, 0 provider calls.
+
+**The destination remains an owner action, and §296 searched before saying so.** No Slack session and
+no workspace — the sign-in page asks for a workspace URL. No Discord session. None of GitHub, Render,
+Vercel, Neon or Stripe offers an inbound receiver that accepts an unauthenticated POST and surfaces it
+where a human looks. **Smallest practical choices, in order:** a free Slack workspace with an Incoming
+Webhook — free, standard, genuinely monitored through the mobile app, and replaceable when the product
+is renamed; or `ntfy.sh` with a long random topic — no account and no terms at all, push straight to
+the owner's phone, at the cost that a public server means anyone holding the topic can read the
+alerts, which is bounded because the payload is **measured** to carry identifiers and no content; or a
+Discord server webhook if the owner already lives there. **Not acceptable:** an ephemeral receiver
+such as `webhook.site`, a receiver inside the Safety InSite stack itself — a monitoring destination
+that dies with the thing it monitors is not a monitoring destination — or any address nobody reads.
+
 *Remediation:* **one configuration step, and it is three values if the channel is email.** Either set `OPERATIONAL_ALERT_WEBHOOK_URL` (any receiver the owner controls — sufficient on its own), **or** — the architecture the owner selected at §293 — set all three of `OPERATIONAL_ALERT_EMAIL` (the monitored recipient), `RESEND_API_KEY` (the credential, placed directly in the production secret store, which also serves `EM-2`) **and** a verified sender: `PASSWORD_RESET_FROM_EMAIL`, shared with password reset, or `OPERATIONAL_ALERT_FROM_EMAIL` to override it. Since §294 the third is **enforced rather than documented** — without a structurally deliverable sender the channel reports `NOT_CONFIGURED` and sends nothing. Then induce one failure and confirm it **arrives in the mailbox**.
 
 *Evidence:* `backend/src/observability/operational-events.ts; no APM dependency`  
@@ -1269,6 +1300,70 @@ in production. **An emission layer that now records its own failures is still no
 live half is `MO-1`, it needs the owner's configuration, and it is still open.
 
 The application source changed, so the release binding changed with it. **§295 deployed it.**
+
+---
+
+## §296 — the architecture is chosen, the branch is proven, and the receiver does not exist
+
+**Threshold B does NOT close. It stays at one, and the one is `MO-1`.** §296 made real progress and
+none of it was the thing that closes the threshold, which is the honest summary rather than the
+disappointing one.
+
+### The webhook was chosen on a product argument, and it is worth recording
+
+Not cost, not speed. **The product name is to be replaced before external beta.** A verified sending
+domain is exactly the kind of infrastructure that entrenches a name — the domain, its DNS, its warmed
+sending reputation and every address on it — whereas a webhook URL is one environment variable to
+replace. So monitoring gets a webhook now, and transactional email waits for the brand decision.
+**`EM-2` stays open on purpose and is not partially satisfied by any of this**: a webhook cannot
+deliver a password-reset link, and saying otherwise would be the sort of adjacency this register
+exists to prevent.
+
+### The branch about to carry MO-1 had never been run
+
+§291 and §292 proved the webhook branch against a local receiver — **before §294 rewrote the
+dispatcher.** §294's gate then proved the new outcome machinery thoroughly and proved all of it on
+the **email** branch: the string `webhook` does not appear anywhere in it. So at the moment the
+architecture was selected, the webhook branch's `.then()` / `.catch()` outcome recording had never
+been executed by anything. **Closing `MO-1` on an unexercised code path would have been the same kind
+of assumption `MO-2` was**, so it was proven first.
+
+`npm run test:296-webhook-channel` — **15/15**, 0 network, 0 provider calls, 0 production contact. A
+separate file rather than four more cases in the §294 gate, because §294's record says 21/21 and is
+cited above; editing it to say something else would rewrite a finished result to describe work it did
+not do.
+
+**Two real response shapes are asserted because real receivers return them.** Discord answers
+`204 No Content`; Slack answers `200` with the plain-text body `ok`. Both are `DELIVERY_ACCEPTED`.
+This is also where §296 recorded a **deliberate asymmetry**: the webhook branch does *not* apply the
+email branch's `MALFORMED_RESPONSE` rule, because an arbitrary receiver has no acknowledgement
+schema, so 2xx *is* the acknowledgement. A dispatcher that demanded a JSON acknowledgement would have
+reported every successful Slack delivery as a failure.
+
+**What is on the wire was measured, not assumed.** A payload carrying a planted observation text, a
+planted `Authorization` header and a planted API key transmitted the identifiers and `[redacted]`,
+and none of the three planted strings.
+
+> **The gate caught one thing, and it was mine.** The first run failed `W3`: a 204 came back as
+> `NETWORK_FAILURE`. The cause was the harness — `new Response('', {status: 204})` throws, because a
+> 204 has a null body by definition — and the product had behaved correctly by classifying a thrown
+> `fetch` as a transport failure. Fixing it turned a harness bug into the **most operationally
+> relevant case in the file**, since 204 is what a real Discord webhook returns.
+
+### What §296 could not do, having looked
+
+The destination itself. §296 searched the already-authorised surface for a receiver the owner would
+actually read and found none: **no Slack session and no workspace**, **no Discord session**, and no
+inbound receiver on GitHub, Render, Vercel, Neon or Stripe that accepts an unauthenticated POST and
+surfaces it where a human looks.
+
+**Every shortcut here was forbidden and each would have produced the same defect.** Inventing a URL,
+standing up an ephemeral receiver, or pointing the channel at an address nobody reads all yield
+`alerting: CONFIGURED` over nothing watching — **which is `MO-2` with a different cause.** The
+register has spent three sections making that state impossible to reach by accident; reaching it on
+purpose to close a gate would have been worse.
+
+The smallest practical choices are in `MO-1`'s remediation above and in the runbook.
 
 ---
 

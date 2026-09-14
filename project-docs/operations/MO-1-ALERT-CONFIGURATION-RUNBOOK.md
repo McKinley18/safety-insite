@@ -34,6 +34,39 @@ choice between A and B is the product owner's.
 cannot deliver a reset link to a user. If the owner wants password reset to work, B is required
 eventually, and doing B now closes both.
 
+> ### §296 — the owner chose **A**, for a reason that outlives this section
+>
+> Not on cost and not on speed: **the product name is going to change before external beta**, and a
+> verified sending domain is exactly the kind of infrastructure that entrenches a name. A webhook
+> URL can be replaced in one environment variable; a verified domain, its DNS, its warmed sending
+> reputation and every address on it cannot. **`EM-2` stays open deliberately** and transactional
+> email is deferred until after the brand decision or until Threshold C forces it — whichever comes
+> first. This runbook's Option B remains written and unexecuted for that day.
+
+### §296 — what was proven about the webhook branch before choosing it
+
+§291 and §292 proved the webhook branch against a local receiver, but that was **before §294 rewrote
+the dispatcher**, and §294's own gate proved the new outcome machinery entirely on the **email**
+branch — the string `webhook` does not appear in it. So at the moment the architecture was selected,
+the webhook branch's outcome recording had never been executed.
+
+`npm run test:296-webhook-channel` — **15/15**, 0 network, 0 provider calls. It covers configuration
+and precedence, all four bounded outcomes, `DEGRADED` and recovery, dedupe and the ceiling on this
+channel, containment, the real `ServerErrorAlertFilter` for the quiet statuses, and an anti-vacuity
+case showing the retired `.catch(() => undefined)` would have recorded nothing for a 404.
+
+**Two response shapes are asserted because real receivers return them.** Discord answers `204 No
+Content` and Slack answers `200` with the plain-text body `ok`; both are `DELIVERY_ACCEPTED`. A
+dispatcher that only recognised a JSON acknowledgement would have reported every successful Slack
+delivery as a failure — which is why the webhook branch deliberately does **not** apply the email
+branch's `MALFORMED_RESPONSE` rule. An arbitrary receiver has no acknowledgement schema, so 2xx *is*
+the acknowledgement.
+
+**What is on the wire was measured, not assumed.** A payload carrying a planted observation text, a
+planted `Authorization` header and a planted API key transmits the identifiers and `[redacted]`, and
+none of the three planted strings. The alert body is the same redacted metadata the log line already
+carried.
+
 ---
 
 ## 1. Preflight — before anything reaches production
@@ -56,7 +89,23 @@ missing or malformed value — fix it here, not in production.
 > That is the correct division: §294 made the provider's rejection visible, so the failure surfaces
 > as `PROVIDER_REJECTED` and `DEGRADED` rather than as silence.
 
-## 2. Configure — secrets go straight into the secret store
+## 2A. Configure — the webhook path
+
+One variable, server-side only:
+
+```bash
+OPERATIONAL_ALERT_WEBHOOK_URL=<the receiver URL>
+```
+
+**The URL is the credential.** It carries no auth header, so anyone holding it can post to the
+channel. It therefore belongs in the Render service environment and **nowhere else**: not in
+`frontend-next`, not in any `NEXT_PUBLIC_*` variable, not in Preview, not in source control, not in
+an evidence file. Record its *host* in evidence, never the full path.
+
+**Pass condition:** the Render environment-variable count increases by exactly one, no Vercel
+variable is added, and no other variable changed.
+
+## 2B. Configure — the email path, secrets straight into the secret store
 
 The credential is set **in the Render dashboard or by the owner**, never pasted into chat, never
 committed, never echoed by a command. `OPERATIONAL_ALERT_EMAIL` and the sender are configuration
