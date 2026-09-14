@@ -4,7 +4,7 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, updated with live production evidence at **§289**, and **deployed at §290**. Machine-readable
+Established at **§288**, updated with live production evidence at **§289**, and **deployed at §290**. **Threshold A is closed.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
@@ -13,7 +13,7 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | Candidate — **product source commit** | `c695376a30f72985897cc9da2631511c3212c7ef` — the §290 gate set ran against this, and it does not move |
 | **Release binding** | `applicationSourceDigest` = `7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1` |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| Release SHA | **PENDING until push.** The tip at push time — see below |
+| **Deployed release SHA** | `990a26b70dc625514bc081bfb7b2bb2ce4a19569` — live on both halves since 2026-09-14T17:26Z |
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
@@ -29,6 +29,7 @@ equivalent, generated from the same entry list so the two cannot disagree:
 > not merely *this is the same commit I wrote down*.
 | Provider calls in §288 and §289 | **0** |
 | Production contact in §288 | **none** |
+| Production contact in §290 | **DEPLOYED.** 4 approved migrations applied, backend and frontend deployed at `990a26b70dc625514bc081bfb7b2bb2ce4a19569`, bounded synthetic acceptance executed. **0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events.** |
 | Production contact in §289 | **READ-ONLY.** Render, Neon, Cloudflare R2 and Vercel authenticated and read; one synthetic non-customer object round-tripped and deleted in R2 with zero residue. **0 writes, 0 migrations, 0 deployments, 0 configuration changes.** |
 
 > **Supersedes** `verification/current/BETA-BLOCKERS.json` as the release authority. That file is
@@ -43,14 +44,18 @@ the others.
 
 | | Threshold | What it means | Blockers |
 |---|---|---|---|
-| **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **3** (was 8) |
-| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **10** — §290 moved `DB-4` onto it |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **23** (was 26) |
+| **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
+| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **7** |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **20** |
 
-> **§289 changed the shape of Threshold A, not just its size.** Five of its eight entries closed on
-> evidence, and the three that remain — `ST-2`, `IN-1`, `IN-2` — **cannot be closed by any further
-> preparation.** Each one is closed by the deployment itself. Threshold A is therefore no longer a
-> list of work; it is a request for authorization.
+> **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
+> three could only be closed *by the deployment*. §290 performed the deployment and closed them:
+> `IN-1` by reading the release SHA back from both halves, `IN-2` by exercising the Vercel production
+> path deliberately for the first time, and `ST-2` by round-tripping a generated report through
+> production storage with a checksum match.
+>
+> **Nothing about Thresholds B or C changed because the deployment succeeded.** Threshold A means the
+> candidate is *running*. It says nothing about whether anyone may rely on it.
 
 The shape of the answer matters more than the counts. **Threshold A is an infrastructure problem
 and nothing else** — no legal item blocks it, because nobody is using the system. **Threshold B
@@ -77,12 +82,12 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **73** | **6** | **12** | **34** | **21** |
+| Entries | **73** | **6** | **9** | **37** | **21** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 26 |
-| OPEN | 41 |
+| CLOSED | 30 |
+| OPEN | 37 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
 
@@ -136,35 +141,28 @@ self-executing. LG-2 is BLOCKED on counsel for exactly this reason, and §288 di
 
 ## Minimum path to each threshold
 
-### Threshold A — controlled production deployment  (3 items, **0 legal, 0 P0**)
+### Threshold A — controlled production deployment  **— CLOSED at §290**
 
-`IN-1`, `IN-2`, `ST-2`
+All eight entries are closed. Five closed at §289 on evidence (`DB-1`, `BR-1`, `IN-3`, `PV-1`,
+`RL-1`, plus `OPS-1` opened and closed in the same section); the remaining three closed at §290 by
+executing the deployment.
 
-**Closed at §289, on evidence:**
-
-| | |
-|---|---|
-| **DB-1** | Production head read: `1800000018000`, 50 applied, **zero drift**. Exactly 4 pending, all additive, **none destructive** on the `up()` path. Rehearsed forward *and* backward against a byte-identical copy of production. No migration run against production. |
-| **BR-1** | Fresh backup of live production (14.4 s, 7 810 853 bytes, 76 tables, 7 051 rows), restored into a PostgreSQL 17.11 disposable target in 1 s, verified by **per-table content checksum**: all 76 tables identical. |
-| **IN-3** | Render configuration re-read live and dated. `autoDeploy=no`, `autoDeployTrigger=off`, 41 env vars with 0 secret values exposed, `EXPERT_EXECUTION_ENABLED=false`. |
-| **PV-1** | `project-docs/preservation/v1-beta/` created, with the build-and-restore guide and a manifest carrying every required field. The retired digest is not used as an integrity assertion. |
-| **RL-1** | The candidate-exact deployment sequence, with rollback decision points for all seven named failure surfaces. |
-| **OPS-1** | *(opened and closed at §289)* Two operations documents named Render as the database platform. Production is Neon. Corrected. |
-
-**Remaining — and none of it is preparation:**
-
-1. **IN-1** — deploy the candidate. Production runs `de655d2f` on both halves; the candidate is 51
-   commits ahead and is **committed locally and not pushed**.
-2. **IN-2** — exercise the Vercel production deployment path deliberately, and read the result back.
-3. **ST-2** — round-trip one **generated report** through production object storage. The bucket
-   itself is verified; this half runs through the product route and therefore needs the deployment.
-
-The §288 reading of Threshold A as "an infrastructure problem and nothing else" survives §289 intact.
-What §288 got wrong was three of its evidence claims — see the §289 section at the end.
+| | closed by | on what evidence |
+|---|---|---|
+| **DB-1** | §289 | Production head read, zero drift, four pending, none destructive; rehearsed forward *and* backward against a copy of production. §290 then applied them: head `1800000018000` → `1800000022000`, 54/54, and **no destructive operation**, proven table by table — no table dropped, no row count decreased anywhere. |
+| **BR-1** | §289 | Backup and content-checksum restore. §290 took a **fresh** one immediately before migrating: 7 810 853 bytes, 76 tables, 7 051 rows, restored into PostgreSQL 17.11 in 1 s with all 76 tables content-identical. |
+| **IN-3** | §289 | Render configuration re-read live and dated. |
+| **IN-4** | §289 | Preview SSO / noindex / DENY-framed, and the environment-scope listing per target. |
+| **PV-1** | §289 | The preservation package and its manifest. |
+| **RL-1** | §289 | The candidate-exact deployment sequence, which §290 then executed. |
+| **OPS-1** | §289 | The two operations documents that named the wrong database platform. |
+| **IN-1** | **§290** | Both halves read back at `990a26b7…`: `/health/version` reports it with `versionSourceStatus: RENDER_GIT_COMMIT`, `release:verify-sha` reports `RUNNING SHA OK`, and the Vercel production deployment's `meta.githubCommitSha` matches. **Not closed because the services report healthy** — closed because the deployed identity was read back and matched. |
+| **IN-2** | **§290** | The production deployment path exercised deliberately, its source and target read back from the API *and* from the served HTML, which names the deployment in its own asset query strings. |
+| **ST-2** | **§290** | A generated report round-tripped through production storage with a checksum match: the bytes in R2, the database record and the bytes the product served all hash to `59ce3cd1…`, while an unsigned read of that object was refused HTTP 400. |
 
 ### Threshold B — internal / owner production use  (11 items)
 
-All of A, plus `MO-1`, `PA-1`, `SU-1`, `SU-3`, and two opened at §289: **`BR-2`** (Neon's platform
+All of A — now closed — plus `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
 retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
 pinned and the Render runtime version cannot be read, so a rebuild reproduces the source but not
 provably the artifact).
@@ -381,15 +379,25 @@ are retained so a later section does not rediscover them as new.
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **ST-1** | Report and artifact access is an authenticated streaming GET; there are no signed URLs to leak or expire. | P3 | — | Security | CLOSED |
-| **ST-2** | Production object storage is verified at the infrastructure level. No GENERATED REPORT has been round-tripped through it. | P1 | ABC | Infrastructure | OPEN — half closed at §289 |
+| **ST-2** | A generated report round-tripped through production storage with a checksum match, from the deployed candidate. | P2 | — | Infrastructure | **CLOSED (§290)** |
 | **ST-3** | Report and inspection-record retention policy is undefined. | P2 | C | Product | OPEN |
 
 **ST-2 — §289 update.** The premise "never been exercised end to end" was already false: §269 verified the live R2 bucket, and §289 re-verified it freshly and non-destructively. Bucket reachable and authorised, no public policy, ACL `AccessDenied`, upload, authorised download with sha256 match, unsigned GET and LIST both refused (HTTP 400), delete, `NoSuchKey` after delete, **0 residue**, no customer data. Tenant isolation is database-enforced rather than path-enforced: the object key is `<category>/<date>/<uuid>` and carries no tenant identifier, `objectKey` is `select: false`, a digest mismatch on read is refused, and `FilesController` is entirely behind `JwtGuard` — so an object identifier alone confers no access.
 
-**What remains is one thing, and it needs the deployment.** No generated report has ever gone through production storage via the product route. That is the register's own retest and it cannot be run from a preparation section.
+**CLOSED at §290, with the exact retest the register asked for.** The deployed candidate generated a report, and three independent readings of the same artifact agree:
 
-*Evidence:* `verification/current/threshold-a-289/st2-r2-live-probe.json`  
-*Retest:* One generated report round-tripped through production storage with a checksum match — deployment sequence step 14.
+| | sha256 |
+|---|---|
+| the record the application wrote to the production database | `59ce3cd1…` |
+| the bytes fetched directly from the R2 bucket with the production credential | `59ce3cd1…` |
+| the bytes the product served over its own authenticated download route | `59ce3cd1…` |
+
+`storage_objects` gained one row — `objectKey report/2026-09-14/1997e3c3-…`, `application/pdf`, 7 317 bytes, `status ready`, owner-scoped — and the bucket went from two objects to three. An **unsigned** public read of that exact object was refused `HTTP 400`; an unauthenticated product download returned `401`; the other tenant's *authenticated* download returned `404`. Synthetic data only.
+
+*Evidence:* `verification/current/threshold-a-290/SECTION-290-DEPLOYMENT.json` → `smoke.storage`, `smoke.signedAccess`  
+*Retest:* A generated report round-tripped through production storage with a checksum match on any change to the storage path.
+
+> Retention policy is a different question and remains open as **ST-3**. What closed here is the storage **path**.
 
 **ST-3 — remediation / decision.** State a retention and export position for the beta, especially interacting with RR-1.
 
@@ -494,17 +502,38 @@ are retained so a later section does not rediscover them as new.
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **IN-1** | The validated candidate has never been deployed. Production runs de655d2f (2026-08-29); the candidate branch is many unpushed commits ahead. | P1 | ABC | Infrastructure | OPEN |
-| **IN-2** | The Vercel PRODUCTION deployment control has never been exercised. gitProviderOptions.createDeployments is disabled, yet a branch push still produced a Git-sourced preview. | P1 | ABC | Infrastructure | OPEN |
+| **IN-1** | The validated candidate is deployed. Both halves serve `990a26b7…` and the identity was read back and matched. | P2 | — | Infrastructure | **CLOSED (§290)** |
+| **IN-2** | The Vercel PRODUCTION deployment path was exercised deliberately and its source and target read back. | P2 | — | Infrastructure | **CLOSED (§290)** |
 | **IN-3** | Render configuration, authentication and auto-deploy posture re-read live and dated at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
 | **IN-4** | Vercel Preview deployments are SSO-protected, noindex and DENY-framed, and no backend secret is scoped to Preview. | P2 | — | Infrastructure | **CLOSED (§289)** |
 
-**IN-1 — §289 update. The prerequisites it named are now met.** DB-1, PV-1 and RL-1 are closed, and ST-2's infrastructure half is closed. Production runs `de655d2f` on **both** halves — the Render backend and the Vercel production deployment agree, which is itself worth knowing. The candidate is more than 50 commits ahead and is committed locally and **not pushed**. What identifies it for release is not a SHA but `applicationSourceDigest` `2ce8a1d7…`, the digest at `94e2963427c46b4d69dcdd8664c4754c5fc72c37` — the commit the §289 build and gates ran against.
+**IN-1 — CLOSED at §290. The candidate is deployed.**
+
+| | |
+|---|---|
+| Backend | Render `dep-dak2qeqfngtc7381gch0`, **live**. `/health/version` reports `gitCommit 990a26b70dc6…` with `versionSourceStatus: RENDER_GIT_COMMIT` — platform-sourced, not a checked-in literal — and `release:verify-sha` reports `RUNNING SHA OK`. |
+| Frontend | Vercel `dpl_14HTnchjHhcrMp5aHFSzut5miJRR`, target production, `meta.githubCommitSha` matching. |
+| Alias | `safety-insite.vercel.app` resolves to that deployment, confirmed **from the served HTML**, which names it in its own asset query strings rather than only from the API. |
+| Stability | Three readiness probes over ~40 s, all `HTTP 200` in 0.33–0.58 s. No crash or restart loop. |
+
+**Not closed because the services report healthy.** Closed because the deployed identity was read back and matched on both halves.
+
+*Evidence:* `verification/current/threshold-a-290/SECTION-290-DEPLOYMENT.json`  
+*Retest:* A production SHA read on both halves matching the intended release, plus an `applicationSourceDigest` match at that SHA.
+
+**IN-1 — superseded §289 note.** DB-1, PV-1 and RL-1 are closed, and ST-2's infrastructure half is closed. Production runs `de655d2f` on **both** halves — the Render backend and the Vercel production deployment agree, which is itself worth knowing. The candidate is more than 50 commits ahead and is committed locally and **not pushed**. What identifies it for release is not a SHA but `applicationSourceDigest` `2ce8a1d7…`, the digest at `94e2963427c46b4d69dcdd8664c4754c5fc72c37` — the commit the §289 build and gates ran against.
 
 *Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `IN_1_AND_IN_2_DEPLOYMENT`; `/health/version` read live  
 *Retest:* A production SHA read on both halves matching the pushed tip, and an `applicationSourceDigest` at that SHA equal to `2ce8a1d7…`.
 
-**IN-2 — §289 update. The paradox is confirmed, not merely restated.** `gitProviderOptions.createDeployments` is `"disabled"`, and a Git-sourced **preview** deployment of the candidate branch at `0f36d497` nevertheless exists and is `READY`. Pushing this branch is therefore not a purely local act, and that is precisely why §289 did not push: a push is step 1 of the deployment sequence and belongs to the authorization, not to the preparation.
+**IN-2 — CLOSED at §290, and the paradox is now explained rather than merely observed.**
+
+`gitProviderOptions.createDeployments: "disabled"` suppresses **automatic** Git deployments. It does not prevent a push from producing a **preview**, and §290's push duly produced one — `dpl_DRhjpmPGnEyhsgBb7AHm6gDVrdvC` at the release SHA. That preview was SSO-protected (`302` to `vercel.com/sso-api`), `noindex`, `DENY`-framed, carried no production secret, and **did not touch the production alias**. Production moved only when it was explicitly told to, by an API-created deployment targeting production at the exact release SHA, whose source and target were then read back.
+
+*Evidence:* `verification/current/threshold-a-290/SECTION-290-DEPLOYMENT.json` → `frontendDeployment`, `preview`  
+*Retest:* A production deployment whose source and target are read back from the Vercel API and recorded.
+
+**IN-2 — superseded §289 note.** `gitProviderOptions.createDeployments` is `"disabled"`, and a Git-sourced **preview** deployment of the candidate branch at `0f36d497` nevertheless exists and is `READY`. Pushing this branch is therefore not a purely local act, and that is precisely why §289 did not push: a push is step 1 of the deployment sequence and belongs to the authorization, not to the preparation.
 
 *Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `IN_1_AND_IN_2_DEPLOYMENT`  
 *Retest:* A production deployment whose source and target are read back from the Vercel API and recorded — deployment sequence steps 9 and 10.
@@ -662,7 +691,7 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **CF-1** | NEXT_PUBLIC_DISABLE_AUTH is scoped to the Vercel PRODUCTION environment. Structurally inert there; registered for what it invites. | P2 | — | Engineering | OPEN (§289) |
-| **CF-2** | Production withholds search-engine indexing until External Beta is authorised. | P2 | — | Engineering | OPEN (§290) |
+| **CF-2** | Production withholds search-engine indexing until External Beta is authorised. Verified live. | P2 | — | Engineering | **CLOSED (§290)** |
 
 **CF-1 — new at §289.** Every consumer either tests `NODE_ENV !== "production"` directly (`AppShell.tsx:3`, `lib/auth.ts:113`, `lib/billing.ts` `isLocalDevAuthBypass`) or delegates to `getLocalDevPlanCode()`, whose first line returns `"free"` under production. The variable therefore does nothing in a production build whatever its value, and entitlement is server-authoritative in any case. **Do not restate this as a live auth bypass.** The hazard is the next consumer who reads the variable without the guard, and the remediation — remove it from the Production scope — is behaviour-preserving precisely because it does nothing there.
 
@@ -675,6 +704,8 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 *Evidence:* `frontend-next/next.config.ts`; `verification/current/threshold-a-290/`  
 *Remediation:* At External Beta authorisation, set `NEXT_PUBLIC_ALLOW_INDEXING=true` on the Vercel production environment and redeploy.  
 *Retest:* A production `HEAD` showing the intended `X-Robots-Tag` value.
+
+**Verified in production at §290:** `X-Robots-Tag: noindex, nofollow` on `/`, `/login`, `/pricing`, `/about` **and on `/manifest.webmanifest`** — confirming the non-HTML responses a `<meta>` tag cannot reach are covered. Closed as *implemented and verified*; lifting it is a Threshold-C action, not an outstanding defect.
 
 ### COPYRIGHT / CONTENT PROVENANCE
 
@@ -806,6 +837,77 @@ together. Any section that closes an entry must:
 
 **Do not restate release status anywhere else.** `BETA-BLOCKERS.json`, `BETA-READINESS.md` and
 `CURRENT-STATE.md` point here; they do not carry a competing verdict.
+
+---
+
+## §290 — Threshold A closed, and what that does and does not mean
+
+The validated candidate is deployed. `990a26b70dc625514bc081bfb7b2bb2ce4a19569` is live on both halves, running against a schema at
+`1800000022000`, with Expert disabled and nobody using it.
+
+### What was actually proven
+
+Three things are worth separating from the general fact that the deployment succeeded.
+
+**No data was lost, and that is a measurement rather than an assurance.** The four migrations were
+applied and then the post-migration database was compared to the pre-migration backup *table by
+table*: no table dropped, **no row count decreased anywhere**, 76 tables preserved plus one new one,
+total rows 7 051 → 7 055 — which is exactly the four migration rows. Three tables changed content
+and each has a named reason: `hazlenz_analyses` (four new columns and the documented backfill, which
+set all eight rows to `client_supplied` / `ANALYSIS_AVAILABLE` / `false`, precisely what the
+migration says it will do), `corrective_actions` (three new nullable columns), and `migrations`.
+
+**The tenant boundary was proven rather than assumed.** A first attempt returned `404` for the
+second account — but that account had never successfully authenticated, so the `404` proved nothing.
+Re-run with account B genuinely authenticated (`/auth/me` `200`, its own list `200` with zero
+inspections), B received `404` on **both a read and a write** of A's inspection while A received
+`200` on the same resource.
+
+**The entitlement boundary was proven in both directions.** As Free, report generation returned
+`402 PAID_SUBSCRIPTION_REQUIRED`. With a bounded, clearly-labelled pilot grant it returned `201`.
+After the grant was revoked it returned `402` again — **while the already-generated report remained
+downloadable**, which is exactly what `EN-1` promises: Free cannot create, but keeps what it has.
+
+### What was deliberately not done
+
+`EXPERT_EXECUTION_ENABLED` stayed `false` throughout. **0 provider calls, 0 Expert calls.**
+`expert_analysis_executions` is empty and no analysis row carries a producer other than
+`client_supplied`.
+
+**Corrective-action closure was not exercised**, in observance of the `DB-4` hold. `outcomes` remains
+at zero rows and `corrective_actions` at one. The bounded synthetic test §290 was permitted to run
+if essential was judged **not** essential, so it was not run.
+
+No production configuration was changed, no secret was altered, and **no rollback was needed**.
+
+### The honest limits of what "monitoring verified" means here
+
+The Render log store captures structured `method` / `path` / `statusCode` / `level` labels and is
+queryable: the smoke window returned 15 × `401`, 5 × `404`, 3 × `400`, 1 × `402` — correctly
+labelled `POST /inspections/:id/reports -> 402`, level `warning` — 1 × `409`, and **0 × `500` with
+0 at `level=error`**. Failures are therefore detectable and retrievable.
+
+Nothing aggregates them and **nothing pages anyone**. Every operational event in the catalogue is a
+failure event or an Expert event, so a clean release legitimately emits none — zero events is the
+correct outcome, not missing instrumentation. `MO-1` stays **open**, because an emission layer you
+can query is not monitoring.
+
+### Synthetic residue, named rather than quietly left
+
+Two accounts on a `@release-test.invalid` domain, one site, one inspection, one observation, one
+finding, one report revision and its 7 317-byte PDF in R2. The entitlement grant was revoked.
+
+The report was **not** deleted, and that is deliberate: report immutability is a product guarantee
+(`RR-2`), so tidying up by deleting an issued revision would have meant violating the exact guarantee
+this section verified — and deleting the R2 object alone would have left a `storage_objects` row
+pointing at bytes that no longer exist, which is worse than a clearly-labelled synthetic record in a
+system with no users. It is listed here so the product owner can remove it deliberately.
+
+### Threshold A says the candidate is running. It says nothing about reliance.
+
+**External Beta remains BLOCKED.** No legal item was reclassified, no Threshold-B or Threshold-C
+item was closed because the deployment succeeded, and `DB-4` is recorded as blocking internal
+operational use and external beta exactly as directed.
 
 ---
 

@@ -1,0 +1,227 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_290_CONTROLLED_PRODUCTION_DEPLOYMENT",
+  "section": "290",
+  "generated": "2026-09-14T17:38:25Z",
+  "outcome": "THRESHOLD A CLOSED — the validated candidate is deployed to production infrastructure with no external users.",
+  "releaseSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+  "productSourceCommit": "c695376a30f72985897cc9da2631511c3212c7ef",
+  "applicationSourceDigest": "7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1",
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "frozenHistoricalBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
+  "constraints": {
+    "providerCalls": 0,
+    "expertCalls": 0,
+    "expertExecutionEnabled": false,
+    "externalUsersInvited": 0,
+    "productionConfigurationChanges": 0,
+    "productionSecretsAltered": 0,
+    "rollbackEvents": 0,
+    "correctiveActionClosureExercised": false,
+    "correctiveActionClosureNote": "DB-4 hold observed. The DB-4-dependent closure path was judged unnecessary for release validation and was NOT exercised. corrective_actions remains at 1 row and outcomes remains at 0 rows."
+  },
+  "push": {
+    "authorized": true,
+    "from": "0f36d49729c914c0c50a7e9118f3663877d057ef",
+    "to": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+    "originMainUnchanged": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936"
+  },
+  "preview": {
+    "created": true,
+    "id": "dpl_DRhjpmPGnEyhsgBb7AHm6gDVrdvC",
+    "sha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "state": "READY",
+    "url": "safety-insite-i5vcjj4fl-mckinley18s-projects.vercel.app",
+    "ssoProtected": "YES — HTTP 302 to vercel.com/sso-api",
+    "xRobotsTag": "noindex",
+    "xFrameOptions": "DENY",
+    "productionAliasAltered": false,
+    "aliases": [
+      "safety-insite-git-beta-expert-hazle-e8b0bf-mckinley18s-projects.vercel.app"
+    ],
+    "secretExposure": "NONE — the Vercel project has exactly 4 environment variables and every one is public-prefixed",
+    "verdict": "All four §290 acceptance conditions for an incidental Preview are satisfied."
+  },
+  "backup": {
+    "takenAt": "2026-09-14T17:19:54Z",
+    "mechanism": "operator-controlled logical backup, pg_dump 18.3 (libpq) against the DIRECT Neon endpoint",
+    "sizeBytes": 7810853,
+    "sha256": "4c5046d5ecd370a1d2650c30b5d00513fdd58de742ee34a8a057f0022e70aaa3",
+    "durationSeconds": 13,
+    "tables": 76,
+    "rows": 7051,
+    "verification": {
+      "method": "full restore into a disposable PostgreSQL 17.11 container, then per-table content checksum ordered COLLATE \"C\"",
+      "pgRestoreExit": 0,
+      "errors": 0,
+      "durationSeconds": 1,
+      "result": "ALL 76 TABLES CONTENT-IDENTICAL",
+      "productionDigest": "da17e9b755a540dac240c5f2bd8c7a7c",
+      "restoredDigest": "da17e9b755a540dac240c5f2bd8c7a7c"
+    },
+    "retention": "The dump was destroyed after the evidence requirement was satisfied. It contained production user records and the release procedure takes a fresh one immediately before each migration, so retaining a plaintext copy would have added exposure without adding capability."
+  },
+  "migrations": {
+    "preMigrationHead": "1800000018000",
+    "preMigrationApplied": 50,
+    "driftBeforeApplying": "NONE — re-confirmed immediately before running",
+    "applied": [
+      "1800000019000 ExpertAnalysisAuthorityFoundation",
+      "1800000020000 ExpertHumanConfirmation",
+      "1800000021000 ProducerScopedAnalysisCurrentness",
+      "1800000022000 CorrectiveActionLifecycle"
+    ],
+    "postMigrationHead": "1800000022000",
+    "postMigrationApplied": 54,
+    "elapsedSeconds": 4,
+    "schemaVerification": "READY — applied/expected 54/54, RELEASE MIGRATION OK",
+    "unexpectedMigrations": 0,
+    "destructiveOperations": "NONE — proven table by table against the pre-migration backup: no table dropped, no row count decreased anywhere, 76 tables preserved plus 1 new (expert_analysis_executions), total rows 7051 -> 7055 (the 4 migration rows).",
+    "contentChangedTables": [
+      "corrective_actions (3 new nullable columns)",
+      "hazlenz_analyses (4 new columns + the documented backfill)",
+      "migrations (4 new rows)"
+    ],
+    "backfillResult": "All 8 hazlenz_analyses rows took producer=client_supplied, analysisState=ANALYSIS_AVAILABLE, confirmationRequired=false — exactly what the migration documents.",
+    "outcomesActivation": "NOT ACTIVATED. The outcomes table is unchanged at 13 columns and 0 rows. No migration created, altered or populated it.",
+    "schemaCompatibilityVersion": "1800000022000 — /version reflects the new head",
+    "downMigrationsRun": 0
+  },
+  "backendDeployment": {
+    "platform": "Render",
+    "deployId": "dep-dak2qeqfngtc7381gch0",
+    "service": "srv-d7kl74jeo5us73deaor0",
+    "trigger": "api",
+    "status": "live",
+    "startedAt": "2026-09-14T17:22:03Z",
+    "finishedAt": "2026-09-14T17:23:48Z",
+    "deployedSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "healthVersionGitCommit": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "versionSourceStatus": "RENDER_GIT_COMMIT",
+    "shaGate": "RUNNING SHA OK",
+    "health": "ok, database up",
+    "ready": "ready, database available, schema current",
+    "expertExecutionEnabled": false,
+    "envVarCount": 41,
+    "envVarsChanged": 0,
+    "crashOrRestartLoop": "NONE — three readiness probes over ~40s all HTTP 200 in 0.33-0.58s",
+    "migrationAmbiguity": "NONE — startCommand is start:render, not start:release, so the deploy did not run migrations",
+    "buildTimestampSourceStatus": "BUILD_FALLBACK — BUILD_TIMESTAMP was deliberately not set because §290 authorised deployment, not configuration change. The runbook states this is not a release stopper: it reports on its face that the timestamp is not a stamp rather than presenting a stale date as a real one."
+  },
+  "frontendDeployment": {
+    "platform": "Vercel",
+    "deploymentId": "dpl_14HTnchjHhcrMp5aHFSzut5miJRR",
+    "target": "production",
+    "state": "READY",
+    "deployedSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "metaGithubCommitSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "gitSourceSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "productionAlias": "safety-insite.vercel.app -> dpl_14HTnchjHhcrMp5aHFSzut5miJRR",
+    "aliasVerification": "The production HTML itself names dpl_14HTnchjHhcrMp5aHFSzut5miJRR in its asset query strings, so the alias mapping is confirmed from the served bytes and not only from the API.",
+    "bundleIdentity": "The deployed production bundle inlines the exact release SHA and a shell cache generation of 990a26b70dc6.",
+    "pointsAtPreview": false
+  },
+  "indexing": {
+    "policy": "noindex, nofollow",
+    "mechanism": "X-Robots-Tag response header on every route",
+    "productionVerified": {
+      "/": "noindex, nofollow",
+      "/login": "noindex, nofollow",
+      "/pricing": "noindex, nofollow",
+      "/about": "noindex, nofollow",
+      "/manifest.webmanifest": "noindex, nofollow"
+    },
+    "nonHtmlCovered": true,
+    "switch": "NEXT_PUBLIC_ALLOW_INDEXING=true lifts it; default withholds"
+  },
+  "compatibility": {
+    "backendGitSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "frontendGitSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "halvesAgree": true,
+    "releaseVersion": "1.0.0",
+    "frontendVersion": "1.0.0",
+    "minimumSupportedFrontendVersion": "1.0.0",
+    "deployedClientState": "CURRENT",
+    "updateDelivery": {
+      "1.0.0": "CURRENT",
+      "0.9.0": "UNSUPPORTED_CLIENT — below the floor, safety-critical writes refused",
+      "1.1.0": "CLIENT_AHEAD"
+    }
+  },
+  "smoke": {
+    "dataUsed": "synthetic only — two accounts on a @release-test.invalid domain, one site, one inspection, one observation, one finding, one report",
+    "authentication": "register 201, login 201, /auth/me 200; unauthenticated 401; bogus token 401; refresh 201",
+    "session": "refresh issued a working token; re-login after an entitlement change reflected the new state",
+    "versionEndpoint": "/version serves the full release contract including schemaCompatibilityVersion 1800000022000",
+    "readiness": "/health/ready ready, schema current, 54/54",
+    "tenantBoundary": "PROVEN, not vacuous: account B was genuinely authenticated (/auth/me 200, own list 200 count=0) and received 404 on BOTH a read and a write of A's inspection, while A received 200 on the same resource.",
+    "inspectionCreation": "site 201, inspection 201",
+    "observationPersistence": "observation 201, re-read shows observations=1",
+    "deterministicWorkflow": "user-authored finding 201 -> human review 201 -> finalize finding 201 -> completion-readiness ready=true reportable=1 -> transition in_review 201 -> completed 201. Expert was never invoked at any point.",
+    "reportGeneration": "201, revision 1, status generated, checksum 59ce3cd1229e6391558694418c2b56802063158cd0ca92c2a8eb6c34f18f3fd7",
+    "reportDownload": "200, 7317 bytes, application/pdf, %PDF- magic, sha256 of the downloaded bytes EQUALS the recorded checksum",
+    "reportRevisionIdentity": "A no-change regeneration returned the SAME reportId and the SAME checksum and did not manufacture a revision (revisionCount stayed 1). The versioned route /versions/1/download returned bytes byte-identical to the original.",
+    "storage": "The deployed application wrote storage_objects id 5515c867 with objectKey report/2026-09-14/1997e3c3-5d6c-4393-b512-ce585e76bbdc, contentType application/pdf, sizeBytes 7317, status ready, ownerUserId scoped. The bucket went from 2 objects to 3.",
+    "signedAccess": "The bytes were fetched directly from R2 with the production credential and their sha256 matched the database record. An UNSIGNED public read of that exact object was refused with HTTP 400. An unauthenticated product download returned 401 and the other tenant's authenticated download returned 404.",
+    "entitlementBoundary": "Verified in BOTH directions live: as Free, report generation returned 402 PAID_SUBSCRIPTION_REQUIRED (entitlement cloudReports); with a bounded pilot grant it returned 201; after revocation it returned 402 again WHILE the already-generated report remained downloadable at 200 — which is exactly the EN-1 contract.",
+    "monitoring": "See the monitoring block."
+  },
+  "monitoring": {
+    "mechanism": "structured stdout/stderr captured by the Render platform log store, queryable through the Render API",
+    "labelsCaptured": [
+      "method",
+      "path",
+      "statusCode",
+      "level",
+      "host",
+      "type"
+    ],
+    "detectionVerified": {
+      "auth failures (401)": "15 lines retrieved for the smoke window",
+      "not-found / cross-tenant (404)": "5 lines",
+      "client errors (400)": "3 lines",
+      "entitlement refusals (402)": "1 line — retrieved by status and correctly labelled POST /inspections/:id/reports -> 402, level warning",
+      "conflict (409)": "1 line",
+      "application errors (500)": "0 — the release produced none",
+      "level=error": "0",
+      "readiness probes": "4 lines on path /health/ready"
+    },
+    "schemaMismatchDetector": "/health/schema reports ready=true, missing=[], ahead=[]. A mismatch sets ready=false and emits schema.readiness_failed.",
+    "noIncidentsManufactured": true,
+    "honestCeiling": "This is EMISSION plus RETRIEVAL BY QUERY. It is not aggregation and it is not alerting: nothing pages anyone. Every operational event in the catalogue is a FAILURE event or an Expert event, so a clean release legitimately emits none, and zero events is the correct outcome rather than evidence of missing instrumentation. MO-1 stays OPEN."
+  },
+  "syntheticCleanup": {
+    "entitlementGrant": "7c095d18-a2d4-4b64-bf25-111f20684a54 REVOKED and confirmed ineffective by a live 402.",
+    "retained": [
+      "two synthetic accounts on @release-test.invalid",
+      "one site, one inspection, one observation, one finding",
+      "one report revision and its 7317-byte PDF in R2 under report/2026-09-14/"
+    ],
+    "whyRetained": "Report immutability is a product guarantee (RR-2): every issued revision is retained, byte-identical and downloadable. Deleting the synthetic report to tidy up would have required violating the exact guarantee this section was verifying, and deleting the storage object alone would have left a storage_objects row pointing at bytes that no longer exist — a worse state than a clearly labelled synthetic record in a system with no users. The residue is named here so the product owner can remove it deliberately.",
+    "r2ProbeResidue": "0 keys under the §289 probe prefix."
+  },
+  "registerOutcome": {
+    "ST-2": "CLOSED",
+    "IN-1": "CLOSED",
+    "IN-2": "CLOSED",
+    "BR-3": "CLOSED",
+    "CF-2": "production-verified",
+    "thresholdABefore": 3,
+    "thresholdAAfter": 0,
+    "DB-4": "OPEN — P1, blocking internal operational use and external beta, exactly as directed. Not touched, not exercised, not described as unreachable."
+  },
+  "productionReads": "Render service/deploys/env-vars/logs, Neon schema and content, R2 head/get/list, live health and version endpoints, Vercel project/deployment/domain/env scopes.",
+  "productionWrites": [
+    "4 approved schema migrations",
+    "2 synthetic accounts, 1 site, 1 inspection, 1 observation, 1 finding, 1 human review",
+    "1 report revision and 1 R2 object",
+    "1 entitlement grant, subsequently revoked"
+  ],
+  "deployments": [
+    "Render dep-dak2qeqfngtc7381gch0 (backend)",
+    "Vercel dpl_14HTnchjHhcrMp5aHFSzut5miJRR (frontend production)",
+    "Vercel dpl_DRhjpmPGnEyhsgBb7AHm6gDVrdvC (incidental preview from the push)"
+  ],
+  "rollbackEvents": 0,
+  "nextAuthorizationRequired": "THRESHOLD B CLOSURE — and DB-4 must be repaired and production-shape validated before unrestricted corrective-action operation. Expert activation and the bounded provider smoke remain separately authorised and were not performed."
+}

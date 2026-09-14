@@ -1,8 +1,8 @@
 {
   "artifact": "SAFETY_INSITE_V1_BETA_RELEASE_MANIFEST",
-  "generatedBy": "§289, superseded by §290 — controlled production deployment",
+  "generatedBy": "§289, superseded by §290 — controlled production deployment executed",
   "generatedAt": "2026-09-14T17:17:21Z",
-  "status": "AUTHORIZED_FOR_CONTROLLED_PRODUCTION_DEPLOYMENT",
+  "status": "DEPLOYED_TO_CONTROLLED_PRODUCTION",
   "productVersion": "1.0.0",
   "gitSha": "PENDING — see releaseSha",
   "gitShaNote": "THE RELEASE SHA. The §289 artifact commit, which adds this preservation package, the controlled-production deployment sequence, the operations corrections and the §289 evidence. It is COMMITTED LOCALLY AND NOT PUSHED; see deployment.pushState.",
@@ -42,18 +42,13 @@
   "schemaCompatibilityVersion": "1800000022000",
   "schemaCompatibilityVersionNote": "DERIVED from the migration files shipped in the artifact (backend/src/common/release-identity.ts), not declared.",
   "migrationHead": {
+    "productionApplied": "1800000022000",
+    "productionAppliedCount": 54,
     "candidateExpects": "1800000022000",
-    "candidateMigrationCount": 54,
-    "productionApplied": "1800000018000 at the time of the §290 pre-deployment read; updated post-migration below",
-    "productionAppliedCount": 50,
-    "productionReadAt": "2026-09-14T16:18Z",
-    "pending": [
-      "1800000019000 ExpertAnalysisAuthorityFoundation",
-      "1800000020000 ExpertHumanConfirmation",
-      "1800000021000 ProducerScopedAnalysisCurrentness",
-      "1800000022000 CorrectiveActionLifecycle"
-    ],
-    "drift": "NONE — every one of the 50 rows in the production migrations table matches a migration file in the candidate, and the 4 pending ones are strictly newer than the production head."
+    "appliedAt": "2026-09-14T17:21Z",
+    "pending": [],
+    "drift": "NONE",
+    "destructiveOperations": "NONE — proven table by table against the pre-migration backup"
   },
   "nodeVersion": {
     "buildHostUsedForThisManifest": "v20.20.2",
@@ -73,25 +68,29 @@
   "buildTimestamp": "2026-09-14T16:37:55Z",
   "buildTimestampNote": "When the §289 release build was produced on the build host. The DEPLOYED build's timestamp is injected at deploy time via BUILD_TIMESTAMP and reported by /health/version with a buildTimestampSourceStatus saying which source answered.",
   "deployment": {
-    "pushState": "NOT PUSHED. origin/beta/expert-hazlenz-validated-candidate-2026-09-12 is at 0f36d497 (the pre-§289 HEAD). Every §289 commit exists only locally.",
-    "commitsAheadOfDeployedProduction": "at least 53 and growing with each §289 artifact commit; the count is not a release binding",
-    "deployedProductionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "pushState": "PUSHED. origin/beta/expert-hazlenz-validated-candidate-2026-09-12 = 990a26b70dc625514bc081bfb7b2bb2ce4a19569. origin/main unchanged at de655d2f.",
+    "commitsAheadOfDeployedProduction": 0,
+    "deployedProductionSha": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
     "backendPlatform": "Render web service srv-d7kl74jeo5us73deaor0 (oregon, 0.5c-512mb, 1 instance, autoDeploy=no)",
     "frontendPlatform": "Vercel project prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw (production branch main, gitProviderOptions.createDeployments=disabled)",
-    "objectStorage": "Cloudflare R2, bucket insite-production, S3-compatible endpoint, forcePathStyle"
+    "objectStorage": "Cloudflare R2, bucket insite-production, S3-compatible endpoint, forcePathStyle",
+    "backendDeployId": "dep-dak2qeqfngtc7381gch0",
+    "frontendDeploymentId": "dpl_14HTnchjHhcrMp5aHFSzut5miJRR",
+    "incidentalPreview": "dpl_DRhjpmPGnEyhsgBb7AHm6gDVrdvC — SSO-protected, noindex, DENY-framed, no production secret, production alias untouched"
   },
   "knownLimitations": {
     "PV-NODE-UNPINNED": "No Node version is pinned in either package and the Render runtime version could not be read. A rebuild reproduces the source digest but not, provably, the artifact.",
     "OPS-DB-PROVIDER-MISSTATED": "Two operations documents name Render as the database platform; production is Neon. An operator following deployment-runbook step 3 would look for a Render Postgres instance that does not exist.",
     "DB-4-OUTCOMES-TABLE-PRESENT": "The `outcomes` table EXISTS in production (13 columns) although no migration creates it, so the corrective-action recurrence query IS REACHABLE in production and is NOT workspace/tenant scoped. This does not block Threshold A, which authorises deployment rather than ordinary product use. It DOES block unrestricted Threshold B corrective-action operation and External Beta. Corrective-action CLOSURE must not be exercised in production until DB-4 is repaired and production-shape validated.",
     "EXPERT-DISABLED": "EXPERT_EXECUTION_ENABLED=false in production. Live provider transport has never been exercised; hazlenz:verify reports UNVERIFIED_LIVE for provider transport.",
-    "STORAGE-REPORT-ROUNDTRIP-NOT-DONE": "Production object storage is verified at the infrastructure level (§269 and again at §289) but no generated report has ever been round-tripped through it via the product route.",
-    "NO-MONITORING-AGGREGATION": "Operational events are emitted to stdout/stderr with redaction. There is no aggregation, alerting or error tracking (register MO-1).",
+    "STORAGE-REPORT-ROUNDTRIP-NOT-DONE": "CLOSED at §290. A generated report round-tripped through production storage from the deployed candidate with the R2 bytes, the database record and the served bytes all hashing to 59ce3cd1…, and an unsigned read of that object refused HTTP 400.",
+    "NO-MONITORING-AGGREGATION": "Failures ARE detectable and retrievable: the Render log store captures method/path/statusCode/level and §290 queried the release window for each failure class. Nothing aggregates or alerts, and every catalogued operational event is a failure or Expert event, so a clean release emits none. MO-1 stays open.",
     "NEON-RETENTION-UNREAD": "Neon's control plane was not reachable from this session (no NEON_* credential). The platform backup retention window and point-in-time-recovery setting are UNREAD. The operator-controlled logical backup path is proven independently.",
     "LEGAL-NOT-CLEARED": "Terms, Privacy Notice, third-party model disclosure, contracting entity and trademark clearance are all open at Threshold C. Nothing here asserts legal clearance.",
     "NO-EXTERNAL-BETA": "External beta remains BLOCKED regardless of Threshold A status.",
     "BR-3-CLOSED": "Closed at §290. check:launch-pricing no longer conflates the retired Expert pricing tier with Expert HazLenz the capability; 49 passed, 0 failed.",
-    "INDEXING-WITHHELD": "Production serves X-Robots-Tag: noindex, nofollow on every route until External Beta is authorised. NEXT_PUBLIC_ALLOW_INDEXING=true lifts it."
+    "INDEXING-WITHHELD": "Production serves X-Robots-Tag: noindex, nofollow on every route until External Beta is authorised. NEXT_PUBLIC_ALLOW_INDEXING=true lifts it.",
+    "SYNTHETIC-RELEASE-RESIDUE": "§290 left two synthetic accounts on @release-test.invalid, one site/inspection/observation/finding, and one report revision with its PDF in R2. The entitlement grant was revoked. The report was deliberately NOT deleted because report immutability (RR-2) is the guarantee §290 verified, and deleting the R2 object alone would orphan its storage_objects row."
   },
   "canonicalDocs": [
     "project-docs/current/PRE-PRODUCTION-RELEASE-REGISTER.md — THE release authority",
@@ -130,11 +129,12 @@
     "recompute": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256"
   },
   "releaseSha": {
-    "value": "RECORDED AFTER DEPLOYMENT",
+    "value": "990a26b70dc625514bc081bfb7b2bb2ce4a19569",
+    "observedFrom": "production, after deployment — which is why it can be recorded at all",
     "binding": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
     "verify": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256",
     "mustEqual": "7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1",
-    "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
-    "note": "§290 records the deployed SHA as an observed fact from production after the deploy, which avoids the regress of a commit recording its own SHA."
+    "backendConfirmation": "/health/version gitCommit, versionSourceStatus RENDER_GIT_COMMIT; release:verify-sha RUNNING SHA OK",
+    "frontendConfirmation": "Vercel dpl_14HTnchjHhcrMp5aHFSzut5miJRR meta.githubCommitSha; production alias confirmed from the served HTML"
   }
 }
