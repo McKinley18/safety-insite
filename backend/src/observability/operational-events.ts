@@ -80,6 +80,9 @@ export const OPERATIONAL_EVENTS = [
   'action.audit_write_failed',
   /** §287 / D-054. An assignee notification failed after a committed transition. */
   'action.notification_failed',
+  // §291 (MO-1). A RATE condition, not a single failure: raised once when 5xx responses cross
+  // the threshold in the rolling window, so a burst produces one alert rather than one per request.
+  'service.error_rate_exceeded',
 ] as const;
 export type OperationalEvent = (typeof OPERATIONAL_EVENTS)[number];
 
@@ -115,6 +118,7 @@ const SEVERITY: Record<OperationalEvent, OperationalSeverity> = {
   // the record, which is the more serious of the two here.
   'action.audit_write_failed': 'error',
   'action.notification_failed': 'warning',
+  'service.error_rate_exceeded': 'error',
 };
 
 const MAX_VALUE_LENGTH = 200;
@@ -205,6 +209,8 @@ export function captureOperationalEventsForVerification(
  * observability layer, so a failure to log is swallowed deliberately — this is the one place in
  * the product where swallowing is the correct behaviour.
  */
+import { dispatchOperationalAlert } from './operational-alerts';
+
 export function emitOperationalEvent(
   event: OperationalEvent,
   metadata: OperationalMetadata = {},
@@ -215,6 +221,12 @@ export function emitOperationalEvent(
     const serialized = JSON.stringify(line);
     if (line.severity === 'info') process.stdout.write(`${serialized}\n`);
     else process.stderr.write(`${serialized}\n`);
+    /**
+     * §291 (MO-1). The log line is written FIRST and unconditionally; the alert is strictly
+     * additive. If the dispatcher is unconfigured, misconfigured or broken, the record on stdout
+     * is unaffected — alerting can fail without taking the evidence with it.
+     */
+    dispatchOperationalAlert(line);
   } catch {
     // Deliberately silent. See above.
   }

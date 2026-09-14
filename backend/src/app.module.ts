@@ -17,6 +17,7 @@ import { ActionEngineModule } from './action-engine/action-engine.module';
 import { IntelligenceModule } from './intelligence/intelligence.module';
 import { GovernanceModule } from './governance/governance.module';
 import { OutcomesModule } from './outcomes/outcomes.module';
+import { AgreementsModule } from './agreements/agreements.module';
 import { TransparencyModule } from './transparency/transparency.module';
 import { PdfModule } from './pdf/pdf.module';
 import { BillingModule } from './billing/billing.module';
@@ -100,6 +101,7 @@ function getDatabaseSslConfig() {
     IntelligenceModule,
     GovernanceModule,
     OutcomesModule,
+    AgreementsModule,
     TransparencyModule,
     PdfModule,
     BillingModule,

@@ -1,4 +1,5 @@
 import { Global, Module } from '@nestjs/common';
+import { AgreementsModule } from '../agreements/agreements.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 
@@ -24,6 +25,7 @@ import { RefreshToken } from './entities/refresh-token.entity';
 @Global()
 @Module({
   imports: [
+    AgreementsModule,
     TypeOrmModule.forFeature([
       User,
       OrganizationMembership,

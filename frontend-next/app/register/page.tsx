@@ -34,6 +34,35 @@ export default function RegisterPage() {
   const [statusType, setStatusType] = useState<"idle" | "success" | "error">("idle");
   const [loading, setLoading] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  /**
+   * §291 (SU-1). The agreement the SERVER currently requires, fetched rather than hard-coded.
+   * A version compiled into the client goes stale the moment the document is revised, and the
+   * server would then refuse every registration from a cached page. Fetching it means the client
+   * always asserts the version the server is actually asking for.
+   */
+  const [requiredAgreement, setRequiredAgreement] = useState<{
+    agreementId: string; version: string; title: string; counselStatus: string;
+  } | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const response = await apiFetch(`${API_BASE_URL}/agreements`, { method: "GET" });
+        if (!response.ok) return;
+        const data = await response.json();
+        const required = (data?.agreements || []).find(
+          (a: any) => a?.appliesTo === "INTERNAL_OWNER_USE",
+        );
+        if (!cancelled && required) setRequiredAgreement(required);
+      } catch {
+        // Leave it null. The submit path below refuses rather than guessing a version, so a
+        // failed fetch produces an honest "try again" instead of a registration the server will
+        // reject for a reason the user cannot act on.
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
 
   // /pricing sends visitors here as /register?plan=pro. The parameter used to be
   // ignored entirely, so "Choose Pro" landed on a form with Free preselected and the
@@ -82,6 +111,14 @@ export default function RegisterPage() {
       return;
     }
 
+    // §291 (SU-1). Without the server's current agreement there is nothing truthful to assert, so
+    // this refuses rather than sending an acceptance of a document it could not read.
+    if (!requiredAgreement) {
+      setStatusType("error");
+      setStatus("The current user agreement could not be loaded. Please try again.");
+      return;
+    }
+
     try {
       setLoading(true);
       setStatusType("idle");
@@ -98,6 +135,16 @@ export default function RegisterPage() {
           selectedPlan,
           planCode: selectedPlan,
           promoCode: promoCode.trim() || undefined,
+          /**
+           * §291 (SU-1). The acceptance is TRANSMITTED. It was previously evaluated here and
+           * discarded, so the evidential record of consent was a tick in a browser that vanished
+           * with the page. The server validates this against its own registry and writes the
+           * record itself.
+           */
+          acceptedAgreements: [{
+            agreementId: requiredAgreement.agreementId,
+            agreementVersion: requiredAgreement.version,
+          }],
         }),
       });
 
@@ -350,6 +397,14 @@ export default function RegisterPage() {
             />
             <span>
               I understand Safety InSite and HazLenz AI provide decision-support only. Final safety, compliance, and corrective action decisions remain the responsibility of qualified personnel and the user organization.
+              {requiredAgreement ? (
+                <span className="mt-1 block text-xs opacity-80">
+                  {requiredAgreement.title} (version {requiredAgreement.version}).{" "}
+                  {requiredAgreement.counselStatus === "NOT_COUNSEL_REVIEWED"
+                    ? "This is an internal pre-release acknowledgement and has not been reviewed by legal counsel. It is not the Terms of Service."
+                    : null}
+                </span>
+              ) : null}
             </span>
           </label>
 

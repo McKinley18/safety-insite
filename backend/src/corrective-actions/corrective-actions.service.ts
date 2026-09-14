@@ -386,13 +386,25 @@ export class CorrectiveActionsService {
    * the intelligence layer does. A failure is emitted as an operational event so the degradation is
    * visible to an operator instead of silent.
    *
-   * WHAT THIS DELIBERATELY DOES NOT DO IS CREATE THE MISSING TABLE. Adding the migration would not
-   * merely restore a dormant capability — it would ACTIVATE, for the first time in production, a
-   * recurrence check that counts outcomes BY CATEGORY ACROSS EVERY TENANT
-   * (`OutcomeService.checkRecurrence` applies no organization or owner scope) and auto-escalates a
-   * customer's action to `urgent` on the strength of it. Turning that on is a product decision
-   * about whether the outcome loop is per-tenant or global, and §286 raises it as D-055 rather than
-   * deciding it while repairing a 500.
+   * ==================== §291 (DB-4) — THE PREMISE ABOVE WAS FALSE ====================
+   *
+   * §286 reasoned that the recurrence branch could not run, because `synchronize` is false in
+   * production and no migration creates `outcomes`, so "the table cannot appear by any other
+   * route". Every clause was true and the conclusion was wrong: §289 read production and the table
+   * is THERE -- created by `synchronize` before it was turned off, along with twenty other
+   * entity-derived tables outside the migration lineage. The 500 §286 measured locally would not
+   * have happened in production. The recurrence check would simply have RUN, across every tenant.
+   *
+   * So the defect was never the missing table. It was an unscoped query that nothing was stopping.
+   *
+   * THE REPAIR IS SCOPE, NOT UNREACHABILITY. `checkRecurrence` now counts only within one
+   * workspace, joining `outcomes` to `corrective_actions` and applying the same
+   * organization-or-owner predicate this service applies to every other read. The scope is a
+   * REQUIRED argument, so a recurrence figure cannot be computed without one.
+   *
+   * No migration was added for `outcomes` and none should be added merely to recreate a table that
+   * already exists in production. Whether it should be ADOPTED into the lineage is a separate,
+   * registered product-owner decision -- see `outcome.entity.ts` and the provenance register.
    */
   private async recordClosureIntelligence(action: CorrectiveAction) {
     try {
@@ -408,10 +420,33 @@ export class CorrectiveActionsService {
       const outcome = await this.outcomeService.recordOutcome({
         actionId: action.id,
         category: action.category || 'unknown',
-        originalRecommendation: action.originalSuggestion,
+        /**
+         * §291 (DB-6). `outcomes."originalRecommendation"` is jsonb NOT NULL, and
+         * `action.originalSuggestion` is NULL for every corrective action a person creates by
+         * hand rather than from a HazLenz finding. So this insert used to violate the constraint
+         * on exactly those actions, and the §286 guard below caught the QueryFailedError and
+         * emitted `action.closure_intelligence_failed` -- meaning the closure succeeded, the
+         * customer saw success, and the intelligence loop silently never ran. §291 measured it:
+         * six of six hand-created closures failed this way.
+         *
+         * `{}` is the honest value for "no original recommendation was recorded", which is what a
+         * hand-created action genuinely has. It does not fabricate a recommendation, and the
+         * column cannot be made nullable without reshaping a table that sits outside the
+         * migration lineage.
+         */
+        originalRecommendation: action.originalSuggestion ?? {},
         userActionTaken: { title: action.title, description: action.description, closureNotes: action.closureNotes },
         verificationStatus: action.verifiedAt ? 'VERIFIED_STRONG' : 'UNVERIFIED',
         location: action.siteId || 'Facility Floor',
+      }, {
+        /**
+         * §291 (DB-4). The workspace comes from the ACTION being closed, which is the only
+         * authority on who owns this history -- not from the caller's session, which could in
+         * principle differ. The shape matches `buildFilter` exactly: an organization scopes by
+         * `organizationId`, a personal account by `organizationId IS NULL` plus `ownerUserId`.
+         */
+        organizationId: action.organizationId ?? null,
+        ownerUserId: String(action.ownerUserId ?? ''),
       });
 
       // ESCALATION: a hazard category that keeps coming back is not closed, whatever the last
@@ -640,7 +675,27 @@ export class CorrectiveActionsService {
 
     const updated = await this.actionRepo.save(action);
 
-    if (updated.statusCode === 'closed') await this.recordClosureIntelligence(updated);
+    /**
+     * §291 (D-053) — CLOSURE SIDE EFFECTS FIRE ON THE TRANSITION, NOT ON THE REQUEST.
+     *
+     * The state transition itself is idempotent: `statusCode` is assigned absolutely, `closedAt`
+     * and `closedByUserId` are overwritten rather than accumulated, so replaying this request
+     * leaves the row in the same place. The SIDE EFFECTS were not, and that is where the harm was.
+     *
+     * `recordClosureIntelligence` inserts a NEW `outcomes` row every time it runs. A client that
+     * commits a close, loses the response and retries would therefore write two outcome rows for
+     * one real closure -- and `checkRecurrence` counts outcome rows in a window, so a retry could
+     * manufacture a recurrence that never happened and escalate the customer's own action to
+     * `urgent` on the strength of its own duplicate. The feedback write has the same shape and a
+     * sharper threshold: `findLearnedFix` promotes a remediation at TWO occurrences, so two
+     * retries of a single closure could mint a "learned" fix from one event.
+     *
+     * Gating on the transition is the smallest server-enforced protection that removes both. A
+     * genuine reopen followed by a genuine re-close still records a second outcome, which is
+     * correct -- that is two closures, not one closure twice.
+     */
+    const becameClosed = updated.statusCode === 'closed' && !wasClosed;
+    if (becameClosed) await this.recordClosureIntelligence(updated);
 
     /**
      * §287 / D-054 — THE AUDIT WRITE MAY NOT TURN A COMMITTED TRANSITION INTO A 500.
@@ -863,6 +918,7 @@ export class CorrectiveActionsService {
     if (!action) throw new Error('Action not found');
     
     const before = { ...action };
+    const wasClosed = action.statusCode === 'closed';
     action.statusCode = 'closed';
     action.closureNotes = dto.closureNotes;
     // §287 / D-052. Was `action.verifiedAt = new Date()`. Closing is not verifying; this records
@@ -873,7 +929,11 @@ export class CorrectiveActionsService {
 
     // §286 / D-054. The same hazard as `updateStatus` and the same correction: the learning loop
     // runs behind a method that cannot throw, so it can never swallow the audit record below.
-    await this.recordClosureIntelligence(updated);
+    //
+    // §291 (D-053). This route had NO transition gate at all -- it re-ran the intelligence loop on
+    // every call including a retry of an already-closed action. Gated here for the same reason and
+    // in the same way as `updateStatus`; see that method for the full reasoning.
+    if (!wasClosed) await this.recordClosureIntelligence(updated);
 
     await this.auditService.log({
       tenantId: auth.tenantId,

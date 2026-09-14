@@ -117,10 +117,17 @@ export class ActionEngineService {
           report.hazLenz?.classification || report.category
         );
 
-    // 🔷 5. FEEDBACK LOOP: Integrate Learned Fixes
+    /**
+     * 🔷 5. FEEDBACK LOOP: Integrate Learned Fixes
+     *
+     * §291 (DB-5). No workspace scope is passed because this pipeline does not carry one, and
+     * `findLearnedFix` is fail-closed without it -- so this currently contributes nothing rather
+     * than contributing another tenant's remediation wording. Written explicitly, with the
+     * argument omitted on purpose, so the absence reads as a decision rather than an oversight.
+     */
     const learnedFixes = isVagueInput
       ? []
-      : await this.fixFeedbackService.findLearnedFix(report.category);
+      : await this.fixFeedbackService.findLearnedFix(report.category /* no workspace scope: DB-5 */);
     
     let libraryFixes = reference ? reference.fixes : [];
     let finalFixes = [...libraryFixes];

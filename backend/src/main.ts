@@ -8,6 +8,9 @@ import helmet from 'helmet';
 import { randomUUID } from 'crypto';
 import { validateProductionEnvironment } from './config/validate-production-environment';
 
+import { HttpAdapterHost } from '@nestjs/core';
+import { ServerErrorAlertFilter } from './observability/server-error-alert.filter';
+
 async function bootstrap() {
   validateProductionEnvironment();
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { rawBody: true });
@@ -89,6 +92,13 @@ async function bootstrap() {
     throw new Error('PORT must be a valid TCP port.');
   }
   app.enableShutdownHooks();
+  /**
+   * §291 (MO-1). Registered globally so a 5xx anywhere in the application is counted,
+   * including the routes that have no controller-level handling of their own. It extends
+   * Nest's own filter and delegates to it, so response behaviour is unchanged.
+   */
+  app.useGlobalFilters(new ServerErrorAlertFilter(app.get(HttpAdapterHost).httpAdapter));
+
   await app.listen(port, "0.0.0.0");
 
   console.log(`🚀 Backend listening on port ${port}`);

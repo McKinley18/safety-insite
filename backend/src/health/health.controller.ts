@@ -1,5 +1,6 @@
 import { Controller, Get, ServiceUnavailableException } from '@nestjs/common';
 import { HealthService } from './health.service';
+import { describeAlertConfiguration, serverErrorCountInWindow, OPERATIONAL_ALERT_POLICY } from '../observability/operational-alerts';
 import { emitOperationalEvent } from '../observability/operational-events';
 
 @Controller('health')
@@ -60,9 +61,22 @@ export class HealthController {
         version: result.version,
       });
     }
+    /**
+     * §291 (MO-1). "Nothing is watching" is reported as a FACT rather than left as an assumption.
+     * A readiness endpoint that says `ready` while no failure would ever reach a human is telling
+     * half the truth, and the half it omits is the one that matters at 02:00.
+     */
+    const alerting = describeAlertConfiguration();
     return {
       status: 'ready',
       dependencies: { database: 'available', schema: 'current' },
+      monitoring: {
+        alerting: alerting.configured ? 'configured' : 'NOT_CONFIGURED',
+        channel: alerting.channel,
+        detail: alerting.reason,
+        serverErrorsInWindow: serverErrorCountInWindow(),
+        policy: OPERATIONAL_ALERT_POLICY,
+      },
       schema: {
         expectedSchemaVersion: schema.expectedSchemaVersion,
         expectedCount: schema.expectedCount,

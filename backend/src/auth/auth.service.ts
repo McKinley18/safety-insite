@@ -1,4 +1,5 @@
 import { Injectable, BadRequestException, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import { AgreementsService } from '../agreements/agreements.service';
 import { createHash, randomBytes } from 'crypto';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
@@ -57,6 +58,7 @@ export class AuthService {
     private orgService: OrganizationsService,
     private billingService: BillingService,
     private passwordResetDelivery: PasswordResetDeliveryService,
+    private agreements: AgreementsService,
     @InjectRepository(OrganizationMembership)
     private membershipRepo: Repository<OrganizationMembership>,
     @InjectRepository(EntitlementGrant)
@@ -82,6 +84,21 @@ export class AuthService {
     if (promoCodeProvided && !employerProPromoApplied) {
       throw new BadRequestException('Invalid promo code');
     }
+
+    /**
+     * §291 (SU-1) — ACCEPTANCE IS VALIDATED BEFORE AN ACCOUNT EXISTS, NOT AFTER.
+     *
+     * §288's finding was that acceptance never reached the server at all. Transmitting it is only
+     * half the repair; the other half is that a registration WITHOUT a valid acceptance must be
+     * REFUSED, which is exactly the retest the register asks for. This runs before the duplicate
+     * check and before any write, so a refused registration leaves nothing behind -- no orphan
+     * user, no half-made workspace.
+     *
+     * The validation is against the server's registry: the agreement must exist, and the version
+     * must be the one currently required. A client cannot accept a version that has been
+     * superseded, which is what keeps the re-acceptance mechanism honest.
+     */
+    const acceptedAgreements = this.agreements.validateRegistrationAcceptances(dto.acceptedAgreements);
 
     const existing = await this.userRepo.findOne({ where: { email } });
     if (existing) throw new BadRequestException('Email already exists');
@@ -124,6 +141,17 @@ export class AuthService {
     });
 
     await this.userRepo.save(user);
+
+    /**
+     * §291 (SU-1). Written by the SERVER, from the server's own copy of the document: the
+     * timestamp, the digest and the counsel status all come from the registry, not from the
+     * request. The client's assertion was validated above; it is not the evidence.
+     *
+     * This is after the user row because the acceptance binds to a user id, and a consent record
+     * pointing at a user that does not exist would be worse than none.
+     */
+    await this.agreements.recordRegistrationAcceptances(user.id, organizationId, acceptedAgreements);
+
     if (organizationId) {
       await this.orgService.createActiveMembership({
         userId: user.id,

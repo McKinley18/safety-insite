@@ -1,0 +1,14 @@
+[
+ {
+  "at": "2026-09-14T18:08:44.573Z",
+  "body": "{\"source\":\"safety-insite\",\"event\":\"storage.operation_failed\",\"severity\":\"error\",\"at\":\"2026-09-14T18:08:44.568Z\",\"environment\":\"development\",\"release\":\"unknown\",\"metadata\":{\"storageObjectId\":\"54275c28-79f0-4666-9b6e-df49f327b873\",\"parentType\":\"report_version\",\"failureKind\":\"Error\"}}"
+ },
+ {
+  "at": "2026-09-14T18:08:44.575Z",
+  "body": "{\"source\":\"safety-insite\",\"event\":\"report.generation_failed\",\"severity\":\"error\",\"at\":\"2026-09-14T18:08:44.573Z\",\"environment\":\"development\",\"release\":\"unknown\",\"metadata\":{\"inspectionId\":\"c00f06a4-5060-47d8-bc95-2efd58b800eb\",\"failureKind\":\"Error\",\"previousReportPreserved\":true}}"
+ },
+ {
+  "at": "2026-09-14T18:09:09.288Z",
+  "body": "{\"source\":\"safety-insite\",\"event\":\"service.error_rate_exceeded\",\"severity\":\"error\",\"at\":\"2026-09-14T18:09:09.287Z\",\"environment\":\"development\",\"release\":\"unknown\",\"metadata\":{\"path\":\"/inspections/:inspectionId/reports\",\"method\":\"POST\",\"statusCode\":500,\"countInWindow\":5,\"failureKind\":\"Error\"}}"
+ }
+]
