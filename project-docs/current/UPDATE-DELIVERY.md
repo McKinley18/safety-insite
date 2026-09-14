@@ -12,7 +12,7 @@ was measured, what was built, and what is still open.
 
 | | |
 |---|---|
-| Frontend | Next.js 16 (App Router) on Vercel. No `vercel.json`; platform defaults. Git auto-deploy **disabled** (`createDeployments: disabled`, §269) |
+| Frontend | Next.js 16 (App Router) on Vercel. No `vercel.json`; platform defaults. `gitProviderOptions.createDeployments: disabled` (§269). **This does not stop branch previews** — see [Vercel Git deployment, as measured](#vercel-git-deployment-as-measured-283) |
 | Backend | NestJS on Render, **native Node runtime, not Docker** — `env: node`, `rootDir: backend`, build `npm install --include=dev && npm run build:render`, start `npm run start:render`. `autoDeploy: no`, `autoDeployTrigger: off` (§269) |
 | How a user got new code | A full document load. Nothing else. |
 | Frontend build identity | **None existed.** No version, no commit, no build stamp reachable from the running client |
@@ -258,6 +258,40 @@ what makes an automatic refresh *thinkable*; it does not make it correct. Two re
 
 Introducing an automatic refresh remains a product decision, and is not one §280 made.
 
+## The background re-check — D1 was the INSTRUMENT, not the product (§283)
+
+§281 and §282 recorded case D1 as a **failing release gate**: a tab left open never reached the
+update-required state, with no root cause identified, and D2/H1–H3/E0–E2 unexercised behind it.
+**§283 instrumented the client's own check and found the product was working.**
+
+`checkReleaseVersion()` gives its `GET /version` an 8-second budget with
+`setTimeout(() => controller.abort(), 8000)`. Playwright's fake clock owns `setTimeout`. The gate
+advanced fake time with one `page.clock.runFor(31 minutes)`, which fires the 30-minute interval —
+**the schedule works, and the probe watched the extra request leave the page** — and then, in the
+same call, advances straight through that 8-second budget while the real response is still in
+flight, because real network I/O does not move with fake time. The abort fires
+(`net::ERR_ABORTED`), the client resolves **UNKNOWN** exactly as specified, UNKNOWN correctly
+blocks nothing and shows nothing, and the gate finds no panel.
+
+Measured both ways on the same build: one-call advance → request aborted, **0** update-required
+panels. Advance to just past the interval boundary and let real time deliver → **1** panel.
+
+The gate now advances in two parts (`PAST_BACKGROUND_INTERVAL_MS`). **Nothing in the product was
+weakened to reach the pass** — the 8-second budget, the 30-minute floor, the 15-minute staleness
+rule, the visibility gate and the fail-open UNKNOWN are all unchanged, and no polling was added.
+
+**F1 was corrected in the opposite direction and for the same reason.** It asserts that an
+*unreachable* version endpoint shows no update-required state; under the single advance every check
+was aborted whether or not the endpoint was reachable, so **F1 had been passing vacuously**.
+
+**Result: 26 passed, 0 failed** — A, C1–C5, D1, D2, E0–E3, F0–F3, H1–H3, I1–I6, J. Evidence:
+`verification/current/runtime-evidence-283/`.
+
+**Two limits, stated rather than claimed.** The auth-lifecycle and read exemptions from the write
+gate are established by `blocksMutation` and its 31-case unit suite, not by a browser case. And
+"a refresh yields the NEW frontend identity" cannot be demonstrated locally, because there is one
+build here; I1–I6 prove only that the running client reports its own identity truthfully.
+
 ## Gates
 
 | Gate | Covers |
@@ -267,3 +301,75 @@ Introducing an automatic refresh remains a product decision, and is not one §28
 | `frontend-next: npm run validate:279-update-delivery` | the browser; plan cases A, C, D, E, F, H, I, J, with a control run |
 | `frontend-next: npm run check:release-contract-parity` | the two rule copies, and the one declared value that could not be derived |
 | `frontend-next: npm run validate:280-workspace-draft-persistence` | §280 D-035. The draft survives a required refresh, submits once, does not duplicate, and is refused when it is stale or belongs elsewhere. With a control and a falsification |
+
+---
+
+## Vercel Git deployment, as measured (§283)
+
+Earlier sections recorded "Vercel Git auto-deploy is **disabled**" as a single fact. **It is not
+one fact, it is two, and only one half has ever been observed.** §283 read the project
+configuration and the deployment ledger through the Vercel API, read-only, and changed nothing.
+
+### What the configuration says
+
+| Setting | Value | What it is |
+|---|---|---|
+| `link.type` / `link.repo` | `github` / `McKinley18/safety-insite` | the Git integration is CONNECTED |
+| `link.productionBranch` | `main` | which branch a Git deployment targets `production` |
+| `gitProviderOptions.createDeployments` | `disabled` | the project-level Git-deployment control §269 set |
+| `link.deployHooks` | `[]` | no deploy hook exists, so no URL can trigger a build |
+| `ssoProtection.deploymentType` | `all_except_custom_domains` | every deployment URL is behind Vercel SSO; the project's own domains are not |
+| `gitComments` | `onPullRequest: true`, `onCommit: false` | |
+| `skewProtectionMaxAge` | `43200` (12h) | |
+
+### What actually happened
+
+| | |
+|---|---|
+| Production deployment | `dpl_GBe9…`, `main` @ `de655d2f`, **2026-08-29**, `source: git`, `target: production` |
+| Most recent deployment | `dpl_3gJEF…`, `beta/expert-hazlenz-validated-candidate-2026-09-12` @ `f1dfce8c`, **2026-09-14**, `source: git`, `target: null` (PREVIEW) |
+| Production after the §282 branch push | **unchanged** — still `de655d2f`, still 2026-08-29 |
+| Preview URL access, unauthenticated | `302` to `vercel.com/sso-api`, `x-robots-tag: noindex`, `x-frame-options: DENY` |
+| Production URL (`safety-insite.vercel.app`) | `200`, not SSO-gated — which is correct for a live product |
+
+So a branch push **did** create a Vercel deployment, from the Git integration
+(`source: "git"`, `gitSource.prId: null` — a branch push, not a pull request), while
+`createDeployments` read `disabled`.
+
+### The precise distinction, and the limit of the evidence
+
+**PRODUCTION Git deployment.** Production has not advanced from a branch push. It has also not been
+tested: `main` has not been pushed since §269 set `createDeployments: disabled`, so *no observation
+exists either way*. The claim "a push cannot deploy production" is **configured, not demonstrated**.
+Treat it as a control that has not been exercised, and keep the migrate-then-deploy ordering and
+the explicit-deploy step in the runbook regardless of what the setting reads.
+
+**PREVIEW Git deployment.** Branch pushes **do** create Vercel preview deployments today. Measured,
+not inferred. Every preview URL is SSO-protected and `noindex`, and no preview aliases a project
+domain.
+
+**Wording rule.** Do not write "Git auto-deploy is disabled". Write which target is meant:
+
+> Production does not advance from a branch push and `main` has not been pushed since the control
+> was set, so the production half is configured but unobserved. Branch pushes create SSO-protected
+> Vercel previews.
+
+### Preview deployments: risk, cost, recommendation — **KEEP_PREVIEWS**
+
+| Question | Answer |
+|---|---|
+| Security | Low. SSO-gated at the edge before any application code runs, `noindex`, no project domain aliased. The preview build carries the project's Preview environment variables — so the standing rule is that **no production secret may be scoped to Preview**, which should be audited before beta, not assumed |
+| Cost | Low but not nil: build minutes and retained deployments per push. `deploymentExpiration` keeps 10 and expires previews at 180 days |
+| Release control | **No effect on production.** A preview cannot alias a project domain and cannot become production without an explicit promote |
+| Usefulness | High, and specifically for this project: a controlled-beta candidate that must be reviewed before release now has a running, protected instance of the exact candidate SHA, reachable without a local build |
+
+**Recommendation: KEEP_PREVIEWS.** They cost little, are protected, cannot move production, and are
+the only way to review a candidate as a running application without deploying it. Disabling them
+would remove the review surface and would not improve the production control, which is a different
+setting. §283 **changed nothing**; this is a recommendation, not an action.
+
+### What is NOT established
+
+Why `createDeployments: disabled` did not prevent the preview. The setting's exact scope is a
+Vercel platform behaviour, and §283 did not test it by pushing anything. Do not write down a
+mechanism for it that has not been observed.

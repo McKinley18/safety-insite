@@ -37,6 +37,39 @@ function check(id, condition, detail = "") {
 
 const REAL = await (await fetch(`${API_URL}/version`)).json();
 
+/**
+ * §283 (D1) — WHY THE FAKE CLOCK IS ADVANCED IN TWO PARTS AND NOT IN ONE.
+ *
+ * §281 and §282 recorded D1 as a FAILING PRODUCT GATE: a tab left open never reached the
+ * update-required state. §283 instrumented the check itself and found the opposite. The schedule
+ * DOES fire — the probe recorded the extra `GET /version` leaving the page — and the request is
+ * then ABORTED BY THE TEST'S OWN CLOCK:
+ *
+ *   `checkReleaseVersion()` gives its request an 8-second budget with `setTimeout(..., 8000)` and
+ *   an `AbortController`. Playwright's fake clock owns `setTimeout`. A single
+ *   `clock.runFor(31 minutes)` fires the 30-minute interval, the check issues its request, and the
+ *   SAME call then advances fake time straight through that 8-second budget — while the real
+ *   response is still in flight, because real network I/O does not move with fake time. The abort
+ *   fires (`net::ERR_ABORTED`), the client correctly resolves UNKNOWN, and UNKNOWN correctly
+ *   blocks nothing and shows nothing.
+ *
+ * So the frozen run was not measuring whether a stale tab finds out. It was measuring a request it
+ * had cancelled. Advancing to just past the interval boundary and then letting REAL time deliver
+ * the response measures the product: with this change D1 reaches the update-required panel on the
+ * same build the frozen run failed against.
+ *
+ * NOTHING IN THE PRODUCT WAS WEAKENED TO REACH THAT. The 8-second budget, the 30-minute floor, the
+ * 15-minute staleness rule and the fail-open UNKNOWN are all unchanged; only the way this script
+ * advances time is.
+ *
+ * F1 IS AFFECTED IN THE OTHER DIRECTION, and is corrected here for the same reason. It asserts
+ * that an UNREACHABLE version endpoint shows no update-required state — and under the one-call
+ * advance every check was aborted regardless of whether the endpoint was reachable, so F1 passed
+ * without ever exercising the thing it names. It now advances the same way, so its pass means the
+ * client saw a real transport failure and still refused to call itself obsolete.
+ */
+const PAST_BACKGROUND_INTERVAL_MS = 30 * 60 * 1000 + 1000;
+
 /** Serve a fabricated release contract for `GET /version`, leaving every other call untouched. */
 async function simulateRelease(context, overrides) {
   await context.unroute("**/version").catch(() => {});
@@ -185,7 +218,11 @@ let SESSION = null;
   await simulateRelease(context, { frontendVersion: "9.9.9", minimumSupportedFrontendVersion: "9.9.9" });
   // Half an hour passes. This is the §279 Part A risk itself: the tab that was never going to
   // find out. The background schedule is what makes it find out.
-  await page.clock.runFor(31 * 60 * 1000);
+  //
+  // Two parts, deliberately — see PAST_BACKGROUND_INTERVAL_MS. Fake time stops just past the
+  // interval boundary so the check's own 8-second abort budget is NOT also consumed, and real time
+  // then delivers the response.
+  await page.clock.runFor(PAST_BACKGROUND_INTERVAL_MS);
   await page.waitForTimeout(2500);
 
   const panel = page.locator('[data-testid="update-required"]');
@@ -280,7 +317,10 @@ let SESSION = null;
     new URL(page.url()).pathname === "/command-center");
 
   await simulateRelease(context, "UNREACHABLE");
-  await page.clock.runFor(31 * 60 * 1000);
+  // Same two-part advance as D1, and for the opposite reason: under the old single advance this
+  // check's request was aborted by the clock, so F1 could not tell a genuinely unreachable server
+  // from a request the test had cancelled.
+  await page.clock.runFor(PAST_BACKGROUND_INTERVAL_MS);
   await page.waitForTimeout(2500);
   check("F1 an unreachable version endpoint shows NO update-required state",
     (await page.locator('[data-testid="update-required"]').count()) === 0);

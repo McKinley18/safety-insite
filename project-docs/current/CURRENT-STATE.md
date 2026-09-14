@@ -88,11 +88,23 @@ is not offline-capable**, and neither §280 nor §281 claims otherwise.
    (`frontend-next/lib/data/dataState.ts`) makes it structurally impossible for a surface that did
    not reach the server to render a verified zero.
 
-**One gate fails and was not made to pass.** `validate:279-update-delivery` case D1 — the
-background re-check that tells a tab left open that it is unsupported — times out. It fails
+**One gate failed at §281 and was not made to pass.** `validate:279-update-delivery` case D1 — the
+background re-check that tells a tab left open that it is unsupported — timed out. It failed
 identically with HEAD's version of the script on pages §281 did not change, so §281 did not cause
-it; it is recorded as an open failure because the mechanism is what stops an unsupported client
+it; it was recorded as an open failure because the mechanism is what stops an unsupported client
 writing.
+
+> **RESOLVED AT §283 — it was the instrument, and the product was working.** The gate advanced
+> Playwright's fake clock by 31 minutes in one call. That fires the 30-minute background interval —
+> §283 watched the extra `GET /version` leave the page — and then advances straight through the
+> 8-second `AbortController` budget the check gives its own request, while the real response is
+> still in flight. The request was aborted (`net::ERR_ABORTED`), the client resolved UNKNOWN exactly
+> as specified, and UNKNOWN correctly shows nothing. Advancing to just past the interval boundary
+> and letting real time deliver the response reaches the update-required panel on the same build.
+> **Nothing in the product was weakened**; the gate now advances in two parts, and **26/26 pass**,
+> including D2, H1–H3 and E0–E2, which had never been exercised. §283 also found that case **F1 had
+> been passing vacuously** for the same reason and corrected it. Evidence:
+> `verification/current/runtime-evidence-283/`.
 
 ---
 
@@ -373,9 +385,12 @@ Three independent mechanisms, and only the third is not procedural:
    non-zero on failure. `migrate && start` never reaches `start`.
 2. `project-docs/operations/DEPLOYMENT-RUNBOOK.md` orders MIGRATE → VERIFY SCHEMA → DEPLOY, with
    autoDeploy disabled first. **Superseded at §272: Render autoDeploy is OFF**
-   (`autoDeploy: "no"`, `autoDeployTrigger: "off"`, read from the service API), as is Vercel Git
-   auto-deploy. The ordering remains a precondition of any push; what changed is that the platform
-   no longer deploys on its own while that ordering is being followed.
+   (`autoDeploy: "no"`, `autoDeployTrigger: "off"`, read from the service API), and Vercel reads
+   `gitProviderOptions.createDeployments: disabled`. **Narrowed at §283:** both are PRODUCTION
+   controls, neither has been observed in operation — `main` has not been pushed since they were
+   set — and the Vercel one does **not** stop branch previews: the §282 branch push created a
+   Git-sourced preview while it read `disabled`, and production did not move. The ordering remains
+   a precondition of any push, and should be followed as though the platform *could* still deploy.
 3. **`/health/ready` fails closed** when required migrations are absent, so an instance that
    skipped 1 and 2 never becomes ready rather than silently serving broken reads. A schema *ahead*
    of the build is READY — that is a deliberate code rollback, not a fault.
@@ -450,9 +465,11 @@ time and are not current status.
 | `PRODUCTION_PROVIDER_CREDENTIAL_ABSENT` | **raised §269, CLOSED §270.** `ANTHROPIC_API_KEY` is set in production and was validated against the provider model-list endpoint. Retained here as the record of a closed blocker |
 
 §269 closed `REPORT_GENERATION_BLOCKED` — its premise was false for production, which has had object
-storage configured all along — and `NO_ERROR_MONITORING`. It also closed deployment control on
+storage configured all along — and `NO_ERROR_MONITORING`. It also set deployment control on
 **both** platforms: Render `autoDeploy=no/off`, and Vercel `createDeployments=disabled`, the latter
-being a hazard no prior section had recorded.
+being a hazard no prior section had recorded. **§283 narrows "closed" to "set":** neither control
+has been exercised, because `main` has not been pushed since; and the Vercel setting does not stop
+branch previews, which §283 measured being created from a branch push while it read `disabled`.
 
 > **The §269 finding that mattered most.** `EXPERT_EXECUTION_ENABLED` was **absent** in production,
 > and `validateProductionEnvironment` requires it to be exactly `true` or `false`. **The beta
@@ -503,8 +520,9 @@ a local session, §269 did against the live environment.
 
 **Beta infrastructure and operations.** The Expert workflow now functions against a real
 observation, so the remaining lanes are no longer blocked behind it. In dependency order: the
-production migration mechanism **before any push** (autoDeploy is OFF as of §272, so the push
-itself is the deliberate act); object storage, which
+production migration mechanism **before any push** (the production auto-deploy controls are OFF as
+of §272, so the push is intended to be the deliberate act — but §283 found them unexercised, so
+treat the ordering as load-bearing rather than as a formality); object storage, which
 production cannot boot without; a spend ceiling and an explicit Expert enable flag; error
 monitoring. The **legal** lane has no engineering prerequisite and should already be running in
 parallel.

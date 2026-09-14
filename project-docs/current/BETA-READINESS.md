@@ -80,7 +80,7 @@ identity moved to the §274 successor `8c163b31…` under authorisation.
 Read from the platform, not assumed:
 
 - Render compute plan **`0.5c-512mb` (paid)**, 1 instance, `oregon`, not suspended
-- backend `autoDeploy: no` / `autoDeployTrigger: off`; frontend Git auto-deploy **off**
+- backend `autoDeploy: no` / `autoDeployTrigger: off`; frontend `gitProviderOptions.createDeployments: disabled`. **§283: these are the PRODUCTION controls and neither has been exercised** — `main` has not been pushed since they were set — and the Vercel one demonstrably does **not** stop branch previews, which are created and SSO-protected. See `UPDATE-DELIVERY.md`, "Vercel Git deployment, as measured (§283)"
 - `healthCheckPath: /health/ready`; readiness returns **200**
 - `EXPERT_EXECUTION_ENABLED=false`, `ENABLE_MAINTENANCE_SEED=false`, `TYPEORM_SYNCHRONIZE=false`,
   `DEV_AUTH_BYPASS=false`, `NODE_ENV=production`

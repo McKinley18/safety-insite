@@ -71,9 +71,19 @@ application code to become active against the old schema — §266 measured why:
 
 ### 5. Deploy the exact validated candidate
 
-Deploy `709ee151b932095020ea69d25daa04a337ccba16`. Render `autoDeploy` is off
-(`autoDeploy: "no"`, `autoDeployTrigger: "off"`) and Vercel Git auto-deploy is disabled, so
-this is a deliberate act rather than a consequence of pushing.
+Deploy `709ee151b932095020ea69d25daa04a337ccba16`. This must be a deliberate act.
+
+**Say which target you mean — §283 corrected this sentence.** Render reads
+`autoDeploy: "no"` / `autoDeployTrigger: "off"`, and Vercel reads
+`gitProviderOptions.createDeployments: disabled`. Those are the PRODUCTION controls, and
+**neither has been observed in operation**: `main` has not been pushed since they were set.
+What §283 *did* observe is that the same Vercel setting does **not** stop branch previews — the
+§282 branch push created a Git-sourced preview deployment while it read `disabled`. Production
+did not move.
+
+So: do not treat "auto-deploy is disabled" as a reason the ordering below can be relaxed. Run
+MIGRATE -> VERIFY SCHEMA -> DEPLOY in that order, and assume a push could deploy until a push has
+demonstrated otherwise. See `UPDATE-DELIVERY.md`, "Vercel Git deployment, as measured (§283)".
 
 ### 6. Verify the running SHA
 

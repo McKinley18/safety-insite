@@ -60,6 +60,61 @@ export class ExpertApiError extends Error {
   }
 }
 
+/**
+ * §283 (D-045) — THE ENTITLEMENT REFUSAL IS RECOGNISED BY THE SERVER'S OWN CODE, NOT BY A STATUS
+ * THIS FILE GUESSED.
+ *
+ * The three Expert routes carry `@RequireEntitlement('fullSafeScope')`, and `EntitlementGuard`
+ * refuses with **402 Payment Required** and a body naming itself:
+ *
+ *   {"message":"A paid subscription is required for this feature.",
+ *    "code":"PAID_SUBSCRIPTION_REQUIRED","entitlement":"fullSafeScope"}
+ *
+ * This module recognised 401 and 403 and nothing else, so the one status the guard actually uses
+ * fell through to the generic branch: `code` was dropped, `NOT_ENTITLED` was never raised, and the
+ * panel's designed plan notice was unreachable code. What a Free account saw instead — measured on
+ * 64 of 64 HazLenz-step visits at §281 — was the guard's sentence in a red `role="alert"` box,
+ * beside an ENABLED "Run Expert review" button that could only ever produce the same refusal.
+ *
+ * So the mapping is derived from the BODY's `code` first and from the status only as a fallback.
+ * A status is this file's guess about what the server meant; the code is what the server said. The
+ * 403 fallback is kept exactly as it was, because a guard that answers 403 for a reason of its own
+ * must not silently start reading as something else.
+ */
+const NOT_ENTITLED_SERVER_CODES = new Set(["PAID_SUBSCRIPTION_REQUIRED"]);
+
+/**
+ * The whole mapping, as a pure function of what the server actually returned, so the regression
+ * that D-045 needs can be executed without a network or a browser. `body` is whatever the failed
+ * response parsed to, or null if it carried no JSON.
+ */
+export function classifyExpertFailure(
+  status: number,
+  body: { message?: string; code?: string } | null,
+): ExpertApiError {
+  if (status === 401) {
+    return new ExpertApiError("Your session has expired.", 401, EXPERT_ANALYSIS_ERROR.AUTH_REQUIRED);
+  }
+  if (body?.code && NOT_ENTITLED_SERVER_CODES.has(body.code)) {
+    return new ExpertApiError(
+      "Expert analysis is not included in this plan.",
+      status,
+      EXPERT_ANALYSIS_ERROR.NOT_ENTITLED,
+    );
+  }
+  if (status === 403) {
+    return new ExpertApiError(
+      "Expert analysis is not included in this plan.",
+      403,
+      EXPERT_ANALYSIS_ERROR.NOT_ENTITLED,
+    );
+  }
+  return new ExpertApiError(
+    body?.message || "The Expert analysis could not be completed.",
+    status,
+  );
+}
+
 async function expertJson<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await apiFetch(
     `${API_BASE_URL}${path}`,
@@ -68,22 +123,14 @@ async function expertJson<T>(path: string, init?: RequestInit): Promise<T> {
     // supplies, but a silent client retry would still hide a slow response behind a second one.
     { retries: 0 },
   );
-  if (response.status === 401) {
-    throw new ExpertApiError("Your session has expired.", 401, EXPERT_ANALYSIS_ERROR.AUTH_REQUIRED);
-  }
-  if (response.status === 403) {
-    throw new ExpertApiError(
-      "Expert analysis is not included in this plan.",
-      403,
-      EXPERT_ANALYSIS_ERROR.NOT_ENTITLED,
-    );
-  }
   if (!response.ok) {
-    const body = await response.json().catch(() => null);
-    throw new ExpertApiError(
-      (body as { message?: string } | null)?.message || "The Expert analysis could not be completed.",
-      response.status,
-    );
+    // Read once, and only for a failure. A `Response` body can be consumed once, so the code and
+    // the message have to come out of the same read or one of them is lost. 401 carries no body
+    // this module needs, and the parse is allowed to fail to null for a refusal that sends none.
+    const body = response.status === 401
+      ? null
+      : await response.json().catch(() => null) as { message?: string; code?: string } | null;
+    throw classifyExpertFailure(response.status, body);
   }
   return (await response.json()) as T;
 }

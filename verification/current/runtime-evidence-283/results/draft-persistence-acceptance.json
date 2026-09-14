@@ -1,0 +1,110 @@
+{
+  "gate": "§280 D-035 workspace draft persistence",
+  "appUrl": "http://localhost:3000",
+  "inspectionId": "58b08f34-b43a-4c78-86dd-ddd420cbede0",
+  "providerCalls": 0,
+  "cases": 11,
+  "failures": 0,
+  "consoleErrors": [],
+  "results": [
+    {
+      "id": "A",
+      "name": "an untouched workspace writes no draft",
+      "passed": true,
+      "detail": {
+        "keys": []
+      }
+    },
+    {
+      "id": "B",
+      "name": "typed work is persisted as a scoped local draft",
+      "passed": true,
+      "detail": {
+        "key": "safety_insite_workspace_draft_v1:u_ef7fc33d50cb12b028dbf8d90bc4a237a2d0f599917b9d0be7f84e05261a8ca1:58b08f34-b43a-4c78-86dd-ddd420cbede0",
+        "inspectionId": "58b08f34-b43a-4c78-86dd-ddd420cbede0",
+        "observationMatches": true
+      }
+    },
+    {
+      "id": "B2",
+      "name": "persisting a draft creates NO server observation",
+      "passed": true,
+      "detail": {
+        "serverObservations": 0
+      }
+    },
+    {
+      "id": "C",
+      "name": "a new client restores the work after a required refresh",
+      "passed": true,
+      "detail": {
+        "valueAtFirstPaint": "DRAFT-ACCEPTANCE: unguarded rotating sha",
+        "restoredLength": 179
+      }
+    },
+    {
+      "id": "C2",
+      "name": "the restore is disclosed as a device draft, not as saved state",
+      "passed": true,
+      "detail": "Unsaved work on this device was restored Last edited Sep 14, 2026, 7:56 AM. This is a draft held on this device — it is not saved to Safety InSite until you sub"
+    },
+    {
+      "id": "D",
+      "name": "the restored work submits once and a replay does not duplicate it",
+      "passed": true,
+      "detail": {
+        "firstId": "14969163-d72e-4cac-b39c-6d1e24eb1839",
+        "secondId": "14969163-d72e-4cac-b39c-6d1e24eb1839",
+        "count": 1,
+        "elapsedMs": 17
+      }
+    },
+    {
+      "id": "E",
+      "name": "a cleared draft is not re-offered, and the page does not rewrite one from committed state",
+      "passed": true,
+      "detail": {
+        "noticeShown": false,
+        "keys": []
+      }
+    },
+    {
+      "id": "F",
+      "name": "CONTROL: with the draft removed the same sequence loses the work",
+      "passed": true,
+      "detail": {
+        "draftWasWritten": true,
+        "restoredText": "DRAFT-ACCEPTANCE: unguarded rotating shaft on the number thr"
+      }
+    },
+    {
+      "id": "G",
+      "name": "FALSIFICATION: a draft filed under the right key but naming another inspection is refused and deleted",
+      "passed": true,
+      "detail": {
+        "plantedUnderReadKey": true,
+        "restoredText": "DRAFT-ACCEPTANCE: unguarded rotating shaft on the number thr",
+        "recordDeleted": true
+      }
+    },
+    {
+      "id": "H",
+      "name": "an expired draft is refused and removed",
+      "passed": true,
+      "detail": {
+        "draftWasAged": true,
+        "restoredText": "DRAFT-ACCEPTANCE: unguarded rotating shaft on the number thr",
+        "recordDeleted": true
+      }
+    },
+    {
+      "id": "I",
+      "name": "sign-out removes every workspace draft on the device",
+      "passed": true,
+      "detail": {
+        "keysBeforeSignOut": 1,
+        "keysAfterSignOut": 0
+      }
+    }
+  ]
+}

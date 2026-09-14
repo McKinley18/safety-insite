@@ -1,9 +1,9 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270; entity resolution attempted and billing configuration cleaned at §271",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270; entity resolution attempted and billing configuration cleaned at §271; runtime evidence reconciliation, update-delivery closure and preview-deployment record at §283",
   "role": "THE ONLY register of what currently blocks external beta. §266 made it the single authoritative P0/P1/P2 closure register for Safety InSite v1.0 controlled human beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the WHOLE Safety InSite v1.0 product as a controlled-beta candidate, not only the Expert HazLenz layer. §266 widened it from the Expert-only scope §263 established.",
-  "asOf": "2026-09-13",
+  "asOf": "2026-09-14",
   "blocksExternalBetaNow": [
     {
       "id": "NO_TERMS_NO_PRIVACY_POLICY",
@@ -254,18 +254,6 @@
       "owner": "engineering"
     },
     {
-      "id": "EXPERT_CLIENT_MISREADS_THE_ENTITLEMENT_REFUSAL",
-      "priority": "P2",
-      "kind": "code",
-      "discoveredBy": "§267, incidentally, while asserting that an unentitled Expert read stays blocked",
-      "statement": "`EntitlementGuard` refuses a missing plan feature with HTTP 402 (PAID_SUBSCRIPTION_REQUIRED). `frontend-next/lib/expert/expertApi.ts` maps only 403 to EXPERT_NOT_ENTITLED, so an unentitled user reaches the generic branch.",
-      "measured": "§267 READ-5 observed 402 where the client expects 403.",
-      "consequence": "COSMETIC AND CONTAINED. The read is correctly refused and no Expert content is served; the user sees \"The Expert analysis could not be completed.\" instead of \"Expert analysis is not included in this plan.\" It is a wrong message, not a wrong authorization.",
-      "whyNotFixedAtSection267": "It is not one of the four defects §267 authorized, and it was not raised by §266. Fixing it opportunistically would be an unrelated change in an authorized bounded commit.",
-      "requiredAction": "map 402 to EXPERT_NOT_ENTITLED alongside 403 in expertApi.ts",
-      "owner": "engineering"
-    },
-    {
       "id": "BUILD_INFO_FALLBACK_IS_STALE",
       "priority": "P2",
       "kind": "code",
@@ -305,7 +293,8 @@
     {
       "id": "RENDER_AND_VERCEL_SERVICE_CONFIG",
       "statement": "ESTABLISHED via the Render and Vercel APIs. Backend srv-d7kl74jeo5us73deaor0 autoDeploy=no/off; Vercel project prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw createDeployments=disabled. Still no render.yaml; configuration lives in the platforms and is now recorded in §269 evidence.",
-      "resolvedAt": "§269"
+      "resolvedAt": "§269",
+      "narrowedAt§283": "§283 re-read the Vercel project and deployment ledger (read-only) and found the createDeployments=disabled claim covers only PART of what \"Git auto-deploy is disabled\" was taken to mean. PRODUCTION: main has not been pushed since the control was set, so the production half is CONFIGURED BUT NEVER EXERCISED — no observation exists either way. PREVIEW: branch pushes DO create Git-sourced Vercel previews today; the §282 push created dpl_3gJEF… (source=git, target=null, gitSource.prId=null) while the setting read disabled, and production stayed on de655d2f from 2026-08-29. Previews are SSO-gated, noindex, and alias no project domain. Recommendation KEEP_PREVIEWS; nothing was changed. Render was NOT re-verified at §283 — the local Render credential returns 401 — so its autoDeploy=no/off is carried from §269/§272 and is unverified as of §283."
     }
   ],
   "acceptedLimitationsNotBlockers": [
@@ -495,6 +484,25 @@
       "actualMechanismUnaffected": "billing.service.ts derives Stripe redirects from frontendUrl() -> FRONTEND_APP_URL -> APP_URL -> FRONTEND_URL. FRONTEND_URL is unchanged at https://safety-insite.vercel.app/, so the live redirects are unaffected: success -> /profile?billing=success, cancel -> /pricing?billing=cancelled, both verified HTTP 200.",
       "postRemovalVerification": "production boot contract re-evaluated against the 41-variable environment: BOOTS. No deploy was created — the deploy list is byte-identical and /health/version still reports de655d2f.",
       "whyRemovedRatherThanCorrected": "§270 corrected them because deleting configuration is the more destructive option and consumers had not yet been exhaustively proven absent. §271 proved it and removed them: plausible values implying a control that does not exist are worse for an operator than no variable at all."
+    },
+    {
+      "id": "EXPERT_CLIENT_MISREADS_THE_ENTITLEMENT_REFUSAL",
+      "priority": "P2",
+      "kind": "code",
+      "discoveredBy": "§267, incidentally, while asserting that an unentitled Expert read stays blocked",
+      "statement": "`EntitlementGuard` refuses a missing plan feature with HTTP 402 (PAID_SUBSCRIPTION_REQUIRED). `frontend-next/lib/expert/expertApi.ts` maps only 403 to EXPERT_NOT_ENTITLED, so an unentitled user reaches the generic branch.",
+      "measured": "§267 READ-5 observed 402 where the client expects 403.",
+      "consequence": "COSMETIC AND CONTAINED. The read is correctly refused and no Expert content is served; the user sees \"The Expert analysis could not be completed.\" instead of \"Expert analysis is not included in this plan.\" It is a wrong message, not a wrong authorization.",
+      "whyNotFixedAtSection267": "It is not one of the four defects §267 authorized, and it was not raised by §266. Fixing it opportunistically would be an unrelated change in an authorized bounded commit.",
+      "requiredAction": "map 402 to EXPERT_NOT_ENTITLED alongside 403 in expertApi.ts",
+      "owner": "engineering",
+      "resolvedAt": "§283",
+      "severityCorrectedAt§283": "The §267 consequence line — \"COSMETIC AND CONTAINED … a wrong message, not a wrong authorization\" — understated it. The authorization was always correct, but because EXPERT_NOT_ENTITLED was never raised, the panel's plan-notice branch was unreachable and the full panel rendered instead: the guard's billing sentence inside a red role=\"alert\", beside an ENABLED \"Run Expert review\" button the account can never use, on 64 of 64 HazLenz-step visits (§281). A live call to action that cannot succeed is a product defect, not a cosmetic one.",
+      "howResolved": "§283 derives the mapping from the server's own response code (PAID_SUBSCRIPTION_REQUIRED) rather than from a status this module guessed, extracted as the pure classifyExpertFailure() so it is testable without a network. The bare-403 mapping is preserved unchanged. No server file was touched; the refusal, the guard and every HazLenz semantic are unchanged.",
+      "measuredAfter": "Free account, production build, no dev bypass: 0 \"Run Expert review\" controls, no role=\"alert\", and the designed notice \"Expert review is not included in this plan. Your deterministic HazLenz analysis above is unaffected.\" Entitled control on the same build: 200, 0 console errors, panel unchanged. The 402 itself still occurs on every visit and is correct — the client must ask the server, because a live subscription row is authoritative over the JWT's cached plan claim.",
+      "regression": "frontend-next: npm run test:expert-api-failure-mapping — falsified against the pre-repair mapping",
+      "evidence": "verification/current/runtime-evidence-283/",
+      "stillOpen": "S-15 — whether the Expert panel should be offered at all on a Free account. Product-owner decision, untouched."
     }
   ],
   "verdict": {

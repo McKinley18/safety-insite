@@ -1,0 +1,146 @@
+{
+  "serverContract": {
+    "releaseVersion": "1.0.0",
+    "gitSha": "ae5c586",
+    "buildTimestamp": "2026-06-19T20:42:00.000Z",
+    "backendVersion": "1.0.0",
+    "frontendVersion": "1.0.0",
+    "minimumSupportedFrontendVersion": "1.0.0",
+    "schemaCompatibilityVersion": "1800000021000",
+    "versionSourceStatus": "BUILD_FALLBACK",
+    "buildTimestampSourceStatus": "BUILD_FALLBACK"
+  },
+  "results": [
+    {
+      "id": "A a current client shows no update notice of any kind",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "C1 a newer release shows the update-available notice",
+      "outcome": "PASS",
+      "detail": "1"
+    },
+    {
+      "id": "C2 it reads as an offer, not a demand",
+      "outcome": "PASS",
+      "detail": "A newer version of Safety InSite is available. Refresh now Later"
+    },
+    {
+      "id": "C3 it offers both Refresh now and Later",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "C4 it does NOT block the application — the page behind it is still usable",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "C5 Later dismisses it",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "J once dismissed, repeated checks do not re-open the same notice",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "D1 an unsupported client is shown the update-required state",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "D2 which says what happened and what to do",
+      "outcome": "PASS",
+      "detail": "Safety InSite has been updated  This page is running an older version and can no longer save. Anything you have typed but not saved will be lost when you refresh, so copy it out first if you need it.  Refresh to continue"
+    },
+    {
+      "id": "H1 NOTHING RELOADED ON ITS OWN",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "H2 and the unsaved work is still on the screen",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "H3 the notice warns that unsaved work will be lost before the user refreshes",
+      "outcome": "PASS",
+      "detail": "Safety InSite has been updated  This page is running an older version and can no longer save. Anything you have typed but not saved will be lost when you refresh, so copy it out first if you need it.  Refresh to continue"
+    },
+    {
+      "id": "E0 the blocked state survives a navigation within the stale client",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "E1 the add-task control is present to be attempted",
+      "outcome": "PASS",
+      "detail": "field=1 button=1"
+    },
+    {
+      "id": "E2 a safety-critical write from an unsupported client never reaches the server",
+      "outcome": "PASS",
+      "detail": "no mutation transmitted"
+    },
+    {
+      "id": "E3 CONTROL: the identical click from a CURRENT client DOES reach the server",
+      "outcome": "PASS",
+      "detail": "mutation transmitted"
+    },
+    {
+      "id": "F0 the session is authenticated and on an application page, so a notice COULD appear",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F1 an unreachable version endpoint shows NO update-required state",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F2 and no update-available notice either",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F3 and the client KEEPS WORKING — a failed version check must never stop an inspector recording work",
+      "outcome": "PASS",
+      "detail": "write transmitted"
+    },
+    {
+      "id": "I1 Settings carries a version surface",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "I2 it names a product version, not a commit",
+      "outcome": "PASS",
+      "detail": "Safety InSite 1.0.0  Released Sep 14, 2026. Up to date with the Safety InSite service.  Support details"
+    },
+    {
+      "id": "I3 it states whether the client is current",
+      "outcome": "PASS",
+      "detail": "Safety InSite 1.0.0  Released Sep 14, 2026. Up to date with the Safety InSite service.  Support details"
+    },
+    {
+      "id": "I4 the commit is NOT in the default view — a user is never asked to read one",
+      "outcome": "PASS",
+      "detail": "Safety InSite 1.0.0  Released Sep 14, 2026. Up to date with the Safety InSite service.  Support details"
+    },
+    {
+      "id": "I5 but it is one disclosure level down, for support",
+      "outcome": "PASS",
+      "detail": "Safety InSite 1.0.0  Released Sep 14, 2026. Up to date with the Safety InSite service.  Hide support details Application build f1dfce8cf0d1 Service release 1.0.0 Service build ae5c586 (BUILD_FALLBACK)"
+    },
+    {
+      "id": "I6 together with the server's own release and schema position",
+      "outcome": "PASS",
+      "detail": ""
+    }
+  ],
+  "failures": 0
+}
