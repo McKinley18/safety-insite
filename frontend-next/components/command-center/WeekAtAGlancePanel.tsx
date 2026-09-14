@@ -161,9 +161,9 @@ export function WeekAtAGlancePanel({
           <AppButton
             type="button"
             size="sm"
-            variant="accent"
+            variant="primary"
             onClick={() => void addTask()}
-            className="command-center-add-task self-center app-accent-strong-surface px-3 !text-white sm:w-24"
+            className="command-center-add-task self-center px-3 sm:w-24"
           >
             Add Task
           </AppButton>

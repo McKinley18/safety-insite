@@ -122,7 +122,7 @@ export default function ReportsPage() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-5xl p-4 sm:p-6">
+    <div className="insite-page py-4 sm:py-6">
       <HeroPanel align="center" className="mb-4 sm:mb-6">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Server-backed records
@@ -229,6 +229,6 @@ export default function ReportsPage() {
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }

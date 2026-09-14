@@ -2,6 +2,7 @@ import { API_BASE_URL } from "./hazlenzClient";
 import { apiFetch } from "./apiFetch";
 import { lockSession } from "./pinSecurity";
 import { stripInlinePhotoData } from "./cloudReports";
+import { WORKSPACE_DRAFT_PREFIX } from "./inspection/workspaceDraftKey";
 
 export const AUTH_TOKEN_KEYS = ["sentinel_auth_token"] as const;
 export const AUTH_USER_KEY = "sentinel_auth_user";
@@ -79,7 +80,18 @@ const SENSITIVE_LOCAL_STORAGE_KEYS = [
 // `sentinel_pin_salt_v1`. Those are device-unlock security setup, not customer content, and
 // destroying them on every sign-out would silently reset a PIN the operator configured. That is
 // a separate decision from data isolation and is recorded rather than assumed.
-const SENSITIVE_LOCAL_STORAGE_PREFIXES = ["sentinel_encrypted_", "sentinel_secure_"];
+const SENSITIVE_LOCAL_STORAGE_PREFIXES = [
+  "sentinel_encrypted_",
+  "sentinel_secure_",
+  // §280 (D-035). Inspection-workspace drafts hold raw customer observation text, reviewer
+  // risk selections and corrective-action wording, one record per inspection, so they can
+  // only be swept by prefix. They are already namespaced by a per-account key derived from
+  // the signed-in user -- a different account on this device cannot form the key and so
+  // cannot read them -- but leaving another account's customer content sitting on a shared
+  // device after sign-out is the same defect V1-LOCALISO-01 closed, independent of whether
+  // anything can currently read it.
+  WORKSPACE_DRAFT_PREFIX,
+];
 
 export type AuthUser = {
   firstName?: string;

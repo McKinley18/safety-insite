@@ -32,7 +32,13 @@ About 2,500 words. That is the whole default context. For a machine consumer the
 | **Migrations** | `backend/src/database/migrations/` | §261 added `1800000019000-ExpertAnalysisAuthorityFoundation` |
 | **Current verification and tooling** | `backend/scripts/hazlenz/` | the §263 command surface; everything here is read-only except the disposable-DB wrapper |
 | **Release / update delivery** | `backend/src/common/release-contract.ts` + `release-identity.ts`, `frontend-next/lib/release/` | §279. The compatibility rule (mirrored, parity-checked), `GET /version`, the client's version check and write gate. Architecture: `project-docs/current/UPDATE-DELIVERY.md` |
-| **Page-by-page product review** | `project-docs/current/PAGE-BY-PAGE-PRODUCT-REVIEW.md` | §279. Every active route, its status, and the batch order. Evidence in `verification/current/page-review-279/` |
+| **Page-by-page product review** | `project-docs/current/PAGE-BY-PAGE-PRODUCT-REVIEW.md` | §279/§280. Every active route, its status, and the batch order. Evidence in `verification/current/page-review-279/` (batch 1) and `page-review-280/` (batch 2) |
+| **Page titles** | `frontend-next/lib/pageTitles.ts` | §280 D-031. The ONE table of page names. Each route's `layout.tsx` reads it; no title string is written anywhere else. Gate: `check:page-titles` |
+| **Page shell** | the `§280 (D-036.1)` block at the end of `frontend-next/app/globals.css` | One content column (1120px) and one gutter, owned by `.sentinel-app-main`. `.insite-page-wide` is the deliberate wide variant |
+| **System states** | `frontend-next/app/{not-found,error,global-error,loading}.tsx` + `components/system/SystemStatePanel.tsx` | §280 D-034. One presentation for all four |
+| **Workspace draft recovery** | `frontend-next/lib/inspection/workspaceDraft.ts` | §280 D-035. LOCAL RECOVERABLE state, never committed state. Gate: `validate:280-workspace-draft-persistence` |
+| **Offline current state** | `project-docs/current/OFFLINE-FIELD-OPERATION.md` | §280 D-037. Inventory only. Readings: `measure:280-offline-inventory` |
+| **The review stack** | `backend/scripts/review/review-stack.ts`, `npm run review:stack` | §280. Registered disposable database, no auth bypass, no provider key in the child environment |
 | **Current state, machine-readable** | `verification/current/` | state, capability register, beta register, mutating-script registry, evidence baseline |
 | **Historical evidence** | `verification/expert-hazlenz-*/` | frozen. Never edited, never deleted. |
 | **Superseded contract ancestry** | `backend/scripts/lib/` | kept because byte-for-byte identity reconstruction depends on the additive chain. **Not a current entry point.** |

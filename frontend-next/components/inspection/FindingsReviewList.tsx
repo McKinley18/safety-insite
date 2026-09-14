@@ -36,7 +36,7 @@ export function FindingsReviewList({
         eyebrow="Findings"
         title="Findings Review"
         action={
-          <AppButton type="button" onClick={addFindingToReport} variant="accent" size="sm" className="shadow-none">
+          <AppButton type="button" onClick={addFindingToReport} variant="primary" size="sm" className="shadow-none">
             Add Finding
           </AppButton>
         }

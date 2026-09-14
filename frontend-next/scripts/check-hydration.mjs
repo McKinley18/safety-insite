@@ -37,7 +37,7 @@ const WIDTH = Number(process.env.VIEWPORT_WIDTH || 390);
 const ROUTES = (process.env.ONLY_ROUTES || [
   "/", "/pricing", "/upgrade", "/login", "/register", "/about", "/legal", "/hazlenz",
   "/forgot-password", "/command-center", "/inspections", "/inspection",
-  "/inspection-workspace", "/inspection-cover", "/inspection-quick", "/inspection-review",
+  "/inspection-workspace", "/inspection-cover", "/inspection-review",
   "/reports", "/safety-calendar", "/settings", "/profile",
 ].join(",")).split(",").map((r) => r.trim()).filter(Boolean);
 

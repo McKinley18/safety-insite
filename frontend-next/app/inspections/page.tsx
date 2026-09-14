@@ -423,8 +423,8 @@ export default function InspectionsPage() {
           </p>
           <AppLinkButton
             href="/field-capture"
-            variant="accent"
-            className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-5 py-2 !text-white sm:w-auto"
+            variant="secondary"
+            className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-5 py-2 sm:w-auto"
           >
             Open Field Capture
           </AppLinkButton>

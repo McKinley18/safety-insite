@@ -217,7 +217,7 @@ was built**, and none is implied.
 
 ---
 
-## Open risk — active work and a forced refresh
+## The forced-refresh risk — CLOSED at §280 (D-035)
 
 | State | Survives a reload? |
 |---|---|
@@ -225,15 +225,38 @@ was built**, and none is implied.
 | Pending calendar writes (outbox), offline request queue | **Yes** — local storage, replayed on reconnect |
 | Saved inspections, observations, findings, reviews, actions | **Yes** — server-persisted |
 | Cover-page/report draft | **Yes** — local storage |
-| **In-progress observation text, work area, work activity, clarification answers, reviewer risk selections, corrective-action drafts in `/inspection-workspace`** | **NO** — React component state, no local persistence |
+| In-progress observation text, work area, work activity, clarification answers, reviewer risk selections, corrective-action drafts in `/inspection-workspace` | **Yes, since §280** — `lib/inspection/workspaceDraft.ts` |
 
-The inspection workspace is the product's most important surface and the one place where a reload
-destroys work. This is **why the update-required state never reloads by itself** and why its wording
-warns before the user clicks.
+§279 recorded this as the product's one open update-delivery risk: the inspection workspace kept
+every in-progress value in React component state, so the surface that matters most was the one
+place a reload destroyed work. That is why the `UPDATE_REQUIRED` panel never reloaded by itself.
 
-**Closing it properly — persisting workspace draft state — is a product decision, not a bounded
-§279 repair**, and is carried as such. Until it is closed, no automatic refresh may be introduced on
-any path.
+**§280 closed it.** Draft state is autosaved to local storage under a key namespaced by a SHA-256
+of the signed-in account and the inspection id, restored after the server's own load, and dropped
+on submission, on completion and on sign-out. It is **local recoverable state, never committed
+state**: nothing is sent to the server, and restoring a draft fills in fields without re-running
+analysis, creating an observation or saving a finding. Auto-submitting unfinished work to make it
+durable was ruled out explicitly.
+
+Eleven browser cases, including a **control** (the same sequence with the draft deleted, which must
+lose the work) and a **falsification** (a well-formed draft filed under the right key but naming a
+different inspection, which must be refused and deleted):
+`frontend-next: npm run validate:280-workspace-draft-persistence`.
+
+### What is still true
+
+**Nothing reloads by itself, and §280 did not change that.** The workspace surviving a refresh is
+what makes an automatic refresh *thinkable*; it does not make it correct. Two reasons stand:
+
+- The photo a user has chosen but not uploaded cannot be part of a draft — a `File` handle does not
+  survive a reload, and re-encoding evidence into local storage would put a second copy of it
+  somewhere the product does not say evidence lives. A restored draft says the photo must be chosen
+  again.
+- `/inspection-workspace` **requires a network to open** (D-037). A forced refresh with no signal
+  lands the inspector on "This page needs a connection" with their draft intact but unreachable
+  until the connection returns. That is far better than losing it, and it is not the same as safe.
+
+Introducing an automatic refresh remains a product decision, and is not one §280 made.
 
 ## Gates
 
@@ -243,3 +266,4 @@ any path.
 | `frontend-next: npm run test:279-release-version-check` | client scheduling; plan cases E, F, G, J |
 | `frontend-next: npm run validate:279-update-delivery` | the browser; plan cases A, C, D, E, F, H, I, J, with a control run |
 | `frontend-next: npm run check:release-contract-parity` | the two rule copies, and the one declared value that could not be derived |
+| `frontend-next: npm run validate:280-workspace-draft-persistence` | §280 D-035. The draft survives a required refresh, submits once, does not duplicate, and is refused when it is stale or belongs elsewhere. With a control and a falsification |

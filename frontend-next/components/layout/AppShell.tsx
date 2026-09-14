@@ -460,22 +460,30 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      {/* The v1.0 release marker. This was a neon-green "Beta" chip -- the only use of
-          #39FF88 anywhere in the product, and the only glowing element in a palette
-          built on the #1D72B8 / #102A43 brand tokens. It now states the shipped
-          version in the muted secondary text token, consistent with the rest of the
-          chrome. */}
-      <div className="mx-auto flex w-full max-w-[1200px] justify-end px-3 pt-2 sm:px-5 md:px-6">
-        <span
-          className="py-1 text-[11px] font-black uppercase tracking-[0.24em] text-app-secondary sm:text-xs"
-          title={`${APP_NAME} version 1.0`}
-        >
-          v1.0
-        </span>
-      </div>
+      {/* §280 (D-032). A hand-maintained `v1.0` marker used to sit here, above every page,
+          rendered uppercase at 0.24em tracking so it read "V 1 . 0". It was never connected to
+          anything the build knew about itself: it was a string in this file, and it stayed 1.0
+          through every release that followed.
 
+          §279 gave the frontend a real, generated identity (lib/release/buildIdentity.ts, inlined
+          at build time from the platform's variables and the git tree). That turned a cosmetic
+          inaccuracy into a contradiction -- two answers to "which version is this?", a few pixels
+          apart, one of them wrong and unfixable without an edit here.
+
+          It is REMOVED rather than repointed. A version number earns chrome on every page only if
+          a user has to act on it, and none does: the question is asked during support, and it is
+          answered at Settings -> Version by ApplicationVersionPanel, which states the generated
+          frontend version, the server's release, and the full commit one disclosure level down.
+          Replacing a wrong constant with a right one here would have kept the noise and dropped
+          only the error. */}
+
+      {/* §280 (D-036.1). The width and the horizontal gutter used to be Tailwind utilities here
+          -- `max-w-[1200px] px-3 sm:px-5 md:px-6` -- and then four pages laid a second, different
+          column inside this one. They now live in ONE place, `.sentinel-app-main` in globals.css,
+          which is the only wrapper every page is guaranteed to be inside. The vertical rhythm
+          stays here, because it legitimately depends on whether the mobile tab bar is showing. */}
       <main
-        className={`sentinel-app-main mx-auto w-full max-w-[1200px] overflow-visible px-3 pt-3 pb-32 sm:px-5 sm:pt-5 sm:pb-16 md:px-6 md:pt-6 ${showAppNav ? "" : "pb-8 sm:pb-10"}`}
+        className={`sentinel-app-main overflow-visible pt-3 pb-32 sm:pt-5 sm:pb-16 md:pt-6 ${showAppNav ? "" : "pb-8 sm:pb-10"}`}
       >
         {children}
       </main>

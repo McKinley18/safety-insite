@@ -20,6 +20,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AppPanel } from "@/components/ui/AppPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
+import EmptyState from "@/components/ui/EmptyState";
 import { useNetworkStatus } from "@/hooks/useNetworkStatus";
 import {
   REGULATORY_CONTEXT_OPTIONS,
@@ -432,7 +433,11 @@ export default function FieldCapturePage() {
   return (
     <section className="sentinel-mobile-page space-y-4">
       <AppPanel padding="lg">
+        {/* §280. This is the page's own title, so it is the document's h1. Before this the page
+            had no level-1 heading at any width: every heading on it was an h2 from this component,
+            which is correct for the sections beneath and wrong for the top of the page. */}
         <SectionHeader
+          headingLevel={1}
           eyebrow="Field capture"
           title="Record inspections with or without a connection"
           description="Observations, locations and photos are saved on this device as you record them, and stay here until you sync them to Safety InSite."
@@ -549,9 +554,15 @@ export default function FieldCapturePage() {
             />
 
             {drafts.length === 0 ? (
-              <p className="mt-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                No drafts saved on this device yet.
-              </p>
+              /* §280 (D-036.4). This page said "No drafts on this device yet." in the status line at
+                 the top and "No drafts saved on this device yet." again here, roughly a screen
+                 apart -- the same fact twice, in two wordings, neither of which said what to do.
+                 One empty state, and it names the action that fills it. */
+              <EmptyState
+                className="mt-3"
+                title="No drafts saved on this device"
+                description="Field capture drafts stay on this device until you sync them. Start a capture above and it will appear here, with or without a connection."
+              />
             ) : (
               <ul data-testid="draft-list" className="mt-3 flex flex-col gap-2">
                 {drafts.map((draft) => (

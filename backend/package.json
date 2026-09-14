@@ -406,7 +406,9 @@
     "verify:release-scoped-customer-workflow": "ts-node scripts/verify-release-scoped-customer-workflow.ts",
     "verify:standards-intelligence": "ts-node src/hazlenz/standards-intelligence/verify-standards-intelligence.ts",
     "verify:standards-source-metadata": "ts-node src/hazlenz/standards-intelligence/verify-standards-source-metadata.ts",
-    "test:279-release-compatibility": "npx ts-node scripts/test-279-release-compatibility.ts"
+    "test:279-release-compatibility": "npx ts-node scripts/test-279-release-compatibility.ts",
+    "review:stack": "ts-node scripts/review/review-stack.ts",
+    "review:stack:release": "ts-node scripts/review/release-review-stack.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

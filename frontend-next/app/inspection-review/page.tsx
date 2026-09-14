@@ -297,7 +297,7 @@ export default function InspectionReviewPage() {
           <AppButton
             type="button"
             onClick={saveReportToCloudHandler}
-            variant="accent"
+            variant="primary"
             size="sm"
             disabled={cloudSaveStatus === "saving"}
             className="shadow-none"

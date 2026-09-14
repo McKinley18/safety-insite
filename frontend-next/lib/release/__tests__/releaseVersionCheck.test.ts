@@ -46,6 +46,13 @@ function check(condition: unknown, message: string) {
 // The environment the module expects. `buildIdentity` reads NEXT_PUBLIC_FRONTEND_VERSION, which
 // next.config inlines at build time; under tsx it is an ordinary environment variable, so the
 // client's version is set here BEFORE the module graph is touched.
+//
+// §280. That variable is supplied by the npm script, which defaults it to 1.4.0 -- the version the
+// CONTRACT fixture below is built around. It used not to be supplied by anything at all, and a bare
+// `npm run test:279-release-version-check` therefore reported ELEVEN failures against a completely
+// healthy product: with the variable unset the client's version is "unknown", every comparison
+// resolves to UNKNOWN, and a suite about the compatibility rule measures the absence of a version
+// instead. A gate that fails when nothing is wrong gets ignored, which is worse than not having it.
 // ---------------------------------------------------------------------------------------------
 type Listener = () => void;
 const visibilityListeners = new Set<Listener>();

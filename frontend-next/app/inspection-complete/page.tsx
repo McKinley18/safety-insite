@@ -16,6 +16,7 @@ import {
 } from "@/lib/canonicalWorkflowApi";
 import { RISK_BAND_DUE_DAYS, governedDueDate, type RiskBandLabel } from "@/lib/inspection/riskBands";
 import { effectiveSeverityLabel } from "@/lib/risk/effectiveSeverity";
+import EmptyState from "@/components/ui/EmptyState";
 
 /**
  * THE COMPLETED INSPECTION.
@@ -186,7 +187,7 @@ export default function InspectionCompletePage() {
   const completedAt = (inspection as { completedAt?: string | null } | null)?.completedAt;
 
   return (
-    <main className="guided-page mx-auto max-w-4xl space-y-5 px-4 py-8">
+    <div className="guided-page insite-page space-y-5 py-8">
       {status && (
         <p role="status" aria-live="polite" className="guided-info">{status}</p>
       )}
@@ -309,7 +310,14 @@ export default function InspectionCompletePage() {
               Findings ({findings.length})
             </h2>
             {findings.length === 0 && (
-              <p className="guided-card guided-muted text-sm">This inspection recorded no findings.</p>
+              /* §280 (D-036.4). "This inspection recorded no findings." states what is empty and
+                 stops. On a completed safety inspection that sentence is the one most in need of a
+                 meaning: a reader cannot otherwise tell a clean walkthrough from an inspection that
+                 was closed before anything was reviewed. */
+              <EmptyState
+                title="This inspection recorded no findings"
+                description="Nothing was confirmed as a finding before the inspection was completed. The report states that rather than leaving it blank."
+              />
             )}
             {findings.map((finding) => {
               const band = findingRiskBand(finding);
@@ -429,6 +437,6 @@ export default function InspectionCompletePage() {
           </section>
         </>
       )}
-    </main>
+    </div>
   );
 }

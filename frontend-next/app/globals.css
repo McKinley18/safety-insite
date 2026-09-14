@@ -303,11 +303,29 @@ body,
   font-weight: 700;
   text-align: center;
   text-transform: capitalize;
-  /* Five steps across a phone: a label that wraps makes its own step taller than the
-     other four and breaks the baseline of the progress rule underneath them. */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* §280. Five steps across a phone. This was `white-space: nowrap` with an ellipsis, and the
+     comment here explained the reason: "a label that wraps makes its own step taller than the
+     other four and breaks the baseline of the progress rule underneath them."
+
+     The reason was right and the remedy was wrong. Measured at 390px, "3. Risk & fix" needed 62px
+     in a 61px cell and rendered as "3. Risk & ..." -- ONE pixel over, on the only one of the five
+     labels that did not fit, and it is the step where the reviewer sets the risk of a hazard.
+     (A `scrollWidth > clientWidth` check misses this: both round to 61. It was found by measuring
+     a Range over the text node.)
+
+     Wrapping is now allowed, and the baseline is held by layout instead of by truncation: the grid
+     already stretches every cell to the tallest, and `justify-content: flex-end` sits each label on
+     the bottom of its own cell, so all five bottom borders stay on one line however many lines a
+     label takes. That holds for a label this product has not written yet, and for a 320px phone,
+     neither of which a one-pixel padding adjustment would have survived. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: anywhere;
+}
+
+.guided-progress {
+  align-items: stretch;
 }
 
 .guided-progress-step.is-current {
@@ -2416,4 +2434,104 @@ body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card button[cl
    utility class. */
 .dark .finding-builder-surface {
   background-color: #0b1320 !important;
+}
+
+/* ============================================================================
+   §280 (D-036.1) — THE CANONICAL PAGE SHELL.
+
+   ==================== WHAT WAS MEASURED ====================
+
+   At 1440px, §280 measured FOUR different content columns and four different left
+   gutters across the authenticated product:
+
+     1088px @ 176   /command-center /inspections /inspection /field-capture /safety-calendar
+                    (.sentinel-mobile-page: max-width 72rem, its own 1rem/1.5rem/2rem padding)
+     1120px @ 160   /inspection-cover /inspection-review /settings /profile
+                    (.sentinel-page-shell: width min(1180px, 100% - 2rem))
+      976px @ 232   /reports              (a page-local <main class="max-w-5xl p-6">)
+      864px @ 288   /inspection-workspace /inspection-complete
+                    (a page-local <main class="max-w-4xl px-4">)
+
+   §279 found three of these. The fourth -- the workspace, the product's most-used
+   surface -- was missed because it uses neither shared class, so a search for the
+   shared classes could not see it. Walking Settings -> Inspection workspace moves the
+   content 128px sideways.
+
+   ==================== THE RULE ====================
+
+   ONE content column and ONE gutter, expressed once, here. `.sentinel-app-main` is the
+   element that owns them, because it is the single wrapper AppShell puts around every
+   page -- so a page cannot opt out of the shell by forgetting to apply a class, which is
+   exactly how /reports and the workspace drifted.
+
+   The two historical shell classes are kept as NAMES because a large body of mobile
+   rhythm, card and typography rules in this file is keyed to `.sentinel-mobile-page`,
+   and rewriting those is a far bigger change than the one D-036 approves. What they lose
+   here is only their claim on WIDTH and HORIZONTAL GUTTER: those now belong to the outer
+   shell alone, so the two classes can no longer disagree with it or with each other.
+
+   ==================== THE WIDE VARIANT ====================
+
+   `.insite-page-wide` on the same element widens the column for surfaces that genuinely
+   need it -- wide tables and analytics. It is deliberate and opt-in. It is NOT a way to
+   avoid the canonical width; a page that merely feels cramped is a design conversation,
+   not a variant.
+   ============================================================================ */
+
+:root {
+  /* The content column: what a card actually spans, excluding the gutter. */
+  --insite-shell-content: 1120px;
+  --insite-shell-content-wide: 1400px;
+  /* One gutter, three steps. Phone first, because that is where it is load-bearing. */
+  --insite-shell-gutter: 1rem;
+}
+
+@media (min-width: 640px) {
+  :root { --insite-shell-gutter: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  :root { --insite-shell-gutter: 2rem; }
+}
+
+.sentinel-app-main {
+  width: 100%;
+  max-width: calc(var(--insite-shell-content) + (2 * var(--insite-shell-gutter)));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--insite-shell-gutter);
+  padding-right: var(--insite-shell-gutter);
+}
+
+.sentinel-app-main.insite-page-wide {
+  max-width: calc(var(--insite-shell-content-wide) + (2 * var(--insite-shell-gutter)));
+}
+
+/* The inner shells stop competing for the column. Width and horizontal gutter come from
+   the outer shell; everything else these classes do -- vertical rhythm, the tab-bar
+   bottom inset, the mobile card and type rules -- is untouched.
+
+   `!important` is not decoration here: the historical rules these override are themselves
+   `!important` (see the cross-device scroll override block above), and a plain declaration
+   loses to them regardless of source order. */
+.sentinel-mobile-page,
+.sentinel-page-shell {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* A page that renders its own content wrapper gets the same column with no page-local
+   width of its own. Used by the three surfaces that had a page-level <main> -- which was
+   also a nested-landmark defect, since AppShell already renders one. */
+.insite-page {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }

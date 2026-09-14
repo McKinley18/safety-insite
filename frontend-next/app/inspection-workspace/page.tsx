@@ -38,8 +38,17 @@ import { effectiveSeverityLabel, resolveEffectiveSeverity } from "@/lib/risk/eff
 import { likelihoodScale, severityScale } from "@/lib/inspection/inspectionConstants";
 import { getRegulatorySection, type RegulatorySectionRecord } from "@/lib/canonicalWorkflowApi";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
+import EmptyState from "@/components/ui/EmptyState";
 import ExpertAnalysisPanel from "@/components/inspection/expert/ExpertAnalysisPanel";
 import { getStoredPlanCode, getVerifiedPlanCode, hasPlanEntitlement, type BillingTier } from "@/lib/planEntitlements";
+import {
+  clearWorkspaceDraft,
+  readWorkspaceDraft,
+  resolveWorkspaceDraftScope,
+  writeWorkspaceDraft,
+  type WorkspaceDraftFields,
+  type WorkspaceDraftScope,
+} from "@/lib/inspection/workspaceDraft";
 
 /**
  * The five customer-facing steps of one finding, plus the inspection-level finalize page.
@@ -709,6 +718,29 @@ export default function InspectionWorkspacePage() {
   const [savedFlash, setSavedFlash] = useState("");
   const savedFlashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // ==================== §280 (D-035) — DRAFT RECOVERY ====================
+  //
+  // Everything below is LOCAL RECOVERABLE STATE. It is never sent to the server and never becomes
+  // part of the record; it exists so that a reload -- an accidental one, a browser restart, or the
+  // UPDATE_REQUIRED refresh the release contract may demand -- does not destroy what somebody has
+  // typed. See lib/inspection/workspaceDraft.ts.
+  //
+  // `draftScope` is null until the signed-in account's namespace resolves, and null means nothing
+  // is read or written at all: no account, no key.
+  const [draftScope, setDraftScope] = useState<WorkspaceDraftScope | null>(null);
+  // The server load must finish FIRST. The draft is an overlay on committed state, so autosaving
+  // before the server's own restore has run would capture an empty form and overwrite the very
+  // draft this effect is about to read.
+  const [serverLoadSettled, setServerLoadSettled] = useState(false);
+  const draftRestoreAttempted = useRef(false);
+  // A fingerprint of the protected fields AS THE SERVER LEFT THEM. Without it the autosave records
+  // committed state as though it were unsaved work: reloading an inspection restores its observation
+  // from the server, the autosave sees a non-empty field and writes a "draft", and the next load
+  // announces "unsaved work was restored" for text that was saved days ago. The gate that caught
+  // this is case E. Advanced after every authoritative write, which is the D-035 supersession rule.
+  const serverBaseline = useRef<string>("");
+  const [draftRestored, setDraftRestored] = useState<null | { at: number; photoDropped: boolean }>(null);
+
   /**
    * Refresh the server's completion answer. Called on entering Finish and after any change that
    * could alter it, so readiness updates in place without a reload.
@@ -826,7 +858,10 @@ export default function InspectionWorkspacePage() {
   useEffect(() => {
     const id = selectedInspectionId();
     if (!id) {
-      queueMicrotask(() => setStatus("No server-saved inspection was selected."));
+      queueMicrotask(() => {
+        setStatus("No server-saved inspection was selected.");
+        setServerLoadSettled(true);
+      });
       return;
     }
     getPersistedInspection(id)
@@ -909,8 +944,276 @@ export default function InspectionWorkspacePage() {
       })
       .catch((error) =>
         setStatus(error instanceof Error ? error.message : "Inspection could not be loaded."),
-      );
+      )
+      // §280 (D-035). Settled, not succeeded. A failed load still ends the window in which the
+      // draft must not be touched -- and a draft is MORE valuable when the server could not be
+      // reached, not less.
+      .finally(() => setServerLoadSettled(true));
   }, []);
+
+  /**
+   * §280 (D-035). The protected fields as one comparable string.
+   *
+   * Compared against `serverBaseline` to answer the only question that matters for a draft: is
+   * there anything here that is NOT already committed? Everything that can be edited goes in, in a
+   * fixed order, so the comparison cannot be defeated by key order or by a field somebody forgot.
+   */
+  const draftFingerprint = useCallback(
+    (fields: WorkspaceDraftFields) =>
+      JSON.stringify([
+        fields.observation,
+        fields.workArea,
+        fields.workActivity,
+        fields.editingObservation,
+        fields.revisionText,
+        fields.clarificationAnswerHistory,
+        fields.severity,
+        fields.likelihood,
+        fields.reviewerRisk,
+        fields.reviewerRiskReason,
+        fields.actionDraft,
+        fields.newActionTitle,
+        fields.newActionDetail,
+        fields.newActionKind,
+        fields.responsiblePerson,
+        fields.missedFormOpen,
+        fields.missedHazardTitle,
+        fields.missedHazardDetail,
+        fields.selectedSegmentKeys,
+        fields.candidateSelection,
+      ]),
+    [],
+  );
+
+  /** The live values of every protected field, in one object. */
+  const currentDraftFields = useCallback(
+    (): WorkspaceDraftFields => ({
+      observation,
+      workArea,
+      workActivity,
+      editingObservation,
+      revisionText,
+      clarificationAnswerHistory,
+      severity,
+      likelihood,
+      reviewerRisk,
+      reviewerRiskReason,
+      actionDraft,
+      newActionTitle,
+      newActionDetail,
+      newActionKind,
+      responsiblePerson,
+      missedFormOpen,
+      missedHazardTitle,
+      missedHazardDetail,
+      selectedSegmentKeys,
+      candidateSelection,
+    }),
+    [
+      observation, workArea, workActivity, editingObservation, revisionText,
+      clarificationAnswerHistory, severity, likelihood, reviewerRisk, reviewerRiskReason,
+      actionDraft, newActionTitle, newActionDetail, newActionKind, responsiblePerson,
+      missedFormOpen, missedHazardTitle, missedHazardDetail, selectedSegmentKeys, candidateSelection,
+    ],
+  );
+
+  /**
+   * §280 (D-035) SUPERSESSION. Called after a successful authoritative write: what was a draft a
+   * moment ago is now the record, so the baseline moves to it and the stored draft is dropped.
+   * Not calling this would leave a draft that is byte-identical to committed state, which on the
+   * next load would tell the user their unsaved work had been recovered when nothing was unsaved.
+   */
+  const supersedeDraft = useCallback(() => {
+    serverBaseline.current = draftFingerprint(currentDraftFields());
+    if (draftScope) clearWorkspaceDraft(draftScope);
+  }, [draftFingerprint, currentDraftFields, draftScope]);
+
+  // ==================== §280 (D-035) — RESOLVE THE DRAFT SCOPE ====================
+  //
+  // One resolution per inspection. The namespace is a SHA-256 of the signed-in account's server
+  // id, so it is asynchronous; until it lands there is no scope and therefore nothing is read or
+  // written. That is the isolation boundary, not a loading state to work around.
+  useEffect(() => {
+    let cancelled = false;
+    const id = selectedInspectionId();
+    if (!id) return;
+    void resolveWorkspaceDraftScope(id).then((scope) => {
+      if (!cancelled) setDraftScope(scope);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // ==================== §280 (D-035) — RESTORE, ONCE ====================
+  //
+  // Runs after the server's own restore has settled, so the draft is applied ON TOP of committed
+  // state rather than instead of it. Exactly once per mount: `draftRestoreAttempted` is a ref
+  // rather than state because a second pass must not be possible even if this effect re-runs, and
+  // re-applying a draft over a field the user has since edited would be a second kind of data loss.
+  //
+  // NOTHING HERE SUBMITS. It fills in fields and returns the user to the step they were on. It does
+  // not re-run analysis, create an observation or save a finding -- the user presses those buttons.
+  useEffect(() => {
+    if (!draftScope || !serverLoadSettled || draftRestoreAttempted.current) return;
+    draftRestoreAttempted.current = true;
+
+    // The baseline is captured HERE, on the render that follows the server load and before a single
+    // draft value is applied. This is the only moment at which the component holds committed state
+    // and nothing else.
+    serverBaseline.current = draftFingerprint(currentDraftFields());
+
+    const outcome = readWorkspaceDraft(draftScope);
+    if (outcome.status !== "FOUND") return;
+    const { draft } = outcome;
+
+    // A draft identical to what the server just restored is not unsaved work. Applying it would be
+    // harmless; ANNOUNCING it would not be -- "unsaved work was restored" about text that was saved
+    // last week teaches the user to disbelieve the notice on the day it is true.
+    if (draftFingerprint(draft.fields) === serverBaseline.current) {
+      clearWorkspaceDraft(draftScope);
+      return;
+    }
+
+    // CONTEXT STALENESS. A draft that names an observation the inspection no longer contains is
+    // about something that does not exist -- the observation was deleted, or the draft outlived a
+    // record that moved on. Its observation-scoped half (risk, actions, clarification answers) is
+    // refused, because attaching a reviewer's risk judgement to the wrong hazard is exactly the
+    // failure this whole feature must not cause. The free-text capture fields are still the user's
+    // own words about this inspection, so they survive.
+    const observationStillExists =
+      !draft.observationId
+      || (inspection?.observations || []).some((item) => item.id === draft.observationId);
+
+    const fields = draft.fields;
+
+    if (fields.observation) setObservation(fields.observation);
+    if (fields.workArea) setWorkArea(fields.workArea);
+    if (fields.workActivity) setWorkActivity(fields.workActivity);
+
+    if (observationStillExists) {
+      if (fields.editingObservation) {
+        setEditingObservation(true);
+        setRevisionText(fields.revisionText);
+      }
+      if (fields.clarificationAnswerHistory.length) {
+        setClarificationAnswerHistory(fields.clarificationAnswerHistory);
+      }
+      if (fields.severity !== null) setSeverity(fields.severity);
+      if (fields.likelihood !== null) setLikelihood(fields.likelihood);
+      if (fields.reviewerRisk) setReviewerRisk(fields.reviewerRisk);
+      if (fields.reviewerRiskReason) setReviewerRiskReason(fields.reviewerRiskReason);
+      if (fields.actionDraft) setActionDraft(fields.actionDraft);
+      if (fields.newActionTitle) setNewActionTitle(fields.newActionTitle);
+      if (fields.newActionDetail) setNewActionDetail(fields.newActionDetail);
+      if (fields.newActionKind) setNewActionKind(fields.newActionKind as ReviewerAction["kind"]);
+      if (fields.responsiblePerson) setResponsiblePerson(fields.responsiblePerson);
+      if (fields.missedFormOpen) setMissedFormOpen(true);
+      if (fields.missedHazardTitle) setMissedHazardTitle(fields.missedHazardTitle);
+      if (fields.missedHazardDetail) setMissedHazardDetail(fields.missedHazardDetail);
+      if (fields.selectedSegmentKeys?.length) setSelectedSegmentKeys(fields.selectedSegmentKeys);
+      if (fields.candidateSelection) setCandidateSelection(fields.candidateSelection);
+      // The step is restored LAST and only when the context is intact: sending someone back to the
+      // risk step for an observation that is gone would be a worse landing than the first step.
+      if (draft.step) setStep(draft.step as Step);
+    }
+
+    setDraftRestored({
+      at: draft.savedAt,
+      // A photo chosen but not yet uploaded cannot be part of a draft -- a File handle does not
+      // survive a reload and re-encoding evidence into local storage would put a second copy of it
+      // somewhere the product does not say evidence lives. Say so rather than let someone submit
+      // an observation believing the photo is still attached.
+      photoDropped: Boolean(fields.observation) && !fields.editingObservation,
+    });
+    // `currentDraftFields` and `draftFingerprint` are deliberately omitted. This effect must run
+    // EXACTLY ONCE per mount -- `draftRestoreAttempted` above enforces that -- and including
+    // `currentDraftFields`, whose identity changes on every keystroke, would re-enter it on every
+    // edit only for the ref to turn it away. Listing them would express a dependency the effect
+    // does not have and must not have: re-applying a draft over a field the user has since changed
+    // is a second kind of data loss.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [draftScope, serverLoadSettled, inspection]);
+
+  // ==================== §280 (D-035) — AUTOSAVE ====================
+  //
+  // Debounced, because this fires on every keystroke of a long observation and local storage is
+  // synchronous: writing on each character would put a JSON serialisation of the whole draft on the
+  // main thread between a key press and its echo. 600ms is comfortably inside the interval between
+  // a person stopping typing and doing anything else.
+  //
+  // Gated on `draftRestoreAttempted`: autosaving before the restore has run would write the empty
+  // form over the draft it is about to read, which is the one bug this feature cannot have.
+  useEffect(() => {
+    if (!draftScope || !serverLoadSettled || !draftRestoreAttempted.current) return;
+
+    const fields: WorkspaceDraftFields = {
+      observation,
+      workArea,
+      workActivity,
+      editingObservation,
+      revisionText,
+      clarificationAnswerHistory,
+      severity,
+      likelihood,
+      reviewerRisk,
+      reviewerRiskReason,
+      actionDraft,
+      newActionTitle,
+      newActionDetail,
+      newActionKind,
+      responsiblePerson,
+      missedFormOpen,
+      missedHazardTitle,
+      missedHazardDetail,
+      selectedSegmentKeys,
+      candidateSelection,
+    };
+
+    const timer = setTimeout(() => {
+      // Nothing here that is not already committed -- so there is no draft, and any previous one is
+      // removed rather than left to be re-offered.
+      if (draftFingerprint(fields) === serverBaseline.current) {
+        clearWorkspaceDraft(draftScope);
+        return;
+      }
+      writeWorkspaceDraft(draftScope, {
+        observationId,
+        analysisId,
+        step,
+        fields,
+      });
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [
+    draftScope,
+    serverLoadSettled,
+    observation,
+    workArea,
+    workActivity,
+    editingObservation,
+    revisionText,
+    clarificationAnswerHistory,
+    severity,
+    likelihood,
+    reviewerRisk,
+    reviewerRiskReason,
+    actionDraft,
+    newActionTitle,
+    newActionDetail,
+    newActionKind,
+    responsiblePerson,
+    missedFormOpen,
+    missedHazardTitle,
+    missedHazardDetail,
+    selectedSegmentKeys,
+    candidateSelection,
+    observationId,
+    analysisId,
+    step,
+    draftFingerprint,
+  ]);
 
   // Load the observation + current analysis that a given finding actually belongs to.
   //
@@ -1228,6 +1531,9 @@ export default function InspectionWorkspacePage() {
     setStatus("Saving observation and requesting HazLenz AI…");
     try {
       const savedObservation = await addPersistedObservation(inspection.id, observation);
+      // §280 (D-035) SUPERSESSION. The observation is now the record, so what the draft was
+      // protecting has been submitted. The baseline moves to it and the stored draft is dropped.
+      supersedeDraft();
       if (evidenceFile) {
         const storedEvidence = await uploadInspectionEvidence(inspection.id, evidenceFile);
         setEvidenceObjectId(storedEvidence.id);
@@ -1558,6 +1864,9 @@ export default function InspectionWorkspacePage() {
       const currentObservation = currentInspection.observations?.find(item => item.id === observationId);
       if (!currentObservation) throw new Error("The persisted observation could not be reloaded.");
       const saved = await updatePersistedObservation(observationId, revisionText.trim(), currentObservation.version);
+      // §280 (D-035) SUPERSESSION. The revision is committed; the in-progress edit is no longer
+      // uncommitted work.
+      supersedeDraft();
       const refreshed = await getPersistedInspection(currentInspection.id);
       const authoritative = refreshed.observations?.find(item => item.id === observationId) || saved;
       setInspection(refreshed);
@@ -1722,6 +2031,11 @@ export default function InspectionWorkspacePage() {
           ...(candidatesToPersist.length === 1 ? { riskAssessment: reviewerRisk } : {}),
         }));
       }
+      // §280 (D-035) SUPERSESSION. The reviewer's risk selection and corrective-action wording are
+      // now on the finding. Whatever the draft was holding for this finding has been submitted, and
+      // the page is about to reset those controls for the next one -- so the record must be dropped
+      // here rather than left to be re-offered as though the review had never happened.
+      supersedeDraft();
       setRiskPolicy(firstReview?.reviewedConclusion?.riskPolicy || null);
       if (inspection.status === "draft") {
         await transitionPersistedInspection(
@@ -1873,6 +2187,11 @@ export default function InspectionWorkspacePage() {
       setInspection(refreshed);
       setReport(generated);
       setStep("finalize");
+      // §280 (D-035). The inspection is committed and closed. Anything the draft was protecting is
+      // now either in the record or was deliberately not submitted, and either way it must not
+      // reappear the next time this inspection is opened. This is the SUPERSESSION guard: clearing
+      // here is what stops a finished inspection re-offering the wording that produced it.
+      if (draftScope) clearWorkspaceDraft(draftScope);
       // The inspection has ONE report. Finishing a reopened inspection replaces it, so the
       // confirmation says what happened without inventing a version the customer must track.
       setStatus("Inspection finished. Your report is ready.");
@@ -2183,8 +2502,42 @@ export default function InspectionWorkspacePage() {
     return { lines, responsible: String(action.responsiblePerson || "").trim() };
   }
 
+  /**
+   * §280. NOTHING SELECTED.
+   *
+   * Reached by opening /inspection-workspace directly -- a bookmark, a back navigation, a shared
+   * link, or the browser restoring tabs. It used to render the full workspace chrome (an
+   * "Inspection" heading, the advisory caveat and the five-step progress nav) above one line of
+   * status text reading "No server-saved inspection was selected." That is a dead end in three
+   * separate ways: it offers no action, it shows a five-step progress indicator for work that does
+   * not exist, and "server-saved inspection" is engineering vocabulary on a customer surface --
+   * the customer has an inspection, not a server-saved one.
+   *
+   * `inspection === null` is not sufficient on its own: it is also the state during the initial
+   * load, and showing "no inspection" to somebody whose inspection is still arriving would be a
+   * worse lie than the one being fixed. So this waits for the load to settle first.
+   */
+  if (serverLoadSettled && !inspection && !selectedInspectionId()) {
+    return (
+      <div className="guided-page insite-page space-y-5 py-8">
+        <header>
+          <p className="text-xs font-bold uppercase tracking-widest text-sky-700 dark:text-sky-300">
+            Safety InSite
+          </p>
+          <h1 className="mt-2 text-3xl font-black">Inspection workspace</h1>
+        </header>
+        <EmptyState
+          title="No inspection is open"
+          description="The workspace records observations for one inspection at a time. Choose an inspection to continue, or start a new one."
+          actionLabel="Go to inspections"
+          href="/inspections"
+        />
+      </div>
+    );
+  }
+
   return (
-    <main className="guided-page mx-auto max-w-4xl space-y-5 px-4 py-8">
+    <div className="guided-page insite-page space-y-5 py-8">
       <header>
         {/* sky-600 measured 3.57:1 on this panel, under the 4.5 normal-text requirement.
             sky-700 is the same hue family and measures 5.26:1. */}
@@ -2210,6 +2563,47 @@ export default function InspectionWorkspacePage() {
       <div role="status" aria-live="polite" className="guided-info">
         {status}
       </div>
+
+      {/* §280 (D-035). WHAT WAS RECOVERED, AND WHAT IT IS.
+          Stated because a silently repopulated form is indistinguishable from a form somebody else
+          filled in, and because the difference between "this is on your device" and "this is saved
+          to Safety InSite" is the difference the whole feature exists to keep visible. It carries
+          the time so the user can tell recovered work from work they remember doing, and it names
+          the one thing that could NOT be recovered rather than letting a photo be assumed present.
+          Dismissible: once read it is noise, and it must not sit on top of the capture form. */}
+      {draftRestored && (
+        <div
+          role="status"
+          aria-live="polite"
+          data-testid="draft-restored-notice"
+          className="rounded-xl border border-[#BB5609] bg-app-warning px-4 py-3 text-sm font-semibold text-app-primary"
+        >
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="font-black">
+                Unsaved work on this device was restored
+              </p>
+              <p className="mt-1">
+                Last edited{" "}
+                {new Date(draftRestored.at).toLocaleString(undefined, {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })}
+                . This is a draft held on this device — it is not saved to Safety InSite until you
+                submit it.
+                {draftRestored.photoDropped && " A photo, if you had chosen one, must be selected again."}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setDraftRestored(null)}
+              className="min-h-11 shrink-0 rounded-lg border border-app-border px-3 text-sm font-black"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Non-blocking save confirmation. Announced to assistive technology, dismissed on its own,
           and never in the way of recording the next condition. */}
@@ -2679,11 +3073,19 @@ export default function InspectionWorkspacePage() {
                     {backing.verifiedBadge && (
                       <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-800">{backing.verifiedBadge}</span>
                     )}
+                    {/* §280. Measured at 22px tall at 390px, in both themes, on every HazLenz
+                        state -- half the 44px both platforms publish, and by some way the smallest
+                        control on the page. It is also the one that opens "what would raise this"
+                        and the clarification questions, so on a phone the affordance for the
+                        engine's own account of WHY its confidence is limited was the hardest thing
+                        on the screen to hit. `min-h-11` is the floor the rest of the product
+                        already uses; the pill is unchanged from `sm` up, where it was never the
+                        problem. */}
                     <button
                       type="button"
                       aria-expanded={confidenceOpen}
                       onClick={() => setConfidenceOpenFor(confidenceOpen ? "" : candidate.citation)}
-                      className="rounded-full border border-slate-500 px-3 py-0.5 font-bold"
+                      className="inline-flex min-h-11 items-center rounded-full border border-slate-500 px-3 py-0.5 font-bold sm:min-h-0"
                     >
                       Confidence: {candidateConfidenceLabel(candidate.confidence, candidate.applicability)} ⓘ
                     </button>
@@ -3406,6 +3808,6 @@ export default function InspectionWorkspacePage() {
           </div>
         </section>
       )}
-    </main>
+    </div>
   );
 }

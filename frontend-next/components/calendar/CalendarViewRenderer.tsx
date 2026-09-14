@@ -323,7 +323,7 @@ export function CalendarViewRenderer({
             <AppButton
               type="button"
               size="sm"
-              variant="accent"
+              variant="primary"
               data-testid="add-task-for-day"
               onClick={() => onAddTaskForDate(selectedDateKey)}
             >

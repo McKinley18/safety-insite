@@ -4,7 +4,8 @@ import ClientCacheCleanup from "@/components/system/ClientCacheCleanup";
 import ReleaseVersionGuard from "@/components/system/ReleaseVersionGuard";
 import ServiceWorkerRegistrar from "@/components/system/ServiceWorkerRegistrar";
 import ThemeController from "@/components/system/ThemeController";
-import { APP_DESCRIPTION, APP_NAME, APP_TAGLINE } from "@/lib/brand";
+import { APP_DESCRIPTION, APP_NAME } from "@/lib/brand";
+import { DEFAULT_TITLE } from "@/lib/pageTitles";
 import { FIXED_LIGHT_THEME_ROUTES } from "@/lib/theme";
 
 // Resolves the theme and stamps it on <html> BEFORE the browser paints.
@@ -84,9 +85,15 @@ const THEME_INIT = `
 //
 // `title.template` gives each page a "<Page> · Safety InSite" tab name once it exports
 // its own `metadata.title`; `default` covers the routes that do not.
+//
+// §280 (D-031). Supplying `metadata` here was necessary and was not sufficient: every page in
+// the authenticated product is a Client Component and cannot export one, so all of them fell
+// through to `default` and shared a single tab name. Each route now carries a four-line server
+// layout that reads its name from `lib/pageTitles.ts` -- one table, and `%s · Safety InSite`
+// applied to it by the template below.
 export const metadata = {
   title: {
-    default: `${APP_NAME} — ${APP_TAGLINE}`,
+    default: DEFAULT_TITLE,
     template: `%s · ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,

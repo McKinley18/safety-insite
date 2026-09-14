@@ -100,6 +100,10 @@ backend/feedback-store.json
 # databases, recording which invocation created each one. Committing it would carry one
 # machine's resource names onto another, where the cleanup tool would refuse them anyway.
 backend/.disposable-resources.json
+# §280. The review stack writes the database name and run id it last created here, so a person
+# (or `review:stack:release`) can find them. Machine-local state about one machine, same class as
+# the disposable registry above -- not source.
+backend/.review-stack.json
 backend/pico.save
 backend/dist/
 # macOS Finder duplicate-copy artifacts. Not evidence; never authored.

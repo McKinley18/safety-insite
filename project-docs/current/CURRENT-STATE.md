@@ -44,6 +44,28 @@ blocked at Step 1.
 
 Sections 1–12 below describe the engine and the product as built. They are unchanged by §278.
 
+### Work since the frozen baseline — §279, §280
+
+**`709ee151…` is still the validated baseline, and HEAD is not one.** §279 and §280 are product
+work on top of it: they have their own gates and their own evidence, and they have **not** been
+through the acceptance program that made `709ee151…` a baseline. Nothing below may be described as
+validated.
+
+| | |
+|---|---|
+| §279 | Update delivery and release compatibility ([`UPDATE-DELIVERY.md`](UPDATE-DELIVERY.md)); page review batch 1 |
+| §280 | Product-owner decisions D-031 … D-037; page review batch 2, the inspection spine |
+
+The engine is untouched by both. The §274 successor candidate identity is unchanged at
+`8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee`, re-verified at §280 with
+29/29 protected modules present and **zero accepted-evidence drift**. No HazLenz semantics were
+tuned, D-024b containment was not weakened, and D-030 is untouched.
+
+§280 closed the one open update-delivery risk §279 recorded — the inspection workspace losing
+unsaved work on a reload — and registered offline field operation as a product requirement with a
+measured inventory in [`OFFLINE-FIELD-OPERATION.md`](OFFLINE-FIELD-OPERATION.md). **Safety InSite
+is not offline-capable**, and §280 makes no such claim.
+
 ---
 
 ## 1. What Expert HazLenz is

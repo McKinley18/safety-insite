@@ -427,15 +427,19 @@ export default function DashboardPage() {
                 >
                   Start Inspection
                 </AppLinkButton>
-                {/* "Start Inspection" is this page's primary action. This was an orange
-                    accent button, which both competed with it for primacy and misused the
-                    warning colour for a benign navigation link. It now uses the same
-                    secondary treatment the landing hero already pairs with this exact blue
-                    primary, so the hierarchy reads primary -> secondary. */}
+                {/* "Start Inspection" is this page's primary action. This was an orange accent
+                    button, which both competed with it for primacy and misused the warning colour
+                    for a benign navigation link.
+
+                    §280 (D-036.3). This comment already said the button "now uses the same
+                    secondary treatment" -- and it did not: the element still carried
+                    `variant="accent"` and `app-accent-strong-surface`. The comment described an
+                    intention; the markup kept the orange. Both now agree, and the hierarchy really
+                    does read primary -> secondary. */}
                 <AppLinkButton
                   href="/reports"
-                  variant="accent"
-                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full app-accent-strong-surface px-5 py-3 text-sm font-black !text-white shadow-none transition"
+                  variant="secondary"
+                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full px-5 py-3 text-sm font-black shadow-none transition"
                 >
                   View Reports
                 </AppLinkButton>
