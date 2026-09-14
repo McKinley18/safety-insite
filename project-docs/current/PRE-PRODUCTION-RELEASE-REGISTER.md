@@ -10,9 +10,11 @@ equivalent, generated from the same entry list so the two cannot disagree:
 
 | | |
 |---|---|
-| Candidate HEAD | `94e2963427c46b4d69dcdd8664c4754c5fc72c37` (§289 preservation commit) |
+| Candidate HEAD — **the release SHA** | `e561360667af81f5b81a2950b6e6e8d6ed5bae76` |
+| Product source commit | `94e2963427c46b4d69dcdd8664c4754c5fc72c37` — the release build and the full gate set ran against this, and the deployable product is **identical** at both (`applicationSourceDigest` `2ce8a1d7…`) |
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
-| Source digest | `b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574` |
+| Source digest | `de7873c73e9e65a5bf139fab7f413c8203ca458e2f6148f0cf9270f5867d85ff` |
+| Application source digest | `2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
 | Retired digest — **must not be used** | `3c2c5974…` (misattributed; see PV-2) |
@@ -488,10 +490,10 @@ are retained so a later section does not rediscover them as new.
 | **IN-3** | Render configuration, authentication and auto-deploy posture re-read live and dated at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
 | **IN-4** | Vercel Preview deployments are SSO-protected, noindex and DENY-framed, and no backend secret is scoped to Preview. | P2 | — | Infrastructure | **CLOSED (§289)** |
 
-**IN-1 — §289 update. The prerequisites it named are now met.** DB-1, PV-1 and RL-1 are closed, and ST-2's infrastructure half is closed. Production runs `de655d2f` on **both** halves — the Render backend and the Vercel production deployment agree, which is itself worth knowing. The candidate `94e29634` is **51 commits ahead** and is committed locally and **not pushed**.
+**IN-1 — §289 update. The prerequisites it named are now met.** DB-1, PV-1 and RL-1 are closed, and ST-2's infrastructure half is closed. Production runs `de655d2f` on **both** halves — the Render backend and the Vercel production deployment agree, which is itself worth knowing. The candidate is **52 commits ahead** and is committed locally and **not pushed**. The release SHA is `e561360667af81f5b81a2950b6e6e8d6ed5bae76`; the product source it carries is `94e2963427c46b4d69dcdd8664c4754c5fc72c37`, and they are the same product.
 
 *Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `IN_1_AND_IN_2_DEPLOYMENT`; `/health/version` read live  
-*Retest:* A production SHA read matching `94e2963427c46b4d69dcdd8664c4754c5fc72c37` on both halves.
+*Retest:* A production SHA read matching `e561360667af81f5b81a2950b6e6e8d6ed5bae76` on both halves.
 
 **IN-2 — §289 update. The paradox is confirmed, not merely restated.** `gitProviderOptions.createDeployments` is `"disabled"`, and a Git-sourced **preview** deployment of the candidate branch at `0f36d497` nevertheless exists and is `READY`. Pushing this branch is therefore not a purely local act, and that is precisely why §289 did not push: a push is step 1 of the deployment sequence and belongs to the authorization, not to the preparation.
 

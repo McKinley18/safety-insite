@@ -2,7 +2,7 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, updated with live production evidence at §289",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
+  "candidateHead": "e561360667af81f5b81a2950b6e6e8d6ed5bae76",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -769,13 +769,13 @@
       "domain": "INFRASTRUCTURE",
       "id": "IN-1",
       "description": "The validated candidate has never been deployed. Production runs de655d2f (2026-08-29); the candidate branch is many unpushed commits ahead.",
-      "currentState": "Production runs de655d2f on BOTH halves (Render backend and Vercel production deployment agree). The candidate 94e29634 is 51 commits ahead and is COMMITTED LOCALLY AND NOT PUSHED. §289 prepared everything the deployment needs and did not perform it.",
+      "currentState": "Production runs de655d2f on BOTH halves (Render backend and Vercel production deployment agree). The candidate is 52 commits ahead (release SHA e5613606; product source identical to 94e29634) and is COMMITTED LOCALLY AND NOT PUSHED. §289 prepared everything the deployment needs and did not perform it.",
       "evidence": "verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json IN_1_AND_IN_2_DEPLOYMENT; /health/version read live",
       "severity": "P1",
       "releaseConsequence": "BLOCKS_PRODUCTION_DEPLOY",
       "owner": "INFRASTRUCTURE",
       "remediation": "Push and deploy the candidate to a controlled production environment after DB-1, ST-2, PV-1 and RL-1.",
-      "retestRequirement": "A production SHA read matching 94e2963427c46b4d69dcdd8664c4754c5fc72c37 on both halves.",
+      "retestRequirement": "A production SHA read matching e561360667af81f5b81a2950b6e6e8d6ed5bae76 on both halves.",
       "status": "OPEN",
       "blocksThresholdA": true,
       "blocksThresholdB": true,
@@ -1276,6 +1276,9 @@
     }
   ],
   "candidateHeadPredecessor": "0f36d49729c914c0c50a7e9118f3663877d057ef",
-  "sourceDigest": "b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574",
-  "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item."
+  "sourceDigest": "de7873c73e9e65a5bf139fab7f413c8203ca458e2f6148f0cf9270f5867d85ff",
+  "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
+  "candidateHeadNote": "The §289 artifact commit. The deployable product is identical to 94e2963427c46b4d69dcdd8664c4754c5fc72c37, against which the release build and gate set ran: applicationSourceDigest 2ce8a1d7… at both.",
+  "candidateProductSourceCommit": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
+  "applicationSourceDigest": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618"
 }

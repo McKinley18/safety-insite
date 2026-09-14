@@ -8,7 +8,7 @@ asserts is recorded in the machine-readable companion,
 [`release-manifest.json`](release-manifest.json), and every identity in that manifest can be
 recomputed from the commands below.
 
-> **What this candidate is, and is not.** `94e2963427c46b4d69dcdd8664c4754c5fc72c37` is a
+> **What this candidate is, and is not.** `e561360667af81f5b81a2950b6e6e8d6ed5bae76` is a
 > **prepared candidate**. It has passed the §289 release build and gate set, its migrations have
 > been rehearsed forward and back against a byte-identical copy of production, and it has **never
 > been deployed**. The frozen validated *product* baseline remains
@@ -40,15 +40,30 @@ client mid-request during a switchover is not instantly obsolete.
 
 ```bash
 git rev-parse HEAD
-# must print 94e2963427c46b4d69dcdd8664c4754c5fc72c37
+# must print e561360667af81f5b81a2950b6e6e8d6ed5bae76
 
 git ls-tree -r HEAD --format='%(path) %(objectname)' | LC_ALL=C sort | shasum -a 256
-# must print b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574
+# must print de7873c73e9e65a5bf139fab7f413c8203ca458e2f6148f0cf9270f5867d85ff
 ```
 
-That second value is `sourceDigest`. It covers all 8 921 tracked files, so it changes when
-documentation or evidence changes. `applicationSourceDigest` in the manifest covers only the files
-that determine the built artifacts; use that one when you want to know whether *the product* changed.
+That second value is `sourceDigest`. It covers all 8 932 tracked files, so it changes when
+documentation or evidence changes — and it did: the same digest at the product source commit
+`94e2963427c46b4d69dcdd8664c4754c5fc72c37` is `b1f3bd7e…`, because §289 added eleven documentation
+and evidence files between them.
+
+**Which is why there is a second digest.** `applicationSourceDigest` covers only the files that
+determine the built artifacts, and it is
+`2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618` at **both** commits. That is the
+one to use when the question is *did the product change?* — and between those two commits it did
+not, which is what lets the gate results obtained at `94e29634` bind the artifact built from
+`e5613606`:
+
+```bash
+git ls-tree -r HEAD --format='%(path) %(objectname)' \
+  | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\.json|frontend-next/(next\.config|tsconfig|tailwind))' \
+  | LC_ALL=C sort | shasum -a 256
+# must print 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618
+```
 
 **Do not use the digest `3c2c5974…`.** It is misattributed and was retired at §288.
 

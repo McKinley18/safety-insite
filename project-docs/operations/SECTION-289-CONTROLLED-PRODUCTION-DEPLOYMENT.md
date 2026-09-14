@@ -6,7 +6,7 @@ This is the candidate-exact successor to
 [`DEPLOYMENT-RUNBOOK.md`](DEPLOYMENT-RUNBOOK.md) (§268, updated at §269/§270). It is **additive**:
 the §268 runbook is not rewritten, and everything in it that is still true is still true. This
 document exists because three of its facts went stale when the candidate moved from
-`0f36d497` to `94e29634`, and one of them was never right.
+`0f36d497` to `e5613606`, and one of them was never right.
 
 **Nothing in this document has been executed.** §289 prepared it. Executing it requires
 product-owner authorization.
@@ -31,7 +31,7 @@ as the database platform. Registered as `OPS-1`.
 
 | | precondition | §289 result |
 |---|---|---|
-| P1 | Candidate is committed and has an exact identity | `94e2963427c46b4d69dcdd8664c4754c5fc72c37` |
+| P1 | Candidate is committed and has an exact identity | `e561360667af81f5b81a2950b6e6e8d6ed5bae76`, product source `94e2963427c46b4d69dcdd8664c4754c5fc72c37`, applicationSourceDigest identical at both |
 | P2 | Release build passes on that exact source | backend `tsc` clean; frontend `tsc --noEmit` clean; `next build` 25/25 pages |
 | P3 | HazLenz identity and protected modules intact | successor `8c163b31…`, 29/29 modules, 0 evidence drift |
 | P4 | Production migration head read, pending list classified | head `1800000018000`; 4 pending; **zero drift**; none destructive |
@@ -63,12 +63,19 @@ git rev-parse HEAD     # RELEASE_SHA — record it; every later step names this 
 Nothing may be pushed to the deployed ref after this point until the release completes or is rolled
 back.
 
-**RELEASE_SHA for this release: `94e2963427c46b4d69dcdd8664c4754c5fc72c37`.**
+**RELEASE_SHA for this release: `e561360667af81f5b81a2950b6e6e8d6ed5bae76`.**
+
+> **Two commits, one product.** The release build and the full gate set ran against
+> `94e2963427c46b4d69dcdd8664c4754c5fc72c37`. `e5613606` adds only this document, the preservation package, the operations
+> corrections and the §289 evidence — eleven files, none of them backend or frontend source. The
+> `applicationSourceDigest` is `2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618`
+> at **both**, so the gate results bind the artifact this deploys. Verify it rather than taking it
+> on trust; the recompute command is in the manifest.
 
 ### 1. Push the candidate  ← *requires product-owner authorization*
 
-The candidate is **committed locally and not pushed**. `origin/beta/expert-hazlenz-validated-candidate-2026-09-12`
-is still at `0f36d497`.
+The candidate is **committed locally and not pushed**. `origin/beta/expert-hazlenz-validated-candidate-2026-09-12` is still at `0f36d497`; **both** §289
+commits are local only.
 
 §289 deliberately did not push, for one reason: a push to this branch has previously produced a
 Git-sourced Vercel **preview** deployment even with `createDeployments=disabled` (register `IN-2`).
