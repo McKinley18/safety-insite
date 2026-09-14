@@ -1,6 +1,6 @@
 {
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
-  "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292",
+  "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
   "candidateHead": "PENDING_UNTIL_PUSH — the branch tip after deployment-sequence step 1",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
@@ -15,17 +15,17 @@
     "C": "EXTERNAL CONTROLLED BETA — named external inspectors entering real workplace data."
   },
   "counts": {
-    "total": 77,
+    "total": 78,
     "P0": 4,
     "P1": 7,
-    "P2": 44,
+    "P2": 45,
     "P3": 22,
     "thresholdA": 0,
     "thresholdB": 2,
-    "thresholdC": 17,
+    "thresholdC": 18,
     "byStatus": {
       "CLOSED": 38,
-      "OPEN": 32,
+      "OPEN": 33,
       "DEFERRED": 3,
       "BLOCKED": 4
     }
@@ -933,19 +933,37 @@
       "domain": "MONITORING / INCIDENT RESPONSE",
       "id": "MO-1",
       "description": "Structured operational events are emitted to stdout/stderr with redaction, but there is no aggregation, alerting, error tracking or incident runbook.",
-      "currentState": "MECHANISM IMPLEMENTED AND PROVEN; NO DESTINATION CONFIGURED IN PRODUCTION. §291 built the push half MO-1 asks for: every error-severity operational event is dispatched to a configured destination, repeated 5xx raise ONE service.error_rate_exceeded rather than one alert per request, and one alert per event kind per 15-minute window keeps an outage from becoming a mail storm. Proven against a real induced storage failure: six consecutive 500s produced THREE alerts — one per event kind plus one rate alert — while 401, 404 and 400 produced none, which is the noise policy §291 specified. §291 did NOT invent a production destination, because choosing an alerting channel has a cost and an account attached. /health/ready now reports alerting: NOT_CONFIGURED, so \"nothing is watching\" is a visible fact rather than a silent assumption. THIS IS NOT YET MONITORING IN PRODUCTION. §292 SEARCHED FOR AN EXISTING DESTINATION AND FOUND NONE. Project documentation names exactly one established operational destination — the Render service notification (notifyOnFail, email to the workspace owner) — and that is a PLATFORM channel for deploy and service failure that the application cannot publish into. There is no Slack, PagerDuty, Sentry or webhook configuration anywhere in the repository or either platform; Render has zero webhooks and no log stream; and the Resend credential that would enable the email channel does not exist (EM-2). §292 did NOT invent a destination. The noise policy was re-proven on the §292 build against a real receiver: 401, 404, 400, duplicate-register and 402 produced ZERO alerts, while one qualifying 500 produced two alerts — one per event kind — delivered in 4 ms with metadata carrying no content.",
+      "currentState": "MECHANISM IMPLEMENTED AND PROVEN; NO DESTINATION CONFIGURED IN PRODUCTION. §291 built the push half MO-1 asks for: every error-severity operational event is dispatched to a configured destination, repeated 5xx raise ONE service.error_rate_exceeded rather than one alert per request, and one alert per event kind per 15-minute window keeps an outage from becoming a mail storm. Proven against a real induced storage failure: six consecutive 500s produced THREE alerts — one per event kind plus one rate alert — while 401, 404 and 400 produced none, which is the noise policy §291 specified. §291 did NOT invent a production destination, because choosing an alerting channel has a cost and an account attached. /health/ready now reports alerting: NOT_CONFIGURED, so \"nothing is watching\" is a visible fact rather than a silent assumption. THIS IS NOT YET MONITORING IN PRODUCTION. §292 SEARCHED FOR AN EXISTING DESTINATION AND FOUND NONE. Project documentation names exactly one established operational destination — the Render service notification (notifyOnFail, email to the workspace owner) — and that is a PLATFORM channel for deploy and service failure that the application cannot publish into. There is no Slack, PagerDuty, Sentry or webhook configuration anywhere in the repository or either platform; Render has zero webhooks and no log stream; and the Resend credential that would enable the email channel does not exist (EM-2). §292 did NOT invent a destination. The noise policy was re-proven on the §292 build against a real receiver: 401, 404, 400, duplicate-register and 402 produced ZERO alerts, while one qualifying 500 produced two alerts — one per event kind — delivered in 4 ms with metadata carrying no content. §293 RE-VERIFIED THE ABSENCE INDEPENDENTLY AND FOUND THE REMEDIATION INSTRUCTION UNDERSTATED. The 41 production environment variables were read again: OPERATIONAL_ALERT_WEBHOOK_URL, OPERATIONAL_ALERT_EMAIL and RESEND_API_KEY are all still absent, Render still has zero webhooks and slackEnabled false, Vercel still has zero marketplace integrations and zero storage stores, and no Resend credential exists anywhere in the repository or in standard client configuration locations. /health/ready still reports alerting: NOT_CONFIGURED. §293 additionally read the dispatch path and found that the email channel needs a THIRD variable the remediation did not name — see MO-2 — so the remediation text below is corrected rather than repeated.",
       "evidence": "backend/src/observability/operational-alerts.ts; verification/current/threshold-b-291/mo1-alerts-delivered.json",
       "severity": "P1",
       "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
       "owner": "INFRASTRUCTURE",
-      "remediation": "MONITORING_DESTINATION_OWNER_DECISION_REQUIRED. The product owner must name a destination: either a webhook URL for a receiver they control (a Slack incoming webhook is the cheapest), or an alert email address together with a Resend credential (which also closes EM-2). Configuration is then one environment variable and one induced failure to confirm receipt.",
-      "retestRequirement": "An induced error-severity event arriving at the configured destination, and /health/ready reporting alerting: configured.",
+      "remediation": "MONITORING_DESTINATION_OWNER_DECISION_REQUIRED. The product owner must name a destination. EITHER a webhook URL for a receiver they control (OPERATIONAL_ALERT_WEBHOOK_URL alone is sufficient), OR — the architecture selected by the owner at §293 — the email channel, which requires THREE variables and not two: OPERATIONAL_ALERT_EMAIL (the monitored recipient), RESEND_API_KEY (the credential, which also closes EM-2), and PASSWORD_RESET_FROM_EMAIL (the sender, on a domain verified in the Resend account). The third is not optional: dispatchOperationalAlert falls back to alerts@safety-insite.invalid when it is unset, an RFC 2606 reserved TLD that can never be a verified Resend sending domain, so every send would be rejected while /health/ready reported the channel as configured. See MO-2.",
+      "retestRequirement": "An induced error-severity event ARRIVING IN THE MONITORED MAILBOX — actual receipt, not provider API acceptance, which the product does not record — and /health/ready reporting alerting: configured.",
       "status": "OPEN",
       "blocksThresholdA": false,
       "blocksThresholdB": true,
       "blocksThresholdC": true,
       "note": null,
-      "lastUpdatedBy": "§292"
+      "lastUpdatedBy": "§293"
+    },
+    {
+      "domain": "MONITORING / INCIDENT RESPONSE",
+      "id": "MO-2",
+      "description": "The email alert channel reports itself configured without a deliverable sender, and the delivery result is discarded, so a rejected alert is indistinguishable from a delivered one.",
+      "currentState": "NEW AT §293, FOUND BY READING THE DISPATCH PATH RATHER THAN BY RUNNING IT. Three limbs, all in backend/src/observability/operational-alerts.ts. (1) describeAlertConfiguration() returns configured: true, channel: email on OPERATIONAL_ALERT_EMAIL and RESEND_API_KEY alone, but dispatchOperationalAlert() sends from: PASSWORD_RESET_FROM_EMAIL || 'alerts@safety-insite.invalid'. The .invalid TLD is reserved by RFC 2606 and can never be a verified Resend sending domain, so with only those two variables set every send is rejected while /health/ready reports the channel as configured. That inverts the §291 guarantee that made MO-1 defensible — \"nothing is watching\" being a VISIBLE fact rather than a silent assumption — because alerting: configured would then mean nothing is watching. (2) Both the webhook and email branches are void fetch(...).catch(() => undefined) with no logging of a non-2xx response. Not throwing is correct and is the same rule §287 applied to the audit write; not RECORDING is not, and it means an unverified domain, a revoked key or a suspended account produces no signal inside the product. (3) The §291 and §292 alert proofs both ran against a local HTTP webhook receiver. No committed harness exercises the email branch at all, so the channel the owner selected at §293 has zero executed coverage.",
+      "evidence": "backend/src/observability/operational-alerts.ts lines 74-92 (describeAlertConfiguration) and 139-155 (email dispatch); grep over the repository finds OPERATIONAL_ALERT referenced only in operational-alerts.ts, health.controller.ts and this register — no test or script sets it",
+      "severity": "P2",
+      "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
+      "owner": "ENGINEERING",
+      "remediation": "Make describeAlertConfiguration() require a sender before it reports the email channel configured, and report the same NOT_CONFIGURED shape with a reason when it is absent — the same honesty MO-1 already applies to a missing credential. Record the provider response for both channels at warning severity without awaiting it or letting it throw, so a rejected alert leaves a trace in the log store that ops:events already reads. Add an email-branch case to the alert harness. NONE OF THIS IS AN OWNER ACTION and none of it changes what the owner must supply; it is what stops a future configuration change from silently degrading MO-1 to a false green.",
+      "retestRequirement": "With OPERATIONAL_ALERT_EMAIL and RESEND_API_KEY set and PASSWORD_RESET_FROM_EMAIL unset, /health/ready must report alerting NOT_CONFIGURED with the sender named as the reason; and a rejected provider response must appear as a warning-severity line.",
+      "status": "OPEN",
+      "blocksThresholdA": false,
+      "blocksThresholdB": false,
+      "blocksThresholdC": true,
+      "note": "Registered as P2 and NOT as a Threshold-B blocker on purpose. Closing MO-1 by proving ACTUAL RECEIPT inherently demonstrates that a deliverable sender is configured, so MO-2 does not stand between the owner and Threshold B. What it does is make MO-1 stay closed.",
+      "lastUpdatedBy": "§293"
     },
     {
       "domain": "THIRD-PARTY DEPENDENCIES / LICENSING",

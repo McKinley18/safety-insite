@@ -1,0 +1,170 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_293_OWNER_INPUT_GATE",
+  "section": "293",
+  "generated": "2026-09-14T19:20:00Z",
+  "outcome": "THRESHOLD B DOES NOT CLOSE AND REMAINS AT TWO. The five owner-supplied inputs that §293's own directive made preconditions were not supplied with the directive, and §293 independently confirmed that none of them exists in the environment. MO-1, EM-2 and BR-2 are therefore untouched. One new defect, MO-2, was found by reading the dispatch path the owner's chosen architecture would use, and it shows that the remediation instruction the owner was about to follow would have produced a false green.",
+  "gateResult": "PRECONDITIONS_NOT_MET — STOPPED BEFORE CONFIGURATION, NOT SELF-REPAIRED",
+  "ownerSuppliedInputsRequired": {
+    "1_monitoredAlertRecipient": { "supplied": false, "verifiedAbsentInProduction": true, "evidence": "OPERATIONAL_ALERT_EMAIL absent from the 41 Render production environment variables" },
+    "2_resendCredentialOrApprovedSecretPathConfirmation": { "supplied": false, "verifiedAbsentInProduction": true, "evidence": "RESEND_API_KEY and PASSWORD_RESET_FROM_EMAIL both absent from the 41 production variables; 0 Vercel marketplace integrations; 0 Vercel storage stores; no re_-prefixed credential in the repository or in standard client configuration locations" },
+    "3_neonPlanOrTier": { "supplied": false, "readable": false, "why": "control-plane, not exposed to SQL; no Neon credential exists" },
+    "4_neonHistoryRetentionWindow": { "supplied": false, "readable": false, "why": "control-plane, not exposed to SQL; no Neon credential exists" },
+    "5_neonPitrWindow": { "supplied": false, "readable": false, "why": "control-plane, not exposed to SQL; no Neon credential exists" }
+  },
+  "forbiddenActionsNotTaken": [
+    "no account created",
+    "no provider terms accepted",
+    "no service purchased",
+    "no recipient address invented",
+    "no Neon plan setting changed",
+    "no Slack destination substituted to obtain a faster green gate"
+  ],
+  "identity": {
+    "productionSha": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
+    "productionShaSource": "/health/version gitCommit, versionSourceStatus RENDER_GIT_COMMIT, confirmed by release:verify-sha",
+    "frontendProductionDeployment": "dpl_GXxNSdRXqvxj28k7Y4FKuURigoN3, meta.githubCommitSha equal to the backend",
+    "applicationSourceDigest": "05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f",
+    "applicationSourceDigestRecomputedAt": ["4749aba18c05f91dc5d345105b9e30fe909d7f59", "591a5f0871c285ef819a4d265e7b9b4d42471e4d"],
+    "applicationSourceDigestEqualAtBoth": true,
+    "digestEqualityMeaning": "the one commit since the deployment (§292's own record) is documentation and evidence; the deployed product and HEAD are the same application source",
+    "repositoryHead": "591a5f0871c285ef819a4d265e7b9b4d42471e4d",
+    "schemaHead": "1800000023000",
+    "migrationsAppliedOfExpected": "55/55",
+    "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+    "section274Recompute": {
+      "elementsChecked": 22,
+      "elementsIdenticalTo259": 20,
+      "elementsMoved": 2,
+      "movedElements": ["adapter", "envelope"],
+      "deltaExplanation": "PATH-RENAME-ONLY, 0 unexplained lines",
+      "contractVersion": "UNCHANGED",
+      "systemPrompt": "UNCHANGED",
+      "wireSchema": "UNCHANGED",
+      "contractIdentities259": "UNCHANGED",
+      "filesWritten": 0,
+      "providerCalls": 0,
+      "databaseOperations": 0,
+      "failures": 0
+    }
+  },
+  "MO_1": {
+    "destinationType": "NONE CONFIGURED",
+    "ownerPreferredArchitecture": "EMAIL DELIVERY VIA RESEND (selected by the product owner at §293)",
+    "recipientStatus": "NOT SUPPLIED — OPERATIONAL_ALERT_EMAIL absent",
+    "resendConfigurationStatus": "NOT CONFIGURED — RESEND_API_KEY absent, PASSWORD_RESET_FROM_EMAIL absent, PASSWORD_RESET_PROVIDER=resend set and unusable without them",
+    "alertDeliveryResult": "NOT ATTEMPTED — no destination and no credential; attempting delivery would have required inventing one",
+    "actualReceiptEvidence": "NONE — nothing was sent",
+    "healthReadyAlerting": "NOT_CONFIGURED",
+    "healthReadyDetail": "No alert destination is configured. Errors are emitted and retrievable from the platform log store, but nothing is pushed to an operator.",
+    "dedupeAndNoisePolicyUnchanged": {
+      "serverErrorThreshold": 5,
+      "serverErrorWindowMinutes": 5,
+      "dedupeWindowMinutes": 15,
+      "maxAlertsPerWindow": 12,
+      "neverAlertsOn": ["401", "402", "404", "ordinary 400 validation", "expected 409 conflict"],
+      "tuned": false,
+      "reverificationStatus": "NOT RE-RUN AT §293 — the policy is unchanged in source and §292 proved it against a real receiver on this same build. Re-running it would have re-proven the webhook branch, which is not the branch the owner selected."
+    },
+    "destinationSearchReVerifiedAtSection293": {
+      "productionEnvironmentVariableCount": 41,
+      "operationalAlertWebhookUrl": "ABSENT",
+      "operationalAlertEmail": "ABSENT",
+      "resendApiKey": "ABSENT",
+      "renderWebhooks": 0,
+      "renderSlackEnabled": false,
+      "renderOwnerNotifications": "emailEnabled true, notificationsToSend failure — a PLATFORM channel for deploy and service failure that the application cannot publish into",
+      "renderLogStreamEndpoint": "not available",
+      "vercelMarketplaceIntegrations": 0,
+      "vercelStorageStores": 0,
+      "resendCredentialAnywhere": "NONE"
+    },
+    "verdict": "OPEN — MONITORING_DESTINATION_OWNER_DECISION_REQUIRED, unchanged"
+  },
+  "MO_2": {
+    "status": "NEW DEFECT, REGISTERED, NOT REPAIRED AT §293",
+    "severity": "P2",
+    "blocks": "C",
+    "foundBy": "reading backend/src/observability/operational-alerts.ts, not by executing it — 0 provider calls",
+    "limbs": {
+      "1_configuredWithoutADeliverableSender": "describeAlertConfiguration() returns configured:true, channel:'email' on OPERATIONAL_ALERT_EMAIL and RESEND_API_KEY alone, while dispatchOperationalAlert() sends from PASSWORD_RESET_FROM_EMAIL || 'alerts@safety-insite.invalid'. The .invalid TLD is reserved by RFC 2606 and can never be a verified Resend sending domain, so with only those two variables every send is rejected while /health/ready reports the channel configured.",
+      "2_deliveryResultDiscarded": "Both branches are void fetch(...).catch(() => undefined) with no logging of a non-2xx response. Not throwing is correct and matches the §287 audit-write rule. Not recording is not: an unverified domain, a revoked key or a suspended account produces no signal inside the product.",
+      "3_emailBranchNeverExecuted": "The §291 and §292 alert proofs both ran against a local HTTP webhook receiver. OPERATIONAL_ALERT appears in exactly three files — the dispatcher, the health controller and the register — so no committed test or script sets it. The channel the owner selected at §293 has zero executed coverage."
+    },
+    "consequenceIfSection293HadProceeded": "Setting the two variables the register named would have flipped /health/ready from an honest NOT_CONFIGURED to alerting: configured over a channel that delivers nothing — a false green about monitoring, which is worse than the red it replaces and directly inverts the §291 guarantee that 'nothing is watching' is a visible fact rather than a silent assumption.",
+    "whyNotAThresholdBBlocker": "Closing MO-1 by proving ACTUAL RECEIPT inherently demonstrates a deliverable sender is configured, so MO-2 does not stand between the owner and Threshold B. Registering it as a B blocker would inflate a latent-configuration risk into an owner action, and there is no owner action in it: every limb is engineering work.",
+    "registerChange": "MO-1's remediation and retest text corrected in both the markdown register and the JSON register; MO-2 added to both."
+  },
+  "EM_2": {
+    "result": "NOT ATTEMPTED — no Resend credential was supplied or found",
+    "passwordResetDeliveryResult": "NOT ATTEMPTED",
+    "resetSecurityResult": "NOT EXERCISED",
+    "productionConfigurationRead": {
+      "PASSWORD_RESET_PROVIDER": "resend",
+      "PASSWORD_RESET_FRONTEND_URL": "https://safety-insite.vercel.app",
+      "RESEND_API_KEY": "ABSENT",
+      "PASSWORD_RESET_FROM_EMAIL": "ABSENT"
+    },
+    "requiredByCheckProductionConfiguration": ["RESEND_API_KEY", "PASSWORD_RESET_FROM_EMAIL", "PASSWORD_RESET_FRONTEND_URL"],
+    "knownDefectCarriedForward": "checkProductionConfiguration() is written to require all three and the service starts anyway, so the check is not enforced as a boot refusal — recorded at §291 and unchanged.",
+    "verdict": "OPEN — unchanged"
+  },
+  "BR_2": {
+    "neonPlanOrTier": "NOT SUPPLIED AND NOT READABLE",
+    "neonHistoryRetentionWindow": "NOT SUPPLIED AND NOT READABLE",
+    "neonPitrWindow": "NOT SUPPLIED AND NOT READABLE",
+    "sufficiencyDecision": "CANNOT BE MADE — the three values that the decision is a function of were not supplied. §293 did not guess at a window and did not change a plan setting to discover one.",
+    "endpointIdentityFromEnvironment": {
+      "host": "ep-weathered-moon-a4egk93d-pooler.us-east-1.aws.neon.tech",
+      "database": "neondb",
+      "region": "us-east-1"
+    },
+    "routesReExhaustedAtSection293": [
+      "neonctl not installed; no ~/.config/neonctl, ~/.neon or ~/.neonctl",
+      "no NEON_* variable in the environment, in the 41 Render production variables, or in any shell profile",
+      "0 Vercel marketplace integrations and 0 Vercel storage stores — a Neon integration would carry a key",
+      "control-plane settings are not exposed to SQL (established at §292 against the live database; not re-queried at §293 because no new information was available and the cheapest sufficient evidence already existed)"
+    ],
+    "whatIsNotInDoubt": "The operator-controlled logical backup path is proven three times — §269, §289, and §291's fresh pre-migration backup with a full content-checksum restore into PostgreSQL 17.11. BR-2 is a 'we do not know what the platform would give us' finding, not a 'we have no backups' finding.",
+    "exactDeficiency": "Either a Neon API key placed in the environment through the approved secret path, or one product-owner console read recording PLAN/TIER, HISTORY RETENTION and PITR AVAILABILITY AND WINDOW with a timestamp.",
+    "verdict": "OPEN — unchanged"
+  },
+  "productionControls": {
+    "expertExecutionEnabled": "false",
+    "productionIndexing": "x-robots-tag: noindex, nofollow observed on https://safety-insite.vercel.app/",
+    "renderAutoDeploy": "no",
+    "vercelDeployment": "controlled — 0 deploy hooks, gitForkProtection true, gitComments.onCommit false",
+    "previewSso": "ssoProtection all_except_custom_domains — a preview deployment answered HTTP 302 to vercel.com/sso-api",
+    "previewNoindex": "x-robots-tag: noindex observed on the preview deployment",
+    "previewSecretIsolation": "NEXT_PUBLIC_API_URL and NEXT_PUBLIC_API_BASE_URL target production only; no production-only secret is exposed to preview",
+    "nodeVersionPin": "runtime v24.14.1 against the pin >=24.14.1 <25.0.0; Vercel project nodeVersion 24.x",
+    "allPreserved": true,
+    "changesMade": 0
+  },
+  "constraints": {
+    "productionWrites": 0,
+    "deployments": 0,
+    "migrations": 0,
+    "productionConfigurationChanges": 0,
+    "productionSecretsAltered": 0,
+    "providerCalls": 0,
+    "providerSpendUsd": 0,
+    "expertCalls": 0,
+    "rollbackEvents": 0,
+    "externalUsersInvited": 0,
+    "accountsCreated": 0,
+    "productionContact": "READ-ONLY — /health/version, /health/ready, the production and preview frontend, and the Render and Vercel control-plane APIs. No production database connection was opened."
+  },
+  "blockers": {
+    "thresholdA": 0,
+    "thresholdBBefore": ["MO-1", "BR-2"],
+    "thresholdBAfter": ["MO-1", "BR-2"],
+    "thresholdCAfter": ["CPF-2", "CPF-3", "LG-1", "LG-2", "LG-3", "SU-2", "SR-1", "CM-1", "PR-1", "SE-3", "TI-3", "ST-3", "AC-1", "MO-1", "MO-2", "TM-1", "RR-1", "EM-2"],
+    "counsel": ["LG-1", "LG-2", "LG-3", "SU-2"],
+    "nonCounsel": ["CPF-2", "CPF-3", "SR-1", "CM-1", "PR-1", "SE-3", "TI-3", "ST-3", "AC-1", "MO-1", "MO-2", "TM-1", "RR-1", "EM-2"]
+  },
+  "counts": { "total": 78, "P0": 4, "P1": 7, "P2": 45, "P3": 22, "CLOSED": 38, "OPEN": 33, "BLOCKED": 4, "DEFERRED": 3 },
+  "defects": { "new": ["MO-2"], "repaired": [] },
+  "internalProductionAuthorizationStatus": "NOT AUTHORIZED — Threshold B remains open at two owner actions",
+  "worktreeStatus": "Tracked tree clean apart from this section's register and evidence changes. The untracked evidence directories under verification/ predate §293 and were not created, modified or removed by it. Zero accepted-evidence drift: the §274 recompute wrote 0 files.",
+  "terminal": "SAFETY_INSITE_THRESHOLD_B_UNCHANGED_AT_TWO — OWNER_INPUTS_NOT_SUPPLIED_AND_MONITORING_EMAIL_CHANNEL_DEFECT_REGISTERED"
+}

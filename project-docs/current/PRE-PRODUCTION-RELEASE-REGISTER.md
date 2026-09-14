@@ -4,7 +4,7 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**.
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**.
 **Threshold A is closed. Threshold B stands at two owner actions, neither of them engineering.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
@@ -47,7 +47,7 @@ the others.
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
 | **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **2** — both are owner actions, not engineering |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **17** |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **18** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
 > three could only be closed *by the deployment*. §290 performed the deployment and closed them:
@@ -83,12 +83,12 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **77** | **4** | **7** | **44** | **22** |
+| Entries | **78** | **4** | **7** | **45** | **22** |
 
 | Status | Count |
 |---|---|
 | CLOSED | 38 |
-| OPEN | 32 |
+| OPEN | 33 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 3 |
 
@@ -163,14 +163,16 @@ executing the deployment.
 
 ### Threshold B — internal / owner production use  (11 items)
 
-**Three items remain, and every one is a configuration or console action rather than engineering:**
+**Two items remain, and neither is engineering. §293 re-verified both and closed neither, because
+the inputs they need are the owner's to supply and were not supplied.**
 
-| | what is actually left | why §292 could not do it |
+| | what is actually left | still true at §293 |
 |---|---|---|
-| **MO-1** | **Name a destination.** A webhook URL for a receiver the owner controls, or an alert email plus a Resend credential. | §292 searched and found none: documentation names only Render's own platform notification, which the application cannot publish into; there is no Slack/PagerDuty/Sentry/webhook anywhere; Render has zero webhooks; Vercel has zero integrations; no Resend credential exists. **Inventing one was forbidden, and would have been wrong.** |
-| **BR-2** | **One Neon console read** — plan, history-retention window, PITR window. | Control-plane settings are not exposed to SQL, and no Neon credential exists: no `neonctl`, no `NEON_*` variable, no Vercel integration, no API key. |
+| **MO-1** | **Name a destination**, and supply what it needs. The owner selected **email via Resend** at §293, which needs a monitored recipient, a Resend credential, **and** a verified sender — three variables, not two. | Re-read independently: `OPERATIONAL_ALERT_WEBHOOK_URL`, `OPERATIONAL_ALERT_EMAIL` and `RESEND_API_KEY` are all absent from the 41 production variables; Render has **zero** webhooks and `slackEnabled: false`; Vercel has **zero** integrations and **zero** storage stores; no Resend credential exists anywhere. `/health/ready` still reports `alerting: NOT_CONFIGURED`. **No destination and no credential were supplied with the §293 directive, and inventing either remains forbidden.** |
+| **BR-2** | **One Neon console read** — plan, history-retention window, PITR window. | Still control-plane and still not exposed to SQL. No `neonctl`, no `~/.config/neonctl`, no `NEON_*` variable, no Vercel Neon integration, no API key. **The three values were not supplied with the §293 directive**, and §293 is forbidden to change plan settings to discover them. |
 
-`PV-3` closed at §292.
+`PV-3` and `DB-5` closed at §292 and were accepted by the product owner at §293. `DB-7` remains
+**DEFERRED**. `MO-2` opened at §293 and is **not** a Threshold-B blocker — see the MONITORING section.
 
 Closed at §291: `DB-4`, `DB-6`, `SU-1`, `SU-3`, `PA-1`, `OF-4`. The former Threshold-B list was `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
 retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
@@ -183,12 +185,12 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (26 items, including all six P0)
+### Threshold C — external controlled beta  (27 items, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `CPF-2`, `CPF-3`, `SE-3`, `ST-3`, `TI-3` (P2)
+`AC-1`, `CPF-2`, `CPF-3`, `MO-2`, `SE-3`, `ST-3`, `TI-3` (P2)
 
 **`DB-4` is new at §289 and it is not legal work.** The cross-tenant recurrence path that `TI-2`
 describes is **reachable in production**, because the `outcomes` table exists there although no
@@ -761,6 +763,7 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **MO-1** | The alerting mechanism is built and proven. No destination is configured in production. | P1 | BC | Infrastructure | OPEN — one configuration step |
+| **MO-2** | The email channel reports itself configured without a deliverable sender, and the delivery result is discarded. | P2 | C | Engineering | OPEN (§293) |
 
 **MO-1 — §291 built the push half, and production still has nowhere to push to.**
 
@@ -779,10 +782,38 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 
 **Why it is still open.** No destination is configured in production, and §291 forbids adding mutable production configuration casually — choosing an alerting channel has a cost and an account attached. So `/health/ready` now reports `alerting: NOT_CONFIGURED` with the reason and the full policy: **"nothing is watching" is a visible fact rather than a silent assumption.**
 
-*Remediation:* **one configuration step.** Set `OPERATIONAL_ALERT_WEBHOOK_URL` (any receiver), or `OPERATIONAL_ALERT_EMAIL` plus the `RESEND_API_KEY` that `EM-2` says is missing. Then induce one failure and confirm it arrives.
+**§293 re-verified the absence and found the remediation understated.** The 41 production
+environment variables were read again: `OPERATIONAL_ALERT_WEBHOOK_URL`, `OPERATIONAL_ALERT_EMAIL`
+and `RESEND_API_KEY` are all still absent. Render still has **zero** webhooks and `slackEnabled:
+false`; Vercel still has **zero** marketplace integrations and **zero** storage stores; no Resend
+credential exists in the repository or in any standard client configuration location; and
+`/health/ready` still reports `alerting: NOT_CONFIGURED`. Nothing had changed — but reading the
+dispatch path rather than the configuration found that **the email channel needs a third variable
+the remediation never named.** See `MO-2`.
+
+*Remediation:* **one configuration step, and it is three variables rather than two if the channel is email.** Either set `OPERATIONAL_ALERT_WEBHOOK_URL` (any receiver the owner controls — sufficient on its own), **or** — the architecture the owner selected at §293 — set all three of `OPERATIONAL_ALERT_EMAIL` (the monitored recipient), `RESEND_API_KEY` (the credential, which also closes `EM-2`) **and** `PASSWORD_RESET_FROM_EMAIL` (the sender, on a domain verified in the Resend account). The third is **not optional**: without it the dispatcher sends from `alerts@safety-insite.invalid`, an RFC 2606 reserved TLD that can never be a verified Resend sending domain, so every send is rejected while `/health/ready` reports the channel as configured. Then induce one failure and confirm it **arrives in the mailbox**.
 
 *Evidence:* `backend/src/observability/operational-events.ts; no APM dependency`  
-*Retest:* One alert fired end to end from a deliberately induced error-severity event.
+*Retest:* One alert fired end to end from a deliberately induced error-severity event and **observed in the monitored mailbox** — actual receipt, because the product does not record provider acceptance.
+
+**MO-2 — the email channel can say `configured` and deliver nothing. New at §293.**
+
+Three limbs, all in `backend/src/observability/operational-alerts.ts`, all found by reading the
+dispatch path rather than by running it — §293 made **zero** provider calls.
+
+1. **`describeAlertConfiguration()` reports `configured: true, channel: 'email'` on two variables, and `dispatchOperationalAlert()` needs three.** The sender is `PASSWORD_RESET_FROM_EMAIL || 'alerts@safety-insite.invalid'`. With only the two variables set, `/health/ready` would flip from the honest `NOT_CONFIGURED` to a configured email channel that Resend rejects on every send. **That inverts the guarantee that made MO-1 defensible** — §291 made *"nothing is watching"* a **visible fact rather than a silent assumption**, and this makes `alerting: configured` a way to say *nothing is watching*. A false green is worse than the red it replaces.
+2. **The delivery result is discarded.** Both branches are `void fetch(...).catch(() => undefined)` with no logging of a non-2xx response. **Not throwing is correct** — it is the same rule §287 applied to the audit write, and an alerting failure must not turn a succeeded request into an error. **Not recording is not correct.** An unverified domain, a revoked key or a suspended account produces no signal anywhere inside the product, which is why MO-1's retest above had to be strengthened to actual mailbox receipt: there is nothing server-side to corroborate it with.
+3. **The email branch has never been executed.** The §291 and §292 alert proofs both ran against a local HTTP webhook receiver. `OPERATIONAL_ALERT` appears in exactly three files — the dispatcher, the health controller and this register — so no committed test or script sets it. **The channel the owner selected at §293 has zero executed coverage.**
+
+*Why P2 and not a Threshold-B blocker.* Closing `MO-1` by proving **actual receipt** inherently
+demonstrates that a deliverable sender is configured, so `MO-2` does not stand between the owner and
+Threshold B. What it does is make `MO-1` **stay** closed. Registering it as a B blocker would inflate
+a latent-configuration risk into an owner action, and there is no owner action here: every limb is
+engineering work.
+
+*Remediation:* Require a sender before reporting the email channel configured, and return the same `NOT_CONFIGURED` shape naming the sender as the reason when it is absent — the honesty the dispatcher already applies to a missing credential. Record the provider response at warning severity without awaiting it and without letting it throw, so a rejection leaves a trace `ops:events` already reads. Add an email-branch case to the alert harness.  
+*Evidence:* `backend/src/observability/operational-alerts.ts` lines 74–92 and 139–155  
+*Retest:* With `OPERATIONAL_ALERT_EMAIL` and `RESEND_API_KEY` set and `PASSWORD_RESET_FROM_EMAIL` unset, `/health/ready` reports `NOT_CONFIGURED` naming the sender; a rejected provider response appears as a warning-severity line.
 
 ### THIRD-PARTY DEPENDENCIES / LICENSING
 
@@ -1037,6 +1068,44 @@ content-checksum-verified restore immediately before the §291 migration.
 
 Internal production use remains **NOT YET AUTHORIZED**. Nothing in Threshold C changed, no legal
 item was reclassified, and **external beta remains BLOCKED**.
+
+---
+
+## §293 — the owner-input gate held, and one defect was found behind it
+
+**§293 closed nothing and changed no production configuration, because the five inputs its own
+directive made preconditions were not supplied with it.** The directive required a monitored alert
+recipient, an authorised Resend credential (or confirmation of one configured through the approved
+secret path), and the Neon plan, history-retention window and PITR window. None arrived, and §293
+independently confirmed that none of them exists in the environment either. Creating an account,
+accepting provider terms, inventing a recipient or changing a Neon plan setting were all explicitly
+forbidden, and each is the sort of act that is the owner's alone regardless.
+
+**What §293 did instead of waiting.** Everything that did not depend on those inputs was completed.
+Production identity was re-derived end to end rather than quoted: `applicationSourceDigest`
+recomputed at both the deployed SHA and HEAD to `05b1a2d8…` — **equal**, which is why the one commit
+since the deploy is documentation and does not change the product; the §274 successor identity
+recomputed to `8c163b31…` over 22 elements with the delta still the authorised path rename alone and
+**zero files written**; the running SHA read back from `/health/version` as `4749aba1…` on Node
+`v24.14.1` against the `>=24.14.1 <25.0.0` pin; the Vercel production deployment confirmed at the
+same SHA; schema `1800000023000` with **55 of 55** migrations applied. Every production control was
+re-observed: Expert execution `false`, `x-robots-tag: noindex, nofollow` on production, Render
+auto-deploy `no`, preview deployments answering `302` to Vercel SSO with `x-robots-tag: noindex`, and
+production-only environment variables not exposed to preview. **0 production writes, 0 deployments, 0
+migrations, 0 configuration changes, 0 provider calls, 0 Expert calls.**
+
+### The instruction the owner was about to follow was wrong
+
+The register told the owner that the email channel was `OPERATIONAL_ALERT_EMAIL` plus
+`RESEND_API_KEY`. Reading the dispatcher rather than the register found a third variable, and
+without it the channel **reports itself configured and delivers nothing** — `MO-2`, registered above.
+Had §293 simply waited for the owner's inputs and then set the two variables it was told to set, the
+outcome would have been `/health/ready` reporting `alerting: configured` over a channel Resend
+rejects on every send: a **false green**, and a false green about monitoring is worse than the honest
+`NOT_CONFIGURED` it would have replaced.
+
+This is why the gate is worth having. A precondition that stops the section also stops the section
+from executing a wrong instruction confidently.
 
 ---
 
