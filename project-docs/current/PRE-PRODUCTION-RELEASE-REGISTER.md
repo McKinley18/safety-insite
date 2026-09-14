@@ -4,17 +4,26 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**.
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**.
 **Threshold A is closed. Threshold B stands at two owner actions, neither of them engineering.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
 | | |
 |---|---|
-| Candidate — **product source commit** | `4749aba18c05f91dc5d345105b9e30fe909d7f59` — the §292 gate set ran against this, on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f` |
+| Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
+| **Release binding — CANDIDATE** | `applicationSourceDigest` = `7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb` — **§294. NOT DEPLOYED.** |
+| **Release binding — DEPLOYED** | `applicationSourceDigest` = `05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f` at `4749aba1…` — still what production is running |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `4749aba18c05f91dc5d345105b9e30fe909d7f59` — live on both halves, schema `1800000023000`, Node `v24.14.1` pinned |
+| **Deployed release SHA** | `4749aba18c05f91dc5d345105b9e30fe909d7f59` — live on both halves, schema `1800000023000`, Node `v24.14.1` pinned. **Unchanged by §294.** |
+
+> **THE CANDIDATE AND PRODUCTION ARE NO LONGER THE SAME APPLICATION SOURCE, AND THAT IS DELIBERATE.**
+> §294 repaired `MO-2` in `backend/src/`, so the digest moved. §294 did **not** deploy, because
+> nothing in production is worse than it was and the repair has no effect until a destination is
+> configured — pushing a build merely to preserve a repair spends a deployment on nothing. **The
+> configuration step that closes `MO-1` must deploy this candidate and bind to
+> `7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb`**, and must not configure a credential against the
+> currently deployed `05b1a2d8…`, which still contains the false-green path.
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
@@ -47,7 +56,7 @@ the others.
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
 | **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **2** — both are owner actions, not engineering |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **18** |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **17** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
 > three could only be closed *by the deployment*. §290 performed the deployment and closed them:
@@ -87,8 +96,8 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | Status | Count |
 |---|---|
-| CLOSED | 38 |
-| OPEN | 33 |
+| CLOSED | 39 |
+| OPEN | 32 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 3 |
 
@@ -172,7 +181,8 @@ the inputs they need are the owner's to supply and were not supplied.**
 | **BR-2** | **One Neon console read** — plan, history-retention window, PITR window. | Still control-plane and still not exposed to SQL. No `neonctl`, no `~/.config/neonctl`, no `NEON_*` variable, no Vercel Neon integration, no API key. **The three values were not supplied with the §293 directive**, and §293 is forbidden to change plan settings to discover them. |
 
 `PV-3` and `DB-5` closed at §292 and were accepted by the product owner at §293. `DB-7` remains
-**DEFERRED**. `MO-2` opened at §293 and is **not** a Threshold-B blocker — see the MONITORING section.
+**DEFERRED**. `MO-2` opened at §293 and **closed at §294** on executable proof; it was never a
+Threshold-B blocker — see the MONITORING section.
 
 Closed at §291: `DB-4`, `DB-6`, `SU-1`, `SU-3`, `PA-1`, `OF-4`. The former Threshold-B list was `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
 retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
@@ -190,7 +200,7 @@ must be true before a human uses it.
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `CPF-2`, `CPF-3`, `MO-2`, `SE-3`, `ST-3`, `TI-3` (P2)
+`AC-1`, `CPF-2`, `CPF-3`, `SE-3`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294**
 
 **`DB-4` is new at §289 and it is not legal work.** The cross-tenant recurrence path that `TI-2`
 describes is **reachable in production**, because the `outcomes` table exists there although no
@@ -763,7 +773,7 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **MO-1** | The alerting mechanism is built and proven. No destination is configured in production. | P1 | BC | Infrastructure | OPEN — one configuration step |
-| **MO-2** | The email channel reports itself configured without a deliverable sender, and the delivery result is discarded. | P2 | C | Engineering | OPEN (§293) |
+| **MO-2** | The email channel reports itself configured without a deliverable sender, and the delivery result is discarded. | P2 | — | Engineering | **CLOSED (§294)** |
 
 **MO-1 — §291 built the push half, and production still has nowhere to push to.**
 
@@ -791,10 +801,16 @@ credential exists in the repository or in any standard client configuration loca
 dispatch path rather than the configuration found that **the email channel needs a third variable
 the remediation never named.** See `MO-2`.
 
-*Remediation:* **one configuration step, and it is three variables rather than two if the channel is email.** Either set `OPERATIONAL_ALERT_WEBHOOK_URL` (any receiver the owner controls — sufficient on its own), **or** — the architecture the owner selected at §293 — set all three of `OPERATIONAL_ALERT_EMAIL` (the monitored recipient), `RESEND_API_KEY` (the credential, which also closes `EM-2`) **and** `PASSWORD_RESET_FROM_EMAIL` (the sender, on a domain verified in the Resend account). The third is **not optional**: without it the dispatcher sends from `alerts@safety-insite.invalid`, an RFC 2606 reserved TLD that can never be a verified Resend sending domain, so every send is rejected while `/health/ready` reports the channel as configured. Then induce one failure and confirm it **arrives in the mailbox**.
+**§294 repaired the channel but could not configure it.** The false-green path is gone: setting the
+two variables the register used to name now leaves `/health/ready` reporting `NOT_CONFIGURED` **with
+the missing sender named**, rather than reporting a configured channel that delivers nothing. `MO-1`
+itself is untouched by that — no destination, credential or sender was supplied and none was
+invented, and production configuration is unchanged.
+
+*Remediation:* **one configuration step, and it is three values if the channel is email.** Either set `OPERATIONAL_ALERT_WEBHOOK_URL` (any receiver the owner controls — sufficient on its own), **or** — the architecture the owner selected at §293 — set all three of `OPERATIONAL_ALERT_EMAIL` (the monitored recipient), `RESEND_API_KEY` (the credential, placed directly in the production secret store, which also serves `EM-2`) **and** a verified sender: `PASSWORD_RESET_FROM_EMAIL`, shared with password reset, or `OPERATIONAL_ALERT_FROM_EMAIL` to override it. Since §294 the third is **enforced rather than documented** — without a structurally deliverable sender the channel reports `NOT_CONFIGURED` and sends nothing. Then induce one failure and confirm it **arrives in the mailbox**.
 
 *Evidence:* `backend/src/observability/operational-events.ts; no APM dependency`  
-*Retest:* One alert fired end to end from a deliberately induced error-severity event and **observed in the monitored mailbox** — actual receipt, because the product does not record provider acceptance.
+*Retest:* One alert fired end to end from a deliberately induced error-severity event and **observed in the monitored mailbox** — actual receipt — with `/health/ready` reporting `alerting: CONFIGURED` and a `monitoring.alert_delivered` line carrying the provider acknowledgement. A `PROVIDER_REJECTED` line, or a `DEGRADED` readiness state, means the configuration is wrong **and says which part**.
 
 **MO-2 — the email channel can say `configured` and deliver nothing. New at §293.**
 
@@ -810,6 +826,69 @@ demonstrates that a deliverable sender is configured, so `MO-2` does not stand b
 Threshold B. What it does is make `MO-1` **stay** closed. Registering it as a B blocker would inflate
 a latent-configuration risk into an owner action, and there is no owner action here: every limb is
 engineering work.
+
+**CLOSED at §294, before any credential exists — which is the only order in which it could be closed
+honestly.** A configured channel would have hidden this defect rather than revealed it, so the
+repair had to come first. Three structural changes, and a gate that would fail without them.
+
+| | |
+|---|---|
+| **One source of truth** | `resolveEmailChannel()` decides what the email channel requires, and **both** `describeAlertConfiguration()` and `dispatchOperationalAlert()` are written in terms of it. Neither restates a requirement, so they cannot drift. Proven over **all 24 configuration combinations**: *claims configured* and *transmits* are the same predicate in every one, and no combination transmitted an undeliverable sender. |
+| **No fallback identity** | `alerts@safety-insite.invalid` is gone and **nothing replaced it**. Undeliverability is tested by reserved TLD — RFC 2606 `.invalid`/`.example`/`.test`, RFC 6761 `.localhost`/`.local` — rather than by naming one retired string, so the next such address is caught too. The same rule applies to the **recipient**. An absent or undeliverable sender leaves the channel `NOT_CONFIGURED` **with the sender named as the reason**. |
+| **The outcome is evidence** | Dispatch is still launched and abandoned with respect to the customer's request, so an alert-provider failure still cannot become a customer-facing 500. What changed is that the promise resolves into evidence rather than into `undefined`: every attempt produces exactly one of `DELIVERY_ACCEPTED`, `PROVIDER_REJECTED`, `NETWORK_FAILURE` or `MALFORMED_RESPONSE`. |
+
+**A 2xx that is not an acknowledgement is not an acceptance.** `MALFORMED_RESPONSE` exists because
+treating an unreadable success as a success is MO-2 one layer down.
+
+**The outcome events are deliberately below `error` severity.** `monitoring.alert_delivered` is
+`info` and `monitoring.alert_delivery_failed` is `warning`, and that is load-bearing rather than
+cosmetic: the dispatcher acts only on `error`, so it cannot alert about its own failure through the
+channel that just failed.
+
+**Sender semantics — option A, shared, with an optional override.** Monitoring uses
+`PASSWORD_RESET_FROM_EMAIL` by default, so **one** verified domain serves both monitoring and
+`EM-2`; `OPERATIONAL_ALERT_FROM_EMAIL` overrides it if operations mail should ever be
+distinguishable from product mail. **No new required configuration** — the owner still supplies
+three values — and the shared-sender decision stays reversible by configuration rather than by
+another edit.
+
+**`/health/ready` gained a third state and the service is ready in all three.** `NOT_CONFIGURED`,
+`CONFIGURED`, and `DEGRADED` for a configured channel whose last attempt did not succeed. `status`
+stays `ready` under `DEGRADED` as an explicit product decision: a third party's mail provider having
+a bad ten minutes must not stop Safety InSite serving inspections.
+
+**The gate: `npm run test:294-monitoring-email-channel` — 21/21**, against a controlled in-process
+fake provider. **0 provider calls, 0 real email, 0 network, 0 database, 0 production contact.** It
+covers all twelve required cases plus describe/dispatch parity, `MALFORMED_RESPONSE`, `DEGRADED`
+recovery, and the sender override.
+
+**Two things about the gate are worth stating, because both are places it could have lied.**
+
+1. **It reads the real log stream, not the test sink.** `captureOperationalEventsForVerification`
+   returns *before* `dispatchOperationalAlert`, so a harness built on it exercises emission and
+   never exercises alerting at all — an earlier draft of this gate had two cases passing that way,
+   with the provider never called. The gate intercepts `process.stdout/stderr.write` instead, so the
+   full production path runs and the redaction case asserts against the **exact bytes** a log drain
+   would receive.
+2. **The noise-policy cases drive the real `ServerErrorAlertFilter`.** Restating its `>= 500`
+   predicate in the test would have made the case agree with itself no matter what the filter did.
+   Five real `HttpException`s at 401/402/404/400/409 produce a rate count of **0**, **0** events and
+   **0** sends, and all five statuses reach the client unchanged; five real 500s through the **same
+   filter instance** produce exactly **one** `service.error_rate_exceeded` and exactly **one** send.
+   Dedupe and the ceiling are unchanged: two identical kinds plus one distinct kind → 2 sends;
+   30 distinct kinds → 12, against the ceiling of 12.
+
+**Anti-vacuity.** Case `A` replicates the pre-§294 logic verbatim and requires it to **fail**: with
+the two variables the register used to name, the retired code reports `configured: true` and would
+have sent from `alerts@safety-insite.invalid`. The false green reproduces on demand, and the repaired
+path reports `NOT_CONFIGURED` on the same environment. If case `A` ever starts passing, the harness
+has stopped measuring the thing it was written for.
+
+**What §294 does NOT claim.** The proof is **local**. No Resend credential exists, no real email was
+sent, production configuration is unchanged and production was not redeployed. `/health/ready`'s
+three states are proven at `describeAlertConfiguration()`; the controller is a direct projection of
+that state, verified by reading and by type-check rather than by live observation. **The live half
+is `MO-1` and it is still open.**
 
 *Remediation:* Require a sender before reporting the email channel configured, and return the same `NOT_CONFIGURED` shape naming the sender as the reason when it is absent — the honesty the dispatcher already applies to a missing credential. Record the provider response at warning severity without awaiting it and without letting it throw, so a rejection leaves a trace `ops:events` already reads. Add an email-branch case to the alert harness.  
 *Evidence:* `backend/src/observability/operational-alerts.ts` lines 74–92 and 139–155  
@@ -1106,6 +1185,42 @@ rejects on every send: a **false green**, and a false green about monitoring is 
 
 This is why the gate is worth having. A precondition that stops the section also stops the section
 from executing a wrong instruction confidently.
+
+---
+
+## §294 — the monitoring email channel, repaired before it was ever configured
+
+**`MO-2` is CLOSED. `MO-1`, `BR-2` and `EM-2` are untouched and Threshold B is still at two.**
+§294 configured nothing, sent no mail, created no account, contacted no provider and did not change
+or redeploy production. It repaired the defect §293 found, in the only order that could close it
+honestly: **before a credential exists.** A configured channel would have concealed this defect
+rather than revealed it — the whole failure mode is that it looks healthy.
+
+The three structural repairs, the gate and the anti-vacuity case are recorded under `MO-2` in the
+MONITORING section above. Two consequences belong here rather than there.
+
+**The owner's configuration step is now self-checking.** Before §294, supplying two of the three
+values produced a green light and silence. After it, supplying two produces `NOT_CONFIGURED` naming
+the third, and supplying a wrong one produces `PROVIDER_REJECTED` with the provider's status in the
+log store and `DEGRADED` on `/health/ready`. The owner no longer has to trust that the configuration
+worked; the product tells them, and tells them which part did not.
+
+**`EM-2` got closer without being touched.** Monitoring shares the password-reset sender by default,
+so the single step the owner will perform — a credential plus one verified sender — serves both
+paths. `isStructurallyDeliverableAddress` is exported for the password-reset sender to use at `EM-2`
+closure rather than growing a second, differently-wrong copy of the same test. §294 deliberately did
+not exercise password reset and does not claim anything about it.
+
+### What §294 does not claim
+
+The proof is **local and executable, not live.** No real email was sent and nothing observed a real
+mailbox. The three readiness states are proven at `describeAlertConfiguration()`; the controller is
+a direct projection of that state, verified by reading and by type-check rather than by observation
+in production. **An emission layer that now records its own failures is still not monitoring** — the
+live half is `MO-1`, it needs the owner's configuration, and it is still open.
+
+The application source changed, so the release binding changed with it. The candidate that the
+eventual configuration step must deploy and bind to is recorded at the top of this register.
 
 ---
 

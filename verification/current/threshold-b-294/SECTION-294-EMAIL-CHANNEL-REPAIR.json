@@ -1,0 +1,248 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_294_MONITORING_EMAIL_CHANNEL_REPAIR",
+  "section": "294",
+  "generated": "2026-09-14T22:22:48Z",
+  "outcome": "MO-2 CLOSED ON LOCAL EXECUTABLE PROOF, BEFORE ANY CREDENTIAL EXISTS. §293 preserved as a coherent commit with nothing falsely closed. MO-1, BR-2 and EM-2 untouched and still OPEN. THRESHOLD B REMAINS AT TWO. Production unchanged and not redeployed.",
+  "startingHead": "591a5f0871c285ef819a4d265e7b9b4d42471e4d",
+  "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+  "identity": {
+    "productionSha": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
+    "productionChanged": false,
+    "deployedApplicationSourceDigest": "05b1a2d82a8842486fdb64985cf4008d42d62dde795a41a9569657440e535e3f",
+    "candidateApplicationSourceDigest": "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
+    "candidateIsDeployed": false,
+    "bindingInstruction": "The step that closes MO-1 must deploy the §294 candidate and bind to 7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb. Configuring a credential against the deployed 05b1a2d8… would configure the false-green path.",
+    "schemaHead": "1800000023000",
+    "schemaChanged": false,
+    "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+    "section274ReVerifiedAfterRepair": {
+      "elementsChecked": 22,
+      "elementsMoved": 2,
+      "delta": "PATH-RENAME-ONLY",
+      "filesWritten": 0,
+      "failures": 0,
+      "meaning": "the Expert HazLenz engine is untouched by the repair"
+    }
+  },
+  "MO_2": {
+    "rootCause": "Two functions independently restated what the email channel required, and they disagreed. describeAlertConfiguration() required a recipient and a credential; dispatchOperationalAlert() additionally needed a SENDER and, when it was absent, supplied alerts@safety-insite.invalid rather than declining. The disagreement always resolved the same way — readiness claimed a channel that could not deliver. The deeper cause is that the requirement had no single owner: it was written twice, so it could drift, and it had.",
+    "configurationRequirementsBefore": [
+      "OPERATIONAL_ALERT_EMAIL",
+      "RESEND_API_KEY"
+    ],
+    "configurationRequirementsAfter": [
+      "OPERATIONAL_ALERT_EMAIL (structurally deliverable)",
+      "RESEND_API_KEY",
+      "PASSWORD_RESET_FROM_EMAIL or OPERATIONAL_ALERT_FROM_EMAIL (structurally deliverable)"
+    ],
+    "senderFallbackBefore": "alerts@safety-insite.invalid",
+    "senderFallbackAfter": "NONE — an absent or structurally undeliverable sender leaves the channel NOT_CONFIGURED with the sender named as the reason",
+    "undeliverabilityRule": "reserved TLD test — RFC 2606 .invalid/.example/.test and RFC 6761 .localhost/.local — applied to BOTH sender and recipient, rather than naming one retired string, so the next such address is caught too",
+    "senderSemanticsDecision": {
+      "chosen": "A — SHARED, with an optional override",
+      "rationale": "A v1 product with one verified domain should not ask its owner to verify two, and the owner chose one provider at §293 precisely so one configuration step serves monitoring and EM-2. OPERATIONAL_ALERT_FROM_EMAIL is OPTIONAL and adds no required configuration; it exists so the shared-sender decision stays reversible by configuration rather than by another code edit.",
+      "requiredValuesAddedForTheOwner": 0
+    },
+    "describeDispatchParity": "STRUCTURAL. resolveEmailChannel() is the single decision point and both functions are written in terms of it. Proven over all 24 configuration combinations: \"claims configured\" and \"transmits\" are the same predicate in every one, and no combination transmitted an undeliverable sender.",
+    "dispatchOutcomes": [
+      "DELIVERY_ACCEPTED",
+      "PROVIDER_REJECTED",
+      "NETWORK_FAILURE",
+      "MALFORMED_RESPONSE"
+    ],
+    "dispatchEvidenceBehaviour": "monitoring.alert_delivered (info) on acceptance, monitoring.alert_delivery_failed (warning) otherwise, carrying channel, which alert failed, the bounded outcome and the provider status. Both are BELOW error severity on purpose: the dispatcher acts only on error, so it cannot alert about its own failure through the channel that just failed.",
+    "malformedResponseRationale": "A 2xx whose body is not a provider acknowledgement is MALFORMED_RESPONSE rather than accepted. Treating an unreadable success as a success is MO-2 one layer down.",
+    "containment": "UNCHANGED IN BOTH DIRECTIONS. The send is still launched and abandoned with respect to the customer request — never awaited — so an alert-provider failure still cannot delay a request or turn a succeeded operation into a 500. What changed is that the promise resolves into evidence instead of into undefined, on the microtask that previously discarded it.",
+    "healthReady": {
+      "states": [
+        "NOT_CONFIGURED",
+        "CONFIGURED",
+        "DEGRADED"
+      ],
+      "serviceReadyInAllThree": true,
+      "productDecision": "status stays ready under DEGRADED: a third party mail provider having a bad ten minutes must not stop Safety InSite serving inspections.",
+      "degradedWindowMinutes": 15,
+      "limit": "The three states are proven at describeAlertConfiguration(). The controller is a direct projection of that state, verified by reading and by type-check rather than by live observation. §294 makes no claim about production /health/ready, which is unchanged and still reports NOT_CONFIGURED from the deployed build."
+    },
+    "verdict": "CLOSED"
+  },
+  "gate": {
+    "command": "npm run test:294-monitoring-email-channel",
+    "script": "backend/scripts/test-294-monitoring-email-channel.ts",
+    "casesRun": 21,
+    "failures": 0,
+    "providerCalls": 0,
+    "realEmailSends": 0,
+    "network": 0,
+    "databaseOperations": 0,
+    "productionContact": "NONE",
+    "fakeProvider": "in-process, installed over globalThis.fetch; the harness inspects the exact request the product would have transmitted",
+    "cases": [
+      {
+        "id": "1",
+        "pass": true,
+        "title": "no recipient -> NOT_CONFIGURED"
+      },
+      {
+        "id": "2",
+        "pass": true,
+        "title": "no API key -> NOT_CONFIGURED"
+      },
+      {
+        "id": "3a",
+        "pass": true,
+        "title": "recipient + key but NO SENDER -> NOT_CONFIGURED  <-- the MO-2 case"
+      },
+      {
+        "id": "3b",
+        "pass": true,
+        "title": "structurally undeliverable sender -> NOT_CONFIGURED"
+      },
+      {
+        "id": "3c",
+        "pass": true,
+        "title": "structurally undeliverable RECIPIENT -> NOT_CONFIGURED"
+      },
+      {
+        "id": "4",
+        "pass": true,
+        "title": "recipient + key + deliverable sender -> CONFIGURED"
+      },
+      {
+        "id": "4b",
+        "pass": true,
+        "title": "OPERATIONAL_ALERT_FROM_EMAIL overrides the shared sender when set"
+      },
+      {
+        "id": "P",
+        "pass": true,
+        "title": "describe/dispatch parity over every configuration combination"
+      },
+      {
+        "id": "5",
+        "pass": true,
+        "title": "provider 2xx -> DELIVERY_ACCEPTED evidence"
+      },
+      {
+        "id": "6",
+        "pass": true,
+        "title": "provider 4xx -> PROVIDER_REJECTED evidence"
+      },
+      {
+        "id": "7",
+        "pass": true,
+        "title": "provider 5xx -> PROVIDER_REJECTED evidence"
+      },
+      {
+        "id": "8",
+        "pass": true,
+        "title": "network failure -> NETWORK_FAILURE evidence"
+      },
+      {
+        "id": "M",
+        "pass": true,
+        "title": "2xx without a provider acknowledgement -> MALFORMED_RESPONSE, not accepted"
+      },
+      {
+        "id": "D",
+        "pass": true,
+        "title": "a failed delivery reports DEGRADED; a clean window reports CONFIGURED"
+      },
+      {
+        "id": "9",
+        "pass": true,
+        "title": "an alert-provider failure leaves the primary operation successful"
+      },
+      {
+        "id": "10",
+        "pass": true,
+        "title": "the credential is transmitted and never appears in evidence"
+      },
+      {
+        "id": "11",
+        "pass": true,
+        "title": "ordinary 401/402/404/400/409 and every non-error event remain non-alerting"
+      },
+      {
+        "id": "11d",
+        "pass": true,
+        "title": "the same filter fed five real 500s raises exactly one alert"
+      },
+      {
+        "id": "11c",
+        "pass": true,
+        "title": "a 5xx burst still crosses exactly once at the threshold"
+      },
+      {
+        "id": "12",
+        "pass": true,
+        "title": "dedupe and the hard ceiling are intact"
+      },
+      {
+        "id": "A",
+        "pass": true,
+        "title": "the retired logic reports CONFIGURED over an undeliverable sender; the repair does not"
+      }
+    ],
+    "twoPlacesTheGateCouldHaveLied": [
+      "It reads the REAL LOG STREAM, not the test sink. captureOperationalEventsForVerification returns BEFORE dispatchOperationalAlert, so a harness built on it exercises emission and never exercises alerting. An earlier draft of this gate had two cases passing that way, with the provider never called and a thrown provider error never reached. The harness intercepts process.stdout/stderr.write instead, so the full production path runs and the redaction case asserts against the exact bytes a log drain would receive.",
+      "The noise-policy cases drive the REAL ServerErrorAlertFilter rather than restating its >= 500 predicate. An earlier draft restated it, which made the case agree with itself no matter what the filter did — a vacuous axis recorded as coverage. Five real HttpExceptions at 401/402/404/400/409 now produce a rate count of 0, 0 events, 0 sends and five unchanged client statuses; five real 500s through the SAME filter instance produce exactly one service.error_rate_exceeded and exactly one send."
+    ],
+    "antiVacuity": {
+      "case": "A",
+      "method": "the pre-§294 logic replicated verbatim",
+      "requirement": "must FAIL",
+      "observed": "legacy reports configured=true and would send from alerts@safety-insite.invalid on the exact two-variable configuration the register used to name; the repaired path reports NOT_CONFIGURED on the same environment",
+      "meaning": "if case A ever starts passing, the harness has stopped measuring the defect it was written for"
+    },
+    "redactionProof": "The credential appears in the transmitted Authorization header and in no emitted event, no recorded observation, no readiness payload and no byte written to the log stream. The monitored mailbox address does not appear in evidence either.",
+    "noisePolicyUnchanged": {
+      "dedupe": "two identical kinds + one distinct kind -> 2 sends",
+      "ceiling": "30 distinct kinds -> 12 sends against a ceiling of 12",
+      "thresholds": "untouched — not tuned to obtain a pass"
+    }
+  },
+  "otherGates": {
+    "tsc --noEmit (npm run lint)": "CLEAN",
+    "tsc (npm run build)": "CLEAN",
+    "verify:274-successor-identity": "VERIFIED, 0 files written"
+  },
+  "EM_2": {
+    "status": "OPEN — deliberately not closed and not exercised",
+    "compatibility": "Monitoring shares PASSWORD_RESET_FROM_EMAIL by default, so the single owner step — credential plus one verified sender — serves both paths with no second architectural decision. isStructurallyDeliverableAddress is exported for the password-reset sender to use at EM-2 closure rather than growing a second, differently-wrong copy of the same test.",
+    "notDone": "no real password-reset delivery was exercised, and the known §291 defect that checkProductionConfiguration() does not refuse boot is untouched"
+  },
+  "registerClassification": {
+    "MO-2": "CLOSED (§294)",
+    "MO-1": "OPEN",
+    "BR-2": "OPEN",
+    "EM-2": "OPEN",
+    "thresholdA": 0,
+    "thresholdB": 2,
+    "thresholdC": 17
+  },
+  "constraints": {
+    "providerCalls": 0,
+    "providerSpendUsd": 0,
+    "expertCalls": 0,
+    "realEmailSends": 0,
+    "productionWrites": 0,
+    "deployments": 0,
+    "migrations": 0,
+    "productionConfigurationChanges": 0,
+    "accountsCreated": 0,
+    "neonChanges": 0,
+    "thresholdCWork": 0,
+    "expertEnabled": false
+  },
+  "ownerHandoff": {
+    "monitoredMailbox": "REQUIRED — an operational mailbox a human actually reads",
+    "resendCredential": "REQUIRED — place the API key DIRECTLY in the Render production secret store as RESEND_API_KEY and confirm only that configuration is complete. Do not send the value in chat.",
+    "verifiedSender": "REQUIRED — an address on a domain verified in the Resend account, as PASSWORD_RESET_FROM_EMAIL (shared with password reset) or OPERATIONAL_ALERT_FROM_EMAIL",
+    "neonPlanOrTier": "REQUIRED — one console read",
+    "neonHistoryRetention": "REQUIRED — one console read",
+    "neonPitr": "REQUIRED — availability and window, one console read",
+    "secretsInChat": "NONE REQUESTED"
+  },
+  "terminal": "SAFETY_INSITE_MONITORING_EMAIL_CHANNEL_HARDENED — THRESHOLD_B_AWAITS_OWNER_CONFIGURATION_AND_NEON_RETENTION_EVIDENCE"
+}

@@ -65,15 +65,27 @@ export class HealthController {
      * §291 (MO-1). "Nothing is watching" is reported as a FACT rather than left as an assumption.
      * A readiness endpoint that says `ready` while no failure would ever reach a human is telling
      * half the truth, and the half it omits is the one that matters at 02:00.
+     *
+     * §294 (MO-2). THREE STATES, AND THE SERVICE IS READY IN ALL THREE. `NOT_CONFIGURED` means
+     * nothing is watching. `CONFIGURED` now means the channel has everything it needs to deliver,
+     * including a sender — before §294 it could mean a recipient and a credential with no usable
+     * sending identity, which is a green light over a channel that delivers nothing. `DEGRADED`
+     * means the channel is configured and its last attempt did not succeed.
+     *
+     * `status` stays `ready` for DEGRADED on purpose, and that is a product decision rather than
+     * an oversight: a third party's mail provider having a bad ten minutes must not stop Safety
+     * InSite serving inspections. The degradation is reported where an operator reads it, and it
+     * does not take the product down with it.
      */
     const alerting = describeAlertConfiguration();
     return {
       status: 'ready',
       dependencies: { database: 'available', schema: 'current' },
       monitoring: {
-        alerting: alerting.configured ? 'configured' : 'NOT_CONFIGURED',
+        alerting: alerting.state,
         channel: alerting.channel,
         detail: alerting.reason,
+        lastDelivery: alerting.lastDelivery ?? null,
         serverErrorsInWindow: serverErrorCountInWindow(),
         policy: OPERATIONAL_ALERT_POLICY,
       },

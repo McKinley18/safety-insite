@@ -83,6 +83,17 @@ export const OPERATIONAL_EVENTS = [
   // §291 (MO-1). A RATE condition, not a single failure: raised once when 5xx responses cross
   // the threshold in the rolling window, so a burst produces one alert rather than one per request.
   'service.error_rate_exceeded',
+  /**
+   * §294 (MO-2). THE OUTCOME OF AN ALERT DISPATCH, so that a channel which is configured but not
+   * delivering stops being indistinguishable from one that is.
+   *
+   * Both are deliberately BELOW `error` severity, and that is load-bearing rather than cosmetic:
+   * `dispatchOperationalAlert` acts only on `error`, so neither of these can trigger a dispatch of
+   * its own. An alert about a failure to alert, sent through the channel that just failed, is a
+   * loop — the log line is the right place for it, and `ops:events` already reads that.
+   */
+  'monitoring.alert_delivered',
+  'monitoring.alert_delivery_failed',
 ] as const;
 export type OperationalEvent = (typeof OPERATIONAL_EVENTS)[number];
 
@@ -119,6 +130,12 @@ const SEVERITY: Record<OperationalEvent, OperationalSeverity> = {
   'action.audit_write_failed': 'error',
   'action.notification_failed': 'warning',
   'service.error_rate_exceeded': 'error',
+  // §294 (MO-2). INFO: the alert channel did what it was configured to do. Bounded by the alert
+  // rate limit itself — at most one of these per alert, so at most MAX_ALERTS_PER_WINDOW.
+  'monitoring.alert_delivered': 'info',
+  // §294 (MO-2). WARNING and never ERROR: an operator needs to see that the channel is rejecting,
+  // and raising it to `error` would make the dispatcher try to alert about its own failure.
+  'monitoring.alert_delivery_failed': 'warning',
 };
 
 const MAX_VALUE_LENGTH = 200;
