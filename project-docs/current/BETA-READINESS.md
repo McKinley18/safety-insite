@@ -7,8 +7,9 @@
 > question separately for three thresholds: **controlled production deployment**,
 > **internal/owner production use**, and **external controlled beta**.
 >
-> **Candidate HEAD is `e561360667af81f5b81a2950b6e6e8d6ed5bae76`** (§289 release SHA, committed locally and not
-> pushed; the product source it carries is `94e2963427c46b4d69dcdd8664c4754c5fc72c37`, against which the gates ran). Threshold A stands at **3** blockers, all of which are closed
+> **The candidate's product source commit is `94e2963427c46b4d69dcdd8664c4754c5fc72c37`**, against which the §289 build and gate
+> set ran. It is committed locally and **not pushed**, and the release is bound by
+> `applicationSourceDigest` `2ce8a1d7…` rather than by a SHA — see the register. Threshold A stands at **3** blockers, all of which are closed
 > by the deployment itself rather than by further preparation.
 >
 > This document remains accurate as narrative and as history. Where it states a release

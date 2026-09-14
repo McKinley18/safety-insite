@@ -6,7 +6,7 @@ This is the candidate-exact successor to
 [`DEPLOYMENT-RUNBOOK.md`](DEPLOYMENT-RUNBOOK.md) (§268, updated at §269/§270). It is **additive**:
 the §268 runbook is not rewritten, and everything in it that is still true is still true. This
 document exists because three of its facts went stale when the candidate moved from
-`0f36d497` to `e5613606`, and one of them was never right.
+`0f36d497` to the §289 candidate, and one of them was never right.
 
 **Nothing in this document has been executed.** §289 prepared it. Executing it requires
 product-owner authorization.
@@ -31,7 +31,7 @@ as the database platform. Registered as `OPS-1`.
 
 | | precondition | §289 result |
 |---|---|---|
-| P1 | Candidate is committed and has an exact identity | `e561360667af81f5b81a2950b6e6e8d6ed5bae76`, product source `94e2963427c46b4d69dcdd8664c4754c5fc72c37`, applicationSourceDigest identical at both |
+| P1 | Candidate is committed and has an exact identity | product source `94e2963427c46b4d69dcdd8664c4754c5fc72c37`; release bound by applicationSourceDigest `2ce8a1d7…` |
 | P2 | Release build passes on that exact source | backend `tsc` clean; frontend `tsc --noEmit` clean; `next build` 25/25 pages |
 | P3 | HazLenz identity and protected modules intact | successor `8c163b31…`, 29/29 modules, 0 evidence drift |
 | P4 | Production migration head read, pending list classified | head `1800000018000`; 4 pending; **zero drift**; none destructive |
@@ -63,14 +63,24 @@ git rev-parse HEAD     # RELEASE_SHA — record it; every later step names this 
 Nothing may be pushed to the deployed ref after this point until the release completes or is rolled
 back.
 
-**RELEASE_SHA for this release: `e561360667af81f5b81a2950b6e6e8d6ed5bae76`.**
+**RELEASE_SHA is the value `git rev-parse HEAD` prints at this step.** It is deliberately not
+written into this document, because a commit cannot record its own SHA — each attempt changes it.
 
-> **Two commits, one product.** The release build and the full gate set ran against
-> `94e2963427c46b4d69dcdd8664c4754c5fc72c37`. `e5613606` adds only this document, the preservation package, the operations
-> corrections and the §289 evidence — eleven files, none of them backend or frontend source. The
-> `applicationSourceDigest` is `2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618`
-> at **both**, so the gate results bind the artifact this deploys. Verify it rather than taking it
-> on trust; the recompute command is in the manifest.
+**What identifies the release instead is a digest, and it is stronger than a SHA.** Before you
+freeze, confirm the tip is the product the gates passed:
+
+```bash
+git ls-tree -r HEAD --format='%(path) %(objectname)' \
+  | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\.json|frontend-next/(next\.config|tsconfig|tailwind))' \
+  | LC_ALL=C sort | shasum -a 256
+# MUST print 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618
+```
+
+That digest covers only the files that determine the built artifacts. It is the value at
+`94e2963427c46b4d69dcdd8664c4754c5fc72c37`, the commit the §289 release build and the full gate set ran against, and it is
+**unchanged** across the documentation and evidence commits §289 added afterwards. If it matches,
+the gate results bind the artifact you are about to deploy. If it does not, **stop** — whatever is
+at the tip is not what was tested.
 
 ### 1. Push the candidate  ← *requires product-owner authorization*
 

@@ -4,26 +4,24 @@
   "generatedAt": "2026-09-14T16:37:55Z",
   "status": "CANDIDATE_PREPARED_NOT_DEPLOYED",
   "productVersion": "1.0.0",
-  "gitSha": "e561360667af81f5b81a2950b6e6e8d6ed5bae76",
+  "gitSha": "PENDING — see releaseSha",
   "gitShaNote": "THE RELEASE SHA. The §289 artifact commit, which adds this preservation package, the controlled-production deployment sequence, the operations corrections and the §289 evidence. It is COMMITTED LOCALLY AND NOT PUSHED; see deployment.pushState.",
   "gitBranch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
-  "gitTreeHash": "3691a24ca466bcd44c0f41c3fb0438980bf1241a",
   "predecessorSha": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "sourceDigest": {
-    "value": "de7873c73e9e65a5bf139fab7f413c8203ca458e2f6148f0cf9270f5867d85ff",
+    "value": "MOVES WITH EACH DOCUMENTATION COMMIT — not a release binding",
     "algorithm": "sha256",
-    "definition": "sha256 over the LC_ALL=C-sorted lines of `git ls-tree -r <gitSha> --format='%(path) %(objectname)'`, covering all 8921 tracked files.",
-    "recompute": "git ls-tree -r e561360667af81f5b81a2950b6e6e8d6ed5bae76 --format='%(path) %(objectname)' | LC_ALL=C sort | shasum -a 256",
-    "coversFileCount": 8932,
-    "note": "This value covers documentation and evidence too, so it differs from the 94e29634 value b1f3bd7e… recorded in the §289 evidence. applicationSourceDigest is the one that answers \"did the product change?\", and it did not."
+    "atProductSourceCommit": "b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574",
+    "definition": "sha256 over the LC_ALL=C-sorted lines of `git ls-tree -r <sha> --format='%(path) %(objectname)'`, covering every tracked file.",
+    "why": "Recorded for completeness and deliberately NOT used as the release binding. It covers documentation and evidence, so it changes on every §289 artifact commit including the one that would record it. applicationSourceDigest is the release binding."
   },
   "applicationSourceDigest": {
     "value": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "algorithm": "sha256",
-    "definition": "The same construction restricted to the files that determine the BUILT ARTIFACTS: backend/src, backend/scripts, backend/package.json, backend/package-lock.json, backend/tsconfig*, frontend-next/{app,components,lib,public,scripts}, frontend-next/package.json, frontend-next/package-lock.json, frontend-next/{next.config,tsconfig,tailwind}*.",
-    "why": "sourceDigest changes when evidence or documentation changes. This one changes only when the deployable product changes, so a rebuild that reproduces it reproduces the artifact.",
-    "unchangedSince": "94e2963427c46b4d69dcdd8664c4754c5fc72c37"
+    "recompute": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256",
+    "definition": "The same construction restricted to the files that determine the BUILT ARTIFACTS.",
+    "why": "THE RELEASE BINDING. It changes only when the deployable product changes, so it is stable across the documentation commits that a preservation package necessarily adds."
   },
   "retiredDigestMustNotBeUsed": {
     "value": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -74,8 +72,8 @@
   "buildTimestamp": "2026-09-14T16:37:55Z",
   "buildTimestampNote": "When the §289 release build was produced on the build host. The DEPLOYED build's timestamp is injected at deploy time via BUILD_TIMESTAMP and reported by /health/version with a buildTimestampSourceStatus saying which source answered.",
   "deployment": {
-    "pushState": "NOT PUSHED. origin/beta/expert-hazlenz-validated-candidate-2026-09-12 is at 0f36d497 (the pre-§289 HEAD). Both §289 commits exist only locally.",
-    "commitsAheadOfDeployedProduction": 52,
+    "pushState": "NOT PUSHED. origin/beta/expert-hazlenz-validated-candidate-2026-09-12 is at 0f36d497 (the pre-§289 HEAD). Every §289 commit exists only locally.",
+    "commitsAheadOfDeployedProduction": "at least 53 and growing with each §289 artifact commit; the count is not a release binding",
     "deployedProductionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
     "backendPlatform": "Render web service srv-d7kl74jeo5us73deaor0 (oregon, 0.5c-512mb, 1 instance, autoDeploy=no)",
     "frontendPlatform": "Vercel project prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw (production branch main, gitProviderOptions.createDeployments=disabled)",
@@ -118,8 +116,17 @@
   "deployments": 0,
   "productSourceCommit": {
     "sha": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
-    "why": "The §289 release build and the full gate set ran against THIS commit.",
-    "equivalence": "The deployable product is IDENTICAL at both commits. applicationSourceDigest is 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618 at 94e29634 and at e5613606. The §289 commit touches only project-docs/ and verification/ — 11 added files, no backend or frontend source. So the gate results obtained at 94e29634 bind the artifact deployed from e5613606.",
-    "recompute": "git ls-tree -r <sha> --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256"
+    "why": "THE STABLE IDENTITY. The §289 release build and the full gate set ran against this commit, and it does not move.",
+    "applicationSourceDigest": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
+    "equivalence": "Every §289 commit after this one touches only project-docs/ and verification/ and changes no backend or frontend source, so applicationSourceDigest is unchanged and the gate results obtained here bind whatever tip is deployed.",
+    "recompute": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256"
+  },
+  "releaseSha": {
+    "value": "PENDING_UNTIL_PUSH",
+    "binding": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
+    "verify": "git ls-tree -r HEAD --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256",
+    "mustEqual": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
+    "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+    "tipAtManifestWriting": "the §289 artifact commits; the tip advances with each, and that is expected"
   }
 }
