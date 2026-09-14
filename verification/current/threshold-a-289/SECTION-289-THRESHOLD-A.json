@@ -4,10 +4,9 @@
   "generated": "2026-09-14T16:42:47Z",
   "scope": "RELEASE ENGINEERING. Make the v1 successor candidate ready for a controlled production deployment. Not a feature batch, not legal remediation, not Expert activation, not public launch.",
   "candidateHeadBefore": "0f36d49729c914c0c50a7e9118f3663877d057ef",
-  "candidateHeadAfter": "e561360667af81f5b81a2950b6e6e8d6ed5bae76",
+  "candidateHeadAfter": "PENDING_UNTIL_PUSH — the branch tip at push time; see candidateReleaseBinding",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
-  "sourceDigest": "de7873c73e9e65a5bf139fab7f413c8203ca458e2f6148f0cf9270f5867d85ff",
   "applicationSourceDigest": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
   "constraintsHeld": {
     "providerCalls": 0,
@@ -400,6 +399,7 @@
     "verdict": "THRESHOLD A IS PREPARED. It cannot be declared READY-CLOSED without executing the deployment, which requires product-owner authorization."
   },
   "candidateProductSourceCommit": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
-  "candidateEquivalence": "applicationSourceDigest 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618 at BOTH 94e29634 and e5613606. The §289 artifact commit adds 11 files under project-docs/ and verification/ and changes no backend or frontend source, so the gate results obtained at 94e29634 bind the artifact deployed from e5613606.",
+  "candidateEquivalence": "Every §289 commit after the product source commit touches only project-docs/ and verification/ and changes no backend or frontend source, so applicationSourceDigest is unchanged and the gate results obtained at 94e29634 bind whatever tip is deployed. Verify it at deploy time; step 0 of the sequence carries the command, and a mismatch is a stop.",
+  "candidateReleaseBinding": "The release SHA cannot be recorded inside the commit that would record it. The release is bound instead by applicationSourceDigest 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618, the value at the product source commit 94e2963427c46b4d69dcdd8664c4754c5fc72c37 against which the §289 build and the full gate set ran.",
   "sourceDigestAtProductSourceCommit": "b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574"
 }
