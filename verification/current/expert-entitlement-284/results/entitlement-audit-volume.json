@@ -1,0 +1,39 @@
+{
+  "artifact": "SECTION_284_ENTITLEMENT_DENIAL_AUDIT_VOLUME",
+  "instrument": "frontend-next/scripts/measure-284-entitlement-audit-volume.mjs",
+  "method": "One Free account, one observation, 25 refused GETs and 3 refused POSTs on the Expert routes, against the same disposable stack before and after the policy change. A FRESH account was used for each run so the two counts are independent.",
+  "database": "test_insite_review_1789388035052_8444",
+  "providerCalls": 0,
+  "before": {
+    "account": "audit-284@example.test",
+    "refusedReads": 25,
+    "refusedMutations": 3,
+    "readStatuses": [402],
+    "mutationStatuses": [402],
+    "rowsWrittenByThisCase": 28,
+    "byAction": { "entitlement_denied": 28 }
+  },
+  "after": {
+    "account": "audit-284b@example.test",
+    "refusedReads": 25,
+    "refusedMutations": 3,
+    "readStatuses": [402],
+    "mutationStatuses": [402],
+    "rowsWrittenByThisCase": 4,
+    "byAction": { "entitlement_denied": 3, "entitlement_read_refused": 1 }
+  },
+  "coalescedRowMetadata": {
+    "action": "entitlement_read_refused",
+    "denialClass": "OPERATIONAL",
+    "method": "GET",
+    "entitlement": "fullSafeScope",
+    "repeats": 24,
+    "note": "1 row + repeats:24 accounts for all 25 refused reads. Nothing was discarded or sampled."
+  },
+  "result": {
+    "rows": "28 -> 4",
+    "securityRelevantMutationDenials": "3 -> 3, unchanged and never coalesced",
+    "operationalReadRefusals": "25 rows -> 1 row carrying a count of 25",
+    "enforcement": "UNCHANGED — every one of the 28 requests was refused with 402 PAID_SUBSCRIPTION_REQUIRED before and after"
+  }
+}

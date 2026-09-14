@@ -212,6 +212,7 @@
     "test:267-product-integration-defects": "ts-node scripts/test-267-product-integration-defects.ts",
     "test:268-deployment-safety": "ts-node scripts/hazlenz/with-disposable-db.ts test:268-deployment-safety:inner",
     "test:268-deployment-safety:inner": "ts-node scripts/test-268-deployment-safety.ts",
+    "test:284-entitlement-denial-audit": "ts-node scripts/test-284-entitlement-denial-audit.ts",
     "test:268-operational-controls": "ts-node scripts/test-268-operational-controls.ts",
     "test:270-build-metadata": "ts-node scripts/test-270-build-metadata.ts",
     "test:approval-contract": "ts-node scripts/test-approval-contract.ts",

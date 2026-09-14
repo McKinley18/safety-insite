@@ -368,8 +368,33 @@ the only way to review a candidate as a running application without deploying it
 would remove the review surface and would not improve the production control, which is a different
 setting. §283 **changed nothing**; this is a recommendation, not an action.
 
+### RELEASE-SECURITY RULE — production-only secrets must not be scoped to Preview (§284)
+
+**Standing rule, accepted at §284 alongside KEEP_PREVIEWS.** A preview deployment is a full running
+build of a candidate branch. It executes with whatever environment variables the Vercel project
+scopes to the **Preview** environment, and anyone who can pass the SSO gate can drive it.
+
+Therefore:
+
+> **No credential, key, token, connection string or webhook secret whose blast radius is PRODUCTION
+> may be scoped to the Preview environment.** Preview gets its own values or it gets nothing.
+
+In particular: the production database URL, the production `ANTHROPIC_API_KEY`, production Stripe
+live keys, production object-storage credentials and any production webhook signing secret are
+Production-scope only. A variable that must exist in Preview for the build to complete gets a
+disposable Preview-scoped value, never the production one.
+
+This rule is what makes KEEP_PREVIEWS safe; it is not an observation. **It has NOT been audited.**
+§284 changed no Vercel configuration and did not enumerate the project's environment-variable
+scopes. Auditing them is a Pre-Production Infrastructure gate item, listed there.
+
 ### What is NOT established
 
 Why `createDeployments: disabled` did not prevent the preview. The setting's exact scope is a
 Vercel platform behaviour, and §283 did not test it by pushing anything. Do not write down a
 mechanism for it that has not been observed.
+
+**Render's auto-deploy state is not freshly verified (§284).** `autoDeploy: no` /
+`autoDeployTrigger: off` is carried from §269/§272 and was last read from the service API then. The
+local Render credential returns `401`, so §283 and §284 could not re-read it, and neither section
+did. **Do not present it as current.** Re-reading it is a Pre-Production Infrastructure gate item.

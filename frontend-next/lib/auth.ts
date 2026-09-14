@@ -267,6 +267,10 @@ export function clearAuthSession() {
    */
   void import("./planEntitlements").then((module) => module.invalidateVerifiedPlanCode()).catch(() => {});
   void import("./billing").then((module) => module.clearBillingCache()).catch(() => {});
+  // §284 (S-15). The same rule for the Expert refusal memo, for the same reason: it records that
+  // THE SERVER refused THIS session, and the next account on this device is not that session.
+  void import("./expert/expertEntitlement")
+    .then((module) => module.clearExpertEntitlementMemo()).catch(() => {});
 
   for (const key of AUTH_TOKEN_KEYS) {
     window.localStorage.removeItem(key);

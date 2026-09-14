@@ -1,0 +1,70 @@
+{
+  "results": [
+    {
+      "id": "F0 the whole walk happened inside ONE document, so session state is real",
+      "outcome": "PASS",
+      "detail": "/login"
+    },
+    {
+      "id": "F1 all three observations were reached",
+      "outcome": "PASS",
+      "detail": "/inspection-workspace,/inspection-workspace,/inspection-workspace"
+    },
+    {
+      "id": "F2 every observation shows the plan surface",
+      "outcome": "PASS",
+      "detail": "1,1,1"
+    },
+    {
+      "id": "F3 NO ENABLED EXPERT CONTROL on any observation — the S-15 decision itself",
+      "outcome": "PASS",
+      "detail": "0,0,0"
+    },
+    {
+      "id": "F4 the plan boundary is NOT presented as an error — no alert role on the Expert surface",
+      "outcome": "PASS",
+      "detail": "0,0,0"
+    },
+    {
+      "id": "F4b and no error-red styling on it either — §281 measured exactly that, and it is the half of the defect a role check alone would miss",
+      "outcome": "PASS",
+      "detail": "0,0,0"
+    },
+    {
+      "id": "F5 the capability is not hidden — it names itself and offers a destination",
+      "outcome": "PASS",
+      "detail": "HAZLENZ EXPERT REVIEW | Available with Pro | Expert review is a second opinion on an observation you have already recorded: it reasons over the whole observation and returns its own hazards, controls and operational posture for a person to confirm or change. | Your HazLenz analysis above is unaffect"
+    },
+    {
+      "id": "F6 it says the deterministic analysis is unaffected",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F7 THE SERVER IS ASKED EXACTLY ONCE for the whole session, not once per observation",
+      "outcome": "PASS",
+      "detail": "1 request(s): GET 5ea64715-e6b4-41aa-a1a4-b0fd39222b22/expert-analyses/current"
+    },
+    {
+      "id": "F8 and the observations after the first made no request at all",
+      "outcome": "PASS",
+      "detail": "1,0,0"
+    },
+    {
+      "id": "E1 the entitled account never sees the plan surface",
+      "outcome": "PASS",
+      "detail": "0,0,0"
+    },
+    {
+      "id": "E2 it sees the Expert panel with its control on every observation",
+      "outcome": "PASS",
+      "detail": "1/1,1/1,1/1"
+    },
+    {
+      "id": "E3 CONTROL: it asks the server on EVERY observation — suppression never leaks here",
+      "outcome": "PASS",
+      "detail": "3 request(s) across 3 observations"
+    }
+  ],
+  "failures": 0
+}

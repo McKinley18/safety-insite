@@ -1,0 +1,57 @@
+{
+  "visits": [
+    {
+      "state": "HazLenz state A",
+      "landedOn": "/inspection-workspace",
+      "expertRequests": 1,
+      "notEntitledPanels": 0,
+      "analysisPanels": 1,
+      "runControls": 1,
+      "expertAlerts": 0,
+      "expertErrorStyling": 0,
+      "pageAlertTexts": [
+        "Inspection workspace · Safety InSite"
+      ],
+      "seeProLinks": 0,
+      "panelText": "HAZLENZ EXPERT REVIEW | Expert analysis has not been run for this observation | No Expert analysis has been produced for this observation. That is not a finding that there are no hazards. | Run Expert review | Show analysis record"
+    },
+    {
+      "state": "HazLenz state B",
+      "landedOn": "/inspection-workspace",
+      "expertRequests": 1,
+      "notEntitledPanels": 0,
+      "analysisPanels": 1,
+      "runControls": 1,
+      "expertAlerts": 0,
+      "expertErrorStyling": 0,
+      "pageAlertTexts": [
+        "Inspection workspace · Safety InSite"
+      ],
+      "seeProLinks": 0,
+      "panelText": "HAZLENZ EXPERT REVIEW | Expert analysis has not been run for this observation | No Expert analysis has been produced for this observation. That is not a finding that there are no hazards. | Run Expert review | Show analysis record"
+    },
+    {
+      "state": "HazLenz state C",
+      "landedOn": "/inspection-workspace",
+      "expertRequests": 1,
+      "notEntitledPanels": 0,
+      "analysisPanels": 1,
+      "runControls": 1,
+      "expertAlerts": 0,
+      "expertErrorStyling": 0,
+      "pageAlertTexts": [
+        "Inspection workspace · Safety InSite"
+      ],
+      "seeProLinks": 0,
+      "panelText": "HAZLENZ EXPERT REVIEW | Expert analysis has not been run for this observation | No Expert analysis has been produced for this observation. That is not a finding that there are no hazards. | Run Expert review | Show analysis record"
+    }
+  ],
+  "expertRequests": [
+    "GET 76b61121-8af3-4a60-b9dc-4ffb2197ace6/expert-analyses/current",
+    "GET 2ec2fa4a-0789-4410-93f7-fca3fa62e680/expert-analyses/current",
+    "GET 613424f6-858b-4ce5-9d91-91f1c127d77b/expert-analyses/current"
+  ],
+  "documentLoads": [
+    "/login"
+  ]
+}

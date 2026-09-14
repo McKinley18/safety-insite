@@ -1,0 +1,55 @@
+{
+  "visits": [
+    {
+      "state": "HazLenz state A",
+      "landedOn": "/inspection-workspace",
+      "expertRequests": 1,
+      "notEntitledPanels": 1,
+      "analysisPanels": 0,
+      "runControls": 0,
+      "expertAlerts": 0,
+      "expertErrorStyling": 0,
+      "pageAlertTexts": [
+        "Inspection workspace · Safety InSite"
+      ],
+      "seeProLinks": 1,
+      "panelText": "HAZLENZ EXPERT REVIEW | Available with Pro | Expert review is a second opinion on an observation you have already recorded: it reasons over the whole observation and returns its own hazards, controls and operational posture for a person to confirm or change. | Your HazLenz analysis above is unaffected and is the analysis this inspection uses. | See Pro"
+    },
+    {
+      "state": "HazLenz state B",
+      "landedOn": "/inspection-workspace",
+      "expertRequests": 0,
+      "notEntitledPanels": 1,
+      "analysisPanels": 0,
+      "runControls": 0,
+      "expertAlerts": 0,
+      "expertErrorStyling": 0,
+      "pageAlertTexts": [
+        "Inspection workspace · Safety InSite"
+      ],
+      "seeProLinks": 1,
+      "panelText": "HAZLENZ EXPERT REVIEW | Available with Pro | Expert review is a second opinion on an observation you have already recorded: it reasons over the whole observation and returns its own hazards, controls and operational posture for a person to confirm or change. | Your HazLenz analysis above is unaffected and is the analysis this inspection uses. | See Pro"
+    },
+    {
+      "state": "HazLenz state C",
+      "landedOn": "/inspection-workspace",
+      "expertRequests": 0,
+      "notEntitledPanels": 1,
+      "analysisPanels": 0,
+      "runControls": 0,
+      "expertAlerts": 0,
+      "expertErrorStyling": 0,
+      "pageAlertTexts": [
+        "Inspection workspace · Safety InSite"
+      ],
+      "seeProLinks": 1,
+      "panelText": "HAZLENZ EXPERT REVIEW | Available with Pro | Expert review is a second opinion on an observation you have already recorded: it reasons over the whole observation and returns its own hazards, controls and operational posture for a person to confirm or change. | Your HazLenz analysis above is unaffected and is the analysis this inspection uses. | See Pro"
+    }
+  ],
+  "expertRequests": [
+    "GET 5ea64715-e6b4-41aa-a1a4-b0fd39222b22/expert-analyses/current"
+  ],
+  "documentLoads": [
+    "/login"
+  ]
+}

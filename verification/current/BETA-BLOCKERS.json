@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270; entity resolution attempted and billing configuration cleaned at §271; runtime evidence reconciliation, update-delivery closure and preview-deployment record at §283",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270; entity resolution attempted and billing configuration cleaned at §271; runtime evidence reconciliation, update-delivery closure and preview-deployment record at §283; S-15 Expert entitlement presentation, entitlement audit policy and D-043/D-044 capability review at §284",
   "role": "THE ONLY register of what currently blocks external beta. §266 made it the single authoritative P0/P1/P2 closure register for Safety InSite v1.0 controlled human beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the WHOLE Safety InSite v1.0 product as a controlled-beta candidate, not only the Expert HazLenz layer. §266 widened it from the Expert-only scope §263 established.",
   "asOf": "2026-09-14",
@@ -262,6 +262,42 @@
       "consequence": "CONTAINED. Render sets RENDER_GIT_COMMIT, which is read first, and §268 added a GIT_COMMIT build arg to the Dockerfile for every other build path. `release:verify-sha` treats a BUILD_FALLBACK answer as NOT ESTABLISHED and exits non-zero rather than matching against it, so the stale value cannot silently confirm a deploy.",
       "requiredAction": "stamp it at build time, or replace the literal with an explicit non-SHA sentinel so it can never look like a real commit",
       "owner": "engineering"
+    },
+    {
+      "id": "PREVIEW_ENVIRONMENT_SECRET_SCOPE_UNAUDITED",
+      "priority": "P1",
+      "kind": "release-security",
+      "discoveredBy": "§284, as the condition that makes the accepted KEEP_PREVIEWS decision safe",
+      "statement": "Branch pushes create full running Vercel preview deployments that execute with whatever variables the project scopes to the Preview environment. The standing rule accepted at §284 is that NO production-blast-radius secret may be scoped to Preview: not the production DATABASE_URL, not the production ANTHROPIC_API_KEY, not live Stripe keys, not production object-storage credentials, not production webhook signing secrets.",
+      "measured": "NOT MEASURED. §284 changed no Vercel configuration and did not enumerate the project's environment-variable scopes. The rule is recorded, not verified.",
+      "consequence": "If a production secret is Preview-scoped, every SSO-authorised viewer of a preview can reach production data or spend through a candidate build. The SSO gate bounds WHO, not WHAT the build can touch.",
+      "requiredAction": "Enumerate the Vercel project environment variables by scope and confirm no production-blast-radius value is Preview-scoped.",
+      "owner": "product owner / infrastructure",
+      "gate": "Pre-Production Infrastructure"
+    },
+    {
+      "id": "D_042_INTERRUPTION_AND_INTERMITTENT_CONNECTIVITY",
+      "priority": "P1",
+      "kind": "product-acceptance",
+      "discoveredBy": "§281; carried to the formal Pre-Production Release Register at §284 by product-owner decision",
+      "statement": "Field connectivity is worse than online/offline: requests time out, one succeeds while another fails, the connection disappears mid-upload, connectivity returns halfway through an operation. §281 measured total loss and full reconnect ONLY.",
+      "measured": "Not measured beyond total loss and full reconnect. OPEN.",
+      "requiredAction": "Acceptance covering online -> degraded -> timeout -> partial success -> loss -> local continuation -> reconnect -> sync, with coverage for observation save, evidence upload, corrective-action creation, calendar/outbox sync, duplicate submission, session expiration, update/version check and HazLenz request interruption.",
+      "whyNotAtSection284": "Explicitly out of scope: §284 was directed not to implement the offline/synchronization architecture.",
+      "owner": "product owner",
+      "gate": "Pre-Production Release Register"
+    },
+    {
+      "id": "CROSS_TENANT_AND_ROLE_DENIALS_UNAUDITED",
+      "priority": "P2",
+      "kind": "observability",
+      "discoveredBy": "§284, while designing the entitlement denial audit policy",
+      "statement": "A cross-workspace access attempt resolves through InspectionService.authorizeObservation, which answers NotFoundException and writes NO audit row. A role/privilege violation resolves through RolesGuard, which returns false and writes NO audit row. Neither is observable today.",
+      "measured": "By source inspection at §284. Not a regression — neither was ever audited.",
+      "consequence": "The two denial classes most likely to indicate a genuine intrusion attempt are the two that leave no trace, while entitlement denials (the least security-relevant class) were the only ones recorded.",
+      "requiredAction": "Decide whether tenant-scope and role denials should be audited, and at what granularity.",
+      "whyNotAtSection284": "Out of scope — §284 directed that no large security analytics system be built, and these are new audit paths rather than a policy on an existing one.",
+      "owner": "product owner / engineering"
     }
   ],
   "liveUnverified": [
@@ -294,7 +330,8 @@
       "id": "RENDER_AND_VERCEL_SERVICE_CONFIG",
       "statement": "ESTABLISHED via the Render and Vercel APIs. Backend srv-d7kl74jeo5us73deaor0 autoDeploy=no/off; Vercel project prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw createDeployments=disabled. Still no render.yaml; configuration lives in the platforms and is now recorded in §269 evidence.",
       "resolvedAt": "§269",
-      "narrowedAt§283": "§283 re-read the Vercel project and deployment ledger (read-only) and found the createDeployments=disabled claim covers only PART of what \"Git auto-deploy is disabled\" was taken to mean. PRODUCTION: main has not been pushed since the control was set, so the production half is CONFIGURED BUT NEVER EXERCISED — no observation exists either way. PREVIEW: branch pushes DO create Git-sourced Vercel previews today; the §282 push created dpl_3gJEF… (source=git, target=null, gitSource.prId=null) while the setting read disabled, and production stayed on de655d2f from 2026-08-29. Previews are SSO-gated, noindex, and alias no project domain. Recommendation KEEP_PREVIEWS; nothing was changed. Render was NOT re-verified at §283 — the local Render credential returns 401 — so its autoDeploy=no/off is carried from §269/§272 and is unverified as of §283."
+      "narrowedAt§283": "§283 re-read the Vercel project and deployment ledger (read-only) and found the createDeployments=disabled claim covers only PART of what \"Git auto-deploy is disabled\" was taken to mean. PRODUCTION: main has not been pushed since the control was set, so the production half is CONFIGURED BUT NEVER EXERCISED — no observation exists either way. PREVIEW: branch pushes DO create Git-sourced Vercel previews today; the §282 push created dpl_3gJEF… (source=git, target=null, gitSource.prId=null) while the setting read disabled, and production stayed on de655d2f from 2026-08-29. Previews are SSO-gated, noindex, and alias no project domain. Recommendation KEEP_PREVIEWS; nothing was changed. Render was NOT re-verified at §283 — the local Render credential returns 401 — so its autoDeploy=no/off is carried from §269/§272 and is unverified as of §283.",
+      "renderStaleAt§284": "Render autoDeploy=no/off was last read from the service API at §269/§272. The local Render credential returns 401, and neither §283 nor §284 re-read it. It MUST NOT be presented as freshly verified. Re-reading it is a Pre-Production Infrastructure gate item, together with the Vercel production-deployment control, which is configured but has never been exercised."
     }
   ],
   "acceptedLimitationsNotBlockers": [
@@ -503,6 +540,34 @@
       "regression": "frontend-next: npm run test:expert-api-failure-mapping — falsified against the pre-repair mapping",
       "evidence": "verification/current/runtime-evidence-283/",
       "stillOpen": "S-15 — whether the Expert panel should be offered at all on a Free account. Product-owner decision, untouched."
+    },
+    {
+      "id": "S_15_FREE_TIER_EXPERT_PRESENTATION",
+      "priority": "P2",
+      "kind": "product",
+      "discoveredBy": "§280 as a product question; the objective half repaired at §283 as D-045",
+      "statement": "A non-entitled account was shown the Expert panel with an ENABLED \"Run Expert review\" control it could never use. §283 removed the enabled control and the error styling; §284 took the product decision and implemented the presentation.",
+      "resolvedAt": "§284",
+      "decision": "A Free/non-entitled user must NOT be presented with an enabled Expert action known to be unavailable. The capability is shown as an unavailable paid one: \"HazLenz Expert review / Available with Pro\", a restrained explanation, the statement that the deterministic HazLenz analysis is unaffected, and a See Pro link to the existing /upgrade route. Not hidden, not faked, not presented as an error.",
+      "requestSuppression": "After a SERVER-AUTHORITATIVE refusal the client stops re-asking for a bounded window (lib/expert/expertEntitlement.ts). It is armed only by a real EXPERT_NOT_ENTITLED response — never by a JWT or billing plan claim — and is cleared by sign-out, by any successful Expert call, and by a five-minute expiry.",
+      "measured": "Free walk, three observations, one document: 1 Expert request total, 0 enabled controls, 0 alerts, 0 error styling. Entitled control on the same build (billing tier free + active Pro grant): 3 requests for 3 observations, 0 plan surfaces, 3 controls. The asymmetry is the falsification that suppression never leaks into the entitled path.",
+      "serverUnchanged": "EntitlementGuard, the 402 status, the response body and the evidence it refuses on are all unchanged.",
+      "gates": "frontend-next: npm run validate:284-expert-entitlement-ux (13/13); npm run test:expert-entitlement-presentation (31 checks covering Free, entitled, upgraded, downgraded, stale JWT both directions, server unavailable, malformed response)",
+      "evidence": "verification/current/expert-entitlement-284/"
+    },
+    {
+      "id": "ENTITLEMENT_DENIAL_AUDIT_NOISE",
+      "priority": "P2",
+      "kind": "observability",
+      "discoveredBy": "§283, while proving D-045: every refused Expert read wrote a security_audit_events row",
+      "statement": "EntitlementGuard wrote one security audit row per refusal regardless of method. Measured: 28 refused requests -> 28 rows.",
+      "resolvedAt": "§284",
+      "policy": "Separated by request method. A MUTATING denial is entitlement_denied, SECURITY class, one row per attempt, never coalesced. A SAFE-method denial is entitlement_read_refused, OPERATIONAL class, one row per (actor, org, entitlement, resourceType) per 15 minutes with every later refusal counted into that row via repeats/windowOpenedAt/lastAt.",
+      "measured": "28 rows -> 4 rows for the identical 25 reads + 3 mutations. Mutation denials 3 -> 3, unchanged. The single coalesced read row carries repeats:24, so all 25 reads are accounted for. Nothing is sampled and nothing is discarded. Enforcement identical: 402 on all 28 before and after.",
+      "adjacentRepair": "The audit save was awaited before the throw, so an unreachable audit table turned a correct 402 into a 500. It is now best-effort and cannot change the answer.",
+      "notBuilt": "Cross-tenant denials (authorizeObservation -> NotFoundException) and role/privilege violations (RolesGuard -> false) write NOTHING and did not before this section either. Neither was made auditable here; recorded so \"security denials remain auditable\" is not read as a claim about them.",
+      "gates": "backend: npm run test:284-entitlement-denial-audit (41 checks); frontend-next: npm run measure:284-entitlement-audit-volume",
+      "evidence": "verification/current/expert-entitlement-284/results/entitlement-audit-volume.json"
     }
   ],
   "verdict": {

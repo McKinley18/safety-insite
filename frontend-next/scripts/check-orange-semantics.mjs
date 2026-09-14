@@ -64,6 +64,15 @@ const REGISTER = [
     count: 1,
     why: "The plan upgrade checkout. PENDING DECISION.",
   },
+  {
+    file: "components/inspection/expert/ExpertAnalysisPanel.tsx",
+    count: 1,
+    why: "§284 (S-15). See Pro — HazLenz Expert on an account whose plan does not include it. The "
+      + "same class as the three entries above and registered for the same reason: a capability "
+      + "this account cannot reach. UNRESOLVED. It is the ONLY control on that panel for a "
+      + "non-entitled account, because §284 forbids offering an enabled Expert action that is "
+      + "known to be unavailable.",
+  },
 ];
 
 function walk(dir) {

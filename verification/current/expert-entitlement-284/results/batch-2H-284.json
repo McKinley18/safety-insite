@@ -1,0 +1,3846 @@
+{
+  "results": [
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1940,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2374,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1705,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1605,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1667,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1259,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-light-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1940,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2374,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1705,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1605,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1667,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1259,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-light-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1942,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2376,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1707,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1607,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1669,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1261,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-light-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1942,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2376,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1707,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1607,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1669,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1261,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "light",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-light-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 13,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1940,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2374,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1705,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1605,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1667,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1259,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "390",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-dark-390.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1940,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2374,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1705,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1605,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1667,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1259,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "768",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-dark-768.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 8,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1458,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1942,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2376,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1707,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1607,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1669,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1261,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1280",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-dark-1280.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "name": "HazLenz — a straightforward finding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-a-finding-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "name": "HazLenz — clarification outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-b-clarification-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state B — clarification outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1942,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "name": "HazLenz — unresolved / not supported",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-c-unresolved-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NEEDS_INFORMATION",
+        "resolutionLineText": "Needs information — HazLenz could not establish a fact this conclusion depends on",
+        "criticalUnknownsShown": true,
+        "criticalUnknownCount": 2,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state C — unresolved / not supported"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 2376,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "name": "HazLenz — awaiting human confirmation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-d-confirmation-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": true,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state D — awaiting human confirmation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 4
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1707,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "name": "HazLenz — several findings from one observation",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-e-multiple-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": true,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state E — several findings from one observation"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1607,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "name": "HazLenz — confidence limited, nothing outstanding",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-f-confidence-limited-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "ESTABLISHED",
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": true,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state F — confidence limited, nothing outstanding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1669,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "name": "HazLenz — no hazard identified",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-g-negated-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": true,
+        "resolution": "NO_HAZARD_IDENTIFIED",
+        "resolutionLineText": "No hazard identified in this observation",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": true,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state G — no hazard identified"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 3
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1261,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "name": "HazLenz — Expert review refused (not admitted)",
+      "path": "/inspection-workspace",
+      "theme": "dark",
+      "width": "1440",
+      "screenshot": "/private/tmp/claude-501/-Users-mckinley/14815718-c2a1-4949-8b23-db3ed48d8403/scratchpad/batch2H-284/screenshots/hazlenz-h-refusal-dark-1440.png",
+      "landedOn": "/inspection-workspace",
+      "hazlenz": {
+        "decisionPanelPresent": false,
+        "resolution": null,
+        "resolutionLineText": "HazLenz has what it needs for this conclusion",
+        "criticalUnknownsShown": false,
+        "criticalUnknownCount": 0,
+        "multiHazardShown": false,
+        "confidenceLimitShown": false,
+        "awaitingConfirmationShown": false,
+        "limitationsShown": false,
+        "developerLeakage": []
+      },
+      "title": "Inspection workspace · Safety InSite",
+      "mainCount": 1,
+      "nestedMain": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": [],
+      "unnamed": [],
+      "small": [],
+      "lowContrast": [],
+      "contrastNotMeasured": 14,
+      "h1": [
+        "HazLenz state A — a straightforward finding"
+      ],
+      "headingCounts": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 2
+      },
+      "retiredBrand": [],
+      "bareInsite": false,
+      "textLength": 1460,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ],
+      "netFailures": [],
+      "navigationAborts": []
+    }
+  ],
+  "findings": [
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "390",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "768",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "1280",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "1440",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "light",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "390",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "390",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "768",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "768",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "1280",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-a-finding",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-b-clarification",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-c-unresolved",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-d-confirmation",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-e-multiple",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-f-confidence-limited",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-g-negated",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "SETUP_NO_EXPERT_RUN_CONTROL",
+      "severity": "INSTRUMENT",
+      "detail": "no 'Run Expert review' control was present, so the refusal state was NOT exercised"
+    },
+    {
+      "page": "hazlenz-h-refusal",
+      "theme": "dark",
+      "width": "1440",
+      "kind": "CONSOLE_ERROR",
+      "severity": "OBJECTIVE",
+      "detail": [
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)",
+        "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+      ]
+    }
+  ]
+}

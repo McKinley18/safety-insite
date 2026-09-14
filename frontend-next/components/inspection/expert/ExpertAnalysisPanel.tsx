@@ -18,6 +18,12 @@ import {
   type ExpertTone,
 } from "@/lib/expert/expertPresentation";
 import type { ExpertAnalysisRead } from "@/lib/expert/expertTypes";
+import {
+  expertKnownNotEntitled,
+  recordExpertEntitled,
+  recordExpertNotEntitled,
+} from "@/lib/expert/expertEntitlement";
+import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import ExpertConfirmationCard from "./ExpertConfirmationCard";
 
 /**
@@ -72,7 +78,11 @@ export default function ExpertAnalysisPanel({
   const [settling, setSettling] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [settlementError, setSettlementError] = useState<string | null>(null);
-  const [notEntitled, setNotEntitled] = useState(false);
+  // §284 (S-15). Seeded from the refusal the SERVER has already given this session, so walking a
+  // dozen observations does not re-ask a settled question on every one. It can only ever start
+  // true from a real refusal inside its window -- never from a plan claim, and never towards
+  // availability. See `lib/expert/expertEntitlement.ts`.
+  const [notEntitled, setNotEntitled] = useState(() => expertKnownNotEntitled());
   const [showTrace, setShowTrace] = useState(false);
   // Incremented ONLY when the inspector deliberately asks again after a failure, so an accidental
   // second click reuses the key and resolves to the execution that already ran.
@@ -80,12 +90,22 @@ export default function ExpertAnalysisPanel({
   const settlementAttempt = useRef(0);
 
   const refresh = useCallback(async () => {
+    // §284 (S-15). The server has refused this session and the refusal has not expired. Asking
+    // again would produce the same 402, the same denial audit row and the same screen.
+    if (expertKnownNotEntitled()) {
+      setNotEntitled(true);
+      return;
+    }
     try {
       setRead(await readExpertAnalysis(observationId));
+      // A SUCCESS clears any held refusal. This is the shape an upgrade takes when it reaches
+      // this surface, and it is the only thing that may clear the memo early.
+      recordExpertEntitled();
       setError(null);
     } catch (caught) {
       if (caught instanceof ExpertApiError
         && caught.code === EXPERT_ANALYSIS_ERROR.NOT_ENTITLED) {
+        recordExpertNotEntitled();
         setNotEntitled(true);
         return;
       }
@@ -130,10 +150,12 @@ export default function ExpertAnalysisPanel({
       // Render what the execution returned immediately -- it is the only surface on which
       // ANALYSIS_FAILED exists -- then reconcile with the read, which is the durable state.
       setRead(readFromExecution(executed));
+      recordExpertEntitled();
       if (executed.analysisId !== null) await refresh();
     } catch (caught) {
       if (caught instanceof ExpertApiError
         && caught.code === EXPERT_ANALYSIS_ERROR.NOT_ENTITLED) {
+        recordExpertNotEntitled();
         setNotEntitled(true);
       } else {
         attempt.current += 1;
@@ -176,16 +198,60 @@ export default function ExpertAnalysisPanel({
     }
   }, [observationId, read, refresh]);
 
+  /**
+   * §284 (S-15) — HAZLENZ EXPERT, PRESENTED AS A PAID CAPABILITY THIS ACCOUNT DOES NOT HAVE.
+   *
+   * THE DECISION IT IMPLEMENTS: a non-entitled account must never be shown an ENABLED Expert
+   * action, and the capability is not hidden either. §281 measured the previous state — the
+   * server's billing sentence in a red `role="alert"`, beside a live "Run Expert review" button
+   * that could only ever be refused. That is the shape this replaces.
+   *
+   * THE THREE THINGS IT DELIBERATELY DOES NOT DO.
+   *
+   *   It does not fake availability. There is no disabled-looking control that might be pressed,
+   *   no "try it", and no preview of an analysis that was never produced.
+   *
+   *   It does not present the refusal as a fault. `role="alert"` and error colour are for
+   *   something going wrong. A plan boundary is the product working, and it is written as one.
+   *
+   *   It does not overstate what the inspector loses. The sentence that matters most on this
+   *   screen is that the deterministic HazLenz analysis above is unaffected — because it is, it is
+   *   the customer-authoritative one, and an inspector must not be left thinking their analysis is
+   *   degraded because a second opinion is not included.
+   *
+   * The destination is `/upgrade`, which already exists and is where the workspace's own
+   * "HazLenz AI analysis is available on the Pro plan" card sends people. No new route, and no new
+   * pricing copy that could drift from `components/pricing/planData.ts`.
+   */
   if (notEntitled) {
     return (
-      <section aria-label="Expert analysis" className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/60">
-        <h3 className="text-base font-black text-slate-900 dark:text-slate-100">
+      <section
+        aria-label="Expert analysis"
+        data-testid="expert-not-entitled"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/60"
+      >
+        <p className="text-[11px] font-black uppercase tracking-[0.15em] text-[#1D72B8]">
           HazLenz Expert review
-        </h3>
-        <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
-          Expert review is not included in this plan. Your deterministic HazLenz analysis above is
-          unaffected.
         </p>
+        <h3 className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
+          Available with Pro
+        </h3>
+        <p className="mt-1 text-sm font-semibold leading-relaxed text-slate-700 dark:text-slate-300">
+          Expert review is a second opinion on an observation you have already recorded: it reasons
+          over the whole observation and returns its own hazards, controls and operational posture
+          for a person to confirm or change.
+        </p>
+        {/* THE LINE THAT MATTERS MOST ON THIS SCREEN. See the header. */}
+        <p className="mt-2 text-sm font-black text-slate-800 dark:text-slate-200">
+          Your HazLenz analysis above is unaffected and is the analysis this inspection uses.
+        </p>
+        <AppLinkButton
+          href="/upgrade"
+          variant="accent"
+          className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full px-5 py-2.5 text-center !text-white"
+        >
+          See Pro
+        </AppLinkButton>
       </section>
     );
   }

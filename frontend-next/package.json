@@ -22,6 +22,7 @@
     "check:expert-authority-boundary": "node scripts/check-expert-frontend-authority-boundary.mjs",
     "test:expert-presentation": "npx tsx lib/expert/__tests__/expertPresentation.test.ts",
     "test:expert-api-failure-mapping": "npx tsx lib/expert/__tests__/expertApiFailureMapping.test.ts",
+    "test:expert-entitlement-presentation": "npx tsx lib/expert/__tests__/expertEntitlementPresentation.test.ts",
     "test:calendar-reconciliation": "npx tsx lib/calendar/__tests__/calendarReconciliation.test.ts",
     "verify:offline-field-capture": "node scripts/verify-offline-field-capture.mjs",
     "verify:offline-shell-cold-start": "node scripts/verify-offline-shell-cold-start.mjs",
@@ -40,7 +41,9 @@
     "measure:280-offline-inventory": "node scripts/measure-280-offline-inventory.mjs",
     "measure:281-route-reachability": "node scripts/measure-281-route-reachability.mjs",
     "measure:281-anchor-styles": "node scripts/measure-281-anchor-styles.mjs",
-    "validate:281-offline-data-state": "node scripts/validate-281-offline-data-state.mjs"
+    "validate:281-offline-data-state": "node scripts/validate-281-offline-data-state.mjs",
+    "validate:284-expert-entitlement-ux": "node scripts/validate-284-expert-entitlement-ux.mjs",
+    "measure:284-entitlement-audit-volume": "node scripts/measure-284-entitlement-audit-volume.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",
