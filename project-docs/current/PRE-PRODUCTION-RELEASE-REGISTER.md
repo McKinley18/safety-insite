@@ -4,14 +4,15 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, updated with live production evidence at **§289**. Machine-readable
+Established at **§288**, updated with live production evidence at **§289**, and **deployed at §290**. Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
 | | |
 |---|---|
-| Candidate — **product source commit** | `94e2963427c46b4d69dcdd8664c4754c5fc72c37` — the §289 release build and the full gate set ran against this, and it does not move |
-| **Release binding** | `applicationSourceDigest` = `2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618` |
+| Candidate — **product source commit** | `c695376a30f72985897cc9da2631511c3212c7ef` — the §290 gate set ran against this, and it does not move |
+| **Release binding** | `applicationSourceDigest` = `7c4b5e402c5b00f32a53ee3f38d707adff9aee88931da1c523d1c53b9c8aeee1` |
+| Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
 | Release SHA | **PENDING until push.** The tip at push time — see below |
 | Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
@@ -43,7 +44,7 @@ the others.
 | | Threshold | What it means | Blockers |
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **3** (was 8) |
-| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **9** (was 11) |
+| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **10** — §290 moved `DB-4` onto it |
 | **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **23** (was 26) |
 
 > **§289 changed the shape of Threshold A, not just its size.** Five of its eight entries closed on
@@ -76,12 +77,12 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **71** | **6** | **12** | **32** | **21** |
+| Entries | **73** | **6** | **12** | **34** | **21** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 25 |
-| OPEN | 40 |
+| CLOSED | 26 |
+| OPEN | 41 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
 
@@ -531,7 +532,7 @@ Four observations registered rather than fixed: the service slug and public host
 | **DB-1** | Production migration head READ at §289: `1800000018000`, 50 applied, zero drift, 4 pending, none destructive. | P2 | — | Engineering | **CLOSED (§289)** |
 | **DB-2** | The §287 corrective-action lifecycle migration had a DUPLICATE, out-of-order timestamp (1800000006000, colliding with AddUserProfileNames) which also left schemaCompatibilityVersion blind to the schema change. | P2 | — | Engineering | CLOSED |
 | **DB-3** | The outcomes table is absent from the MIGRATION SET but PRESENT in the production database. The reachability conclusion drawn from its absence does not hold. | P2 | — | Security | OPEN — premise corrected at §289 |
-| **DB-4** | The cross-tenant recurrence path is REACHABLE in production, because the outcomes table exists there. | P1 | C | Mixed | OPEN (§289) |
+| **DB-4** | The cross-tenant recurrence path is REACHABLE in production, because the outcomes table exists there. | P1 | **BC** | Mixed | OPEN — §290 product-owner hold |
 
 **DB-1 — CLOSED at §289.** The read §288 was forbidden to take. Production head `1800000018000`, **50 applied**, and — the fact that actually matters — **zero drift**: every applied row matches a migration file in the candidate, and the four pending ones are strictly newer than the head.
 
@@ -580,13 +581,16 @@ So on production, `PATCH /actions/:id/status` with `closed` does **not** fail wi
 *Remediation:* Scope the recurrence query to tenant/workspace and prove both directions (the TI-2 remediation), **or** decide the outcome loop is deliberately global and state that as a product position. Dropping the production table to restore the original containment is a production **write** and belongs to its own authorised section.  
 *Retest:* A two-workspace regression proving same-tenant history CAN influence a recurrence and other-tenant history CANNOT.
 
+**§290 PRODUCT-OWNER HOLD.** DB-4 is **real** and must not be described as unreachable. It does **not** block Threshold A, because Threshold A authorises *deployment*, not ordinary product use. It **does** block unrestricted Threshold B corrective-action operation and External Beta, and the register now records it as blocking both. Until it is repaired and validated in production shape, **corrective-action closure must not be exercised in production** except as a deliberately bounded synthetic release test — and §290 judged such a test unnecessary and did not perform one.
+
 ### BACKUP / RESTORE
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **BR-1** | A backup of live production was taken and its restore verified by content checksum at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
 | **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | B | Infrastructure | OPEN (§289) |
-| **BR-3** | Five verification instruments are stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§289) |
+| **BR-3** | check:launch-pricing conflated the retired Expert pricing tier with Expert HazLenz the capability. | P2 | — | Engineering | **CLOSED (§290)** |
+| **BR-4** | Four browser verification instruments remain stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§290) |
 
 **BR-1 — CLOSED at §289. The register's evidence claim here was wrong.** It said `no restore evidence in verification/`. §269 had already taken a full logical backup of production and rehearsed a restore (76/76 tables, 7 049/7 049 rows, zero differences); it is recorded in `SECTION-269-LIVE-INFRASTRUCTURE.json`. §288 did not look.
 
@@ -609,9 +613,24 @@ So on production, `PATCH /actions/:id/status` with `closed` does **not** fail wi
 *Evidence:* `SECTION-289-THRESHOLD-A.json` → `BR_1_BACKUP_AND_RESTORE.notEstablished`  
 *Retest:* A recorded retention window and a recorded PITR window.
 
-**BR-3 — new at §289.** Five instruments no longer exercise the product they were written for. `check:launch-pricing` fails 1 of 39 on an allowlist that predates the Expert HazLenz surface — it conflates the **retired Expert pricing tier** (correctly purged; all three price checks pass and `planData.ts` passes) with **Expert HazLenz the capability**. `check:company-actions` and `check:action-workflow` wait for a heading the command-center no longer renders and need `VAL_EMAIL`/`VAL_PASSWORD`. `check:closure-inspection-workspace` expects ports 3100/4200. `check:phase5-inspection-report-release` calls a HazLenz route that answers 404. `validate:279-update-delivery` needs a seeded account.
+**BR-3 — CLOSED at §290. The gate was asking the wrong question, not asking it the wrong way.**
 
-**None of these is a product defect.** Each failed to run, or failed against its own stale expectation. §289 deliberately did **not** edit an allowlist or an assertion to make a gate pass.
+`check:launch-pricing` tested `/expert/i` against every file in `frontend-next/{app,components,lib}` and `backend/src/billing`. That assertion was authored when *Expert* had one meaning here: the retired **$11.99 pricing tier**. Since §261 it has a second, live meaning — **Expert HazLenz**, the server-authored analysis capability — and a word-blind regex cannot tell them apart. By §289 it was failing on fourteen files: the analysis panels, the entitlement memo, the Expert read route, the Expert snapshot-selection comments. Every one is the capability. **Not one offers a plan.**
+
+**The tempting repair was rejected.** Allowlisting those fourteen files would have weakened the check in exactly the direction it exists to guard — a file-level entry permits *any* future Expert reference in that file — while still saying nothing about whether a purchasable Expert plan had returned.
+
+**What changed is the scope, and the allowlist did not move.** The assertion now runs against the files that determine or present what a customer can **buy**. In that scope — 22 files — exactly four name Expert, and they are precisely the four already allowlisted. **Nothing was added to obtain a pass.**
+
+**A narrowed gate that cannot fail is worse than a noisy one**, so two things guard against that. `PLAN_SURFACE_ANCHORS` asserts the scope still contains the pricing page, the plan data, the entitlement normalizers and the billing module, and fails loudly if pricing ever moves out of it. And a new assertion forbids `expert` as a plan-code literal on any plan surface outside the retired-tier normalizers.
+
+**Proven by mutation rather than asserted.** Injecting a selectable Expert plan at `$11.99` into `PricingContent.tsx` failed **three independent assertions**. Reverted.
+
+Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical before and after, and the three retired-price checks still run against the **full** customer-facing scope. **38 passed / 1 failed became 49 passed / 0 failed:** the gate is stronger, not quieter.
+
+*Evidence:* `verification/current/threshold-a-290/SECTION-290-PREDEPLOYMENT-CLOSURES.json` → `BR_3`  
+*Retest:* `check:launch-pricing` passing, **and** the mutation control still failing when an Expert plan is injected.
+
+**BR-4 — the remainder, carried forward.** §290 closed the launch-pricing instrument because it gated the release. Four remain: `check:company-actions` and `check:action-workflow` wait for a heading the command-center no longer renders and need `VAL_EMAIL`/`VAL_PASSWORD`; `check:closure-inspection-workspace` expects ports 3100/4200; `check:phase5-inspection-report-release` calls a HazLenz route that answers 404; `validate:279-update-delivery` needs a seeded account. **None is a product defect** — each failed to run, or failed against its own stale expectation.
 
 *Evidence:* `SECTION-289-THRESHOLD-A.json` → `BUILD_AND_GATES.instrumentStale`  
 *Retest:* Each instrument running and reporting a result rather than an environment error.
@@ -643,8 +662,19 @@ So on production, `PATCH /actions/:id/status` with `closed` does **not** fail wi
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **CF-1** | NEXT_PUBLIC_DISABLE_AUTH is scoped to the Vercel PRODUCTION environment. Structurally inert there; registered for what it invites. | P2 | — | Engineering | OPEN (§289) |
+| **CF-2** | Production withholds search-engine indexing until External Beta is authorised. | P2 | — | Engineering | OPEN (§290) |
 
 **CF-1 — new at §289.** Every consumer either tests `NODE_ENV !== "production"` directly (`AppShell.tsx:3`, `lib/auth.ts:113`, `lib/billing.ts` `isLocalDevAuthBypass`) or delegates to `getLocalDevPlanCode()`, whose first line returns `"free"` under production. The variable therefore does nothing in a production build whatever its value, and entitlement is server-authoritative in any case. **Do not restate this as a live auth bypass.** The hazard is the next consumer who reads the variable without the guard, and the remediation — remove it from the Production scope — is behaviour-preserving precisely because it does nothing there.
+
+**CF-2 — new at §290. A deliberate restriction, carried so it is lifted deliberately.** Threshold A puts the candidate on production infrastructure with no external users, and Vercel exempts a project's own production domain from the SSO that protects Preview — so without this the release would be crawlable before External Beta is authorised and before any of the Threshold-C claims, terms or clearance work exists. §290 added `X-Robots-Tag: noindex, nofollow` on every production route, defaulting to **withhold**, so a forgotten variable fails toward *not indexed*.
+
+**Deliberately not `robots.txt`.** `Disallow: /` forbids the **crawl**, which means a crawler that learns the URL from an external link can still list it and will never fetch the page to discover a `noindex`. Blocking the crawl actively prevents the de-indexing instruction from being seen. The header travels on the response and covers non-HTML routes a `<meta>` tag cannot reach.
+
+**This is an indexing policy, not an access control.** Authentication remains the access boundary; nothing here is load-bearing for confidentiality.
+
+*Evidence:* `frontend-next/next.config.ts`; `verification/current/threshold-a-290/`  
+*Remediation:* At External Beta authorisation, set `NEXT_PUBLIC_ALLOW_INDEXING=true` on the Vercel production environment and redeploy.  
+*Retest:* A production `HEAD` showing the intended `X-Robots-Tag` value.
 
 ### COPYRIGHT / CONTENT PROVENANCE
 
