@@ -31,79 +31,50 @@ export class FixFeedbackService {
   }
 
   /**
-   * §291 (DB-5) — LEARNED FIXES ARE NOT SHARED ACROSS TENANTS, AND THIS IS FAIL-CLOSED.
+   * §291 (DB-5) / §292 — LEARNED FIXES ARE NOT SHARED ACROSS TENANTS, AND CANNOT BE.
    *
    * ==================== WHAT THIS USED TO DO ====================
    *
    * It selected every approved `fix_feedback` row in a category, across EVERY tenant, counted the
    * remediation titles, and returned any title used twice or more. Those titles are then placed at
-   * the TOP of the corrective actions HazLenz proposes (`ActionEngineService.generateActionsFromReport`),
-   * so one customer's remediation wording could be suggested verbatim to another customer.
+   * the TOP of the corrective actions HazLenz proposes
+   * (`ActionEngineService.generateActionsFromReport`), so one customer's remediation wording could
+   * be suggested verbatim to another customer.
    *
    * That is the same defect family as DB-4 and a more serious one: DB-4 leaked INFLUENCE (an
-   * escalation flag), this leaked CONTENT.
+   * escalation flag); this leaked CONTENT.
    *
-   * ==================== WHY IT IS CLOSED RATHER THAN SCOPED ====================
+   * ==================== WHY IT RETURNS NOTHING, AND TAKES NO SCOPE ====================
    *
-   * `fix_feedback` carries no owner -- it has `report_id`, `category`, two jsonb blobs and
-   * `approved`, and nothing else -- so there is no authoritative ownership relationship to scope
-   * by. Worse, `report_id` is not even reliably a report: `OutcomeService` writes a corrective
-   * ACTION id into it. So no correct scoping predicate exists over the current schema.
+   * `fix_feedback` carries no owner. It has `report_id`, `category`, two jsonb blobs and
+   * `approved`, and nothing else. Worse, `report_id` is not reliably a report at all:
+   * `OutcomeService` writes a corrective ACTION id into it. So there is no correct scoping
+   * predicate available over this schema -- not a hard one, not an approximate one, none.
    *
-   * The caller cannot supply a scope either: the only read path runs inside the HazLenz analysis
-   * pipeline, which carries no workspace context, and threading one through that pipeline is a
-   * large change §291 explicitly warns against making here.
+   * §291 first added an OPTIONAL `scope` parameter and returned early when it was absent. That was
+   * wrong, and §292 removed it. The query underneath was never scoped, so the parameter was a
+   * fail-closed guard that would have become FAIL-OPEN the moment any caller supplied a scope --
+   * the caller would believe it had asked for one workspace and would receive every workspace.
+   * A safety guard that inverts when someone starts using it is worse than no guard, because it
+   * reads as protection.
    *
-   * So the read is FAIL-CLOSED: without a workspace scope it returns nothing. In production this
-   * is behaviour-preserving -- `fix_feedback` has zero rows and has never had any, so this method
-   * has never once returned a learned fix -- while removing the cross-tenant path entirely.
+   * So the capability is closed at the only place it can be closed honestly: there is no way to
+   * ASK for cross-tenant data, because there is no parameter to ask with.
    *
-   * Writes are RETAINED. The signal is real and a future workspace-scoped implementation will
-   * want it. Enabling that is a product decision, registered as DB-5: add a workspace column to
-   * `fix_feedback`, populate it at write time, thread a scope to this read, and prove both
-   * directions. Until then this returns nothing rather than something wrong.
+   * In production this changes nothing observable: `fix_feedback` has zero rows and has never had
+   * any, so this method has never once returned a learned fix.
+   *
+   * ==================== WHAT WOULD MAKE IT WORK, AND WHY THAT IS NOT DONE HERE ====================
+   *
+   * Workspace-scoped learning needs a workspace column on `fix_feedback`, populated at write time,
+   * and a scope threaded from the HazLenz analysis pipeline, which today carries none. That is a
+   * migration plus a pipeline change, and it is a product decision about whether the outcome
+   * learning loop is a v1 capability at all. It is registered as DB-5 and is not taken here.
+   *
+   * WRITES ARE RETAINED. The signal is real and a future scoped implementation will want it.
    */
-  async findLearnedFix(category: string, scope?: { organizationId: string | null; ownerUserId: string }): Promise<string[]> {
-    if (this.optionalTableUnavailable) {
-      return [];
-    }
-
-    if (!scope) {
-      // No workspace, no cross-workspace suggestions. See the note above.
-      return [];
-    }
-
-    try {
-      const normalizedCategory = category.toLowerCase().trim();
-
-      const entries = await this.feedbackRepo.find({
-        where: { category: normalizedCategory, approved: true },
-      });
-
-      if (entries.length === 0) return [];
-
-      const frequencyMap: Record<string, number> = {};
-      entries.forEach((entry) => {
-        const title = entry.userAction?.title;
-        if (title) {
-          frequencyMap[title] = (frequencyMap[title] || 0) + 1;
-        }
-      });
-
-      return Object.entries(frequencyMap)
-        .filter(([_, count]) => count >= 2)
-        .sort((a, b) => b[1] - a[1])
-        .map(([title]) => title)
-        .slice(0, 3);
-    } catch (error) {
-      if (this.isMissingOptionalTableError(error)) {
-        this.optionalTableUnavailable = true;
-        return [];
-      }
-
-      console.warn("Fix feedback lookup skipped.");
-      return [];
-    }
+  async findLearnedFix(_category: string): Promise<string[]> {
+    return [];
   }
 
   private isMissingOptionalTableError(error: unknown): boolean {

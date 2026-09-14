@@ -120,14 +120,15 @@ export class ActionEngineService {
     /**
      * 🔷 5. FEEDBACK LOOP: Integrate Learned Fixes
      *
-     * §291 (DB-5). No workspace scope is passed because this pipeline does not carry one, and
-     * `findLearnedFix` is fail-closed without it -- so this currently contributes nothing rather
-     * than contributing another tenant's remediation wording. Written explicitly, with the
-     * argument omitted on purpose, so the absence reads as a decision rather than an oversight.
+     * §291 (DB-5) / §292. This contributes nothing, deliberately. `findLearnedFix` returns an
+     * empty list and takes no scope parameter, because `fix_feedback` has no owner column and
+     * therefore no correct scoping predicate exists -- see that method for the full reasoning.
+     * The call is left in place rather than deleted so the integration point survives for a
+     * future workspace-scoped implementation, and so its absence reads as a decision.
      */
     const learnedFixes = isVagueInput
       ? []
-      : await this.fixFeedbackService.findLearnedFix(report.category /* no workspace scope: DB-5 */);
+      : await this.fixFeedbackService.findLearnedFix(report.category);
     
     let libraryFixes = reference ? reference.fixes : [];
     let finalFixes = [...libraryFixes];

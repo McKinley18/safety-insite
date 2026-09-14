@@ -1,6 +1,9 @@
 {
   "name": "safety-insite-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=24.14.1 <25.0.0"
+  },
   "private": true,
   "scripts": {
     "analyze:expert-reliability-cost-model": "ts-node scripts/analyze-expert-reliability-cost-model.ts",

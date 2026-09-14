@@ -1,4 +1,6 @@
 import { buildInfo } from '../build-info';
+import { existsSync, readFileSync } from 'fs';
+import { join } from 'path';
 
 export interface BuildMetadata {
   appName: string;
@@ -13,6 +15,22 @@ export interface BuildMetadata {
    * four months older than the running build went unnoticed until §269.
    */
   buildTimestampSourceStatus: string;
+
+  /**
+   * §292 (PV-3) — THE RUNTIME THE BUILD IS ACTUALLY EXECUTING ON.
+   *
+   * PV-3 asked for the Node version "presently used successfully ... where observable", and in
+   * production it was NOT observable: Render exposes no runtime version through its API, the
+   * service printed none at startup, and the repository pinned none. So the honest first step was
+   * to make it observable rather than to pin a guess and hope production agreed.
+   *
+   * `process.version` is read at request time, not compiled in, so it reports what is actually
+   * running rather than what someone intended. `nodeVersionPinned` says whether the repository
+   * declares a pin at all, which is the difference between "we run 22 and meant to" and "we run 22
+   * and nobody chose it".
+   */
+  nodeVersion: string;
+  nodeVersionPinned: string;
 }
 
 /**
@@ -93,6 +111,29 @@ function normaliseTimestamp(raw: string): string | null {
   return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
 }
 
+/**
+ * §292 (PV-3). Read from the package manifest rather than duplicated as a literal, for the reason
+ * §270 established twice over: a hand-maintained copy goes stale one release after it is written,
+ * and a stale version claim is worse than an absent one.
+ */
+function resolveDeclaredNodeEngine(): string {
+  try {
+    const candidates = [
+      join(__dirname, '..', '..', 'package.json'),
+      join(__dirname, '..', '..', '..', 'package.json'),
+    ];
+    for (const candidate of candidates) {
+      if (!existsSync(candidate)) continue;
+      const parsed = JSON.parse(readFileSync(candidate, 'utf8'));
+      const declared = parsed?.engines?.node;
+      if (typeof declared === 'string' && declared.trim()) return declared.trim();
+    }
+  } catch {
+    // A version report must never be the thing that breaks a health endpoint.
+  }
+  return 'unpinned';
+}
+
 export function getBuildMetadata(): BuildMetadata {
   const commitSource = firstPresent(COMMIT_SOURCES);
   const gitCommit = commitSource?.value || buildInfo.gitCommit || 'unknown';
@@ -127,5 +168,9 @@ export function getBuildMetadata(): BuildMetadata {
     nodeEnv: process.env.NODE_ENV || 'development',
     versionSourceStatus,
     buildTimestampSourceStatus,
+    nodeVersion: process.version,
+    // Resolved from this package's own `engines.node`, so the declaration and the report cannot
+    // drift: if the pin is removed, this says `unpinned` on the next request.
+    nodeVersionPinned: resolveDeclaredNodeEngine(),
   };
 }
