@@ -113,15 +113,45 @@ export function CalendarViewRenderer({
                         Collapse
                       </span>
                     )}
+                    {/*
+                      THE DAY'S WORK BADGE — count, and the worst state on that day.
+
+                      §286 / D-059. The amber tone was `bg-amber-500 text-white`, measured at
+                      2.13:1 in light and 2.04:1 in dark against the WCAG AA minimum of 4.5:1 --
+                      on 10px bold text, the smallest type on the page. Its two siblings pass
+                      (red-600 at 4.83:1, #1D72B8 at 4.60:1), so one of the three states the
+                      calendar uses to tell a field user what a day holds was unreadable to anyone
+                      who needs contrast.
+
+                      The product already owns the answer: `--app-accent-strong` (#BB5609) is the
+                      brand orange with only its lightness reduced until white text clears AA at
+                      4.72:1, introduced for exactly this failure on the Home page's Add Task
+                      button. Reusing it keeps the amber SEMANTIC -- this day has Critical or High
+                      work and is not yet overdue -- while making the number legible. The token is
+                      identical in both themes by design, so the badge no longer has two contrast
+                      results.
+
+                      §286 / D-060. The badge also carries its meaning in TEXT, not only in colour.
+                      `title` alone was a hover affordance that does not exist on a touch device
+                      and is not reliably announced; `aria-label` states the count AND the state,
+                      so the day button's accessible name says "3 scheduled items, includes
+                      critical or high priority work" rather than leaving the tone to carry it.
+                    */}
                     {!expanded && workSummary.total > 0 && (
                       <span
                         className={`absolute bottom-1.5 right-1.5 flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-[10px] font-black leading-none shadow-none ${
                           workSummary.overdue > 0
                             ? "bg-red-600 text-white"
                             : workSummary.criticalHigh > 0
-                              ? "bg-amber-500 text-white"
+                              ? "app-accent-strong-surface text-white"
                               : "bg-[#1D72B8] text-white"
                         }`}
+                        aria-label={`${workSummary.total} scheduled item${workSummary.total === 1 ? "" : "s"}`
+                          + (workSummary.overdue > 0
+                            ? `, ${workSummary.overdue} overdue`
+                            : workSummary.criticalHigh > 0
+                              ? ", includes critical or high priority work"
+                              : "")}
                         title={`${workSummary.total} scheduled item${workSummary.total === 1 ? "" : "s"}`}
                       >
                         {workSummary.total}

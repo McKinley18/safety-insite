@@ -66,8 +66,24 @@ export function PriorityTodoPanel({
                         <p className="text-xs font-black text-app-text">
                           {event.title}
                         </p>
+                        {/*
+                          §286 / D-063. THE STATUS IS STATED, NOT ONLY TINTED.
+
+                          This row's whole state -- overdue, due soon, completed -- was carried by
+                          `eventTone(event)` and by nothing else: the two metadata lines named the
+                          type, the owner, the date, the location and the source, and never said
+                          whether the work was late. A reader who cannot distinguish the red, amber
+                          and emerald tints read an overdue corrective action and a scheduled one as
+                          the same row, on the Home screen panel whose entire purpose is to say what
+                          needs attention first.
+
+                          `event.status` is already computed for every row (`withOverdue` derives
+                          Overdue against the local day), so this states a value the component
+                          already had rather than introducing a second derivation. The tint stays:
+                          colour is a good FIRST signal and a bad ONLY one.
+                        */}
                         <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
-                          {eventTypeLabel(event.type)} · {event.owner} · {event.date}
+                          {event.status} · {eventTypeLabel(event.type)} · {event.owner} · {event.date}
                         </p>
                         <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
                           {event.location}

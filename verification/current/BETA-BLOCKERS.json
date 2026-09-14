@@ -1,6 +1,8 @@
 {
+  "SUPERSEDED_BY": "verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json",
+  "SUPERSESSION_NOTE": "SUPERSEDED AT §288 AS THE RELEASE AUTHORITY. This file is retained UNCHANGED as the historical §263–§285 blocker record and must not be read as current release status. It states one undifferentiated \"blocks external beta\" verdict; the register replaces that with three distinct thresholds (controlled production deployment / internal-owner production use / external controlled beta), because an item that blocks one frequently does not block the others. Where this file and the register disagree, THE REGISTER IS AUTHORITATIVE.",
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270; entity resolution attempted and billing configuration cleaned at §271; runtime evidence reconciliation, update-delivery closure and preview-deployment record at §283; S-15 Expert entitlement presentation, entitlement audit policy and D-043/D-044 capability review at §284",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270; entity resolution attempted and billing configuration cleaned at §271; runtime evidence reconciliation, update-delivery closure and preview-deployment record at §283; S-15 Expert entitlement presentation, entitlement audit policy and D-043/D-044 capability review at §284; Batch 4 inspection completion and report review at §285",
   "role": "THE ONLY register of what currently blocks external beta. §266 made it the single authoritative P0/P1/P2 closure register for Safety InSite v1.0 controlled human beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the WHOLE Safety InSite v1.0 product as a controlled-beta candidate, not only the Expert HazLenz layer. §266 widened it from the Expert-only scope §263 established.",
   "asOf": "2026-09-14",
@@ -298,6 +300,55 @@
       "requiredAction": "Decide whether tenant-scope and role denials should be audited, and at what granularity.",
       "whyNotAtSection284": "Out of scope — §284 directed that no large security analytics system be built, and these are new audit paths rather than a policy on an existing one.",
       "owner": "product owner / engineering"
+    },
+    {
+      "id": "D_046_REPORT_REVISION_HISTORY_NOT_CUSTOMER_REACHABLE",
+      "priority": "P1",
+      "kind": "product",
+      "discoveredBy": "§285, reverifying D-028",
+      "statement": "The SERVER implements report immutability in full: revisions are retained, marked superseded, linked to their successor, and remain byte-identical and downloadable. §285 measured all of it. The CLIENT calls none of it — only GET /inspection-reports and GET /inspection-reports/:id/download. It never calls /revisions and never calls /versions/:version/download.",
+      "measured": "Reopen -> material change -> re-complete -> regenerate. Revision 1 retained, status superseded, supersededByRevisionId set, checksum unchanged, still 200 on download, byte-identical (same sha256 and length). Revision 2 is a genuinely different artifact hashing to its own checksum. Exactly one revision isCurrent. A no-change regeneration manufactures no revision.",
+      "consequence": "Of D-028’s five customer requirements — retained, byte-identical, downloadable, marked superseded, linked to successor — only the first two are delivered to the customer. An inspector who filed revision 1 with a client or a regulator cannot see that it exists, cannot tell which revision they filed, and cannot retrieve it. /reports states the opposite as product intent: \"Every completed inspection has one report. Finishing an inspection again replaces its report.\" The server does not replace it.",
+      "alsoOnTheArtifact": "The PDF itself carries no revision number and no superseded marking, so a filed report cannot be distinguished from its successor by reading it.",
+      "whyNotRepairedAtSection285": "Surfacing revision history is product design — what a customer should see, how a superseded report is labelled, and whether the copy denying versions exist should change. §285 authorised objective repairs, not redesign.",
+      "requiredAction": "Product-owner decision on how report revisions are presented, then implement.",
+      "owner": "product owner",
+      "evidence": "verification/current/completion-report-285/"
+    },
+    {
+      "id": "SAFE_INSPECTION_CANNOT_BE_COMPLETED",
+      "priority": "P2",
+      "kind": "product-policy",
+      "discoveredBy": "§285, exercising the completion contract on every seeded HazLenz state",
+      "statement": "An inspection with observations but no findings is refused completion with NO_CURRENT_FINDING. HazLenz state G — an observation where the engine identified no hazard — therefore cannot be closed.",
+      "measured": "completion-readiness returns ready=false, reasons=[NO_CURRENT_FINDING]; the transition returns 400.",
+      "consequence": "An inspector who walks an area and finds nothing has no way to close the record. The available routes are to record a finding they do not believe in, or to leave the record open — and \"we inspected and it was sound\" is a result a client may need to be given.",
+      "whyNotChangedAtSection285": "Completion policy is the product owner’s; §285 forbids inventing one.",
+      "requiredAction": "Decide whether a no-finding inspection may be completed, and what its report says.",
+      "owner": "product owner"
+    },
+    {
+      "id": "SEVERITY_PARITY_NOT_EXERCISED_BY_FIXTURES",
+      "priority": "P2",
+      "kind": "verification-coverage",
+      "discoveredBy": "§285",
+      "statement": "Every synthetic HazLenz fixture persists findings with riskSnapshot = NULL, because computeFindingRisk runs only on the real materialization path. The §276/§277 single effective severity rule and its parity across the workspace, the finding review, the report record and the PDF are therefore NOT EXERCISED by any browser or API review to date.",
+      "measured": "0 of 3 findings on the multi-finding fixture carry a riskSnapshot.",
+      "note": "What §285 could establish is that the product does not invent a severity it does not have: with no rating present the report renders \"Not rated\", the summary says the finding should be rated by a qualified person, and no standard is borrowed.",
+      "requiredAction": "A fixture that populates riskSnapshot, as a prerequisite for the severity/risk dimension.",
+      "owner": "engineering"
+    },
+    {
+      "id": "APP_FORMAT_REPORT_LIBRARY_TOUCH_TARGETS",
+      "priority": "P2",
+      "kind": "app-format",
+      "discoveredBy": "§285 Batch 4",
+      "statement": "/reports’ two primary actions — \"Download PDF\" (109x36) and \"View inspection\" (114x36) — are the only controls on that page below 44px, at every width including 390. Navigation and avatar around them are 44x44.",
+      "note": "NOT a defect against this product’s own standard: §73.3 set the mobile touch floor at 36px and AppButton’s sm size meets it. It is below the 44px iOS HIG minimum and WCAG 2.5.5 (AAA), which is the lens an installed or wrapped app is judged against.",
+      "alsoRegistered": "Report access is a direct authenticated GET returning a PDF stream — a download-and-hand-off in a native wrapper, with no in-app PDF surface. No sharing or export affordance beyond the download. Generation is long-running with no progress surface and an undefined interrupted case.",
+      "requiredAction": "Decide at the Pre-Production App-Format gate whether 44px becomes the floor for primary actions.",
+      "owner": "product owner",
+      "gate": "Pre-Production App-Format"
     }
   ],
   "liveUnverified": [

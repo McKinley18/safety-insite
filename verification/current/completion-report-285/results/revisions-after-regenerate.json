@@ -1,0 +1,99 @@
+{
+  "reportId": "4044a929-5bc6-4d31-b150-7646f503e489",
+  "inspectionId": "438d5d3c-fc33-446a-b2f3-39932df709ae",
+  "currentRevisionId": "d534ae5a-54d0-422f-8a31-2869824bee9b",
+  "revisionCount": 7,
+  "revisions": [
+    {
+      "revisionId": "d534ae5a-54d0-422f-8a31-2869824bee9b",
+      "revision": 7,
+      "status": "generated",
+      "isCurrent": true,
+      "checksum": "fbf8341fe0362c62c6378f2de8d3f4626eedd890af4bcb128707c8471deee615",
+      "sizeBytes": "7090",
+      "generatedAt": "2026-09-14T13:07:19.657Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": null,
+      "sourceInspectionVersion": 24,
+      "failureReason": null
+    },
+    {
+      "revisionId": "cef84714-9aa7-4aa7-b473-a3aa5c3d2f14",
+      "revision": 6,
+      "status": "superseded",
+      "isCurrent": false,
+      "checksum": "5e2822ef89bb1d8408e25bb2b15382472749c6725d4d2ec44f626a7dc591e67d",
+      "sizeBytes": "7091",
+      "generatedAt": "2026-09-14T13:07:19.589Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": "d534ae5a-54d0-422f-8a31-2869824bee9b",
+      "sourceInspectionVersion": 20,
+      "failureReason": null
+    },
+    {
+      "revisionId": "f32469cd-c7bc-445e-8272-b51cdd3a3f0c",
+      "revision": 5,
+      "status": "superseded",
+      "isCurrent": false,
+      "checksum": "6e320d1712809bc3c0b104089d284d93c07ec51ab8b8793644ae7d0b4a984520",
+      "sizeBytes": "7091",
+      "generatedAt": "2026-09-14T13:06:32.974Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": "cef84714-9aa7-4aa7-b473-a3aa5c3d2f14",
+      "sourceInspectionVersion": 17,
+      "failureReason": null
+    },
+    {
+      "revisionId": "6ca91157-0386-46ea-be2e-8da0418e1ea9",
+      "revision": 4,
+      "status": "superseded",
+      "isCurrent": false,
+      "checksum": "020e4215465b0fd48badb2ba9568a25cf65f789f747e9f1c6a7050f7076ed0aa",
+      "sizeBytes": "7087",
+      "generatedAt": "2026-09-14T13:06:32.904Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": "f32469cd-c7bc-445e-8272-b51cdd3a3f0c",
+      "sourceInspectionVersion": 13,
+      "failureReason": null
+    },
+    {
+      "revisionId": "4d8da6d0-2625-48d5-b59c-789bab15360a",
+      "revision": 3,
+      "status": "superseded",
+      "isCurrent": false,
+      "checksum": "da5899a6584f1b4637ccf8a7a17dac7838b673a948ac08695e0bedd663f4134c",
+      "sizeBytes": "7087",
+      "generatedAt": "2026-09-14T13:05:23.795Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": "6ca91157-0386-46ea-be2e-8da0418e1ea9",
+      "sourceInspectionVersion": 10,
+      "failureReason": null
+    },
+    {
+      "revisionId": "0ac2fa2c-b6c3-4c5d-9e9f-7f552deffa8c",
+      "revision": 2,
+      "status": "superseded",
+      "isCurrent": false,
+      "checksum": "58a0db972d60e0ced9e82f8a5a72bcdfe3804f17d8cd21fe689da864773da6e8",
+      "sizeBytes": "7065",
+      "generatedAt": "2026-09-14T13:05:23.715Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": "4d8da6d0-2625-48d5-b59c-789bab15360a",
+      "sourceInspectionVersion": 6,
+      "failureReason": null
+    },
+    {
+      "revisionId": "228f53a2-6188-488a-8bef-207455325211",
+      "revision": 1,
+      "status": "superseded",
+      "isCurrent": false,
+      "checksum": "48c8e5b86f3e50f9e6fb1c6ab0d08b1d9611918833684a6fa8531c70e806a7de",
+      "sizeBytes": "7065",
+      "generatedAt": "2026-09-14T13:02:39.948Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": "0ac2fa2c-b6c3-4c5d-9e9f-7f552deffa8c",
+      "sourceInspectionVersion": 3,
+      "failureReason": null
+    }
+  ]
+}

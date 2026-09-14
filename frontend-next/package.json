@@ -43,7 +43,18 @@
     "measure:281-anchor-styles": "node scripts/measure-281-anchor-styles.mjs",
     "validate:281-offline-data-state": "node scripts/validate-281-offline-data-state.mjs",
     "validate:284-expert-entitlement-ux": "node scripts/validate-284-expert-entitlement-ux.mjs",
-    "measure:284-entitlement-audit-volume": "node scripts/measure-284-entitlement-audit-volume.mjs"
+    "validate:285-completion-and-report": "node scripts/validate-285-completion-and-report.mjs",
+    "validate:285-dashboard-kpis": "node scripts/validate-285-dashboard-kpis.mjs",
+    "review:285-completion-report-batch": "node scripts/review-285-completion-report-batch.mjs",
+    "measure:285-completion-report-offline": "node scripts/measure-285-completion-report-offline.mjs",
+    "measure:284-entitlement-audit-volume": "node scripts/measure-284-entitlement-audit-volume.mjs",
+    "validate:286-reports-and-severity": "npx tsx scripts/validate-286-reports-and-severity.mts",
+    "validate:286-actions-calendar": "npx tsx scripts/validate-286-actions-calendar.mts",
+    "seed:286-severity-parity": "node scripts/seed-286-severity-parity.mjs",
+    "review:286-actions-calendar-batch": "node scripts/review-286-actions-calendar-batch.mjs",
+    "measure:286-actions-calendar-offline": "node scripts/measure-286-actions-calendar-offline.mjs",
+    "validate:287-action-lifecycle": "npx tsx scripts/validate-287-action-lifecycle.mts",
+    "review:287-action-lifecycle-ux": "node scripts/review-287-action-lifecycle-ux.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

@@ -25,13 +25,21 @@ export type StatTile = {
 
 export function StatsGrid({ tiles }: { tiles: StatTile[] }) {
   return (
-    <div className="mx-auto grid w-full max-w-[360px] grid-cols-2 gap-2.5 lg:mx-0 lg:max-w-[390px]">
+    <div
+      data-testid="dashboard-stats"
+      className="mx-auto grid w-full max-w-[360px] grid-cols-2 gap-2.5 lg:mx-0 lg:max-w-[390px]"
+    >
       {tiles.map((tile) => {
         const caption = dataStateCaption(tile.value);
         const unavailable = tile.value.state === "OFFLINE_UNAVAILABLE";
         return (
           <div
             key={tile.key}
+            /* §285 (D-044). Addressable, so a gate reads the tile it names rather than inferring
+               which one it found from the shape of the DOM around it. */
+            data-testid="stat-tile"
+            data-tile-key={tile.key}
+            data-tile-state={tile.value.state}
             className="rounded-xl border border-white/12 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
           >
             <p

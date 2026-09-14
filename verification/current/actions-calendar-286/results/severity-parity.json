@@ -1,0 +1,110 @@
+[
+  {
+    "scenario": "S1 HazLenz severity == reviewer severity",
+    "hazardKey": "machine-guarding",
+    "effectiveFinding": "Critical",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "Critical",
+    "reportSnapshot": "Critical",
+    "pdfDetail": "Critical",
+    "pdfSummary": "Critical",
+    "agree": true
+  },
+  {
+    "scenario": "S2 HazLenz severity != reviewer severity",
+    "hazardKey": "machine-guarding",
+    "effectiveFinding": "High",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "Critical",
+    "reportSnapshot": "High",
+    "pdfDetail": "High",
+    "pdfSummary": "High",
+    "agree": true
+  },
+  {
+    "scenario": "S3 reviewer changes the severity",
+    "hazardKey": "machine-guarding",
+    "effectiveFinding": "Critical",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "Critical",
+    "reportSnapshot": "Critical",
+    "pdfDetail": "Critical",
+    "pdfSummary": "Critical",
+    "agree": true
+  },
+  {
+    "scenario": "S4 reviewer leaves the severity unchanged",
+    "hazardKey": "machine-guarding",
+    "effectiveFinding": "High",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "Critical",
+    "reportSnapshot": "High",
+    "pdfDetail": "High",
+    "pdfSummary": "High",
+    "agree": true
+  },
+  {
+    "scenario": "S5 multiple findings with different severities",
+    "hazardKey": "machine-guarding",
+    "effectiveFinding": "Critical",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "Critical",
+    "reportSnapshot": "Critical",
+    "pdfDetail": "Critical",
+    "pdfSummary": "Critical",
+    "agree": true
+  },
+  {
+    "scenario": "S5 multiple findings with different severities",
+    "hazardKey": "electrical",
+    "effectiveFinding": "High",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "High",
+    "reportSnapshot": "High",
+    "pdfDetail": "High",
+    "pdfSummary": "High",
+    "agree": true
+  },
+  {
+    "scenario": "S5 multiple findings with different severities",
+    "hazardKey": "energy-control",
+    "effectiveFinding": "Moderate",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "High",
+    "reportSnapshot": "Moderate",
+    "pdfDetail": "Moderate",
+    "pdfSummary": "Moderate",
+    "agree": true
+  },
+  {
+    "scenario": "S6 unresolved / not-rated finding",
+    "hazardKey": "machine-guarding",
+    "effectiveFinding": "Not rated",
+    "effectiveBasis": "not_rated",
+    "reviewerConfirmed": false,
+    "analysisBand": null,
+    "reportSnapshot": "Not rated",
+    "pdfDetail": "Not rated",
+    "pdfSummary": "Not rated",
+    "agree": true
+  },
+  {
+    "scenario": "S7 report revision after a severity-affecting change",
+    "hazardKey": "machine-guarding",
+    "effectiveFinding": "High",
+    "effectiveBasis": "reviewer_confirmed",
+    "reviewerConfirmed": true,
+    "analysisBand": "Critical",
+    "reportSnapshot": "High",
+    "pdfDetail": "High",
+    "pdfSummary": "High",
+    "agree": true
+  }
+]

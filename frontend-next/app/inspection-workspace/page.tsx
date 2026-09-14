@@ -2101,17 +2101,38 @@ export default function InspectionWorkspacePage() {
     const reportableFindingIds = (inspection.findings || [])
       .filter((finding) => finding.status === "finalized")
       .map((finding) => finding.id);
-    if (reportableFindingIds.length === 0) {
-      setStatus("Save at least one finding before generating the report.");
-      return;
-    }
+    /**
+     * §286 — A ZERO-FINDING INSPECTION FINISHES HERE TOO.
+     *
+     * This used to refuse outright with "Save at least one finding before generating the report."
+     * That was a SECOND COPY of the server's old completion requirement, living in the browser --
+     * and §286 removed that requirement from the server (see
+     * InspectionService.evaluateCompletionReadiness). Leaving this in place would have made the
+     * repair unreachable: the readiness banner would say "Ready to finish", the server would accept
+     * the transition, and the one control that performs it would still refuse.
+     *
+     * The refusal is therefore gone, and what it was protecting is preserved by the loop below
+     * simply not running: corrective actions and calendar tasks are created per REPORTABLE finding,
+     * so an inspection with none creates none. That was already the correct behaviour for a
+     * dismissed-only inspection; it is now also reachable for one that found nothing.
+     *
+     * `riskPolicy` is likewise only required when there is a finding to price. It is returned by
+     * the server when a review is saved, so an inspection that never had a finding never had a
+     * review and legitimately has no policy -- demanding one would be the same refusal in a
+     * different sentence.
+     */
     setBusy(true);
-    setStatus("Saving corrective actions, calendar tasks, and the report…");
+    setStatus(reportableFindingIds.length === 0
+      ? "Finishing the inspection and generating the report…"
+      : "Saving corrective actions, calendar tasks, and the report…");
     try {
-      if (!riskPolicy) {
+      // §286. Narrowed once, here, so the loop below can read it without re-asserting. An
+      // inspection with nothing to report never reaches the loop and never needs a policy.
+      const policy = riskPolicy;
+      if (reportableFindingIds.length > 0 && !policy) {
         throw new Error("The governed risk urgency policy was not returned by the server.");
       }
-      const dueDays = riskPolicy.dueDays;
+      const dueDays = policy?.dueDays ?? 0;
       const dueDate = new Date(Date.now() + dueDays * 86400000).toISOString();
       /**
        * §276 / D-007. The same due date as a CALENDAR DAY.
@@ -2162,7 +2183,7 @@ export default function InspectionWorkspacePage() {
             `Permanent: ${findingAction.permanentCorrection}`,
             `Verification: ${findingAction.verificationStep}`,
           ].join("\n"),
-          priorityCode: riskPolicy.priority,
+          priorityCode: policy!.priority,
           // §276 / D-007. Without this the action is persisted undated and can never reach
           // the Safety Calendar, which is half of why §275 saw zero events there.
           dueDate: dueDayKey,
@@ -2179,7 +2200,7 @@ export default function InspectionWorkspacePage() {
             : "Follow up reviewed finding",
           description: findingAction.verificationStep || "Confirm corrective action completion.",
           dueDate,
-          priority: riskPolicy.priority,
+          priority: policy!.priority,
         });
       }
       const completed = await transitionPersistedInspection(
@@ -2197,9 +2218,13 @@ export default function InspectionWorkspacePage() {
       // reappear the next time this inspection is opened. This is the SUPERSESSION guard: clearing
       // here is what stops a finished inspection re-offering the wording that produced it.
       if (draftScope) clearWorkspaceDraft(draftScope);
-      // The inspection has ONE report. Finishing a reopened inspection replaces it, so the
-      // confirmation says what happened without inventing a version the customer must track.
-      setStatus("Inspection finished. Your report is ready.");
+      // §286 / D-046. Finishing a reopened inspection ISSUES A REVISION and keeps the previous
+      // one. The confirmation names the revision when there is more than one, because "your report
+      // is ready" is ambiguous the moment two exist, and stays plain on a first finish where there
+      // is nothing to distinguish.
+      setStatus(generated.revision && generated.revision > 1
+        ? `Inspection finished. Report revision ${generated.revision} is ready; earlier revisions are kept.`
+        : "Inspection finished. Your report is ready.");
       // The inspection is complete, so the customer's place is the completed-inspection/report
       // experience rather than a finishing screen for something already finished. The banner stays
       // rendered until the route changes, so the confirmation is seen either way.
@@ -3703,10 +3728,18 @@ export default function InspectionWorkspacePage() {
                 data-testid="completion-readiness"
                 role="status"
               >
-                {readiness.ready ? (
+                {readiness.ready && readiness.zeroReportableFindings ? (
+                  /* §286. A legitimate inspection may finish with nothing to report, and the
+                     banner says so plainly rather than reading as a zero-count near-miss of the
+                     ordinary case. It states what was RECORDED and what will be REPORTED; it does
+                     not say the area is safe, compliant, or free of hazards, because an inspection
+                     that identified nothing is not evidence that there was nothing. */
+                  <>
+                    Ready to finish — {readiness.observationCount} observation
+                    {readiness.observationCount === 1 ? "" : "s"} recorded, no reportable findings
+                  </>
+                ) : readiness.ready ? (
                   <>Ready to finish — {readiness.reportableCount} finding{readiness.reportableCount === 1 ? "" : "s"} reviewed</>
-                ) : readiness.reasons.includes("NO_CURRENT_FINDING") ? (
-                  <>Record at least one finding before finishing.</>
                 ) : readiness.reasons.includes("NO_OBSERVATION") ? (
                   <>Record an observation before finishing.</>
                 ) : (
@@ -3869,11 +3902,20 @@ export default function InspectionWorkspacePage() {
                   {busy ? "Working…" : "Finish inspection"}
                 </button>
                 <p className="guided-muted text-sm">
-                  {readiness?.ready
-                    // One report per inspection: finishing an inspection that already has one
-                    // replaces it rather than adding a version beside it.
-                    ? "Finishes the inspection and creates its report."
-                    : "Resolve the findings above to finish this inspection."}
+                  {/* §286 / D-046. The comment that used to sit here said finishing an inspection
+                      that already has a report REPLACES it. The server has retained every issued
+                      revision since §277, so the line now says what actually happens -- and only
+                      says it when it applies, because a first finish replaces nothing.
+
+                      §286. The not-ready sentence no longer says "resolve the findings above":
+                      that was written when a finding was required, and it is unreachable advice on
+                      an inspection that has none. The server's own message names the reason that is
+                      actually blocking. */}
+                  {!readiness?.ready
+                    ? readiness?.message || "This inspection cannot be finished yet."
+                    : report
+                      ? "Finishes the inspection and issues a new revision of its report. The revision you already have is kept."
+                      : "Finishes the inspection and creates its report."}
                 </p>
               </>
             ) : (

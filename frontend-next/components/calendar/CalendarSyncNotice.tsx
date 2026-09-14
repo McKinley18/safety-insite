@@ -8,10 +8,32 @@
  * distinguish "you have nothing scheduled" from "your calendar could not be read", and a
  * user looking at the second one has no reason to suspect the first is not true.
  *
- * Now the server is the authority, and this strip reports the three states in which what
- * is on screen is not simply the server's current answer.
+ * Now the server is the authority, and this strip reports the states in which what is on screen is
+ * not simply the server's current answer.
+ *
+ * ==================== §286 / D-064 — "NOT ASKED YET" IS A FOURTH STATE ====================
+ *
+ * §286 measured the calendar under a DEGRADED connection (the read stalled six seconds) and under a
+ * TIMEOUT (the read never answered at all). In both, the page rendered
+ *
+ *     0 EVENTS · 0 OPEN · 0 OVERDUE
+ *
+ * with no notice of any kind -- because `syncState` initialises to `serverReachable: true` and
+ * `events` to `[]`, so until the first snapshot resolves the page is telling the user, in the
+ * server's own voice, that they have nothing due. That is §275's presentation exactly, reached
+ * through the loading path rather than through the architecture D-007 replaced, and on an
+ * intermittent field connection it is the state a device can sit in for a long time.
+ *
+ * `loading` closes it. A calendar that has not yet been read says so, and the zero counts beside
+ * this notice stop being an assertion. This is a presentation repair only: no sync behaviour
+ * changes, and the D-042 intermittent-connectivity architecture is not built here.
  */
 export type SafetyCalendarSyncState = {
+  /**
+   * The first read has not resolved. Distinct from `!serverReachable`, which means it resolved and
+   * FAILED -- the user needs to know which, because one may still succeed and the other will not.
+   */
+  loading?: boolean;
   serverReachable: boolean;
   servedFromCache: boolean;
   pendingCount: number;
@@ -24,6 +46,24 @@ const NOTICE_BASE =
 
 export function CalendarSyncNotice({ state }: { state: SafetyCalendarSyncState }) {
   const notices: Array<{ key: string; tone: string; text: string }> = [];
+
+  /**
+   * §286 / D-064. Announced first and on its own: while this is true, every count on the page is a
+   * placeholder rather than an answer, and nothing else this strip could say is known yet.
+   */
+  if (state.loading) {
+    return (
+      <div className="space-y-2" data-testid="calendar-sync-notice">
+        <p
+          role="status"
+          aria-live="polite"
+          className={`${NOTICE_BASE} border-slate-300 bg-slate-50 text-slate-800 dark:border-slate-500 dark:bg-[#20364D] dark:text-slate-100`}
+        >
+          Loading your scheduled work… The counts below are not your schedule yet.
+        </p>
+      </div>
+    );
+  }
 
   if (!state.serverReachable && state.reason !== "no_session") {
     notices.push({

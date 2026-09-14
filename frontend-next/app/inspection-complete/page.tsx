@@ -25,12 +25,17 @@ import EmptyState from "@/components/ui/EmptyState";
  * behaviour: finishing an inspection dropped the customer into a generic report library, where the
  * inspection itself disappeared and the report became the only object they could see.
  *
- * The inspection is the operational record, and it has ONE report: the report represents the
- * inspection's current completed state. Reopening, editing and finishing again REPLACES that
- * report. There is deliberately no customer-facing version history here -- no "Report v2", no
- * "Version 1 · Previous", nothing superseded -- because the customer should never have to reason
- * about which of several reports is the real one. Nothing here is a second source of truth: every
- * value is read from the canonical inspection and its current report.
+ * The inspection is the operational record, and this page shows its CURRENT report. Reopening,
+ * editing and finishing again issues a NEW REVISION and retains the one it replaced (§277 / D-028).
+ *
+ * §286 / D-046. The revision HISTORY is not here, and that is a placement decision rather than a
+ * denial that history exists -- which is what this comment used to be. This page answers "what is
+ * the state of this inspection now?", so it shows the current revision and says plainly, where the
+ * customer is about to cause one, that finishing again keeps what they already have. The full
+ * history -- every revision, its issue time, which replaced which, and a download of each -- lives
+ * in the report library at `/reports`, next to every other report they may need to compare.
+ * Nothing here is a second source of truth: every value is read from the canonical inspection and
+ * its current report.
  *
  * Identity is the inspection's RECORD NUMBER ("Inspection #7"). The checksum stays under Technical
  * details as integrity metadata: it proves the file was not altered, it changes whenever the report
@@ -155,8 +160,11 @@ export default function InspectionCompletePage() {
     try {
       // The authoritative backend lifecycle transition. There is no frontend edit mode: the
       // inspection genuinely returns to draft. The existing report is NOT touched by reopening --
-      // it is replaced only when the inspection is finished again and a replacement has been
-      // generated successfully, so a reopen the customer abandons leaves their report intact.
+      // it is SUPERSEDED only when the inspection is finished again and a successor has been
+      // generated successfully, so a reopen the customer abandons leaves their report current.
+      // §286 / D-046: the superseded revision is retained, stays downloadable and stays
+      // byte-identical to what was issued; the report library's revision history is where the
+      // customer sees both.
       await transitionPersistedInspection(inspection.id, "draft", inspection.version);
       router.push("/inspection-workspace");
     } catch (error) {
@@ -252,10 +260,11 @@ export default function InspectionCompletePage() {
             )}
           </header>
 
-          {/* THE REPORT. One report, representing the inspection's current completed state.
-              No version list, no "current vs previous", nothing superseded: the replacement
-              sequence that keeps the old report safe until the new one exists is a correctness
-              property of the server, not a concept the customer is asked to hold. */}
+          {/* THE REPORT — the inspection's CURRENT revision.
+              §286 / D-046. This panel names the revision and stops there; the history of revisions
+              lives in the report library (see the file header). The customer is not asked to choose
+              between reports here, because on this page there is only one answer to "what is the
+              report of this inspection right now?". */}
           <section className="guided-card space-y-3" data-testid="report-section">
             <h2 className="text-xl font-black">Inspection report</h2>
             {!report && (
@@ -264,16 +273,27 @@ export default function InspectionCompletePage() {
             {report && (
               <div className="flex flex-col gap-2 rounded-xl border border-slate-300 p-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="font-black">Report ready</p>
+                  {/* §286 / D-046. The revision is part of the report's name here, because the PDF
+                      the customer downloads from this button now prints "Report Revision N" on its
+                      cover and on every page -- and a screen that will not say which revision it is
+                      offering cannot be reconciled with the document it produced. */}
+                  <p className="font-black">
+                    {report.revision ? `Report revision ${report.revision} ready` : "Report ready"}
+                  </p>
                   {/* Distinct from "Inspection completed" above. They differ whenever the
                       inspection was reopened and finished again, and both are useful. */}
                   <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
                     {report.reportUpdatedAt
-                      ? `Report updated ${new Date(report.reportUpdatedAt).toLocaleString(undefined, {
+                      ? `Issued ${new Date(report.reportUpdatedAt).toLocaleString(undefined, {
                         month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
                       })}`
                       : "Not yet generated"}
                   </p>
+                  {report.revision > 1 && (
+                    <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+                      Earlier revisions are kept and can be downloaded from the report library.
+                    </p>
+                  )}
                 </div>
                 <button
                   type="button"
@@ -313,10 +333,18 @@ export default function InspectionCompletePage() {
               /* §280 (D-036.4). "This inspection recorded no findings." states what is empty and
                  stops. On a completed safety inspection that sentence is the one most in need of a
                  meaning: a reader cannot otherwise tell a clean walkthrough from an inspection that
-                 was closed before anything was reviewed. */
+                 was closed before anything was reviewed.
+
+                 §286. The wording changed because the SITUATION changed. Until §286 an inspection
+                 could not be completed without a finding, so reaching this state meant something
+                 had gone unreviewed -- "nothing was confirmed as a finding BEFORE the inspection
+                 was completed" was describing a gap. A zero-finding inspection is now a legitimate
+                 outcome, so this states the outcome and then states its bounds: it is a record of
+                 what this inspection recorded, and it is not a finding that the area is safe.
+                 The words here are the words the report's own zero-finding statement uses. */
               <EmptyState
-                title="This inspection recorded no findings"
-                description="Nothing was confirmed as a finding before the inspection was completed. The report states that rather than leaving it blank."
+                title="No reportable findings"
+                description="No reportable findings were recorded during this inspection. The report says so rather than leaving the section blank. This is a record of what this inspection recorded; it does not establish that the areas inspected are free of hazards."
               />
             )}
             {findings.map((finding) => {
@@ -410,7 +438,11 @@ export default function InspectionCompletePage() {
                 <p className="guided-muted text-sm">
                   This makes the inspection editable again.
                   {report
-                    ? " Your current report stays available while you edit. When you finish again, it is replaced by a report of the updated inspection."
+                    /* §286 / D-046. "It is replaced" was not what the server does and has not
+                       been since §277: finishing again issues a NEW REVISION and keeps the one it
+                       replaced, downloadable and unchanged. An inspector who has already filed a
+                       copy with a client needs to know that before they press this, not after. */
+                    ? " Your current report stays available while you edit. When you finish again, a new revision is issued and the revision you have now is kept."
                     : " Finishing again creates the report for this inspection."}
                 </p>
                 <div className="flex flex-wrap gap-3">

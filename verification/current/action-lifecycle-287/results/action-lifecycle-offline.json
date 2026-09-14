@@ -1,0 +1,62 @@
+{
+  "instrument": "§287 — offline behaviour of the completed action lifecycle",
+  "measuredAt": "2026-09-14T15:17:43.029Z",
+  "note": "WARM case throughout: the surface was already open when the connection went. Nothing is built here; D-042 remains unimplemented by direction.",
+  "measurements": {
+    "create": {
+      "createControlOnThisSurface": false
+    },
+    "edit": {
+      "errorShown": true,
+      "errorText": "Safety InSite could not be reached, so this change was not saved. Your changes are still on this screen — try again when",
+      "formStillOpen": true,
+      "typedValueRetained": "2026-10-29",
+      "claimsQueued": false,
+      "requestsAttempted": 1
+    },
+    "close": {
+      "errorShown": true,
+      "formStillOpen": true,
+      "notesRetained": "Closed while offline — should not be lost from the field. [1789399053685]",
+      "claimsClosed": false,
+      "requestsAttempted": 1
+    },
+    "reconnect": {
+      "formClosed": true,
+      "stillErroring": false,
+      "requestsOnRetry": 1
+    }
+  },
+  "inventory": [
+    {
+      "operation": "create",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "VULNERABLE",
+      "basis": "Not raised from this surface — actions are created in the inspection review flow, which has no outbox. §287 added `clientRequestId`, which is the PRECONDITION for one."
+    },
+    {
+      "operation": "edit due date",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "RECOVERABLE_IN_SESSION",
+      "basis": "MEASURED: the save fails, the error is shown, the form stays open and the typed date is retained, so nothing is lost while the page lives. It is not queued and does not survive leaving the page — hence not NONE_KNOWN."
+    },
+    {
+      "operation": "close",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "RECOVERABLE_IN_SESSION",
+      "basis": "MEASURED: identical to edit — the closure notes the user wrote are retained in the open form and a single deliberate retry after reconnect completes it."
+    },
+    {
+      "operation": "retry",
+      "offline": "PARTIAL",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "MEASURED: mutations are sent with `retries: 0`, so nothing is silently re-sent. The failed attempt issued exactly one request and the retry issued exactly one."
+    },
+    {
+      "operation": "reconnect",
+      "offline": "PARTIAL",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "MEASURED: after reconnect one retry succeeded and the server holds exactly ONE closure for it — no duplicate from the failed attempt."
+    }
+  ]
+}

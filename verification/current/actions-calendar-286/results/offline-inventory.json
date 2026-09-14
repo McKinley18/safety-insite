@@ -1,0 +1,206 @@
+{
+  "instrument": "§286 Batch 5 — offline and intermittent connectivity for actions and the calendar",
+  "measuredAt": "2026-09-14T14:26:19.150Z",
+  "serviceWorker": {
+    "supported": true,
+    "controlled": true
+  },
+  "sequence": "ONLINE -> DEGRADED -> TIMEOUT -> OFFLINE -> RECONNECT",
+  "timeline": [
+    {
+      "phase": "ONLINE",
+      "at": "2026-09-14T14:25:37.817Z",
+      "detail": {
+        "events": 0,
+        "textLength": 613
+      }
+    },
+    {
+      "phase": "DEGRADED",
+      "at": "2026-09-14T14:25:40.424Z",
+      "detail": {
+        "eventCount": "0",
+        "saysStale": false,
+        "showsProgress": true,
+        "looksEmpty": false,
+        "textLength": 677,
+        "elapsedMs": 2606,
+        "intercepted": 1,
+        "exercised": "YES"
+      }
+    },
+    {
+      "phase": "DEGRADED_SETTLED",
+      "at": "2026-09-14T14:25:47.429Z",
+      "detail": {
+        "textLength": 613,
+        "stillLoading": false,
+        "intercepted": 1
+      }
+    },
+    {
+      "phase": "TIMEOUT",
+      "at": "2026-09-14T14:25:56.535Z",
+      "detail": {
+        "eventCount": "0",
+        "saysStale": false,
+        "saysUnreachable": false,
+        "looksEmpty": false,
+        "stillLoading": true,
+        "textLength": 677,
+        "intercepted": 1,
+        "exercised": "YES"
+      }
+    },
+    {
+      "phase": "OFFLINE_WARM",
+      "at": "2026-09-14T14:26:02.152Z",
+      "detail": {
+        "stillShowsRecord": true,
+        "eventCount": "56",
+        "saysOffline": false,
+        "textLength": 613
+      }
+    },
+    {
+      "phase": "OFFLINE_WARM_WRITE",
+      "at": "2026-09-14T14:26:06.303Z",
+      "detail": {
+        "attempted": true,
+        "titleVisible": true,
+        "marksPending": true,
+        "message": "Showing your last synced schedule. Safety InSite could not be reached, so anything changed since then is not here yet."
+      }
+    },
+    {
+      "phase": "OFFLINE_COLD",
+      "at": "2026-09-14T14:26:10.833Z",
+      "detail": {
+        "refusesExplicitly": true,
+        "looksEmpty": false,
+        "recordContent": 0,
+        "textLength": 498,
+        "excerpt": "NO CONNECTION | This page needs a connection | Safety InSite could not reach the network, and this screen was not saved on this device. | Field Capture still works. Observations, locations and photos you record there are saved on this device and sync when you are back online. | HazLenz AI analysis, report generation and PDF export need a connection. They run on Safety InSite's servers, so they resume once you reconnect. Nothing is analysed or generated on the device. | Go to Field Capture | Try again"
+      }
+    },
+    {
+      "phase": "OFFLINE_ACTION_SURFACE",
+      "at": "2026-09-14T14:26:10.834Z",
+      "detail": {
+        "anyActionControl": false,
+        "mentionsActions": false
+      }
+    },
+    {
+      "phase": "RECONNECT",
+      "at": "2026-09-14T14:26:18.940Z",
+      "detail": {
+        "saysOffline": false,
+        "saysStale": false,
+        "stillPending": false,
+        "eventCount": "57",
+        "textLength": 613
+      }
+    },
+    {
+      "phase": "RECONCILED",
+      "at": "2026-09-14T14:26:19.150Z",
+      "detail": {
+        "serverRowsForQueuedItem": 1,
+        "writtenExactlyOnce": true,
+        "browserEventCountAfterReconnect": "57",
+        "browserStillClaimsStale": false,
+        "browserStillClaimsPending": false
+      }
+    }
+  ],
+  "inventory": [
+    {
+      "operation": "read the Safety Calendar (already open when the signal went)",
+      "offline": "PARTIAL",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "A read accepts no input, so there is nothing on this path to lose. The surface the inspector already had open keeps rendering what it had; `readServerCalendar` returns 'we could not ask' as data distinct from 'you have nothing due', which is the distinction §275's zero-event calendar lacked.",
+      "reading": {
+        "stillShowsRecord": true,
+        "eventCount": "56",
+        "saysOffline": false,
+        "textLength": 613
+      }
+    },
+    {
+      "operation": "read the Safety Calendar (navigated to with no connection)",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "A cold navigation with no connection reaches the offline fallback, which refuses honestly rather than rendering an empty calendar. No record is shown and none is lost.",
+      "reading": {
+        "refusesExplicitly": true,
+        "looksEmpty": false,
+        "recordContent": 0,
+        "textLength": 498,
+        "excerpt": "NO CONNECTION | This page needs a connection | Safety InSite could not reach the network, and this screen was not saved on this device. | Field Capture still works. Observations, locations and photos you record there are saved on this device and sync when you are back online. | HazLenz AI analysis, report generation and PDF export need a connection. They run on Safety InSite's servers, so they resume once you reconnect. Nothing is analysed or generated on the device. | Go to Field Capture | Try again"
+      }
+    },
+    {
+      "operation": "create a calendar task",
+      "offline": "PARTIAL",
+      "dataLossRisk": "RECOVERABLE",
+      "basis": "The calendar holds an offline write in a pending OUTBOX under a client ref and writes it when the server is reachable. RECOVERABLE rather than NONE_KNOWN: the queue lives in browser storage, so clearing site data or replacing the device still loses it.",
+      "reading": {
+        "attempted": true,
+        "titleVisible": true,
+        "marksPending": true,
+        "message": "Showing your last synced schedule. Safety InSite could not be reached, so anything changed since then is not here yet."
+      }
+    },
+    {
+      "operation": "create a corrective action",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "VULNERABLE",
+      "basis": "There is NO outbox for corrective actions -- the calendar's queue holds tasks only -- and `POST /actions` carries no idempotency key, so one cannot be added safely without the server changing first (D-053). An action raised with no signal is lost with the page.",
+      "reading": {
+        "anyActionControl": false,
+        "mentionsActions": false
+      }
+    },
+    {
+      "operation": "close a corrective action",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "No customer surface closes a corrective action at all (D-050), so no customer write exists to queue or lose. NONE_KNOWN because the capability is ABSENT, not because it is safe -- this is the most field-critical write in the area and the one the customer cannot make.",
+      "reading": {
+        "anyActionControl": false,
+        "mentionsActions": false
+      }
+    },
+    {
+      "operation": "change a due date",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "A TASK's due date is editable online through `PATCH /tasks/:id` and is not queued offline. A corrective ACTION's due date is not editable at all, online or offline (D-051).",
+      "reading": null
+    },
+    {
+      "operation": "calendar reconciliation after reconnect",
+      "offline": "PARTIAL",
+      "dataLossRisk": "RECOVERABLE",
+      "basis": "Measured above: the queued item is written on reconnect EXACTLY ONCE -- the server holds one row for it, not two -- and the surface stops claiming a stale cache. The collapse is a lookup on the stable server event id rather than a heuristic.",
+      "reading": {
+        "browser": {
+          "saysOffline": false,
+          "saysStale": false,
+          "stillPending": false,
+          "eventCount": "57",
+          "textLength": 613
+        },
+        "serverRowsForQueuedItem": 1
+      }
+    }
+  ],
+  "failureModesForD042": [
+    "POST /actions has no idempotency key, so no outbox can replay it safely (D-053).",
+    "Corrective actions have no client-side queue at all; one raised offline is lost (VULNERABLE).",
+    "Corrective actions have no update route, so a queued edit would have nothing to replay against (D-051).",
+    "Corrective-action closure has no customer surface, so the most field-critical write in this area cannot be queued because it cannot be made (D-050).",
+    "The task outbox lives in browser storage; clearing site data or replacing the device loses queued work (RECOVERABLE, not NONE_KNOWN)."
+  ]
+}

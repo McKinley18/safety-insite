@@ -58,6 +58,13 @@ export type PersistedInspection = {
   updatedAt: string;
   observations?: PersistedObservation[];
   findings?: PersistedFinding[];
+  /**
+   * §285 (D-044). LIVE findings on this inspection -- `dismissed` and `superseded` excluded --
+   * computed by the server inside the same query that decides which inspections the caller may
+   * see. Present on `GET /inspections` rows ONLY; it is `undefined` from the detail route and from
+   * anything else, which is why the dashboard treats an absent value as unknown rather than zero.
+   */
+  findingCount?: number;
 };
 
 /** "Inspection #7", or an empty string when the record predates record numbers. */
@@ -149,8 +156,15 @@ export function currentDeterministicAnalysis(
 }
 
 /**
- * One card in the report library. An inspection has ONE report, so there is no version array:
- * finishing a reopened inspection replaces the report rather than adding a version beside it.
+ * One card in the report library.
+ *
+ * §286 / D-046. The card used to be documented as "an inspection has ONE report, so there is no
+ * version array". The server has never worked that way since §277 / D-028: finishing a reopened
+ * inspection ADDS a revision and marks the previous one superseded, and both remain retrievable.
+ * §285 measured the consequence of the client believing otherwise -- an inspector who had filed
+ * revision 1 with a client could not see that it existed or retrieve it. The card now carries the
+ * revision it would download and how many issued revisions exist; the history itself is a separate
+ * read, so a library of twenty reports stays one request.
  */
 export type PersistedReport = {
   id: string;
@@ -162,6 +176,10 @@ export type PersistedReport = {
   /** Integrity metadata for technical details only. Never the record's identity. */
   checksum: string | null;
   sizeBytes: string | null;
+  /** The revision number of the report this card downloads. */
+  revision: number | null;
+  /** How many revisions of this report were actually issued and are still retrievable. */
+  issuedRevisionCount: number;
   /** Human-readable inspection context for the report list. */
   inspection?: {
     id: string;
@@ -560,10 +578,21 @@ export type CompletionReadiness = {
   ready: boolean;
   reasons: string[];
   message: string;
+  /**
+   * §286. How many observations the inspection recorded. This is what separates "we inspected and
+   * found nothing" from "nothing was inspected": the first is a legitimate completed inspection,
+   * the second is not completable at all, and the two must never present the same way.
+   */
+  observationCount: number;
   findingCount: number;
   reviewedCount: number;
   /** Customer-facing count: finalized findings only, excluding dismissed candidates. */
   reportableCount: number;
+  /**
+   * §286. The inspection recorded observations and has nothing to report. Stated by the server so
+   * this screen and the report cannot each derive it and disagree.
+   */
+  zeroReportableFindings: boolean;
   blockingFindingIds: string[];
 };
 
@@ -629,17 +658,23 @@ export async function generatePersistedReport(inspectionId: string) {
 }
 
 /**
- * The one current report for an inspection.
+ * The inspection's CURRENT report revision.
  *
- * `versionId`/`version` are the server's INTERNAL snapshot identity, carried here only so
- * diagnostics can quote them. No product surface renders them: the customer's identity for this
- * record is the inspection's number, and the checksum is integrity metadata under technical details.
+ * `versionId` is the server's internal snapshot identity, carried only so diagnostics can quote it;
+ * no surface renders it. §286 / D-046 made the revision NUMBER customer-facing -- see `revision`.
+ * The checksum remains integrity metadata under technical details, never the record's name.
  */
 export type InspectionReportSummary = {
   reportId: string;
   inspectionId: string;
   versionId: string;
   version: number;
+  /**
+   * §286 / D-046. The customer-facing revision number -- the same value as `version`, under the
+   * name that says what it is. `version` is retained because diagnostics and the verification
+   * suites address a snapshot row by it.
+   */
+  revision: number;
   status: string;
   /** When the downloadable artifact was last produced. */
   reportUpdatedAt: string | null;
@@ -663,15 +698,68 @@ export async function listPersistedReports() {
   return apiJson<PersistedReport[]>("/inspection-reports");
 }
 
-/** No version segment: an inspection has one report, so there is nothing to choose between. */
+/**
+ * §286 / D-046 — ONE ENTRY IN A REPORT'S REVISION HISTORY.
+ *
+ * `revision` is the customer's identity for the artifact; `revisionId` is a uuid and is present
+ * only as a stable React key and a diagnostic handle. No surface prints it, and
+ * `supersededByRevision` exists precisely so "Replaced by Revision 2" never has to.
+ */
+export type ReportRevision = {
+  revisionId: string;
+  revision: number;
+  status: string;
+  isCurrent: boolean;
+  /** Integrity metadata. Lets a customer match a copy in hand to the record. */
+  checksum: string | null;
+  sizeBytes: string | null;
+  /** When this revision was issued. */
+  generatedAt: string | null;
+  generatorVersion: string | null;
+  supersededByRevisionId: string | null;
+  /** The NUMBER of the revision that replaced this one, or null when this one is current. */
+  supersededByRevision: number | null;
+  /** True exactly when the per-revision download will return these bytes. */
+  downloadable: boolean;
+  failureReason: string | null;
+};
+
+export type ReportRevisionHistory = {
+  reportId: string;
+  inspectionId: string;
+  inspectionNumber: number | null;
+  currentRevisionId: string | null;
+  currentRevision: number | null;
+  revisionCount: number;
+  issuedRevisionCount: number;
+  revisions: ReportRevision[];
+};
+
+export async function listReportRevisions(reportId: string) {
+  return apiJson<ReportRevisionHistory>(
+    `/inspection-reports/${encodeURIComponent(reportId)}/revisions`,
+  );
+}
+
+/** The report's CURRENT revision. No segment names one, because "current" is the whole point. */
 export function persistedReportDownloadUrl(reportId: string) {
   return `${API_BASE_URL}/inspection-reports/${encodeURIComponent(reportId)}/download`;
 }
 
-export async function downloadPersistedReport(reportId: string) {
-  const response = await apiFetch(persistedReportDownloadUrl(reportId), {
-    headers: authHeaders(),
-  });
+/**
+ * §286 / D-046. One SPECIFIC revision, including a superseded one.
+ *
+ * The server has answered this since §277 -- a superseded revision is the immutable artifact that
+ * was actually issued, and it stays downloadable. Nothing in the product built this URL until now,
+ * which is why an inspector could not retrieve the copy they had filed.
+ */
+export function persistedReportRevisionDownloadUrl(reportId: string, revision: number) {
+  return `${API_BASE_URL}/inspection-reports/${encodeURIComponent(reportId)}`
+    + `/versions/${encodeURIComponent(String(revision))}/download`;
+}
+
+async function downloadReportPdf(url: string) {
+  const response = await apiFetch(url, { headers: authHeaders() });
   if (response.status === 401) throw new Error("AUTH_REQUIRED");
   if (!response.ok) {
     const body = await response.json().catch(() => null);
@@ -682,6 +770,14 @@ export async function downloadPersistedReport(reportId: string) {
     throw new Error("The server returned an invalid report artifact.");
   }
   return response.blob();
+}
+
+export async function downloadPersistedReport(reportId: string) {
+  return downloadReportPdf(persistedReportDownloadUrl(reportId));
+}
+
+export async function downloadPersistedReportRevision(reportId: string, revision: number) {
+  return downloadReportPdf(persistedReportRevisionDownloadUrl(reportId, revision));
 }
 
 export type RegulatorySectionRecord = {

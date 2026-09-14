@@ -23,7 +23,8 @@
  */
 import 'dotenv/config';
 import { execFileSync, spawn } from 'child_process';
-import { writeFileSync } from 'fs';
+import { mkdirSync, rmSync, writeFileSync } from 'fs';
+import { tmpdir } from 'os';
 import { join } from 'path';
 import { newRunId, register, release } from '../disposable/registry';
 
@@ -79,6 +80,22 @@ function main(): void {
 
   // The child environment. Two deletions matter as much as the assignments: no provider key can
   // be read from `process.env` if it is not there, and no bypass can be honoured if it is false.
+  /**
+   * §285 — DISPOSABLE OBJECT STORAGE, so the review stack can reach the report half of the product.
+   *
+   * Until §285 this stack configured no storage at all, so `StorageService` fell through to the S3
+   * provider and `POST /inspections/:id/reports` answered 500 with "STORAGE_S3_BUCKET is required".
+   * That is why `hazlenz:verify` has been reporting report generation ENVIRONMENTALLY_BLOCKED, and
+   * it meant no page-review batch could ever exercise a generated report, a checksum, or a
+   * revision. An instrument that cannot reach a surface cannot review it.
+   *
+   * `local_test` is the provider the repository already ships for exactly this, and the root is a
+   * run-scoped temporary directory created and removed with the database, under the same ownership
+   * discipline: it is never a path the developer uses, and it does not survive the run.
+   */
+  const storageRoot = join(tmpdir(), `insite-review-storage-${runId}`);
+  mkdirSync(storageRoot, { recursive: true });
+
   const env: NodeJS.ProcessEnv = {
     ...process.env,
     DATABASE_URL: target.toString(),
@@ -87,6 +104,8 @@ function main(): void {
     NODE_ENV: 'development',
     DEV_AUTH_BYPASS: 'false',
     EXPERT_EXECUTION_ENABLED: 'false',
+    STORAGE_PROVIDER: 'local_test',
+    STORAGE_LOCAL_ROOT: storageRoot,
   };
   delete env.ANTHROPIC_API_KEY;
 
@@ -97,6 +116,11 @@ function main(): void {
     try {
       psql(`DROP DATABASE IF EXISTS "${name}" WITH (FORCE)`);
       release(runId, name);
+      // The run's object storage goes with its database. Guarded on the run-scoped prefix so a
+      // mistyped or inherited value can never make this a general-purpose delete.
+      if (storageRoot.includes(`insite-review-storage-${runId}`)) {
+        rmSync(storageRoot, { recursive: true, force: true });
+      }
       console.log(`dropped ${name}`);
     } catch (error) {
       console.error(`WARNING: could not drop ${name}: ${String(error)}`);
@@ -124,6 +148,8 @@ function main(): void {
     devAuthBypass: false,
     expertExecutionEnabled: false,
     providerKeyPresentInChildEnv: false,
+    storageProvider: 'local_test',
+    storageRoot,
   };
   writeFileSync(join(BACKEND, '.review-stack.json'), JSON.stringify(facts, null, 2));
   console.log(`STACK_FACTS ${JSON.stringify(facts)}`);

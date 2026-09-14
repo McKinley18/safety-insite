@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ForbiddenException,
   Injectable,
   NotFoundException,
@@ -8,18 +9,25 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, IsNull, Repository } from 'typeorm';
 import { randomUUID } from 'crypto';
 import { CorrectiveAction } from './entities/corrective-action.entity';
-import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
+import {
+  CloseCorrectiveActionDto,
+  CreateCorrectiveActionDto,
+  UpdateCorrectiveActionDto,
+  UpdateCorrectiveActionStatusDto,
+} from './dto/corrective-action.dto';
 import { AuditService } from '../audit/audit.service';
 import { parseDueDate } from '../common/calendar-date';
 import { NotificationsService } from '../notifications/notifications.service';
 import { FixFeedbackService } from '../intelligence/fix-feedback.service';
 import { OutcomeService } from '../outcomes/outcome.service';
 import { isOrganizationManager } from '../common/authenticated-user';
+import { isUniqueViolation } from '../common/unique-violation';
 import { InspectionFinding } from '../inspection/entities/inspection-finding.entity';
 import { Inspection } from '../inspection/inspection.entity';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { Site } from '../sites/entities/site.entity';
 import { AuditLog } from '../audit/entities/audit-log.entity';
+import { emitOperationalEvent } from '../observability/operational-events';
 
 function toPositiveInt(value: unknown, fallback: number): number {
   const parsed = Number(value);
@@ -124,7 +132,10 @@ export class CorrectiveActionsService {
     });
 
     return {
-      data,
+      // §287 / D-052. Every row carries its derived lifecycle state, so no client has to decide
+      // for itself whether a closed action counts as verified — which is the inference that
+      // produced the fabricated supervisor sign-off in the first place.
+      data: data.map(action => this.withLifecycleState(action)),
       meta: { total, page, limit }
     };
   }
@@ -137,7 +148,8 @@ export class CorrectiveActionsService {
       auth.organizationId,
       String(auth.userId),
     );
-    return this.actionRepo.find({ where, order: { createdAt: 'DESC' } });
+    return (await this.actionRepo.find({ where, order: { createdAt: 'DESC' } }))
+      .map(action => this.withLifecycleState(action));
   }
 
   async create(user: any, dto: CreateCorrectiveActionDto) {
@@ -229,7 +241,55 @@ export class CorrectiveActionsService {
       organizationId: auth.organizationId,
       ownerUserId: String(auth.userId),
       displayId: `ACT-${randomUUID().slice(0, 8).toUpperCase()}`,
+      // §287 / D-053. Persisted so a replay can find it, and NULL when the caller sent none --
+      // the unique index is partial precisely so that stays legal.
+      clientRequestId: dto.clientRequestId || null,
+      closedAt: null,
+      closedByUserId: null,
     } as any) as unknown as CorrectiveAction;
+    /**
+     * §287 / D-053 — THE IDEMPOTENCY REPLAY, CHECKED BEFORE ANYTHING IS WRITTEN.
+     *
+     * §286 measured `POST /actions` producing two identical open actions from a repeated submit,
+     * because it was the only create route in the product with no idempotency key. A double-tap, a
+     * retry after a client timeout, and a response lost after a successful server commit are three
+     * routes to the same duplicate, and only the first is addressable in the browser.
+     *
+     * Scoped to (tenantId, ownerUserId, clientRequestId) exactly as the partial unique index is, so
+     * this fast path and the constraint that backstops it agree about what "the same request"
+     * means. The read is not a guarantee on its own -- two concurrent submits can both miss it --
+     * which is why the write below catches the unique violation and returns the winner.
+     */
+    const idempotencyScope = dto.clientRequestId
+      ? {
+        tenantId: auth.tenantId,
+        ownerUserId: String(auth.userId),
+        clientRequestId: dto.clientRequestId,
+      }
+      : null;
+    if (idempotencyScope) {
+      const replay = await this.actionRepo.findOne({ where: idempotencyScope as any });
+      if (replay) return this.withLifecycleState(replay);
+    }
+
+    try {
+      return await this.createInTransaction(auth, dto, action);
+    } catch (error) {
+      /**
+       * The race the read above cannot close: two submits arrive together, both find nothing, both
+       * insert. The index rejects the loser, and the loser's caller gets the row the winner wrote
+       * -- which is the same answer a sequential replay would have received. A duplicate is
+       * prevented rather than merely made less likely.
+       */
+      if (idempotencyScope && isUniqueViolation(error)) {
+        const winner = await this.actionRepo.findOne({ where: idempotencyScope as any });
+        if (winner) return this.withLifecycleState(winner);
+      }
+      throw error;
+    }
+  }
+
+  private async createInTransaction(auth: any, dto: CreateCorrectiveActionDto, action: CorrectiveAction) {
     return this.dataSource.transaction(async manager => {
       // ONE canonical corrective action per finding. When HazLenz already wrote the finding's
       // system-generated record at finalization (source 'hazlenz_finding_scoped',
@@ -274,7 +334,7 @@ export class CorrectiveActionsService {
             beforeJson: before,
             afterJson: updated,
           }));
-          return updated;
+          return this.withLifecycleState(updated);
         }
       }
       const saved = await manager.getRepository(CorrectiveAction).save(action);
@@ -286,17 +346,159 @@ export class CorrectiveActionsService {
         actionCode: 'ACTION_CREATED',
         afterJson: saved,
       }));
-      return saved;
+      return this.withLifecycleState(saved);
     });
   }
 
-  async updateStatus(
-    user: any,
-    id: string,
-    body: { statusCode: 'open' | 'in_progress' | 'closed' | 'cancelled'; closureNotes?: string },
-  ) {
-    const auth = this.getAuthContext(user);
+  /**
+   * §286 / D-054 — THE OUTCOME-INTELLIGENCE LOOP MAY NOT FAIL A CLOSURE.
+   *
+   * ==================== THE DEFECT THIS EXISTS TO FIX ====================
+   *
+   * `PATCH /actions/:id/status` with `statusCode: 'closed'` answered **HTTP 500** on any database
+   * built from the migration set, and §286 measured it end to end:
+   *
+   *     QueryFailedError: relation "outcomes" does not exist
+   *       at OutcomeService.checkRecurrence
+   *       at OutcomeService.recordOutcome
+   *       at CorrectiveActionsService.updateStatus
+   *
+   * The `Outcome` entity is declared and its module is wired, and NO MIGRATION CREATES THE TABLE.
+   * `synchronize` is false in production and the application refuses to start with it enabled
+   * there, so the table cannot appear by any other route. Closing a corrective action was
+   * therefore broken for every account.
+   *
+   * AND IT FAILED IN THE WORST AVAILABLE ORDER. The status write had already committed when the
+   * throw happened, and everything after it had not:
+   *
+   *     the action was CLOSED in the database
+   *     the customer was told the request FAILED
+   *     the audit event `ACTION_STATUS_UPDATED` was never written
+   *     the assignee was never notified
+   *
+   * A compliance product that closes a corrective action without an audit record, while telling
+   * the person who closed it that nothing happened, is worse than one that simply refuses.
+   *
+   * ==================== THE CORRECTION ====================
+   *
+   * The learning loop is a SIDE-EFFECT of closure, not part of it. It is moved behind this method,
+   * which never throws, so the closure, its audit record and its notification are reached whatever
+   * the intelligence layer does. A failure is emitted as an operational event so the degradation is
+   * visible to an operator instead of silent.
+   *
+   * WHAT THIS DELIBERATELY DOES NOT DO IS CREATE THE MISSING TABLE. Adding the migration would not
+   * merely restore a dormant capability — it would ACTIVATE, for the first time in production, a
+   * recurrence check that counts outcomes BY CATEGORY ACROSS EVERY TENANT
+   * (`OutcomeService.checkRecurrence` applies no organization or owner scope) and auto-escalates a
+   * customer's action to `urgent` on the strength of it. Turning that on is a product decision
+   * about whether the outcome loop is per-tenant or global, and §286 raises it as D-055 rather than
+   * deciding it while repairing a 500.
+   */
+  private async recordClosureIntelligence(action: CorrectiveAction) {
+    try {
+      /**
+       * §287 / D-052. These were `VERIFIED_STRONG` / `SUPERVISOR_SIGNOFF`, hard-coded, on every
+       * close. The learning loop was being fed a verification claim that no user had made, which
+       * would in turn have weighted its confidence on a fact nobody established.
+       *
+       * `UNVERIFIED` is what a closure with no verification actually is, and `verificationMethod`
+       * is omitted because none was used. When a verification workflow exists, the values it
+       * records will come from the verification, not from the fact that someone pressed Close.
+       */
+      const outcome = await this.outcomeService.recordOutcome({
+        actionId: action.id,
+        category: action.category || 'unknown',
+        originalRecommendation: action.originalSuggestion,
+        userActionTaken: { title: action.title, description: action.description, closureNotes: action.closureNotes },
+        verificationStatus: action.verifiedAt ? 'VERIFIED_STRONG' : 'UNVERIFIED',
+        location: action.siteId || 'Facility Floor',
+      });
 
+      // ESCALATION: a hazard category that keeps coming back is not closed, whatever the last
+      // record says. Reachable only when the outcome record above succeeded.
+      if (outcome.recurrenceDetected) {
+        action.priorityCode = 'urgent';
+        await this.actionRepo.save(action);
+      }
+
+      // FEEDBACK: record a remediation that appears to have held.
+      if (action.reportId && action.category && !outcome.recurrenceDetected) {
+        await this.fixFeedbackService.recordFeedback({
+          reportId: action.reportId,
+          category: action.category,
+          originalSuggestion: action.originalSuggestion,
+          userAction: { title: action.title, description: action.description, closureNotes: action.closureNotes },
+          approved: true,
+        });
+      }
+    } catch (error) {
+      // Only the failure KIND crosses into the log. §268 forbids content, and a database error
+      // message can carry a column value.
+      emitOperationalEvent('action.closure_intelligence_failed', {
+        actionId: action.id,
+        failureKind: error instanceof Error ? error.name : 'UnknownError',
+        closureRecorded: true,
+      });
+    }
+  }
+
+  /**
+   * §287 / D-052 — THE LIFECYCLE STATE THE CUSTOMER SEES, DERIVED, NOT STORED.
+   *
+   * §287's direction asks for explicit states over implied claims, and in the same breath forbids
+   * a parallel state machine. Both are satisfied by DERIVING the state from the two axes the
+   * authoritative model already has:
+   *
+   *   statusCode   open | in_progress | closed | cancelled   — the completion axis
+   *   verifiedAt   set or not                                — the verification axis
+   *
+   * giving OPEN / IN_PROGRESS / COMPLETED / VERIFIED / CANCELLED. There is no third column that
+   * could disagree with the other two, and nothing can be in a lifecycle state its `statusCode`
+   * contradicts, because the state IS its `statusCode` read together with one fact.
+   *
+   * COMPLETED is the direction's VERIFICATION_PENDING under the name the product already uses for
+   * it. Naming it "verification pending" would assert that a verification is expected, and whether
+   * verification is required at all is the open product-policy question §287 registers rather than
+   * settles -- so the state says what is true (the work is recorded as done, and no verification is
+   * recorded) and claims nothing about what happens next.
+   */
+  private lifecycleState(action: CorrectiveAction): 'open' | 'in_progress' | 'completed' | 'verified' | 'cancelled' {
+    if (action.statusCode === 'cancelled') return 'cancelled';
+    if (action.statusCode === 'closed') return action.verifiedAt ? 'verified' : 'completed';
+    return action.statusCode === 'in_progress' ? 'in_progress' : 'open';
+  }
+
+  /**
+   * The action as a customer surface reads it.
+   *
+   * `verified` is stated as its own boolean beside the state so a client never has to infer
+   * verification from the presence of a timestamp -- inference from field presence is the class of
+   * error D-052 is about.
+   */
+  private withLifecycleState(action: CorrectiveAction) {
+    return {
+      ...action,
+      lifecycleState: this.lifecycleState(action),
+      verified: Boolean(action.verifiedAt),
+      /** True when the action is closed and carries no verification. Stated, never inferred. */
+      closedWithoutVerification: action.statusCode === 'closed' && !action.verifiedAt,
+    };
+  }
+
+  /**
+   * §287 — THE ONE AUTHORIZATION RULE FOR MUTATING A CORRECTIVE ACTION.
+   *
+   * Lifted verbatim out of `updateStatus`, which was the only mutator before §287 added field
+   * editing. It is factored rather than copied for the reason D-008 exists: two call sites each
+   * holding their own copy of an access rule is two rules, and they drift.
+   *
+   * The rule is unchanged and is deliberately NOT broadened here -- §287's direction says not to
+   * expand Company-plan functionality. In a personal account the row must be the caller's own. In
+   * an organization, the caller must be the action's owner, its assignee, or a manager; anyone
+   * else gets NOT FOUND rather than FORBIDDEN, so the response cannot be used to discover that an
+   * action exists in a workspace the caller cannot see.
+   */
+  private async accessibleForMutation(auth: any, id: string) {
     const action = await this.actionRepo.findOne({
       where: auth.organizationId
         ? { id, organizationId: auth.organizationId }
@@ -309,62 +511,175 @@ export class CorrectiveActionsService {
         !isOrganizationManager(auth)) {
       throw new NotFoundException('Action not found.');
     }
+    return action;
+  }
 
+  /**
+   * §287 / D-051 — EDIT A CORRECTIVE ACTION'S FIELDS, INCLUDING ITS DUE DATE.
+   *
+   * §286 measured that the only mutation the server exposed for a corrective action was its
+   * status: there was no route that changed a title, a priority, an assignee or a DUE DATE. The
+   * calendar scenario "a changed due date moves the event" was therefore not representable for a
+   * corrective action at all, only for a standalone task -- and a due date is the most-revised
+   * field on a corrective action in practice.
+   *
+   * THE SERVER REMAINS AUTHORITATIVE. Nothing is computed on the device: the date is parsed here
+   * through the shared `parseDueDate`, persisted here, and the calendar projection re-reads it. A
+   * moved event is a consequence of the persisted change, never of a local edit the server has not
+   * accepted.
+   *
+   * DATE-ONLY SEMANTICS ARE PRESERVED. `parseDueDate` turns a bare `YYYY-MM-DD` into LOCAL
+   * midnight, which is the §275 repair: `new Date('2026-09-15')` is UTC midnight and therefore the
+   * previous evening anywhere west of Greenwich. Sending an instant here would re-enter that
+   * defect, which is why the calendar projection reads back through `toCalendarDayKey`.
+   *
+   * Status is NOT settable here -- see `UpdateCorrectiveActionDto`.
+   */
+  async update(user: any, id: string, dto: UpdateCorrectiveActionDto) {
+    const auth = this.getAuthContext(user);
+    const action = await this.accessibleForMutation(auth, id);
     const before = { ...action };
-    action.statusCode = body.statusCode;
 
-    if (body.statusCode === 'closed') {
-      action.closureNotes = body.closureNotes || action.closureNotes;
-      action.verifiedAt = new Date();
-      action.verifiedByUserId = String(auth.userId);
+    if (dto.title !== undefined) action.title = dto.title.trim();
+    if (dto.description !== undefined) action.description = dto.description.trim();
+    if (dto.priorityCode !== undefined) action.priorityCode = this.normalizePriority(dto.priorityCode);
+    if (dto.dueDate !== undefined) {
+      const parsed = parseDueDate(dto.dueDate);
+      if (!parsed) throw new BadRequestException('dueDate must be a calendar date.');
+      action.dueDate = parsed;
+    }
+    // Blank stays NULL rather than an empty string, so "unassigned" is one value everywhere
+    // rather than two that render differently -- the same rule `create` applies.
+    if (dto.assignedToName !== undefined) {
+      action.assignedToName = dto.assignedToName.trim() ? dto.assignedToName.trim() : (null as any);
+    }
+    if (dto.assignedToUserId !== undefined) {
+      const assigneeId = dto.assignedToUserId ? String(dto.assignedToUserId) : null;
+      // Identical to the create path's rule, and equally not broadened: an explicit assignment
+      // still has to name an active member of the caller's organization, and still requires
+      // manager access to point at anyone other than the caller.
+      if (assigneeId) {
+        if (auth.organizationId) {
+          const membership = await this.membershipRepo.findOne({
+            where: { userId: assigneeId, organizationId: auth.organizationId, status: 'active' },
+          });
+          if (!membership) throw new NotFoundException('Assignee not found.');
+          if (assigneeId !== String(auth.userId) && !isOrganizationManager(auth)) {
+            throw new ForbiddenException('Manager access is required to assign another member.');
+          }
+        } else if (assigneeId !== String(auth.userId)) {
+          throw new NotFoundException('Assignee not found.');
+        }
+      }
+      action.assignedToUserId = assigneeId as any;
     }
 
     const updated = await this.actionRepo.save(action);
 
-    // 🔷 OIL: Record Outcome
-    if (updated.statusCode === 'closed') {
-        const outcome = await this.outcomeService.recordOutcome({
-            actionId: updated.id,
-            category: updated.category || 'unknown',
-            originalRecommendation: updated.originalSuggestion,
-            userActionTaken: { title: updated.title, description: updated.description, closureNotes: updated.closureNotes },
-            verificationStatus: 'VERIFIED_STRONG',
-            verificationMethod: 'SUPERVISOR_SIGNOFF',
-            location: updated.siteId || 'Facility Floor'
-        });
-
-        // 🔷 ESCALATION: Auto-escalate if recurrence detected
-        if (outcome.recurrenceDetected) {
-            updated.priorityCode = 'urgent';
-            await this.actionRepo.save(updated);
-        }
-
-        // 🔷 FEEDBACK LOOP: Record successful remediation (only if no recurrence)
-        if (updated.reportId && updated.category && !outcome.recurrenceDetected) {
-            await this.fixFeedbackService.recordFeedback({
-                reportId: updated.reportId,
-                category: updated.category,
-                originalSuggestion: updated.originalSuggestion,
-                userAction: {
-                    title: updated.title,
-                    description: updated.description,
-                    closureNotes: updated.closureNotes
-                },
-                approved: true
-            });
-        }
+    // §287 / D-054. Auxiliary, after a committed write, and unable to fail the request. The lost
+    // audit row is emitted rather than swallowed. See `updateStatus` for the full reasoning.
+    try {
+      await this.auditService.log({
+        tenantId: auth.tenantId,
+        actorUserId: String(auth.userId),
+        entityType: 'CORRECTIVE_ACTION',
+        entityId: updated.id,
+        actionCode: 'ACTION_UPDATED',
+        beforeJson: before,
+        afterJson: updated,
+      });
+    } catch (error) {
+      emitOperationalEvent('action.audit_write_failed', {
+        actionId: updated.id,
+        actorUserId: String(auth.userId),
+        actionCode: 'ACTION_UPDATED',
+        failureKind: error instanceof Error ? error.name : 'UnknownError',
+        stateCommitted: true,
+      });
     }
 
-    await this.auditService.log({
-      tenantId: auth.tenantId,
-      actorUserId: String(auth.userId),
-      entityType: 'CORRECTIVE_ACTION',
-      entityId: updated.id,
-      actionCode: 'ACTION_STATUS_UPDATED',
-      beforeJson: before,
-      afterJson: updated,
-    });
+    return this.withLifecycleState(updated);
+  }
 
+  async updateStatus(user: any, id: string, body: UpdateCorrectiveActionStatusDto) {
+    const auth = this.getAuthContext(user);
+    const action = await this.accessibleForMutation(auth, id);
+
+    const before = { ...action };
+    const wasClosed = action.statusCode === 'closed';
+    action.statusCode = body.statusCode;
+
+    /**
+     * §287 / D-052 — CLOSING IS NOT VERIFYING.
+     *
+     * This used to stamp `verifiedAt = now` and `verifiedByUserId = the caller` on every close.
+     * Nothing had been verified: the caller was frequently the same person who raised the action,
+     * no independent check had occurred, and the record then read as a supervisor-verified
+     * correction on a compliance artifact. §286 measured it; §287 rejects the semantics outright.
+     *
+     * Closure now writes the COMPLETION pair, which §287's migration added because the table had
+     * nowhere to put it. The verification pair is left untouched -- and on a closed action its
+     * absence is a true statement that closure was recorded and verification was not.
+     *
+     * `closureNotes` remains OPTIONAL, per direction: evidence must not be made mandatory merely
+     * to satisfy a screen. When notes ARE supplied they replace the previous value; when they are
+     * not, the previous value is preserved, which is why the audit row below carries `before` and
+     * `after` rather than the product inferring anything from the field being unchanged.
+     */
+    if (body.statusCode === 'closed') {
+      action.closureNotes = body.closureNotes || action.closureNotes;
+      action.closedAt = new Date();
+      action.closedByUserId = String(auth.userId);
+    } else if (wasClosed) {
+      // Reopened. An action that is open again was not closed at the time it would otherwise
+      // still claim, so the completion stamp is cleared rather than left to contradict the status.
+      // The closure NOTES are kept: they record what was done, which remains true.
+      action.closedAt = null;
+      action.closedByUserId = null;
+    }
+
+    const updated = await this.actionRepo.save(action);
+
+    if (updated.statusCode === 'closed') await this.recordClosureIntelligence(updated);
+
+    /**
+     * §287 / D-054 — THE AUDIT WRITE MAY NOT TURN A COMMITTED TRANSITION INTO A 500.
+     *
+     * The state above is already committed. If this throws, the customer's action HAS changed
+     * status and answering with an error invites exactly the retry loop D-054 exists to prevent:
+     * commit succeeds, auxiliary write fails, customer sees 500, customer retries, state gets
+     * confusing. §286 repaired that shape for the outcome-intelligence loop; the audit write is
+     * the same shape and is repaired the same way.
+     *
+     * AND THE LOST AUDIT ROW IS NOT SWALLOWED. §287's direction is explicit that audit failure
+     * must not silently erase required auditability. The failure is emitted as an operational
+     * event carrying the actor, the resource and the transition, so an operator can see that a
+     * required audit row is missing and which one it was -- the log line is the fallback record,
+     * not a replacement for the audit trail.
+     */
+    try {
+      await this.auditService.log({
+        tenantId: auth.tenantId,
+        actorUserId: String(auth.userId),
+        entityType: 'CORRECTIVE_ACTION',
+        entityId: updated.id,
+        actionCode: 'ACTION_STATUS_UPDATED',
+        beforeJson: before,
+        afterJson: updated,
+      });
+    } catch (error) {
+      emitOperationalEvent('action.audit_write_failed', {
+        actionId: updated.id,
+        actorUserId: String(auth.userId),
+        actionCode: 'ACTION_STATUS_UPDATED',
+        fromStatus: before.statusCode,
+        toStatus: updated.statusCode,
+        failureKind: error instanceof Error ? error.name : 'UnknownError',
+        stateCommitted: true,
+      });
+    }
+
+    // §287 / D-054. Also auxiliary, also after a committed write, also unable to fail the request.
     if (updated.assignedToUserId && before.statusCode !== updated.statusCode) {
       await this.notificationsService.create({
         tenantId: auth.tenantId,
@@ -374,10 +689,14 @@ export class CorrectiveActionsService {
         message: `${updated.title || 'Corrective action'} is now ${updated.statusCode}.`,
         entityType: 'CORRECTIVE_ACTION',
         entityId: updated.id,
-      });
+      }).catch((error: unknown) => emitOperationalEvent('action.notification_failed', {
+        actionId: updated.id,
+        failureKind: error instanceof Error ? error.name : 'UnknownError',
+        stateCommitted: true,
+      }));
     }
 
-    return updated;
+    return this.withLifecycleState(updated);
   }
 
   async upsertFromReportAction(input: {
@@ -546,40 +865,15 @@ export class CorrectiveActionsService {
     const before = { ...action };
     action.statusCode = 'closed';
     action.closureNotes = dto.closureNotes;
-    action.verifiedAt = new Date();
+    // §287 / D-052. Was `action.verifiedAt = new Date()`. Closing is not verifying; this records
+    // the COMPLETION, exactly as `updateStatus` does. See the entity and the migration.
+    action.closedAt = new Date();
+    action.closedByUserId = String(auth.userId);
     const updated = await this.actionRepo.save(action);
 
-    // 🔷 OIL: Record Outcome
-    const outcome = await this.outcomeService.recordOutcome({
-        actionId: updated.id,
-        category: updated.category || 'unknown',
-        originalRecommendation: updated.originalSuggestion,
-        userActionTaken: { title: updated.title, description: updated.description, closureNotes: updated.closureNotes },
-        verificationStatus: 'VERIFIED_STRONG',
-        verificationMethod: 'SUPERVISOR_SIGNOFF',
-        location: updated.siteId || 'Facility Floor'
-    });
-
-    // 🔷 ESCALATION: Auto-escalate if recurrence detected
-    if (outcome.recurrenceDetected) {
-        updated.priorityCode = 'urgent';
-        await this.actionRepo.save(updated);
-    }
-
-    // 🔷 FEEDBACK LOOP: Record successful remediation (only if no recurrence)
-    if (updated.reportId && updated.category && !outcome.recurrenceDetected) {
-        await this.fixFeedbackService.recordFeedback({
-            reportId: updated.reportId,
-            category: updated.category,
-            originalSuggestion: updated.originalSuggestion,
-            userAction: {
-                title: updated.title,
-                description: updated.description,
-                closureNotes: updated.closureNotes
-            },
-            approved: true
-        });
-    }
+    // §286 / D-054. The same hazard as `updateStatus` and the same correction: the learning loop
+    // runs behind a method that cannot throw, so it can never swallow the audit record below.
+    await this.recordClosureIntelligence(updated);
 
     await this.auditService.log({
       tenantId: auth.tenantId,

@@ -66,10 +66,19 @@ export function WeekAtAGlancePanel({
           description="A simple seven-day snapshot. Open the calendar for task details."
         />
 
+        {/*
+          §286 / D-062. The three interactive controls in this panel -- this link and the two
+          fields below -- measured 31px, 34px and 34px, all BELOW the product's own 36px mobile
+          touch floor (§73.3), not merely below the 44px native guideline. They are the Home
+          screen's route into the calendar and its quick way to put work on it, which makes them
+          primary field targets. `min-h-11` takes each to 44px. The change is three utility classes
+          in one panel; nothing shared is touched, and `AppButton`/`AppInput` keep their own sizes
+          for every other consumer.
+        */}
         <AppLinkButton
           href="/safety-calendar"
           size="sm"
-          className="!inline-flex !w-fit shrink-0 self-start rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-none ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8]"
+          className="!inline-flex min-h-11 !w-fit shrink-0 self-start items-center rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-none ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8]"
         >
           Open Calendar
         </AppLinkButton>
@@ -141,7 +150,9 @@ export function WeekAtAGlancePanel({
                 if (event.key === "Enter") void addTask();
               }}
               placeholder="Task title"
+              aria-label="Task title"
               fieldSize="sm"
+              className="min-h-11"
             />
           </label>
 
@@ -150,7 +161,7 @@ export function WeekAtAGlancePanel({
             onChange={(event) => setTaskPriority(event.target.value as SafetyCalendarEvent["priority"])}
             fieldSize="sm"
             aria-label="Task priority"
-            className="sm:w-32"
+            className="min-h-11 sm:w-32"
           >
             <option value="Critical">Critical</option>
             <option value="High">High</option>
@@ -163,7 +174,7 @@ export function WeekAtAGlancePanel({
             size="sm"
             variant="primary"
             onClick={() => void addTask()}
-            className="command-center-add-task self-center px-3 sm:w-24"
+            className="command-center-add-task min-h-11 self-center px-3 sm:w-24"
           >
             Add Task
           </AppButton>

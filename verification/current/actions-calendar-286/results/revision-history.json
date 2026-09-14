@@ -1,0 +1,41 @@
+{
+  "reportId": "b9382e4e-21d2-419c-9905-ee121a443bbd",
+  "inspectionId": "966e362d-4afc-4c74-8662-c615c2e55e5a",
+  "inspectionNumber": 49,
+  "currentRevisionId": "b76561e2-2be4-4734-9cc0-0d54c9ed95a6",
+  "currentRevision": 2,
+  "revisionCount": 2,
+  "issuedRevisionCount": 2,
+  "revisions": [
+    {
+      "revisionId": "b76561e2-2be4-4734-9cc0-0d54c9ed95a6",
+      "revision": 2,
+      "status": "generated",
+      "isCurrent": true,
+      "checksum": "08bf984f1953d46abde726c96790cea8e651be3bb5421a8f8d40d1e9bfd263ce",
+      "sizeBytes": "8541",
+      "generatedAt": "2026-09-14T14:29:04.869Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": null,
+      "supersededByRevision": null,
+      "downloadable": true,
+      "sourceInspectionVersion": 6,
+      "failureReason": null
+    },
+    {
+      "revisionId": "91792416-ae4e-4353-9e48-2bdbd1f15c72",
+      "revision": 1,
+      "status": "superseded",
+      "isCurrent": false,
+      "checksum": "695fa5b30b28c2e346299a2fdcb621c547d8995885115be8e2d5409b6370151d",
+      "sizeBytes": "8545",
+      "generatedAt": "2026-09-14T14:29:04.773Z",
+      "generatorVersion": "safety-insite-pdf/3",
+      "supersededByRevisionId": "b76561e2-2be4-4734-9cc0-0d54c9ed95a6",
+      "supersededByRevision": 2,
+      "downloadable": true,
+      "sourceInspectionVersion": 3,
+      "failureReason": null
+    }
+  ]
+}

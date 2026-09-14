@@ -51,6 +51,89 @@ function shortRef(id: string): string {
 }
 
 /**
+ * §285 — WHAT THE REPORT CALLS THE INSPECTION IT IS A REPORT OF.
+ *
+ * The record's customer-facing name is its NUMBER -- "Inspection #7" -- allocated per account at
+ * creation. The cover previously printed `shortRef(inspection.id)`, eight hex characters of a uuid,
+ * which is an internal identifier on the one artifact that leaves the product.
+ *
+ * The uuid fallback is kept and NOT removed: a record created before numbering existed has no
+ * number, and a report of it still needs something to reference. What changed is which one is
+ * preferred, not that the other stopped existing.
+ */
+function recordReference(inspection: { displayNumber?: number | null; id: string }): string {
+  const number = inspection?.displayNumber;
+  if (typeof number === 'number' && Number.isFinite(number)) return `Inspection #${number}`;
+  return `Record reference ${shortRef(inspection?.id)}`;
+}
+
+/**
+ * §286 — THE ARTIFACT'S OWN DURABLE IDENTITY, printed into the bytes.
+ *
+ * ==================== WHAT THIS EXISTS TO FIX ====================
+ *
+ * §285 recorded it as D-046's consequence on the document rather than the screen: a filed PDF
+ * could not be told apart from its successor BY READING IT. Both said "Inspection #7"; nothing on
+ * either one said which of the two it was or when it had been issued. An inspector holding a
+ * printed copy, or a client holding an emailed one, had no way to answer "is this the current
+ * report?" from the artifact in their hand.
+ *
+ * Three values answer it, and all three are already authoritative somewhere else:
+ *
+ *   Inspection #N      the record number the rest of the product uses (`displayNumber`).
+ *   Report Revision N  `inspection_report_versions.version` -- the server's own revision
+ *                      sequence, which §277 / D-028 has maintained since it stopped destroying
+ *                      replaced reports. NOT a second counter maintained here.
+ *   Issued <when>      the revision's `generatedAt`, stamped when the artifact was proven to
+ *                      exist. Distinct from the inspection's completion date, which the cover
+ *                      already carries separately.
+ *
+ * ==================== WHAT IT DELIBERATELY DOES NOT DO ====================
+ *
+ * It does not print "SUPERSEDED", and no already-issued PDF is ever re-rendered to add it.
+ * Whether a revision is still current is LATER STATE about the artifact, and an immutable
+ * artifact cannot carry state that postdates it without being rewritten -- which is the precise
+ * thing D-028 exists to prevent. The product identifies a superseded artifact outside the
+ * document: the report library's revision history says which revision is current and which was
+ * replaced by which, and the checksum on that screen matches the bytes of the copy in hand.
+ *
+ * ==================== WHY IT IS NOT IN THE SNAPSHOT ====================
+ *
+ * The revision number and the issue time are properties of the ARTIFACT, not of the inspection it
+ * describes, and `sourceFingerprint` is computed over the snapshot. Putting them in the snapshot
+ * would make every fingerprint unique, so regenerating an unchanged inspection would stop
+ * replaying to the existing revision and would manufacture a new one on every press -- a §285
+ * guarantee turned inside out. They therefore travel as a separate argument, and the fingerprint
+ * is untouched.
+ */
+export type ReportArtifactIdentity = {
+  /** The authoritative revision number from the report's own version row. */
+  revision: number;
+  /** When this revision's artifact was issued. */
+  issuedAt: Date | string;
+};
+
+function artifactIdentityLines(
+  snapshot: Snapshot,
+  identity: ReportArtifactIdentity | null,
+): string[] {
+  const lines = [recordReference(snapshot.inspection)];
+  if (!identity) return lines;
+  lines.push(`Report Revision ${identity.revision}`);
+  lines.push(`Issued ${fmtDateTime(identity.issuedAt)}`);
+  return lines;
+}
+
+/** Date and time of day, because two revisions of one report are regularly issued on one day. */
+function fmtDateTime(value: unknown): string {
+  if (!value) return 'Not recorded';
+  const date = new Date(value as string);
+  if (Number.isNaN(date.getTime())) return 'Not recorded';
+  return `${date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })} `
+    + `${date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}`;
+}
+
+/**
  * §276 / D-008. The finding's AUTHORITATIVE severity, from the one shared rule.
  *
  * This used to read `riskSnapshot.riskBand || riskSnapshot.overallRisk`, and that order is
@@ -234,7 +317,12 @@ function simpleTable(
   doc.moveDown(0.5);
 }
 
-function coverPage(doc: PDFKit.PDFDocument, snapshot: Snapshot, findingCount: number) {
+function coverPage(
+  doc: PDFKit.PDFDocument,
+  snapshot: Snapshot,
+  findingCount: number,
+  identity: ReportArtifactIdentity | null,
+) {
   // Every cover block is centred inside the content column (not the full sheet) and stacked
   // from its own measured height, so a long site or inspection name wraps within the margins
   // and pushes what follows down instead of running to the paper edge and colliding with it.
@@ -291,8 +379,15 @@ function coverPage(doc: PDFKit.PDFDocument, snapshot: Snapshot, findingCount: nu
   // still active would make pdfkit think the text overflows and silently insert a blank page.
   const originalBottomMargin = doc.page.margins.bottom;
   doc.page.margins.bottom = 0;
-  doc.font('Helvetica').fontSize(8).fillColor(FAINT)
-    .text(`Record reference ${shortRef(snapshot.inspection.id)}`, 0, 740, { width: 612, align: 'center' });
+  // §286. The artifact's own identity, stacked upwards from the same baseline the record
+  // reference already used, so adding the two revision lines cannot push anything off the sheet.
+  const identityLines = artifactIdentityLines(snapshot, identity);
+  let identityY = 740 - (identityLines.length - 1) * 11;
+  doc.font('Helvetica').fontSize(8).fillColor(FAINT);
+  for (const line of identityLines) {
+    doc.text(line, 0, identityY, { width: 612, align: 'center' });
+    identityY += 11;
+  }
   doc.page.margins.bottom = originalBottomMargin;
 }
 
@@ -457,7 +552,25 @@ function assessmentNarrative(
   openCount: number,
 ): string {
   if (total === 0) {
-    return 'No findings were documented for this inspection. The areas reviewed are recorded in the inspection record above.';
+    /**
+     * §286 — THE ZERO-FINDING STATEMENT.
+     *
+     * A legitimate inspection may complete with nothing to report (see
+     * InspectionService.evaluateCompletionReadiness), so this sentence is now a normal outcome of
+     * the product rather than a degenerate case, and it is bounded deliberately.
+     *
+     * It says what the inspection RECORDED. It does not say the workplace is safe, that no hazards
+     * exist, that the employer is compliant, that any OSHA or MSHA obligation has been met, or that
+     * the inspection guarantees the absence of unsafe conditions. None of those follow from "this
+     * inspection identified nothing", and a compliance artifact that implied any of them would be
+     * asserting something no one established. The second sentence is a statement of scope, not a
+     * disclaimer: the report's existing "Basis and Limitations" note is unchanged and carries the
+     * limitations.
+     */
+    return 'No reportable findings were recorded during this inspection. '
+      + 'The observations recorded during the inspection are listed in this report. '
+      + 'This report states what this inspection recorded and what a qualified person reviewed; '
+      + 'it does not assess conditions that were not recorded.';
   }
   const priority = byBand.Critical + byBand.High;
   const sentences: string[] = [];
@@ -494,6 +607,17 @@ function assessmentNarrative(
 function findingsSummary(doc: PDFKit.PDFDocument, findings: Snapshot[], correctiveActions: Snapshot[]) {
   doc.addPage();
   sectionHeading(doc, 'Findings Summary');
+
+  /**
+   * §286. Zero findings used to draw this heading over an EMPTY TABLE -- a column header row with
+   * nothing under it, which reads as a rendering failure rather than as a result. It now states
+   * the result in the same bounded words the executive summary uses.
+   */
+  if (!findings.length) {
+    body(doc, 'No reportable findings were recorded during this inspection.', { size: 9.5 });
+    return;
+  }
+
   body(doc, 'Concise reference of every finding documented in this inspection.', { color: MUTED, size: 9.5 });
   doc.moveDown(0.4);
 
@@ -708,8 +832,66 @@ function notesBlock(doc: PDFKit.PDFDocument, lineCount = 3): Block {
   };
 }
 
-function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analysesByObservation: Map<string, Snapshot[]>, correctiveActions: Snapshot[]) {
+function detailedFindings(
+  doc: PDFKit.PDFDocument,
+  findings: Snapshot[],
+  analysesByObservation: Map<string, Snapshot[]>,
+  correctiveActions: Snapshot[],
+  snapshot: Snapshot,
+) {
   doc.addPage();
+
+  /**
+   * §286 — WHAT A ZERO-FINDING REPORT CONTAINS.
+   *
+   * An inspection that identified nothing is still an inspection, and its report is worth nothing
+   * to a client unless it says WHAT WAS LOOKED AT. Without this, a zero-finding report drew this
+   * heading over a blank page: no findings, and no record of the walk that produced none.
+   *
+   * The observation text is already in the frozen snapshot -- it is the inspector's own record of
+   * what they saw, the same text every finding elsewhere in this report quotes as its source. It is
+   * reproduced verbatim and is not summarised, characterised or assessed here: this section states
+   * what was recorded, and nothing in it may imply that what was recorded was found to be safe.
+   */
+  if (!findings.length) {
+    sectionHeading(doc, 'Observations Recorded');
+    body(doc,
+      'No reportable findings were recorded during this inspection. '
+      + 'The observations below are the inspector’s own record of what was observed.',
+      { color: MUTED, size: 9.5 });
+    doc.moveDown(0.6);
+
+    const observations: Snapshot[] = (snapshot.observations || []);
+    if (!observations.length) {
+      // Not reachable through the product -- completion requires at least one observation -- but a
+      // renderer must not print a heading it has nothing to put under.
+      body(doc, 'No observations were recorded for this inspection.', { color: MUTED, size: 9.5 });
+      return;
+    }
+    observations.forEach((observation, index) => {
+      const label = `Observation ${index + 1}`
+        + (observation.evidenceSource ? ` · ${titleCase(observation.evidenceSource)}` : '');
+      const block = fieldBlock(
+        doc, label,
+        String(observation.rawText || '').trim() || 'Not recorded',
+        { flowable: true },
+      );
+      const continuation = (d: PDFKit.PDFDocument) => {
+        d.font('Helvetica-Oblique').fontSize(9).fillColor(FAINT)
+          .text(`${label} (continued)`, PAGE.margins.left, d.y, { width: CONTENT_WIDTH });
+        d.x = PAGE.margins.left;
+        d.y += 10;
+      };
+      const available = contentBottom(doc) - doc.y;
+      if (block.height > available && available < MIN_FLOW_REMAINDER) {
+        doc.addPage();
+        continuation(doc);
+      }
+      block.draw(doc, continuation);
+    });
+    return;
+  }
+
   sectionHeading(doc, 'Detailed Findings');
 
   const findingCountByObservation = new Map<string, number>();
@@ -749,9 +931,30 @@ function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analyse
         f.observationText, { size: 8.5, color: MUTED, flowable: true }));
     }
 
+    /**
+     * §286 / D-049 — THE RISK LINE IS PRINTED EVEN WHEN THERE IS NO RATING.
+     *
+     * This was `if (risk) { ... }`, so a finding whose `riskSnapshot` is NULL had NO Risk line at
+     * all in its detailed block -- while the Findings Summary table two pages earlier printed
+     * "Not rated" for the same finding, because that table reads
+     * `findingRiskBand(f.riskSnapshot) || 'Not rated'` and never had the guard.
+     *
+     * The two presentations of one finding's severity therefore disagreed: the summary said the
+     * rating was absent, and the detail said nothing, which a reader cannot distinguish from a
+     * rating that was simply not printed. On a compliance artifact "this finding carries no
+     * established risk rating" is a decision-relevant statement -- the executive summary already
+     * makes it in aggregate ("N findings do not yet carry an established risk rating and should be
+     * rated by a qualified person before closure") -- and the detailed block is where a reader
+     * looks for the per-finding answer.
+     *
+     * `resolveEffectiveSeverity(null)` already answers this correctly: label "Not rated", basis
+     * `not_rated`, and `severityBasisLine` produces an empty detail because there is no
+     * authoritative arithmetic to state. So removing the guard prints exactly the honest gap and
+     * invents nothing. The D-008 rule is untouched; only the condition under which it is asked.
+     */
     const risk = f.riskSnapshot;
-    if (risk) {
-      const resolved = resolveEffectiveSeverity(risk as Record<string, unknown>);
+    {
+      const resolved = resolveEffectiveSeverity((risk || null) as Record<string, unknown> | null);
       const band = resolved.severity || undefined;
       /**
        * §276 / D-008. How the stated band was reached, drawn entirely from the
@@ -967,7 +1170,11 @@ function correctiveActionSummary(doc: PDFKit.PDFDocument, findings: Snapshot[], 
   );
 }
 
-function applyHeaderFooter(doc: PDFKit.PDFDocument, snapshot: Snapshot) {
+function applyHeaderFooter(
+  doc: PDFKit.PDFDocument,
+  snapshot: Snapshot,
+  identity: ReportArtifactIdentity | null,
+) {
   const range = doc.bufferedPageRange();
   for (let i = range.start; i < range.start + range.count; i++) {
     doc.switchToPage(i);
@@ -984,7 +1191,16 @@ function applyHeaderFooter(doc: PDFKit.PDFDocument, snapshot: Snapshot) {
     doc.page.margins.bottom = 0;
     doc.font('Helvetica').fontSize(8).fillColor(FAINT)
       .text(
-        `Inspection date ${fmtDateShort(snapshot.inspection.completedAt)} · Generated ${fmtDateShort(snapshot.capturedAt)} · Page ${i - range.start} of ${range.count - 1}`,
+        // §286. The revision travels on EVERY page, not only the cover. A report is regularly
+        // filed, printed and photocopied a page at a time, and a loose page that cannot say which
+        // revision it belongs to is the same defect as a cover that cannot.
+        [
+          recordReference(snapshot.inspection),
+          identity ? `Revision ${identity.revision}` : null,
+          `Inspection date ${fmtDateShort(snapshot.inspection.completedAt)}`,
+          `Generated ${fmtDateShort(snapshot.capturedAt)}`,
+          `Page ${i - range.start} of ${range.count - 1}`,
+        ].filter(Boolean).join(' · '),
         PAGE.margins.left,
         doc.page.height - 38,
         { width: CONTENT_WIDTH, align: 'center' },
@@ -993,7 +1209,14 @@ function applyHeaderFooter(doc: PDFKit.PDFDocument, snapshot: Snapshot) {
   }
 }
 
-export function renderInspectionReportPdf(snapshot: Snapshot): Promise<Buffer> {
+export function renderInspectionReportPdf(
+  snapshot: Snapshot,
+  /**
+   * §286. Absent only where no artifact identity exists yet -- the frozen fixture suites that
+   * render a snapshot outside a report row. A caller that HAS a revision must pass it.
+   */
+  identity: ReportArtifactIdentity | null = null,
+): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({ ...PAGE, bufferPages: true, // §276 / D-013. The PDF's own metadata title, which is what a file manager, a browser
     // tab and an email preview display. It was branded 'InSite' too.
@@ -1016,13 +1239,13 @@ export function renderInspectionReportPdf(snapshot: Snapshot): Promise<Buffer> {
     // (regulatory context) now sits in the Executive Summary's Inspection Record panel, and the
     // advisory statement that used to trail the last page — where it could strand a nearly
     // empty page — is now part of that page's "Basis and Limitations" note.
-    coverPage(doc, snapshot, findings.length);
+    coverPage(doc, snapshot, findings.length, identity);
     executiveSummary(doc, snapshot, findings, correctiveActions);
     findingsSummary(doc, findings, correctiveActions);
-    detailedFindings(doc, findings, analysesByObservation, correctiveActions);
+    detailedFindings(doc, findings, analysesByObservation, correctiveActions, snapshot);
     correctiveActionSummary(doc, findings, correctiveActions);
 
-    applyHeaderFooter(doc, snapshot);
+    applyHeaderFooter(doc, snapshot, identity);
     doc.end();
   });
 }

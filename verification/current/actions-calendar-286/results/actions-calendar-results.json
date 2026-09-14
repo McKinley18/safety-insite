@@ -1,0 +1,569 @@
+{
+  "section": "§286 Batch 5",
+  "api": "http://localhost:4000",
+  "account": "review-286-pro@example.test",
+  "entitlement": {
+    "planCode": "pro",
+    "effectivePlanCode": "pro",
+    "hasProAccess": true,
+    "correctiveActionAssignments": true
+  },
+  "providerCalls": 0,
+  "checks": 79,
+  "failures": 0,
+  "results": [
+    {
+      "id": "A0-GUARD the reachability grep works at all (a known-present caller is found)",
+      "outcome": "PASS",
+      "detail": "createPersistedCorrectiveAction referenced by: app/inspection-workspace/page.tsx"
+    },
+    {
+      "id": "A1 corrective-action LIST is NOT reachable from any customer surface",
+      "outcome": "PASS",
+      "detail": "callers: none"
+    },
+    {
+      "id": "A2 corrective-action STATUS CHANGE is NOT reachable from any customer surface",
+      "outcome": "PASS",
+      "detail": "callers: none"
+    },
+    {
+      "id": "A3 lib/cloudActions.ts — the action tracker's client — is imported by NOTHING",
+      "outcome": "PASS",
+      "detail": "importers: none"
+    },
+    {
+      "id": "B1 an action is created and the server assigns its own identity",
+      "outcome": "PASS",
+      "detail": "201 displayId=ACT-3DAA8620"
+    },
+    {
+      "id": "B2 the priority the customer chose is the priority persisted",
+      "outcome": "PASS",
+      "detail": "high"
+    },
+    {
+      "id": "B3 the responsible party the customer typed is persisted, and the caller is NOT substituted",
+      "outcome": "PASS",
+      "detail": "name=Maintenance lead userId=null"
+    },
+    {
+      "id": "B4 a new action starts open",
+      "outcome": "PASS",
+      "detail": "open"
+    },
+    {
+      "id": "B5 the action appears on the authoritative calendar",
+      "outcome": "PASS",
+      "detail": "corrective_action on 2026-09-21"
+    },
+    {
+      "id": "B6 and on the DAY the customer named, not the UTC day",
+      "outcome": "PASS",
+      "detail": "sent 2026-09-21, calendar says 2026-09-21"
+    },
+    {
+      "id": "B7 there is NO general update route for a corrective action",
+      "outcome": "PASS",
+      "detail": "404"
+    },
+    {
+      "id": "B8 the action closes",
+      "outcome": "PASS",
+      "detail": "200 closed"
+    },
+    {
+      "id": "B9 closure EVIDENCE is retained, with who verified it and when",
+      "outcome": "PASS",
+      "detail": "notes=true verifiedAt=true by=true"
+    },
+    {
+      "id": "B10 closing without evidence is ACCEPTED — closure evidence is not enforced",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "B11 a closed action can be reopened",
+      "outcome": "PASS",
+      "detail": "200 open"
+    },
+    {
+      "id": "B12 reopening does NOT erase the closure evidence that was recorded",
+      "outcome": "PASS",
+      "detail": "notes retained=true"
+    },
+    {
+      "id": "B13 a duplicate submission creates a SECOND action — there is no idempotency key",
+      "outcome": "PASS",
+      "detail": "b50bd51a vs 06500604"
+    },
+    {
+      "id": "B14-GUARD the finding really was finalized, so what follows is not measuring an absence",
+      "outcome": "PASS",
+      "detail": "status=finalized"
+    },
+    {
+      "id": "B14 the corrective action written at finalization is INVISIBLE in the action list",
+      "outcome": "PASS",
+      "detail": "0 action(s) visible"
+    },
+    {
+      "id": "B14b and it is invisible on the calendar too",
+      "outcome": "PASS",
+      "detail": "0 calendar event(s)"
+    },
+    {
+      "id": "B15 the reviewer's confirmed action REPLACES the system one rather than duplicating it",
+      "outcome": "PASS",
+      "detail": "1 action(s), source=reviewer_confirmed"
+    },
+    {
+      "id": "B16-GUARD the other account's action list is a real list, not an error",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "B17 another account cannot SEE this account's corrective actions",
+      "outcome": "PASS",
+      "detail": "0 leaked rows"
+    },
+    {
+      "id": "B18 another account cannot CLOSE this account's corrective action",
+      "outcome": "PASS",
+      "detail": "404"
+    },
+    {
+      "id": "B19 and it does not appear on their calendar either",
+      "outcome": "PASS",
+      "detail": "0 events on the other account's calendar"
+    },
+    {
+      "id": "B20 and the refused write changed nothing",
+      "outcome": "PASS",
+      "detail": "statusCode=open"
+    },
+    {
+      "id": "B21 an unauthenticated caller is refused by the guard, not by the network",
+      "outcome": "PASS",
+      "detail": "401"
+    },
+    {
+      "id": "B22 and the calendar is guarded the same way",
+      "outcome": "PASS",
+      "detail": "401"
+    },
+    {
+      "id": "B23 a FREE account cannot create a corrective action, and the refusal names itself",
+      "outcome": "PASS",
+      "detail": "402 PAID_SUBSCRIPTION_REQUIRED entitlement=correctiveActionAssignments"
+    },
+    {
+      "id": "B24 a FREE account may still READ its own actions and calendar",
+      "outcome": "PASS",
+      "detail": "actions=200 calendar=200"
+    },
+    {
+      "id": "C1 a standalone task is created and is server-owned",
+      "outcome": "PASS",
+      "detail": "201 version=1"
+    },
+    {
+      "id": "C2 the task appears on the calendar on the day it is due",
+      "outcome": "PASS",
+      "detail": "2026-09-21 vs 2026-09-21"
+    },
+    {
+      "id": "C3 the calendar states WHO MAY EDIT each row, and the server decides it",
+      "outcome": "PASS",
+      "detail": "task editable=true action editable=false"
+    },
+    {
+      "id": "C4 changing a due date MOVES the event, and the old day is cleared",
+      "outcome": "PASS",
+      "detail": "2026-09-28, 1 row(s)"
+    },
+    {
+      "id": "C5 and the optimistic version moved with it, so a concurrent edit stays detectable",
+      "outcome": "PASS",
+      "detail": "version=2"
+    },
+    {
+      "id": "C6 an overdue item is still on the calendar, on its own past day",
+      "outcome": "PASS",
+      "detail": "2026-09-13 status=open"
+    },
+    {
+      "id": "C6b OVERDUE is derived by the reader, never stored — the server says only 'open'",
+      "outcome": "PASS",
+      "detail": "server row: {\"kind\":\"task\",\"sourceId\":\"f97b77a8-70e0-49c0-9a17-361f029d33be\",\"date\":\"2026-09-13\",\"title\":\"Overdue probe\",\"description\":null,\"status\":\"open\",\"priority\":\"high"
+    },
+    {
+      "id": "C7 a completed item stays on the calendar and says it is completed",
+      "outcome": "PASS",
+      "detail": "status=completed completedAt=2026-09-14T14:29:06.934Z"
+    },
+    {
+      "id": "C8 a future item is present and is not treated as due",
+      "outcome": "PASS",
+      "detail": "2026-09-28 > 2026-09-14"
+    },
+    {
+      "id": "C9-GUARD the cancellable task is on the calendar BEFORE it is cancelled",
+      "outcome": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "C9 cancelled work leaves the calendar — nobody is asked to act on it",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "C10 several actions due on one day all appear, each as its own event",
+      "outcome": "PASS",
+      "detail": "3/3"
+    },
+    {
+      "id": "C11 the calendar is ordered by date and is stable within a day",
+      "outcome": "PASS",
+      "detail": "ascending by date"
+    },
+    {
+      "id": "C12 no piece of work appears on the calendar twice",
+      "outcome": "PASS",
+      "detail": "71 events, 71 distinct"
+    },
+    {
+      "id": "C13 two consecutive reads of the authoritative calendar agree",
+      "outcome": "PASS",
+      "detail": "71 vs 71 events"
+    },
+    {
+      "id": "C14 work belonging to an inspection cannot be DELETED from the calendar",
+      "outcome": "PASS",
+      "detail": "400 This task belongs to an inspection and is managed from it. Mark it complete instead."
+    },
+    {
+      "id": "C15 but the user's own standalone task is theirs to delete",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "C16 another account cannot delete this account's task",
+      "outcome": "PASS",
+      "detail": "404"
+    },
+    {
+      "id": "C17 another account cannot complete this account's task",
+      "outcome": "PASS",
+      "detail": "404"
+    },
+    {
+      "id": "D1 ordinary: a corrective action stays on 2027-06-17",
+      "outcome": "PASS",
+      "detail": "got 2027-06-17"
+    },
+    {
+      "id": "D2 ordinary: a task stays on 2027-06-17",
+      "outcome": "PASS",
+      "detail": "got 2027-06-17"
+    },
+    {
+      "id": "D3 ordinary: the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2027-06-17 vs task 2027-06-17"
+    },
+    {
+      "id": "D1 month boundary (last day): a corrective action stays on 2027-06-30",
+      "outcome": "PASS",
+      "detail": "got 2027-06-30"
+    },
+    {
+      "id": "D2 month boundary (last day): a task stays on 2027-06-30",
+      "outcome": "PASS",
+      "detail": "got 2027-06-30"
+    },
+    {
+      "id": "D3 month boundary (last day): the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2027-06-30 vs task 2027-06-30"
+    },
+    {
+      "id": "D1 month boundary (first day): a corrective action stays on 2027-07-01",
+      "outcome": "PASS",
+      "detail": "got 2027-07-01"
+    },
+    {
+      "id": "D2 month boundary (first day): a task stays on 2027-07-01",
+      "outcome": "PASS",
+      "detail": "got 2027-07-01"
+    },
+    {
+      "id": "D3 month boundary (first day): the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2027-07-01 vs task 2027-07-01"
+    },
+    {
+      "id": "D1 year boundary (last day): a corrective action stays on 2027-12-31",
+      "outcome": "PASS",
+      "detail": "got 2027-12-31"
+    },
+    {
+      "id": "D2 year boundary (last day): a task stays on 2027-12-31",
+      "outcome": "PASS",
+      "detail": "got 2027-12-31"
+    },
+    {
+      "id": "D3 year boundary (last day): the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2027-12-31 vs task 2027-12-31"
+    },
+    {
+      "id": "D1 year boundary (first day): a corrective action stays on 2028-01-01",
+      "outcome": "PASS",
+      "detail": "got 2028-01-01"
+    },
+    {
+      "id": "D2 year boundary (first day): a task stays on 2028-01-01",
+      "outcome": "PASS",
+      "detail": "got 2028-01-01"
+    },
+    {
+      "id": "D3 year boundary (first day): the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2028-01-01 vs task 2028-01-01"
+    },
+    {
+      "id": "D1 DST spring-forward (US): a corrective action stays on 2027-03-14",
+      "outcome": "PASS",
+      "detail": "got 2027-03-14"
+    },
+    {
+      "id": "D2 DST spring-forward (US): a task stays on 2027-03-14",
+      "outcome": "PASS",
+      "detail": "got 2027-03-14"
+    },
+    {
+      "id": "D3 DST spring-forward (US): the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2027-03-14 vs task 2027-03-14"
+    },
+    {
+      "id": "D1 DST fall-back (US): a corrective action stays on 2027-11-07",
+      "outcome": "PASS",
+      "detail": "got 2027-11-07"
+    },
+    {
+      "id": "D2 DST fall-back (US): a task stays on 2027-11-07",
+      "outcome": "PASS",
+      "detail": "got 2027-11-07"
+    },
+    {
+      "id": "D3 DST fall-back (US): the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2027-11-07 vs task 2027-11-07"
+    },
+    {
+      "id": "D1 leap day: a corrective action stays on 2028-02-29",
+      "outcome": "PASS",
+      "detail": "got 2028-02-29"
+    },
+    {
+      "id": "D2 leap day: a task stays on 2028-02-29",
+      "outcome": "PASS",
+      "detail": "got 2028-02-29"
+    },
+    {
+      "id": "D3 leap day: the two kinds agree with each other",
+      "outcome": "PASS",
+      "detail": "action 2028-02-29 vs task 2028-02-29"
+    },
+    {
+      "id": "D4 the date conversions hold in UTC",
+      "outcome": "PASS",
+      "detail": "25 pass, 0 fail"
+    },
+    {
+      "id": "D4 the date conversions hold in America/New_York",
+      "outcome": "PASS",
+      "detail": "25 pass, 0 fail"
+    },
+    {
+      "id": "D4 the date conversions hold in Australia/Sydney",
+      "outcome": "PASS",
+      "detail": "25 pass, 0 fail"
+    },
+    {
+      "id": "D4 the date conversions hold in Pacific/Kiritimati",
+      "outcome": "PASS",
+      "detail": "25 pass, 0 fail"
+    },
+    {
+      "id": "D4 the date conversions hold in Pacific/Midway",
+      "outcome": "PASS",
+      "detail": "25 pass, 0 fail"
+    },
+    {
+      "id": "E1 every action/calendar operation has an OFFLINE and DATA_LOSS_RISK classification",
+      "outcome": "PASS",
+      "detail": "7 operations classified"
+    }
+  ],
+  "observations": [
+    {
+      "id": "ENT the entitlement state this run measured",
+      "detail": "account=review-286-pro@example.test planCode=pro effectivePlanCode=pro billingTier=pro hasProAccess=true correctiveActionAssignments=true"
+    },
+    {
+      "id": "A0 corrective-action CREATE is reachable",
+      "detail": "Created from the inspection review flow: app/inspection-workspace/page.tsx. A finalized finding also gets a system-generated action written inside the inspection transaction (InspectionService.upsertCorrectiveActionForFinding), so actions exist in the account whether or not the customer typed one."
+    },
+    {
+      "id": "D-050 THE CORRECTIVE-ACTION LIFECYCLE HAS NO CUSTOMER SURFACE",
+      "detail": "`GET /actions`, `PATCH /actions/:id/status` and `GET /actions/export` are implemented, authorized and working on the server -- every assertion in section 1 below passes against them. `lib/cloudActions.ts` implements the client for the first two. NO ROUTE IMPORTS IT, and the route inventory carries no actions surface. The 20 reachable routes are the ones listed by measure:281-route-reachability; none of them lists, filters, assigns, updates, closes, reopens or exports a corrective action. The customer's only view of an action after it is created is the Safety Calendar (read-only: the server sends `editable: false` for a corrective action) and the report PDF. So a corrective action can be RAISED and can never be CLOSED from the product. This is the §285 D-046 shape repeating on a different capability: a correct server half with no client half."
+    },
+    {
+      "id": "D-051 A CORRECTIVE ACTION'S DUE DATE CANNOT BE CHANGED ONCE SET",
+      "detail": "The only mutation the server exposes for a corrective action is `PATCH /actions/:id/status`. There is no route that edits its title, description, priority, assignee or DUE DATE. The direction's calendar scenario 'changed due date moves the event' is therefore not representable for a corrective action at all -- it is representable only for a standalone task, which `PATCH /tasks/:id` supports and which is measured in section 2. A due date is the single most-revised field on a corrective action in practice, and re-issuing the whole action is the only way to move one."
+    },
+    {
+      "id": "D-052 CLOSURE EVIDENCE IS OPTIONAL AND UNVERIFIED",
+      "detail": "`PATCH /actions/:id/status` accepts `statusCode: 'closed'` with no `closureNotes` at all, and when notes ARE absent it preserves whatever was there before rather than recording that this closure had none. It also stamps `verifiedByUserId` and `verifiedAt` on every close, and OutcomeService records the closure as `verificationStatus: 'VERIFIED_STRONG'`, `verificationMethod: 'SUPERVISOR_SIGNOFF'` -- unconditionally, for any caller who can reach the route, including the person who raised the action. Nothing about that close was verified and nobody signed off. Recorded rather than repaired: whether closure requires evidence, and whether the raiser may verify their own closure, is a product policy decision."
+    },
+    {
+      "id": "B12-NOTE the reopened action still carries a verification stamp",
+      "detail": "`verifiedAt` / `verifiedByUserId` survive a reopen and are not cleared, so an action that is OPEN can still read as verified. The values are truthful about the earlier closure and misleading about the current state; a reader of the row alone cannot tell which."
+    },
+    {
+      "id": "D-053 CORRECTIVE-ACTION CREATION IS NOT IDEMPOTENT",
+      "detail": "`POST /actions` carries no `clientRequestId` and no uniqueness constraint, unlike `POST /inspections` and `POST /inspections/:id/observations`, which both de-duplicate on one. A double-tap, a retry after a timeout, or an offline queue replaying its outbox therefore produces two identical open actions on the calendar. The ONE de-duplication that does exist is finding-scoped: a reviewer-confirmed action REPLACES the system-generated one for the same finding rather than adding beside it, which is asserted below and is a different mechanism."
+    },
+    {
+      "id": "D-056 THE FINALIZE-TIME CORRECTIVE ACTION IS WRITTEN UNOWNED AND UNDATED",
+      "detail": "`InspectionService.upsertCorrectiveActionForFinding` runs inside the inspection transaction and writes the row with NO `ownerUserId`, NO `organizationId`, NO `displayId` and NO `dueDate` -- it has no authenticated user context there to take them from. Both customer reads then exclude it: `GET /actions` filters `organizationId IS NULL AND ownerUserId = me`, which an unowned row never satisfies, and `GET /calendar` applies the same scope AND requires a due date. Measured directly on the review database: 27 rows with `source='hazlenz_finding_scoped'`, every one with `ownerUserId` NULL and `displayId` NULL. IN THE NORMAL FLOW THIS IS TRANSIENT: finishing the inspection creates the reviewer's confirmed action, which UPSERTS onto this row and adopts the scope and the due date (B15). It becomes permanent for a finding that is finalized on an inspection the customer never finishes -- the row then exists forever, owned by nobody, counted by nothing, and reachable only through the report. Recorded rather than repaired: giving the row a scope means deciding whether a finalize-time action is a real piece of the customer's due work or a placeholder for the one they confirm at finish, and that i"
+    },
+    {
+      "id": "ENT-FREE the entitlement shape of this area",
+      "detail": "Free account entitlements: correctiveActionAssignments=false. Creating a corrective action is Pro-only; reading actions and the calendar is not gated, so a downgraded account keeps what it already raised. Task creation (`POST /tasks`) carries NO entitlement guard at all, so a Free account can put work on its own calendar but cannot raise a corrective action against a finding."
+    },
+    {
+      "id": "C3-AUTHORITY what is authoritative, cached, and derived",
+      "detail": "SERVER AUTHORITATIVE: an action's and a task's existence, title, description, due date, priority, status, assignee, closure notes, verification stamp, and a task's optimistic `version`. Also `editable`, which the server sends and the client copies rather than deriving. RECOVERABLE LOCAL PENDING STATE: the calendar's outbox, which holds a task created while offline under a client ref until it can be written; it is a QUEUE, never a second record. DISPLAY-ONLY DERIVED: `Overdue`, computed in the browser against the local day from the server's date and status and never persisted -- correct, because whether an open item is late depends on the day the reader is looking at it on. `priority` and `status` are also re-labelled for display (`urgent` -> `Critical`, `closed` -> `Completed`) without changing the stored value."
+    },
+    {
+      "id": "D4-NOTE what the multi-zone run does and does not prove",
+      "detail": "The helper suite was re-run under UTC, America/New_York, Australia/Sydney, Pacific/Kiritimati, Pacific/Midway -- spanning UTC+14 to UTC-11 -- so the day-preserving behaviour is not a property of this machine's offset. It exercises the PURE conversions. The end-to-end round trips above ran only in the stack's own zone, because the server would have to be restarted to move it; a cross-zone end-to-end run is a separate instrument and is recorded as not performed rather than implied."
+    },
+    {
+      "id": "E2 the exact failure modes the offline/sync architecture (D-042) must solve",
+      "detail": "1. `POST /actions` has no idempotency key, so no safe retry or outbox is possible for it without one -- an outbox built on today's route would duplicate actions on every replay (D-053). 2. Corrective actions have no outbox at all, so an action raised in the field with no signal is lost (VULNERABLE). 3. Corrective actions have no update route, so a queued edit has nothing to replay against (D-051). 4. Action closure has no client, so the most field-critical write in this area -- closing out work at the point it was done -- cannot be queued because it cannot be made (D-050)."
+    }
+  ],
+  "offlineInventory": [
+    {
+      "operation": "create corrective action",
+      "route": "POST /actions",
+      "serverAuthoritative": true,
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "VULNERABLE",
+      "why": "No client-side outbox exists for actions -- the calendar's outbox holds TASKS only. An action typed with no connection is lost with the page, and because POST /actions is not idempotent (D-053) a retry-based outbox cannot be added without an idempotency key."
+    },
+    {
+      "operation": "edit corrective action",
+      "route": "— none —",
+      "serverAuthoritative": true,
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "why": "Not representable online either (D-051), so there is nothing to lose offline."
+    },
+    {
+      "operation": "close corrective action",
+      "route": "PATCH /actions/:id/status",
+      "serverAuthoritative": true,
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "why": "Not reachable from any customer surface (D-050), so no customer write can be queued or lost. The risk is NONE_KNOWN because the capability is absent, not because it is safe."
+    },
+    {
+      "operation": "change corrective action due date",
+      "route": "— none —",
+      "serverAuthoritative": true,
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "why": "Not representable (D-051)."
+    },
+    {
+      "operation": "create calendar task",
+      "route": "POST /tasks",
+      "serverAuthoritative": true,
+      "offline": "PARTIAL",
+      "dataLossRisk": "RECOVERABLE",
+      "why": "The calendar keeps a pending OUTBOX entry under a client ref and writes it when the server is reachable. The entry is a queued write, not a second record, and the UI marks it pending rather than showing it as saved."
+    },
+    {
+      "operation": "complete calendar task",
+      "route": "PATCH /tasks/:id/status",
+      "serverAuthoritative": true,
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "why": "completeCalendarEvent REFUSES on a pending item rather than completing it locally: a local completion would sync as an OPEN row and then need a second write to close it."
+    },
+    {
+      "operation": "read the calendar",
+      "route": "GET /calendar",
+      "serverAuthoritative": true,
+      "offline": "PARTIAL",
+      "dataLossRisk": "NONE_KNOWN",
+      "why": "readServerCalendar never throws and distinguishes 'the server says you have nothing' from 'we could not ask' (reachable:false with a reason), which is the distinction §275's zero-event calendar lacked. The cached snapshot is shown as a cache."
+    }
+  ],
+  "dateBoundaries": [
+    {
+      "label": "ordinary",
+      "sent": "2027-06-17",
+      "actionDate": "2027-06-17",
+      "taskDate": "2027-06-17"
+    },
+    {
+      "label": "month boundary (last day)",
+      "sent": "2027-06-30",
+      "actionDate": "2027-06-30",
+      "taskDate": "2027-06-30"
+    },
+    {
+      "label": "month boundary (first day)",
+      "sent": "2027-07-01",
+      "actionDate": "2027-07-01",
+      "taskDate": "2027-07-01"
+    },
+    {
+      "label": "year boundary (last day)",
+      "sent": "2027-12-31",
+      "actionDate": "2027-12-31",
+      "taskDate": "2027-12-31"
+    },
+    {
+      "label": "year boundary (first day)",
+      "sent": "2028-01-01",
+      "actionDate": "2028-01-01",
+      "taskDate": "2028-01-01"
+    },
+    {
+      "label": "DST spring-forward (US)",
+      "sent": "2027-03-14",
+      "actionDate": "2027-03-14",
+      "taskDate": "2027-03-14"
+    },
+    {
+      "label": "DST fall-back (US)",
+      "sent": "2027-11-07",
+      "actionDate": "2027-11-07",
+      "taskDate": "2027-11-07"
+    },
+    {
+      "label": "leap day",
+      "sent": "2028-02-29",
+      "actionDate": "2028-02-29",
+      "taskDate": "2028-02-29"
+    }
+  ]
+}

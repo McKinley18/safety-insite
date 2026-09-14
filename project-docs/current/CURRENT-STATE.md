@@ -1,5 +1,15 @@
 # Safety InSite — current state
 
+> ### RELEASE AUTHORITY MOVED — §288
+>
+> The authoritative statement of what prevents release is now
+> [`PRE-PRODUCTION-RELEASE-REGISTER.md`](PRE-PRODUCTION-RELEASE-REGISTER.md), which answers the
+> question separately for three thresholds: **controlled production deployment**,
+> **internal/owner production use**, and **external controlled beta**.
+>
+> This document remains accurate as narrative and as history. Where it states a release
+> verdict, **the register is authoritative.**
+
 **This is the authoritative current-state document for the product.** Read it together with
 [`../architecture/HAZLENZ-INVARIANTS.md`](../architecture/HAZLENZ-INVARIANTS.md); those two are the
 default context, about 2,500 words. Machine-readable equivalent:

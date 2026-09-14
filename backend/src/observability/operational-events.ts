@@ -68,6 +68,18 @@ export const OPERATIONAL_EVENTS = [
   'report.generation_failed',
   'schema.readiness_failed',
   'migration.failed',
+  // §286 / D-054. The outcome-intelligence loop failed to record a corrective-action closure.
+  // The closure itself is unaffected — see CorrectiveActionsService.recordClosureIntelligence.
+  'action.closure_intelligence_failed',
+  /**
+   * §287 / D-054. A REQUIRED AUDIT ROW WAS NOT PERSISTED, and the state change it describes HAS
+   * committed. This is the fallback record of an audit row that is missing from the audit trail:
+   * it carries the actor, the resource and the transition precisely so the gap is reconstructable.
+   * It is deliberately not silent and deliberately not fatal — see the call site.
+   */
+  'action.audit_write_failed',
+  /** §287 / D-054. An assignee notification failed after a committed transition. */
+  'action.notification_failed',
 ] as const;
 export type OperationalEvent = (typeof OPERATIONAL_EVENTS)[number];
 
@@ -94,6 +106,15 @@ const SEVERITY: Record<OperationalEvent, OperationalSeverity> = {
   'report.generation_failed': 'error',
   'schema.readiness_failed': 'error',
   'migration.failed': 'error',
+  // WARNING, not error: the customer's closure completed and was audited. What did not happen is
+  // the learning record, which is a degradation of an internal capability rather than a failure of
+  // the operation the customer asked for. A rising rate of these still needs an operator's eye.
+  'action.closure_intelligence_failed': 'warning',
+  // ERROR, not warning: an audit row that should exist does not, on a compliance product. The
+  // customer's operation succeeded, so it is not a failure of the request — it is a failure of
+  // the record, which is the more serious of the two here.
+  'action.audit_write_failed': 'error',
+  'action.notification_failed': 'warning',
 };
 
 const MAX_VALUE_LENGTH = 200;

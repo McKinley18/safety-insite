@@ -236,10 +236,14 @@ export default function DashboardPage() {
   const tiles = useMemo(() => {
     if (!counters) return null;
     return [
+      // §285 (D-044). The four approved operational KPIs. `Reports` moved off the board for
+      // `Findings` -- a report is an OUTPUT of an inspection, and how many of them exist says less
+      // about the state of safety work than how many hazards are on the books. `Overdue` carries
+      // its noun, because a bare "Overdue" beside three counted nouns does not say overdue WHAT.
       { key: "inspections", label: "Inspections", description: "Records on this account", value: counters.inspections },
-      { key: "reports", label: "Reports", description: "Generated report packages", value: counters.reports },
+      { key: "findings", label: "Findings", description: "Hazards recorded across inspections", value: counters.findings },
       { key: "openActions", label: "Open Actions", description: "Active follow-up work", value: counters.openActions },
-      { key: "overdue", label: "Overdue", description: "Needs attention", value: counters.overdue },
+      { key: "overdue", label: "Overdue Actions", description: "Past their due date", value: counters.overdue },
     ];
   }, [counters]);
 

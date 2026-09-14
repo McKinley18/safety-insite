@@ -1,0 +1,105 @@
+{
+  "account": "review-285@example.test",
+  "entitlement": {
+    "planClaim": "free",
+    "note": "The findings aggregate carries NO entitlement gate by design; this run is on the plan named above."
+  },
+  "expected": {
+    "inspections": 9,
+    "findings": 8
+  },
+  "detailCrossCheck": 8,
+  "results": [
+    {
+      "id": "S1 the findingCount aggregate equals the findings the detail route composes",
+      "outcome": "PASS",
+      "detail": "aggregate=8 detail=8"
+    },
+    {
+      "id": "S2 the aggregate carries a number for EVERY row, so the sum is not partial",
+      "outcome": "PASS",
+      "detail": "number,number,number,number,number,number,number,number,number"
+    },
+    {
+      "id": "K0 the board shows exactly four tiles",
+      "outcome": "PASS",
+      "detail": "Inspections=9 | Findings=8 | Open Actions=0 | Overdue Actions=0"
+    },
+    {
+      "id": "K1 the four labels are the approved KPI set",
+      "outcome": "PASS",
+      "detail": "Inspections | Findings | Open Actions | Overdue Actions"
+    },
+    {
+      "id": "K2 Inspections EQUALS the server's own count, not merely a plausible number",
+      "outcome": "PASS",
+      "detail": "tile=9 server=9"
+    },
+    {
+      "id": "K3 Findings EQUALS the server's own aggregate",
+      "outcome": "PASS",
+      "detail": "tile=8 server=8"
+    },
+    {
+      "id": "K4 no tile carries a state caption when everything is reachable",
+      "outcome": "PASS",
+      "detail": ",,,"
+    },
+    {
+      "id": "K5 THE FIXTURE IS NOT EMPTY, so K2/K3 are not satisfied by zero",
+      "outcome": "PASS",
+      "detail": "inspections=9 findings=8"
+    },
+    {
+      "id": "X1a Inspections shows no number when its source cannot be reached",
+      "outcome": "PASS",
+      "detail": "—"
+    },
+    {
+      "id": "X1b Findings shows no number either — it rides on the same response",
+      "outcome": "PASS",
+      "detail": "—"
+    },
+    {
+      "id": "X1c and both say why",
+      "outcome": "PASS",
+      "detail": "Unavailable offline / Unavailable offline"
+    },
+    {
+      "id": "X2a Inspections still shows its number — the response WAS reachable",
+      "outcome": "PASS",
+      "detail": "9"
+    },
+    {
+      "id": "X2b FINDINGS DOES NOT FALL TO A FALSE LOWER NUMBER when the field is absent",
+      "outcome": "PASS",
+      "detail": "findings tile read \"—\""
+    },
+    {
+      "id": "X2c and it says it does not know",
+      "outcome": "PASS",
+      "detail": "Unavailable offline"
+    },
+    {
+      "id": "X3a Open Actions shows no number",
+      "outcome": "PASS",
+      "detail": "—"
+    },
+    {
+      "id": "X3b Overdue Actions shows no number",
+      "outcome": "PASS",
+      "detail": "—"
+    },
+    {
+      "id": "X3c INSPECTIONS IS NOT DRAGGED DOWN WITH THEM — one source failing is not four",
+      "outcome": "PASS",
+      "detail": "9"
+    },
+    {
+      "id": "X3d and neither is Findings",
+      "outcome": "PASS",
+      "detail": "8"
+    }
+  ],
+  "failures": 0
+}

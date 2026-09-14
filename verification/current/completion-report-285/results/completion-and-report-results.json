@@ -1,0 +1,265 @@
+{
+  "instrument": "§285 completion + report authority + immutability",
+  "account": "review-285-pro@example.test",
+  "entitlement": {
+    "planClaim": "pro",
+    "note": "Recorded per §285 instrument discipline. Report generation and completion carry no entitlement gate on this path."
+  },
+  "providerCalls": 0,
+  "results": [
+    {
+      "id": "P1 an observation with NO HAZARD IDENTIFIED cannot be completed",
+      "outcome": "PASS",
+      "detail": "HazLenz state G — no hazard identified: ready=false reasons=NO_CURRENT_FINDING"
+    },
+    {
+      "id": "P2 an inspection with no observation cannot be completed",
+      "outcome": "PASS",
+      "detail": "reasons=NO_OBSERVATION,NO_CURRENT_FINDING"
+    },
+    {
+      "id": "P3 an inspection whose observations produced no persisted finding cannot be completed",
+      "outcome": "PASS",
+      "detail": "reasons=NO_CURRENT_FINDING"
+    },
+    {
+      "id": "P4 state A is completable (finding finalized with a current review)",
+      "outcome": "PASS",
+      "detail": "ready=true findings=1 reviewed=1 reportable=1"
+    },
+    {
+      "id": "P4 state C is completable (finding finalized with a current review)",
+      "outcome": "PASS",
+      "detail": "ready=true findings=1 reviewed=1 reportable=1"
+    },
+    {
+      "id": "P4 state D is completable (finding finalized with a current review)",
+      "outcome": "PASS",
+      "detail": "ready=true findings=1 reviewed=1 reportable=1"
+    },
+    {
+      "id": "P4 state E is completable (finding finalized with a current review)",
+      "outcome": "PASS",
+      "detail": "ready=true findings=3 reviewed=3 reportable=3"
+    },
+    {
+      "id": "P4 state F is completable (finding finalized with a current review)",
+      "outcome": "PASS",
+      "detail": "ready=true findings=1 reviewed=1 reportable=1"
+    },
+    {
+      "id": "C1 a ready inspection completes",
+      "outcome": "PASS",
+      "detail": "201 completed"
+    },
+    {
+      "id": "C2 completion stamps completedAt",
+      "outcome": "PASS",
+      "detail": "2026-09-14T13:07:19.547Z"
+    },
+    {
+      "id": "C3 A DUPLICATE COMPLETION IS REFUSED — the optimistic version guard catches the replay",
+      "outcome": "PASS",
+      "detail": "409 \"Inspection was modified by another request.\""
+    },
+    {
+      "id": "C4 and the record is not damaged by it",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "C5 the server refuses to complete the no-finding inspection",
+      "outcome": "PASS",
+      "detail": "400 This inspection has no findings to report. Record a finding, or add an observation that produces one, before finalizing."
+    },
+    {
+      "id": "C6 AND THE MESSAGE NAMES THE REASON THAT IS ACTUALLY BLOCKING",
+      "outcome": "PASS",
+      "detail": "This inspection has no findings to report. Record a finding, or add an observation that produces one, before finalizing."
+    },
+    {
+      "id": "C7 the readiness endpoint the Finish screen reads says the same thing",
+      "outcome": "PASS",
+      "detail": "NO_CURRENT_FINDING :: This inspection has no findings to report. Record a finding, or add an observation that produces one, before finalizing."
+    },
+    {
+      "id": "R1 a report generates from a completed inspection",
+      "outcome": "PASS",
+      "detail": "201"
+    },
+    {
+      "id": "R2 the report is readable back for its inspection",
+      "outcome": "PASS",
+      "detail": "{\"reportId\":\"4044a929-5bc6-4d31-b150-7646f503e489\",\"inspectionId\":\"438d5d3c-fc33-446a-b2f3-39932df709ae\",\"versionId\":\"cef84714-9aa7-4aa7-b473-a3aa5c3d2f14\",\"ver"
+    },
+    {
+      "id": "R3 the first issue produced a current revision",
+      "outcome": "PASS",
+      "detail": "6 revision(s)"
+    },
+    {
+      "id": "R4 revision 1 carries a checksum and a generated timestamp",
+      "outcome": "PASS",
+      "detail": "checksum=5e2822ef89bb at=2026-09-14T13:07:19.589Z"
+    },
+    {
+      "id": "R5 revision 1 downloads, and its BYTES hash to the checksum the record claims",
+      "outcome": "PASS",
+      "detail": "downloaded=5e2822ef89bb recorded=5e2822ef89bb bytes=7091"
+    },
+    {
+      "id": "R6 the artifact is a PDF",
+      "outcome": "PASS",
+      "detail": "%PDF-1.3"
+    },
+    {
+      "id": "A1 the snapshot carries the inspection's findings, under their observations",
+      "outcome": "PASS",
+      "detail": "1 observation(s), 1 finding(s)"
+    },
+    {
+      "id": "A2 every snapshot finding declares its SOURCE — HazLenz decomposition or inspector-authored",
+      "outcome": "PASS",
+      "detail": "hazlenz_decomposition"
+    },
+    {
+      "id": "A3 no superseded or dismissed finding reaches the report",
+      "outcome": "PASS",
+      "detail": "finalized"
+    },
+    {
+      "id": "A4 every reported finding carries the review that finalized it",
+      "outcome": "PASS",
+      "detail": "finalized:reviewed"
+    },
+    {
+      "id": "A5 the review itself travels with the finding, not just its id — so the report can say WHO",
+      "outcome": "PASS",
+      "detail": "review-present"
+    },
+    {
+      "id": "A6 a HazLenz-derived finding names the analysis it came from",
+      "outcome": "PASS",
+      "detail": "hazlenz_decomposition:traced"
+    },
+    {
+      "id": "A7 the reviewer's disposition is carried separately from HazLenz's conclusion",
+      "outcome": "PASS",
+      "detail": "single"
+    },
+    {
+      "id": "I1 a completed inspection can be reopened by its owner",
+      "outcome": "PASS",
+      "detail": "201"
+    },
+    {
+      "id": "I2 a material change is accepted while reopened",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "I3 it completes again",
+      "outcome": "PASS",
+      "detail": "201"
+    },
+    {
+      "id": "I4 a successor report generates",
+      "outcome": "PASS",
+      "detail": "201"
+    },
+    {
+      "id": "I5 THE ISSUED REVISION IS RETAINED — a successor was ADDED, not substituted",
+      "outcome": "PASS",
+      "detail": "6 -> 7, revision 6 still present: true"
+    },
+    {
+      "id": "I6 revision 1 is MARKED SUPERSEDED",
+      "outcome": "PASS",
+      "detail": "superseded"
+    },
+    {
+      "id": "I7 revision 1 is LINKED to its successor",
+      "outcome": "PASS",
+      "detail": "d534ae5a-54d0-422f-8a31-2869824bee9b -> d534ae5a-54d0-422f-8a31-2869824bee9b"
+    },
+    {
+      "id": "I8 revision 1's recorded checksum is UNCHANGED",
+      "outcome": "PASS",
+      "detail": "5e2822ef89bb vs 5e2822ef89bb"
+    },
+    {
+      "id": "I8b and the successor is marked current, so there is one unambiguous report",
+      "outcome": "PASS",
+      "detail": "v1.isCurrent=false v2.isCurrent=true"
+    },
+    {
+      "id": "I9 REVISION 1 IS STILL DOWNLOADABLE after its successor exists",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "I10 AND IT IS BYTE-IDENTICAL to what was issued",
+      "outcome": "PASS",
+      "detail": "5e2822ef89bb vs 5e2822ef89bb (7091 vs 7091 bytes)"
+    },
+    {
+      "id": "I11 the successor is a DIFFERENT artifact, not the same bytes re-stamped",
+      "outcome": "PASS",
+      "detail": "fbf8341fe036 vs 5e2822ef89bb"
+    },
+    {
+      "id": "I12 and the successor's bytes hash to ITS recorded checksum",
+      "outcome": "PASS",
+      "detail": "fbf8341fe036 vs fbf8341fe036"
+    },
+    {
+      "id": "I13 regenerating with NOTHING CHANGED does not manufacture a revision",
+      "outcome": "PASS",
+      "detail": "7 -> 7 after a replay (201)"
+    },
+    {
+      "id": "M0 the multi-finding inspection completes and reports",
+      "outcome": "PASS",
+      "detail": "201"
+    },
+    {
+      "id": "M1 every finding on the inspection reaches the report distinctly",
+      "outcome": "PASS",
+      "detail": "3 findings, 3 distinct ids"
+    },
+    {
+      "id": "M2 each finding keeps its OWN hazard category",
+      "outcome": "PASS",
+      "detail": "Egress | Powered industrial trucks | Energy control"
+    },
+    {
+      "id": "M3 STANDARDS DO NOT CROSS-CONTAMINATE — no two findings carry the identical citation set",
+      "outcome": "PASS",
+      "detail": "29 CFR 1910.37(a)(3) || 29 CFR 1910.178(m)(5)(i) || 29 CFR 1910.147(c)(4)"
+    },
+    {
+      "id": "M5 each finding is bound to its own observation",
+      "outcome": "PASS",
+      "detail": "9900b71e,9900b71e,9900b71e"
+    }
+  ],
+  "observations": [
+    {
+      "id": "PRODUCT-Q1 a safe/negated inspection is not completable",
+      "detail": "HazLenz state G identified no hazard, so the inspection has zero findings and the completion contract refuses it with NO_CURRENT_FINDING. An inspector who walks an area and finds nothing has no way to close the record. Recorded, not changed: the completion policy is the product owner's."
+    },
+    {
+      "id": "AUTHORITY-1 the snapshot's provenance fields",
+      "detail": "Each finding carries: source=hazlenz_decomposition, status, finalReviewId + the embedded finalReview, reviewerDisposition, originatingAnalysisId, selectedAnalysisId, knowledgeReleaseId and its own riskSnapshot. The structure can express every provenance class §285 names. Whether the PDF RENDERS them is reviewed separately."
+    },
+    {
+      "id": "D-046 the revision history is server-only",
+      "detail": "GET /inspection-reports returns one row per report ([\"id\",\"inspectionId\",\"createdAt\",\"reportUpdatedAt\",\"status\",\"checksum\",\"sizeBytes\",\"inspection\"]). The client calls only /inspection-reports and /inspection-reports/:id/download. It never calls /revisions and never calls /versions/:version/download, so a customer cannot see that a superseded revision exists, cannot tell which report they filed with a client, and cannot retrieve it. The server retains it byte-identically; the product does not offer it."
+    },
+    {
+      "id": "M4 NOT_EXERCISED — severity/risk parity cannot be measured on these fixtures",
+      "detail": "0 of 3 findings carry a riskSnapshot. The synthetic HazLenz seeds persist findings without running computeFindingRisk, so riskSnapshot is NULL on every one. The finding-level severity rule, and therefore its parity across the workspace, the finding review, the report record and the PDF, is NOT EXERCISED by this run. A fixture that populates riskSnapshot is a prerequisite for that dimension."
+    }
+  ],
+  "failures": 0
+}

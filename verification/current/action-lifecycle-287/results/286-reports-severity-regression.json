@@ -1,0 +1,339 @@
+{
+  "section": "§286",
+  "api": "http://localhost:4000",
+  "account": "review-287-pro@example.test",
+  "providerCalls": 0,
+  "checks": 63,
+  "failures": 0,
+  "results": [
+    {
+      "id": "Z1 an inspection with no observations is NOT ready",
+      "outcome": "PASS",
+      "detail": "{\"ready\":false,\"reasons\":[\"NO_OBSERVATION\"],\"message\":\"At least one observation is required.\",\"observationCount\":0,\"findingCount\":0,\"reviewedCount\":0,\"zeroReportableFindings\":false,\"reportableCount\":0,\"blockingFindingIds\":[]}"
+    },
+    {
+      "id": "Z1b and it is not mistaken for a zero-finding inspection",
+      "outcome": "PASS",
+      "detail": "zeroReportable=false observations=0"
+    },
+    {
+      "id": "Z2 an inspection with observations and no findings IS ready",
+      "outcome": "PASS",
+      "detail": "{\"ready\":true,\"reasons\":[],\"message\":\"\",\"observationCount\":2,\"findingCount\":0,\"reviewedCount\":0,\"zeroReportableFindings\":true,\"reportableCount\":0,\"blockingFindingIds\":[]}"
+    },
+    {
+      "id": "Z2b and it says so in its own field rather than leaving it to be inferred",
+      "outcome": "PASS",
+      "detail": "{\"ready\":true,\"reasons\":[],\"message\":\"\",\"observationCount\":2,\"findingCount\":0,\"reviewedCount\":0,\"zeroReportableFindings\":true,\"reportableCount\":0,\"blockingFindingIds\":[]}"
+    },
+    {
+      "id": "Z3 an inspection with an unreviewed active finding is STILL refused",
+      "outcome": "PASS",
+      "detail": "{\"ready\":false,\"reasons\":[\"FINDING_NEEDS_REVIEW\"],\"message\":\"Every current finding requires a completed human review before finalization.\",\"observationCount\":1,\"findingCount\":1,\"reviewedCount\":0,\"zeroReportableFindings\":true,\"reportableCount\":0,\"blockingFindingIds\":[\"ff24d0a6-905f-41db-b8ef-cac3fe23fa72\"]}"
+    },
+    {
+      "id": "Z3b and removing the finding requirement did not remove the review requirement",
+      "outcome": "PASS",
+      "detail": "[\"FINDING_NEEDS_REVIEW\"]"
+    },
+    {
+      "id": "Z4 the zero-finding inspection COMPLETES",
+      "outcome": "PASS",
+      "detail": "201 {\"id\":\"fe913023-cad8-41a2-8103-49373d136c83\",\"organizationId\":null,\"ownerUserId\":\"37bfdc62-27fa-4f1e-a927-f655dd8312b1\",\"createdByUserId\":\"37bfdc62-27fa-4f1e-a9"
+    },
+    {
+      "id": "Z4b and the completed record is stamped, so it is distinguishable from an open one",
+      "outcome": "PASS",
+      "detail": "status=completed completedAt=2026-09-14T15:21:09.364Z"
+    },
+    {
+      "id": "Z5 an inspection whose only candidate was DISMISSED is ready and reports zero",
+      "outcome": "PASS",
+      "detail": "{\"ready\":true,\"reasons\":[],\"message\":\"\",\"observationCount\":1,\"findingCount\":1,\"reviewedCount\":1,\"zeroReportableFindings\":true,\"reportableCount\":0,\"blockingFindingIds\":[]}"
+    },
+    {
+      "id": "Z6 a zero-finding completed inspection can produce its report",
+      "outcome": "PASS",
+      "detail": "201 {\"reportId\":\"19501463-59c7-4661-821c-21119aa71227\",\"inspectionId\":\"fe913023-cad8-41a2-8103-49373d136c83\",\"versionId\":\"fa21bffd-9385-445f-849f-66e7d4a47fe1\",\"version\":1,\"revision\":1,\"status\":\"generated"
+    },
+    {
+      "id": "Z6b and the artifact downloads",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "Z7 the report states the bounded zero-finding sentence",
+      "outcome": "PASS",
+      "detail": " SAFETY INSITE Inspection Report Field Safety Inspection Record Northline Plant 2 §286 Z2 — walkthrough with no hazard identified Inspection date: Septembe"
+    },
+    {
+      "id": "Z8 the zero-finding report never claims the workplace is safe",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "Z8 the zero-finding report never claims no hazards exist",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "Z8 the zero-finding report never claims the employer is compliant",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "Z8 the zero-finding report never claims OSHA/MSHA compliance is established",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "Z8 the zero-finding report never guarantees absence of unsafe conditions",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "Z8-GUARD the falsification ran against real extracted text, not an empty string",
+      "outcome": "PASS",
+      "detail": "3700 chars"
+    },
+    {
+      "id": "Z9 the zero-finding report still records WHAT WAS INSPECTED",
+      "outcome": "PASS",
+      "detail": "observations section present"
+    },
+    {
+      "id": "R0 the first revision generates",
+      "outcome": "PASS",
+      "detail": "201 {\"reportId\":\"0983355b-082f-4e69-b81c-985ce1b2e85a\",\"inspectionId\":\"945f9a22-5abb-46b6-9577-cb0f1c02225d\",\"versionId\":\"0416e44d-5070-4803-9947-11f8f4e72827\",\"ver"
+    },
+    {
+      "id": "P1 the issued artifact names the record and its own revision",
+      "outcome": "PASS",
+      "detail": "inspection #8; revision line Report Revision 1"
+    },
+    {
+      "id": "P1b and states when it was issued",
+      "outcome": "PASS",
+      "detail": "Issued 09/14/2026 11:21 AM"
+    },
+    {
+      "id": "P1c and the revision travels on the running footer of every page after the cover",
+      "outcome": "PASS",
+      "detail": "5 occurrences"
+    },
+    {
+      "id": "P6 regenerating an unchanged inspection still replays to the existing revision",
+      "outcome": "PASS",
+      "detail": "count=1 revision=1"
+    },
+    {
+      "id": "R1 finishing again ISSUES A SUCCESSOR rather than replacing the report",
+      "outcome": "PASS",
+      "detail": "201 revision=2"
+    },
+    {
+      "id": "R2 the history states which revision is CURRENT",
+      "outcome": "PASS",
+      "detail": "current=2"
+    },
+    {
+      "id": "R3 the superseded revision is MARKED superseded",
+      "outcome": "PASS",
+      "detail": "superseded"
+    },
+    {
+      "id": "R4 and says which revision replaced it, BY NUMBER",
+      "outcome": "PASS",
+      "detail": "supersededByRevision=2"
+    },
+    {
+      "id": "R5 the superseded revision is still offered for download",
+      "outcome": "PASS",
+      "detail": "downloadable=true"
+    },
+    {
+      "id": "R6 the history carries each revision's issue time",
+      "outcome": "PASS",
+      "detail": "2026-09-14T15:21:09.501Z -> 2026-09-14T15:21:09.572Z"
+    },
+    {
+      "id": "R7 the SUPERSEDED revision downloads through the route the product now builds",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "R8 and it is byte-identical to what was issued",
+      "outcome": "PASS",
+      "detail": "c93baa172a3b6568 vs c93baa172a3b6568"
+    },
+    {
+      "id": "P3 the historical artifact was NOT rewritten to say it is superseded",
+      "outcome": "PASS",
+      "detail": "no superseded marking in the immutable bytes"
+    },
+    {
+      "id": "P2 the successor states its OWN revision number",
+      "outcome": "PASS",
+      "detail": "Report Revision 2"
+    },
+    {
+      "id": "P2b the two artifacts are genuinely different documents",
+      "outcome": "PASS",
+      "detail": "57feea879e4dacba vs c93baa172a3b6568"
+    },
+    {
+      "id": "C1 the LIBRARY states the current revision, and it is the server's",
+      "outcome": "PASS",
+      "detail": "card=2 history=2"
+    },
+    {
+      "id": "C2 the library's issued-revision count matches the retained artifacts",
+      "outcome": "PASS",
+      "detail": "card=2"
+    },
+    {
+      "id": "C3 the CHECKSUM agrees between the library, the history and the actual bytes",
+      "outcome": "PASS",
+      "detail": "57feea879e4dacba / 57feea879e4dacba / 57feea879e4dacba"
+    },
+    {
+      "id": "C3b and the superseded revision's recorded checksum still matches its retained bytes",
+      "outcome": "PASS",
+      "detail": "c93baa172a3b6568 vs c93baa172a3b6568"
+    },
+    {
+      "id": "C4 the ISSUE TIME agrees between the library and the history",
+      "outcome": "PASS",
+      "detail": "2026-09-14T15:21:09.572Z vs 2026-09-14T15:21:09.572Z"
+    },
+    {
+      "id": "C5 the ARTIFACT's printed issue time is the server's recorded issue time",
+      "outcome": "PASS",
+      "detail": "expected \"09/14/2026 11:21 AM\"; found \"Issued 09/14/2026 11:21 AM\""
+    },
+    {
+      "id": "C5b and the superseded artifact still carries ITS OWN issue time, not the successor's",
+      "outcome": "PASS",
+      "detail": "rev1 expected \"09/14/2026 11:21 AM\""
+    },
+    {
+      "id": "C-FALSIFY the revision assertions can fail — a revision line is genuinely required",
+      "outcome": "PASS",
+      "detail": "each artifact states only its own revision"
+    },
+    {
+      "id": "S7 a severity-affecting authoritative change produces a NEW REVISION",
+      "outcome": "PASS",
+      "detail": "201 revision=2"
+    },
+    {
+      "id": "S7b the SUPERSEDED artifact still states the severity that was issued with it",
+      "outcome": "PASS",
+      "detail": "revision 1 printed High, was issued at High"
+    },
+    {
+      "id": "S7c the SUCCESSOR states the reviewer's new severity",
+      "outcome": "PASS",
+      "detail": "revision 2 printed Critical, reviewer confirmed Critical"
+    },
+    {
+      "id": "S7d the two revisions genuinely differ on severity, so this was not a vacuous pass",
+      "outcome": "PASS",
+      "detail": "High -> Critical"
+    },
+    {
+      "id": "S7e the revision history reflects the severity-driven successor",
+      "outcome": "PASS",
+      "detail": "[{\"revision\":2,\"status\":\"generated\"},{\"revision\":1,\"status\":\"superseded\"}]"
+    },
+    {
+      "id": "SP-GUARD the severity dimension was actually exercised (§285 recorded NOT_EXERCISED)",
+      "outcome": "PASS",
+      "detail": "9 findings measured"
+    },
+    {
+      "id": "SP-GUARD2 and at least one finding carried a real materialized risk snapshot",
+      "outcome": "PASS",
+      "detail": "8 with an analysis band"
+    },
+    {
+      "id": "SP-GUARD3 every surface produced an actual reading for every measured finding",
+      "outcome": "PASS",
+      "detail": "all surfaces read"
+    },
+    {
+      "id": "SP S1 HazLenz severity == reviewer severity · machine-guarding — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=Critical snapshot=Critical pdf-detail=Critical pdf-summary=Critical basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP S2 HazLenz severity != reviewer severity · machine-guarding — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=High snapshot=High pdf-detail=High pdf-summary=High basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP S3 reviewer changes the severity · machine-guarding — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=Critical snapshot=Critical pdf-detail=Critical pdf-summary=Critical basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP S4 reviewer leaves the severity unchanged · machine-guarding — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=High snapshot=High pdf-detail=High pdf-summary=High basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP S5 multiple findings with different severities · machine-guarding — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=Critical snapshot=Critical pdf-detail=Critical pdf-summary=Critical basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP S5 multiple findings with different severities · electrical — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=High snapshot=High pdf-detail=High pdf-summary=High basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP S5 multiple findings with different severities · energy-control — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=Moderate snapshot=Moderate pdf-detail=Moderate pdf-summary=Moderate basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP S6 unresolved / not-rated finding · machine-guarding — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=Not rated snapshot=Not rated pdf-detail=Not rated pdf-summary=Not rated basis=not_rated"
+    },
+    {
+      "id": "SP S7 report revision after a severity-affecting change · machine-guarding — every surface states the same severity",
+      "outcome": "PASS",
+      "detail": "finding=High snapshot=High pdf-detail=High pdf-summary=High basis=reviewer_confirmed"
+    },
+    {
+      "id": "SP-AUTH the reviewer's band is the one the compliance artifact states",
+      "outcome": "PASS",
+      "detail": "8 reviewer-confirmed findings"
+    },
+    {
+      "id": "SP-PROV where HazLenz differs from the reviewer, the artifact states the REVIEWER's band",
+      "outcome": "PASS",
+      "detail": "4 findings where the analysis band differs"
+    },
+    {
+      "id": "SP-GAP an unrated finding is reported as Not rated, never filled in from a lesser source",
+      "outcome": "PASS",
+      "detail": "1 not-rated findings"
+    }
+  ],
+  "observations": [
+    {
+      "id": "Z5-NOTE the two zero-report shapes are told apart by findingCount",
+      "detail": "A dismissed candidate keeps `findingCount: 1` while `reportableCount` is 0, so 'the engine proposed nothing' and 'a qualified person declined to confirm the proposal' remain separate facts in the record even though both produce a report with no findings."
+    },
+    {
+      "id": "SP-SURFACES which surfaces carry a severity at all",
+      "detail": "Measured: the effective finding record, the frozen report snapshot, and the generated PDF. The REPORT LIBRARY card and the REVISION HISTORY carry NO severity -- they identify the report, not its contents -- so parity is not applicable there and is recorded as such rather than as a pass. The review UI is a browser surface and is measured by the browser instrument."
+    },
+    {
+      "id": "SP-SNAPSHOT-REACH the report snapshot is still unreachable through any customer API",
+      "detail": "Carried forward from §285 unchanged. `GET /inspection-reports/:id` returns generation metadata and `.../revisions` returns the ledger; neither carries `sourceSnapshot`. This instrument read it directly from the disposable review database, which a customer cannot do."
+    }
+  ]
+}

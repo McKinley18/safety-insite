@@ -28,20 +28,31 @@
  * A successful read is cached, so an offline visit shows `LAST_SYNCED` with a timestamp instead
  * of a fabricated zero, and a device that has never synced shows `OFFLINE_UNAVAILABLE`.
  *
- * ==================== THE FINDINGS TILE, AND WHY IT IS NOT HERE ====================
+ * ==================== THE FINDINGS TILE, AND WHERE ITS NUMBER NOW COMES FROM ====================
  *
- * There is NO unprivileged server aggregate for "findings across my inspections". `GET
- * /inspections` returns bare inspection rows with no findings relation; the per-inspection detail
- * route has them but one call per inspection is not a dashboard load; and `/dashboard/*` is gated
- * behind the paid `analytics` entitlement, so a Free account cannot read it.
+ * §281 removed a Findings tile because there was NO unprivileged server aggregate to feed it:
+ * `GET /inspections` returned bare rows, the per-inspection detail route is one call each, and
+ * `/dashboard/*` sits behind the paid `analytics` entitlement — so the account most likely to be
+ * looking at the dashboard was the one that could not read the number. A tile pointed at
+ * Inspections was the honest stand-in; a Findings tile would have been structurally always zero,
+ * which is the precise thing D-041 forbids.
  *
- * The tile therefore counts INSPECTIONS, which the server answers exactly for every plan. That is
- * a PRODUCT CHANGE and it is recorded as one (D-044): the alternative was keeping a tile that is
- * structurally always zero, which is the precise thing D-041 forbids. Whether a findings count
- * should return, and what server support it should get, is the product owner's call.
+ * §285 (D-044) added the aggregate rather than the tile: `GET /inspections` now carries
+ * `findingCount` per row, computed inside the SAME query that decides which inspections the caller
+ * may see, so it cannot count a finding on an inspection they may not read and there is no second
+ * tenancy rule to drift. It is not entitlement-gated, because a count of your own findings is not
+ * an analytics feature. Findings across the board is the sum of that field.
+ *
+ * `dismissed` and `superseded` findings are excluded server-side. A dismissed finding is one a
+ * reviewer decided was not a finding, and a superseded one has been replaced by a later revision
+ * of itself; counting either would put hazards on an inspector's board that nobody believes are
+ * there.
+ *
+ * THE SUM IS STILL A `DataValue`. If `/inspections` cannot be reached the count is not zero, it is
+ * unknown, and it renders as such — the same rule as every other figure here.
  */
 
-import { listPersistedInspections, listPersistedReports } from "@/lib/canonicalWorkflowApi";
+import { listPersistedInspections } from "@/lib/canonicalWorkflowApi";
 import { getSafetyCalendarSnapshot } from "@/lib/safetyCalendar";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 import {
@@ -53,7 +64,7 @@ import {
 
 export type DashboardCounters = {
   inspections: DataValue<number>;
-  reports: DataValue<number>;
+  findings: DataValue<number>;
   openActions: DataValue<number>;
   overdue: DataValue<number>;
   /** The reconciled calendar, for the week strip and the priority list. */
@@ -84,14 +95,34 @@ export async function loadDashboardCounters(todayKey: string): Promise<Dashboard
   // Each source is read independently and its reachability is its own. One endpoint being down
   // must not turn the other three into "unavailable" — that would be the same class of untruth in
   // the opposite direction.
-  const [inspectionsRead, reportsRead, calendar] = await Promise.all([
+  const [inspectionsRead, calendar] = await Promise.all([
+    // ONE read answers two tiles. `findingCount` rides on the rows this call already returns, so
+    // adding Findings to the board costs no extra request and cannot disagree with Inspections
+    // about which inspections the caller can see.
     listPersistedInspections().then(
-      (rows) => ({ reachable: true, value: Array.isArray(rows) ? rows.length : 0 }),
-      () => ({ reachable: false, value: null as number | null }),
-    ),
-    listPersistedReports().then(
-      (rows) => ({ reachable: true, value: Array.isArray(rows) ? rows.length : 0 }),
-      () => ({ reachable: false, value: null as number | null }),
+      (rows) => {
+        const list = Array.isArray(rows) ? rows : [];
+        /**
+         * A ROW WITHOUT `findingCount` MAKES THE SUM UNKNOWN, NOT SMALLER.
+         *
+         * `|| 0` on a missing field is the exact shape of the defect D-041 was raised for: a
+         * server that stopped sending the field, or an older instance behind a rolling deploy,
+         * would produce a confident, wrong, LOWER number -- and a safety board reading "3 findings"
+         * when there are eleven is worse than one reading "—". So a single row missing the field
+         * collapses the whole figure to unknown, and the tile says it does not know.
+         *
+         * An inspection with genuinely no findings sends `0`, which is a number and is summed.
+         */
+        const complete = list.every((row) => typeof row?.findingCount === "number");
+        return {
+          reachable: true,
+          value: list.length,
+          findings: complete
+            ? list.reduce((total, row) => total + (row.findingCount as number), 0)
+            : null,
+        };
+      },
+      () => ({ reachable: false, value: null as number | null, findings: null as number | null }),
     ),
     getSafetyCalendarSnapshot().catch(() => ({
       events: [] as SafetyCalendarEvent[],
@@ -112,11 +143,13 @@ export async function loadDashboardCounters(todayKey: string): Promise<Dashboard
       cached: cache.inspections?.value ?? null,
       cachedAt: cache.inspections?.at ?? null,
     }),
-    reports: resolveDataValue({
-      reachable: reportsRead.reachable,
-      value: reportsRead.value,
-      cached: cache.reports?.value ?? null,
-      cachedAt: cache.reports?.at ?? null,
+    findings: resolveDataValue({
+      // Reachability here is "the count arrived", not "the request succeeded". A response that
+      // came back without the field taught the client nothing about how many findings exist.
+      reachable: inspectionsRead.reachable && inspectionsRead.findings !== null,
+      value: inspectionsRead.findings,
+      cached: cache.findings?.value ?? null,
+      cachedAt: cache.findings?.at ?? null,
     }),
     openActions: resolveDataValue({
       reachable: calendar.serverReachable,
@@ -143,7 +176,7 @@ export async function loadDashboardCounters(todayKey: string): Promise<Dashboard
   // current, which is the failure this whole module exists to prevent.
   const fresh: Record<string, number> = {};
   if (inspectionsRead.reachable && inspectionsRead.value !== null) fresh.inspections = inspectionsRead.value;
-  if (reportsRead.reachable && reportsRead.value !== null) fresh.reports = reportsRead.value;
+  if (inspectionsRead.reachable && inspectionsRead.findings !== null) fresh.findings = inspectionsRead.findings;
   if (calendar.serverReachable) {
     fresh.openActions = openActionCount;
     fresh.overdue = overdueCount;

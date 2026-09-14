@@ -50,11 +50,44 @@ export class CorrectiveAction {
   @Column('text', { nullable: true })
   closureNotes: string;
 
+  /**
+   * §287 / D-052 — THE COMPLETION AXIS.
+   *
+   * Who closed this action, and when. Until §287 the table had nowhere to record either, so
+   * closure wrote to the VERIFICATION pair below and the product then read those columns back and
+   * reported that the correction had been independently verified by a supervisor. It had not.
+   *
+   * Closing writes these. Reopening clears them, because an action that is open again was not
+   * closed at the time it now claims.
+   */
+  @Column({ type: 'timestamp', nullable: true })
+  closedAt: Date | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  closedByUserId: string | null;
+
+  /**
+   * §287 / D-052 — THE VERIFICATION AXIS, which is a DIFFERENT QUESTION from completion.
+   *
+   * "The work was done" and "someone independently confirmed the work was done" are two claims,
+   * and on a compliance record the second is the one that carries weight. These are written ONLY
+   * when a verification actually happens. Closing an action does not set them, and their absence
+   * on a closed action is the truthful statement that closure was recorded and verification was
+   * not -- never an omission to be filled in by inference.
+   */
   @Column({ nullable: true })
   verifiedByUserId: string;
 
   @Column({ type: 'timestamp', nullable: true })
   verifiedAt: Date;
+
+  /**
+   * §287 / D-053. Optional client-generated idempotency key, matching the shape
+   * `CreateInspectionDto` and `CreateObservationDto` already use. Scoped unique per
+   * (tenantId, ownerUserId) by a partial index; see the migration for why it is partial.
+   */
+  @Column({ type: 'varchar', nullable: true })
+  clientRequestId: string | null;
 
   @CreateDateColumn()
   createdAt: Date;

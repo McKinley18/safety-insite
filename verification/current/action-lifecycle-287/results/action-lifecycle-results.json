@@ -1,0 +1,409 @@
+{
+  "section": "§287",
+  "api": "http://localhost:4000",
+  "account": "review-287-pro@example.test",
+  "entitlement": {
+    "planCode": "pro",
+    "effectivePlanCode": "pro",
+    "correctiveActionAssignments": true
+  },
+  "providerCalls": 0,
+  "checks": 64,
+  "failures": 0,
+  "results": [
+    {
+      "id": "R1 corrective-action LIST is now reachable from a customer surface",
+      "outcome": "PASS",
+      "detail": "components/actions/CorrectiveActionsPanel.tsx"
+    },
+    {
+      "id": "R2 corrective-action CLOSE is now reachable from a customer surface",
+      "outcome": "PASS",
+      "detail": "components/actions/CorrectiveActionsPanel.tsx"
+    },
+    {
+      "id": "R3 corrective-action FIELD EDIT is now reachable from a customer surface",
+      "outcome": "PASS",
+      "detail": "components/actions/CorrectiveActionsPanel.tsx"
+    },
+    {
+      "id": "R4 the panel is mounted on an ACTIVE route, not merely defined",
+      "outcome": "PASS",
+      "detail": "app/safety-calendar/page.tsx"
+    },
+    {
+      "id": "I0 WITHOUT a client key, two identical submits still create two actions",
+      "outcome": "PASS",
+      "detail": "95e77aee vs 9e820ddf"
+    },
+    {
+      "id": "I1-GUARD the first submit really created an action",
+      "outcome": "PASS",
+      "detail": "201"
+    },
+    {
+      "id": "I1 DOUBLE-SUBMIT: the second press returns the SAME action, not a second one",
+      "outcome": "PASS",
+      "detail": "452d3254 / 452d3254"
+    },
+    {
+      "id": "I1b and the database holds exactly ONE row for that key",
+      "outcome": "PASS",
+      "detail": "1 row(s)"
+    },
+    {
+      "id": "I2 CONCURRENT submits both succeed and resolve to ONE action",
+      "outcome": "PASS",
+      "detail": "201/201 a44b5720 vs a44b5720"
+    },
+    {
+      "id": "I2b and the unique index left exactly ONE row",
+      "outcome": "PASS",
+      "detail": "1 row(s)"
+    },
+    {
+      "id": "I3 RETRY AFTER A LOST RESPONSE does not create a second action",
+      "outcome": "PASS",
+      "detail": "1 row(s) after retry, status 201"
+    },
+    {
+      "id": "I3b and the retry returns the action the server already committed",
+      "outcome": "PASS",
+      "detail": "retry id=11471aa8"
+    },
+    {
+      "id": "L1 CREATE returns an action in a stated lifecycle state",
+      "outcome": "PASS",
+      "detail": "201 lifecycleState=open"
+    },
+    {
+      "id": "L2 the list shows it, with status, assignee and due date",
+      "outcome": "PASS",
+      "detail": "listed with identity"
+    },
+    {
+      "id": "L3 an action moved into the past reads as overdue against the local day",
+      "outcome": "PASS",
+      "detail": "due=2026-09-13 today=2026-09-14"
+    },
+    {
+      "id": "L3b OVERDUE is never a stored field — the server states only the status",
+      "outcome": "PASS",
+      "detail": "row keys: id,displayId,reportId,inspectionId,findingId,tenantId,classificationId,title,description,ownerUserId,assignedToUserId,assignedToName,priorityCode,statusCode,due"
+    },
+    {
+      "id": "E0-GUARD the action is on the calendar before the edit, exactly once",
+      "outcome": "PASS",
+      "detail": "1 event(s) on 2026-09-13"
+    },
+    {
+      "id": "E1 the due date is editable and the server accepts it",
+      "outcome": "PASS",
+      "detail": "200 2026-09-21"
+    },
+    {
+      "id": "E2 other editable fields move too",
+      "outcome": "PASS",
+      "detail": "urgent"
+    },
+    {
+      "id": "E3 the CALENDAR EVENT MOVED to the new day",
+      "outcome": "PASS",
+      "detail": "1 event(s) on 2026-09-21"
+    },
+    {
+      "id": "E4 and NO DUPLICATE event was created — the old day is clear",
+      "outcome": "PASS",
+      "detail": "2026-09-13 -> 2026-09-21, 1 event(s)"
+    },
+    {
+      "id": "E5 the action is no longer overdue, because overdue is recomputed from the stored date",
+      "outcome": "PASS",
+      "detail": "2026-09-21 > 2026-09-14"
+    },
+    {
+      "id": "E6 REFRESH returns the persisted date, not a device value",
+      "outcome": "PASS",
+      "detail": "2026-09-21"
+    },
+    {
+      "id": "E7 RESTART would show the same date — it is what is on disk",
+      "outcome": "PASS",
+      "detail": "stored=2026-09-21 expected=2026-09-21"
+    },
+    {
+      "id": "E8 ordinary: editing to 2027-06-17 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2027-06-17 disk=2027-06-17"
+    },
+    {
+      "id": "E8 month end: editing to 2027-06-30 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2027-06-30 disk=2027-06-30"
+    },
+    {
+      "id": "E8 month start: editing to 2027-07-01 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2027-07-01 disk=2027-07-01"
+    },
+    {
+      "id": "E8 year end: editing to 2027-12-31 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2027-12-31 disk=2027-12-31"
+    },
+    {
+      "id": "E8 year start: editing to 2028-01-01 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2028-01-01 disk=2028-01-01"
+    },
+    {
+      "id": "E8 DST spring-forward: editing to 2027-03-14 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2027-03-14 disk=2027-03-14"
+    },
+    {
+      "id": "E8 DST fall-back: editing to 2027-11-07 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2027-11-07 disk=2027-11-07"
+    },
+    {
+      "id": "E8 leap day: editing to 2028-02-29 keeps the day on the calendar and on disk",
+      "outcome": "PASS",
+      "detail": "calendar=2028-02-29 disk=2028-02-29"
+    },
+    {
+      "id": "C1 an action closes",
+      "outcome": "PASS",
+      "detail": "200 closed"
+    },
+    {
+      "id": "C2 the lifecycle state is COMPLETED, not verified",
+      "outcome": "PASS",
+      "detail": "lifecycleState=completed verified=false"
+    },
+    {
+      "id": "C3 NO FABRICATED VERIFICATION: verifiedAt and verifiedByUserId are untouched",
+      "outcome": "PASS",
+      "detail": "verifiedAt=null verifiedBy=null"
+    },
+    {
+      "id": "C4 and the record says so explicitly rather than leaving it to be noticed",
+      "outcome": "PASS",
+      "detail": "true"
+    },
+    {
+      "id": "C5 COMPLETION is recorded — who closed it and when, which had nowhere to live before",
+      "outcome": "PASS",
+      "detail": "closedAt=true closedBy=true"
+    },
+    {
+      "id": "C6 PERSISTED STATE carries no verification either",
+      "outcome": "PASS",
+      "detail": "NULL|NULL|2026-09-14 11:06:15.487"
+    },
+    {
+      "id": "C7 no fabricated VERIFIED_STRONG anywhere in the action record",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "C8 no fabricated SUPERVISOR_SIGNOFF anywhere in the action record",
+      "outcome": "PASS",
+      "detail": "absent"
+    },
+    {
+      "id": "C7-GUARD the falsification ran over a real closed record, not an empty object",
+      "outcome": "PASS",
+      "detail": "982 chars"
+    },
+    {
+      "id": "C9 supplied closure notes are preserved verbatim",
+      "outcome": "PASS",
+      "detail": "Guard refitted and function-tested."
+    },
+    {
+      "id": "C10 and supplying evidence does NOT promote the action to verified",
+      "outcome": "PASS",
+      "detail": "evidence present, still completed"
+    },
+    {
+      "id": "C11 closure evidence is OPTIONAL — a close with no notes is accepted",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "C12 and nothing is substituted for the notes the user did not write",
+      "outcome": "PASS",
+      "detail": "closureNotes=null"
+    },
+    {
+      "id": "C13 absence of evidence does not produce a WEAKER or STRONGER state than presence did",
+      "outcome": "PASS",
+      "detail": "lifecycleState=completed"
+    },
+    {
+      "id": "C14 reopening returns the action to OPEN and clears the completion stamp",
+      "outcome": "PASS",
+      "detail": "lifecycleState=open closedAt=null"
+    },
+    {
+      "id": "C15 but the closure notes survive — they record what was done, which is still true",
+      "outcome": "PASS",
+      "detail": "Temporary fix applied."
+    },
+    {
+      "id": "A1 the customer receives SUCCESS even though the audit write could not persist",
+      "outcome": "PASS",
+      "detail": "200 closed"
+    },
+    {
+      "id": "A2 and the state really did commit — the customer was told the truth",
+      "outcome": "PASS",
+      "detail": "stored statusCode=closed"
+    },
+    {
+      "id": "A3-GUARD the STATUS audit row genuinely did NOT persist, so A1/A2 are not a happy-path pass",
+      "outcome": "PASS",
+      "detail": "0 status row(s); 1 total row(s) for the action (the creation row, written before the rename)"
+    },
+    {
+      "id": "A4 the probe restored the audit table",
+      "outcome": "PASS",
+      "detail": "renamed back"
+    },
+    {
+      "id": "A5 the missing audit row is EMITTED as an operational event, not swallowed",
+      "outcome": "PASS",
+      "detail": "{\"schema\":\"safety-insite.operational-event.v1\",\"event\":\"action.audit_write_failed\",\"severity\":\"error\",\"at\":\"2026-09-14T15:06:15.549Z\",\"metadata\":{\"actionId\":\"9ae46c44-db9a-489c-b48d-4e61e3a984cb\",\"actorUserId\":\"37bfdc62-27fa-4f1e-a927-f655dd8312b1\",\"actionCode\":\"ACTION_STATUS_UPDATED\",\"fromStatus\":\""
+    },
+    {
+      "id": "A6 and the event names the actor and the transition, so the gap is reconstructable",
+      "outcome": "PASS",
+      "detail": "actor + transition + committed flag present"
+    },
+    {
+      "id": "A7 with the audit table restored, audit rows persist again",
+      "outcome": "PASS",
+      "detail": "1 audit row(s)"
+    },
+    {
+      "id": "W0-GUARD the other account's list is a real list, not an error",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "W1 another account cannot SEE this action",
+      "outcome": "PASS",
+      "detail": "absent from their list"
+    },
+    {
+      "id": "W2 another account cannot EDIT it — including the new field route",
+      "outcome": "PASS",
+      "detail": "404"
+    },
+    {
+      "id": "W3 another account cannot CLOSE it",
+      "outcome": "PASS",
+      "detail": "404"
+    },
+    {
+      "id": "W4 and neither refused write changed anything",
+      "outcome": "PASS",
+      "detail": "lifecycleState=open due=2026-09-21"
+    },
+    {
+      "id": "W5 an unauthenticated caller is refused by the guard, not by the network",
+      "outcome": "PASS",
+      "detail": "401"
+    },
+    {
+      "id": "W6 a FREE account still cannot CREATE a corrective action",
+      "outcome": "PASS",
+      "detail": "402 PAID_SUBSCRIPTION_REQUIRED"
+    },
+    {
+      "id": "W7 but a FREE account may still READ and manage what it already has",
+      "outcome": "PASS",
+      "detail": "200"
+    },
+    {
+      "id": "O1 every lifecycle operation carries an OFFLINE and DATA_LOSS_RISK classification",
+      "outcome": "PASS",
+      "detail": "5 operations"
+    }
+  ],
+  "observations": [
+    {
+      "id": "ENT the entitlement state this run measured",
+      "detail": "account=review-287-pro@example.test planCode=pro effective=pro hasProAccess=true correctiveActionAssignments=true"
+    },
+    {
+      "id": "R5 the surface chosen, and why",
+      "detail": "`/safety-calendar` — an existing ACTIVE Actions/Calendar surface, per direction, rather than a new route. It reads `GET /actions` rather than the calendar projection because the projection is dated and excludes an action with no due date; a management surface that hid undated actions would hide exactly the ones nobody is tracking. Every read and write goes through the existing lib/cloudActions.ts to the existing server routes — no second action system."
+    },
+    {
+      "id": "I0-NOTE the idempotency repair is opt-in",
+      "detail": "`clientRequestId` is optional, exactly as it is on `POST /inspections` and `POST .../observations`. A caller that omits it gets the pre-§287 behaviour. That is a deliberate compatibility choice, and it means the guarantee belongs to the CLIENT that sends a key, not to the route."
+    },
+    {
+      "id": "I3-CONTEXT what the lost-response probe actually exercised",
+      "detail": "client aborted=true; rows committed before the retry=1. When the abort loses the race the server had already answered, and the probe degrades to a plain replay — which is recorded rather than dressed up as an interruption."
+    },
+    {
+      "id": "I4 repeated-tap protection is not the mechanism",
+      "detail": "The panel disables its controls and additionally refuses a second invocation inside the handler (a disabled button is a rendering that can be raced). Neither is the guarantee: both live in the browser and neither survives a lost response. The guarantee is the partial unique index on (tenantId, ownerUserId, clientRequestId), which is why I2 and I3 pass."
+    },
+    {
+      "id": "V-BEFORE the verification semantics §287 inherited",
+      "detail": "Closing an action stamped `verifiedAt = now` and `verifiedByUserId = the caller`, and fed the outcome loop `verificationStatus: 'VERIFIED_STRONG'`, `verificationMethod: 'SUPERVISOR_SIGNOFF'` — unconditionally, for any caller who could reach the route, including the person who raised the action. The cause was a missing model: `corrective_actions` has carried the VERIFICATION pair since the initial migration and had NOWHERE to record who closed an action and when, so closure wrote to the only pair available to it."
+    },
+    {
+      "id": "C13-NOTE what the product now claims about a closed action",
+      "detail": "COMPLETED means the work is recorded as done and no independent verification is recorded. It is deliberately not called 'verification pending': that would assert a verification is expected, and whether verification is required at all is an open product-policy question. VERIFIED is reachable in the model (statusCode closed + verifiedAt set) and no customer path sets it, so the product never claims verification it did not perform. Building the verification workflow — who may verify, and whether the closer may verify their own work — is a product decision and is registered, not invented here."
+    },
+    {
+      "id": "A8 the shape D-054 forbids, and where else it was closed",
+      "detail": "COMMIT SUCCEEDS -> AUXILIARY WRITE FAILS -> CUSTOMER SEES 500 -> CUSTOMER RETRIES -> DUPLICATE STATE. Three auxiliary writes follow a committed action transition: the outcome loop (closed at §286), the audit row and the assignee notification (both closed at §287). None can fail the request; each emits an operational event instead. The outcome loop is STILL failing on every close in this environment because the `outcomes` table has no migration, which makes this regression a live demonstration rather than a hypothetical."
+    },
+    {
+      "id": "W8 why the new edit route carries no entitlement guard",
+      "detail": "Consistent with the rest of this controller: only CREATE carries `correctiveActionAssignments`. An account that raised actions while Pro must be able to finish managing and closing them after a downgrade — the same way it keeps the reports it generated. Gating closure would strand open compliance work behind a paywall."
+    },
+    {
+      "id": "O2 what D-042 must still solve for this lifecycle",
+      "detail": "CREATE is now safely replayable (clientRequestId + partial unique index) and is the one operation an outbox could queue today. EDIT and CLOSE have no idempotency key; they are idempotent in EFFECT because they set a target state rather than appending, so a replay converges — but a queued edit can still overwrite a newer change made elsewhere, and that conflict rule is a D-042 decision, not a §287 one."
+    }
+  ],
+  "offlineInventory": [
+    {
+      "operation": "create a corrective action",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "VULNERABLE",
+      "basis": "No outbox exists for actions. §287 added `clientRequestId`, which is the PRECONDITION for one — an outbox could now replay a create safely — but the queue itself is D-042 work and is not built here."
+    },
+    {
+      "operation": "edit a due date",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "VULNERABLE",
+      "basis": "Newly possible online (D-051). `PATCH /actions/:id` carries no idempotency key, so a replayed edit is a second write; it is last-write-wins rather than duplicating, but an edit made offline is lost with the page."
+    },
+    {
+      "operation": "close an action",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "VULNERABLE",
+      "basis": "Newly possible online (D-050). A close attempted with no connection fails and the panel keeps the notes in the field so nothing typed is lost to the error — but nothing is queued, so leaving the page loses it."
+    },
+    {
+      "operation": "retry after a failed mutation",
+      "offline": "PARTIAL",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "The client sends mutations with `retries: 0`, so a lost response is never silently re-sent. The user retries deliberately; for CREATE the idempotency key makes that safe, for EDIT and CLOSE the operations are naturally idempotent in effect (same target state)."
+    },
+    {
+      "operation": "reconnect",
+      "offline": "PARTIAL",
+      "dataLossRisk": "NONE_KNOWN",
+      "basis": "The panel re-reads `GET /actions` on refresh and after every mutation, so reconnecting and refreshing yields authoritative server state. There is no local action cache that could disagree with the server."
+    }
+  ]
+}

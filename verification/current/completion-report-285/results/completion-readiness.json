@@ -1,0 +1,99 @@
+[
+  {
+    "title": "HazLenz state E — several findings from one observation",
+    "status": "completed",
+    "findingCount": 3,
+    "ready": true,
+    "reasons": [],
+    "findings": 3,
+    "reviewed": 3,
+    "reportable": 3
+  },
+  {
+    "title": "HazLenz state A — a straightforward finding (revised at §285) (revised at §285)",
+    "status": "completed",
+    "findingCount": 1,
+    "ready": true,
+    "reasons": [],
+    "findings": 1,
+    "reviewed": 1,
+    "reportable": 1
+  },
+  {
+    "title": "HazLenz state G — no hazard identified",
+    "status": "in_review",
+    "findingCount": 0,
+    "ready": false,
+    "reasons": [
+      "NO_CURRENT_FINDING"
+    ],
+    "findings": 0,
+    "reviewed": 0,
+    "reportable": 0
+  },
+  {
+    "title": "HazLenz state F — confidence limited, nothing outstanding",
+    "status": "draft",
+    "findingCount": 1,
+    "ready": true,
+    "reasons": [],
+    "findings": 1,
+    "reviewed": 1,
+    "reportable": 1
+  },
+  {
+    "title": "HazLenz state D — awaiting human confirmation",
+    "status": "draft",
+    "findingCount": 1,
+    "ready": true,
+    "reasons": [],
+    "findings": 1,
+    "reviewed": 1,
+    "reportable": 1
+  },
+  {
+    "title": "HazLenz state C — unresolved / not supported",
+    "status": "draft",
+    "findingCount": 1,
+    "ready": true,
+    "reasons": [],
+    "findings": 1,
+    "reviewed": 1,
+    "reportable": 1
+  },
+  {
+    "title": "HazLenz state B — clarification outstanding",
+    "status": "draft",
+    "findingCount": 1,
+    "ready": true,
+    "reasons": [],
+    "findings": 1,
+    "reviewed": 1,
+    "reportable": 1
+  },
+  {
+    "title": "Loading dock — not yet started",
+    "status": "draft",
+    "findingCount": 0,
+    "ready": false,
+    "reasons": [
+      "NO_OBSERVATION",
+      "NO_CURRENT_FINDING"
+    ],
+    "findings": 0,
+    "reviewed": 0,
+    "reportable": 0
+  },
+  {
+    "title": "Packaging line walkthrough",
+    "status": "draft",
+    "findingCount": 0,
+    "ready": false,
+    "reasons": [
+      "NO_CURRENT_FINDING"
+    ],
+    "findings": 0,
+    "reviewed": 0,
+    "reportable": 0
+  }
+]

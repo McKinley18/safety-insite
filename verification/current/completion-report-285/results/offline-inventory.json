@@ -1,0 +1,81 @@
+{
+  "instrument": "§285 offline inventory — completion and report surfaces",
+  "measuredAt": "2026-09-14T13:17:48.054Z",
+  "serviceWorker": {
+    "supported": true,
+    "controlled": true
+  },
+  "account": "review-285-pro@example.test",
+  "inventory": [
+    {
+      "surface": "inspection-complete",
+      "path": "/inspection-complete",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "dataLossBasis": "The surface accepts no input; it renders a completed record or a library of them.",
+      "reading": {
+        "textLength": 498,
+        "refusesExplicitly": true,
+        "saysOffline": true,
+        "recordContent": 0,
+        "hasContent": true,
+        "excerpt": "NO CONNECTION | This page needs a connection | Safety InSite could not reach the network, and this screen was not saved on this device. | Field Capture still works. Observations, locations and photos you record there are saved on this device and sync when you are back online. | HazLenz AI analysis, report generation and PDF export need a connection. They run on Safety InSite's servers, so they resume ",
+        "controls": [
+          {
+            "label": "Try again",
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "surface": "reports",
+      "path": "/reports",
+      "offline": "REQUIRES_NETWORK",
+      "dataLossRisk": "NONE_KNOWN",
+      "dataLossBasis": "The surface accepts no input; it renders a completed record or a library of them.",
+      "reading": {
+        "textLength": 393,
+        "refusesExplicitly": false,
+        "saysOffline": true,
+        "recordContent": 0,
+        "hasContent": false,
+        "excerpt": "Home | Inspect | Reports | Calendar | Settings | Offline | RI | SERVER-BACKED RECORDS | Inspection Reports | Every completed inspection has one report. Finishing an inspection again replaces its report, so what you download here is always the current record. | Failed to fetch | Reports are unavailable | Nothing local is being shown as a successful report. Retry after the server connection is restored. | Retry",
+        "controls": [
+          {
+            "label": "RI",
+            "disabled": false
+          },
+          {
+            "label": "Retry",
+            "disabled": false
+          }
+        ]
+      }
+    }
+  ],
+  "answers": {
+    "canDownloadReportOffline": {
+      "reached": false,
+      "error": "TypeError: Failed to fetch"
+    },
+    "canCompleteOffline": {
+      "listReached": false,
+      "error": "TypeError: Failed to fetch"
+    },
+    "recoversOnReconnect": {
+      "saysOffline": false,
+      "textLength": 785
+    },
+    "generationInterrupted": {
+      "exercised": false,
+      "clientOutcome": {
+        "ok": true,
+        "status": 201
+      },
+      "revisionCountBefore": 4,
+      "revisionCountAfter": 4,
+      "interpretation": "NOT_EXERCISED — the generate request completed ({\"ok\":true,\"status\":201}) before the abort fired, so no interruption occurred. The revision count moved 4 -> 4 because the generation SUCCEEDED, which evidences nothing about a dropped connection. Measuring this properly needs the connection cut at the transport, not an abort racing a fast local server, and that belongs with D-042."
+    }
+  }
+}

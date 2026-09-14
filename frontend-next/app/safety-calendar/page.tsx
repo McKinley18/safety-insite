@@ -9,6 +9,7 @@ import { HeroPanel } from "@/components/ui/HeroPanel";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { CalendarViewRenderer } from "@/components/calendar/CalendarViewRenderer";
+import { CorrectiveActionsPanel } from "@/components/actions/CorrectiveActionsPanel";
 import {
   CalendarSyncNotice,
   type SafetyCalendarSyncState,
@@ -141,7 +142,16 @@ function SafetyCalendarPageInner() {
    * "we could not ask" it meant. The snapshot carries that distinction so the interface
    * can say it out loud.
    */
+  /**
+   * §286 / D-064. `loading: true` until the first snapshot resolves.
+   *
+   * This began as `{ serverReachable: true, ... }` with `events: []`, so a slow or hung calendar
+   * read presented "0 EVENTS · 0 OPEN · 0 OVERDUE" as the server's own answer, with no notice at
+   * all. `serverReachable` stays optimistic -- it is still the right default for the failure
+   * notices -- and `loading` now says that nothing has been established yet.
+   */
   const [syncState, setSyncState] = useState<SafetyCalendarSyncState>({
+    loading: true,
     serverReachable: true,
     servedFromCache: false,
     pendingCount: 0,
@@ -191,6 +201,7 @@ function SafetyCalendarPageInner() {
       const snapshot = await getSafetyCalendarSnapshot();
       setEvents(snapshot.events);
       setSyncState({
+        loading: false,
         serverReachable: snapshot.serverReachable,
         servedFromCache: snapshot.servedFromCache,
         pendingCount: snapshot.pendingCount,
@@ -199,7 +210,11 @@ function SafetyCalendarPageInner() {
       });
     }
 
-    loadEvents();
+    // §286 / D-064. A read that REJECTS must still clear `loading`, or a thrown error leaves the
+    // page claiming to be loading forever -- which is the same false state in the other direction.
+    loadEvents().catch(() => setSyncState((current) => ({
+      ...current, loading: false, serverReachable: false, reason: "unreachable",
+    })));
   }, []);
 
   const filteredEvents = useMemo(() => {
@@ -301,6 +316,10 @@ function SafetyCalendarPageInner() {
     const snapshot = await getSafetyCalendarSnapshot();
     setEvents(snapshot.events);
     setSyncState({
+      // §286 / D-064. Explicit rather than omitted: leaving `loading` off the object would make it
+      // `undefined`, which is falsy and therefore accidentally correct. A state this page renders a
+      // notice from should not depend on that.
+      loading: false,
       serverReachable: snapshot.serverReachable,
       servedFromCache: snapshot.servedFromCache,
       pendingCount: snapshot.pendingCount,
@@ -564,12 +583,26 @@ function SafetyCalendarPageInner() {
           )}
         </div>
 
+        {/*
+          §286 / D-057 — EVERY FIELD CARRIES A PROGRAMMATIC NAME.
+          None of these four had one. Two were identified by a PLACEHOLDER, which is not a label:
+          it is announced inconsistently, it fails the "a field must still be identifiable once it
+          has a value" test because it disappears the moment the user types, and it is styled as
+          hint text rather than as a name. The date input and the priority select had neither a
+          label nor a placeholder, so a screen reader announced them as bare "date" and
+          "combo box" -- on the form that schedules safety work.
+          `aria-label` rather than a visible <label>: the row is a compact four-up grid whose
+          column widths are the layout, and adding four visible labels is a redesign of the panel.
+          The names are the ones the visible placeholders already used, so nothing a sighted user
+          reads has changed.
+        */}
         <div ref={taskFormRef} className="mt-2.5 grid gap-1.5 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
           <AppInput
             ref={taskTitleRef}
             value={taskTitle}
             onChange={(event) => setTaskTitle(event.target.value)}
             placeholder="Task title"
+            aria-label="Task title"
             fieldSize="sm"
             data-testid="task-title"
           />
@@ -577,11 +610,13 @@ function SafetyCalendarPageInner() {
             type="date"
             value={taskDate}
             onChange={(event) => setTaskDate(event.target.value)}
+            aria-label="Task due date"
             fieldSize="sm"
           />
           <AppSelect
             value={taskPriority}
             onChange={(event) => setTaskPriority(event.target.value)}
+            aria-label="Task priority"
             fieldSize="sm"
           >
             <option value="Critical">Critical</option>
@@ -593,6 +628,7 @@ function SafetyCalendarPageInner() {
             value={taskLocation}
             onChange={(event) => setTaskLocation(event.target.value)}
             placeholder="Location / note"
+            aria-label="Task location or note"
             fieldSize="sm"
           />
           <AppButton type="button" size="sm" onClick={schedulePersonalTask}>
@@ -603,10 +639,18 @@ function SafetyCalendarPageInner() {
 
       <div className="space-y-2">
           <AppPanel padding="sm" className="app-card px-2 py-2 sm:px-3 sm:py-2.5">
+            {/*
+              §286 / D-061. This disclosure measured 20px high -- below the product's OWN mobile
+              touch floor of 36px (§73.3), not merely below the 44px native guideline -- and it is
+              the control that opens every filter and the task form on the Safety Calendar. The
+              repair is one utility class: `min-h-11` takes it to 44px, which is where a control
+              this central should have been, and the full-width hit area it already had means
+              nothing else about the layout moves.
+            */}
             <button
               type="button"
               onClick={() => setControlsExpanded((current) => !current)}
-              className="flex w-full items-center justify-between gap-2"
+              className="flex min-h-11 w-full items-center justify-between gap-2"
               aria-expanded={controlsExpanded}
             >
               <h2 className="text-sm font-black text-app-text">Calendar Controls</h2>
@@ -706,6 +750,18 @@ function SafetyCalendarPageInner() {
           />
       </div>
 
+      {/*
+        §287 / D-050. THE CORRECTIVE ACTION LIFECYCLE.
+
+        Placed on the Safety Calendar because the direction is to integrate into an existing active
+        Actions/Calendar surface rather than add a route, and because this is already the product's
+        due-work surface: corrective actions appear on the calendar above as events, and the person
+        who needs to close one is the person looking at what is due.
+
+        It re-reads the calendar after any change, so the two views of the same work cannot drift.
+      */}
+      <CorrectiveActionsPanel onActionsChanged={refreshCalendarEvents} />
+
       {editingTaskId && (
         <AppPanel padding="md" className="app-card">
           <SectionHeader
@@ -715,21 +771,25 @@ function SafetyCalendarPageInner() {
           />
 
           <div className="mt-4 grid gap-2 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr]">
+            {/* §286 / D-057, as in the scheduling form above. */}
             <AppInput
               value={editingTaskTitle}
               onChange={(event) => setEditingTaskTitle(event.target.value)}
               placeholder="Task title"
+              aria-label="Task title"
               fieldSize="sm"
             />
             <AppInput
               type="date"
               value={editingTaskDate}
               onChange={(event) => setEditingTaskDate(event.target.value)}
+              aria-label="Task due date"
               fieldSize="sm"
             />
             <AppSelect
               value={editingTaskPriority}
               onChange={(event) => setEditingTaskPriority(event.target.value)}
+              aria-label="Task priority"
               fieldSize="sm"
             >
               <option value="Critical">Critical</option>
@@ -741,6 +801,7 @@ function SafetyCalendarPageInner() {
               value={editingTaskLocation}
               onChange={(event) => setEditingTaskLocation(event.target.value)}
               placeholder="Location / note"
+              aria-label="Task location or note"
               fieldSize="sm"
             />
           </div>

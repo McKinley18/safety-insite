@@ -13,7 +13,7 @@ import { StorageService } from '../storage/storage.service';
 import { User } from '../users/user.entity';
 import { InspectionReport } from './entities/inspection-report.entity';
 import { InspectionReportVersion } from './entities/inspection-report-version.entity';
-import { renderInspectionReportPdf } from './canonical-report-pdf-renderer';
+import { renderInspectionReportPdf, type ReportArtifactIdentity } from './canonical-report-pdf-renderer';
 import { emitOperationalEvent } from '../observability/operational-events';
 
 /**
@@ -35,8 +35,11 @@ import { emitOperationalEvent } from '../observability/operational-events';
  */
 const GENERATOR_VERSION = 'safety-insite-pdf/3';
 
-function pdfFromSnapshot(snapshot: Record<string, any>): Promise<Buffer> {
-  return renderInspectionReportPdf(snapshot);
+function pdfFromSnapshot(
+  snapshot: Record<string, any>,
+  identity: ReportArtifactIdentity,
+): Promise<Buffer> {
+  return renderInspectionReportPdf(snapshot, identity);
 }
 
 @Injectable()
@@ -73,6 +76,17 @@ export class CanonicalReportsService {
       preparedBy: preparedBy ? { id: preparedBy.id, name: preparedBy.name } : null,
       inspection: {
         id: inspection.id, title: inspection.title, status: inspection.status, version: inspection.version,
+        /**
+         * §285 — THE CUSTOMER-FACING RECORD NUMBER, so the report can name the inspection the way
+         * the rest of the product does.
+         *
+         * Without it the PDF cover had nothing to print but the uuid, and printed the first eight
+         * characters of it as "Record reference 438D5D3C". That is an internal identifier on the
+         * one artifact a customer files with a client or a regulator, and it contradicts the
+         * identity rule the completion screen already states: the record is "Inspection #7", and
+         * the checksum is integrity metadata rather than a name.
+         */
+        displayNumber: inspection.displayNumber ?? null,
         siteId: inspection.siteId, organizationId: inspection.organizationId,
         ownerUserId: inspection.ownerUserId, completedAt: inspection.completedAt,
         // Inspection-level regulatory context (established once at setup, inherited by every
@@ -286,7 +300,24 @@ export class CanonicalReportsService {
           generatedByUserId: user.userId, generatedAt: null, failureReason: null, supersededByVersionId: null,
         }));
 
-        const pdf = await pdfFromSnapshot(sourceSnapshot);
+        /**
+         * §286 — THE ARTIFACT AND THE RECORD STATE THE SAME ISSUE TIME.
+         *
+         * `issuedAt` is computed ONCE, here, and is both printed into the PDF and persisted as the
+         * revision's `generatedAt`. Stamping `new Date()` separately after the render — which is
+         * what this did — would have put a time on the document a second or two ahead of or behind
+         * the time in the record, and the §286 requirement is that the revision number, checksum,
+         * issue time and current/superseded status cannot disagree across the server record, the
+         * report library and the artifact. A near-miss is still a disagreement.
+         *
+         * The revision NUMBER is `replacement.version`, already allocated above from the report's
+         * own sequence. Nothing here maintains a parallel counter.
+         */
+        const issuedAt = new Date();
+        const pdf = await pdfFromSnapshot(sourceSnapshot, {
+          revision: replacement.version,
+          issuedAt,
+        });
         if (pdf.length < 8 || pdf.subarray(0, 5).toString() !== '%PDF-') throw new Error('Generator did not produce a valid PDF.');
         const object = await this.storage.store({
           user, category: 'report', parentType: 'report_version', parentId: replacement.id,
@@ -299,7 +330,8 @@ export class CanonicalReportsService {
         replacementObjectId = object.id;
         replacement.status = 'generated'; replacement.storageObjectId = object.id;
         replacement.sha256 = object.sha256; replacement.sizeBytes = object.sizeBytes;
-        replacement.generatedAt = new Date();
+        // The SAME instant the artifact prints. See `issuedAt` above.
+        replacement.generatedAt = issuedAt;
         await versionRepo.save(replacement);
 
         /**
@@ -436,7 +468,8 @@ export class CanonicalReportsService {
     return reports.map(report => {
       const inspection = inspectionById.get(report.inspectionId);
       const site = inspection ? siteById.get(inspection.siteId) : undefined;
-      const current = this.currentSnapshot(report.versions || []);
+      const versions = report.versions || [];
+      const current = this.currentSnapshot(versions);
       return {
         id: report.id,
         inspectionId: report.inspectionId,
@@ -446,6 +479,19 @@ export class CanonicalReportsService {
         status: current?.status || 'missing',
         checksum: current?.sha256 || null,
         sizeBytes: current?.sizeBytes || null,
+        /**
+         * §286 / D-046 — THE REVISION THE CUSTOMER WOULD DOWNLOAD, AND WHETHER THERE ARE OTHERS.
+         *
+         * Carried on the card so the library can state "Revision 2" and offer history only where
+         * history exists, without a per-card round trip that would make a list of twenty reports
+         * twenty-one requests. The full history is still a separate read; this is only enough to
+         * label the card truthfully and decide whether the history control is meaningful.
+         *
+         * `issuedRevisionCount` counts artifacts that exist, so a failed generation beside one
+         * good revision does not advertise a history with nothing retrievable in it.
+         */
+        revision: current?.version ?? null,
+        issuedRevisionCount: versions.filter(version => this.isIssued(version)).length,
         inspection: inspection ? {
           id: inspection.id,
           displayNumber: inspection.displayNumber,
@@ -534,22 +580,26 @@ export class CanonicalReportsService {
   }
 
   /**
-   * Download one REVISION by its internal sequence. The product never builds this URL --
-   * the customer has no version to name and always gets the current report -- but an
-   * auditor asking "what did we issue on the 13th?" must be able to retrieve exactly that.
+   * Download one REVISION by its number.
    *
    * §277 / D-028. A `superseded` revision is downloadable, because it is the immutable
    * artifact that was actually issued. Before §277 a replaced revision was deleted outright
    * and this answered 404 for it; now it answers with the bytes that were given out, and
    * only a revision that never finished generating is genuinely absent.
+   *
+   * §286 / D-046. This used to say "the product never builds this URL". It does now: the
+   * report library's revision history offers each retained revision for download, which is
+   * the guarantee D-028 already provided on the server and the customer could not reach.
+   * Nothing about the route's authorization or its answer changed -- it was always correct,
+   * and was simply never called.
    */
   async download(rawUser: unknown, reportId: string, versionNumber: number) {
     await this.accessibleReport(rawUser, reportId);
     const version = await this.versions.findOne({ where: { reportId, version: versionNumber } });
-    if (!version || !version.storageObjectId || !['generated', 'superseded'].includes(version.status)) {
+    if (!version || !this.isIssued(version)) {
       throw new NotFoundException('Report version not found.');
     }
-    return this.storage.read(rawUser, version.storageObjectId);
+    return this.storage.read(rawUser, version.storageObjectId as string);
   }
 
   /**
@@ -558,16 +608,43 @@ export class CanonicalReportsService {
    * Newest first. Each entry states its own identity, checksum, generation time, generator
    * and whether it is the current revision or was superseded by a named later one, so
    * "history can distinguish revisions" is answerable from one read rather than inferred.
+   *
+   * §286 / D-046 — AND IT IS NOW A CUSTOMER-FACING READ.
+   *
+   * §285 measured that this route existed and the client called neither it nor the
+   * per-revision download, so from the customer's side four of D-028's five guarantees were
+   * unobservable: an inspector who had filed revision 1 with a client could not see that it
+   * existed, could not tell which revision they had filed, and could not retrieve it.
+   *
+   * Two things changed for that. First, `supersededByRevision` carries the NUMBER of the
+   * revision that replaced this one, alongside the existing uuid. The product-owner
+   * direction is explicit that a raw uuid may not be the customer's primary identifier for a
+   * revision, and "Replaced by Revision 2" is only expressible if the number travels with the
+   * link. Second, `downloadable` states whether these bytes can still be retrieved, so the
+   * surface offers a download exactly when `download()` would answer with one rather than
+   * inferring it from a status vocabulary the client would then own a second copy of.
+   *
+   * `revisionCount` counts EVERY row including a failed generation, because it is the length
+   * of this list. `issuedRevisionCount` counts the ones that actually became artifacts, which
+   * is the number a customer surface means by "how many revisions are there".
    */
   async revisions(rawUser: unknown, reportId: string) {
     const report = await this.accessibleReport(rawUser, reportId);
     const versions = await this.versions.find({ where: { reportId }, order: { version: 'DESC' } });
     const current = this.currentSnapshot(versions);
+    const numberByRevisionId = new Map(versions.map(version => [version.id, version.version]));
+    const inspection = await this.dataSource.getRepository(Inspection)
+      .findOne({ where: { id: report.inspectionId } });
     return {
       reportId: report.id,
       inspectionId: report.inspectionId,
+      /** The customer's name for the record this is a report of. Never a uuid. */
+      inspectionNumber: inspection?.displayNumber ?? null,
       currentRevisionId: current?.id || null,
+      /** The customer-facing revision number of the report they would download now. */
+      currentRevision: current?.version ?? null,
       revisionCount: versions.length,
+      issuedRevisionCount: versions.filter(version => this.isIssued(version)).length,
       revisions: versions.map(version => ({
         revisionId: version.id,
         revision: version.version,
@@ -578,10 +655,27 @@ export class CanonicalReportsService {
         generatedAt: version.generatedAt,
         generatorVersion: version.generatorVersion,
         supersededByRevisionId: version.supersededByVersionId,
+        /** The NUMBER of the replacing revision, so no surface has to print a uuid to say so. */
+        supersededByRevision: version.supersededByVersionId
+          ? numberByRevisionId.get(version.supersededByVersionId) ?? null
+          : null,
+        /** True exactly when `download(reportId, revision)` would return these bytes. */
+        downloadable: this.isIssued(version),
         sourceInspectionVersion: version.sourceInspectionVersion,
         failureReason: version.failureReason,
       })),
     };
+  }
+
+  /**
+   * A revision whose artifact exists and is still retrievable.
+   *
+   * `superseded` is deliberately included: §277 / D-028's whole point is that the bytes the
+   * customer was actually given remain downloadable after a successor exists. Only a
+   * generation that never finished has nothing behind it.
+   */
+  private isIssued(version: InspectionReportVersion) {
+    return Boolean(version.storageObjectId) && ['generated', 'superseded'].includes(version.status);
   }
 
   /**
@@ -606,11 +700,18 @@ export class CanonicalReportsService {
   /**
    * The report as the rest of the system sees it.
    *
-   * `versionId` and `version` remain in the payload as the INTERNAL snapshot identity: the audit
-   * events, the frozen-snapshot verification suites and the diagnostics all address a snapshot row,
-   * and removing their handle would blind them. They are not a customer-facing sequence and no
-   * product surface renders them -- the customer sees the inspection's record number, when the
-   * report was last updated, and the checksum under technical details.
+   * `versionId` remains the INTERNAL snapshot identity: the audit events, the frozen-snapshot
+   * verification suites and the diagnostics all address a snapshot row, and removing their handle
+   * would blind them. It is not customer identity and no product surface renders it.
+   *
+   * §286 / D-046 — `version` IS NOW CUSTOMER-FACING, and is mirrored as `revision`.
+   *
+   * It was described here as an internal sequence no surface renders, on the v1.0 contract that an
+   * inspection has one report and there is therefore nothing to number. That contract was never
+   * what the server did -- §277 / D-028 has retained every issued revision since -- and §285
+   * measured the consequence: `/reports` told the customer their report had been REPLACED while the
+   * server held both. The number is the same number it always was; what changed is that the
+   * customer is now allowed to see it, so it is emitted under a name that says what it is.
    */
   private metadata(
     report: InspectionReport,
@@ -619,7 +720,10 @@ export class CanonicalReportsService {
   ) {
     return {
       reportId: report.id, inspectionId: report.inspectionId, versionId: version.id,
-      version: version.version, status: version.status, sourceInspectionVersion: version.sourceInspectionVersion,
+      version: version.version,
+      /** The same number under its customer-facing name. See the comment above. */
+      revision: version.version,
+      status: version.status, sourceInspectionVersion: version.sourceInspectionVersion,
       generatedAt: version.generatedAt, checksum: version.sha256, sizeBytes: version.sizeBytes,
       generatorVersion: version.generatorVersion, failureReason: version.failureReason,
       /** Customer-facing: the inspection's record number, and the two timestamps that differ. */

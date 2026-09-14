@@ -160,4 +160,18 @@ export class Inspection {
 
   @OneToMany(() => InspectionFinding, finding => finding.inspection)
   findings: InspectionFinding[];
+
+  /**
+   * §285 (D-044) — LIVE FINDINGS ON THIS INSPECTION. NOT A COLUMN.
+   *
+   * Populated by `InspectionService.list()` via `loadRelationCountAndMap` and left undefined
+   * everywhere else, so nothing can read it and silently get `0` from a path that never counted.
+   *
+   * "LIVE" EXCLUDES `dismissed` AND `superseded`, and that is the whole semantic content of the
+   * number. A dismissed finding is one a reviewer decided was not a finding; a superseded one has
+   * been replaced by a later revision of itself. Counting either would tell an inspector their
+   * board holds hazards that nobody believes are there, and counting superseded rows would make
+   * the figure climb every time a finding was revised.
+   */
+  findingCount?: number;
 }

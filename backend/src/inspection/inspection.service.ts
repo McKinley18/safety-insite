@@ -320,6 +320,30 @@ export class InspectionService {
         OR assignment.id IS NOT NULL
         OR :manager = true
       )`, { userId: user.userId, manager: isOrganizationManager(user) })
+      /**
+       * §285 (D-044) — THE UNPRIVILEGED FINDINGS AGGREGATE.
+       *
+       * The dashboard's Findings tile needs a count of findings across the caller's inspections,
+       * and §284 established there was nowhere to get one: this route returned bare rows, the
+       * per-inspection detail route is one call each, and `/dashboard/*` sits behind the paid
+       * `analytics` entitlement — so a Free account, which is the first account to see the
+       * dashboard, could not read a findings number at all. A tile was pointed at Inspections
+       * instead, because the alternative was a figure that is structurally always zero.
+       *
+       * This is that aggregate, and it is deliberately HERE rather than on a new endpoint. It
+       * inherits this query's tenancy and visibility rules exactly, so it cannot count a finding on
+       * an inspection the caller may not see, and there is no second scoping rule to drift. It
+       * carries NO entitlement gate, because a count of the caller's own findings is not an
+       * analytics feature.
+       *
+       * `dismissed` and `superseded` are excluded — see `Inspection.findingCount` for why.
+       */
+      .loadRelationCountAndMap(
+        'inspection.findingCount', 'inspection.findings', 'liveFinding',
+        (counter) => counter.andWhere(
+          "liveFinding.status IN ('pending_review', 'finalized')",
+        ),
+      )
       .orderBy('inspection.updatedAt', 'DESC');
     return query.getMany();
   }
@@ -412,12 +436,45 @@ export class InspectionService {
    * enforces it) and `completionReadiness` (which shows it).
    *
    * It reports the SAME facts to both, so the Finish screen can only ever say what the server would
-   * actually do. It deliberately introduces NO new requirement: the rules are exactly those the
-   * transition already enforced -- at least one observation, at least one current finding, and
-   * every current finding carrying a completed and still-current human review. A missing corrective
-   * action, an unassigned responsible person, an absent standard citation and an unanswered
-   * clarification question are all permitted, and making any of them mandatory would be a policy
-   * change, not a display change.
+   * actually do. A missing corrective action, an unassigned responsible person, an absent standard
+   * citation and an unanswered clarification question are all permitted.
+   *
+   * ==================== §286 — A SAFE INSPECTION CAN BE CLOSED ====================
+   *
+   * The contract used to require AT LEAST ONE CURRENT FINDING. §285 measured what that does: an
+   * inspection where HazLenz identified no hazard has zero findings, so completion was refused and
+   * the inspector's only routes to a closed record were to record a finding they did not believe in
+   * or to leave the record open forever. On a safety product that is the wrong incentive in the
+   * most consequential direction available, and "we inspected this area and it was sound" is a
+   * result a client may specifically need to be given.
+   *
+   * The requirement is REMOVED, and nothing else about the gate is weakened. What remains:
+   *
+   *   1. `in_review -> completed` is still the only edge into completion;
+   *   2. AT LEAST ONE OBSERVATION -- an inspection with nothing recorded is not an inspection that
+   *      found nothing, it is an inspection that did not happen, and the two must never close the
+   *      same way;
+   *   3. EVERY ACTIVE FINDING, IF ANY, still carries a completed, still-current human review. A
+   *      zero-finding inspection satisfies this vacuously and correctly; an inspection with one
+   *      unreviewed finding does not, and is still refused;
+   *   4. the optimistic `version` still has to match.
+   *
+   * The four states the product-owner direction requires to stay apart therefore stay apart, and
+   * each is readable from this payload without inference:
+   *
+   *   no observations             `observationCount === 0`, NOT ready, reason `NO_OBSERVATION`
+   *   unresolved active findings  NOT ready, reason `FINDING_NEEDS_REVIEW`, `blockingFindingIds`
+   *   incomplete                  ready or not, but the inspection's own `status` is not
+   *                               `completed` -- readiness is permission to finish, never the
+   *                               claim that finishing has happened
+   *   zero reportable findings    ready, `observationCount > 0`, `reportableCount === 0`, and
+   *                               `zeroReportableFindings` states it outright so no surface has to
+   *                               re-derive it from a pair of counters
+   *
+   * `zeroReportableFindings` counts REPORTABLE findings, not active ones. An inspection whose only
+   * candidate hazard a qualified person DISMISSED has an active finding and nothing to report, and
+   * it is the same product situation as one where the engine proposed nothing: the report will
+   * carry no findings either way, and both must be closable.
    */
   private async evaluateCompletionReadiness(inspectionId: string) {
     const observations = await this.observations.find({ where: { inspectionId }, select: ['id'] });
@@ -446,22 +503,54 @@ export class InspectionService {
 
     const reasons: string[] = [];
     if (!observations.length) reasons.push('NO_OBSERVATION');
-    if (active.length === 0) reasons.push('NO_CURRENT_FINDING');
+    // §286. `NO_CURRENT_FINDING` was the third reason here and is gone. See the header: a
+    // legitimate inspection may complete with zero findings, and the product must not require an
+    // inspector to manufacture one in order to close a record.
     if (blocking.length > 0) reasons.push('FINDING_NEEDS_REVIEW');
+
+    /**
+     * §285 — THE MESSAGE MUST NAME THE REASON THAT IS ACTUALLY BLOCKING.
+     *
+     * There were three `reasons` and two message branches, so an inspection with observations but
+     * NO FINDINGS was told "Every current finding requires a completed human review" -- which is
+     * false and, worse, unactionable: there are no findings, and reviewing nothing will never
+     * satisfy it. §285 measured that exact sentence coming back for `NO_CURRENT_FINDING` on an
+     * inspection where HazLenz identified no hazard.
+     *
+     * The order is the order an inspector would act in: record something, then get a finding out
+     * of it, then review the findings. Only the FIRST blocking reason is surfaced, because a
+     * screen that lists everything wrong at once is a screen nobody reads the top of.
+     *
+     * The machine-readable `reasons` array is unchanged and still carries all of them.
+     */
+    const messages: Record<string, string> = {
+      NO_OBSERVATION: 'At least one observation is required.',
+      FINDING_NEEDS_REVIEW:
+        'Every current finding requires a completed human review before finalization.',
+    };
+
+    const reportableCount = active.filter(finding => finding.status === 'finalized').length;
 
     return {
       ready: reasons.length === 0,
       reasons,
-      message: !observations.length
-        ? 'At least one observation is required.'
-        : 'Every current finding requires a completed human review before finalization.',
+      message: reasons.length ? messages[reasons[0]] : '',
       // What the Finish screen needs to render an actionable state, and nothing more.
+      observationCount: observations.length,
       findingCount: active.length,
       reviewedCount: active.length - blocking.length,
+      /**
+       * §286. TRUE only for an inspection that recorded something and has nothing to report --
+       * never for one that recorded nothing at all, which is `observationCount === 0` and is not
+       * completable. Stated here rather than left to each surface to infer from two counters,
+       * because the completion screen and the report have to agree about which of those two
+       * situations they are in, and they must not each derive it.
+       */
+      zeroReportableFindings: observations.length > 0 && reportableCount === 0,
       // The CUSTOMER-FACING count. A dismissed candidate satisfies the completion contract but is
       // not a finding of the inspection, so it must never be counted in "N findings reviewed" --
       // the readiness banner would otherwise report more findings than the report will contain.
-      reportableCount: active.filter(finding => finding.status === 'finalized').length,
+      reportableCount,
       blockingFindingIds: blocking.map(finding => finding.id),
     };
   }
