@@ -1,0 +1,402 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_289_THRESHOLD_A_RELEASE_PREPARATION",
+  "section": "289",
+  "generated": "2026-09-14T16:42:47Z",
+  "scope": "RELEASE ENGINEERING. Make the v1 successor candidate ready for a controlled production deployment. Not a feature batch, not legal remediation, not Expert activation, not public launch.",
+  "candidateHeadBefore": "0f36d49729c914c0c50a7e9118f3663877d057ef",
+  "candidateHeadAfter": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
+  "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "sourceDigest": "b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574",
+  "applicationSourceDigest": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
+  "constraintsHeld": {
+    "providerCalls": 0,
+    "productionWrites": 0,
+    "productionMigrations": 0,
+    "deployments": 0,
+    "productionConfigurationChanges": 0,
+    "productionSecretsAltered": 0,
+    "externalUsersCreated": 0,
+    "expertActivated": false,
+    "pushes": 0,
+    "productionReads": "authenticated, non-destructive: Render service/deploys/env-var-names, Neon schema+migrations+row content, R2 bucket listing and a synthetic round-trip under a probe prefix, live /health endpoints, Vercel project/deployment/domain/env-scope reads"
+  },
+  "candidatePreservation": {
+    "commit": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
+    "filesCommitted": 143,
+    "included": "29 tracked modifications spanning §285-§288; the §287 CorrectiveActionLifecycle migration; the §287 actions panel; 11 §285-§287 validation instruments; the §288 Pre-Production Release Register in both forms; the D-043 preservation record; §285/§286/§287 evidence directories",
+    "excluded": "generated artifacts (tsconfig.tsbuildinfo, compiled scripts/lib/*.js and .map), scratch files (tmp-smoke.ts, .walk.tmp.mjs), an unrelated logo directory, 4 stashes, and 33 untracked §257-§260 / insite-v1-* evidence paths belonging to earlier sections",
+    "secretScan": "PASS — no .env, key, credential or secret-shaped string in the staged content",
+    "worktreeAfter": "clean on tracked files"
+  },
+  "BR_1_BACKUP_AND_RESTORE": {
+    "registerDefinition": "No evidence exists of a tested backup or a rehearsed restore for the production database or object storage.",
+    "registerEvidenceClaimWasWrong": "The register recorded 'no restore evidence in verification/'. §269 had already taken a full logical backup and rehearsed a restore (76/76 tables, 7049/7049 rows). §289 did it again, freshly and more strictly.",
+    "backupMechanism": "operator-controlled logical backup via pg_dump against the DIRECT Neon endpoint; independent of the Neon console",
+    "clientRequired": "PostgreSQL 17+. The local postgresql@16 client refuses the 17.11 server; /opt/homebrew/opt/libpq/bin/pg_dump 18.3 was used.",
+    "backupTaken": {
+      "at": "2026-09-14T16:19:17Z",
+      "durationSeconds": 14.4,
+      "bytes": 7810853,
+      "sha256": "d4c2c3519fa8b3fc9c3ee64f085d968755f012d87a72ab3db8dba8efb8faeea9",
+      "tables": 76,
+      "rows": 7051
+    },
+    "restoreRehearsal": {
+      "target": "disposable PostgreSQL 17.11 container — an exact production server-version match",
+      "pgRestoreExit": 0,
+      "errors": 0,
+      "durationSeconds": 1,
+      "integrityMethod": "per-table md5 over per-row md5s, ordered COLLATE \"C\" so the comparison does not depend on the two servers' differing collations",
+      "result": "ALL 76 TABLES CONTENT-IDENTICAL",
+      "productionDigest": "da17e9b755a540dac240c5f2bd8c7a7c",
+      "restoredDigest": "da17e9b755a540dac240c5f2bd8c7a7c"
+    },
+    "collationTrap": "A first attempt ordered by row text and reported the `user` table as differing. Per-row hashes were identical: Neon runs lc_collate=C.UTF-8 and the container en_US.utf8, so the same rows concatenated in a different order. Recorded because it will recur on any future rehearsal.",
+    "notEstablished": "Neon's control plane was unreachable (no NEON_* credential). Platform retention window and point-in-time-recovery setting are UNREAD. Registered as BR-2.",
+    "verdict": "CLOSED for Threshold A — a backup was taken from live production and a restore was verified by content, not by row count."
+  },
+  "DB_1_PRODUCTION_DATABASE_STATE": {
+    "productionPlatform": "Neon PostgreSQL 17.11, us-east-1, database neondb (NOT Render Postgres)",
+    "productionMigrationHead": "1800000018000 InspectionKnowledgeReleaseBinding",
+    "productionAppliedCount": 50,
+    "candidateShippedCount": 54,
+    "drift": "NONE — comm over the two sorted sets returns zero rows applied-in-production-but-absent-from-the-candidate",
+    "pendingMigrations": [
+      {
+        "timestamp": "1800000019000",
+        "name": "ExpertAnalysisAuthorityFoundation",
+        "destructive": false,
+        "upOperations": "4 columns on hazlenz_analyses (all DEFAULTed or NULLable), new table expert_analysis_executions, 4 indexes, 6 constraints, 1 backfill UPDATE",
+        "requiresBackfill": true,
+        "backfillEffect": "sets producer='client_supplied', analysisState='ANALYSIS_AVAILABLE', confirmationRequired=false on existing rows. Rehearsal confirmed all 8 production rows take exactly these values.",
+        "applicationCompatibility": "old code tolerates it — added columns are not selected by the pre-019000 entity and are defaulted",
+        "downIsDestructive": true,
+        "downNote": "drops the table and four columns; does NOT self-enforce; must never run against a database that has served beta traffic"
+      },
+      {
+        "timestamp": "1800000020000",
+        "name": "ExpertHumanConfirmation",
+        "destructive": false,
+        "upOperations": "widens human_reviews.decision varchar(24)->(32), replaces its CHECK, adds nullable settlementReviewId, 2 partial unique indexes",
+        "requiresBackfill": false,
+        "preflight": "PASS — 0 duplicate groups would violate uq_human_review_analysis_settlement; the single existing decision value 'accepted' is permitted by the new CHECK; varchar widening is metadata-only in PostgreSQL",
+        "downIsDestructive": true,
+        "downNote": "SELF-ENFORCING: refuses outright if any analysis references a settlement. Its DELETE removes only rows whose decision could not have existed before the migration, so it destroys no pre-existing data.",
+        "applicationCompatibility": "backward compatible — widening a column and adding permitted enum values"
+      },
+      {
+        "timestamp": "1800000021000",
+        "name": "ProducerScopedAnalysisCurrentness",
+        "destructive": false,
+        "upOperations": "creates uq_hazlenz_analysis_current_by_producer (observationId, producer) WHERE status='current'; drops uq_hazlenz_analysis_current",
+        "requiresBackfill": false,
+        "preflight": "PASS — 0 duplicate groups in production",
+        "downIsDestructive": false,
+        "downNote": "SELF-ENFORCING in practice: recreating the stricter index fails on any observation carrying both a current deterministic and a current Expert analysis. Production has none, so the rehearsal succeeded.",
+        "applicationCompatibility": "relaxes a constraint; rolling application code back past §267 while it remains reintroduces the §266 P0-2 selection defect for the duration of the rollback"
+      },
+      {
+        "timestamp": "1800000022000",
+        "name": "CorrectiveActionLifecycle",
+        "destructive": false,
+        "upOperations": "3 nullable columns on corrective_actions (closedAt, closedByUserId, clientRequestId), 1 partial unique index, 1 composite index",
+        "requiresBackfill": false,
+        "preflight": "PASS — table has 1 row, none with a clientRequestId",
+        "downIsDestructive": true,
+        "downNote": "drops the three columns; no self-enforcement, but they carry no data before the migration",
+        "applicationCompatibility": "fully additive"
+      }
+    ],
+    "destructiveAssessment": "NONE of the four up() paths is destructive. Three of the four down() paths are, and two of those refuse on their own. Rollback of the schema is not the rollback path; see §MF in the deployment sequence.",
+    "orderingCorrect": true,
+    "forwardRehearsal": {
+      "target": "byte-identical copy of production",
+      "applied": 4,
+      "durationSeconds": 1,
+      "schemaVerification": "READY",
+      "appliedOverExpected": "54/54"
+    },
+    "rollbackRehearsal": {
+      "reverted": 4,
+      "durationSeconds": 1,
+      "headAfter": "1800000018000",
+      "migrationRowsAfter": 50,
+      "integrity": "content restored EXACTLY — all 76 tables identical to the pre-migration state",
+      "caveat": "proven on a database with zero Expert analyses and zero settlements, which is production today and will not be production after use"
+    },
+    "verdict": "CLOSED — head read, pending list classified per migration, ordering confirmed, forward and backward both rehearsed against a copy of production. No migration was run against production."
+  },
+  "DB_3_OUTCOMES_TABLE_FINDING": {
+    "registerClaim": "The outcomes table is deliberately absent from the migration set, which keeps the cross-tenant recurrence code unreachable.",
+    "halfThatIsTrue": "No migration in the candidate creates `outcomes`. Verified by grep across all 54 migration files: zero references.",
+    "halfThatIsFalse": "The `outcomes` table EXISTS in production — 13 columns, 0 rows. It is one of the 76 tables in the backup. No migration creates it, so it predates the migration set, most plausibly from a period when TYPEORM_SYNCHRONIZE was enabled.",
+    "consequence": "The containment argument written into corrective-actions.service.ts — 'NO MIGRATION CREATES THE TABLE ... so the table cannot appear by any other route' — does not hold in production. On production, closing a corrective action will NOT fail with 'relation outcomes does not exist'. It will succeed, write an outcome row, and run OutcomeService.checkRecurrence, which applies no organization or owner scope.",
+    "evidenceOfScope": "OutcomeService.checkRecurrence counts by category across every tenant; the Outcome entity carries no tenantId or organizationId column. The one caller is CorrectiveActionsService.recordClosureIntelligence, reached from PATCH /actions/:id/status with statusCode 'closed'.",
+    "materialityByThreshold": {
+      "A": "NOT MATERIAL — no users, so no closure occurs.",
+      "B": "NOT a cross-tenant leak with a single owner tenant, but auto-escalation to 'urgent' on the owner's own history would fire silently, which is the undecided D-055 product question.",
+      "C": "MATERIAL — one customer's action would be escalated on another customer's history."
+    },
+    "containment": "NOT CONTAINED in production by the mechanism the register and the code rely on.",
+    "secondConsequence": "All §286 and §287 action-closure evidence was gathered against databases WITHOUT the outcomes table. Local closure evidence therefore does not represent production closure behaviour.",
+    "action": "Registered as DB-4 (P1, blocks C) and TI-2's stated basis corrected. Not repaired in §289: repairing it is either a tenant-scoping change to the recurrence query or a product decision about whether the outcome loop is per-tenant or global, and neither is release engineering."
+  },
+  "IN_3_RENDER": {
+    "authenticated": true,
+    "identity": "usr-d74vlieuk2gs73accf3g / mckinley.christopherd@gmail.com",
+    "workspace": "tea-d74vlieuk2gs73accf20",
+    "service": "srv-d7kl74jeo5us73deaor0 safety-insite-backend",
+    "region": "oregon",
+    "plan": "0.5c-512mb",
+    "buildPlan": "starter",
+    "instances": 1,
+    "autoDeploy": "no",
+    "autoDeployTrigger": "off",
+    "pullRequestPreviews": "no",
+    "previewGeneration": "off",
+    "currentDeploy": "dep-dajckf3m8hqs73fp3u90 live 2026-09-13T16:08:39Z",
+    "currentSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "buildCommand": "npm install --include=dev && npm run build:render",
+    "startCommand": "npm run start:render",
+    "migrationMechanism": "SEPARATE AND MANUAL. startCommand is start:render, NOT start:release, so a deploy does NOT run migrations. `npm run migrate:prod` (plain JS, no ts-node, reads dist/) is the release step.",
+    "healthEndpoint": "/health — ok, database up",
+    "readinessEndpoint": "/health/ready — ready, database available",
+    "healthCheckPath": "/health/ready",
+    "expertFlag": "EXPERT_EXECUTION_ENABLED=false",
+    "envVarCount": 41,
+    "secretValuesExposed": 0,
+    "rollbackCapability": "PRESENT — 7 prior deploys retained on the same SHA; a previous commit can be redeployed",
+    "observations": [
+      "service slug and public hostname are `safescope-backend`, a retired brand, on infrastructure rather than a product surface",
+      "DB_SSL=false is set but DATABASE_URL carries sslmode=require&channel_binding=require and takes precedence",
+      "backend runs in oregon while the database is in us-east-1 — a cross-region hop on every query",
+      "PASSWORD_RESET_PROVIDER=resend but no RESEND_* credential appears among the 41 variable names",
+      "runtime Node version is not readable and not pinned anywhere in the repository"
+    ],
+    "verdict": "CLOSED — configuration re-read live and dated at §289."
+  },
+  "IN_1_AND_IN_2_DEPLOYMENT": {
+    "IN_1": {
+      "deployedBackendSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+      "deployedFrontendSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+      "bothHalvesAgree": true,
+      "candidateSha": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
+      "commitsAhead": 51,
+      "verdict": "REMAINS OPEN — closing it requires the deployment itself, which §289 is forbidden to perform."
+    },
+    "IN_2": {
+      "vercelProject": "prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw safety-insite",
+      "org": "mckinley18s-projects",
+      "productionBranch": "main",
+      "rootDirectory": "frontend-next",
+      "nodeVersion": "24.x",
+      "gitProviderOptions": {
+        "createDeployments": "disabled"
+      },
+      "productionDeployment": "dpl_GBe9WvS8rEu36xDKbmFUhXPDFdAB, READY, created 2026-08-29, source=git, sha de655d2f",
+      "productionAliases": [
+        "safety-insite.vercel.app",
+        "sentinelsafety.vercel.app (retired brand, redirects)",
+        "safety-insite-mckinley18s-projects.vercel.app",
+        "safety-insite-git-main-mckinley18s-projects.vercel.app"
+      ],
+      "theParadoxConfirmed": "createDeployments is disabled, yet a Git-sourced PREVIEW of the candidate branch at 0f36d497 exists and is READY. Pushing this branch is therefore not a purely local act, which is why §289 did not push.",
+      "verdict": "REMAINS OPEN — the production deployment path has still never been deliberately exercised."
+    }
+  },
+  "IN_4_PREVIEW": {
+    "ssoProtection": "all_except_custom_domains",
+    "gitForkProtection": true,
+    "skewProtectionMaxAge": 43200,
+    "previewProbe": {
+      "url": "safety-insite-5ntrbch32-mckinley18s-projects.vercel.app",
+      "httpStatus": 302,
+      "redirect": "vercel.com/sso-api",
+      "xFrameOptions": "DENY",
+      "xRobotsTag": "noindex",
+      "body": "Log in to Vercel"
+    },
+    "productionProbe": {
+      "url": "https://safety-insite.vercel.app",
+      "httpStatus": 200,
+      "ssoApplied": false,
+      "note": "the project's own production alias is exempt from SSO, so production is publicly reachable and is NOT noindex — correct for a product, but it means a controlled deployment is publicly visible"
+    },
+    "environmentScopes": [
+      {
+        "key": "EXPO_PUBLIC_API_URL",
+        "targets": [
+          "production",
+          "preview"
+        ],
+        "type": "sensitive"
+      },
+      {
+        "key": "NEXT_PUBLIC_API_BASE_URL",
+        "targets": [
+          "production"
+        ],
+        "type": "encrypted"
+      },
+      {
+        "key": "NEXT_PUBLIC_API_URL",
+        "targets": [
+          "production"
+        ],
+        "type": "encrypted"
+      },
+      {
+        "key": "NEXT_PUBLIC_DISABLE_AUTH",
+        "targets": [
+          "production",
+          "preview"
+        ],
+        "type": "sensitive"
+      }
+    ],
+    "secretScopeResult": "PASS — only four variables exist on the Vercel project and every one is public-prefixed. NO backend secret is exposed to Preview.",
+    "disableAuthAssessment": "NEXT_PUBLIC_DISABLE_AUTH is scoped to Production, which reads alarmingly. It is STRUCTURALLY INERT there: every consumer either tests NODE_ENV !== 'production' directly (AppShell.tsx:3, lib/auth.ts:113, lib/billing.ts isLocalDevAuthBypass) or delegates to getLocalDevPlanCode(), whose first line returns 'free' when NODE_ENV === 'production'. Registered as CF-1 (P2) because the name is a hazard for the next consumer, not because it does anything today.",
+    "verdict": "CLOSED — scopes enumerated per target and Preview behaviour probed live."
+  },
+  "ST_2_STORAGE": {
+    "provider": "Cloudflare R2 (S3-compatible)",
+    "bucket": "insite-production",
+    "region": "auto",
+    "forcePathStyle": true,
+    "probe": "section-289-probe/<date>/<uuid>, 97 synthetic bytes, no customer data",
+    "results": {
+      "bucketReachableAndAuthorized": "PASS",
+      "existingObjects": "2 (prefixes: evidence, report)",
+      "publicBucketPolicy": "PASS — none attached",
+      "bucketAcl": "PASS — AccessDenied",
+      "upload": "PASS",
+      "authorizedDownloadChecksum": "PASS — sha256 match",
+      "unsignedGet": "PASS — refused HTTP 400",
+      "unsignedList": "PASS — refused HTTP 400",
+      "delete": "PASS",
+      "objectGoneAfterDelete": "PASS — NoSuchKey",
+      "residue": "0 keys under the probe prefix",
+      "customerDataUsed": false
+    },
+    "isolationModel": "database-enforced, not path-enforced: object key is <category>/<YYYY-MM-DD>/<randomUUID> carrying no tenant identifier; storage_objects rows carry organizationId/ownerUserId under a CHECK permitting exactly one scope; objectKey is select:false; a retrieved object whose sha256 does not match the recorded digest is refused; FilesController is entirely behind JwtGuard",
+    "isolationResult": "PASS at the configuration and transport level — an object identifier alone confers no access",
+    "retention": "no lifecycle rule and no retention sweeper; an expiresAt column exists per object and is enforced at read time. Retention POLICY remains open as ST-3.",
+    "verdict": "INFRASTRUCTURE HALF CLOSED. The register's stated retest — one GENERATED REPORT round-tripped through production storage with a checksum match — is NOT met and cannot be met without deploying, because it runs through the product route. ST-2 stays OPEN for Threshold A with its remaining half named."
+  },
+  "BUILD_AND_GATES": {
+    "builtAgainst": "94e2963427c46b4d69dcdd8664c4754c5fc72c37, clean (dist and tsconfig.tsbuildinfo removed first)",
+    "pass": [
+      "backend tsc clean build",
+      "frontend tsc --noEmit",
+      "frontend next build — compiled, 25/25 static pages, 23 routes",
+      "verify:274-successor-identity — 22 elements, 2 authorised moves, 0 failures",
+      "release:check-build-context — BUILD CONTEXT GUARD PASS",
+      "brand:audit — PASS, tier1 customer-visible 0",
+      "hazlenz:verify — PASS, 29/29 protected modules, 0 evidence drift",
+      "beta:readiness — PASS, 58 checks",
+      "migrate:prod on a production copy — 4 applied, schema READY 54/54",
+      "migration rollback — 4 reverted, content restored exactly",
+      "check:effective-severity-parity — PASS, 118 lines compared",
+      "check:risk-band-parity — PASS",
+      "check:orange-semantics — PASS",
+      "check:page-titles — PASS",
+      "measure:281-route-reachability — PASS, 9 ACTIVE_REACHABLE + 11 ACTIVE_DEEP_LINK",
+      "test:279-release-version-check — 31 passed, 0 failed",
+      "check:expert-frontend-authority-boundary — PASS",
+      "test:expert-entitlement-presentation — PASS",
+      "test:calendar-reconciliation — 34/34",
+      "check:release-contract-parity — PASS, 1.0.0 / 1.0.0 / 1.0.0",
+      "check:canonical-persistence-release — PASS, real UI login, site+inspection+reload persistence, unauthenticated denial"
+    ],
+    "instrumentStale": [
+      {
+        "gate": "check:launch-pricing",
+        "result": "38 passed, 1 FAILED",
+        "classification": "INSTRUMENT STALENESS, NOT A PRODUCT DEFECT",
+        "why": "the allowlist of files permitted to mention 'Expert' as an internal identifier predates the §261-§284 Expert HazLenz surface. All three retired-Expert-PRICE checks pass and planData.ts passes. The gate conflates the retired Expert TIER with Expert HazLenz the CAPABILITY.",
+        "notRepaired": "deliberately — editing a gate's allowlist so the gate passes is self-repair, and this is not a Threshold A blocker"
+      },
+      {
+        "gate": "check:company-actions / check:action-workflow",
+        "result": "NOT_EXERCISED",
+        "why": "waits for a heading 'Home' that the §285-§288 command-center no longer renders, and requires VAL_EMAIL/VAL_PASSWORD credentials that were not supplied"
+      },
+      {
+        "gate": "check:closure-inspection-workspace",
+        "result": "NOT_EXERCISED",
+        "why": "expects APP_URL 3100 / API 4200; timed out against the §289 stack even after redirection"
+      },
+      {
+        "gate": "check:phase5-inspection-report-release",
+        "result": "NOT_EXERCISED",
+        "why": "a legacy HazLenz route answered 404 against the current build"
+      },
+      {
+        "gate": "validate:279-update-delivery",
+        "result": "NOT_EXERCISED",
+        "why": "requires a seeded account to sign in through the form"
+      }
+    ],
+    "evidenceMutation": "NONE — git status over tracked files was clean after the full gate run",
+    "verdict": "The candidate builds and its identity, protected modules, severity parity, routing, versioning, entitlement boundary and persistence all verify. Five instruments did not run; none reported a product defect."
+  },
+  "PV_1_PRESERVATION": {
+    "created": [
+      "project-docs/preservation/v1-beta/SAFETY-INSITE-V1-BETA-BUILD-AND-RESTORE-GUIDE.md",
+      "project-docs/preservation/v1-beta/release-manifest.json"
+    ],
+    "retiredDigestUsed": false,
+    "pendingFieldsUsed": [
+      "nodeVersion.renderProduction — NOT READ, with the reason"
+    ],
+    "verdict": "CLOSED"
+  },
+  "RL_1_RELEASE_ROLLBACK": {
+    "created": [
+      "project-docs/operations/SECTION-289-CONTROLLED-PRODUCTION-DEPLOYMENT.md"
+    ],
+    "registerEvidenceClaimWasWrong": "The register recorded 'no runbook in project-docs/'. DEPLOYMENT-RUNBOOK.md (§268, 13KB), ROLLBACK-MODEL.md (§268, 7KB), BACKUP-AND-RESTORE.md and MONITORING.md all existed.",
+    "whatWasActuallyMissing": "the runbook was STALE against the candidate in three material ways: a 3-migration backlog instead of 4, expected schema 1800000021000 instead of 1800000022000, and a backup step written against a Render Postgres instance that does not exist",
+    "rollbackDecisionPointsDefined": [
+      "MIGRATION FAILURE",
+      "BACKEND FAILURE",
+      "FRONTEND FAILURE",
+      "COMPATIBILITY FAILURE",
+      "STORAGE FAILURE",
+      "AUTH FAILURE",
+      "REPORT FAILURE"
+    ],
+    "executed": false,
+    "verdict": "CLOSED — sequence and rollback defined, candidate-exact, not executed"
+  },
+  "newRegisterEntries": [
+    "DB-4 outcomes table present in production (P1, blocks C)",
+    "BR-2 Neon platform retention and PITR unread (P2, blocks B)",
+    "OPS-1 operations docs misname the database platform (P2, blocks A)",
+    "PV-3 Node version unpinned and Render runtime version unreadable (P2, blocks B)",
+    "CF-1 NEXT_PUBLIC_DISABLE_AUTH scoped to Production (P2)",
+    "BR-3 launch-pricing and four browser instruments stale against the successor (P2)"
+  ],
+  "thresholdA": {
+    "blockersBefore": 8,
+    "blockersAfter": 3,
+    "closed": [
+      "DB-1",
+      "BR-1",
+      "IN-3",
+      "PV-1",
+      "RL-1"
+    ],
+    "remaining": [
+      "IN-1 deploy the candidate",
+      "IN-2 exercise the Vercel production path",
+      "ST-2 round-trip a generated report through production storage"
+    ],
+    "whyRemaining": "all three can only be closed BY the deployment. No preparation closes them.",
+    "openedAtSection289": [
+      "OPS-1"
+    ],
+    "verdict": "THRESHOLD A IS PREPARED. It cannot be declared READY-CLOSED without executing the deployment, which requires product-owner authorization."
+  }
+}

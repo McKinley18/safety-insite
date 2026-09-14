@@ -1,0 +1,13 @@
+release migration target  host=127.0.0.1 database=rehearsal
+applied  1800000019000  ExpertAnalysisAuthorityFoundation1800000019000
+applied  1800000020000  ExpertHumanConfirmation1800000020000
+applied  1800000021000  ProducerScopedAnalysisCurrentness1800000021000
+applied  1800000022000  CorrectiveActionLifecycle1800000022000
+
+4 migration(s) applied.
+
+schema verification  READY
+  expected schema version  1800000022000
+  applied / expected       54/54
+
+RELEASE MIGRATION OK — the new application version may now be activated.

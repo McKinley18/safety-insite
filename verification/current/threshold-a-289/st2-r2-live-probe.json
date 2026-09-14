@@ -1,0 +1,14 @@
+{
+  "bucketReachableAndAuthorized": "PASS",
+  "existingObjects": "2 (top-level prefixes: evidence, report)",
+  "publicBucketPolicy": "PASS — none attached (NotImplemented)",
+  "bucketAcl": "PASS — AccessDenied",
+  "uploadSyntheticObject": "PASS (97 bytes)",
+  "authorizedDownloadChecksum": "PASS — sha256 match 54fc99fcafd0fdc1…",
+  "unsignedGetRefused": "PASS — HTTP 400",
+  "unsignedListRefused": "PASS — HTTP 400",
+  "deleteSyntheticObject": "PASS",
+  "objectGoneAfterDelete": "PASS — NoSuchKey",
+  "residue": "0 keys remain under the probe prefix",
+  "customerDataUsed": "false"
+}

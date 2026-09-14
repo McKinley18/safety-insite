@@ -34,7 +34,10 @@ third row, which costs nothing and touches no data.
 
 ## Application rollback is safe because the schema is forward-compatible
 
-The three migrations in the current backlog are **additive**:
+The migrations in the current backlog are **additive**. §289 added a fourth,
+`1800000022000 CorrectiveActionLifecycle` (three nullable columns on `corrective_actions` plus two
+indexes), which is additive on the same terms and whose `down()` drops columns that carry no data
+before the migration:
 
 | migration | what it does | is the previous app version broken by it? |
 |---|---|---|
@@ -105,9 +108,24 @@ decision for the product owner, not an operational convenience.
 
 ## What is NOT established here
 
-`BACKUPS_AND_RETENTION` remains **`UNVERIFIED_LIVE`**. No backup configuration or point-in-time
-recovery setting exists in this repository; whatever exists is Render-managed and external. The
-restore path above is written against a backup this repository cannot confirm exists.
+**Corrected at §289.** The production database is **Neon**, not Render. The Render account
+contains no Postgres instance.
+
+`BACKUPS_AND_RETENTION` is now split in two, because the original entry ran two different questions
+together:
+
+* **Does a restorable backup exist?** — **YES, and it is proven.** §269 and §289 both took a full
+  logical backup of live production and rehearsed a restore. §289 verified the restore by per-table
+  content checksum against a PostgreSQL 17.11 target: all 76 tables identical. The restore path
+  above is no longer written against a backup this repository cannot confirm exists.
+* **What does the platform retain?** — **UNREAD.** Neon's control plane was unreachable from both
+  sections; there is no `NEON_*` credential. The history-retention window and the PITR setting are
+  unknown. Register entry `BR-2`.
+
+The §289 rehearsal also exercised this document's central claim directly: all four `down()` paths
+executed cleanly and restored the pre-migration content **exactly** — on a database with zero Expert
+analyses and zero settlements. That is production today. It is not production after use, and it is
+why the forward-only policy below stands unchanged.
 
 **Before the first beta user enters data, the following must be confirmed once against the live
 platform** and recorded:

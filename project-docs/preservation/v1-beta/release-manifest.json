@@ -1,0 +1,117 @@
+{
+  "artifact": "SAFETY_INSITE_V1_BETA_RELEASE_MANIFEST",
+  "generatedBy": "§289 — Threshold A release preparation",
+  "generatedAt": "2026-09-14T16:37:55Z",
+  "status": "CANDIDATE_PREPARED_NOT_DEPLOYED",
+  "productVersion": "1.0.0",
+  "gitSha": "94e2963427c46b4d69dcdd8664c4754c5fc72c37",
+  "gitShaNote": "The §289 candidate preservation commit. This is the exact source state every value below was derived from. It is COMMITTED LOCALLY AND NOT PUSHED; see deployment.pushState.",
+  "gitBranch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+  "gitTreeHash": "5c2aa485c44f1de9d7eb3afa51e748c9e48a6586",
+  "predecessorSha": "0f36d49729c914c0c50a7e9118f3663877d057ef",
+  "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
+  "sourceDigest": {
+    "value": "b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574",
+    "algorithm": "sha256",
+    "definition": "sha256 over the LC_ALL=C-sorted lines of `git ls-tree -r <gitSha> --format='%(path) %(objectname)'`, covering all 8921 tracked files.",
+    "recompute": "git ls-tree -r 94e2963427c46b4d69dcdd8664c4754c5fc72c37 --format='%(path) %(objectname)' | LC_ALL=C sort | shasum -a 256",
+    "coversFileCount": 8921
+  },
+  "applicationSourceDigest": {
+    "value": "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
+    "algorithm": "sha256",
+    "definition": "The same construction restricted to the files that determine the BUILT ARTIFACTS: backend/src, backend/scripts, backend/package.json, backend/package-lock.json, backend/tsconfig*, frontend-next/{app,components,lib,public,scripts}, frontend-next/package.json, frontend-next/package-lock.json, frontend-next/{next.config,tsconfig,tailwind}*.",
+    "why": "sourceDigest changes when evidence or documentation changes. This one changes only when the deployable product changes, so a rebuild that reproduces it reproduces the artifact."
+  },
+  "retiredDigestMustNotBeUsed": {
+    "value": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
+    "why": "Misattributed historical digest, retired at §288 (register entry PV-2). It is recorded here ONLY so a future reader who encounters it knows it is retired rather than reusing it as an integrity assertion."
+  },
+  "hazlenzIdentity": {
+    "successor": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+    "predecessor": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "verifiedBy": "npm run verify:274-successor-identity — 22 elements, 2 moved by the authorised §274 path rename, 0 failures",
+    "verifiedAtSection": "289",
+    "protectedModules": "29/29 present (hazlenz:verify)"
+  },
+  "frontendVersion": "1.0.0",
+  "backendVersion": "1.0.0",
+  "minimumSupportedFrontendVersion": "1.0.0",
+  "releaseContractParity": "PASS — check:release-contract-parity confirms SHIPPED_FRONTEND_VERSION equals frontend-next/package.json version",
+  "schemaCompatibilityVersion": "1800000022000",
+  "schemaCompatibilityVersionNote": "DERIVED from the migration files shipped in the artifact (backend/src/common/release-identity.ts), not declared.",
+  "migrationHead": {
+    "candidateExpects": "1800000022000",
+    "candidateMigrationCount": 54,
+    "productionApplied": "1800000018000",
+    "productionAppliedCount": 50,
+    "productionReadAt": "2026-09-14T16:18Z",
+    "pending": [
+      "1800000019000 ExpertAnalysisAuthorityFoundation",
+      "1800000020000 ExpertHumanConfirmation",
+      "1800000021000 ProducerScopedAnalysisCurrentness",
+      "1800000022000 CorrectiveActionLifecycle"
+    ],
+    "drift": "NONE — every one of the 50 rows in the production migrations table matches a migration file in the candidate, and the 4 pending ones are strictly newer than the production head."
+  },
+  "nodeVersion": {
+    "buildHostUsedForThisManifest": "v20.20.2",
+    "vercelProduction": "24.x (project setting)",
+    "renderProduction": "NOT READ — Render exposes no runtime Node version through its API, the service prints none at startup, and the repository pins none.",
+    "pinnedInRepository": false,
+    "risk": "Neither package has an `engines.node`, a `.nvmrc` or a `.node-version`. A rebuild is therefore NOT guaranteed to reproduce these artifacts on a different Node major. See knownLimitations.PV-NODE-UNPINNED."
+  },
+  "npmVersion": "10.8.2",
+  "databaseVersion": {
+    "production": "PostgreSQL 17.11 (Neon, us-east-1, database `neondb`)",
+    "provider": "Neon — NOT Render Postgres",
+    "providerNote": "project-docs/operations/BACKUP-AND-RESTORE.md and ROLLBACK-MODEL.md both describe the production database as 'managed PostgreSQL on Render'. That is incorrect; see knownLimitations.OPS-DB-PROVIDER-MISSTATED.",
+    "restoreRehearsalTarget": "PostgreSQL 17.11 (Debian) — an exact server-version match, in a disposable container",
+    "clientRequired": "PostgreSQL 17 or newer. The Homebrew postgresql@16 client refuses a 17.11 server; /opt/homebrew/opt/libpq/bin/pg_dump (18.3) was used."
+  },
+  "buildTimestamp": "2026-09-14T16:37:55Z",
+  "buildTimestampNote": "When the §289 release build was produced on the build host. The DEPLOYED build's timestamp is injected at deploy time via BUILD_TIMESTAMP and reported by /health/version with a buildTimestampSourceStatus saying which source answered.",
+  "deployment": {
+    "pushState": "NOT PUSHED. origin/beta/expert-hazlenz-validated-candidate-2026-09-12 is at 0f36d497 (the pre-§289 HEAD). The preservation commit 94e29634 exists only locally.",
+    "commitsAheadOfDeployedProduction": 51,
+    "deployedProductionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "backendPlatform": "Render web service srv-d7kl74jeo5us73deaor0 (oregon, 0.5c-512mb, 1 instance, autoDeploy=no)",
+    "frontendPlatform": "Vercel project prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw (production branch main, gitProviderOptions.createDeployments=disabled)",
+    "objectStorage": "Cloudflare R2, bucket insite-production, S3-compatible endpoint, forcePathStyle"
+  },
+  "knownLimitations": {
+    "PV-NODE-UNPINNED": "No Node version is pinned in either package and the Render runtime version could not be read. A rebuild reproduces the source digest but not, provably, the artifact.",
+    "OPS-DB-PROVIDER-MISSTATED": "Two operations documents name Render as the database platform; production is Neon. An operator following deployment-runbook step 3 would look for a Render Postgres instance that does not exist.",
+    "DB-4-OUTCOMES-TABLE-PRESENT": "The `outcomes` table EXISTS in production (13 columns, 0 rows) although no migration creates it. The containment argument recorded in the code and in register entry DB-3 — that the cross-tenant recurrence check is unreachable because the table is absent — does not hold in production.",
+    "EXPERT-DISABLED": "EXPERT_EXECUTION_ENABLED=false in production. Live provider transport has never been exercised; hazlenz:verify reports UNVERIFIED_LIVE for provider transport.",
+    "STORAGE-REPORT-ROUNDTRIP-NOT-DONE": "Production object storage is verified at the infrastructure level (§269 and again at §289) but no generated report has ever been round-tripped through it via the product route.",
+    "NO-MONITORING-AGGREGATION": "Operational events are emitted to stdout/stderr with redaction. There is no aggregation, alerting or error tracking (register MO-1).",
+    "NEON-RETENTION-UNREAD": "Neon's control plane was not reachable from this session (no NEON_* credential). The platform backup retention window and point-in-time-recovery setting are UNREAD. The operator-controlled logical backup path is proven independently.",
+    "LEGAL-NOT-CLEARED": "Terms, Privacy Notice, third-party model disclosure, contracting entity and trademark clearance are all open at Threshold C. Nothing here asserts legal clearance.",
+    "NO-EXTERNAL-BETA": "External beta remains BLOCKED regardless of Threshold A status."
+  },
+  "canonicalDocs": [
+    "project-docs/current/PRE-PRODUCTION-RELEASE-REGISTER.md — THE release authority",
+    "verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json — its machine-readable equivalent",
+    "project-docs/current/CURRENT-STATE.md",
+    "project-docs/current/BETA-READINESS.md",
+    "project-docs/current/PAGE-BY-PAGE-PRODUCT-REVIEW.md",
+    "project-docs/operations/DEPLOYMENT-RUNBOOK.md — §268 base runbook",
+    "project-docs/operations/SECTION-289-CONTROLLED-PRODUCTION-DEPLOYMENT.md — the candidate-exact successor sequence",
+    "project-docs/operations/ROLLBACK-MODEL.md",
+    "project-docs/operations/BACKUP-AND-RESTORE.md",
+    "project-docs/operations/MONITORING.md",
+    "project-docs/preservation/v1-beta/SAFETY-INSITE-V1-BETA-BUILD-AND-RESTORE-GUIDE.md"
+  ],
+  "validationEvidence": {
+    "section285": "verification/current/completion-report-285/ — inspection completion and reports",
+    "section286": "verification/current/actions-calendar-286/ — corrective actions, calendar, severity parity",
+    "section287": "verification/current/action-lifecycle-287/ — corrective-action lifecycle, offline probes",
+    "section269": "verification/expert-hazlenz-269-live-infrastructure-legal-2026-09-13/SECTION-269-LIVE-INFRASTRUCTURE.json — first live infrastructure verification",
+    "section289": "verification/current/threshold-a-289/ — this section's production reads, backup, restore rehearsal, migration rehearsal and gate results"
+  },
+  "providerCalls": 0,
+  "productionWrites": 0,
+  "productionMigrations": 0,
+  "deployments": 0
+}

@@ -4,17 +4,21 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**. Machine-readable equivalent, generated from the same entry list so the two
-cannot disagree: [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
+Established at **§288**, updated with live production evidence at **§289**. Machine-readable
+equivalent, generated from the same entry list so the two cannot disagree:
+[`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
 | | |
 |---|---|
-| Candidate HEAD | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
+| Candidate HEAD | `94e2963427c46b4d69dcdd8664c4754c5fc72c37` (§289 preservation commit) |
+| Predecessor | `0f36d49729c914c0c50a7e9118f3663877d057ef` |
+| Source digest | `b1f3bd7e9eaab3ff2aad97208e84d661d32a4de58338226a47c1a174a6129574` |
 | Frozen validated PRODUCT baseline | `709ee151b932095020ea69d25daa04a337ccba16` |
 | §274 successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
 | Retired digest — **must not be used** | `3c2c5974…` (misattributed; see PV-2) |
-| Provider calls in §288 | **0** |
-| Production contact in §288 | **none** — no deploy, no migration, no configuration change, no live read |
+| Provider calls in §288 and §289 | **0** |
+| Production contact in §288 | **none** |
+| Production contact in §289 | **READ-ONLY.** Render, Neon, Cloudflare R2 and Vercel authenticated and read; one synthetic non-customer object round-tripped and deleted in R2 with zero residue. **0 writes, 0 migrations, 0 deployments, 0 configuration changes.** |
 
 > **Supersedes** `verification/current/BETA-BLOCKERS.json` as the release authority. That file is
 > retained unchanged as the historical §263–§285 record and must not be read as current status.
@@ -28,9 +32,14 @@ the others.
 
 | | Threshold | What it means | Blockers |
 |---|---|---|---|
-| **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **8** |
-| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **11** |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **26** |
+| **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **3** (was 8) |
+| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **9** (was 11) |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **23** (was 26) |
+
+> **§289 changed the shape of Threshold A, not just its size.** Five of its eight entries closed on
+> evidence, and the three that remain — `ST-2`, `IN-1`, `IN-2` — **cannot be closed by any further
+> preparation.** Each one is closed by the deployment itself. Threshold A is therefore no longer a
+> list of work; it is a request for authorization.
 
 The shape of the answer matters more than the counts. **Threshold A is an infrastructure problem
 and nothing else** — no legal item blocks it, because nobody is using the system. **Threshold B
@@ -57,14 +66,18 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **65** | **6** | **15** | **22** | **22** |
+| Entries | **71** | **6** | **12** | **32** | **21** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 18 |
+| CLOSED | 25 |
 | OPEN | 40 |
-| BLOCKED (waiting on a decision or another item) | 5 |
+| BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
+
+**A threshold's blocker count is the number of entries still flagged for it.** Closing an entry
+clears its threshold flags and records what it used to block in `wasBlockingThresholds`, so an
+entry is never deleted and a closed item is never counted.
 
 ---
 
@@ -112,25 +125,38 @@ self-executing. LG-2 is BLOCKED on counsel for exactly this reason, and §288 di
 
 ## Minimum path to each threshold
 
-### Threshold A — controlled production deployment  (8 items, **0 legal, 0 P0**)
+### Threshold A — controlled production deployment  (3 items, **0 legal, 0 P0**)
 
-`BR-1`, `DB-1`, `IN-1`, `IN-2`, `IN-3`, `PV-1`, `RL-1`, `ST-2`
+`IN-1`, `IN-2`, `ST-2`
 
-Entirely infrastructure and preservation. In order:
+**Closed at §289, on evidence:**
 
-1. **DB-1** — read the production migration head; diff against the 54 shipped migrations; classify
-   each pending one destructive or not. *No migration runs until this list is reviewed.*
-2. **BR-1** — establish backups and rehearse one restore to a disposable target.
-3. **PV-1** — create `project-docs/preservation/v1-beta/` with the build-and-restore guide and the
-   release manifest.
-4. **RL-1** — write the release runbook and define rollback for both halves.
-5. **IN-3** — re-read Render configuration (read-only).
-6. **IN-1 / IN-2** — deploy the candidate, exercising the Vercel production path deliberately.
-7. **ST-2** — round-trip one generated report through production object storage.
+| | |
+|---|---|
+| **DB-1** | Production head read: `1800000018000`, 50 applied, **zero drift**. Exactly 4 pending, all additive, **none destructive** on the `up()` path. Rehearsed forward *and* backward against a byte-identical copy of production. No migration run against production. |
+| **BR-1** | Fresh backup of live production (14.4 s, 7 810 853 bytes, 76 tables, 7 051 rows), restored into a PostgreSQL 17.11 disposable target in 1 s, verified by **per-table content checksum**: all 76 tables identical. |
+| **IN-3** | Render configuration re-read live and dated. `autoDeploy=no`, `autoDeployTrigger=off`, 41 env vars with 0 secret values exposed, `EXPERT_EXECUTION_ENABLED=false`. |
+| **PV-1** | `project-docs/preservation/v1-beta/` created, with the build-and-restore guide and a manifest carrying every required field. The retired digest is not used as an integrity assertion. |
+| **RL-1** | The candidate-exact deployment sequence, with rollback decision points for all seven named failure surfaces. |
+| **OPS-1** | *(opened and closed at §289)* Two operations documents named Render as the database platform. Production is Neon. Corrected. |
+
+**Remaining — and none of it is preparation:**
+
+1. **IN-1** — deploy the candidate. Production runs `de655d2f` on both halves; the candidate is 51
+   commits ahead and is **committed locally and not pushed**.
+2. **IN-2** — exercise the Vercel production deployment path deliberately, and read the result back.
+3. **ST-2** — round-trip one **generated report** through production object storage. The bucket
+   itself is verified; this half runs through the product route and therefore needs the deployment.
+
+The §288 reading of Threshold A as "an infrastructure problem and nothing else" survives §289 intact.
+What §288 got wrong was three of its evidence claims — see the §289 section at the end.
 
 ### Threshold B — internal / owner production use  (11 items)
 
-All of A, plus `MO-1`, `PA-1`, `SU-1`, `SU-3`.
+All of A, plus `MO-1`, `PA-1`, `SU-1`, `SU-3`, and two opened at §289: **`BR-2`** (Neon's platform
+retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
+pinned and the Render runtime version cannot be read, so a rebuild reproduces the source but not
+provably the artifact).
 
 Real data now exists, so three things change. **SU-1 and SU-3** — acceptance must be transmitted,
 persisted and evidenceable; this is engineering work that does **not** depend on counsel, because
@@ -142,16 +168,24 @@ must be true before a human uses it.
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
-`LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
+`LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
 `AC-1`, `CPF-2`, `CPF-3`, `SE-3`, `ST-3`, `TI-3` (P2)
+
+**`DB-4` is new at §289 and it is not legal work.** The cross-tenant recurrence path that `TI-2`
+describes is **reachable in production**, because the `outcomes` table exists there although no
+migration creates it. It fires the first time anyone closes a corrective action. At Threshold A
+nobody closes anything; at Threshold C it escalates one customer's action on another customer's
+history.
 
 The critical path is **counsel**, and it is not shortened by engineering. LG-1 → LG-2 → LG-3 → SU-2
 is a chain: the documents must be approved and the placeholders filled before they can be published,
 and they must be published before signup can link to and take acceptance of them. Everything else on
 this list can proceed in parallel.
 
-**The finite path is real.** No entry on any threshold is open-ended research. The largest single
-unknown — the production migration head — is one read away, and §288 was forbidden from taking it.
+**The finite path is real, and §289 shortened it.** The largest single unknown — the production
+migration head — was one read away, §288 was forbidden from taking it, and §289 took it: head
+`1800000018000`, zero drift, four pending, none destructive. No entry on any threshold is
+open-ended research.
 
 ---
 
@@ -191,7 +225,7 @@ are retained so a later section does not rediscover them as new.
 *Evidence:* `backend/src/hazlenz/expert-hazlenz-product/expert-operational-controls.ts; hazlenz:verify reports UNVERIFIED_LIVE`  
 *Retest:* A preregistered hosted activation with spend ceiling and refusal accounting.
 
-**HZ-3 — remediation / decision.** Point the verify harness at a disposable local_test storage root, as review-stack.ts already does.
+**HZ-3 — unchanged at §289, and the remediation is now more precisely aimed.** `hazlenz:verify` still reports `ENVIRONMENTALLY_BLOCKED`. A §289 attempt to satisfy it by supplying `STORAGE_PROVIDER=local_test` and `STORAGE_LOCAL_ROOT` **did not take effect** — the harness does not pass them into the child process that needs them. So the fix is in `scripts/hazlenz/verify.ts`, not in the environment the operator sets.
 
 *Evidence:* `backend hazlenz:verify output; verification/current/completion-report-285`  
 *Retest:* hazlenz:verify reporting a result other than ENVIRONMENTALLY_BLOCKED.
@@ -318,7 +352,7 @@ are retained so a later section does not rediscover them as new.
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **TI-1** | Cross-account isolation verified on inspections, reports, actions, tasks and calendar, including the §287 edit route. | P3 | — | Security | CLOSED |
-| **TI-2** | The outcome-intelligence recurrence check counts across EVERY tenant and would auto-escalate one customer's action on another customer's history. | P2 | — | Security | BLOCKED |
+| **TI-2** | The outcome-intelligence recurrence check counts across EVERY tenant and would auto-escalate one customer's action on another customer's history. **§289: reachable in production — see DB-4.** | P2 | — | Security | BLOCKED |
 | **TI-3** | Organization/multi-user workspace paths are only partially exercised; most evidence is from single-user personal accounts. | P2 | C | Engineering | OPEN |
 
 **TI-2 — remediation / decision.** Before any activation: scope recurrence to tenant/workspace, prove same-tenant history CAN influence and other-tenant history CANNOT, prove no identifier leakage, no cross-tenant escalation, add query scoping and indexes, and regress with two or more workspaces.
@@ -336,13 +370,15 @@ are retained so a later section does not rediscover them as new.
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **ST-1** | Report and artifact access is an authenticated streaming GET; there are no signed URLs to leak or expire. | P3 | — | Security | CLOSED |
-| **ST-2** | Production object storage (S3) has never been exercised end to end. All report evidence comes from the local_test provider. | P1 | ABC | Infrastructure | OPEN |
+| **ST-2** | Production object storage is verified at the infrastructure level. No GENERATED REPORT has been round-tripped through it. | P1 | ABC | Infrastructure | OPEN — half closed at §289 |
 | **ST-3** | Report and inspection-record retention policy is undefined. | P2 | C | Product | OPEN |
 
-**ST-2 — remediation / decision.** Configure and exercise S3 in the controlled production environment: store, read, retire, and an orphan sweep.
+**ST-2 — §289 update.** The premise "never been exercised end to end" was already false: §269 verified the live R2 bucket, and §289 re-verified it freshly and non-destructively. Bucket reachable and authorised, no public policy, ACL `AccessDenied`, upload, authorised download with sha256 match, unsigned GET and LIST both refused (HTTP 400), delete, `NoSuchKey` after delete, **0 residue**, no customer data. Tenant isolation is database-enforced rather than path-enforced: the object key is `<category>/<date>/<uuid>` and carries no tenant identifier, `objectKey` is `select: false`, a digest mismatch on read is refused, and `FilesController` is entirely behind `JwtGuard` — so an object identifier alone confers no access.
 
-*Evidence:* `backend/src/storage/storage.service.ts; hazlenz:verify ENVIRONMENTALLY_BLOCKED`  
-*Retest:* One generated report round-tripped through production storage with a checksum match.
+**What remains is one thing, and it needs the deployment.** No generated report has ever gone through production storage via the product route. That is the register's own retest and it cannot be run from a preparation section.
+
+*Evidence:* `verification/current/threshold-a-289/st2-r2-live-probe.json`  
+*Retest:* One generated report round-tripped through production storage with a checksum match — deployment sequence step 14.
 
 **ST-3 — remediation / decision.** State a retention and export position for the beta, especially interacting with RR-1.
 
@@ -449,57 +485,126 @@ are retained so a later section does not rediscover them as new.
 |---|---|---|---|---|---|
 | **IN-1** | The validated candidate has never been deployed. Production runs de655d2f (2026-08-29); the candidate branch is many unpushed commits ahead. | P1 | ABC | Infrastructure | OPEN |
 | **IN-2** | The Vercel PRODUCTION deployment control has never been exercised. gitProviderOptions.createDeployments is disabled, yet a branch push still produced a Git-sourced preview. | P1 | ABC | Infrastructure | OPEN |
-| **IN-3** | Render configuration, authentication and auto-deploy posture were last evidenced at §269/§283 and are stale relative to the candidate. | P2 | A | Infrastructure | OPEN |
-| **IN-4** | Vercel Preview deployments are SSO-protected, noindex and DENY-framed. | P2 | — | Infrastructure | OPEN |
+| **IN-3** | Render configuration, authentication and auto-deploy posture re-read live and dated at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
+| **IN-4** | Vercel Preview deployments are SSO-protected, noindex and DENY-framed, and no backend secret is scoped to Preview. | P2 | — | Infrastructure | **CLOSED (§289)** |
 
-**IN-1 — remediation / decision.** Push and deploy the candidate to a controlled production environment after DB-1, ST-2, PV-1 and RL-1.
+**IN-1 — §289 update. The prerequisites it named are now met.** DB-1, PV-1 and RL-1 are closed, and ST-2's infrastructure half is closed. Production runs `de655d2f` on **both** halves — the Render backend and the Vercel production deployment agree, which is itself worth knowing. The candidate `94e29634` is **51 commits ahead** and is committed locally and **not pushed**.
 
-*Evidence:* `verification/current/runtime-evidence-283 section D; project-docs/current/BETA-READINESS.md row 5`  
-*Retest:* A production SHA read matching the candidate.
+*Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `IN_1_AND_IN_2_DEPLOYMENT`; `/health/version` read live  
+*Retest:* A production SHA read matching `94e2963427c46b4d69dcdd8664c4754c5fc72c37` on both halves.
 
-**IN-2 — remediation / decision.** Exercise the production deployment path once, deliberately, before relying on it.
+**IN-2 — §289 update. The paradox is confirmed, not merely restated.** `gitProviderOptions.createDeployments` is `"disabled"`, and a Git-sourced **preview** deployment of the candidate branch at `0f36d497` nevertheless exists and is `READY`. Pushing this branch is therefore not a purely local act, and that is precisely why §289 did not push: a push is step 1 of the deployment sequence and belongs to the authorization, not to the preparation.
 
-*Evidence:* `verification/current/runtime-evidence-283 section D`  
-*Retest:* A production deployment whose source and target are read back and recorded.
+*Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `IN_1_AND_IN_2_DEPLOYMENT`  
+*Retest:* A production deployment whose source and target are read back from the Vercel API and recorded — deployment sequence steps 9 and 10.
 
-**IN-3 — remediation / decision.** Re-read Render service configuration, environment variables and auto-deploy setting at deploy time. Read-only.
+**IN-3 — CLOSED at §289.** `srv-d7kl74jeo5us73deaor0`, oregon, `0.5c-512mb`, 1 instance, `autoDeploy=no`, `autoDeployTrigger=off`, previews off, `healthCheckPath=/health/ready`, 41 environment variables with **0 secret values exposed**, `EXPERT_EXECUTION_ENABLED=false`, current deploy `dep-dajckf3m8hqs73fp3u90` at `de655d2f`. Rollback capability present — seven prior deploys retained.
 
-*Evidence:* `verification/current/runtime-evidence-283`  
-*Retest:* A recorded configuration read dated at deploy.
+**Migrations do not run on deploy.** The start command is `start:render`, not `start:release`, so `npm run migrate:prod` is a separate deliberate step. That is the ordering the runbook depends on, and it is enforced by configuration rather than by memory.
 
-**IN-4 — remediation / decision.** Before sharing any preview externally, enumerate which environment variables are exposed to Preview and confirm no production secret is among them.
+Four observations registered rather than fixed: the service slug and public hostname are the retired **SafeScope** brand (infrastructure, not a product surface); `DB_SSL=false` is set but `DATABASE_URL` carries `sslmode=require` and takes precedence; the backend is in **oregon** while the database is in **us-east-1**, a cross-region hop on every query; and no `RESEND_*` credential appears among the 41 names although `PASSWORD_RESET_PROVIDER=resend`.
 
-*Evidence:* `verification/current/runtime-evidence-283 section D`  
-*Retest:* An environment-scope listing per target.
+*Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `IN_3_RENDER`  
+*Retest:* A recorded configuration read dated at the next deploy.
+
+**IN-4 — CLOSED at §289.** Probed live. Preview answers **HTTP 302** to `vercel.com/sso-api` with `x-frame-options: DENY` and `x-robots-tag: noindex`. The scope listing per target is the answer the entry asked for: the Vercel project has **exactly four** environment variables and **every one is public-prefixed**, so no backend secret is exposed to Preview.
+
+**Two facts worth carrying forward.** The project's own production alias is *exempt* from SSO and returns 200, so a controlled production deployment is publicly reachable and is not `noindex` — correct for a product, but not what "controlled" sounds like. And `NEXT_PUBLIC_DISABLE_AUTH` is scoped to **Production**, which reads alarmingly and is structurally inert: every consumer either tests `NODE_ENV !== "production"` directly or delegates to `getLocalDevPlanCode()`, whose first line returns `"free"` under production. Registered as `CF-1` for the name, not for the behaviour.
+
+*Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `IN_4_PREVIEW`  
+*Retest:* Re-enumerate scopes whenever a Vercel environment variable is added.
 
 ### DATABASE / MIGRATIONS
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **DB-1** | The production migration head is UNKNOWN from repository evidence, and 54 migrations exist in the candidate. | P1 | ABC | Engineering | OPEN |
+| **DB-1** | Production migration head READ at §289: `1800000018000`, 50 applied, zero drift, 4 pending, none destructive. | P2 | — | Engineering | **CLOSED (§289)** |
 | **DB-2** | The §287 corrective-action lifecycle migration had a DUPLICATE, out-of-order timestamp (1800000006000, colliding with AddUserProfileNames) which also left schemaCompatibilityVersion blind to the schema change. | P2 | — | Engineering | CLOSED |
-| **DB-3** | The outcomes table is deliberately absent from the migration set, which keeps the cross-tenant recurrence code unreachable. | P3 | — | Security | BLOCKED |
+| **DB-3** | The outcomes table is absent from the MIGRATION SET but PRESENT in the production database. The reachability conclusion drawn from its absence does not hold. | P2 | — | Security | OPEN — premise corrected at §289 |
+| **DB-4** | The cross-tenant recurrence path is REACHABLE in production, because the outcomes table exists there. | P1 | C | Mixed | OPEN (§289) |
 
-**DB-1 — remediation / decision.** Read the production migrations table, diff against the shipped set, and record the pending list with a destructive/non-destructive classification per migration before running anything.
+**DB-1 — CLOSED at §289.** The read §288 was forbidden to take. Production head `1800000018000`, **50 applied**, and — the fact that actually matters — **zero drift**: every applied row matches a migration file in the candidate, and the four pending ones are strictly newer than the head.
 
-*Evidence:* `backend/src/database/migrations/ (54 files)`  
-*Retest:* A recorded production head and a reviewed pending list.
+| | migration | `up()` | destructive? | backfill? |
+|---|---|---|---|---|
+| 1 | `1800000019000` ExpertAnalysisAuthorityFoundation | 4 defaulted/nullable columns on `hazlenz_analyses`, new table `expert_analysis_executions`, 4 indexes, 6 constraints | **No** | **Yes** — sets `producer='client_supplied'`, `analysisState='ANALYSIS_AVAILABLE'`, `confirmationRequired=false`. The rehearsal confirmed all 8 production rows take exactly those values. |
+| 2 | `1800000020000` ExpertHumanConfirmation | widens `human_reviews.decision` 24→32, replaces its CHECK, adds nullable `settlementReviewId`, 2 partial unique indexes | **No** | No |
+| 3 | `1800000021000` ProducerScopedAnalysisCurrentness | replaces the single-current index with a per-producer one | **No** | No |
+| 4 | `1800000022000` CorrectiveActionLifecycle | 3 nullable columns on `corrective_actions`, 2 indexes | **No** | No |
 
-**DB-3 — remediation / decision.** Do not add this migration until TI-2 is repaired and validated.
+**Preflight against real production data, before any of it ran:** zero duplicate groups would violate either new unique index, and the single existing `human_reviews.decision` value (`accepted`) is permitted by the new CHECK. So none of the three ways these migrations could have failed on live data was present.
 
-*Evidence:* `verified in §287 and re-verified in §288`  
-*Retest:* Tied to TI-2.
+**Then it was rehearsed both ways against a byte-identical copy of production.** Forward: 4 applied in 1 s, schema verification `READY`, `54/54`. Backward: 4 reverted in 1 s, head back to `1800000018000`, and **the content was restored exactly** — all 76 tables identical to the pre-migration state.
+
+**Three of the four `down()` paths are destructive, and that is the important asymmetry.** `020000` and `021000` **refuse on their own** when real data would be lost. `019000` does not: it would drop `expert_analysis_executions` and four columns, destroying every Expert analysis's provenance and cost accounting. The rehearsal succeeded only because production has zero Expert analyses and zero settlements today. Schema rollback is **not** the rollback path; see §MF in the deployment sequence.
+
+**No migration was run against production.**
+
+*Evidence:* `verification/current/threshold-a-289/` → `SECTION-289-THRESHOLD-A.json` `DB_1_PRODUCTION_DATABASE_STATE`, `production-migrations-applied.txt`, `migration-forward-rehearsal.log`  
+*Retest:* Re-read the production head before executing the sequence. This classification holds only while the pending list is these four.
+
+**DB-3 — premise corrected at §289. Status moved BLOCKED → OPEN, because the thing it was blocked on turned out not to be true.**
+
+Half the claim survives: **no migration in the candidate creates `outcomes`** — verified by grep across all 54 files, zero references. The half that mattered does not: **the table exists in production.** Thirteen columns, zero rows, one of the 76 tables in the §289 backup. Nothing in the migration set put it there, so it predates the set — most plausibly from a period when `TYPEORM_SYNCHRONIZE` was enabled.
+
+**Do not add the migration.** The decision now is what to do about the table that is already there, and the consequence of it being there is `DB-4`.
+
+*Evidence:* `verification/current/threshold-a-289/SECTION-289-THRESHOLD-A.json` → `DB_3_OUTCOMES_TABLE_FINDING`  
+*Retest:* Tied to DB-4 and TI-2.
+
+**DB-4 — new at §289. The containment argument does not hold in production.**
+
+`corrective-actions.service.ts` carries its own safety argument for why the cross-tenant recurrence check cannot fire: *"The `Outcome` entity is declared and its module is wired, and NO MIGRATION CREATES THE TABLE. `synchronize` is false in production and the application refuses to start with it enabled there, so the table cannot appear by any other route."* Every clause is true and the conclusion is false, because the table was already there before the migration set existed.
+
+So on production, `PATCH /actions/:id/status` with `closed` does **not** fail with `relation "outcomes" does not exist`. It succeeds, writes an outcome row, and runs `OutcomeService.checkRecurrence` — a count by category with **no organization or owner scope** — whose result sets `priorityCode` to `urgent`.
+
+| threshold | material? | why |
+|---|---|---|
+| **A** | No | Nobody closes anything. No users. |
+| **B** | Not as a leak | One owner tenant, so recurrence counts only the owner's own history. But the escalation fires silently, which is the undecided D-055 question. |
+| **C** | **Yes** | One customer's action escalated on another customer's history. |
+
+**A second consequence, and it is the one most likely to be missed.** All §286 and §287 action-closure evidence was gathered against databases **without** this table. Local closure evidence therefore does not represent production closure behaviour, in either direction.
+
+*Evidence:* `backend/src/outcomes/outcome.service.ts` `checkRecurrence`; `backend/src/corrective-actions/corrective-actions.service.ts` `recordClosureIntelligence`  
+*Remediation:* Scope the recurrence query to tenant/workspace and prove both directions (the TI-2 remediation), **or** decide the outcome loop is deliberately global and state that as a product position. Dropping the production table to restore the original containment is a production **write** and belongs to its own authorised section.  
+*Retest:* A two-workspace regression proving same-tenant history CAN influence a recurrence and other-tenant history CANNOT.
 
 ### BACKUP / RESTORE
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **BR-1** | No evidence exists of a tested backup or a rehearsed restore for the production database or object storage. | P1 | ABC | Infrastructure | OPEN |
+| **BR-1** | A backup of live production was taken and its restore verified by content checksum at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
+| **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | B | Infrastructure | OPEN (§289) |
+| **BR-3** | Five verification instruments are stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§289) |
 
-**BR-1 — remediation / decision.** Establish the backup schedule and retention, then rehearse one full restore to a disposable target and record the timing.
+**BR-1 — CLOSED at §289. The register's evidence claim here was wrong.** It said `no restore evidence in verification/`. §269 had already taken a full logical backup of production and rehearsed a restore (76/76 tables, 7 049/7 049 rows, zero differences); it is recorded in `SECTION-269-LIVE-INFRASTRUCTURE.json`. §288 did not look.
 
-*Evidence:* `no restore evidence in verification/`  
-*Retest:* A recorded restore rehearsal with a data-integrity check.
+§289 did it again rather than citing §269, and did it more strictly:
+
+| | |
+|---|---|
+| Backup | 14.4 s, 7 810 853 bytes, 76 tables, 7 051 rows, sha256 `d4c2c351…` |
+| Restore target | disposable **PostgreSQL 17.11** container — an exact production server-version match |
+| Restore | 1 s, `pg_restore` exit 0, **0 errors** |
+| Integrity | **per-table content checksum**, not row count: all 76 tables identical, digest `da17e9b755a540dac240c5f2bd8c7a7c` on both sides |
+
+**Two operational facts that will otherwise be rediscovered painfully.** Production is PostgreSQL 17.11 and a PostgreSQL 16 client **refuses** it — use `/opt/homebrew/opt/libpq/bin/pg_dump` (18.3), and use the **direct** Neon endpoint, not the `-pooler` one. And pin the collation when comparing: Neon runs `lc_collate=C.UTF-8` while a stock `postgres:17` container runs `en_US.utf8`, so a checksum that orders rows by their text reports a difference on identical data. §289 hit that exactly once, on the `user` table, and it looked like corruption until the per-row hashes came back identical.
+
+*Evidence:* `verification/current/threshold-a-289/backup-production-table-checksums.txt` and `backup-restored-table-checksums.txt`  
+*Retest:* A fresh backup and a content-checksum verification immediately before each release — deployment sequence steps 3 and 4.
+
+**BR-2 — new at §289.** What the **platform** retains is still unknown. Neon's control plane was unreachable from §269 and again from §289: there is no `NEON_*` credential in the repository or the environment. This is **not** a "we have no backups" finding — the operator-controlled path above is proven twice and does not depend on the console. It is a "we do not know what the platform would give us" finding, and it is one console read away.
+
+*Evidence:* `SECTION-289-THRESHOLD-A.json` → `BR_1_BACKUP_AND_RESTORE.notEstablished`  
+*Retest:* A recorded retention window and a recorded PITR window.
+
+**BR-3 — new at §289.** Five instruments no longer exercise the product they were written for. `check:launch-pricing` fails 1 of 39 on an allowlist that predates the Expert HazLenz surface — it conflates the **retired Expert pricing tier** (correctly purged; all three price checks pass and `planData.ts` passes) with **Expert HazLenz the capability**. `check:company-actions` and `check:action-workflow` wait for a heading the command-center no longer renders and need `VAL_EMAIL`/`VAL_PASSWORD`. `check:closure-inspection-workspace` expects ports 3100/4200. `check:phase5-inspection-report-release` calls a HazLenz route that answers 404. `validate:279-update-delivery` needs a seeded account.
+
+**None of these is a product defect.** Each failed to run, or failed against its own stale expectation. §289 deliberately did **not** edit an allowlist or an assertion to make a gate pass.
+
+*Evidence:* `SECTION-289-THRESHOLD-A.json` → `BUILD_AND_GATES.instrumentStale`  
+*Retest:* Each instrument running and reporting a result rather than an environment error.
 
 ### MONITORING / INCIDENT RESPONSE
 
@@ -522,6 +627,14 @@ are retained so a later section does not rediscover them as new.
 
 *Evidence:* `license-checker summaries taken in §288`  
 *Retest:* Re-run the license survey when dependencies change.
+
+### CONFIGURATION
+
+| ID | Description | Sev | Blocks | Owner | Status |
+|---|---|---|---|---|---|
+| **CF-1** | NEXT_PUBLIC_DISABLE_AUTH is scoped to the Vercel PRODUCTION environment. Structurally inert there; registered for what it invites. | P2 | — | Engineering | OPEN (§289) |
+
+**CF-1 — new at §289.** Every consumer either tests `NODE_ENV !== "production"` directly (`AppShell.tsx:3`, `lib/auth.ts:113`, `lib/billing.ts` `isLocalDevAuthBypass`) or delegates to `getLocalDevPlanCode()`, whose first line returns `"free"` under production. The variable therefore does nothing in a production build whatever its value, and entitlement is server-authoritative in any case. **Do not restate this as a live auth bypass.** The hazard is the next consumer who reads the variable without the guard, and the remediation — remove it from the Production scope — is behaviour-preserving precisely because it does nothing there.
 
 ### COPYRIGHT / CONTENT PROVENANCE
 
@@ -580,24 +693,54 @@ are retained so a later section does not rediscover them as new.
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **PV-1** | project-docs/preservation/v1-beta/ does not exist. There is no build-and-restore guide and no machine-readable release manifest. | P1 | ABC | Engineering | OPEN |
+| **PV-1** | project-docs/preservation/v1-beta/ created at §289 with the build-and-restore guide and the release manifest. | P2 | — | Engineering | **CLOSED (§289)** |
+| **PV-3** | No Node version is pinned, and the Render runtime Node version cannot be read. | P2 | B | Engineering | OPEN (§289) |
 | **PV-2** | The historical digest 3c2c5974... is MISATTRIBUTED and must not be used as a current integrity assertion. | P3 | — | Engineering | CLOSED |
 
-**PV-1 — remediation / decision.** Create the directory, the guide, and a manifest containing productVersion, gitSha, sourceDigest, hazlenzIdentity, frontendVersion, backendVersion, schemaCompatibilityVersion, migrationHead, nodeVersion, npmVersion, databaseVersion, buildTimestamp, knownLimitations, canonicalDocs and validationEvidence.
+**PV-1 — CLOSED at §289.** `project-docs/preservation/v1-beta/` now holds `SAFETY-INSITE-V1-BETA-BUILD-AND-RESTORE-GUIDE.md` and `release-manifest.json`, with every field the entry named.
 
-*Evidence:* `backend/src/common/release-identity.ts; project-docs/preservation/ absent`  
-*Retest:* A rebuild from the guide reproducing the recorded identities.
+Two choices in the manifest are worth stating. **The source digest is defined, not merely asserted** — it is sha256 over the `LC_ALL=C`-sorted output of `git ls-tree -r <sha>`, and the command that recomputes it is in the manifest beside the value, so a future reader verifies rather than trusts. And it carries a **second** digest, `applicationSourceDigest`, over only the files that determine the built artifacts, because the full digest changes whenever documentation or evidence changes and would therefore be useless as a "did the product change?" test.
+
+**The retired digest `3c2c5974…` is not used as an integrity assertion.** It appears once, labelled as retired, so a reader who encounters it elsewhere knows not to reuse it.
+
+*Evidence:* `project-docs/preservation/v1-beta/release-manifest.json`  
+*Retest:* A rebuild from the guide reproducing the recorded digests — but read PV-3 first.
+
+**PV-3 — new at §289.** Neither package declares `engines.node`; there is no `.nvmrc` and no `.node-version`. Vercel is set to **24.x**, the §289 build host was **v20.20.2**, and Render exposes its runtime version through neither its API nor the service's startup output. So the preservation guide can promise that the **source** reproduces exactly and cannot promise that the **artifact** does. That is a real limitation of a preservation package and it is stated in the manifest rather than glossed.
+
+*Evidence:* `project-docs/preservation/v1-beta/release-manifest.json` → `nodeVersion`  
+*Retest:* A recorded Render runtime Node version matching a pin in the repository.
 
 ### RELEASE / ROLLBACK
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **RL-1** | No release runbook and no tested rollback procedure exist for either the frontend or the backend. | P1 | ABC | Infrastructure | OPEN |
+| **RL-1** | The candidate-exact controlled-production deployment sequence and its rollback decision points were written at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
+| **OPS-1** | Two operations documents named the wrong database platform. | P2 | — | Infrastructure | **CLOSED (§289)** |
 
-**RL-1 — remediation / decision.** Write the release runbook (order of operations, backup point, migration step, verification step) and define rollback for each half, including what happens to a migration that has already run.
+**RL-1 — CLOSED at §289. The register's evidence claim here was also wrong.** It said `no runbook in project-docs/`. `DEPLOYMENT-RUNBOOK.md` (§268, 13 KB), `ROLLBACK-MODEL.md` (§268, 7 KB), `BACKUP-AND-RESTORE.md` and `MONITORING.md` all existed.
 
-*Evidence:* `no runbook in project-docs/`  
-*Retest:* A rehearsed rollback on a disposable target.
+**What was actually missing is more interesting than what the entry described: the runbook was stale in three ways, and one of them would have stopped an operator cold.**
+
+| runbook says | actually true | consequence |
+|---|---|---|
+| backlog is **three** migrations | **four** — `022000` shipped with §287 | step 5's pass condition met with a migration still pending |
+| expected schema `1800000021000` | `1800000022000` | steps 5 and 8 accept a schema the build does not support |
+| *"Render dashboard → the Postgres instance → Backups"* | **there is no Render Postgres instance** — production is Neon | the operator hunts for a thing that does not exist, at the one step that is the only way back from a bad migration |
+
+§289 wrote `SECTION-289-CONTROLLED-PRODUCTION-DEPLOYMENT.md` as an **additive successor** rather than rewriting §268's record: preconditions with their §289 results, the sequence, and a rollback decision point for each of the seven named failure surfaces — **migration, backend, frontend, compatibility, storage, auth, report** — each stating not just what to do but which symptom is a *stop* rather than a triage. A cross-tenant read that succeeds and a lost report revision are stops; a failed report generation is not.
+
+The rollback itself is no longer theoretical: §289 rehearsed all four `down()` paths against a copy of production and restored the content exactly. The document says plainly that this proves the mechanism **on a database with no Expert analyses and no settlements**, which is production today and will not be production after use.
+
+**Not executed.** §289 was forbidden to execute it.
+
+*Evidence:* `project-docs/operations/SECTION-289-CONTROLLED-PRODUCTION-DEPLOYMENT.md`  
+*Retest:* Execution, which is what turns a procedure into a record.
+
+**OPS-1 — opened and closed at §289.** The platform misstatement above is registered rather than quietly fixed, because it is the kind of error that reappears. `BACKUP-AND-RESTORE.md` and `ROLLBACK-MODEL.md` both now name Neon, record the §289 backup and content-checksum restore, state the PostgreSQL-17-or-newer client and direct-endpoint requirements, warn about the collation trap, and split `BACKUPS_AND_RETENTION` into the proven half and the unread half.
+
+*Evidence:* `project-docs/operations/BACKUP-AND-RESTORE.md`; `project-docs/operations/ROLLBACK-MODEL.md`  
+*Retest:* A read of both documents showing Neon and the four-migration backlog.
 
 ### PRODUCTION ACCEPTANCE
 
@@ -623,3 +766,64 @@ together. Any section that closes an entry must:
 
 **Do not restate release status anywhere else.** `BETA-BLOCKERS.json`, `BETA-READINESS.md` and
 `CURRENT-STATE.md` point here; they do not carry a competing verdict.
+
+---
+
+## §289 — what the live reads changed
+
+§289 was the first section permitted to contact production. It did so read-only: **0 writes,
+0 migrations, 0 deployments, 0 configuration changes, 0 provider calls.** The one thing it put into
+production was a 97-byte synthetic object in a probe prefix of the R2 bucket, which it then deleted
+and confirmed gone, with zero residue.
+
+### Three of §288's evidence claims were wrong
+
+This is the part worth reading carefully, because it is a fault in the register itself rather than
+in the product.
+
+| entry | §288 said | actually |
+|---|---|---|
+| **BR-1** | *"no restore evidence in verification/"* | §269 had taken a full backup of production and rehearsed a restore. It is in `SECTION-269-LIVE-INFRASTRUCTURE.json`. |
+| **RL-1** | *"no runbook in project-docs/"* | `DEPLOYMENT-RUNBOOK.md`, `ROLLBACK-MODEL.md`, `BACKUP-AND-RESTORE.md` and `MONITORING.md` all existed, from §268–§270. |
+| **ST-2** | *"has never been exercised end to end"* | §269 verified the live R2 bucket end to end — upload, authorised download with checksum, unsigned access refused, delete, no residue. |
+
+All three were written as absences — *no evidence*, *no runbook*, *never exercised* — and an absence
+is the one kind of claim that cannot be verified by reading the thing it describes. §289 closed the
+first two on fresh evidence rather than by citing §269, and split the third into the half that was
+already true and the half that still needs the deployment.
+
+**The lesson the register should keep:** an entry that asserts something does not exist must name
+where it looked. Two of these three would have been caught by `ls project-docs/operations/`.
+
+### What §289 established that nobody knew
+
+* **The production migration head**, which §288 called *"the largest single unknown"* and was
+  forbidden to read. `1800000018000`, 50 applied, **zero drift**, four pending, **none destructive**.
+* **That the four pending migrations actually apply**, forward and back, against a byte-identical
+  copy of production — not by reading them, by running them.
+* **That the `outcomes` table exists in production**, which defeats a containment argument written
+  into the product's own source. See `DB-3` and `DB-4`.
+* **That production is Neon, not Render Postgres**, which two operations documents had wrong at the
+  step that is the only way back from a bad migration. See `OPS-1`.
+* **That no backend secret reaches Vercel Preview** — four variables, all public-prefixed.
+* **That both halves of production agree** on `de655d2f`.
+
+### Threshold A is now a request, not a list
+
+| | before §289 | after |
+|---|---|---|
+| Threshold A | 8 | **3** |
+| Threshold B | 11 | **9** |
+| Threshold C | 26 | **23** |
+| Entries | 65 | **71** |
+
+Closed: `DB-1`, `BR-1`, `IN-3`, `IN-4`, `PV-1`, `RL-1`, `OPS-1`.
+Opened: `DB-4`, `BR-2`, `PV-3`, `CF-1`, `BR-3`, and `OPS-1` (opened and closed in the same section).
+
+The three remaining Threshold-A entries — `ST-2`, `IN-1`, `IN-2` — share one property: **each is
+closed by the deployment, and none of them is closed by more preparation.** There is no further
+work that moves Threshold A. What moves it is authorization.
+
+**And even then, external beta remains BLOCKED.** Threshold A means the candidate running in
+production infrastructure with nobody using it. It says nothing about `LG-1`, `LG-2`, `LG-3` or
+`SU-2`, and §289 reclassified no legal item.

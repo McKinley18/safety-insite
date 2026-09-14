@@ -1,11 +1,15 @@
 # Beta readiness
 
-> ### RELEASE AUTHORITY MOVED — §288
+> ### RELEASE AUTHORITY MOVED — §288, updated with live production evidence at §289
 >
 > The authoritative statement of what prevents release is now
 > [`PRE-PRODUCTION-RELEASE-REGISTER.md`](PRE-PRODUCTION-RELEASE-REGISTER.md), which answers the
 > question separately for three thresholds: **controlled production deployment**,
 > **internal/owner production use**, and **external controlled beta**.
+>
+> **Candidate HEAD is `94e2963427c46b4d69dcdd8664c4754c5fc72c37`** (§289 preservation commit,
+> committed locally and not pushed). Threshold A stands at **3** blockers, all of which are closed
+> by the deployment itself rather than by further preparation.
 >
 > This document remains accurate as narrative and as history. Where it states a release
 > verdict, **the register is authoritative.**
