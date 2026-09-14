@@ -1,18 +1,8 @@
 "use client";
 
-type CommandAssignment = {
-  id: string;
-  title: string;
-  type: string;
-  owner: string;
-  dueDate: string;
-  priority: string;
-  status: string;
-  createdAt: string;
-};
 
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { StatsGrid } from "@/components/command-center/StatsGrid";
 import { WeekAtAGlancePanel } from "@/components/command-center/WeekAtAGlancePanel";
 import { PriorityTodoSection } from "@/components/calendar/PriorityTodoSection";
@@ -20,87 +10,29 @@ import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { getReports } from "@/lib/reportStorage";
-import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
-import { getActivityEvents, saveActivityEvents, type ActivityEvent } from "@/lib/activityStorage";
 import { getStoredPlanCode, getVerifiedPlanCode } from "@/lib/planEntitlements";
 import {
-  getSafetyCalendarEvents,
   getTodayDateKey,
   parseLocalCalendarDate,
   toDateKey,
 } from "@/lib/safetyCalendar";
+/**
+ * §281 (D-041). The counters no longer come from `lib/reportStorage`, `lib/actionStorage` or
+ * `lib/activityStorage`. Those three device-local stores were written ONLY by the `/inspection`
+ * route that D-038 retired, so every counter on this page read a store the active product never
+ * wrote — measured at §281 as `0 REPORTS / 0 FINDINGS / 0 OPEN ACTIONS / 0 OVERDUE` while fully
+ * online, against seven inspections and nine observations on the server.
+ */
+import { loadDashboardCounters, type DashboardCounters } from "@/lib/data/dashboardCounters";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 import { getAuthUser } from "@/lib/auth";
 
-type DashboardReport = {
-  id?: string;
-  title?: string;
-  createdAt?: string;
-  location?: string;
-  siteLocation?: string;
-  findings?: any[];
-};
-
-function getRiskScore(finding: any) {
-  const rawScore =
-    finding.riskScore ??
-    finding.safeScopeResult?.risk?.riskScore ??
-    finding.safeScopeResult?.risk?.operationalRisk?.matrixScore;
-
-  const score = Number(rawScore);
-  return Number.isFinite(score) ? score : null;
-}
-
-function getRiskBand(finding: any) {
-  return String(
-    finding.safeScopeResult?.risk?.riskBand ||
-      finding.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
-      "",
-  ).toLowerCase();
-}
 
 
-function isActionOverdue(action: StoredAction) {
-  if (String(action.status || "").toLowerCase() === "completed") return false;
-  if (!action.due) return false;
 
-  const dueDate = new Date(action.due);
-  if (Number.isNaN(dueDate.getTime())) return false;
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
 
-  return dueDate.getTime() < today.getTime();
-}
 
-function getActionPriorityRank(priority?: string) {
-  if (String(priority || "").toLowerCase() === "critical") return 0;
-  if (String(priority || "").toLowerCase() === "high") return 1;
-  if (String(priority || "").toLowerCase() === "medium") return 2;
-  if (String(priority || "").toLowerCase() === "low") return 3;
-  return 4;
-}
-
-function getActionStatusClass(action: StoredAction) {
-  if (String(action.status || "").toLowerCase() === "completed") {
-    return "bg-emerald-50 text-emerald-700";
-  }
-
-  if (String(action.status || "").toLowerCase() === "blocked") {
-    return "bg-red-50 text-red-700";
-  }
-
-  if (isActionOverdue(action)) {
-    return "bg-red-50 text-red-700";
-  }
-
-  if (String(action.status || "").toLowerCase() === "in progress") {
-    return "bg-blue-50 text-blue-700";
-  }
-
-  return "bg-orange-50 text-orange-700";
-}
 
 function formatDate(value?: string) {
   if (!value) return "Saved";
@@ -265,113 +197,51 @@ export default function DashboardPage() {
   }, []);
 
 
-  const [reports, setReports] = useState<DashboardReport[]>([]);
-  const [storedActions, setStoredActions] = useState<StoredAction[]>([]);
-  const [activityEvents, setActivityEvents] = useState<ActivityEvent[]>([]);
-  const [calendarEvents, setCalendarEvents] = useState<SafetyCalendarEvent[]>([]);
+  const [counters, setCounters] = useState<DashboardCounters | null>(null);
   const [selectedWeekDateKey, setSelectedWeekDateKey] = useState(getTodayDateKey());
   const [planCode, setPlanCode] = useState("basic");
 
-  useEffect(() => {
-    async function loadDashboardReports() {
-      const savedReports = await getReports<DashboardReport>();
-      const savedActions = await getStoredActions();
-      const savedActivity = await getActivityEvents();
-      const savedCalendarEvents = await getSafetyCalendarEvents();
+  /**
+   * Memoised because it feeds the `weekAtGlance` memo below: a fresh `[]` on every render would
+   * make that memo recompute every time and defeat its own purpose.
+   */
+  const calendarEvents = useMemo(() => counters?.calendarEvents ?? [], [counters]);
 
-      setPlanCode(getStoredPlanCode());
-      getVerifiedPlanCode().then(setPlanCode).catch(() => {});
-      setReports(Array.isArray(savedReports) ? savedReports : []);
-      setStoredActions(Array.isArray(savedActions) ? savedActions : []);
-      setActivityEvents(Array.isArray(savedActivity) ? savedActivity : []);
-      setCalendarEvents(Array.isArray(savedCalendarEvents) ? savedCalendarEvents : []);
-    }
-
-    loadDashboardReports();
+  const refreshCounters = useCallback(async () => {
+    setCounters(await loadDashboardCounters(getTodayDateKey()));
   }, []);
 
-  async function refreshCalendarEvents() {
-    const savedCalendarEvents = await getSafetyCalendarEvents();
-    setCalendarEvents(Array.isArray(savedCalendarEvents) ? savedCalendarEvents : []);
-  }
+  useEffect(() => {
+    // Both reads are asynchronous and set state from their own callbacks. `setPlanCode` used to be
+    // called synchronously in this effect body, which React flags as a cascading render -- the
+    // stored plan is read inside the promise chain that also fetches the verified one.
+    Promise.resolve()
+      .then(() => setPlanCode(getStoredPlanCode()))
+      .then(() => getVerifiedPlanCode())
+      .then(setPlanCode)
+      .catch(() => {});
+    void refreshCounters();
+  }, [refreshCounters]);
 
-  const dashboard = useMemo(() => {
-    const findings = reports.flatMap((report) =>
-      (report.findings || []).map((finding: any) => ({
-        ...finding,
-        reportTitle: report.title || "Inspection Report",
-        reportDate: report.createdAt,
-        reportLocation: report.location || report.siteLocation,
-      })),
-    );
-
-    const openActions = storedActions.filter(
-      (action) => String(action.status || "").toLowerCase() !== "completed",
-    );
-
-    const overdueActions = openActions.filter(isActionOverdue);
-
-    const blockedActions = openActions.filter(
-      (action) => String(action.status || "").toLowerCase() === "blocked",
-    );
-
-    const inProgressActions = openActions.filter(
-      (action) => String(action.status || "").toLowerCase() === "in progress",
-    );
-
-    const criticalFindings = findings.filter((finding) => {
-      const riskScore = getRiskScore(finding);
-      const riskBand = getRiskBand(finding);
-      return (riskScore !== null && riskScore >= 20) || riskBand.includes("critical");
-    });
-
-    const highPriorityActions = [...openActions]
-      .sort((a, b) => {
-        const overdueDelta =
-          (isActionOverdue(b) ? 1 : 0) - (isActionOverdue(a) ? 1 : 0);
-
-        if (overdueDelta !== 0) return overdueDelta;
-
-        const priorityDelta =
-          getActionPriorityRank(a.priority) - getActionPriorityRank(b.priority);
-
-        if (priorityDelta !== 0) return priorityDelta;
-
-        const aDue = a.due ? new Date(a.due).getTime() : Number.MAX_SAFE_INTEGER;
-        const bDue = b.due ? new Date(b.due).getTime() : Number.MAX_SAFE_INTEGER;
-
-        return aDue - bDue;
-      })
-      .slice(0, 5);
-
-    const latestReports = [...reports]
-      .sort(
-        (a, b) =>
-          new Date(b.createdAt || 0).getTime() -
-          new Date(a.createdAt || 0).getTime(),
-      )
-      .slice(0, 3);
-
-    const recentActivity = activityEvents.slice(0, 3);
-
-    const hazLenzReviewed = findings.filter((finding) =>
-      Boolean(finding.safeScopeResult),
-    ).length;
-
-    return {
-      reportCount: reports.length,
-      findingCount: findings.length,
-      openActions: openActions.length,
-      overdueActions: overdueActions.length,
-      blockedActions: blockedActions.length,
-      inProgressActions: inProgressActions.length,
-      criticalFindings: criticalFindings.length,
-      hazLenzReviewed,
-      highPriorityActions,
-      latestReports,
-      recentActivity,
-    };
-  }, [activityEvents, reports, storedActions]);
+  /**
+   * §281 (D-041). What stood here computed `criticalFindings`, `hazLenzReviewed`,
+   * `highPriorityActions`, `latestReports` and `recentActivity` from the same dead local stores —
+   * and NONE of them was rendered anywhere on this page. They were dead derivations of data that
+   * was itself never written. Removed with the stores; nothing that reached a screen is lost.
+   *
+   * The four figures that DO reach a screen are now each a `DataValue`, so a tile that could not
+   * be established renders "—" and says why, and can never render a zero the product cannot
+   * stand behind.
+   */
+  const tiles = useMemo(() => {
+    if (!counters) return null;
+    return [
+      { key: "inspections", label: "Inspections", description: "Records on this account", value: counters.inspections },
+      { key: "reports", label: "Reports", description: "Generated report packages", value: counters.reports },
+      { key: "openActions", label: "Open Actions", description: "Active follow-up work", value: counters.openActions },
+      { key: "overdue", label: "Overdue", description: "Needs attention", value: counters.overdue },
+    ];
+  }, [counters]);
 
   const weekAtGlance = useMemo(() => {
     const today = parseLocalCalendarDate(getTodayDateKey()) || new Date();
@@ -393,11 +263,6 @@ export default function DashboardPage() {
   }, [calendarEvents]);
 
 
-  async function dismissActivityEvent(activityId: string) {
-    const next = activityEvents.filter((activity) => activity.id !== activityId);
-    setActivityEvents(next);
-    await saveActivityEvents(next);
-  }
 
   return (
     <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
@@ -446,7 +311,11 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <StatsGrid dashboard={dashboard} />
+            {/* Until the first read returns there is no state to report, so the grid renders
+                nothing rather than four zeros that would be replaced a moment later. A flash of
+                "0 OVERDUE" is the same lie as a permanent one, for as long as someone is
+                looking at it. */}
+            {tiles && <StatsGrid tiles={tiles} />}
           </div>
         </div>
       </div>
@@ -458,10 +327,10 @@ export default function DashboardPage() {
         getWeekDayTone={getWeekDayTone}
         getWeekBadgeTone={getWeekBadgeTone}
         formatCalendarMonthLabel={formatCalendarMonthLabel}
-        onEventsChanged={refreshCalendarEvents}
+        onEventsChanged={refreshCounters}
       />
 
-      <PriorityTodoSection events={calendarEvents} onEventsChanged={refreshCalendarEvents} />
+      <PriorityTodoSection events={calendarEvents} onEventsChanged={refreshCounters} />
 
     </section>
   );

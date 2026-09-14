@@ -36,7 +36,10 @@
     "review:page-batch": "node scripts/review-279-page-batch.mjs",
     "check:orange-semantics": "node scripts/check-orange-semantics.mjs",
     "check:page-titles": "node scripts/check-page-titles.mjs",
-    "measure:280-offline-inventory": "node scripts/measure-280-offline-inventory.mjs"
+    "measure:280-offline-inventory": "node scripts/measure-280-offline-inventory.mjs",
+    "measure:281-route-reachability": "node scripts/measure-281-route-reachability.mjs",
+    "measure:281-anchor-styles": "node scripts/measure-281-anchor-styles.mjs",
+    "validate:281-offline-data-state": "node scripts/validate-281-offline-data-state.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

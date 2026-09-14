@@ -30,6 +30,22 @@
 //   D  human confirmation — a conclusion the product must not act on until a person confirms it
 //   E  multiple findings from one observation
 //
+// §281 adds three more, to cover the eight states the D-040 presentation review requires:
+//
+//   F  CONFIDENCE-LIMITED but RESOLVED — the engine states why its confidence is limited and names
+//      NO outstanding decision-controlling fact. This is the discriminating case for D-040: it
+//      must render the confidence limitation WITHOUT the "important information needed" panel, or
+//      the two states have been collapsed into one and the distinction is decorative.
+//   G  SAFE / NEGATED — an analysis that identified no hazard in the observation. Supported by the
+//      existing fixture architecture as an analysis with NO persisted finding, which is what the
+//      real flow produces when HazLenz decomposes nothing out of an observation.
+// The eighth state the review needs — REFUSAL / NOT ADMITTED — is NOT seeded here, because it
+// cannot honestly be. A refusal is something the product DOES in response to a request, not a
+// snapshot it holds: the Expert route on the review stack runs with `EXPERT_EXECUTION_ENABLED=false`
+// and no provider key, so pressing "Run Expert review" produces a real refusal with zero provider
+// calls. The review batch reaches it by pressing that button. Writing a fabricated "refused" row
+// here would photograph a state the product had not actually entered.
+//
 // ==================== WHY EACH STATE ALSO GETS A PERSISTED FINDING ====================
 //
 // The first version of this seeder wrote only the analysis snapshot, and every one of the five
@@ -497,6 +513,113 @@ const STATES = [
             }
         }
     ],
+  },
+  {
+    key: "F-confidence-limited",
+    title: "HazLenz state F — confidence limited, nothing outstanding",
+    observation:
+      "Powered pallet truck in the despatch aisle has an amber beacon that did not illuminate "
+      + "during the two movements observed. The operator said it had been reported last week. The "
+      + "audible reversing alarm worked on both movements.",
+    snapshot: base({
+      // NO critical unknowns and NO decision-critical question. The engine has what it needs to
+      // reach this conclusion; it is simply saying how far the conclusion goes. This is the case
+      // that proves the D-040 panel is not shown on every result.
+      evidenceSnapshot: {
+        id: "synthetic-evidence-3", schemaVersion: "1.0",
+        facts: [
+          { id: "h1", type: "equipment", value: "powered pallet truck", source: "observation", confidence: 0.95, status: "extracted", temporalState: "current", reviewerStatus: "unreviewed" },
+          { id: "h2", type: "warning_device", value: "beacon not illuminated", source: "observation", confidence: 0.8, status: "extracted", temporalState: "current", reviewerStatus: "unreviewed" },
+        ],
+        criticalUnknowns: [],
+        contradictions: [],
+      },
+      guidedFinding: guided({
+        observedCondition: "A powered industrial truck's warning beacon did not operate during observed movements.",
+        hazardCategory: "Powered industrial trucks",
+        clarificationQuestions: [],
+        primaryStandard: {
+          ...STANDARD,
+          citation: "29 CFR 1910.178(q)(7)", title: "Powered industrial trucks — examination before use",
+          simplifiedRequirement: "Industrial trucks must be examined before being placed in service, and must not be placed in service if the examination shows any condition adversely affecting safety.",
+          whyOffered: "The observation records a warning device that did not operate across two movements.",
+          confidence: 0.72, confidenceLabel: "Moderate", applicability: "direct",
+          evidenceMissing: [],
+          confidenceLimitReason:
+            "Two movements were observed. Whether the beacon fails consistently or intermittently is not established by that sample, and the two cases call for different corrective action.",
+        },
+        riskAssessment: {
+          severity: "Moderate", likelihood: "Possible", exposure: "Frequent", overallRisk: "Medium",
+          riskLevel: "medium", provisional: true, reviewerConfirmed: false,
+          rationale: "A pedestrian aisle shared with powered trucks relies on the warning device to signal approach.",
+        },
+      }),
+    }),
+    findings: [
+      {
+        hazardCategory: "Powered industrial trucks",
+        segmentKey: "powered_industrial_trucks",
+        conclusion: "A powered pallet truck's warning beacon did not operate during the movements observed.",
+        sourceCandidate: {
+          observationFragment: "an amber beacon that did not illuminate during the two movements observed",
+          standardCandidates: [
+            {
+              citation: "29 CFR 1910.178(q)(7)", family: "Powered industrial trucks", status: "SUPPORTED",
+              confidence: 0.72, applicability: "direct",
+              explanation: "A warning device that did not operate is a condition adversely affecting safety.",
+              missingPredicates: [], jurisdictionProvenance: "USER_CONFIRMED",
+              title: "Powered industrial trucks \u2014 examination before use",
+              plainLanguageSummary: "Trucks must be examined before use and withdrawn if a condition adversely affects safety.",
+              backingStatus: "APPROVED_GOVERNED_CONTENT", corpusBacked: true,
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    key: "G-negated",
+    title: "HazLenz state G — no hazard identified",
+    observation:
+      "Walked the finished-goods aisle. Racking uprights undamaged, load labels legible and within "
+      + "rated capacity, aisle clear to the marked line, and the pedestrian walkway segregation was "
+      + "intact for the full run.",
+    snapshot: base({
+      evidenceSnapshot: {
+        id: "synthetic-evidence-4", schemaVersion: "1.0",
+        facts: [
+          { id: "n1", type: "equipment", value: "pallet racking", source: "observation", confidence: 0.95, status: "extracted", temporalState: "current", reviewerStatus: "unreviewed" },
+          { id: "n2", type: "condition", value: "no damage observed", source: "observation", confidence: 0.8, status: "extracted", temporalState: "current", reviewerStatus: "unreviewed" },
+        ],
+        criticalUnknowns: [],
+        contradictions: [],
+      },
+      guidedFinding: guided({
+        observedCondition: "Racking, load labelling, aisle clearance and pedestrian segregation observed without an identified deficiency.",
+        hazardCategory: "None identified",
+        primaryStandard: null,
+        clarificationQuestions: [],
+        riskAssessment: {
+          severity: "Not established", likelihood: "Not established", exposure: "Not established",
+          overallRisk: "Not established", riskLevel: "unknown", provisional: true, reviewerConfirmed: false,
+          rationale: "No hazard was identified in this observation, so no risk has been assessed.",
+        },
+        correctiveAction: {
+          immediateAction: "", permanentCorrection: "", verificationStep: "",
+          responsibleRole: "", urgency: "none",
+          rationale: "No corrective action arises from an observation with no identified hazard.",
+        },
+        limitations: [
+          CAVEAT,
+          // The S-16 sentence, kept because it is safety-critical and must not be dropped: an
+          // absence of identified hazards is not a finding that the area is safe.
+          "HazLenz did not identify a hazard in what was recorded. That is not a finding that the area is free of hazards — it is the limit of what this observation describes.",
+        ],
+      }),
+    }),
+    // NO findings. This is the point of the state: the real flow persists none when the engine
+    // decomposes no hazard out of the observation.
+    findings: [],
   },
 ];
 

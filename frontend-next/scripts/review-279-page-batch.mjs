@@ -45,11 +45,15 @@ const BATCHES = {
     { id: "login", path: "/login", auth: false, name: "Sign in" },
     { id: "command-center", path: "/command-center", auth: true, name: "Dashboard (Command Center)" },
     { id: "inspections", path: "/inspections", auth: true, name: "Inspection list" },
-    { id: "inspection-cover", path: "/inspection-cover", auth: true, name: "New inspection (cover)" },
     { id: "settings", path: "/settings", auth: true, name: "Settings (and the version surface)" },
   ],
 
   // Batch 2 -- the inspection spine. The core workflow and the largest surface in the product.
+  //
+  // §281 (D-038). `/inspection` was removed from this batch and `/inspection-cover` from batch 1:
+  // both were retired as unreachable. Their batch-2/batch-1 measurements remain in the §279/§280
+  // evidence exactly as recorded -- a run's evidence is not edited because a later decision
+  // changed the product.
   //
   // Two of these three cannot be reached by typing a URL and have their state be real.
   // `/inspection-workspace` renders whatever inspection `sentinel_selected_inspection_context`
@@ -59,7 +63,6 @@ const BATCHES = {
   // can produce, reached by a route the product does not have -- and would quietly stop
   // exercising the navigation that is itself under review.
   2: [
-    { id: "inspection", path: "/inspection", auth: true, name: "Inspection overview" },
     {
       id: "inspection-workspace-empty",
       path: "/inspection-workspace",
@@ -100,6 +103,17 @@ const BATCHES = {
       name: "HazLenz — awaiting human confirmation", openInspection: "HazLenz state D" },
     { id: "hazlenz-e-multiple", path: "/inspection-workspace", auth: true,
       name: "HazLenz — several findings from one observation", openInspection: "HazLenz state E" },
+    // §281 (D-040). The three states the §280 set did not cover.
+    { id: "hazlenz-f-confidence-limited", path: "/inspection-workspace", auth: true,
+      name: "HazLenz — confidence limited, nothing outstanding", openInspection: "HazLenz state F" },
+    { id: "hazlenz-g-negated", path: "/inspection-workspace", auth: true,
+      name: "HazLenz — no hazard identified", openInspection: "HazLenz state G" },
+    // REFUSAL. Reached by PRESSING the product's own control on a stack where Expert execution is
+    // disabled and no provider key exists, so the refusal is real and costs nothing. A seeded
+    // "refused" snapshot would be a photograph of a state the product never entered.
+    { id: "hazlenz-h-refusal", path: "/inspection-workspace", auth: true,
+      name: "HazLenz — Expert review refused (not admitted)", openInspection: "HazLenz state A",
+      pressExpertRun: true },
   ],
 };
 
@@ -295,8 +309,41 @@ async function measure(page) {
       if (lowContrast.length >= 8) break;
     }
 
+    /**
+     * §281 (D-040). What the HazLenz result actually SAYS, measured rather than eyeballed.
+     *
+     * These are presence readings, not verdicts. The question they answer is the one §280 could
+     * only answer by reading source: does the engine's own statement of what it could not
+     * establish reach the DOM, and is an unresolved result distinguishable from a resolved one?
+     */
+    const decisionPanel = document.querySelector('[data-testid="hazlenz-decision-summary"]');
+    const resolutionLine = document.querySelector('[data-testid="hazlenz-resolution-line"]');
+    const hazlenz = {
+      decisionPanelPresent: Boolean(decisionPanel),
+      resolution: decisionPanel?.getAttribute("data-resolution") || null,
+      resolutionLineText: (resolutionLine?.textContent || "").trim() || null,
+      criticalUnknownsShown: Boolean(document.querySelector('[data-testid="hazlenz-critical-unknowns"]')),
+      criticalUnknownCount:
+        document.querySelectorAll('[data-testid="hazlenz-critical-unknowns"] li').length,
+      multiHazardShown: Boolean(document.querySelector('[data-testid="hazlenz-multi-hazard"]')),
+      confidenceLimitShown: Boolean(document.querySelector('[data-testid="hazlenz-confidence-limit"]')),
+      awaitingConfirmationShown: Boolean(document.querySelector('[data-testid="hazlenz-awaiting-confirmation"]')),
+      limitationsShown: Boolean(document.querySelector('[data-testid="hazlenz-limitations"]')),
+      /**
+       * INTERNAL VOCABULARY LEAKING TO THE CUSTOMER. Contract field names and engine-family names
+       * that a safety professional has no reason to meet. "Expert" is on this list deliberately:
+       * §280 recorded it as S-14 — it is an internal engine-family name, and the customer-facing
+       * engine is HazLenz AI.
+       */
+      developerLeakage: ["criticalUnknowns", "multiHazardReview", "confidenceLimitReason",
+        "requiresSplitReview", "guidedFinding", "evidenceSnapshot", "resultSnapshot",
+        "applicabilityDecisions", "decisionCritical", "sourceCandidate", "safeScopeResult",
+      ].filter((term) => (document.body.innerText || "").includes(term)),
+    };
+
     const body = document.body.innerText || "";
     return {
+      hazlenz,
       title: document.title,
       mainCount: document.querySelectorAll("main").length,
       nestedMain: Boolean(document.querySelector("main main")),
@@ -434,6 +481,23 @@ async function measure(page) {
       // Client components fetch after hydration; give the populated state a chance to arrive.
       await page.waitForTimeout(3000);
 
+      // §281 (D-040) state H. The refusal is produced by the product refusing, not by a fixture.
+      // The review stack runs with EXPERT_EXECUTION_ENABLED=false and no provider key in the
+      // child environment, so this button cannot reach a provider and cannot cost anything.
+      if (target.pressExpertRun) {
+        const pressed = await page
+          .getByRole("button", { name: /run expert review/i })
+          .first()
+          .click({ timeout: 10000 })
+          .then(() => true)
+          .catch(() => false);
+        if (!pressed) {
+          note(target.id, width.id, "SETUP_NO_EXPERT_RUN_CONTROL", "INSTRUMENT",
+            "no 'Run Expert review' control was present, so the refusal state was NOT exercised");
+        }
+        await page.waitForTimeout(3500);
+      }
+
       const m = await measure(page);
       const shot = `${shotDir}/${target.id}-${theme}-${width.id}.png`;
       await page.screenshot({ path: shot, fullPage: true });
@@ -461,6 +525,12 @@ async function measure(page) {
       if (m.lowContrast.length) note(target.id, width.id, "LOW_CONTRAST", "OBJECTIVE", m.lowContrast);
       if (m.small.length) note(target.id, width.id, "SMALL_TOUCH_TARGET", "OBJECTIVE", m.small);
       if (m.retiredBrand.length) note(target.id, width.id, "RETIRED_BRAND", "OBJECTIVE", m.retiredBrand);
+      // §281 (D-040). A contract field name on a customer surface is an objective defect: the
+      // inspector should never need to know that `criticalUnknowns` is what the field is called.
+      if (m.hazlenz?.developerLeakage?.length) {
+        note(target.id, width.id, "DEVELOPER_VOCABULARY_ON_CUSTOMER_SURFACE", "OBJECTIVE",
+          m.hazlenz.developerLeakage);
+      }
       if (m.bareInsite) note(target.id, width.id, "BARE_INSITE_WORDMARK", "OBJECTIVE", "D-013");
       // §280 (D-031). The RUNTIME half of the page-title rule. `check:page-titles` proves the table
       // and the layouts agree; only a browser can prove the name actually reaches the document,

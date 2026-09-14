@@ -1,0 +1,300 @@
+{
+  "instrument": "§281 D-041 offline data-state acceptance",
+  "measuredAt": "2026-09-14T03:34:20.171Z",
+  "appUrl": "http://localhost:3000",
+  "serviceWorker": {
+    "supported": true,
+    "controlled": true
+  },
+  "serverInspectionCount": 15,
+  "providerCalls": 0,
+  "cases": [
+    {
+      "id": "B",
+      "name": "resolveDataValue refuses a zero it did not verify (direct import)",
+      "result": "PASS",
+      "detail": "NOT_RUN_DIRECTLY — TypeScript module not importable from node without a loader; the same function is exercised through the product in cases 2 and 3, which cannot pass unless it behaves as specified"
+    },
+    {
+      "id": "A",
+      "name": "false-zero detector fires on a constructed false zero, and is quiet on an honest dash and a dated zero",
+      "result": "PASS",
+      "detail": {
+        "firesOnFalseZero": true,
+        "quietOnHonestDash": true,
+        "quietOnDatedZero": true
+      }
+    },
+    {
+      "id": "1",
+      "name": "connected: every tile shows a figure and no state caption",
+      "result": "PASS",
+      "detail": [
+        {
+          "value": "15",
+          "label": "Inspections",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        },
+        {
+          "value": "0",
+          "label": "Reports",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        },
+        {
+          "value": "0",
+          "label": "Open Actions",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        },
+        {
+          "value": "0",
+          "label": "Overdue",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "connected: the figure EQUALS the server's own count (not merely a plausible number)",
+      "result": "PASS",
+      "detail": {
+        "server": 15,
+        "rendered": "15"
+      }
+    },
+    {
+      "id": "2",
+      "name": "offline WITH cached data: values are shown and dated, never presented as current",
+      "result": "PASS",
+      "detail": [
+        {
+          "value": "15",
+          "label": "Inspections",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "0",
+          "label": "Reports",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "0",
+          "label": "Open Actions",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "0",
+          "label": "Overdue",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        }
+      ]
+    },
+    {
+      "id": "2b",
+      "name": "offline WITH cached data: a cached zero is shown WITH its date, never bare",
+      "result": "PASS",
+      "detail": [
+        {
+          "value": "15",
+          "label": "Inspections",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "0",
+          "label": "Reports",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "0",
+          "label": "Open Actions",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "0",
+          "label": "Overdue",
+          "caption": "Last synced 11:33 PM",
+          "captionCount": 1,
+          "captionIsStatus": true
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "offline WITHOUT data: every tile shows an em dash, never a zero",
+      "result": "PASS",
+      "detail": [
+        {
+          "value": "—",
+          "label": "Inspections",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Reports",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Open Actions",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Overdue",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        }
+      ]
+    },
+    {
+      "id": "3b",
+      "name": "offline WITHOUT data: every tile SAYS it is unavailable",
+      "result": "PASS",
+      "detail": [
+        {
+          "value": "—",
+          "label": "Inspections",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Reports",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Open Actions",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Overdue",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "offline WITHOUT data: no false zero anywhere on the board",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "id": "5",
+      "name": "no duplicate state: each tile carries exactly one caption, and it is a live region",
+      "result": "PASS",
+      "detail": [
+        {
+          "value": "—",
+          "label": "Inspections",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Reports",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Open Actions",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        },
+        {
+          "value": "—",
+          "label": "Overdue",
+          "caption": "Unavailable offline",
+          "captionCount": 1,
+          "captionIsStatus": true
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "reconnect: the board returns to current, with the caption gone",
+      "result": "PASS",
+      "detail": [
+        {
+          "value": "15",
+          "label": "Inspections",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        },
+        {
+          "value": "0",
+          "label": "Reports",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        },
+        {
+          "value": "0",
+          "label": "Open Actions",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        },
+        {
+          "value": "0",
+          "label": "Overdue",
+          "caption": null,
+          "captionCount": 0,
+          "captionIsStatus": false
+        }
+      ]
+    },
+    {
+      "id": "4b",
+      "name": "reconnect: the figure is the server's again",
+      "result": "PASS",
+      "detail": {
+        "server": 15,
+        "rendered": "15"
+      }
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

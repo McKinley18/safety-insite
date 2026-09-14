@@ -53,10 +53,7 @@ export const PAGE_TITLES: Record<string, string> = {
   // The product
   "/command-center": "Dashboard",
   "/inspections": "Inspections",
-  "/inspection": "Inspection",
-  "/inspection-cover": "New inspection",
   "/inspection-workspace": "Inspection workspace",
-  "/inspection-review": "Finding review",
   "/inspection-complete": "Complete inspection",
   "/field-capture": "Field capture",
   "/reports": "Reports",

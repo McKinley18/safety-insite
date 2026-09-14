@@ -1,0 +1,361 @@
+{
+  "measurement": "§280 D-037 offline current-state inventory",
+  "note": "Readings only. The OFFLINE and DATA_LOSS_RISK classifications are assigned by a person in PAGE-BY-PAGE-PRODUCT-REVIEW.md. Presence of local state is NOT evidence of offline support.",
+  "appUrl": "http://localhost:3000",
+  "apiUrl": "http://localhost:4000",
+  "serviceWorker": {
+    "supported": true,
+    "ready": true,
+    "controlled": true,
+    "scriptURL": "http://localhost:3000/sw.js?v=2d893da95b2c"
+  },
+  "providerCalls": 0,
+  "readings": [
+    {
+      "route": "/command-center",
+      "capability": "dashboard / due work",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /inspections",
+          "GET /inspection-reports",
+          "GET /calendar",
+          "GET /billing/status"
+        ],
+        "apiCallCount": 5,
+        "textLength": 768
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 859,
+        "renderedHeading": "Home",
+        "visibleText": "Home Inspect Reports Calendar Settings Offline RI SAFETY INSITE HOME Home Start inspections, review due work, track corrective actions, and keep your safety follow-up organized from one simple home screen. Start Inspecti",
+        "consoleErrors": [
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+        ]
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/inspections",
+      "capability": "inspection creation and resume",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /sites",
+          "GET /inspections",
+          "GET /billing/status"
+        ],
+        "apiCallCount": 4,
+        "textLength": 4049
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 1803,
+        "renderedHeading": "Start field work.",
+        "visibleText": "Home Inspect Reports Calendar Settings Offline RI INSPECTIONS Start field work. Choose the inspection workflow that fits the work: full documentation, fast hazard capture, or final review. 0 IN PROGRESS 0 IN REVIEW 0 COM",
+        "consoleErrors": [
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+        ]
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/inspection-workspace",
+      "capability": "observation entry, HazLenz, findings, review, actions",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /inspections/f1d2418b-76f3-48a7-9db6-b901744f512c",
+          "GET /billing/status"
+        ],
+        "apiCallCount": 3,
+        "textLength": 546
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 498,
+        "renderedHeading": "This page needs a connection",
+        "visibleText": "NO CONNECTION This page needs a connection Safety InSite could not reach the network, and this screen was not saved on this device. Field Capture still works. Observations, locations and photos you record there are saved",
+        "consoleErrors": []
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/field-capture",
+      "capability": "offline field capture and photos",
+      "connected": {
+        "apiCalls": [
+          "GET /version"
+        ],
+        "apiCallCount": 1,
+        "textLength": 1025
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 1029,
+        "renderedHeading": "Record inspections with or without a connection",
+        "visibleText": "Home Inspect Reports Calendar Settings Offline RI FIELD CAPTURE Record inspections with or without a connection Observations, locations and photos are saved on this device as you record them, and stay here until you sync",
+        "consoleErrors": [
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+          "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+        ]
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/inspection-complete",
+      "capability": "inspection completion and report",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /inspections/f1d2418b-76f3-48a7-9db6-b901744f512c",
+          "GET /inspections/f1d2418b-76f3-48a7-9db6-b901744f512c/report",
+          "GET /sites"
+        ],
+        "apiCallCount": 4,
+        "textLength": 600
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 498,
+        "renderedHeading": "This page needs a connection",
+        "visibleText": "NO CONNECTION This page needs a connection Safety InSite could not reach the network, and this screen was not saved on this device. Field Capture still works. Observations, locations and photos you record there are saved",
+        "consoleErrors": []
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/reports",
+      "capability": "reports",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /inspection-reports"
+        ],
+        "apiCallCount": 2,
+        "textLength": 307
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 498,
+        "renderedHeading": "This page needs a connection",
+        "visibleText": "NO CONNECTION This page needs a connection Safety InSite could not reach the network, and this screen was not saved on this device. Field Capture still works. Observations, locations and photos you record there are saved",
+        "consoleErrors": []
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/safety-calendar",
+      "capability": "corrective actions, tasks, calendar",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /calendar",
+          "GET /billing/status"
+        ],
+        "apiCallCount": 3,
+        "textLength": 601
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 498,
+        "renderedHeading": "This page needs a connection",
+        "visibleText": "NO CONNECTION This page needs a connection Safety InSite could not reach the network, and this screen was not saved on this device. Field Capture still works. Observations, locations and photos you record there are saved",
+        "consoleErrors": []
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/settings",
+      "capability": "settings, sites, risk matrix",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /billing/status",
+          "GET /sites"
+        ],
+        "apiCallCount": 3,
+        "textLength": 2167
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 498,
+        "renderedHeading": "This page needs a connection",
+        "visibleText": "NO CONNECTION This page needs a connection Safety InSite could not reach the network, and this screen was not saved on this device. Field Capture still works. Observations, locations and photos you record there are saved",
+        "consoleErrors": []
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    },
+    {
+      "route": "/profile",
+      "capability": "account",
+      "connected": {
+        "apiCalls": [
+          "GET /version",
+          "GET /billing/status",
+          "GET /auth/me"
+        ],
+        "apiCallCount": 3,
+        "textLength": 960
+      },
+      "offline": {
+        "navigationFailed": false,
+        "textLength": 498,
+        "renderedHeading": "This page needs a connection",
+        "visibleText": "NO CONNECTION This page needs a connection Safety InSite could not reach the network, and this screen was not saved on this device. Field Capture still works. Observations, locations and photos you record there are saved",
+        "consoleErrors": []
+      },
+      "localState": {
+        "localStorageKeys": 8,
+        "localStorageSample": [
+          "safety_insite_calendar_cache",
+          "sentinel_auth_refresh_token",
+          "sentinel_auth_user",
+          "sentinel_selected_inspection_context",
+          "auditally_cache_cleanup_version",
+          "safety_insite_theme",
+          "safety_insite_counter_cache",
+          "sentinel_auth_token"
+        ],
+        "databases": [
+          "insite-offline-v1"
+        ]
+      }
+    }
+  ]
+}

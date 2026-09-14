@@ -36,8 +36,11 @@ const WIDTH = Number(process.env.VIEWPORT_WIDTH || 390);
 
 const ROUTES = (process.env.ONLY_ROUTES || [
   "/", "/pricing", "/upgrade", "/login", "/register", "/about", "/legal", "/hazlenz",
-  "/forgot-password", "/command-center", "/inspections", "/inspection",
-  "/inspection-workspace", "/inspection-cover", "/inspection-review",
+  "/forgot-password", "/command-center", "/inspections",
+  // §281 (D-038). /inspection, /inspection-cover and /inspection-review were retired: they were a
+  // closed cycle no customer could reach. This list is wired to the `check:hydration` gate, so it
+  // is updated rather than left to fail against routes that no longer exist.
+  "/inspection-workspace",
   "/reports", "/safety-calendar", "/settings", "/profile",
 ].join(",")).split(",").map((r) => r.trim()).filter(Boolean);
 

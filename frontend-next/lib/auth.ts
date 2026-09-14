@@ -60,10 +60,16 @@ const SENSITIVE_LOCAL_STORAGE_KEYS = [
   "safety_insite_calendar_outbox",
   "safety_insite_calendar_cache",
   "safety_insite_calendar_migrated_local_ids",
-  // V1-OFFLINE-ISO-01. lib/inspection/offlineInspectionStore.ts writes these DEVICE-GLOBAL
-  // localStorage keys from the legacy /inspection route. They hold raw observation text, local
-  // findings and report drafts with no account namespace at all, so they are the same class of
-  // cross-account leak as the three keys above and were surviving sign-out for the same reason.
+  // V1-OFFLINE-ISO-01. These DEVICE-GLOBAL localStorage keys were written by
+  // lib/inspection/offlineInspectionStore.ts from the legacy /inspection route. They hold raw
+  // observation text, local findings and report drafts with no account namespace at all, so they
+  // are the same class of cross-account leak as the three keys above and were surviving sign-out
+  // for the same reason.
+  //
+  // §281 (D-038) retired that route and deleted the writer, and these entries STAY. A device that
+  // ran any earlier build still holds whatever it wrote, and that content does not expire because
+  // the code that produced it was removed. Deleting the sweep along with the writer would reopen
+  // the exact leak V1-OFFLINE-ISO-01 closed, on every device that has ever used the product.
   // (The v1 offline field-capture store does NOT use localStorage; it is per-user IndexedDB and is
   // unreachable without the signed-in account's derived namespace -- see lib/offline/.)
   "insite_offline_inspections_v1",

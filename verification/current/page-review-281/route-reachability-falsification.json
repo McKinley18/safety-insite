@@ -1,0 +1,221 @@
+{
+  "instrument": "§281 D-038.6 route reachability",
+  "measuredAt": "2026-09-14T02:10:24.404Z",
+  "appUrl": "http://localhost:3000",
+  "method": {
+    "pass1": "filesystem — every app/**/page.tsx",
+    "pass2": "browser crawl — breadth-first over visible <a href>, signed out from / and signed in from /command-center",
+    "pass3": "source reachability fixpoint — a route counts only when navigated to from a file a reachable route can execute",
+    "orphanRule": "LEGACY_ORPHAN requires BOTH passes to miss it. A crawl's silence alone is not evidence."
+  },
+  "diskRouteCount": 23,
+  "crawlReached": [
+    "/",
+    "/about",
+    "/command-center",
+    "/field-capture",
+    "/forgot-password",
+    "/hazlenz",
+    "/inspections",
+    "/legal",
+    "/login",
+    "/pricing",
+    "/register",
+    "/reports",
+    "/safety-calendar",
+    "/settings"
+  ],
+  "sourceReachable": [
+    "/",
+    "/about",
+    "/command-center",
+    "/field-capture",
+    "/forgot-password",
+    "/hazlenz",
+    "/inspection",
+    "/inspection-complete",
+    "/inspection-cover",
+    "/inspection-review",
+    "/inspection-workspace",
+    "/inspections",
+    "/legal",
+    "/login",
+    "/pricing",
+    "/profile",
+    "/register",
+    "/reports",
+    "/reset-password",
+    "/safety-calendar",
+    "/settings",
+    "/unlock",
+    "/upgrade"
+  ],
+  "classified": [
+    {
+      "route": "/",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from an entry point",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/about",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/command-center",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from an entry point",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/field-capture",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /inspections",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/forgot-password",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /login",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/hazlenz",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/inspection",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from app/inspection-cover/page.tsx:222, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/inspection-complete",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from app/reports/page.tsx:123, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/inspection-cover",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from app/reports/page.tsx:5, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/inspection-review",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from app/inspection/page.tsx:801, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/inspection-workspace",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from app/field-capture/page.tsx:705, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/inspections",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /command-center",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/legal",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/login",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/pricing",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/profile",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from components/layout/AppShell.tsx:403, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/register",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /pricing",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/reports",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /command-center",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/reset-password",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "entry point — entered from a password-reset EMAIL — an entry point outside the product",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/safety-calendar",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /command-center",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/settings",
+      "classification": "ACTIVE_REACHABLE",
+      "basis": "browser crawl reached it from /command-center",
+      "byCrawl": true,
+      "bySource": true
+    },
+    {
+      "route": "/unlock",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from components/layout/AppShell.tsx:242, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    },
+    {
+      "route": "/upgrade",
+      "classification": "ACTIVE_DEEP_LINK",
+      "basis": "NOT anchor-crawlable (behind a disclosure, a state, or a programmatic push); navigated to from app/inspection-workspace/page.tsx:2768, which is itself reachable",
+      "byCrawl": false,
+      "bySource": true
+    }
+  ],
+  "counts": {
+    "ACTIVE_REACHABLE": 15,
+    "ACTIVE_DEEP_LINK": 8
+  },
+  "orphans": []
+}

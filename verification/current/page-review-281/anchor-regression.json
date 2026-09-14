@@ -1,0 +1,3925 @@
+{
+  "beforeCount": 422,
+  "afterCount": 422,
+  "changedCount": 206,
+  "regressionCount": 96,
+  "belowFloorCount": 0,
+  "changed": [
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "legal disclaimer",
+      "colourUtility": [
+        "text-[#1"
+      ],
+      "colorBefore": "#45556c",
+      "colorAfter": "#1d72b8",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "light",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "light",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "light",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "legal disclaimer",
+      "colourUtility": [
+        "text-[#1"
+      ],
+      "colorBefore": "#45556c",
+      "colorAfter": "#1d72b8",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "light",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "light",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "light",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "light",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "light",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "light",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "light",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "light",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "light",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "light",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "light",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "light",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "legal disclaimer",
+      "colourUtility": [
+        "text-[#1"
+      ],
+      "colorBefore": "#45556c",
+      "colorAfter": "#1d72b8",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "dark",
+      "width": 390,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "dark",
+      "width": 390,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "dark",
+      "width": 390,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 390,
+      "href": "/command-center",
+      "text": "🏠Home",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 390,
+      "href": "/inspections",
+      "text": "📋Inspect",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 390,
+      "href": "/reports",
+      "text": "🗂Reports",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 390,
+      "href": "/safety-calendar",
+      "text": "📅Calendar",
+      "colourUtility": [
+        "text-white/80"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#ffffff",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.1,
+      "contrastAfter": null,
+      "backdrop": "#07111f",
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/about",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "legal disclaimer",
+      "colourUtility": [
+        "text-[#1"
+      ],
+      "colorBefore": "#45556c",
+      "colorAfter": "#1d72b8",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/hazlenz",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/pricing",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/legal",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/about",
+      "text": "About",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/legal",
+      "text": "Legal",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/forgot-password",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/hazlenz",
+      "text": "HazLenz AI",
+      "colourUtility": [
+        "text-slate-200"
+      ],
+      "colorBefore": "#ffffff",
+      "colorAfter": "#e2e8f0",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": 18.94,
+      "contrastAfter": 15.36,
+      "backdrop": "#07111f",
+      "contrastRegressed": true,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/command-center",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspections",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-workspace",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/field-capture",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/reports",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/safety-calendar",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/inspections",
+      "text": "Inspect",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/profile",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/command-center",
+      "text": "Home",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/reports",
+      "text": "Reports",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/safety-calendar",
+      "text": "Calendar",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    },
+    {
+      "route": "/inspection-complete",
+      "theme": "dark",
+      "width": 1280,
+      "href": "/settings",
+      "text": "Settings",
+      "colourUtility": [
+        "text-blue-100"
+      ],
+      "colorBefore": "#f8fafc",
+      "colorAfter": "#dbeafe",
+      "decorationBefore": "none",
+      "decorationAfter": "none",
+      "contrastBefore": null,
+      "contrastAfter": null,
+      "backdrop": null,
+      "contrastRegressed": false,
+      "belowFloor": false
+    }
+  ],
+  "appeared": [],
+  "disappeared": []
+}

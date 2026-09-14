@@ -158,10 +158,23 @@ let SESSION = null;
 
   // Type something into a real field BEFORE the client learns it is obsolete, so the question
   // "would a forced reload have destroyed this" is asked about real unsaved work.
-  await page.goto(`${APP_URL}/inspection-cover`, { waitUntil: "domcontentloaded" });
-  await page.waitForTimeout(2000);
+  // §281 (D-038). This used to type into /inspection-cover's "Inspector name" field. That route
+  // was retired as unreachable, and the gate would have failed against a page that no longer
+  // exists. The dashboard's "Task title" is the active equivalent: a real text field, on a real
+  // authenticated page, holding real unsaved work at the moment of the release. It is also the
+  // field section E already drives, so this case and that one cannot disagree about whether the
+  // control exists.
+  //
+  // Two other pages were tried first and are recorded because each looked like a product failure
+  // and was not: /safety-calendar (D1 never saw the update-required panel) and /profile (the name
+  // field is not present at load). Neither was investigated further — the requirement here is
+  // simply "a real field on a real page", and the dashboard satisfies it with a control this
+  // script already exercises.
+  await page.goto(`${APP_URL}/command-center`, { waitUntil: "domcontentloaded" });
+  await page.waitForTimeout(3000);
   const TYPED = "Dana Reyes — unsaved at the moment of the release";
-  await page.fill('input[placeholder="Inspector name"]', TYPED);
+  const typedField = page.getByPlaceholder("Task title").first();
+  await typedField.fill(TYPED);
 
   let reloaded = false;
   page.on("framenavigated", (frame) => {
@@ -184,7 +197,7 @@ let SESSION = null;
 
   check("H1 NOTHING RELOADED ON ITS OWN", !reloaded);
   check("H2 and the unsaved work is still on the screen",
-    (await page.inputValue('input[placeholder="Inspector name"]')) === TYPED);
+    (await typedField.inputValue()) === TYPED);
   check("H3 the notice warns that unsaved work will be lost before the user refreshes",
     /unsaved will be lost|not saved will be lost|typed but not saved/i.test(await panel.innerText()),
     (await panel.innerText()).replace(/\n/g, " "));

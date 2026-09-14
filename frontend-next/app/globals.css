@@ -379,9 +379,32 @@ canvas {
   max-width: 100%;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+/* §281 (D-039) — THE ANCHOR RESET, MOVED INTO THE BASE LAYER.
+ *
+ * This rule was UNLAYERED. `@import "tailwindcss"` declares `@layer theme, base, components,
+ * utilities`, and unlayered CSS beats EVERY layer whatever the specificity — so a single
+ * `color: inherit` here silently defeated the text-colour utility on almost every anchor in the
+ * product. §280 measured 51 of 54 anchors carrying a colour utility that never reached a pixel.
+ *
+ * It survived for so long because an anchor usually sits in a parent whose colour is close to the
+ * one the utility asked for, so the wrong answer looked right. Where the two differed it was
+ * silently, completely wrong: the §280 empty-state action rendered #0F172A on #0F172A — contrast
+ * ratio 1.0, an entirely unreadable button — while the identical `<button>` beside it was fine.
+ * That was CONTAINED at the one site with `!text-white`, which is a patch at the symptom.
+ *
+ * The repair is the cascade, not the 51 call sites. Inside `@layer base` this is still a reset —
+ * it still gives every un-utilitied anchor the inherited colour and no underline, which is what
+ * the product's navigation and button-like anchors rely on — but any anchor that ASKS for a
+ * colour or an underline now gets it, because `@layer utilities` outranks `@layer base`.
+ *
+ * The blast radius was measured, not assumed: `scripts/measure-281-anchor-styles.mjs` records the
+ * computed colour, decoration and contrast of every visible anchor on every active route in both
+ * themes, before and after, and reports each one that changed. */
+@layer base {
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 button {

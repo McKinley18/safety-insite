@@ -30,6 +30,11 @@ import {
   type InspectionReportSummary,
 } from "@/lib/canonicalWorkflowApi";
 import { StandardCitationHeading } from "@/components/inspection/HazLenzStandardsSection";
+import { HazLenzDecisionSummary } from "@/components/inspection/HazLenzDecisionSummary";
+import {
+  buildHazLenzDecisionView,
+  hasDecisionContent,
+} from "@/lib/inspection/hazlenzDecisionPresentation";
 import RiskReviewSection from "@/components/inspection/RiskReviewSection";
 import { getStandardBackingPresentation } from "@/lib/inspection/standardDisplay";
 import { getInspectionRiskScale } from "@/lib/inspection/inspectionPageHelpers";
@@ -2300,6 +2305,27 @@ export default function InspectionWorkspacePage() {
     || analysis?.clarificationQuestions
     || []) as Array<{ id: string; question: string; reason?: string; options?: string[]; decisionCritical?: boolean }>;
 
+  /**
+   * §281 (D-040). The engine's own account of what it could not establish, whether the observation
+   * holds more than one independent hazard, and why its confidence is limited — three fields the
+   * contract has always carried and the product has never shown.
+   *
+   * The confidence-limit reason is taken from the standard ACTUALLY ON SCREEN
+   * (`selectedFindingStandard`), not from `guidedFinding.primaryStandard`. For a multi-finding
+   * observation the primary describes whichever hazard was primary when the observation was first
+   * analyzed, so reading it here would print the engine's reasoning about one hazard beside a
+   * different hazard's citation.
+   */
+  const hazlenzDecision = buildHazLenzDecisionView(
+    analysis,
+    selectedFindingStandard?.confidenceLimitReason ?? null,
+    // Whether a finding exists for the observation on screen. An analysis that produced none has
+    // no conclusion, and the panel says so instead of describing one that is not there.
+    (inspection?.findings || []).some(
+      (finding) => finding.observationId === observationId && finding.status !== "superseded",
+    ),
+  );
+
   // "candidates" is part of reading the HazLenz result, so it shares the HazLenz position rather
   // than adding a stage to the five-step bar.
   const barStep: Step = step === "candidates" ? "hazlenz" : step;
@@ -2314,6 +2340,21 @@ export default function InspectionWorkspacePage() {
   const confirmedCount = proposedCandidates.filter((finding) => candidateSelection[finding.id]).length;
 
   const selectedIsUserAuthored = selectedFindingDetail?.source === "user_authored";
+
+  /**
+   * §281 (D-040). The questions this disclosure still owns: everything the decision panel is not
+   * already serving. When the decision panel is not rendered at all (a user-authored finding, or
+   * an analysis with nothing outstanding) it owns none of them and this is the full list.
+   */
+  const confidenceRaisingQuestions = hazlenzDecision && hasDecisionContent(hazlenzDecision)
+      && hazlenzDecision.criticalUnknowns.length > 0 && !selectedIsUserAuthored
+    ? clarificationQuestions.filter((question) => {
+        const decisionCritical = hazlenzDecision.settlingQuestions.some((s) => s.decisionCritical);
+        // The panel serves the decision-critical ones when any exist, and otherwise all of them.
+        return decisionCritical ? question.decisionCritical !== true : false;
+      })
+    : clarificationQuestions;
+
 
   /**
    * True when the action list holds only the blank manual slots -- nothing HazLenz suggested. The
@@ -2994,7 +3035,53 @@ export default function InspectionWorkspacePage() {
                 Flagged from what you recorded: “{selectedFindingFragment}”
               </p>
             ) : null}
+
+            {/* §281 (D-040) — THE RESOLVED / NEEDS-INFORMATION STATE, SAID IN WORDS.
+                Rendered only when HazLenz produced the analysis: a finding the INSPECTOR added has
+                no HazLenz conclusion to be resolved or unresolved about, and labelling it either
+                way would attribute a state to the engine that the engine never reached. Not colour
+                alone, and deliberately a plain status line rather than a badge -- a badge reads as
+                a severity, and this is not one. */}
+            {!selectedIsUserAuthored && hazlenzDecision && (
+              <p
+                data-testid="hazlenz-resolution-line"
+                className="mt-2 text-sm font-bold"
+              >
+                {hazlenzDecision.resolution === "NEEDS_INFORMATION" ? (
+                  <span className="text-amber-800 dark:text-amber-300">
+                    Needs information — HazLenz could not establish a fact this conclusion depends on
+                  </span>
+                ) : hazlenzDecision.resolution === "NO_HAZARD_IDENTIFIED" ? (
+                  /* No conclusion was reached, so there is nothing to call established. Saying
+                     "HazLenz has what it needs for this conclusion" here described a conclusion
+                     that does not exist. */
+                  <span className="text-slate-700 dark:text-slate-300">
+                    No hazard identified in this observation
+                  </span>
+                ) : (
+                  <span className="text-slate-700 dark:text-slate-300">
+                    HazLenz has what it needs for this conclusion
+                  </span>
+                )}
+              </p>
+            )}
           </div>
+
+          {/* §281 (D-040). The engine's own statement of what is missing, whether several hazards
+              are involved, and what limits the conclusion. Placed ABOVE the Expert panel and the
+              standards: an unknown that controls the decision is the first thing a reviewer needs,
+              and it was previously the one thing the screen never said.
+
+              Renders nothing at all when there is nothing to say -- see `hasDecisionContent`. An
+              empty "Important information needed" heading on an ordinary finding would make every
+              result look like a problem. */}
+          {!selectedIsUserAuthored && hazlenzDecision && hasDecisionContent(hazlenzDecision) && (
+            <HazLenzDecisionSummary
+              view={hazlenzDecision}
+              busy={busy}
+              onAnswer={(questionId, answer) => reanalyze({ questionId, answer })}
+            />
+          )}
 
           {/* §265 — HAZLENZ EXPERT REVIEW.
               ADDITIVE, and deliberately placed after the heading and before the deterministic
@@ -3024,7 +3111,11 @@ export default function InspectionWorkspacePage() {
               <p className="guided-muted text-sm">
                 {selectedIsUserAuthored
                   ? "You identified this hazard, so HazLenz has not matched a standard to it. None will be attached unless the engine independently finds one."
-                  : "No standard has been established for this finding from the evidence recorded so far."}
+                  : hazlenzDecision?.resolution === "NO_HAZARD_IDENTIFIED"
+                    /* §281. There is no finding on this screen, so there is nothing for a standard
+                       to have been established FOR. The previous sentence described one. */
+                    ? "No hazard was identified in this observation, so no standard has been matched."
+                    : "No standard has been established for this finding from the evidence recorded so far."}
               </p>
             )}
             {findingStandards.map((candidate) => {
@@ -3103,9 +3194,14 @@ export default function InspectionWorkspacePage() {
                           </ul>
                         </>
                       )}
-                      {clarificationQuestions.length > 0 ? (
+                      {/* §281 (D-040). Decision-critical questions are served ONCE, beside the
+                          unknown they settle, in the decision panel above. Repeating them here
+                          would put the same question in two competing cards on one screen. What
+                          remains is the ordinary confidence-raising question, which is what this
+                          disclosure was always for. */}
+                      {confidenceRaisingQuestions.length > 0 ? (
                         <div className="mt-3 space-y-3">
-                          {clarificationQuestions.map((question) => (
+                          {confidenceRaisingQuestions.map((question) => (
                             <fieldset key={question.id}>
                               <legend className="text-sm font-semibold">{question.question}</legend>
                               {question.reason && <p className="guided-muted mt-1 text-xs">{question.reason}</p>}
@@ -3126,9 +3222,11 @@ export default function InspectionWorkspacePage() {
                         </div>
                       ) : (
                         <p className="guided-muted mt-2 text-sm">
-                          There is no question HazLenz can ask that would change this. Confidence is
-                          limited by the evidence itself — adding detail to the observation and
-                          reanalyzing is the way to raise it.
+                          {clarificationQuestions.length > 0
+                            ? "The outstanding question is shown with the information HazLenz needs, above."
+                            : "There is no question HazLenz can ask that would change this. Confidence is "
+                              + "limited by the evidence itself — adding detail to the observation and "
+                              + "reanalyzing is the way to raise it."}
                         </p>
                       )}
                       <p className="guided-muted mt-3 text-xs">

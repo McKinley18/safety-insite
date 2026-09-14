@@ -44,27 +44,55 @@ blocked at Step 1.
 
 Sections 1–12 below describe the engine and the product as built. They are unchanged by §278.
 
-### Work since the frozen baseline — §279, §280
+### Work since the frozen baseline — §279, §280, §281
 
-**`709ee151…` is still the validated baseline, and HEAD is not one.** §279 and §280 are product
-work on top of it: they have their own gates and their own evidence, and they have **not** been
-through the acceptance program that made `709ee151…` a baseline. Nothing below may be described as
-validated.
+**`709ee151…` is still the validated baseline, and HEAD is not one.** §279, §280 and §281 are
+product work on top of it: they have their own gates and their own evidence, and they have **not**
+been through the acceptance program that made `709ee151…` a baseline. Nothing below may be
+described as validated.
 
 | | |
 |---|---|
 | §279 | Update delivery and release compatibility ([`UPDATE-DELIVERY.md`](UPDATE-DELIVERY.md)); page review batch 1 |
 | §280 | Product-owner decisions D-031 … D-037; page review batch 2, the inspection spine |
+| §281 | Product-owner decisions D-038 … D-041; page review batch 3, the HazLenz presentation |
 
-The engine is untouched by both. The §274 successor candidate identity is unchanged at
-`8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee`, re-verified at §280 with
+The engine is untouched by all three. The §274 successor candidate identity is unchanged at
+`8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee`, re-verified at §281 with
 29/29 protected modules present and **zero accepted-evidence drift**. No HazLenz semantics were
 tuned, D-024b containment was not weakened, and D-030 is untouched.
 
 §280 closed the one open update-delivery risk §279 recorded — the inspection workspace losing
 unsaved work on a reload — and registered offline field operation as a product requirement with a
 measured inventory in [`OFFLINE-FIELD-OPERATION.md`](OFFLINE-FIELD-OPERATION.md). **Safety InSite
-is not offline-capable**, and §280 makes no such claim.
+is not offline-capable**, and neither §280 nor §281 claims otherwise.
+
+**§281 changed three things a reader of this document needs to know.**
+
+1. **The active route inventory is smaller and is now measured.** `/inspection`,
+   `/inspection-cover` and `/inspection-review` were a closed cycle no customer could reach, and
+   they are retired along with the 98 modules that existed only to support them — 101 files,
+   13,416 lines. Route classification is now derived from customer reachability rather than from
+   filesystem presence, and there are **zero orphan routes**. Proof and the nine lost product
+   concepts: `verification/current/page-review-281/D-038-CAPABILITY-AND-DEPENDENCY-PROOF.md`.
+2. **HazLenz now shows what it already knew.** `criticalUnknowns`, `multiHazardReview` and
+   `confidenceLimitReason` were computed and rendered nowhere; the product was withholding the
+   engine's own statement of the decision-controlling unknown. They are presented, with a
+   resolved / needs-information distinction carried by word, shape and colour rather than colour
+   alone. Deterministic code projects and never authors: every hazard-bearing sentence on screen is
+   the engine's own text.
+3. **The dashboard was not reading the record at all.** Its four counters came from device-local
+   stores whose only writers were inside the retired cycle. Measured fully online against seven
+   inspections on the server, it read `0 REPORTS / 0 FINDINGS / 0 OPEN ACTIONS / 0 OVERDUE`. The
+   counters now read the server, and a shared five-state vocabulary
+   (`frontend-next/lib/data/dataState.ts`) makes it structurally impossible for a surface that did
+   not reach the server to render a verified zero.
+
+**One gate fails and was not made to pass.** `validate:279-update-delivery` case D1 — the
+background re-check that tells a tab left open that it is unsupported — times out. It fails
+identically with HEAD's version of the script on pages §281 did not change, so §281 did not cause
+it; it is recorded as an open failure because the mechanism is what stops an unsupported client
+writing.
 
 ---
 

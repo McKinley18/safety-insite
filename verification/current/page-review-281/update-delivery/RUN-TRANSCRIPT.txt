@@ -1,0 +1,21 @@
+ok   A a current client shows no update notice of any kind
+ok   C1 a newer release shows the update-available notice  [1]
+ok   C2 it reads as an offer, not a demand  [A newer version of Safety InSite is available. Refresh now Later]
+ok   C3 it offers both Refresh now and Later
+ok   C4 it does NOT block the application — the page behind it is still usable
+ok   C5 Later dismisses it
+ok   J once dismissed, repeated checks do not re-open the same notice
+FAIL D1 an unsupported client is shown the update-required state
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.innerText: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-testid="update-required"]')[22m
+
+    at /Users/mckinley/Desktop/Safety_InSite/frontend-next/scripts/validate-279-update-delivery.mjs:194:55 {
+  name: 'TimeoutError'
+}
+
+Node.js v20.20.2

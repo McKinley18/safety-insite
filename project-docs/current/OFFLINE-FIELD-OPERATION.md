@@ -43,7 +43,7 @@ support. Several routes below hold local state and are still unusable without a 
 |---|---|---|---|---|---|
 | Observation entry, photos, local drafts | `/field-capture` | `GET /version` only | **WORKS** | **NONE_KNOWN** | Renders complete offline (1,029 chars offline vs 1,025 connected). Drafts and photos in per-account IndexedDB (`insite-offline-v1`). Sync is an explicit button, never automatic |
 | Inspection creation / resume | `/inspections` | `/version`, `/sites`, `/inspections`, `/billing/status` | **PARTIAL** | **NONE_KNOWN** | Shell and workflow choice render (1,803 offline vs 2,420 connected); the saved-inspection list and the site picker are server-backed and absent. A new inspection cannot be created |
-| Dashboard / due work | `/command-center` | `/version`, `/calendar`, `/billing/status` | **PARTIAL** | **NONE_KNOWN** | Renders, but every count and the week strip are server-backed. **A dashboard that renders with empty counts is the one honesty risk in this table** — see below |
+| Dashboard / due work | `/command-center` | `/version`, `/inspections`, `/inspection-reports`, `/calendar`, `/billing/status` | **PARTIAL** | **NONE_KNOWN** | Renders. **§281 (D-041):** every counter now carries its own data state — a dated value where the last server answer is cached, an em dash where it is not. It can no longer render a zero it did not verify |
 | Observation entry, HazLenz, findings, review, actions | `/inspection-workspace` | `/version`, `/inspections/:id`, `/billing/status` | **REQUIRES_NETWORK** | **RECOVERABLE** (§280 D-035) | Product-owned refusal: *"This page needs a connection."* Drafts typed while connected now survive a reload (D-035) but the page cannot be **opened** offline, so a refresh with no signal waits for the connection rather than losing the work |
 | Inspection completion, report | `/inspection-complete` | `/version`, `/inspections/:id`, `/inspections/:id/report`, `/sites` | **REQUIRES_NETWORK** | NONE_KNOWN | Refuses. Completion is a server transition and report generation is server-side |
 | Reports | `/reports` | `/version`, `/inspection-reports` | **REQUIRES_NETWORK** | NONE_KNOWN | Refuses. No report is cached for offline reading |
@@ -54,16 +54,21 @@ support. Several routes below hold local state and are still unusable without a 
 | Synchronization | Field Capture only | — | **PARTIAL** | UNKNOWN | Field-capture sync exists and is explicit. There is no general outbox for inspections, observations, findings or reviews |
 | Authentication / session | all | `/auth/refresh` on 401 | **UNKNOWN** | UNKNOWN | Not exercised offline. An expired access token cannot be refreshed with no network; what the product then does is **not measured** and must not be assumed benign |
 
-### The dashboard is the honesty risk in this table
+### The dashboard was the honesty risk in this table — CLOSED at §281 (D-041)
 
 `/command-center` and `/inspections` are the two routes that **render** offline rather than
 refusing. They render their shell with server-backed content missing. For `/inspections` that is
-visibly incomplete. For the dashboard it is not: the counts are `0`, and `0 OVERDUE` on a screen
+visibly incomplete. For the dashboard it was not: the counts read `0`, and `0 OVERDUE` on a screen
 that cannot reach the server is indistinguishable from `0 OVERDUE` on a screen that can.
 
-**A safety product must not show a clean board it has not checked.** This is registered here rather
-than repaired, because whether the dashboard should refuse, or show its counts as unknown, is a
-product decision. It is the single most important item in this inventory.
+**§281 measured it and the defect was larger than the offline case.** The counters were computed
+from three device-local stores whose only writers belonged to the `/inspection` route D-038 has
+retired. Against a real account with seven inspections and nine observations on the server, **fully
+online**, the dashboard read `0 REPORTS / 0 FINDINGS / 0 OPEN ACTIONS / 0 OVERDUE`. The offline
+symptom was one visible face of a permanently disconnected board.
+
+The counters now read the record, and every one carries a state from the shared vocabulary below.
+Acceptance: `npm run validate:281-offline-data-state`, 12 cases, three of them falsifications.
 
 ---
 
@@ -95,7 +100,7 @@ product decision. It is the single most important item in this inventory.
 
 | Risk | Basis |
 |---|---|
-| **A dashboard that reads clean offline** | Measured. `/command-center` renders with zero counts and no indication they are unverified |
+| ~~A dashboard that reads clean offline~~ | **CLOSED at §281 (D-041).** It could not have been closed by an offline-only fix: the counters were wrong online too |
 | **Session expiry offline is unknown** | Not measured. An inspector two hours into a walkthrough with an expired token has no path to refresh it |
 | **Photo/blob growth is unbounded** | IndexedDB holds photos until an explicit sync. No quota policy was found |
 | **Two devices, one inspection** | No conflict model exists, so the outcome is whatever the last write does |
@@ -115,4 +120,53 @@ synchronization → conflict handling → no duplicate actions/events → proven
 authoritative server state correct
 ```
 
-**Safety InSite is not fully offline-capable. Nothing in §280 claims otherwise.**
+**Safety InSite is not fully offline-capable. Nothing in §280 or §281 claims otherwise.**
+
+---
+
+## The offline data-state vocabulary (§281, D-041)
+
+Established now so the next surface that needs it does not invent a sixth way of saying "we don't
+know". `frontend-next/lib/data/dataState.ts`.
+
+| state | means | shows a number? |
+|---|---|---|
+| `CURRENT` | the server answered, just now | yes, uncaptioned |
+| `LAST_SYNCED` | unreachable; this is the last value the server gave, **dated** | yes, with its date |
+| `PENDING_SYNC` | local work the server has not accepted is in or out of this value | yes, with a count |
+| `OFFLINE_UNAVAILABLE` | unreachable, and no trustworthy local value | **no — an em dash** |
+| `SYNC_CONFLICT` | local and server disagree irreconcilably | no |
+
+The rule is **structural, not conventional**: `resolveDataValue` cannot emit a verified zero from a
+caller that did not reach the server, whatever value that caller passes. Only a value the server
+supplied is ever cached, so a stale number cannot refresh its own timestamp and present itself as
+current.
+
+`SYNC_CONFLICT` is **declared and deliberately unused**. The module records which surfaces can
+currently produce each state, so a state nothing can reach is not mistaken for one that is covered.
+
+**This is not the D-037 synchronisation architecture and must not grow into one.** There is no
+queue here and no reconciliation — only the states a surface can be in, and the discipline that
+each one is said rather than silently rendered as a number.
+
+---
+
+## D-042 — interruption and intermittent connectivity (REGISTERED, not built)
+
+§280 and §281 measured **total loss and full reconnect**. Field connectivity is worse than
+online/offline: requests time out, one succeeds while another fails, the connection disappears
+during an upload, or it returns halfway through an operation.
+
+Future acceptance must cover:
+
+```
+online → degraded connection → request timeout → partial request success → connection loss →
+local continuation where supported → reconnection → synchronization
+```
+
+with special coverage for: observation save · photo and evidence upload · corrective-action
+creation · calendar/outbox synchronization · duplicate submission · session expiration ·
+update/version check · HazLenz request interruption.
+
+**Not attempted at §281, by direction.** Observations relevant to it continue to be recorded during
+page reviews.

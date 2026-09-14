@@ -66,10 +66,16 @@ const navItems = [
     href: "/inspections",
     label: "Inspect",
     icon: "📋",
+    /**
+     * Matched as `pathname === root || pathname.startsWith(root + "/")` — an EXACT segment match,
+     * not a string prefix. `/inspection` therefore never covered `/inspection-workspace`, and
+     * `/inspection-workspace` was not listed: walking into the product's most-used surface
+     * highlighted nothing at all in the navigation. §281 (D-038) found it while retiring the
+     * `/inspection` cycle, whose presence in this list had made the omission look intentional.
+     */
     activeRoots: [
       "/inspections",
-      "/inspection",
-      "/inspection-cover",
+      "/inspection-workspace",
       "/inspection-complete",
       "/field-capture",
     ],
