@@ -119,7 +119,7 @@ values added, and no other variable changed.
 
 ## 3. Restart and confirm the claim
 
-Render restarts on an environment change. Then:
+**Deploy at the same SHA** — a restart will not apply it, see the §297A correction in step 2A. Then:
 
 ```bash
 curl -s https://safescope-backend.onrender.com/health/ready | jq '.monitoring'
@@ -188,6 +188,15 @@ destination attached, which is what §291 already had.
 
 ## Rollback
 
-Remove `OPERATIONAL_ALERT_EMAIL` (or `OPERATIONAL_ALERT_WEBHOOK_URL`). The channel returns to
-`NOT_CONFIGURED` and the product returns to the state it is in today. No schema, no data, no
-deployment is involved in any step above, so rollback is one variable and a restart.
+Remove `OPERATIONAL_ALERT_EMAIL` (or `OPERATIONAL_ALERT_WEBHOOK_URL`), **then deploy at the same
+SHA**, then read `/health/ready` back and confirm it reports `NOT_CONFIGURED`. The channel returns to
+the state the product is in today.
+
+**A restart is not a rollback.** §297A measured this: two restarts returned HTTP 200, fired real
+`server_restarted` events, left the service `ready`, and applied nothing. Rolling back by restart
+would leave the old destination live while the operator believed it was removed — which, for a
+destination being rolled back *because* it is wrong or exposed, is the worst failure this procedure
+could have.
+
+No schema and no data are involved in any step above, so rollback is one variable and one same-SHA
+deploy.

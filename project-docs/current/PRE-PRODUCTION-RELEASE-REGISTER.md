@@ -4,7 +4,7 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**.
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**.
 **Threshold A is closed. Threshold B stands at ONE owner action: a monitoring destination. The
 architecture is chosen; the receiver does not yet exist.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
@@ -77,7 +77,7 @@ the others.
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
 | **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **1** — `MO-1`, an owner action, not engineering |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **18** |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **19** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
 > three could only be closed *by the deployment*. §290 performed the deployment and closed them:
@@ -113,12 +113,12 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **79** | **4** | **7** | **46** | **22** |
+| Entries | **80** | **4** | **7** | **47** | **22** |
 
 | Status | Count |
 |---|---|
 | CLOSED | 40 |
-| OPEN | 32 |
+| OPEN | 33 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 3 |
 
@@ -198,7 +198,7 @@ boundary is larger than it had been recorded as.
 
 | | what is actually left | state after §295 |
 |---|---|---|
-| **MO-1** | **A receiver URL the owner will actually read.** | **Architecture CHOSEN at §296: webhook** — and chosen on a product argument, not on cost. The product name is to be replaced before external beta, and a verified sending domain entrenches a name in a way a webhook URL does not. §296 then **proved the webhook branch**, which had never been executed since §294 rewrote the dispatcher (`test:296-webhook-channel`, **15/15**). What is left is the destination itself: §296 searched the already-authorised surface and found **no Slack workspace, no Discord session**, and no inbound receiver on GitHub, Render, Vercel, Neon or Stripe. **Inventing one, standing up an ephemeral one, or pointing it at something nobody reads were each forbidden — and each would have produced a green gate over nothing watching, which is exactly MO-2.** |
+| **MO-1** | **A qualifying production condition.** The receiver is configured and proven. | **Architecture CHOSEN at §296: webhook** — and chosen on a product argument, not on cost. The product name is to be replaced before external beta, and a verified sending domain entrenches a name in a way a webhook URL does not. §296 then **proved the webhook branch**, which had never been executed since §294 rewrote the dispatcher (`test:296-webhook-channel`, **15/15**). What is left is the destination itself: §296 searched the already-authorised surface and found **no Slack workspace, no Discord session**, and no inbound receiver on GitHub, Render, Vercel, Neon or Stripe. **Inventing one, standing up an ephemeral one, or pointing it at something nobody reads were each forbidden — and each would have produced a green gate over nothing watching, which is exactly MO-2.** |
 | ~~BR-2~~ | ~~One Neon console read.~~ | **CLOSED at §295** on authoritative console evidence: Free plan, **6-hour** history window, Instant Restore available across it, no snapshots and no schedule. Sufficient for Threshold B; `BR-5` carries the Threshold-C consequence. |
 
 `PV-3` and `DB-5` closed at §292 and were accepted at §293. `MO-2` opened at §293 and closed at §294.
@@ -215,12 +215,12 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (28 items, including all six P0)
+### Threshold C — external controlled beta  (29 items, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-3`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294**
+`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-3`, `SE-5`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294**
 
 **`DB-4` is new at §289 and it is not legal work.** The cross-tenant recurrence path that `TI-2`
 describes is **reachable in production**, because the `outcomes` table exists there although no
@@ -389,6 +389,7 @@ Every stored field comes from the server: agreement id, version, a **sha256 of t
 | **SE-2** | Access and refresh tokens are held in localStorage rather than httpOnly cookies. | P2 | — | Security | OPEN |
 | **SE-3** | No production security review, dependency-vulnerability gate, or penetration test has been performed. | P2 | C | Security | OPEN |
 | **SE-4** | Secrets handling: provider key, JWT secret, Stripe keys and database URL are environment-only; production validation refuses unsafe combinations. | P3 | — | Infrastructure | OPEN |
+| **SE-5** | A malformed resource identifier reaches the database unvalidated and surfaces as an unhandled HTTP 500. | P2 | C | Engineering | OPEN (§297A) |
 
 **SE-2 — remediation / decision.** Accept for controlled beta with a short token life, or move to httpOnly cookies with CSRF protection in v1.1. Record the decision.
 
@@ -1300,6 +1301,61 @@ in production. **An emission layer that now records its own failures is still no
 live half is `MO-1`, it needs the owner's configuration, and it is still open.
 
 The application source changed, so the release binding changed with it. **§295 deployed it.**
+
+---
+
+## §297A — everything but the trigger
+
+**`MO-1` does not close, and the reason is the product working rather than failing.** Every link in
+the chain is now independently proven except the one that starts it.
+
+### The receiver is real, and that was checked before anything touched the product
+
+One hand-sent message, labelled `OUT-OF-BAND MONITORING RECEIVER VERIFICATION` and explicitly not a
+product alert, was accepted by the destination, **retrieved independently through a subscriber poll**,
+and **confirmed rendered in the owner's subscribed client**. Doing this first matters: it means a
+silent client during the real test would be evidence of a product failure rather than of an
+unsubscribed phone.
+
+The destination is configured and production says so truthfully — `alerting: CONFIGURED`,
+`channel: webhook`, `lastDelivery: null`. Exactly one environment variable was added; the full
+variable list was diffed against a before-snapshot and **nothing was lost and no existing value
+changed**.
+
+### The probe found a real fault, and the real fault correctly did not alert
+
+One authorised request — `GET /files/<malformed>`, referencing no real resource and crossing no
+tenant boundary — returned **HTTP 500 in 313 ms**. The production log names the cause in the same
+second: `QueryFailedError: invalid input syntax for type uuid`. That is `SE-5`, registered above.
+
+**And it raised no alert, which is correct.** §291 encoded that a single 500 is a bug report and a
+burst is an outage: `service.error_rate_exceeded` fires only at **5 server errors in 5 minutes**.
+After the probe, production reported `serverErrorsInWindow: 1` against a threshold of `5`,
+`lastDelivery: null`, and the destination still held only the out-of-band message.
+
+> **So the induction the section authorised cannot complete under its own constraint**, and not
+> because anything is broken. One probe was permitted; one 500 is by design not a qualifying
+> monitoring condition. §297A did **not** repeat the probe, did **not** lower the threshold to make
+> the test pass, and did **not** fall back to breaking storage — each was explicitly forbidden, and
+> the first two would have been the same category of error as `MO-2`: adjusting the instrument until
+> it reports what you wanted.
+
+### What this bought, which is not nothing
+
+The quiet path is now proven **live on a configured channel**: a genuine 500, a 404 and a 401
+together produced **zero** alerts and left `lastDelivery` at `null`. Before §297A that was proven
+locally and against an unconfigured channel. Configuration truthfulness, destination reachability,
+subscriber receipt and human visibility are all evidenced in production. The webhook branch's
+dispatch and outcome recording were proven at §296. **What remains is a trigger.**
+
+The three ways to get one, and why each needs a decision, are in `MO-1`'s remediation above.
+
+### One synthetic account was created and is named rather than tidied away
+
+`section297a-probe@release-test.invalid`, free plan, one organization, no inspection and no data.
+It exists because `GET /files/:id` is behind `JwtGuard` and free-tier gating puts every other
+storage-touching route behind a 402. Named here so the product owner can remove it deliberately,
+following the §290 precedent for synthetic residue.
 
 ---
 

@@ -1,0 +1,262 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_297A_MO1_LIVE_RECEIPT_PROOF",
+  "section": "297A",
+  "generated": "2026-09-14T23:48:43Z",
+  "outcome": "MO-1 DOES NOT CLOSE. The destination is configured, proven reachable and proven human-visible; one authorised probe produced a GENUINE unhandled production 500; and that 500 correctly raised no alert, because the §291 aggregation policy requires 5 server errors in 5 minutes. The chain is complete except for a qualifying trigger, and producing one is a product-owner decision. THRESHOLD B REMAINS AT ONE.",
+  "productionSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+  "applicationSourceDigestDeployed": "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
+  "schemaHead": "1800000023000",
+  "migrationsApplied": "55/55",
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "sourceChanges": "NONE — §297A changed no application code.",
+  "destination": {
+    "service": "ntfy.sh, public server",
+    "role": "TEMPORARY pre-Beta operational monitoring receiver; NOT the permanent external-Beta observability architecture",
+    "topicEntropy": "crypto.randomBytes(32) — 256 bits, base64url, 43 chars, charset [A-Za-z0-9_-]",
+    "topicNameContainsProductOrPersonalStrings": false,
+    "secretHandling": "The complete destination URL was written ONLY to a 0600 file in a session scratchpad outside the repository, and to the Render production environment. It is absent from the repository (verified by grep), from every evidence file including this one, from all committed documentation, and from the return. It was never passed as a tool argument: the subscription page was opened by a shell command that read the URL from the 0600 file, and the receipt check used the ntfy web app rather than the topic URL.",
+    "topicPreserved": false
+  },
+  "configuration": {
+    "variableAdded": "OPERATIONAL_ALERT_WEBHOOK_URL",
+    "envVarCountBefore": 41,
+    "envVarCountAfter": 42,
+    "variablesLost": 0,
+    "preExistingValuesChanged": 0,
+    "verification": "the full variable list was diffed key-by-key and value-by-value against a snapshot taken before the change, because the Render API replaces the whole list — \"one added\" and \"none lost\" are two separate checks",
+    "storedValueIntegrity": "byte-identical to the intended value (length 59, exact string match)",
+    "frontendExposure": "NONE — no Vercel variable added; the value exists only in the Render service environment"
+  },
+  "restartVersusDeployFinding": {
+    "finding": "ON THIS SERVICE A RESTART DOES NOT APPLY AN ENVIRONMENT CHANGE. Environment variables are baked into the container at deploy time; a restart restarts the process inside an already-instantiated environment.",
+    "evidence": {
+      "restartsIssued": 2,
+      "restartApiResponses": "HTTP 200 both times",
+      "renderEvents": [
+        "server_restarted 2026-09-14T23:26:12Z",
+        "server_restarted 2026-09-14T23:27:13Z"
+      ],
+      "serviceStateDuring": "status ready throughout the following two minutes",
+      "liveConfigurationDuring": "alerting NOT_CONFIGURED — the OLD environment was still active",
+      "whenItActuallyApplied": "same-SHA deploy dep-dak865nqj5pc73a5sg20, live 2026-09-14T23:30:06Z",
+      "ruledOut": "not a malformed-value problem — the stored value was verified byte-identical throughout"
+    },
+    "correctedRule": "change the environment value -> DEPLOY (same SHA) -> verify the live configuration by reading it back",
+    "whyTheRollbackErrorWasTheDangerousOne": "The previous runbook said to roll back by removing the variable and restarting. That would return HTTP 200, fire a real restart event, leave the service ready, and change nothing — leaving the old destination live while the operator believed it removed. For a destination being rolled back BECAUSE it is wrong or exposed, that is the worst available failure.",
+    "runbookCorrected": "project-docs/operations/MO-1-ALERT-CONFIGURATION-RUNBOOK.md — configuration step, step 3, and the rollback section"
+  },
+  "payloadPrivacy": {
+    "method": "derived MECHANICALLY rather than by reading code: every error-severity call site was dispatched through the real dispatcher with 11 hostile values planted, and the exact wire bytes were inspected",
+    "errorSeverityCallSitesCovered": 6,
+    "plantedHostileValues": [
+      "observationText",
+      "narrative",
+      "authorization",
+      "apiKey",
+      "password",
+      "resetToken",
+      "cookie",
+      "rationale",
+      "conclusion",
+      "prompt",
+      "attachment"
+    ],
+    "survivedToTheWire": 0,
+    "topLevelFields": [
+      "source",
+      "event",
+      "severity",
+      "at",
+      "environment",
+      "release",
+      "metadata"
+    ],
+    "metadataByEvent": {
+      "expert.provider.transport_failure": [
+        "observationId",
+        "inspectionId",
+        "organizationId",
+        "executionId",
+        "failureKind",
+        "providerLegs (reduced to [array:N])"
+      ],
+      "storage.operation_failed": [
+        "storageObjectId",
+        "parentType",
+        "failureKind"
+      ],
+      "report.generation_failed": [
+        "inspectionId",
+        "failureKind",
+        "previousReportPreserved"
+      ],
+      "schema.readiness_failed": [
+        "reason (fixed template)",
+        "expectedSchemaVersion",
+        "expectedCount",
+        "appliedCount",
+        "missingCount"
+      ],
+      "action.audit_write_failed": [
+        "actionId",
+        "actorUserId",
+        "actionCode",
+        "fromStatus",
+        "toStatus",
+        "failureKind",
+        "stateCommitted"
+      ],
+      "service.error_rate_exceeded": [
+        "path (ROUTE PATTERN, not the URL)",
+        "method",
+        "statusCode",
+        "countInWindow",
+        "failureKind"
+      ]
+    },
+    "keyDefences": [
+      "failureKind is error.name (a class name) and never error.message — the report service deliberately puts error.message in the audit ROW, not the event",
+      "path is request.route.path, so /inspections/:id/reports rather than a URL containing real identifiers",
+      "safeValue reduces objects and arrays to a shape description and truncates strings at 200",
+      "FORBIDDEN_KEY drops credential- and content-named keys by NAME rather than by recognising a secret"
+    ],
+    "verdict": "PASS — nothing on the §297 prohibited list appears in any dispatched payload",
+    "disclosedResiduals": [
+      "organizationId and actorUserId are stable pseudonymous identifiers, so an observer holding the topic could correlate activity over time. Not on the prohibited list, unavoidable for actionable alerting, and stated so the decision is informed.",
+      "source is the literal \"safety-insite\", which publishes the product name to a public service. Explicitly permitted as a service identifier, but it is a small public association with a name scheduled for replacement, and it is one field that changes with the rename."
+    ]
+  },
+  "outOfBandReceiverCheck": {
+    "sent": true,
+    "messagesSent": 1,
+    "label": "OUT-OF-BAND MONITORING RECEIVER VERIFICATION",
+    "explicitlyNot": "a Safety InSite alert, product dispatch, or evidence that MO-1 is closed",
+    "sentAt": "2026-09-14T23:42:23Z",
+    "destinationAccepted": true,
+    "providerMessageId": "TM7a9qTtT1LL",
+    "independentSubscriberPoll": "1 message retrievable, id TM7a9qTtT1LL, title and body intact",
+    "humanVisibleReceipt": "CONFIRMED — the notification card is rendered in the owner's subscribed ntfy client in their own browser profile, with an unread badge on the tab",
+    "whyFirst": "so that a silent client during the product test would be evidence of a product failure rather than of an unsubscribed phone"
+  },
+  "productProbe": {
+    "authorisedMethod": "exactly ONE bounded request to GET /files/:id with a deliberately malformed identifier",
+    "requestsSent": 1,
+    "identifier": "a non-UUID literal referencing no real resource",
+    "tenantBoundaryCrossed": false,
+    "dataAccessed": "none",
+    "mutation": "none",
+    "enumeration": "none",
+    "otherRoutesTried": "none",
+    "sentAt": "2026-09-14T23:43:56Z",
+    "httpStatus": 500,
+    "responseTimeMs": 313,
+    "genuineUnhandled500": true,
+    "underlyingCause": "QueryFailedError: invalid input syntax for type uuid — confirmed in the Render log store in the same second",
+    "clientResponseBody": "{\"statusCode\":500,\"message\":\"Internal server error\"} — no stack trace, no SQL, supplied value not echoed to the client",
+    "securityImplications": {
+      "authorizationBypass": false,
+      "crossTenantExposure": false,
+      "sensitiveDataDisclosure": false,
+      "destructiveMutation": false,
+      "criticalAvailabilityRisk": false,
+      "mandatoryEscalationTriggered": false,
+      "secondaryObservations": [
+        "the attacker-supplied value IS echoed into the server-side log line — operator-side, and it is the caller's own input rather than customer data",
+        "an authenticated caller can produce cheap 500s, so five inside five minutes would raise a genuine alert; this defect is therefore also a route to manufacturing alert noise"
+      ]
+    }
+  },
+  "monitoringResult": {
+    "monitoringEventObserved": false,
+    "dispatchOccurred": false,
+    "lastDeliveryBefore": null,
+    "lastDeliveryAfter": null,
+    "serverErrorsInWindowAfter": 1,
+    "serverErrorThreshold": 5,
+    "serverErrorWindowMinutes": 5,
+    "productGeneratedReceiptAtDestination": false,
+    "messagesAtDestination": 1,
+    "messagesAtDestinationExplanation": "the out-of-band verification message only — no product alert",
+    "receiptLatency": "n/a — no product dispatch occurred",
+    "whyThisIsCorrect": "§291 encodes that a single 500 is a bug report and a burst is an outage. service.error_rate_exceeded fires only at 5 server errors in 5 minutes. One probe cannot cross that threshold, so the authorised induction cannot complete under its own one-probe constraint — and that is the noise policy working as designed, not a fault.",
+    "whatWasNotDone": [
+      "the probe was NOT repeated to reach the threshold — explicitly forbidden",
+      "the threshold was NOT lowered to make the test pass — explicitly forbidden, and would have been the MO-2 error of adjusting the instrument until it reports what you wanted",
+      "no fallback to breaking storage — requires a new product-owner decision"
+    ]
+  },
+  "noisePolicyLiveOnAConfiguredChannel": {
+    "induced": [
+      "GET /files/<malformed> -> 500 (genuine unhandled)",
+      "GET unknown path -> 404",
+      "GET /auth/me without a token -> 401"
+    ],
+    "alertsRaised": 0,
+    "lastDeliveryAfter": null,
+    "serverErrorsInWindow": 1,
+    "significance": "Before §297A the quiet path was proven locally and against an UNCONFIGURED channel. It is now proven live against a CONFIGURED one, including on a real 500.",
+    "thresholdsChanged": 0
+  },
+  "syntheticResidue": {
+    "account": "section297a-probe@release-test.invalid",
+    "plan": "free",
+    "organization": 1,
+    "inspections": 0,
+    "observations": 0,
+    "reports": 0,
+    "storageObjects": 0,
+    "whyItExists": "GET /files/:id is behind JwtGuard, and free-tier gating puts every other storage-touching route behind a 402, so an authenticated account was the only way to reach the route at all",
+    "namedRatherThanTidied": "following the §290 precedent — recorded so the product owner can remove it deliberately"
+  },
+  "results": {
+    "MO-1": "OPEN — LIVE_INDUCTION_METHOD_REQUIRED",
+    "BR-2": "CLOSED",
+    "MO-2": "CLOSED",
+    "EM-2": "OPEN",
+    "BR-5": "OPEN",
+    "SE-5": "OPEN, NEW"
+  },
+  "blockers": {
+    "thresholdA": 0,
+    "thresholdBBefore": [
+      "MO-1"
+    ],
+    "thresholdBAfter": [
+      "MO-1"
+    ],
+    "thresholdC": 19
+  },
+  "counts": {
+    "total": 80,
+    "P0": 4,
+    "P1": 7,
+    "P2": 47,
+    "P3": 22,
+    "CLOSED": 40,
+    "OPEN": 33,
+    "BLOCKED": 4,
+    "DEFERRED": 3
+  },
+  "authorization": {
+    "internalProduction": "NOT AUTHORIZED — MO-1 open",
+    "externalBeta": "NOT AUTHORIZED"
+  },
+  "constraints": {
+    "expertExecutionEnabled": false,
+    "expertCalls": 0,
+    "providerCalls": 0,
+    "spendUsd": 0,
+    "migrations": 0,
+    "schemaChanges": 0,
+    "sourceChanges": 0,
+    "deployments": 1,
+    "deploymentsDetail": "one same-SHA deploy to apply the configuration — required, because a restart does not",
+    "restarts": 2,
+    "productionWrites": "1 synthetic account and its organization row; 0 inspections, 0 reports, 0 storage objects",
+    "productionConfigurationChanges": 1,
+    "thresholdCWork": 0,
+    "renameOperations": 0,
+    "brandingChanges": 0
+  },
+  "terminal": "SAFETY_INSITE_THRESHOLD_B_AT_ONE — MONITORING_RECEIVER_VERIFIED_AND_LIVE_INDUCTION_METHOD_REQUIRED"
+}
