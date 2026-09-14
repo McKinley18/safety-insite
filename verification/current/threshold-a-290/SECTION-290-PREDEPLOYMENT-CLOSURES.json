@@ -1,0 +1,103 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_290_PREDEPLOYMENT_CLOSURES",
+  "section": "290",
+  "generated": "2026-09-14T17:16:36Z",
+  "scope": "The two bounded release-hardening closures §290 required BEFORE push and deploy.",
+  "BR_3": {
+    "item": "check:launch-pricing conflated the retired Expert PRICING TIER with Expert HazLenz the CAPABILITY",
+    "oldAssertion": {
+      "test": "/expert/i tested against every file in CUSTOMER_FACING_GLOBS = frontend-next/{app,components,lib} + backend/src/billing; any file outside a four-entry allowlist failed",
+      "resultAtSection289": "38 passed, 1 FAILED — 14 files flagged",
+      "filesFlagged": [
+        "frontend-next/app/inspection-workspace/page.tsx",
+        "frontend-next/components/inspection/expert/ExpertAnalysisPanel.tsx",
+        "frontend-next/components/inspection/expert/ExpertConfirmationCard.tsx",
+        "frontend-next/lib/auth.ts",
+        "frontend-next/lib/calendar/__tests__/calendarReconciliation.test.ts",
+        "frontend-next/lib/canonicalWorkflowApi.ts",
+        "frontend-next/lib/expert/__tests__/expertApiFailureMapping.test.ts",
+        "frontend-next/lib/expert/__tests__/expertEntitlementPresentation.test.ts",
+        "frontend-next/lib/expert/__tests__/expertPresentation.test.ts",
+        "frontend-next/lib/expert/expertApi.ts",
+        "frontend-next/lib/expert/expertEntitlement.ts",
+        "frontend-next/lib/expert/expertPresentation.ts",
+        "frontend-next/lib/expert/expertTypes.ts",
+        "frontend-next/lib/safetyCalendar.ts"
+      ]
+    },
+    "whySuperseded": "The assertion was authored when 'Expert' had one meaning in this codebase: the retired $11.99 pricing tier. Since §261 it has a second, live meaning — Expert HazLenz, the server-authored analysis capability — and a word-blind regex cannot separate them. Every one of the 14 flagged files is the capability: analysis panels, the entitlement memo, the Expert read route, Expert snapshot-selection comments. Not one offers a plan.",
+    "repairRejected": "Adding the 14 files to the allowlist. A file-level allowlist entry permits ANY future Expert reference in that file, so this would have weakened the check in exactly the direction it exists to guard, while still saying nothing about whether a purchasable Expert plan had returned.",
+    "currentCorrectAssertion": {
+      "test": "the same /expert/i rule, scoped to PLAN_SURFACE_GLOBS — the files that determine or present what a customer can buy",
+      "planSurfaceFileCount": 22,
+      "filesNamingExpertInThatScope": 4,
+      "allowlistChanges": "NONE — the four files that name Expert on a plan surface are exactly the four already allowlisted. Nothing was added to obtain a pass.",
+      "antiVacuityGuard": "PLAN_SURFACE_ANCHORS asserts the narrowed scope still contains planData.ts, PricingContent.tsx, app/pricing/page.tsx, app/upgrade/page.tsx, lib/planEntitlements.ts, lib/billing.ts, backend plan-entitlements.ts and billing.service.ts. If pricing moves out of scope the gate FAILS rather than passing over an empty set.",
+      "addedAssertion": "no plan surface outside the retired-tier normalizers uses 'expert' as a plan-code string literal"
+    },
+    "substantivePriceChecksUnchanged": {
+      "no $6.99 (retired Pro price) in customer-facing source": "PASS",
+      "no $11.99 (retired Expert price) in customer-facing source": "PASS",
+      "no $9.99 (superseded Pro price) in customer-facing source": "PASS",
+      "note": "These three still run against the FULL customer-facing scope. The narrowing applies only to the Expert-word assertion."
+    },
+    "pricingChanged": false,
+    "pricingUnchangedEvidence": "FREE $0 / PRO $24.99 per month / EXPERT NOT_A_V1_PLAN — identical before and after",
+    "negativeControl": {
+      "method": "Injected a selectable Expert plan ({ code: 'expert', name: 'Expert', priceMonthly: 11.99 }) into frontend-next/components/pricing/PricingContent.tsx, a plan surface.",
+      "result": "THREE independent assertions failed: the $11.99 price check, the plan-surface Expert-word check, and the new plan-code check. 46 passed, 3 FAILED.",
+      "reverted": true,
+      "why": "A narrowed gate that cannot fail is worse than a noisy one. This proves the repair did not neuter it."
+    },
+    "gateResult": {
+      "before": "38 passed, 1 FAILED",
+      "after": "49 passed, 0 failed"
+    },
+    "verdict": "CLOSED — the gate is STRONGER after the repair, not weaker, and no price or product surface changed."
+  },
+  "CONTROLLED_DEPLOYMENT_INDEXING": {
+    "requirement": "Smallest appropriate noindex control for the production frontend; no new authentication or access-control system.",
+    "implementation": "An X-Robots-Tag response header on every route, set in frontend-next/next.config.ts headers().",
+    "defaultPolicy": "noindex, nofollow",
+    "switch": "NEXT_PUBLIC_ALLOW_INDEXING=true flips it to 'index, follow'. The default WITHHOLDS indexing, so a forgotten variable fails toward not-indexed.",
+    "whyNotRobotsTxt": "A robots.txt 'Disallow: /' forbids the CRAWL, which means a crawler that learns the URL from an external link can still list it and will never fetch the page to discover a noindex. Blocking the crawl actively prevents the de-indexing instruction from being seen. X-Robots-Tag travels on the response, covers every route including non-HTML responses a <meta> tag cannot reach, and is honoured by the major crawlers.",
+    "whyNotAnAccessControl": "§290 is explicit that authentication remains the access boundary. This is an indexing policy asking well-behaved crawlers not to list the site, and it is worth exactly that and no more. Nothing here is load-bearing for confidentiality.",
+    "localVerification": {
+      "productionModeBuild": "pass",
+      "/": "X-Robots-Tag: noindex, nofollow",
+      "/login": "X-Robots-Tag: noindex, nofollow",
+      "/pricing": "X-Robots-Tag: noindex, nofollow",
+      "/manifest.webmanifest": "X-Robots-Tag: noindex, nofollow — confirming non-HTML responses are covered",
+      "withAllowIndexingTrue": "X-Robots-Tag: index, follow — the switch is real, not decorative"
+    },
+    "productionVerification": "PENDING — performed after the frontend deployment; recorded in the §290 deployment evidence.",
+    "verdict": "IMPLEMENTED — production verification follows deployment."
+  },
+  "gatesRerunAfterClosures": {
+    "passed": [
+      "backend build:render (clean)",
+      "verify:274-successor-identity",
+      "release:check-build-context",
+      "brand:audit",
+      "hazlenz:verify (29/29 protected modules, 0 evidence drift)",
+      "beta:readiness (58 checks)",
+      "frontend tsc --noEmit",
+      "check:launch-pricing (49/0)",
+      "check:effective-severity-parity",
+      "check:risk-band-parity",
+      "check:release-contract-parity",
+      "check:expert-frontend-authority-boundary",
+      "test:expert-entitlement-presentation",
+      "test:calendar-reconciliation (34/34)",
+      "test:279-release-version-check (31/0)",
+      "check:orange-semantics",
+      "check:page-titles",
+      "next build (25/25 static pages)"
+    ],
+    "failed": []
+  },
+  "providerCalls": 0,
+  "productionWrites": 0,
+  "deployments": 0,
+  "migrations": 0
+}

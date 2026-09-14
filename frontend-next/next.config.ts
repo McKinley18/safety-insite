@@ -70,7 +70,43 @@ function resolveFrontendVersion(): string {
 const gitSha = resolveGitSha();
 const frontendVersion = resolveFrontendVersion();
 
+/**
+ * §290 — CONTROLLED-DEPLOYMENT INDEXING. THRESHOLD A IS DEPLOYED, NOT ANNOUNCED.
+ *
+ * Threshold A puts the candidate on production infrastructure with no external users. The
+ * production alias is nevertheless publicly reachable -- Vercel exempts a project's own production
+ * domain from the SSO that protects Preview -- so without this the release would be crawlable and
+ * indexable by anyone who found it, before External Beta has been authorised and before any of the
+ * Threshold-C claims, terms or clearance work is done.
+ *
+ * WHY A HEADER, AND NOT robots.txt. `Disallow: /` is the instinctive answer and it is the wrong
+ * one: it forbids the CRAWL, which means a crawler that learns the URL from an external link can
+ * still list it and will never fetch the page to discover a noindex. Blocking the crawl actively
+ * prevents the de-indexing instruction from being seen. `X-Robots-Tag` travels on the response
+ * itself, applies to every route and to non-HTML responses a `<meta>` tag cannot reach, and is
+ * honoured by Google, Bing and the other major crawlers.
+ *
+ * WHY NOT AN ACCESS CONTROL. §290 is explicit that authentication remains the access boundary and
+ * that no new access-control system is to be built for this. This is an indexing policy, not a
+ * security control: it asks well-behaved crawlers not to list the site, and it is worth exactly
+ * that and no more. Nothing here is load-bearing for confidentiality -- the product's own auth is.
+ *
+ * HOW IT IS LIFTED. Set `NEXT_PUBLIC_ALLOW_INDEXING=true` on the Vercel production environment and
+ * redeploy. The default is to WITHHOLD indexing, so a forgotten variable fails toward "not
+ * indexed" rather than toward an unannounced product being listed.
+ */
+const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+const INDEXING_POLICY = allowIndexing ? "index, follow" : "noindex, nofollow";
+
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: INDEXING_POLICY }],
+      },
+    ];
+  },
   // Verification builds and audit servers must never write into the `.next/`
   // directory a running `next dev` is using: a `next build` that lands there
   // while the dev server is live corrupts its output and the dev server then
@@ -94,6 +130,8 @@ const nextConfig: NextConfig = {
      * release's chunks accumulated in one cache for the life of the installation.
      */
     NEXT_PUBLIC_SHELL_CACHE_GENERATION: gitSha === "unknown" ? "v1" : gitSha.slice(0, 12),
+    /** Surfaced so the deployed build can be asked what policy it was built with. */
+    NEXT_PUBLIC_INDEXING_POLICY: INDEXING_POLICY,
   },
 };
 

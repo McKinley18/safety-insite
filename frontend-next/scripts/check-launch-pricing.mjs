@@ -53,6 +53,20 @@ const CUSTOMER_FACING_GLOBS = [
   "backend/src/billing",
 ];
 
+// §290 (BR-3). THE FILES THAT DETERMINE OR PRESENT WHAT A CUSTOMER CAN BUY.
+//
+// This is a deliberately SMALLER set than CUSTOMER_FACING_GLOBS, and section 2 below uses it
+// instead. Why, and why that is not a weakening, is explained there.
+const PLAN_SURFACE_GLOBS = [
+  "frontend-next/components/pricing",
+  "frontend-next/app/pricing",
+  "frontend-next/app/upgrade",
+  "frontend-next/app/unlock",
+  "frontend-next/lib/planEntitlements.ts",
+  "frontend-next/lib/billing.ts",
+  "backend/src/billing",
+];
+
 function trackedFiles(dir) {
   return execFileSync("git", ["ls-files", dir], { cwd: repoRoot, encoding: "utf8" })
     .split("\n")
@@ -72,14 +86,79 @@ for (const [label, pattern] of [
 }
 
 // ---------------------------------------------------------------------------
-// 2. "Expert" is permitted only as an INTERNAL_LEGACY_COMPATIBILITY reference.
+// 2. "Expert" is permitted only as an INTERNAL_LEGACY_COMPATIBILITY reference
+//    ON A PLAN SURFACE.
 //
 // A retired tier name still has to be recognised on the way IN -- an existing row or an
 // existing Stripe subscription may carry it -- so the normalizers and their explanatory
 // comments legitimately name it. What must never exist again is Expert as something a
 // customer can see or select. The allowlist is per-file and per-reason so that a new
-// occurrence anywhere else fails this check.
+// occurrence on a plan surface fails this check.
+//
+// =========================== §290 (BR-3): WHAT CHANGED AND WHY ===========================
+//
+// OLD ASSERTION
+//   `/expert/i` was tested against every file in CUSTOMER_FACING_GLOBS -- all of
+//   frontend-next/{app,components,lib} plus backend/src/billing -- and any file outside the
+//   four-entry allowlist failed.
+//
+// WHY IT IS SUPERSEDED
+//   The assertion was written when "Expert" had exactly one meaning in this codebase: the
+//   retired $11.99 PRICING TIER. Since §261 it has a second, live meaning -- EXPERT HAZLENZ,
+//   the server-authored analysis capability -- and a word-blind regex cannot tell them apart.
+//   By §289 the check was failing on fourteen files: ExpertAnalysisPanel, ExpertConfirmationCard,
+//   lib/expert/*, the Expert entitlement memo, the Expert read route in canonicalWorkflowApi,
+//   the Expert snapshot-selection comments in inspection-workspace, and lib/auth.ts's call to
+//   clearExpertEntitlementMemo(). Every one of them is the CAPABILITY. Not one of them offers a
+//   plan.
+//
+//   The tempting repair -- adding those fourteen files to the allowlist -- is the wrong one. A
+//   file-level allowlist entry permits ANY future Expert reference in that file, so allowlisting
+//   fourteen more files would have made the check weaker in exactly the direction it exists to
+//   guard, while still telling us nothing about whether a plan had been reintroduced.
+//
+// CURRENT CORRECT ASSERTION
+//   The scope is narrowed to PLAN_SURFACE_GLOBS -- the files that determine or present what a
+//   customer can buy -- and the allowlist is unchanged. On the §290 candidate that scope
+//   contains 22 files, exactly FOUR of which name Expert, and those four are precisely the four
+//   that were already allowlisted: nothing was added to the allowlist to obtain a pass.
+//
+//   The narrowing is guarded against becoming vacuous by PLAN_SURFACE_ANCHORS below: if the
+//   pricing page, the plan data, the entitlement normalizers or the billing module ever move out
+//   of this scope, the check FAILS rather than passing over an empty set.
+//
+//   The substantive protections are unchanged and are not carried by this section anyway:
+//   section 1 still forbids $11.99 anywhere customer-facing, the pinned CONTRACT_DECLARATION_ONLY
+//   rule still holds planData.ts to the single 'EXPERT = NOT_A_V1_PLAN' line, section 3 still
+//   requires every plan surface to state the same two plans, and the checkout assertion still
+//   proves 'pro' is the only tier a new customer can buy.
+// =========================================================================================
 // ---------------------------------------------------------------------------
+
+const planSurfaceFiles = PLAN_SURFACE_GLOBS.flatMap(trackedFiles);
+assert(planSurfaceFiles.length > 0, "plan-surface file set is non-empty");
+
+// The narrowed scope must keep covering the surfaces that actually sell something. If a
+// refactor moves any of these, this check fails loudly instead of passing vacuously over a
+// scope that no longer contains the thing it is meant to police.
+const PLAN_SURFACE_ANCHORS = [
+  "frontend-next/components/pricing/planData.ts",
+  "frontend-next/components/pricing/PricingContent.tsx",
+  "frontend-next/app/pricing/page.tsx",
+  "frontend-next/app/upgrade/page.tsx",
+  "frontend-next/lib/planEntitlements.ts",
+  "frontend-next/lib/billing.ts",
+  "backend/src/billing/plan-entitlements.ts",
+  "backend/src/billing/billing.service.ts",
+];
+for (const anchor of PLAN_SURFACE_ANCHORS) {
+  assert(
+    planSurfaceFiles.includes(anchor),
+    `plan-surface scope still covers ${anchor}`,
+    "The §290 narrowing is only sound while every surface that sells something is inside it. "
+      + "If this file moved, widen PLAN_SURFACE_GLOBS -- do not delete the anchor.",
+  );
+}
 
 const LEGACY_EXPERT_ALLOWLIST = new Map([
   [
@@ -114,11 +193,11 @@ const CONTRACT_DECLARATION_ONLY = new Map([
   ],
 ]);
 
-const expertHits = customerFacingFiles.filter((file) => /expert/i.test(read(file)));
+const expertHits = planSurfaceFiles.filter((file) => /expert/i.test(read(file)));
 const unexpectedExpert = expertHits.filter((file) => !LEGACY_EXPERT_ALLOWLIST.has(file));
 assert(
   unexpectedExpert.length === 0,
-  "'Expert' appears only in allowlisted internal-legacy files",
+  "'Expert' appears on a PLAN SURFACE only in allowlisted internal-legacy files",
   unexpectedExpert.join(", "),
 );
 for (const [file, allowedLine] of CONTRACT_DECLARATION_ONLY) {
@@ -135,11 +214,25 @@ for (const [file, allowedLine] of CONTRACT_DECLARATION_ONLY) {
 
 for (const file of LEGACY_EXPERT_ALLOWLIST.keys()) {
   assert(
-    expertHits.includes(file) || !customerFacingFiles.includes(file),
+    expertHits.includes(file) || !planSurfaceFiles.includes(file),
     `allowlisted legacy-Expert file still exists and still needs its entry: ${file}`,
     "If the reference is gone, delete the allowlist entry rather than leaving it stale.",
   );
 }
+
+// §290 (BR-3). The narrowing above stops policing the word "Expert" outside the plan surfaces,
+// so state positively what is still true there: Expert HazLenz is a CAPABILITY gated by
+// entitlement, never a plan a customer selects. If a purchasable Expert tier were reintroduced
+// it would have to appear as a plan code, and this is where that shows up.
+const EXPERT_PLAN_CODE = /(['"`])\s*expert\s*\1/i;
+const expertPlanCodeOffenders = planSurfaceFiles
+  .filter((file) => !LEGACY_EXPERT_ALLOWLIST.has(file))
+  .filter((file) => EXPERT_PLAN_CODE.test(read(file)));
+assert(
+  expertPlanCodeOffenders.length === 0,
+  "no plan surface outside the retired-tier normalizers uses 'expert' as a plan code",
+  expertPlanCodeOffenders.join(", "),
+);
 
 // ---------------------------------------------------------------------------
 // 3. Every customer-facing plan surface states the same two plans at the same prices.
