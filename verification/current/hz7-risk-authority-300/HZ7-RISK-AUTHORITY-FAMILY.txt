@@ -1,0 +1,35 @@
+
+> safety-insite-backend@1.0.0 test:300-risk-rating-authority
+> ts-node scripts/test-300-risk-rating-authority.ts
+
+
+---- 1. only two parties may establish a rating, and Expert is not one ----
+
+ok    A reviewer-confirmed snapshot resolves to a real rating — the human authority works and is attributed. This mechanism already existed; HZ-7 was never that it was missing.
+ok    A governed snapshot from computeFindingRisk at reconciliation resolves to a real rating.
+ok    AN EXPERT RESULT ESTABLISHES NOTHING. A snapshot carrying a STOP posture, HIGH-confidence candidates and instruction prose still resolves to "Not rated" — there is no field through which a provider conclusion becomes a severity, which is the containment §300 requires.
+
+---- 2. NOT ESTABLISHED is still reachable ----
+
+ok    A NULL snapshot is Not rated.
+ok    An empty snapshot is Not rated.
+ok    AND A DELIBERATE DEFERRAL IS STILL NOT RATED. The repair did not eliminate the truthful unresolved state; it made the state say who chose it.
+
+---- 3. the customer-facing output is byte-identical ----
+
+      before: {"analysisBand":null,"severityLabel":null,"likelihoodLabel":null,"matrixScore":null,"matrixProfileLabel":null,"severity":null,"label":"Not rated","basis":"not_rated","reviewerConfirmed":false,"analysisBandDiffers":false}
+      after : {"analysisBand":null,"severityLabel":null,"likelihoodLabel":null,"matrixScore":null,"matrixProfileLabel":null,"severity":null,"label":"Not rated","basis":"not_rated","reviewerConfirmed":false,"analysisBandDiffers":false}
+ok    The resolver — the SAME one the report, the executive summary and the completion gate use — returns an identical result for a NULL snapshot and for a deferral-only snapshot. The §298 report behaviour is preserved exactly and the new record is additional, not substitutional.
+ok    The deferral record contains NO severity, NO likelihood, NO riskScore, NO band and NO overallRisk. It cannot become a rating by accident because it carries no field a rating is read from.
+
+---- 4. a deferral cannot be dressed up as a rating ----
+
+ok    Severity fields placed INSIDE the deferral object are not read as the finding's rating — the resolver reads top-level fields, so a nested value cannot promote itself.
+ok    A finding that ALREADY had a governed rating keeps it when a deferral is merged over it — the helper merges UNDER, so finalization cannot erase a rating reconciliation established.
+
+---- 5. ordinary deterministic findings are untouched ----
+
+ok    A reconciled deterministic finding resolves exactly as before; the gate exempts anything already rated, so no ordinary finalization is asked a new question.
+ok    A reviewer overriding a governed rating still resolves, and severity parity is unaffected by anything §300 added.
+
+12 checks passed, 0 failed

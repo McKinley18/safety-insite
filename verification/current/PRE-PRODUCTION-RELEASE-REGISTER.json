@@ -6,7 +6,7 @@
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§300 — HZ-9 and HZ-10 CLOSED and deployed; BI-4 open; HZ-6/HZ-7 next.",
+  "asOf": "§300 — HZ-9, HZ-10, HZ-6 and HZ-7 CLOSED; BI-4 open. HZ-6/HZ-7 pending deployment.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events.",
   "thresholds": {
@@ -22,10 +22,10 @@
     "P3": 24,
     "thresholdA": 0,
     "thresholdB": 0,
-    "thresholdC": 20,
+    "thresholdC": 19,
     "byStatus": {
-      "CLOSED": 49,
-      "OPEN": 35,
+      "CLOSED": 50,
+      "OPEN": 34,
       "DEFERRED": 2,
       "BLOCKED": 4
     }
@@ -1549,19 +1549,19 @@
       "domain": "HAZLENZ",
       "id": "HZ-7",
       "description": "A finding finalized from a review that cites an Expert analysis carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard.",
-      "currentState": "NEW AT §298, MEASURED END TO END IN PRODUCTION. Risk is computed at deterministic reconciliation time, and no finding is reconciled from any Expert analysis by design — so a finding created by finalizing an Expert-cited review has riskSnapshot NULL. The §298 report printed that finding as 'Not rated' with 'APPLICABLE STANDARD: Not established for this specific finding', while the deterministic finding naming the same hazard printed Critical, severity 5, likelihood 4, risk score 20, with a corrective action. THE REPORT IS HONEST ABOUT IT — the executive summary states '1 finding(s) have no established risk rating' and directs a qualified person to rate it before closure, and nothing fabricates a severity — so this is a capability gap, not a false claim.",
-      "evidence": "inspection_findings 80f32efc… riskSnapshot NULL; verification/current/expert-activation-298/REPORT-TEXT-298.txt pages 2 and 3.",
+      "currentState": "NEW AT §298, MEASURED END TO END IN PRODUCTION. Risk is computed at deterministic reconciliation time, and no finding is reconciled from any Expert analysis by design — so a finding created by finalizing an Expert-cited review has riskSnapshot NULL. The §298 report printed that finding as 'Not rated' with 'APPLICABLE STANDARD: Not established for this specific finding', while the deterministic finding naming the same hazard printed Critical, severity 5, likelihood 4, risk score 20, with a corrective action. THE REPORT IS HONEST ABOUT IT — the executive summary states '1 finding(s) have no established risk rating' and directs a qualified person to rate it before closure, and nothing fabricates a severity — so this is a capability gap, not a false claim. §300 — REMEDIATED BY REGISTER OPTION 3, CHOSEN BY THE PRODUCT OWNER. THE TRACE FIRST: the provider carries no severity by contract; admission admits STRUCTURE and rates nothing; settlement settles the conclusion, not the risk; the report prints \"Not rated\", says so in the summary and invents nothing. THE DEFECT SITE is finalizeFindingFromReview, whose `riskSnapshot: dto.riskAssessment ? withReviewerConfirmedRisk(...) : null` had a SILENT else-branch — nothing anywhere distinguished \"a reviewer decided they cannot rate it yet\" from \"the workflow never asked\". RISK AUTHORITY: computeFindingRisk (governed, but keyed to a DETERMINISTIC decomposition hazard, which an Expert candidate is not), withReviewerConfirmedRisk (human, attributed, already working), and Expert — NONE, correctly. THE REPAIR requires a finalization that would otherwise produce a finding rated by nobody to carry either a riskAssessment or a ratingDeferred with a reason; it is refused 400 otherwise. NOT ESTABLISHED REMAINS REACHABLE — only the SILENT version is gone. THE CUSTOMER-FACING OUTPUT IS BYTE-IDENTICAL: resolveEffectiveSeverity — the same resolver the report, the executive summary and the completion gate use — returns an identical object for a NULL snapshot and for a deferral-only snapshot, asserted by whole-object comparison. The deferral carries NO severity, likelihood, riskScore, band or overallRisk, and severity fields nested inside it are not read as the rating. THE RULE IS DELIBERATELY NOT EXPERT-SPECIFIC: a finding reaching the report rated by nobody is the same problem whatever produced it, and §268 H-3 proved the deterministic create-at-finalization path exists. ORDERING: the gate runs AFTER the §265 authority gate — placed before it, a finalization §265 would have refused on authority grounds came back as a 400 about risk, the right refusal for the wrong reason; §265 L-1/L-2 caught that and it was corrected. PROOFS: 12 checks in test-300-risk-rating-authority (wired into hazlenz:test), effective-severity regression 48/48, risk-band and effective-severity parity both pass, revision immutability and tenant isolation untouched, and 435 integration assertions pass with §265 and §268 harnesses updated to send an explicit deferral so every one of their assertions still measures what it always measured.",
+      "evidence": "verification/current/hz7-risk-authority-300/",
       "severity": "P2",
-      "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
+      "releaseConsequence": "DOES_NOT_BLOCK",
       "owner": "PRODUCT",
-      "remediation": "A product decision before an engineering one: either Expert-derived findings get a risk derivation of their own, or the workflow does not offer finalization from an Expert-cited review as a way of creating a NEW finding, or the reviewer is required to supply the risk (FinalizeFindingDto already accepts riskAssessment). Do not have deterministic code infer a severity from Expert's posture — that would be deterministic code authoring safety semantics.",
-      "retestRequirement": "Whichever option is chosen, a finalized Expert-derived finding reaches the report either with a severity whose provenance is stated, or with the absence stated as it is now and no path that silently produces an unrated finalized finding.",
-      "status": "OPEN",
+      "remediation": "DONE at §300 — register option 3. No provider-authored severity, no deterministic inference, no truthful state removed.",
+      "retestRequirement": "npm run test:300-risk-rating-authority (in hazlenz:test) and hazlenz:integration:test.",
+      "status": "CLOSED",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
-      "blocksThresholdC": true,
+      "blocksThresholdC": false,
       "note": "§298 exercised BOTH the Expert-cited and the deterministic finalization paths on one observation, so the report carries two findings for one hazard. The duplication is an artefact of the test; the missing severity is not.",
-      "lastUpdatedBy": "§298"
+      "lastUpdatedBy": "§300"
     },
     {
       "domain": "HAZLENZ",

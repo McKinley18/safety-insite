@@ -9,6 +9,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, IsNull, QueryFailedError, Repository } from 'typeorm';
 import { AuthenticatedUser, isOrganizationManager, requireAuthenticatedUser } from '../common/authenticated-user';
 import { isUniqueViolation } from '../common/unique-violation';
+// §300 / HZ-7. The SAME resolver the report and the completion gate use, so the gate asks "would this reach the report unrated?" in exactly the terms the report answers it.
+import { resolveEffectiveSeverity } from '../common/effective-severity';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { SitesService } from '../sites/sites.service';
@@ -96,6 +98,53 @@ function withReviewerConfirmedRisk(
     ...reviewerRisk,
     source: 'reviewer_confirmed',
     reviewerConfirmedByUserId: reviewerUserId,
+  };
+}
+
+/**
+ * §300 / HZ-7 — RECORD THAT THE RATING WAS DEFERRED, WITHOUT RATING ANYTHING.
+ *
+ * The sibling of `withReviewerConfirmedRisk` above, and it is deliberately the opposite shape: that
+ * one records a severity a person chose, this one records that a person chose NOT to state one yet.
+ *
+ * ==================== WHY THIS IS NOT A RATING ====================
+ *
+ * It writes NO `severity`, NO `likelihood`, NO `riskScore`, NO `riskBand` and NO `overallRisk`. It
+ * cannot: it is handed no such values and has nowhere to get them. `resolveEffectiveSeverity()`
+ * reads exactly those fields, so a snapshot carrying only a deferral still resolves to **Not
+ * rated** — which is why the report, the executive-summary count and the completion gate are
+ * BYTE-IDENTICAL before and after this change. The customer-facing behaviour §298 credited as
+ * honest is preserved exactly.
+ *
+ * ==================== WHAT IT ACTUALLY CHANGES ====================
+ *
+ * Before §300 an unrated finalized finding was INDISTINGUISHABLE from one nobody was asked about.
+ * `riskSnapshot` was simply NULL either way. That is HZ-7: not that the product said something
+ * false, but that it could not say which of two very different things had happened. After this,
+ * an unrated finalized finding carries who declined to rate it, when, and why.
+ *
+ * The existing snapshot is merged UNDER, never replaced, for the same reason
+ * `withReviewerConfirmedRisk` merges: a finding's corrective-action intelligence, hazard key and
+ * evidence must survive a finalization.
+ */
+export const RATING_DEFERRAL_KEY = 'ratingDeferral' as const;
+
+function withDeferredRating(
+  existingSnapshot: Record<string, unknown> | null,
+  reason: string,
+  reviewerUserId: string,
+): Record<string, unknown> {
+  return {
+    ...((existingSnapshot || {}) as Record<string, unknown>),
+    [RATING_DEFERRAL_KEY]: {
+      deferred: true,
+      reason,
+      deferredByUserId: reviewerUserId,
+      deferredAt: new Date().toISOString(),
+      // Stated in the record itself so no later reader has to infer it from the absence of
+      // other keys. A deferral is a statement about the PROCESS, not about the hazard.
+      ratingAuthority: 'NOT_ESTABLISHED_BY_ANY_PARTY',
+    },
   };
 }
 
@@ -1472,12 +1521,6 @@ export class InspectionService {
     }
     const status = review.decision === 'dismissed' ? 'dismissed' : 'finalized';
     const segmentKey = (dto.segmentKey || 'primary').trim().toLowerCase();
-    // KG-1: a finding first materialized at finalization (rather than by decomposition
-    // reconciliation) inherits its provenance from the analysis the review was made against.
-    // Resolved by lookup, never re-derived, and NULL when the review cites no analysis.
-    const reviewedAnalysis = review.analysisId
-      ? await this.analyses.findOne({ where: { id: review.analysisId, observationId } })
-      : null;
 
     // ---------------------------------------------------------------------------------------
     // §265. THE DOWNSTREAM AUTHORITY GATE — THE FIRST ACTIVATED CONSUMER OF `effectiveDecision`.
@@ -1546,6 +1589,76 @@ export class InspectionService {
       }
     }
 
+    /*
+     * §300 / HZ-7 RUNS AFTER THE §265 AUTHORITY GATE, AND THE ORDER IS LOAD-BEARING.
+     *
+     * The two gates ask different questions and the authority one comes first:
+     *
+     *   §265  MAY this finding be asserted at all, on this Expert conclusion?
+     *   §300  and if it may, WHAT DOES ANYONE SAY ABOUT ITS RISK?
+     *
+     * Placing the risk gate first made a finalization that §265 would have refused on AUTHORITY
+     * grounds come back as a 400 about risk rating instead — the right refusal for the wrong
+     * reason, and a reviewer told to supply a severity for a finding they were never permitted to
+     * assert. The §265 suite caught it (L-1, L-2), which is what it is for.
+     */
+    /**
+     * §300 / HZ-7 — A FINALIZATION MUST SAY SOMETHING ABOUT RISK.
+     *
+     * Not "must rate it". §300 requires NOT ESTABLISHED to stay reachable, and it does: supplying
+     * `ratingDeferred` finalizes the finding unrated exactly as before. What is no longer possible
+     * is finalizing unrated WITHOUT SAYING SO, which is the whole of HZ-7 — §298 produced a
+     * finalized finding whose NULL risk was indistinguishable from a question nobody asked.
+     *
+     * Scoped deliberately:
+     *
+     *   - DISMISSED findings are exempt. A dismissed hazard is not going in the report as a
+     *     finding and asking its severity would be asking about something the reviewer just said
+     *     is not there.
+     *   - A finding that ALREADY carries a resolvable rating is exempt. Reconciliation computed it
+     *     through the governed contract, the reviewer is not being asked to re-state it, and
+     *     demanding one would break every ordinary deterministic finalization.
+     *
+     * So this fires on exactly the case HZ-7 names: finalizing a finding that would otherwise
+     * reach the report rated by nobody.
+     */
+    const deferralReason = String(dto.ratingDeferred?.reason || '').trim();
+    if (status === 'finalized' && !dto.riskAssessment) {
+      // The finding the transaction below will actually update, resolved by the SAME
+      // (observationId, hazardKey) key it uses, so the gate and the write cannot disagree about
+      // which finding is being finalized.
+      const target = await this.findings.findOne({
+        where: { observationId, hazardKey: segmentKey },
+        order: { revision: 'DESC' },
+      });
+      const alreadyRated = target !== null && target.status !== 'superseded'
+        && resolveEffectiveSeverity(
+          target.riskSnapshot as Record<string, unknown> | null,
+        ).label !== 'Not rated';
+      if (!alreadyRated) {
+        if (!dto.ratingDeferred) {
+          throw new BadRequestException(
+            'This finding would be finalized with no established risk rating. Supply '
+            + 'riskAssessment to rate it, or ratingDeferred with a reason to record that the '
+            + 'rating is deliberately outstanding.',
+          );
+        }
+        if (deferralReason.length < 3) {
+          throw new BadRequestException(
+            'A deferred risk rating requires a reason, so the report and a later reviewer can '
+            + 'tell a deliberate deferral from an unanswered question.',
+          );
+        }
+      }
+    }
+    // KG-1: a finding first materialized at finalization (rather than by decomposition
+    // reconciliation) inherits its provenance from the analysis the review was made against.
+    // Resolved by lookup, never re-derived, and NULL when the review cites no analysis.
+    const reviewedAnalysis = review.analysisId
+      ? await this.analyses.findOne({ where: { id: review.analysisId, observationId } })
+      : null;
+
+
     return this.dataSource.transaction(async manager => {
       const repository = manager.getRepository(InspectionFinding);
       const existing = await repository.findOne({
@@ -1583,12 +1696,22 @@ export class InspectionService {
             dto.riskAssessment,
             user.userId,
           );
+        } else if (dto.ratingDeferred) {
+          existing.riskSnapshot = withDeferredRating(
+            existing.riskSnapshot as Record<string, unknown> | null,
+            deferralReason, user.userId,
+          );
         }
         const saved = await repository.save(existing);
         await manager.getRepository(SecurityAuditEvent).save(manager.getRepository(SecurityAuditEvent).create({
           actorUserId: user.userId, organizationId: inspection.organizationId,
           action: 'finding_review_finalized', resourceType: 'inspection_finding', resourceId: saved.id,
-          metadata: { inspectionId: inspection.id, observationId, findingId: saved.id, reviewId: review.id, analysisId: review.analysisId, status },
+          metadata: { inspectionId: inspection.id, observationId, findingId: saved.id, reviewId: review.id, analysisId: review.analysisId, status,
+            // §300 / HZ-7. The audit says which of the three happened, so an unrated
+            // finalized finding is answerable from the trail alone.
+            riskDecision: dto.riskAssessment ? 'REVIEWER_RATED'
+              : dto.ratingDeferred ? 'RATING_DEFERRED' : 'ALREADY_RATED',
+            ...(deferralReason ? { ratingDeferralReason: deferralReason } : {}) },
         }));
         if (status === 'finalized') {
           await this.upsertCorrectiveActionForFinding(manager, saved, inspection.id, review.reviewedConclusion);
@@ -1609,7 +1732,12 @@ export class InspectionService {
         sourceCandidate: dto.sourceCandidate || null,
         riskSnapshot: dto.riskAssessment
           ? withReviewerConfirmedRisk(null, dto.riskAssessment, user.userId)
-          : null,
+          : dto.ratingDeferred
+            // §300 / HZ-7. Was a bare `null` -- the silent branch that made a deliberate deferral
+            // indistinguishable from an unasked question. Still unrated; now it says so and says
+            // who decided.
+            ? withDeferredRating(null, deferralReason, user.userId)
+            : null,
         reviewerDisposition: dto.reviewerDisposition || 'single',
         conclusion: dto.conclusion.trim(),
         revision: (existing?.revision || 0) + 1,
@@ -1618,7 +1746,12 @@ export class InspectionService {
       await manager.getRepository(SecurityAuditEvent).save(manager.getRepository(SecurityAuditEvent).create({
         actorUserId: user.userId, organizationId: inspection.organizationId,
         action: 'finding_review_finalized', resourceType: 'inspection_finding', resourceId: saved.id,
-        metadata: { inspectionId: inspection.id, observationId, findingId: saved.id, reviewId: review.id, analysisId: review.analysisId, status },
+        metadata: { inspectionId: inspection.id, observationId, findingId: saved.id, reviewId: review.id, analysisId: review.analysisId, status,
+            // §300 / HZ-7. The audit says which of the three happened, so an unrated
+            // finalized finding is answerable from the trail alone.
+            riskDecision: dto.riskAssessment ? 'REVIEWER_RATED'
+              : dto.ratingDeferred ? 'RATING_DEFERRED' : 'ALREADY_RATED',
+            ...(deferralReason ? { ratingDeferralReason: deferralReason } : {}) },
       }));
       if (status === 'finalized') {
         await this.upsertCorrectiveActionForFinding(manager, saved, inspection.id, review.reviewedConclusion);

@@ -426,7 +426,16 @@ async function main(): Promise<void> {
     detReview.status === 201 || detReview.status === 200, `${detReview.status}`);
   const detFinalize = await call(`/inspections/observations/${detUnderKill}/findings`, {
     method: 'POST', token: reviewer.token,
-    body: { reviewId: detReview.body.id, conclusion: 'deterministic finding under Expert disable' },
+    body: {
+      reviewId: detReview.body.id, conclusion: 'deterministic finding under Expert disable',
+      // §300 / HZ-7. THE RULE IS DELIBERATELY NOT EXPERT-SPECIFIC. A finalization that CREATES a
+      // finding — rather than updating one reconciliation already rated — must say something about
+      // risk whatever produced it, because a finding reaching the report rated by nobody is the
+      // same problem on either path. Narrowing the gate to Expert-derived findings would have left
+      // this exact hole open on the deterministic path for no principled reason. H-3 still measures
+      // what it always measured: that the customer-authoritative path is intact under Expert kill.
+      ratingDeferred: { reason: 'Severity to be set on the risk matrix.' },
+    },
   });
   ok('H-3 finalizing a finding from it still succeeds — the customer-authoritative path is intact',
     detFinalize.status === 201 || detFinalize.status === 200, `${detFinalize.status}`);

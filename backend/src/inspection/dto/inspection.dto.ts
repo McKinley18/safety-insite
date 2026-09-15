@@ -198,6 +198,27 @@ export class FinalizeFindingDto {
   @IsObject()
   @IsOptional()
   riskAssessment?: Record<string, unknown>;
+
+  /**
+   * §300 / HZ-7 — THE EXPLICIT DEFERRAL, AND WHY IT IS A FIELD RATHER THAN AN ABSENCE.
+   *
+   * Before §300, finalizing a finding with no `riskAssessment` silently produced a finding with a
+   * NULL `riskSnapshot`. The report said so honestly — "Not rated", and "1 finding(s) have no
+   * established risk rating" in the summary — but NOTHING ANYWHERE DISTINGUISHED "the reviewer
+   * looked at this and decided they could not rate it yet" FROM "the workflow never asked". §298
+   * produced exactly such a finding and that indistinguishability is HZ-7.
+   *
+   * So a finalization must now say which it is. Supplying this field keeps the finding unrated —
+   * the truthful state §300 requires stay reachable — while recording that the absence was a
+   * DECISION, attributed and dated.
+   *
+   * It carries NO severity, NO likelihood and NO band. Deterministic code does not acquire a risk
+   * authority here and neither does the provider; the only thing added is a record of who declined
+   * to rate it and why.
+   */
+  @IsObject()
+  @IsOptional()
+  ratingDeferred?: { reason?: string };
 }
 
 export class AssignInspectionDto {

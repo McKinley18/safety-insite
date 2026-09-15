@@ -260,7 +260,15 @@ async function main(): Promise<void> {
     });
     const finalize = await call(`/inspections/observations/${observationId}/findings`, {
       method: 'POST', token: reviewer.token,
-      body: { reviewId: review.body.id, conclusion: 'drive not isolated while a person is inside' },
+      body: {
+        reviewId: review.body.id, conclusion: 'drive not isolated while a person is inside',
+        // §300 / HZ-7. A finalization must now say SOMETHING about risk. This harness finalizes an
+        // Expert-derived finding, which is precisely the case that used to produce a silently
+        // unrated finding, so it records an explicit deferral rather than a rating -- the finding
+        // stays NOT RATED exactly as §265 measured it, and the §265 assertions are unchanged.
+        // Supplying a severity here would test a different thing than §265 is about.
+        ratingDeferred: { reason: 'Expert-derived finding; severity to be set on the risk matrix.' },
+      },
     });
     return { reviewId: review.body.id as string, finalize };
   };
@@ -447,6 +455,10 @@ async function main(): Promise<void> {
     body: {
       reviewId: blocked.reviewId,
       conclusion: 'drive not isolated while a person is inside',
+      // §300 / HZ-7, as above. M is about the §265 AUTHORITY gate opening once the human settles
+      // the conclusion; the risk decision is orthogonal and is recorded as an explicit deferral so
+      // the finding stays NOT RATED and every M assertion measures what it always measured.
+      ratingDeferred: { reason: 'Expert-derived finding; severity to be set on the risk matrix.' },
     },
   });
   ok('M-1 the SAME review that was refused now finalizes',

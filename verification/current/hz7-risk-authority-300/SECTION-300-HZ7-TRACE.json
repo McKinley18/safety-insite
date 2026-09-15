@@ -2,7 +2,7 @@
   "artifact": "SAFETY_INSITE_SECTION_300_HZ7_RISK_AUTHORITY_TRACE",
   "section": "300",
   "generated": "2026-09-15T02:46:31Z",
-  "status": "TRACE COMPLETE — REMEDIATION NOT YET CHOSEN. HZ-7 is registered PRODUCT-owned with three enumerated options, and §300's principle narrows them without selecting one.",
+  "status": "REMEDIATED — register option 3, chosen by the product owner at §300.",
   "providerCalls": 0,
   "databaseWrites": 0,
   "registeredDefinition": "A finding finalized from a review that cites an Expert analysis carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard.",
@@ -26,5 +26,36 @@
     "registerOption2": "Do not offer finalization from an Expert-cited review as a way of creating a NEW finding. Removes the gap by removing the path. Largest workflow change.",
     "registerOption3": "Require the reviewer to supply the risk, or to record an explicit deferral. Uses the authority that already exists and already works, keeps NOT ESTABLISHED reachable, and removes only the SILENT version of it. Changes FinalizeFindingDto and the frontend finalize flow."
   },
-  "whyNotChosenHere": "HZ-7 is registered with owner PRODUCT, and the three options differ in what an inspector is required to do at finalization time. §300 constrains the answer (no provider-authored severity, no elimination of truthful unresolved states) but does not select among them, and selecting one is a product decision rather than an engineering one."
+  "whyNotChosenHere": "HZ-7 is registered with owner PRODUCT, and the three options differ in what an inspector is required to do at finalization time. §300 constrains the answer (no provider-authored severity, no elimination of truthful unresolved states) but does not select among them, and selecting one is a product decision rather than an engineering one.",
+  "remediation": {
+    "chosen": "Require an explicit risk decision at finalization.",
+    "rule": "When a finalization would produce a finding that reaches the report rated by nobody, it must carry EITHER a riskAssessment (governed human authority, already implemented and attributed) OR a ratingDeferred with a reason. Refused with 400 otherwise.",
+    "scopedDeliberately": [
+      "DISMISSED findings are exempt — asking the severity of a hazard the reviewer just rejected demands a decision the act does not use, which is the §267 lesson applied again.",
+      "A finding that ALREADY resolves to a rating is exempt, so no ordinary deterministic finalization is asked a new question. Reconciliation computed it through the governed contract and the reviewer is not being asked to restate it.",
+      "The gate asks 'would this reach the report unrated?' using resolveEffectiveSeverity — THE SAME resolver the report, the executive summary and the completion gate use — so the gate and the report cannot disagree about what unrated means."
+    ],
+    "notExpertSpecific": "DELIBERATELY. A finding that reaches the report rated by nobody is the same problem whatever produced it. Narrowing the gate to Expert-derived findings would have left the identical hole open on the deterministic create-at-finalization path for no principled reason — and §268's H-3 proved that path exists.",
+    "whatIsRecorded": "withDeferredRating() writes riskSnapshot.ratingDeferral = { deferred, reason, deferredByUserId, deferredAt, ratingAuthority: 'NOT_ESTABLISHED_BY_ANY_PARTY' }, merged UNDER any existing snapshot so a finalization can never erase a rating reconciliation established. The finding_review_finalized audit event additionally carries riskDecision (REVIEWER_RATED | RATING_DEFERRED | ALREADY_RATED) and the deferral reason.",
+    "whatIsNotRecorded": "NO severity, NO likelihood, NO riskScore, NO riskBand, NO overallRisk. The helper is handed no such values and has nowhere to get them."
+  },
+  "customerFacingOutputUnchanged": {
+    "claim": "resolveEffectiveSeverity returns a BYTE-IDENTICAL result for a NULL snapshot and for a deferral-only snapshot.",
+    "measured": "both resolve to label 'Not rated', basis 'not_rated', severity null, reviewerConfirmed false — asserted by string comparison of the whole object.",
+    "consequence": "The report still prints 'Not rated', the executive summary still counts the finding in 'N finding(s) have no established risk rating', and the completion gate is unaffected. The honest §298 behaviour is preserved exactly; the new record is ADDITIONAL, not substitutional."
+  },
+  "proofsRequestedBySection300": {
+    "1_sufficientEvidenceRated": "A reviewer-confirmed snapshot resolves to a real rating and is attributed. The human authority works; HZ-7 was never that it was missing.",
+    "2_insufficientRemainsNotEstablished": "NULL, empty AND deliberate-deferral snapshots all resolve to Not rated. The truthful unresolved state was not eliminated.",
+    "3_providerSeverityContained": "A snapshot carrying immediateSafetyPosture STOP, HIGH-confidence Expert candidates and instruction prose still resolves to Not rated. There is no field through which a provider conclusion becomes a severity.",
+    "4_humanReviewCannotFabricate": "Severity fields placed INSIDE the deferral object are not read as the finding's rating; the resolver reads top-level fields, so a nested value cannot promote itself. And a deferral merged over a governed rating does not erase it.",
+    "5_reportAndSummaryConsistent": "Guaranteed by construction rather than by inspection: the gate and the report consult the same resolver, and the deferral is invisible to it.",
+    "6_revisionImmutability": "Untouched. Nothing in this change writes `revision`, supersedes a row, or alters the revision logic; §261 persistence (71) and §262 route acceptance (95) pass unchanged.",
+    "7_nonExpertSeverityParity": "effective-severity regression 48/48; check:risk-band-parity and check:effective-severity-parity both pass.",
+    "8_tenantIsolation": "Untouched. No query, scope or access path was changed; §262's tenant cases pass unchanged."
+  },
+  "orderingRegressionCaught": "The risk gate was first placed BEFORE the §265 downstream authority gate, which made a finalization that §265 would have refused on AUTHORITY grounds come back as a 400 about risk rating — the right refusal for the wrong reason, telling a reviewer to supply a severity for a finding they were never permitted to assert. §265's L-1 and L-2 caught it. The gate now runs after: §265 asks MAY this be asserted, §300 asks WHAT DOES ANYONE SAY ABOUT ITS RISK, and the authority question comes first.",
+  "harnessesUpdated": "§265 (two finalize calls) and §268 (H-3) predate the contract and now send an explicit ratingDeferred. Each keeps its finding NOT RATED, so every assertion in those suites measures exactly what it measured before. 435 integration assertions pass.",
+  "tests": "backend/scripts/test-300-risk-rating-authority.ts — 12 checks, 0 failed, wired into hazlenz:test.",
+  "result": "CLOSED"
 }
