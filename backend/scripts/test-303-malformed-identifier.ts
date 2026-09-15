@@ -312,6 +312,22 @@ async function main(): Promise<void> {
     + 'the query; it does not convert database faults into client errors.', `${genuine.status}`);
   check(!leaky.test(genuine.raw),
     'And that 5xx still discloses no driver detail to the client', genuine.raw.slice(0, 80));
+
+  /*
+   * THE SAME BROKEN DATABASE, BUT A MALFORMED IDENTIFIER. This is the direct positive evidence
+   * that NO QUERY IS ISSUED BEFORE REJECTION. The backing table is still missing, so ANY query the
+   * handler ran would fail exactly as the line above did. It returns 400 instead, which is only
+   * possible if the request never reached the query at all. Without this case the suite would only
+   * show that the repair does not swallow database faults; with it, the input-boundary claim is
+   * measured rather than asserted.
+   */
+  const rejectedBeforeQuery = await call('/files/not-a-uuid', { token: tenantA.token });
+  console.log(`      malformed id, same missing table -> ${rejectedBeforeQuery.status}`);
+  check(rejectedBeforeQuery.status === 400,
+    'NO DATABASE ACCESS HAPPENS BEFORE REJECTION. With the backing table still missing — where any '
+    + 'query at all would 500 — a malformed identifier is 400. The request never reached the query.',
+    `${rejectedBeforeQuery.status}`);
+
   await q('ALTER TABLE "storage_objects__s303" RENAME TO "storage_objects"');
 
   // ============================================================

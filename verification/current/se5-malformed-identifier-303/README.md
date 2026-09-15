@@ -53,6 +53,10 @@ reporting its own outages.
 - **It does not swallow genuine database failures.** The suite renames `storage_objects` out from
   under a live query and requires **500**. This is the assertion that stops the repair from
   degenerating into "all `QueryFailedError` = 400".
+- **No database access happens before rejection** — measured, not asserted. With that *same* table
+  still missing, where any query at all would 500, a malformed identifier returns **400**. The
+  request never reached the query. This is the positive half of the pair above: one case proves the
+  repair does not swallow faults, the other proves it acts before the fault could occur.
 - **It invents no new client-facing failure.** Uppercase hexadecimal is valid UUID syntax and is
   accepted.
 - **404 contracts are preserved.** A syntactically valid identifier naming nothing accessible still
@@ -66,7 +70,7 @@ reporting its own outages.
 | | assertions passed | failed |
 |---|---|---|
 | `01-PRE-REPAIR-MEASUREMENT.txt` | 26 | **13** |
-| `02-POST-REPAIR-SUITE.txt` | **40** | 0 |
+| `02-POST-REPAIR-SUITE.txt` | **41** | 0 |
 
 A gate nobody has watched fail is not evidence. This one was.
 

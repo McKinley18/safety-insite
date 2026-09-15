@@ -1,17 +1,17 @@
 inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
-disposable target host=127.0.0.1 port=5432 database=test_insite_1789514851139_2279
-registered as run 31440482-35ab-42dd-bcc3-f05c5ec28bd7
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789515724050_7957
+registered as run bd5f9485-da78-45c0-9604-efd0cdba2461
 
 > safety-insite-backend@1.0.0 test:303-malformed-identifier
 > ts-node scripts/test-303-malformed-identifier.ts
 
-◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
-◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
-◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
 ◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
-◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
-resolved target host=127.0.0.1 database=test_insite_1789514851139_2279
-application listening on http://127.0.0.1:65191
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+resolved target host=127.0.0.1 database=test_insite_1789515724050_7957
+application listening on http://127.0.0.1:50547
 
 ---- 1. the exact SE-5 route ----
 
@@ -98,7 +98,9 @@ ok    A syntactically valid identifier belonging to no accessible resource is st
       with the backing table missing -> 500
 ok    A REAL persistence failure still surfaces as 5xx. The repair rejects malformed SYNTAX before the query; it does not convert database faults into client errors.  [500]
 ok    And that 5xx still discloses no driver detail to the client  [{"statusCode":500,"message":"Internal server error"}]
+      malformed id, same missing table -> 400
+ok    NO DATABASE ACCESS HAPPENS BEFORE REJECTION. With the backing table still missing — where any query at all would 500 — a malformed identifier is 400. The request never reached the query.  [400]
 
-================ §303 malformed identifier: 40 passed, 0 failed
-{"providerCalls":0,"expertExecutions":0,"routesProbed":24,"malformedShapes":7,"probes":168,"passed":40,"failed":0}
-dropped test_insite_1789514851139_2279
+================ §303 malformed identifier: 41 passed, 0 failed
+{"providerCalls":0,"expertExecutions":0,"routesProbed":24,"malformedShapes":7,"probes":168,"passed":41,"failed":0}
+dropped test_insite_1789515724050_7957
