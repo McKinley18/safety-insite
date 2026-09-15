@@ -1,0 +1,64 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_300_PHASE_1_HZ9_ENTITLEMENT_BLOCKER",
+  "section": "300",
+  "phase": "1",
+  "generated": "2026-09-15T02:10:20Z",
+  "outcome": "HZ-9 NOT PROVEN — BLOCKED ON AN ENTITLEMENT MECHANISM DECISION THAT BELONGS TO THE PRODUCT OWNER. No HZ-9 classification was executed. §300's Phase-2 gate therefore holds and HZ-6 / HZ-7 were not started.",
+  "providerCalls": 0,
+  "expertAnalysesCreated": 0,
+  "spendUsd": 0.0,
+  "hz9ClassifyRequestsExecuted": 0,
+  "productionShaThroughout": "317daba88e7ef8c117a2997b6347dae830e8823a",
+  "whatBlocks": {
+    "guard": "POST /hazlenz/classify — and every other HazLenz endpoint — is @UseGuards(JwtGuard, EntitlementGuard, RolesGuard) with @RequireEntitlement('fullSafeScope'). fullSafeScope is a Pro-only entitlement. There is no lower-entitlement endpoint that reaches the same deterministic extraction path; visual-evidence/evaluate, real-image-analysis/evaluate and offline/evaluate all require fullSafeScope too.",
+    "routesToFullSafeScope": [
+      "A UserSubscription row (Stripe) — a real charge. Owner-only, and §300 budgets $0.",
+      "An EntitlementGrant row — the §290/§291/§298 precedent. Reachable over HTTP only through POST /admin/entitlement-grants, which requires platformRole === 'platform_admin'. NO CODE PATH SETS user.role = 'platform_admin' anywhere in the repository; it can only be set by writing the database directly. §300 forbids that.",
+      "EMPLOYER_PRO_PROMO_CODES at registration — attempted, and PROVEN INERT. See below."
+    ],
+    "conclusion": "Every route to fullSafeScope that does not modify the production database directly is either unavailable or non-functional. §300 forbids the one mechanism §298 used."
+  },
+  "whatWasAttempted": {
+    "mechanism": "The employer-pro promo path — the product's own designed way to confer Pro without payment, and the only candidate that touches no database directly.",
+    "steps": [
+      "EMPLOYER_PRO_PROMO_CODES set to a single 45-character cryptographically random one-off value by per-key PUT (env 43 -> 44, nothing else added, removed or changed; the three Expert keys byte-identical). The value was never printed and appears in no artifact.",
+      "Deployed the IDENTICAL artifact (commit 317daba8, dep-dakaelgu01pc73ee3nhg, status live) so the change took effect in the running process — the §297 rule, not a restart.",
+      "Registered one synthetic account, section300-hz9-probe@release-test.invalid, through the public POST /auth/register with the promo code and the server's own required agreement read live from GET /agreements. No customer data.",
+      "Server answered 201 with planCode 'pro' and promoApplied true — which is also the §297 read-back proof that the configuration change reached the running process.",
+      "Logged in. THE JWT RESOLVED THE ACCOUNT TO FREE.",
+      "POST /hazlenz/classify -> HTTP 402 PAID_SUBSCRIPTION_REQUIRED, entitlement fullSafeScope."
+    ],
+    "result": "The promo path does not confer fullSafeScope. HZ-9 could not be exercised."
+  },
+  "newDefectFound": {
+    "proposedId": "BI-4",
+    "title": "The employer-pro promo code is inert: registration reports Pro and the very next login resolves the account to Free with fullSafeScope false.",
+    "measuredInProduction": {
+      "registerResponse": "201, planCode 'pro', promoApplied true",
+      "jwtClaims": "planCode 'free', effectivePlanCode 'free', subscriptionTier 'free', subscriptionStatus 'none', billingEntitlements.fullSafeScope false, hasProAccess false",
+      "classify": "402 PAID_SUBSCRIPTION_REQUIRED"
+    },
+    "rootCause": "TWO FAULTS COMPOUND. (1) AuthService.resolveSessionContext calls billingService.getBillingStatus({ userId, email, planCode, type }) and DOES NOT PASS user.subscriptionStatus — even though the promo registration deliberately writes subscriptionStatus 'active' onto the user row alongside planCode 'pro'. (2) In getBillingStatus, `const fallbackStatus = normalizeStripeSubscriptionStatus(...) || (fallbackTier === 'free' ? 'none' : 'active')` — and normalizeStripeSubscriptionStatus NEVER RETURNS A FALSY VALUE: its final line is `return \"none\"`. So the right-hand branch, which exists precisely to treat a paid tier carrying no explicit status as active, IS UNREACHABLE. fallbackStatus is therefore always 'none' for a promo account, resolveAccessTier('pro', 'none', null) returns 'free', billingSnapshot.tier is 'free', and effectivePlanCode — which prefers billingSnapshot.tier — discards the user row's 'pro'.",
+    "customerConsequence": "Anyone onboarded through an employer promo is told at registration that they are on Pro and then receives 402 on the core HazLenz feature at first use. The promo path is advertised by its own success response and confers nothing.",
+    "severityProposed": "P2",
+    "notClaimed": "No customer is currently affected: EMPLOYER_PRO_PROMO_CODES was EMPTY in production before §300 and is empty again now, so no promo account has ever been created in production by this path. The defect is latent, not live.",
+    "evidence": "This artifact. Source: src/auth/auth.service.ts resolveSessionContext and register; src/billing/billing.service.ts getBillingStatus; src/billing/subscription-status.ts normalizeStripeSubscriptionStatus and resolveAccessTier.",
+    "notRepairedHere": "§300 Phase 2 is gated on Phase 1 passing, and this defect is neither HZ-6 nor HZ-7. It is registered, not repaired."
+  },
+  "cleanup": {
+    "syntheticAccount": "DELETED through the product's own DELETE /auth/me (200). That path revokes active entitlement grants, ends memberships, revokes refresh tokens, anonymizes the email to deleted-<id>@deleted.safety-insite.local, randomizes the password hash, sets deletedAt and writes an account_deleted security audit event. Login afterwards: 401.",
+    "promoCode": "REMOVED from the production environment (DELETE env-var, 204), then the identical artifact deployed again (dep-dakagmnqj5pc73aev51g, status live) so the removal took effect in the running process.",
+    "liveReadBack": "Registering with the same promo code now returns 400 'Invalid promo code'. That validation runs BEFORE any write (§291 SU-1), so the read-back created no account.",
+    "environmentRestored": "BYTE-IDENTICAL to the §300 starting configuration — 43 keys, 0 added, 0 removed, 0 changed.",
+    "productionShaUnchanged": "317daba8 throughout; both deploys were the same artifact.",
+    "residual": "One soft-deleted, anonymized user row and its security audit events. No customer data. No entitlement. No inspection, observation, finding or analysis was created."
+  },
+  "decisionRequired": {
+    "question": "HZ-9 requires fullSafeScope on a synthetic production account, and §300 forbids the only mechanism that can grant it without a real charge.",
+    "optionA": "Authorize a bounded direct entitlement_grant insert, the §290/§291/§298 precedent — one row, one user, an explicit expiry, revoked at cleanup. It needs the production database credential, which §300 forbids. The HZ-9 proof itself would still go entirely through the real authenticated production HTTP path, which is what §300 actually asks for.",
+    "optionB": "Authorize repairing BI-4 first, then retry the promo path. This closes a real customer-facing defect and leaves a working, DB-free way to entitle a synthetic account — but it means shipping a billing change before the HZ-9 proof, and it is out of §300's stated scope.",
+    "optionC": "Authorize a one-off platform_admin bootstrap so POST /admin/entitlement-grants becomes usable. Setting user.role = 'platform_admin' has no code path either, so this still requires one direct database write, and it creates a standing privileged account.",
+    "optionD": "Leave HZ-9 open and proceed to HZ-6 / HZ-7 under a relaxed Phase-2 gate. HZ-4's closure language already states the live half is unexercised, so nothing is overclaimed.",
+    "recommendation": "OPTION A. It is the established precedent, it is scoped to a single user with an explicit expiry and a revocation step, and it is the only option that proves HZ-9 without shipping unrelated code first. The §300 prohibition reads as aimed at keeping the PROOF on the real product path rather than at the entitlement setup — but that is an interpretation of your instruction, not a reading I am entitled to make on my own."
+  }
+}

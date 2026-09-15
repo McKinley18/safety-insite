@@ -303,7 +303,8 @@ are retained so a later section does not rediscover them as new.
 | **HZ-6** | The Expert execution record cannot state which model produced a safety analysis, or how long it took. | P2 | C | Engineering | **OPEN §298** |
 | **HZ-7** | A finding finalized from an Expert-cited review carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard. | P2 | C | Product | **OPEN §298** |
 | **HZ-8** | At a workspace analysis ceiling of N, an idempotent replay of a completed Expert request is refused by the ceiling instead of resolving to the execution that already ran. | P3 | — | Engineering | **OPEN §298** |
-| **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **OPEN §299** |
+| **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **OPEN — §300 Phase 1 BLOCKED** |
+| **BI-4** | The employer-pro promo code is inert: registration reports Pro and the next login resolves the account to Free with `fullSafeScope` false. | P2 | C | Engineering | **OPEN §300** |
 
 **HZ-2 — CLOSED at §298.** `EXPERT_EXECUTION_ENABLED` was set to `true` through the approved
 Render configuration mechanism and made effective by a **deployment** of the already-deployed SHA
@@ -557,6 +558,60 @@ uses, so a genuine drift still fails.
 
 `hazlenz:integration:test` now reports **435 assertions passed, 0 failed** across §261, §262, §264,
 §265, §267 and §268. **No production code changed for either.**
+
+**§300 Phase 1 — HZ-9 was attempted in production and is blocked on a decision, not on engineering.**
+**No classification was executed and nothing was proven.**
+
+`POST /hazlenz/classify` — and every other HazLenz endpoint — requires the Pro-only entitlement
+`fullSafeScope`. There are exactly three ways to obtain it, and under §300's constraints none is
+available:
+
+| route | status under §300 |
+|---|---|
+| Stripe subscription | a real charge; §300 budgets $0 |
+| `EntitlementGrant` row via `POST /admin/entitlement-grants` | needs `platformRole === 'platform_admin'`, and **no code path in the repository sets `user.role = 'platform_admin'`** — only a direct database write can |
+| `EMPLOYER_PRO_PROMO_CODES` at registration | the one DB-free candidate. **Attempted, and proven inert — see `BI-4`** |
+
+§298 used a bounded direct `entitlement_grant` insert, revoked at cleanup. §300 forbids exactly
+that.
+
+**What was attempted, and how it was cleaned up.** A single 45-character random one-off promo code
+was set by per-key `PUT` (43 → 44 keys, nothing else touched, Expert keys byte-identical) and made
+effective by deploying the *identical* artifact — the §297 rule, not a restart. One synthetic
+account on a `.invalid` domain registered through the public route with the server's own required
+agreement, read live from `GET /agreements`. The server answered `201, planCode "pro",
+promoApplied true`, **which is itself the §297 read-back proof that the configuration reached the
+running process** — and then the very next login minted a JWT reading `planCode "free"`,
+`fullSafeScope false`, and `classify` returned **402**.
+
+Everything was reversed: the account was deleted through the product's own `DELETE /auth/me` (which
+revokes grants, revokes refresh tokens, anonymizes the email and sets `deletedAt`; login afterwards
+is 401), the promo code was removed and the identical artifact deployed again, and a live read-back
+confirms the code now returns *"Invalid promo code"* — a validation that runs before any write, so
+it created nothing. The production environment is **byte-identical to its §300 starting state**:
+43 keys, 0 added, 0 removed, 0 changed. Production SHA unchanged throughout. **0 provider calls,
+0 Expert analyses, $0.**
+
+**`BI-4` — the defect that blocked it, and it is a real customer-facing one.** Registration writes
+`planCode 'pro'` *and* `subscriptionStatus 'active'` onto the user row, but
+`AuthService.resolveSessionContext` calls `getBillingStatus({ userId, email, planCode, type })` and
+**never passes `subscriptionStatus`**. Inside `getBillingStatus`,
+
+```ts
+const fallbackStatus =
+  normalizeStripeSubscriptionStatus(user?.subscriptionStatus || user?.billingStatus) ||
+  (fallbackTier === 'free' ? 'none' : 'active');
+```
+
+the right-hand branch — which exists precisely to treat a paid tier carrying no explicit status as
+active — **can never run**, because `normalizeStripeSubscriptionStatus` ends in `return "none"` and
+is never falsy. So `fallbackStatus` is always `'none'`, `resolveAccessTier('pro','none',null)`
+returns `'free'`, and `effectivePlanCode` — which prefers `billingSnapshot.tier` — discards the user
+row's `'pro'`. **Anyone onboarded by an employer promo would be told they are Pro and then get 402
+on the core feature.** No customer is affected today: the variable was empty in production before
+§300 and is empty again after it.
+
+**§300's Phase-2 gate holds.** Phase 1 did not pass, so `HZ-6` and `HZ-7` were not started.
 
 **HZ-6 — which model answered is not on the record.** `respondedModel` is written as a literal
 `null` and `providerId` records the seam (`hosted-expert-semantic-transport`), with the stated

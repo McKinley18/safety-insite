@@ -6,7 +6,7 @@
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§299 — HZ-4 and HZ-5 CLOSED and DEPLOYED; IT-1/IT-2 closed; HZ-9 opened for HZ-4’s live half.",
+  "asOf": "§300 Phase 1 — HZ-9 BLOCKED on an entitlement-mechanism decision; BI-4 opened. No HZ-6/HZ-7 work started.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events.",
   "thresholds": {
@@ -15,17 +15,17 @@
     "C": "EXTERNAL CONTROLLED BETA — named external inspectors entering real workplace data."
   },
   "counts": {
-    "total": 88,
+    "total": 89,
     "P0": 5,
     "P1": 8,
-    "P2": 51,
+    "P2": 52,
     "P3": 24,
     "thresholdA": 0,
     "thresholdB": 0,
-    "thresholdC": 20,
+    "thresholdC": 21,
     "byStatus": {
       "CLOSED": 46,
-      "OPEN": 36,
+      "OPEN": 37,
       "DEFERRED": 2,
       "BLOCKED": 4
     }
@@ -674,6 +674,24 @@
       "blocksThresholdB": false,
       "blocksThresholdC": false,
       "note": null
+    },
+    {
+      "domain": "BILLING / SUBSCRIPTIONS",
+      "id": "BI-4",
+      "description": "The employer-pro promo code is inert: registration reports planCode \"pro\" and promoApplied true, and the very next login resolves the account to free with fullSafeScope false.",
+      "currentState": "FOUND AT §300 WHILE ATTEMPTING THE HZ-9 PROOF, AND MEASURED END TO END IN PRODUCTION. POST /auth/register with a configured promo returned 201, planCode \"pro\", promoApplied true; the JWT minted at the next login carried planCode \"free\", effectivePlanCode \"free\", subscriptionStatus \"none\", billingEntitlements.fullSafeScope false; POST /hazlenz/classify returned 402 PAID_SUBSCRIPTION_REQUIRED. ROOT CAUSE, TWO FAULTS COMPOUNDING: (1) AuthService.resolveSessionContext calls getBillingStatus({userId, email, planCode, type}) and does NOT pass user.subscriptionStatus, although the promo registration deliberately writes subscriptionStatus \"active\" onto the user row next to planCode \"pro\"; (2) in getBillingStatus, `normalizeStripeSubscriptionStatus(...) || (fallbackTier === \"free\" ? \"none\" : \"active\")` has an UNREACHABLE right-hand branch, because normalizeStripeSubscriptionStatus ends in `return \"none\"` and never returns a falsy value. The branch exists precisely to treat a paid tier carrying no explicit status as active. So fallbackStatus is always \"none\", resolveAccessTier(\"pro\",\"none\",null) returns \"free\", and effectivePlanCode — which prefers billingSnapshot.tier — discards the user row's \"pro\". NO CUSTOMER IS AFFECTED TODAY: EMPLOYER_PRO_PROMO_CODES was empty in production before §300 and is empty again after it, so no promo account has ever existed in production. The defect is latent, not live.",
+      "evidence": "verification/current/hz9-entitlement-blocker-300/SECTION-300-PHASE1-HZ9-BLOCKER.json. Source: src/auth/auth.service.ts (register, resolveSessionContext); src/billing/billing.service.ts (getBillingStatus); src/billing/subscription-status.ts (normalizeStripeSubscriptionStatus, resolveAccessTier).",
+      "severity": "P2",
+      "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
+      "owner": "ENGINEERING",
+      "remediation": "Pass the user's own subscriptionStatus into getBillingStatus, and repair the dead fallback so a paid tier with no explicit status resolves as intended rather than through a branch that can never run. Add a test that a promo-registered account reaches fullSafeScope, because the absence of one is why a success response could advertise a plan the account does not have.",
+      "retestRequirement": "A promo-registered account logs in with planCode pro and receives 200 from POST /hazlenz/classify.",
+      "status": "OPEN",
+      "blocksThresholdA": false,
+      "blocksThresholdB": false,
+      "blocksThresholdC": true,
+      "note": "Registered at §300, NOT repaired: §300 Phase 2 is gated on Phase 1 passing and this is neither HZ-6 nor HZ-7. It is also the reason HZ-9 could not be proven — it was the only route to fullSafeScope that does not modify the production database directly.",
+      "lastUpdatedBy": "§300"
     },
     {
       "domain": "ENTITLEMENTS",
@@ -1567,7 +1585,7 @@
       "domain": "HAZLENZ",
       "id": "HZ-9",
       "description": "The repaired exposure-negation interpretation has not been exercised behaviourally against the deployed production instance; production evidence for HZ-4 is artifact identity of the running build.",
-      "currentState": "OPENED AT §299, DELIBERATELY. HZ-4 is closed on an executed LOCAL proof (117 assertions through the shipped extractor and evidence foundation) plus the fact that production runs commit 317daba8, which contains the repair and whose dist is compiled by bare tsc from backend/src. What has NOT happened is a live POST /hazlenz/classify against production carrying the §298 observation. That route is guarded by JwtGuard + EntitlementGuard(fullSafeScope) + RolesGuard, so exercising it needs a production account with an entitlement — a production write §299 did not authorise. An in-container read-only probe was attempted instead and needs an SSH public key registered with the Render account, which is an owner action. Recorded so that \"HZ-4 closed\" is never mistaken for \"HZ-4 verified live\".",
+      "currentState": "OPENED AT §299, DELIBERATELY. HZ-4 is closed on an executed LOCAL proof (117 assertions through the shipped extractor and evidence foundation) plus the fact that production runs commit 317daba8, which contains the repair and whose dist is compiled by bare tsc from backend/src. What has NOT happened is a live POST /hazlenz/classify against production carrying the §298 observation. That route is guarded by JwtGuard + EntitlementGuard(fullSafeScope) + RolesGuard, so exercising it needs a production account with an entitlement — a production write §299 did not authorise. An in-container read-only probe was attempted instead and needs an SSH public key registered with the Render account, which is an owner action. Recorded so that \"HZ-4 closed\" is never mistaken for \"HZ-4 verified live\". §300 PHASE 1 ATTEMPTED AND BLOCKED, WITH NO CLASSIFICATION EXECUTED. Every route to fullSafeScope that does not modify the production database directly is unavailable or non-functional: a Stripe subscription is a real charge; POST /admin/entitlement-grants requires platformRole \"platform_admin\" and NO CODE PATH SETS IT, so it can only be set by a direct database write; and the employer-pro promo — the one remaining candidate — was attempted in production and proven INERT (see BI-4). §300 forbids the direct entitlement_grant insert that §290, §291 and §298 all used. The blocker is therefore a product-owner decision about the entitlement mechanism, not an engineering obstacle. Everything attempted was cleaned up: the synthetic account was deleted through DELETE /auth/me (login now 401) and the production environment is byte-identical to its §300 starting state, verified by a live read-back.",
       "evidence": "verification/current/expert-hz4-hz5-299/SECTION-299-HZ4-HZ5-REPAIR.json -> productionProof.hz4ProductionEvidence.",
       "severity": "P3",
       "releaseConsequence": "DOES_NOT_BLOCK",
@@ -1579,7 +1597,7 @@
       "blocksThresholdB": false,
       "blocksThresholdC": false,
       "note": "NOT a doubt about the repair — the repair is proven locally against the shipped code. It is a statement about which half of the evidence exists, kept separate so the two are not conflated.",
-      "lastUpdatedBy": "§299"
+      "lastUpdatedBy": "§300"
     },
     {
       "domain": "HAZLENZ",
