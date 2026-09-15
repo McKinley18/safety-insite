@@ -1,5 +1,32 @@
 # Safety InSite — current state
 
+> ### HZ-9 CLOSED BY LIVE PRODUCTION PROOF — AND IT FOUND A SECOND COPY OF THE DEFECT — §300
+>
+> **`HZ-4`'s repaired behaviour was exercised directly through the deployed production runtime.**
+> Two `POST /hazlenz/classify` requests, differing in one sentence, were treated **oppositely** on
+> exactly the axis HZ-4 got wrong: the exact §298 text asserted **no** `employeeExposure` fact and
+> left 29 CFR 1910.28 a candidate (`UNKNOWN @ 0.45`, exposure predicate missing), while
+> *"No employees were on the mezzanine"* still asserted `employeeExposure=false @ 0.98` and still
+> suppressed the standard (`CONTRADICTED @ 0.05`). **0 provider calls, 0 Expert analyses, $0,
+> production SHA unchanged.** One synthetic `.invalid` account, one 24 h entitlement grant that
+> lived 4 minutes, both removed.
+>
+> **`HZ-10` — the same response also proves the repair was incomplete at the product level.** That
+> observation — a worker three feet from an unguarded twelve-foot opening with a ten-foot drop, no
+> harness — comes back `controlled_condition`, **`riskBand: Controlled`, `riskScore: 0`,
+> `imminentDanger: false`, `requiresShutdown: false`**, with every standard stripped.
+> `hazlenz-evidence-boundary.ts` holds **a second, independent copy** of the bare-negation error:
+> `nobody` / `no one` anchored to nothing. Reword only those two words and the same note returns
+> **Critical, riskScore 20, imminentDanger true, requiresShutdown true**.
+>
+> **Every §299 local proof still passes** — that module is downstream of everything §299 exercised.
+> Only the live product path found it. `HZ-10` is registered **P0**, and is **not repaired**: §300
+> scoped Phase 1 to HZ-9 and Phase 2 to HZ-6/HZ-7. **Phase 2 was not started.**
+> Evidence: `verification/current/hz9-live-proof-300/`.
+>
+> **`BI-4`** was also opened: the employer-pro promo code is inert — registration reports Pro and
+> the next login resolves the account to Free. Latent, not live; the variable is empty in production.
+
 > ### THE TWO P1 EXTERNAL-BETA BLOCKERS §298 OPENED ARE CLOSED — §299
 >
 > **`HZ-4` and `HZ-5` are repaired.** §299 spent **0 provider calls**, created **0 Expert

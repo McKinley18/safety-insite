@@ -1,0 +1,81 @@
+{
+  "request": "POST /hazlenz/classify — the no-presence control",
+  "response": {
+    "facts": [
+      {
+        "id": "fact-1",
+        "type": "jurisdiction",
+        "value": "osha-general-industry",
+        "confidence": 0.85,
+        "status": "inferred"
+      },
+      {
+        "id": "fact-2",
+        "type": "employeeExposure",
+        "value": false,
+        "confidence": 0.98,
+        "status": "confirmed"
+      },
+      {
+        "id": "fact-3",
+        "type": "employeeExposure",
+        "value": "within_overhead_or_fall_zone",
+        "confidence": 0.94,
+        "status": "observed"
+      },
+      {
+        "id": "fact-4",
+        "type": "fallExposure",
+        "value": "unprotected_edge_or_opening",
+        "confidence": 0.94,
+        "status": "observed"
+      }
+    ],
+    "criticalUnknowns": [],
+    "contradictions": [],
+    "applicabilityDecisions": [
+      {
+        "citation": "29 CFR 1910.28",
+        "status": "CONTRADICTED",
+        "confidence": 0.05,
+        "requiredPredicates": [
+          {
+            "name": "general-industry jurisdiction",
+            "status": "SUPPORTED"
+          },
+          {
+            "name": "unprotected edge or opening",
+            "status": "SUPPORTED"
+          },
+          {
+            "name": "employee access or exposure",
+            "status": "CONTRADICTED"
+          }
+        ],
+        "missingPredicates": [],
+        "explanation": "Suppressed because submitted evidence contradicts: employee access or exposure."
+      }
+    ],
+    "assessmentDisposition": "controlled_condition",
+    "regulatoryConclusion": {
+      "advisoryOnly": true,
+      "qualifiedHumanReviewRequired": true,
+      "violationDetermination": "not_determined",
+      "evidenceStatus": "controlled"
+    },
+    "risk": {
+      "riskScore": 0,
+      "riskBand": "Controlled",
+      "imminentDanger": false,
+      "fatalityPotential": "not_established",
+      "requiresShutdown": false,
+      "reasoning": [
+        "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+      ]
+    },
+    "primaryCitation": "",
+    "primaryStandardsCount": 0,
+    "suggestedStandardsCount": 0,
+    "standardsCount": 0
+  }
+}

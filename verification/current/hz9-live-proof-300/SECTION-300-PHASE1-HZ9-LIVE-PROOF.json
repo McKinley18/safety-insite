@@ -1,0 +1,76 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_300_PHASE_1_HZ9_LIVE_PRODUCTION_PROOF",
+  "section": "300",
+  "phase": "1",
+  "generated": "2026-09-15T02:21:30Z",
+  "outcome": "HZ-9 CLOSED — both §300 criteria demonstrated directly against the deployed production runtime. THE PROOF ALSO SURFACED A SECOND, INDEPENDENT COPY OF THE HZ-4 DEFECT in a layer §299 never touched, registered as HZ-10, which zeroes the risk band on the very same observation. §300's Phase-2 gate is therefore NOT taken: HZ-6 and HZ-7 were not started.",
+  "productionSha": "317daba88e7ef8c117a2997b6347dae830e8823a",
+  "providerCalls": 0,
+  "expertAnalysesCreated": 0,
+  "spendUsd": 0.0,
+  "hz9ClassifyRequests": 2,
+  "method": {
+    "authorizedBy": "Product owner selected Option A at §300 Phase 1: a bounded direct entitlement_grant for the entitlement SETUP only, with the proof itself running entirely through the real authenticated production HTTP product path.",
+    "account": "section300-hz9-live@release-test.invalid — synthetic, .invalid domain, no customer data, created through the PUBLIC POST /auth/register with the server's own required agreement read live from GET /agreements. Registered as planCode free; no promo, no payment.",
+    "entitlement": "ONE entitlement_grant row: source 'pilot', tier 'pro', 24h expiry, reason 'SECTION 300 HZ-9 live deterministic proof. Bounded to 24h. Revoke at cleanup.' — the §290/§291/§298 pattern. Grant id 640d797a-77c5-4ae1-a464-f95d57b1820c.",
+    "grantLifetime": "4 minutes 15 seconds (02:15:56Z -> 02:20:11Z). Revoked at cleanup.",
+    "databaseWrites": "EXACTLY TWO, both on entitlement_grants and both on the same row: one INSERT and one UPDATE to status='revoked'. The resolved target (host, database) was printed and verified before either statement. No other table was written.",
+    "proofPath": "POST /auth/register -> POST /auth/login -> POST /hazlenz/classify x2. Every step the real deployed production HTTP route. No SSH, no in-container execution, no direct read or write of any analysis, observation, finding or inspection row."
+  },
+  "criterionA": {
+    "statement": "The §298 negated-control statement no longer becomes false employee exposure.",
+    "observation": "the exact §298 text, byte-for-byte, containing 'Nobody working up there had a harness on' and 'Nobody was injured'",
+    "employeeExposureFacts": "NONE ASSERTED — the evidence snapshot contains only jurisdiction=osha-general-industry and fallExposure=unprotected_edge_or_opening",
+    "cfr191028": "UNKNOWN at confidence 0.45 — A CANDIDATE, NOT A SUPPRESSION",
+    "exposurePredicate": "UNKNOWN, listed in missingPredicates as 'employee access or exposure'",
+    "explanation": "Candidate only; missing: employee access or exposure.",
+    "contradictions": "[] — empty",
+    "section298Baseline": "employeeExposure=false at confidence 0.98 status confirmed; 29 CFR 1910.28 CONTRADICTED at 0.05; 'Suppressed because submitted evidence contradicts: employee access or exposure'",
+    "result": "MET, DIRECTLY IN PRODUCTION"
+  },
+  "criterionB": {
+    "statement": "Genuine no-presence language continues to support suppression where appropriate.",
+    "observation": "the identical note with ONLY the one sentence HZ-4 misread replaced by 'No employees were on the mezzanine at any point.' Every other sentence unchanged, so the note still raises fallExposure and still produces a 1910.28 decision — the suppression below is a real measurement rather than the rule never having been evaluated.",
+    "employeeExposureFacts": "employeeExposure=false at confidence 0.98 status confirmed, PLUS employeeExposure=within_overhead_or_fall_zone",
+    "cfr191028": "CONTRADICTED at confidence 0.05",
+    "exposurePredicate": "CONTRADICTED",
+    "explanation": "Suppressed because submitted evidence contradicts: employee access or exposure.",
+    "result": "MET, DIRECTLY IN PRODUCTION"
+  },
+  "discrimination": "The two requests differ in ONE sentence and the production runtime treats them OPPOSITELY on exactly the axis HZ-4 got wrong. This is discrimination, not the removal of suppression: a control denial preserves exposure as an open question, and a genuine presence denial still suppresses.",
+  "hz9Result": "CLOSED",
+  "hz4FinalState": "CODE AND REGRESSION REPAIR CLOSED AT §299, AND NOW ALSO DEMONSTRATED BEHAVIOURALLY IN THE LIVE PRODUCTION RUNTIME AT §300. The §299 caveat that production evidence was artifact identity rather than behaviour is discharged. HZ-4 itself remains closed; HZ-10 below is a DIFFERENT module carrying the same class of error and is registered separately rather than reopening HZ-4.",
+  "newDefectFound": {
+    "id": "HZ-10",
+    "title": "A SECOND, INDEPENDENT COPY OF THE BARE-NEGATION DEFECT, in the display evidence boundary, which zeroes the risk band and strips every standard whenever the word 'nobody' or 'no one' appears anywhere in the observation.",
+    "howItWasFound": "Only by running the HZ-9 proof against the real production runtime. Every §299 local proof passes unchanged, because §299 exercised buildEvidenceFacts and applyEvidenceFoundation and this module sits downstream of both. The artifact-identity argument §299 relied on could not have found it either. THIS IS THE ARGUMENT FOR HZ-9 HAVING EXISTED AT ALL.",
+    "module": "backend/src/hazlenz/display/hazlenz-evidence-boundary.ts, enforceHazLenzEvidenceBoundary()",
+    "mechanism": "`affirmativelyNoExposure` is a regular expression whose alternation includes the BARE words `nobody` and `no one`, anchored to nothing about exposure — the identical shape §299 repaired in shared-evidence-facts.ts. It alone sets `affirmativelyControlled`, which sets assessmentDisposition='controlled_condition', sets mustDemote=true (emptying primaryCitation, primaryStandards, suggestedStandards and standards) and OVERWRITES result.risk with riskScore 0, riskBand 'Controlled', imminentDanger false, requiresShutdown false. It also emits a LOW-priority 'Verify the controlled condition' action.",
+    "measuredInProduction": {
+      "observation": "a worker three feet from an unguarded twelve-foot-wide opening with a ten-foot drop, no harness, no anchor points",
+      "assessmentDisposition": "controlled_condition",
+      "riskBand": "Controlled",
+      "riskScore": 0,
+      "imminentDanger": false,
+      "requiresShutdown": false,
+      "regulatoryConclusionEvidenceStatus": "controlled",
+      "primaryCitation": "",
+      "primaryStandards": 0,
+      "suggestedStandards": 0,
+      "standards": 0
+    },
+    "causationIsolatedLocally": "The SAME note with ONLY the two bare quantifiers reworded — 'Nobody working up there' -> 'None of the stockers up there', 'Nobody was injured' -> 'There were no injuries' — and every hazard fact identical, yields: assessmentDisposition hazard_requires_human_review, riskBand Critical, riskScore 20, imminentDanger TRUE, requiresShutdown TRUE, primaryCitation 29 CFR 1910.28, primaryStandards 1. THE WORD ALONE FLIPS IT.",
+    "severityProposed": "P0 FOR EXTERNAL BETA, on the same reasoning the product owner used to escalate HZ-4, and arguably stronger: HZ-4 suppressed the regulatory basis while the hazard stayed Critical; this zeroes the hazard itself and tells the reader the condition is CONTROLLED and requires no shutdown.",
+    "notRepairedHere": "§300 scopes Phase 1 to HZ-9 and Phase 2 to HZ-6/HZ-7. HZ-10 is neither. It is registered with a reproduction and a remediation and is NOT repaired in this section.",
+    "secondAlternationInTheSameFunction": "The `affirmativelyControlled` second clause carries another bare-word list — nobody | no one | passed | within | fully | complete | closed | secured — gated behind controlsPresent>0 and controlsMissing===0. It did not fire here because no structuredObservation was supplied, but it is the same class of error and must be examined in the same repair."
+  },
+  "cleanup": {
+    "grantRevoked": "UPDATE entitlement_grants SET status='revoked' — verified by reading the row back.",
+    "accountDeleted": "DELETE /auth/me returned 200. The product's own route revokes active grants, ends memberships, revokes refresh tokens, anonymizes the email, randomizes the password hash, sets deletedAt and writes an account_deleted security audit event.",
+    "verified": "classify with the old token -> 401; login -> 401.",
+    "grantTableState": "6 rows, 1 active — and that one is the owner's own pre-existing founder support grant from 2026-08-18, not anything §300 created. No active grant belongs to the synthetic user.",
+    "environment": "EMPLOYER_PRO_PROMO_CODES was removed earlier in Phase 1; the production environment is byte-identical to its §300 starting state (43 keys).",
+    "productionSha": "unchanged at 317daba8 throughout. No deployment, no migration, no schema change."
+  },
+  "whatIsNotClaimed": "That the product's overall recommendation on the §298 observation is now correct. IT IS NOT — HZ-10 still reports it as Controlled with riskScore 0. HZ-9 asked a specific question about employee-exposure negation and the fall-protection candidate, and that question is answered. The broader recommendation is a separate, and worse, defect."
+}

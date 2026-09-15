@@ -1,0 +1,71 @@
+{
+  "request": "POST /hazlenz/classify — the exact §298 observation text",
+  "response": {
+    "facts": [
+      {
+        "id": "fact-1",
+        "type": "jurisdiction",
+        "value": "osha-general-industry",
+        "confidence": 0.85,
+        "status": "inferred"
+      },
+      {
+        "id": "fact-2",
+        "type": "fallExposure",
+        "value": "unprotected_edge_or_opening",
+        "confidence": 0.94,
+        "status": "observed"
+      }
+    ],
+    "criticalUnknowns": [
+      "employee access or exposure"
+    ],
+    "contradictions": [],
+    "applicabilityDecisions": [
+      {
+        "citation": "29 CFR 1910.28",
+        "status": "UNKNOWN",
+        "confidence": 0.45,
+        "requiredPredicates": [
+          {
+            "name": "general-industry jurisdiction",
+            "status": "SUPPORTED"
+          },
+          {
+            "name": "unprotected edge or opening",
+            "status": "SUPPORTED"
+          },
+          {
+            "name": "employee access or exposure",
+            "status": "UNKNOWN"
+          }
+        ],
+        "missingPredicates": [
+          "employee access or exposure"
+        ],
+        "explanation": "Candidate only; missing: employee access or exposure."
+      }
+    ],
+    "assessmentDisposition": "controlled_condition",
+    "regulatoryConclusion": {
+      "advisoryOnly": true,
+      "qualifiedHumanReviewRequired": true,
+      "violationDetermination": "not_determined",
+      "evidenceStatus": "controlled"
+    },
+    "risk": {
+      "riskScore": 0,
+      "riskBand": "Controlled",
+      "imminentDanger": false,
+      "fatalityPotential": "not_established",
+      "requiresShutdown": false,
+      "reasoning": [
+        "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+      ]
+    },
+    "primaryCitation": "",
+    "primaryStandardsCount": 0,
+    "suggestedStandardsCount": 0,
+    "standardsCount": 0
+  }
+}

@@ -303,7 +303,8 @@ are retained so a later section does not rediscover them as new.
 | **HZ-6** | The Expert execution record cannot state which model produced a safety analysis, or how long it took. | P2 | C | Engineering | **OPEN §298** |
 | **HZ-7** | A finding finalized from an Expert-cited review carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard. | P2 | C | Product | **OPEN §298** |
 | **HZ-8** | At a workspace analysis ceiling of N, an idempotent replay of a completed Expert request is refused by the ceiling instead of resolving to the execution that already ran. | P3 | — | Engineering | **OPEN §298** |
-| **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **OPEN — §300 Phase 1 BLOCKED** |
+| **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **CLOSED §300** |
+| **HZ-10** | A **second, independent copy** of the bare-negation defect, in the display evidence boundary: "nobody"/"no one" anywhere in an observation zeroes the risk band and strips every standard. | **P0** | C | Engineering | **OPEN §300** |
 | **BI-4** | The employer-pro promo code is inert: registration reports Pro and the next login resolves the account to Free with `fullSafeScope` false. | P2 | C | Engineering | **OPEN §300** |
 
 **HZ-2 — CLOSED at §298.** `EXPERT_EXECUTION_ENABLED` was set to `true` through the approved
@@ -559,7 +560,61 @@ uses, so a genuine drift still fails.
 `hazlenz:integration:test` now reports **435 assertions passed, 0 failed** across §261, §262, §264,
 §265, §267 and §268. **No production code changed for either.**
 
-**§300 Phase 1 — HZ-9 was attempted in production and is blocked on a decision, not on engineering.**
+**§300 Phase 1 — HZ-9 IS CLOSED, and closing it found something worse.**
+
+With Option A authorized, one synthetic account on a `.invalid` domain was registered through the
+**public** `POST /auth/register`, entitled by **one** `pilot` grant bounded to 24 h that in fact
+lived **4 minutes 15 seconds**, and used for exactly **two** `POST /hazlenz/classify` requests
+against the deployed production service. Database writes: **exactly two**, both on that same
+`entitlement_grants` row — one `INSERT`, one `UPDATE` to `revoked` — with the resolved host and
+database printed and checked first. **0 provider calls, 0 Expert analyses, $0, production SHA
+unchanged.**
+
+| | **A** — the exact §298 text | **B** — the no-presence control |
+|---|---|---|
+| differs by | — | one sentence only |
+| `employeeExposure` fact | **none asserted** | `false` @ 0.98 `confirmed` |
+| 29 CFR 1910.28 | **UNKNOWN @ 0.45** | **CONTRADICTED @ 0.05** |
+| exposure predicate | UNKNOWN, in `missingPredicates` | CONTRADICTED |
+| explanation | *"Candidate only; missing: employee access or exposure"* | *"Suppressed because submitted evidence contradicts…"* |
+
+Two requests differing in one sentence, treated **oppositely** on exactly the axis HZ-4 got wrong.
+That is discrimination, not the removal of suppression — and it is the §298 baseline
+(`employeeExposure=false` @ 0.98, 1910.28 CONTRADICTED @ 0.05) inverted on the observation that
+produced it. **`HZ-9` closes and `HZ-4`'s live half is discharged.**
+
+**`HZ-10` — and it is the reason HZ-9 was worth doing.** The same production response that proves
+HZ-4 repaired *also* reports that observation — a worker three feet from an unguarded twelve-foot
+opening with a ten-foot drop, no harness, no anchor points — as:
+
+> `assessmentDisposition: controlled_condition` · `riskBand: Controlled` · `riskScore: 0` ·
+> `imminentDanger: false` · `requiresShutdown: false` · zero standards
+
+`backend/src/hazlenz/display/hazlenz-evidence-boundary.ts` contains **a second, independent copy of
+the bare-negation defect**. `affirmativelyNoExposure` is an alternation whose members include the
+bare words `nobody` and `no one`, anchored to nothing — the identical shape §299 repaired in the
+extractor. It **alone** sets `affirmativelyControlled`, which sets the disposition, empties
+`primaryCitation`, `primaryStandards`, `suggestedStandards` and `standards`, and **overwrites
+`result.risk`** with a zeroed, Controlled, no-shutdown block.
+
+Causation was isolated locally: the **same note** with only the two bare quantifiers reworded —
+*"Nobody working up there"* → *"None of the stockers up there"*, *"Nobody was injured"* → *"There
+were no injuries"* — and every hazard fact identical, yields `hazard_requires_human_review`,
+**`Critical`, riskScore 20, `imminentDanger: true`, `requiresShutdown: true`**, primary citation
+29 CFR 1910.28. **The word alone flips it.**
+
+**Every §299 local proof still passes**, because §299 exercised `buildEvidenceFacts` and
+`applyEvidenceFoundation` and this module sits downstream of both. Neither the local suite nor the
+artifact-identity argument §299 relied on could have reached it. **Only running the real product
+path in production did.**
+
+It is registered `P0` on the same reasoning the product owner used to escalate HZ-4, and arguably
+stronger: HZ-4 suppressed the regulatory *basis* while the hazard stayed Critical; this zeroes the
+*hazard* and tells the reader the condition is controlled. **It is registered, not repaired** —
+§300 scopes Phase 1 to HZ-9 and Phase 2 to HZ-6/HZ-7, and this is neither. **§300's Phase-2 gate
+was therefore not taken and HZ-6/HZ-7 were not started.**
+
+**§300 Phase 1, first attempt — superseded by the proof above, and it found `BI-4`.**
 **No classification was executed and nothing was proven.**
 
 `POST /hazlenz/classify` — and every other HazLenz endpoint — requires the Pro-only entitlement
