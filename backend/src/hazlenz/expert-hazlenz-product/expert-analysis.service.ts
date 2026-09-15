@@ -314,6 +314,14 @@ export class ExpertAnalysisService {
       readonly verifierOutputTokens: number | null;
       readonly costUsd: number | null;
       readonly legs: number;
+      /**
+       * §300 / HZ-6. Written HERE rather than only on the success path, for the same reason the
+       * cost is: a refused, unresolved or failed execution still reached a model, and which model
+       * answered is part of the record of what happened. NULL means NOT RECORDED and is never
+       * filled in from configuration.
+       */
+      readonly respondedModel?: string | null;
+      readonly latencyMs?: number | null;
     },
   ): Promise<void> {
     try {
@@ -324,6 +332,10 @@ export class ExpertAnalysisService {
         verifierOutputTokens: usage.verifierOutputTokens,
         costUsd: usage.costUsd === null ? null : usage.costUsd.toFixed(6),
         attempts: usage.legs,
+        // Only written when something was actually reported. `undefined` leaves the column alone,
+        // so a transport that reports nothing cannot overwrite a value an earlier leg recorded.
+        ...(usage.respondedModel === undefined ? {} : { respondedModel: usage.respondedModel }),
+        ...(usage.latencyMs === undefined ? {} : { latencyMs: usage.latencyMs }),
       });
     } catch {
       // Deliberately swallowed. See the header.

@@ -31,7 +31,7 @@ import {
   EXPERT_HOSTED_INFERENCE_CONFIG as EXPERT_RATES,
 } from '../expert-hazlenz-adapters/expert-request-envelope';
 import {
-  evaluateExpertExecutionPermission, foldExpertUsage, readExpertOperationalConfig,
+  evaluateExpertExecutionPermission, foldExpertProvenance, foldExpertUsage, readExpertOperationalConfig,
   type ExpertLegUsage, type ExpertOperationalConfig,
 } from './expert-operational-controls';
 import { emitOperationalEvent } from '../../observability/operational-events';
@@ -312,8 +312,15 @@ export class ExpertAnalysisExecutionService {
         inputUsdPerMTok: EXPERT_RATES.inputUsdPerMTok,
         outputUsdPerMTok: EXPERT_RATES.outputUsdPerMTok,
       });
+      // §300 / HZ-6. Folded from the same per-leg records the cost is folded from, so "who
+      // answered" and "what it cost" can never disagree about which legs ran.
+      const provenance = foldExpertProvenance(recorder.usage);
       if (folded.legs > 0) {
-        await this.authority.recordExecutionUsage(execution.id, folded);
+        await this.authority.recordExecutionUsage(execution.id, {
+          ...folded,
+          respondedModel: provenance.respondedModel,
+          latencyMs: provenance.latencyMs,
+        });
         emitOperationalEvent('expert.provider.usage_recorded', {
           ...signal,
           providerLegs: folded.legs,
@@ -323,6 +330,11 @@ export class ExpertAnalysisExecutionService {
           verifierInputTokens: folded.verifierInputTokens,
           verifierOutputTokens: folded.verifierOutputTokens,
           costUsd: folded.costUsd,
+          // §300 / HZ-6. On the operational event too, so an operator watching the stream can see
+          // which model answered without opening the database.
+          respondedModel: provenance.respondedModel,
+          latencyMs: provenance.latencyMs,
+          modelsDiverged: provenance.modelsDiverged,
           // TRUE when the numbers are absent because a deterministic transport answered, so a
           // null cost in a local run is never mistaken for a hosted call that reported nothing.
           transportSubstituted: expertTransportIsSubstituted(),
@@ -465,7 +477,12 @@ export class ExpertAnalysisExecutionService {
       // records the SEAM that answered rather than inventing a vendor name here.
       providerId: expertTransportIsSubstituted()
         ? 'local-deterministic-transport' : 'hosted-expert-semantic-transport',
-      respondedModel: null,
+      // §300 / HZ-6. Was a literal `null`. The seam still owns the vendor and the core still does
+      // not invent one -- what is recorded here is WHAT THE TRANSPORT REPORTED THE PROVIDER SAID,
+      // which is a record rather than an inference. NULL still means NOT RECORDED: a substituted
+      // deterministic transport reports no model and this stays null rather than borrowing one
+      // from configuration.
+      respondedModel: foldExpertProvenance(recorder.usage).respondedModel,
       postureRefusalCodes: result.postureRefusalCodes,
       conformanceViolations: result.conformanceViolations,
       roleJustificationCodes: result.roleJustificationCodes,
@@ -539,6 +556,11 @@ class RecordingTransport implements ExpertSemanticTransport {
       leg: request.leg,
       inputTokens: reported?.inputTokens ?? null,
       outputTokens: reported?.outputTokens ?? null,
+      // §300 / HZ-6. Carried per leg for the same reason tokens are, and recorded even when the
+      // leg failed: a refused or truncated answer was still produced by a model, and which one is
+      // part of the record of what happened.
+      respondedModel: reported?.respondedModel ?? null,
+      latencyMs: reported?.latencyMs ?? null,
     });
     const captured = asRecord(response.toolInput);
     if (request.leg === 'FIRST_PASS') this.rawFirstPass = captured;

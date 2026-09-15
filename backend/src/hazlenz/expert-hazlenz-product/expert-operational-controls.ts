@@ -205,6 +205,62 @@ export interface ExpertLegUsage {
   readonly leg: 'FIRST_PASS' | 'VERIFIER';
   readonly inputTokens: number | null;
   readonly outputTokens: number | null;
+  /**
+   * §300 / HZ-6 — WHAT THE PROVIDER SAID IT WAS, FOR THIS LEG.
+   *
+   * Execution-time, not configuration-derived. `null` whenever the transport did not report one:
+   * a substituted deterministic transport, a leg that never reached a provider, or a provider that
+   * did not name a model. NULL means NOT RECORDED and must never be filled in from current
+   * configuration — the whole point of HZ-6 is that "the config says sonnet, therefore sonnet
+   * answered" is an inference, not a record, and it does not survive an alias resolving elsewhere.
+   */
+  readonly respondedModel?: string | null;
+  /** §300 / HZ-6. Wall-clock milliseconds this leg spent at the provider. `null` if not measured. */
+  readonly latencyMs?: number | null;
+}
+
+/**
+ * §300 / HZ-6 — THE EXECUTION-TIME PROVIDER PROVENANCE, FOLDED ACROSS LEGS.
+ *
+ * Separate from `ExpertExecutionUsage` because it answers a different question. Usage answers
+ * "what did this cost"; this answers "WHO ANSWERED, AND HOW LONG DID IT TAKE" — and §298 could
+ * only answer the first from the record.
+ */
+export interface ExpertExecutionProvenance {
+  /**
+   * The model that produced the analysis, as the provider reported it.
+   *
+   * When every reporting leg names the same model, that is the value. When legs DISAGREE — a
+   * verifier answered by a different build than the first pass — both are recorded rather than one
+   * silently winning, because a safety analysis reviewed by a different model than produced it is
+   * exactly the fact an audit would want and exactly the one a single column would hide.
+   */
+  readonly respondedModel: string | null;
+  /** Total wall-clock milliseconds spent at the provider across every leg. NULL if none measured. */
+  readonly latencyMs: number | null;
+  /** TRUE when reporting legs named different models. Recorded, never resolved. */
+  readonly modelsDiverged: boolean;
+}
+
+/** Postgres column width for `expert_analysis_executions.respondedModel`. */
+const RESPONDED_MODEL_MAX = 120;
+
+export function foldExpertProvenance(legs: readonly ExpertLegUsage[]): ExpertExecutionProvenance {
+  const named = legs.filter(l => typeof l.respondedModel === 'string' && l.respondedModel.trim());
+  const distinct = [...new Set(named.map(l => (l.respondedModel as string).trim()))];
+
+  const respondedModel = distinct.length === 0 ? null
+    : distinct.length === 1 ? distinct[0].slice(0, RESPONDED_MODEL_MAX)
+      // Deliberately readable rather than structured: this column is read by a person asking who
+      // answered, and a divergence should be legible at a glance in a query result.
+      : named.map(l => `${l.leg}=${(l.respondedModel as string).trim()}`)
+        .join('|').slice(0, RESPONDED_MODEL_MAX);
+
+  const measured = legs.filter(l => typeof l.latencyMs === 'number' && Number.isFinite(l.latencyMs));
+  const latencyMs = measured.length === 0 ? null
+    : Math.round(measured.reduce((total, l) => total + (l.latencyMs as number), 0));
+
+  return { respondedModel, latencyMs, modelsDiverged: distinct.length > 1 };
 }
 
 export interface ExpertExecutionUsage {

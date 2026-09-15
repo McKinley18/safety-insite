@@ -52,8 +52,28 @@ function check(condition: unknown, message: string): void {
   else { failures.push(message); console.error(`FAIL  ${message}`); }
 }
 
-/** The commit §299 started from. The diff below is measured against it. */
+/** The commit §299 started from. */
 const SECTION_299_BASE = 'd78150ed91ac4324db084d601035a343f791013a';
+
+/**
+ * The commit §299 ENDED at — its source commit, the one that was deployed.
+ *
+ * §300 CHANGED THIS FROM "the current worktree" TO A FROZEN RANGE, and the reason matters.
+ *
+ * The claim this section makes is HISTORICAL: that the §299 HZ-4 repair did not touch Expert
+ * disagreement handling. Measuring it against the moving worktree made the assertion mean something
+ * different every day — and it began failing the moment §300 legitimately changed an Expert-path
+ * file to close HZ-6, which is authorized work and not a §299 regression. A gate that fails on
+ * authorized later work is a gate that gets deleted.
+ *
+ * Pinned to d78150ed..317daba8, the §299 claim is exactly as strong as it ever was and is now
+ * permanently checkable. THE LIVE HALF OF THIS FILE IS NOT WEAKENED: sections 1 and 3 below read
+ * the CURRENT vocabulary and the CURRENT deterministic projection, so a later change that removed
+ * a disagreement type or emptied what Expert has to contest still fails here today.
+ *
+ * This is the same lesson as IT-2: a test pinned to a moving value asserts a moving claim.
+ */
+const SECTION_299_SOURCE_COMMIT = '317daba88e7ef8c117a2997b6347dae830e8823a';
 
 // ================================================================ 1. the vocabulary
 
@@ -103,12 +123,9 @@ const lines = (out: string): string[] =>
  * an existing one imports. `ls-files --others` closes that, so the set below is everything §299
  * added or altered.
  */
-const changed = [...new Set([
-  ...lines(execFileSync('git', ['diff', '--name-only', SECTION_299_BASE, '--'],
-    { cwd: repoRoot, encoding: 'utf8' })),
-  ...lines(execFileSync('git', ['ls-files', '--others', '--exclude-standard'],
-    { cwd: repoRoot, encoding: 'utf8' })),
-])].sort();
+const changed = lines(execFileSync('git',
+  ['diff', '--name-only', SECTION_299_BASE, SECTION_299_SOURCE_COMMIT, '--'],
+  { cwd: repoRoot, encoding: 'utf8' })).sort();
 
 /*
  * The worktree carries a great deal of pre-existing untracked material that §299 did not author, so
@@ -116,17 +133,14 @@ const changed = [...new Set([
  * tracked modifications -- which is the §299 edit set -- plus any Expert-path hit. Printing 540
  * paths would bury the one line that matters.
  */
-const trackedChanges = lines(execFileSync('git',
-  ['diff', '--name-only', SECTION_299_BASE, '--'], { cwd: repoRoot, encoding: 'utf8' }));
-
-console.log(`      paths examined (tracked changes + untracked additions): ${changed.length}`);
-console.log(`      tracked modifications since ${SECTION_299_BASE.slice(0, 8)}: ${trackedChanges.length}`);
-for (const f of trackedChanges) console.log(`        M  ${f}`);
+console.log(`      §299 range: ${SECTION_299_BASE.slice(0, 8)}..${SECTION_299_SOURCE_COMMIT.slice(0, 8)}`);
+console.log(`      files changed by §299: ${changed.length}`);
+for (const f of changed) console.log(`        M  ${f}`);
 
 const expertTouched = changed.filter(f => EXPERT_PATH_PREFIXES.some(p => f.startsWith(p)));
 for (const f of expertTouched) console.log(`        !! ${f}`);
 check(expertTouched.length === 0,
-  'No Expert contract, prompt, normalization, adapter or product file was modified. '
+  '§299 modified no Expert contract, prompt, normalization, adapter or product file. '
   + (expertTouched.length === 0 ? '' : `Touched: ${expertTouched.join(', ')}`));
 
 // ================================================================ 3. there is still something to contest

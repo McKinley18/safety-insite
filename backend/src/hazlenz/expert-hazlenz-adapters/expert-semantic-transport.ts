@@ -53,7 +53,18 @@ export class HostedExpertSemanticTransport implements ExpertSemanticTransport {
    * reasoning. Nothing about the request, the response, or the semantic contract changes here;
    * this class only stops throwing a number away.
    */
-  private lastLegUsage: { inputTokens: number | null; outputTokens: number | null } | null = null;
+  private lastLegUsage: {
+    inputTokens: number | null; outputTokens: number | null;
+    /**
+     * §300 / HZ-6. The provider's OWN statement of which model answered, taken from the response
+     * envelope's `model` field. This was previously parsed and thrown away with the rest of the
+     * envelope, which is why the §298 execution record could not say who produced the analysis and
+     * the answer had to be reconstructed from configuration and cost arithmetic.
+     */
+    respondedModel: string | null;
+    /** §300 / HZ-6. Wall-clock milliseconds from request dispatch to response body parsed. */
+    latencyMs: number | null;
+  } | null = null;
 
   constructor(
     private readonly envelope: ExpertRequestEnvelope = EXPERT_REQUEST_ENVELOPE,
@@ -61,7 +72,10 @@ export class HostedExpertSemanticTransport implements ExpertSemanticTransport {
   ) {}
 
   /** Reading CLEARS it, so a leg that reported nothing cannot inherit the previous leg's numbers. */
-  takeLastLegUsage(): { inputTokens: number | null; outputTokens: number | null } | null {
+  takeLastLegUsage(): {
+    inputTokens: number | null; outputTokens: number | null;
+    respondedModel: string | null; latencyMs: number | null;
+  } | null {
     const usage = this.lastLegUsage;
     this.lastLegUsage = null;
     return usage;
@@ -91,6 +105,9 @@ export class HostedExpertSemanticTransport implements ExpertSemanticTransport {
 
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeoutMs);
+    // §300 / HZ-6. Started before dispatch so the measurement covers the provider round trip and
+    // nothing else -- not schema assembly above, not admission below.
+    const startedAt = Date.now();
     let response: Response;
     try {
       response = await fetch(`${this.envelope.endpoint}/v1/messages`, {
@@ -136,6 +153,13 @@ export class HostedExpertSemanticTransport implements ExpertSemanticTransport {
     this.lastLegUsage = {
       inputTokens: tokenCount(usage.input_tokens),
       outputTokens: tokenCount(usage.output_tokens),
+      // §300 / HZ-6. Recorded here for the same reason usage is: a refused, truncated or
+      // structurally invalid answer was still PRODUCED BY A MODEL, and the record of which one
+      // must not depend on the answer having been usable. Read from the response, never from
+      // configuration -- what was requested and what answered are not the same fact.
+      respondedModel: typeof envelope?.model === 'string' && envelope.model.trim()
+        ? envelope.model.trim() : null,
+      latencyMs: Date.now() - startedAt,
     };
 
     const stopReason = typeof envelope?.stop_reason === 'string' ? envelope.stop_reason : null;

@@ -67,8 +67,21 @@ export const EXPERT_SEMANTIC_TRANSPORT = 'EXPERT_SEMANTIC_TRANSPORT';
  * look smaller than it was on the leg that reported nothing, and double-count the one that did.
  */
 export interface ExpertLegUsageReporter {
-  takeLastLegUsage(): { readonly inputTokens: number | null; readonly outputTokens: number | null }
-    | null;
+  takeLastLegUsage(): {
+    readonly inputTokens: number | null;
+    readonly outputTokens: number | null;
+    /**
+     * §300 / HZ-6. Which model the provider said answered THIS leg, and how long it took.
+     *
+     * They travel on this channel for exactly the reason usage does: `ExpertLegResponse` cannot
+     * gain a field without changing element 5 of the §259 candidate identity, and
+     * `anthropic-expert-provider.ts` is a protected module. Optional on the interface so a
+     * transport that reports only usage still satisfies it, which keeps every existing
+     * deterministic test transport valid without edit.
+     */
+    readonly respondedModel?: string | null;
+    readonly latencyMs?: number | null;
+  } | null;
 }
 
 export function isExpertLegUsageReporter(value: unknown): value is ExpertLegUsageReporter {
@@ -122,7 +135,10 @@ implements ExpertSemanticTransport, ExpertLegUsageReporter {
    * reports nothing, which is correct and is why a zero-provider-call suite records a null cost
    * rather than a fabricated one.
    */
-  takeLastLegUsage(): { inputTokens: number | null; outputTokens: number | null } | null {
+  takeLastLegUsage(): {
+    inputTokens: number | null; outputTokens: number | null;
+    respondedModel?: string | null; latencyMs?: number | null;
+  } | null {
     const active = this.lastActive;
     return isExpertLegUsageReporter(active) ? active.takeLastLegUsage() : null;
   }

@@ -302,7 +302,7 @@ are retained so a later section does not rediscover them as new.
 | **HZ-5** | The Expert frontend's posture label table does not share the server's frozen posture vocabulary, so the two restrictive postures render as "The operational posture could not be read". | **P1** | — | Engineering | **CLOSED §299** |
 | **IT-1** | Five Expert integration harnesses never adopted the §291 registration-time agreement acceptance, so `hazlenz:integration:test` aborted in §262 before reaching any assertion. | P2 | — | Engineering | **CLOSED §299** |
 | **IT-2** | §268 assertion E-2 pinned a literal schema version, so it failed against a readiness endpoint that was answering correctly. | P2 | — | Engineering | **CLOSED §299** |
-| **HZ-6** | The Expert execution record cannot state which model produced a safety analysis, or how long it took. | P2 | C | Engineering | **OPEN §298** |
+| **HZ-6** | The Expert execution record cannot state which model produced a safety analysis, or how long it took. | P2 | — | Engineering | **CLOSED §300** |
 | **HZ-7** | A finding finalized from an Expert-cited review carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard. | P2 | C | Product | **OPEN §298** |
 | **HZ-8** | At a workspace analysis ceiling of N, an idempotent replay of a completed Expert request is refused by the ceiling instead of resolving to the execution that already ran. | P3 | — | Engineering | **OPEN §298** |
 | **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **CLOSED §300** |

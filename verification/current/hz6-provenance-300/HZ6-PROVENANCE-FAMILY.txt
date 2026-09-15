@@ -1,0 +1,51 @@
+
+> safety-insite-backend@1.0.0 test:300-provider-provenance
+> ts-node scripts/test-300-provider-provenance.ts
+
+
+---- 1. a two-leg hosted execution records who answered and how long ----
+
+      {"respondedModel":"claude-sonnet-5","latencyMs":6000,"modelsDiverged":false}
+ok    respondedModel is the model the provider reported, not a configured default.
+ok    latencyMs is the total provider wall-clock across legs (4120 + 1880).
+ok    Agreeing legs are not reported as diverged.
+
+---- 2. when nothing was reported, nothing is invented ----
+
+      {"respondedModel":null,"latencyMs":null,"modelsDiverged":false}
+ok    A substituted deterministic transport yields NULL, never a model borrowed from configuration. This is the whole point of HZ-6: "the config says sonnet" is an inference, not a record.
+ok    And no latency is fabricated.
+ok    Nothing reported is not a divergence.
+ok    An execution that never reached a provider records nothing at all.
+
+---- 3. legs that disagree are both recorded ----
+
+      {"respondedModel":"FIRST_PASS=claude-sonnet-5|VERIFIER=claude-opus-5","latencyMs":6000,"modelsDiverged":true}
+ok    Divergence is flagged.
+ok    BOTH models are recorded rather than one silently winning. A safety analysis reviewed by a different build than produced it is exactly the fact an audit would want, and exactly the one a single-value column would hide.
+ok    The recorded value fits the column, so a divergence cannot fail the write.
+
+---- 4. the fold cannot invent a model ----
+
+ok    With a model name sitting in the environment, a leg that reported none still folds to NULL. The fold reads ONLY what legs reported — there is no path by which configuration reaches it.
+ok    A blank string from a provider is NOT RECORDED rather than stored as an empty model name.
+ok    A reported model with no measured latency records the model and leaves latency NULL — the two facts are independent and neither is implied by the other.
+ok    A leg that reported nothing neither erases the leg that did nor is counted as a divergence.
+ok    One silent leg is not a disagreement.
+
+---- 5. every existing transport still satisfies the seam ----
+
+ok    A transport that reports ONLY usage is still a valid reporter, so no existing deterministic test transport needed editing to keep working.
+ok    A transport that reports nothing is correctly not a reporter and yields NULL provenance.
+
+---- 6. the transport actually captures the model off the response ----
+
+ok    The stubbed leg succeeded, so the parsing path really ran.
+      {"inputTokens":1234,"outputTokens":56,"respondedModel":"claude-sonnet-5-20260101","latencyMs":1}
+ok    THE TRANSPORT CAPTURES THE PROVIDER-REPORTED MODEL. Before §300 this field was parsed and discarded with the rest of the envelope, which is why §298 had to reconstruct it.
+ok    And it measures the leg latency.
+ok    Token usage is unchanged — §268 accounting is not disturbed by the addition.
+ok    READING CLEARS IT, so a later leg cannot inherit this one's model or latency.
+ok    And what the transport captured is what the execution record would store.
+
+23 checks passed, 0 failed

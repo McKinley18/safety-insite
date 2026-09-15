@@ -1,0 +1,44 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_300_HZ6_PROVIDER_PROVENANCE",
+  "section": "300",
+  "generated": "2026-09-15T02:44:45Z",
+  "providerCalls": 0,
+  "expertAnalysesCreated": 0,
+  "spendUsd": 0.0,
+  "migrations": 0,
+  "registeredDefinition": "The Expert execution record cannot state which model produced a safety analysis, or how long it took.",
+  "rootCause": "CONFIRMED AT THE SOURCE, and it is NOT quite where the registered remediation assumed. expert-analysis-execution.service.ts wrote respondedModel as a literal null and never wrote latencyMs at all. The registered remediation said the value was already in hand at the seam because 'the adapter DOES capture the responding model'. That is true of anthropic-expert-provider.ts — WHICH IS A PROTECTED MODULE AND IS NOT WHAT PRODUCTION RUNS. Production runs HostedExpertSemanticTransport, which parsed the response envelope for `usage` and discarded `model` with the rest of it. So the value was not discarded at the product boundary; IT WAS NEVER CAPTURED. §300 asked for this difference to be reported.",
+  "differenceFromRegisteredAssumption": "The repair has to CAPTURE the model first and then carry it, rather than only carrying a value that already existed. The registered DEFECT is unchanged and correct; only its assumed mechanism moved.",
+  "migrationNeeded": false,
+  "whyNoMigration": "expert_analysis_executions already carries respondedModel (varchar 120, nullable) and latencyMs (integer, nullable). The columns were declared at §261 and never populated. Nothing about the schema changes, so the §300 migration boundary is not engaged.",
+  "constraintsRespected": {
+    "candidateIdentityUnchanged": "ExpertLegResponse was NOT modified. It lives in expert-hazlenz-analysis.ts, element 5 of the §259 candidate identity; adding a field would change the candidate. Verified: hazlenz:verify reports candidate identity PASS.",
+    "protectedModulesUntouched": "anthropic-expert-provider.ts — one of the 29 protected modules — was not opened. Verified: protected modules 29/29 present, 0 drift.",
+    "mechanism": "The §268 side channel, reused rather than reinvented: provenance travels BESIDE the response through ExpertLegUsageReporter, the same seam that already carries token usage and which exists precisely because the response type is frozen and the adapter is protected."
+  },
+  "repair": [
+    "HostedExpertSemanticTransport now reads `model` off the response envelope and measures the leg round trip, recording both beside the usage it already kept. Recorded even when the leg failed — a refused or truncated answer was still produced by a model.",
+    "ExpertLegUsageReporter carries respondedModel and latencyMs as OPTIONAL members, so every existing deterministic test transport still satisfies the interface without edit.",
+    "RecordingTransport keeps them per leg, alongside tokens.",
+    "foldExpertProvenance() folds them across legs, mirroring foldExpertUsage.",
+    "The execution record writes them on EVERY outcome — admitted, refused, unresolved and failed — via recordExecutionUsage, which already ran in a finally for exactly that reason.",
+    "The expert.provider.usage_recorded operational event carries them too, so an operator can see which model answered without opening the database."
+  ],
+  "divergenceHandling": "When legs report DIFFERENT models, both are recorded (FIRST_PASS=x|VERIFIER=y) and modelsDiverged is set, rather than one silently winning. A safety analysis reviewed by a different build than produced it is exactly the fact an audit would want and exactly the one a single-value column would hide.",
+  "historicalHonesty": {
+    "backfill": "NONE. No migration, no UPDATE, no script touches any existing row.",
+    "legacyRepresentation": "NULL, which already means NOT RECORDED. The §298 execution keeps its NULL respondedModel and NULL latencyMs, truthfully.",
+    "assertedNotAssumed": "The fold is asserted to return NULL even with a model name present in the environment — it reads ONLY what legs reported, and there is no path by which configuration reaches it. A blank string from a provider is NOT RECORDED rather than stored as an empty model name."
+  },
+  "tests": {
+    "suite": "backend/scripts/test-300-provider-provenance.ts — 23 checks, 0 failed, wired into hazlenz:test",
+    "theOneThatMatters": "Section 6 replaces global.fetch with a stub returning a provider-shaped envelope and runs the REAL HostedExpertSemanticTransport.send() on the real parsing path. It asserts the transport captures 'claude-sonnet-5-20260101' off the response, measures a latency, leaves token accounting untouched, and CLEARS on read so a later leg cannot inherit it. No network call, no credential, nothing billed.",
+    "coverage": "ordinary two-leg execution; nothing reported; no legs at all; diverging legs; configuration cannot leak in; blank model; model without latency; one silent leg; and the seam still accepting usage-only transports."
+  },
+  "sideEffectRepaired": {
+    "what": "test-299-expert-disagreement-compatibility.ts asserted that no Expert-path file had changed since d78150ed, measured against the MOVING worktree. HZ-6 legitimately changes Expert-path files, so it began failing on authorized work.",
+    "fix": "Pinned to the frozen §299 range d78150ed..317daba8. The §299 claim is historical and is now permanently checkable and exactly as strong as it was. THE LIVE HALF IS NOT WEAKENED: the vocabulary check and the 'something to contest' check still read current state, so a later change that removed a disagreement type still fails today.",
+    "sameLessonAs": "IT-2. A test pinned to a moving value asserts a moving claim."
+  },
+  "result": "CLOSED — CODE AND INTEGRATION PROVEN. The property that a LIVE provider execution records a non-null respondedModel has NOT been observed, because that needs a hosted Expert call and §300 authorises none. See the production-validation note."
+}

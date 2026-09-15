@@ -22,10 +22,10 @@
     "P3": 24,
     "thresholdA": 0,
     "thresholdB": 0,
-    "thresholdC": 21,
+    "thresholdC": 20,
     "byStatus": {
-      "CLOSED": 48,
-      "OPEN": 36,
+      "CLOSED": 49,
+      "OPEN": 35,
       "DEFERRED": 2,
       "BLOCKED": 4
     }
@@ -1531,19 +1531,19 @@
       "domain": "HAZLENZ",
       "id": "HZ-6",
       "description": "The Expert execution record cannot state which model produced a safety analysis, or how long it took.",
-      "currentState": "NEW AT §298. expert-analysis-execution.service.ts writes respondedModel as a literal null and providerId as the SEAM name ('hosted-expert-semantic-transport'), with the stated reason that the transport owns the vendor and the core must not invent one. latencyMs is never written and read NULL after a successful execution. The adapter DOES capture the responding model — anthropic-expert-provider.ts records telemetry.respondedModel and returns modelIdentity — so the value exists and is discarded at the product boundary. CONSEQUENCE: for the §298 analysis, vendor and model had to be established from the frozen envelope plus the absence of any production override plus the credential's model list plus cost arithmetic that reproduces the recorded costUsd at the published claude-sonnet-5 rates. That chain is sound but it is configuration-derived, not execution-derived, and it would not survive a model alias resolving to a different build.",
-      "evidence": "expert_analysis_executions row 7c14adbe…: providerId hosted-expert-semantic-transport, respondedModel NULL, latencyMs NULL. Source: expert-analysis-execution.service.ts lines 466-468; anthropic-expert-provider.ts lines 267, 340.",
+      "currentState": "NEW AT §298. expert-analysis-execution.service.ts writes respondedModel as a literal null and providerId as the SEAM name ('hosted-expert-semantic-transport'), with the stated reason that the transport owns the vendor and the core must not invent one. latencyMs is never written and read NULL after a successful execution. The adapter DOES capture the responding model — anthropic-expert-provider.ts records telemetry.respondedModel and returns modelIdentity — so the value exists and is discarded at the product boundary. CONSEQUENCE: for the §298 analysis, vendor and model had to be established from the frozen envelope plus the absence of any production override plus the credential's model list plus cost arithmetic that reproduces the recorded costUsd at the published claude-sonnet-5 rates. That chain is sound but it is configuration-derived, not execution-derived, and it would not survive a model alias resolving to a different build. §300 — REPAIRED, CODE AND INTEGRATION PROVEN. ONE CORRECTION TO THE REGISTERED MECHANISM: the remediation above assumed the value was already in hand because \"the adapter DOES capture the responding model\". That is true of anthropic-expert-provider.ts, WHICH IS A PROTECTED MODULE AND IS NOT WHAT PRODUCTION RUNS. Production runs HostedExpertSemanticTransport, which parsed the response envelope for usage and threw `model` away with the rest — so the value was not discarded at the product boundary, it was NEVER CAPTURED. The registered defect is unchanged and correct; only its assumed mechanism moved. NO MIGRATION WAS NEEDED: respondedModel (varchar 120) and latencyMs (integer) already exist on expert_analysis_executions and were simply never populated. THE REPAIR reuses the §268 side channel rather than inventing a second one — provenance travels beside the response through ExpertLegUsageReporter, because ExpertLegResponse is element 5 of the §259 candidate identity and the adapter is protected. The transport now reads `model` off the envelope and measures the leg round trip, recorded even on a failed leg; the fold mirrors foldExpertUsage; and the execution record is written on ALL FOUR outcomes via recordExecutionUsage, which already ran in a finally for that reason. Diverging legs are BOTH recorded with a modelsDiverged flag rather than one silently winning. HISTORICAL HONESTY: no backfill, no migration, no row touched — legacy executions keep NULL, which already means NOT RECORDED, and the fold is ASSERTED to return NULL even with a model name sitting in the environment, so there is no path by which configuration can become a record. TESTS: 23 checks, 0 failed, wired into hazlenz:test; the decisive one replaces global.fetch with a provider-shaped stub and runs the REAL transport parsing path, proving the capture with no network call, no credential and nothing billed. Candidate identity PASS and protected modules 29/29 after the change. NOT CLAIMED: that a LIVE provider execution has recorded a non-null respondedModel — that needs a hosted Expert call and §300 authorises none.",
+      "evidence": "verification/current/hz6-provenance-300/",
       "severity": "P2",
-      "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
+      "releaseConsequence": "DOES_NOT_BLOCK",
       "owner": "ENGINEERING",
-      "remediation": "Carry the model identity the adapter already has through the existing ExpertLegUsageReporter side channel — the same seam that carries token usage, and which exists precisely because the response type and the adapter are protected modules — and record latencyMs. The vendor-neutrality argument is preserved: the product records what the transport REPORTED, it does not name a vendor of its own.",
-      "retestRequirement": "A successful Expert execution records a non-null respondedModel equal to the value the provider returned, and a non-null latencyMs.",
-      "status": "OPEN",
+      "remediation": "DONE at §300 via the §268 side channel. No migration, no protected module, no candidate-identity change.",
+      "retestRequirement": "npm run test:300-provider-provenance (in hazlenz:test). The live half closes on the next legitimate hosted Expert execution.",
+      "status": "CLOSED",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
-      "blocksThresholdC": true,
+      "blocksThresholdC": false,
       "note": "Defensibility, not containment. Being unable to say which model produced a safety conclusion is a gap an external beta should not carry, and it is cheap to close.",
-      "lastUpdatedBy": "§298"
+      "lastUpdatedBy": "§300"
     },
     {
       "domain": "HAZLENZ",
