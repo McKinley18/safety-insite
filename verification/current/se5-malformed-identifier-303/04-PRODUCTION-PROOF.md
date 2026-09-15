@@ -2,7 +2,13 @@
 
 Backend `9242d157043cfab328c4d23cd3a7dcaf2804c635` on Render (`dep-daktbqjm8hqs73ekf2qg`), frontend
 the same SHA on Vercel (`dpl_EDDwufhSwuJ6HG1Ji2WsKsAB4XDh`, production target, aliased to
-`safety-insite.vercel.app`). `GET /health` read back the deployed commit **five consecutive times**
+`safety-insite.vercel.app`).
+
+**Production has since been redeployed to `e48a42f3`**, which adds one assertion to a test script
+under `backend/scripts/` — a directory `backend/tsconfig.json` does not compile into `dist`. A digest
+over the same file set minus `backend/scripts/` is `b74754f5…` at both commits, so **the artifact
+these proofs exercised is the artifact now running.** Said plainly rather than glossed: the matrix
+below ran on `9242d157`. `GET /health` read back the deployed commit **five consecutive times**
 before anything was created — §297's rule, and §301's OPS-2 lesson, both applied. Synthetic account
 credentials were written to disk **before** the account was created, not after.
 

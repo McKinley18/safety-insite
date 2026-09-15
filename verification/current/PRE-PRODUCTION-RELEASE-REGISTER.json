@@ -2,7 +2,7 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298, HZ-4/HZ-5 §299, HZ-9/HZ-6/HZ-7 §300, BI-4 §301, EN-3 §302, SE-5 §303",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "9242d157043cfab328c4d23cd3a7dcaf2804c635",
+  "candidateHead": "e48a42f3e58b18db4324fbf053622353251833b7",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -406,7 +406,7 @@
       "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
       "owner": "ENGINEERING",
       "remediation": "Validate the identifier shape before it reaches the query — a UUID pipe on the route parameter, returning 400 — or catch the driver error and return 404 so a malformed identifier is indistinguishable from an absent one. The second is the better default on a route that reads by id, because it also avoids confirming which identifiers are well-formed. Audit sibling routes that take an id path parameter: this route was probed, the others were not, and the same pattern is likely.",
-      "retestRequirement": "GET /files/<malformed> returns a contained 4xx and raises no operational event; a valid-but-absent id still returns 404. §303 DURABLE GATE: npm run test:303-malformed-identifier, wired into hazlenz:integration:inner and therefore into hazlenz:precommit. It was watched to FAIL before the repair (the pre-repair log is retained), so it is evidence and not decoration.",
+      "retestRequirement": "GET /files/<malformed> returns a contained 4xx and raises no operational event; a valid-but-absent id still returns 404. §303 DURABLE GATE: npm run test:303-malformed-identifier, wired into hazlenz:integration:inner and therefore into hazlenz:precommit. It was watched to FAIL before the repair (the pre-repair log is retained), so it is evidence and not decoration. 41 assertions, 0 failed. It measures the input-boundary claim in BOTH directions: with storage_objects renamed away, a VALID id returns 500 (genuine faults are not swallowed) and a MALFORMED id returns 400 (no query is issued before rejection, since any query at all would have failed).",
       "status": "CLOSED",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
@@ -1729,9 +1729,14 @@
   "candidateHeadPredecessor": "61828222ceef5f1ebcdce424e64ae3a4291032a8",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
-  "candidateProductSourceCommit": "9242d157043cfab328c4d23cd3a7dcaf2804c635",
-  "applicationSourceDigest": "20b59cc23f5d5b302749fdbc533a11cbbe04051272c2b61bc3dadb8ff60c9485",
+  "candidateProductSourceCommit": "e48a42f3e58b18db4324fbf053622353251833b7",
+  "applicationSourceDigest": "0f2edbaf6bd88faa8426b0ef2e7b47a1b68bd6b77981db026abcd884c8e57bb4",
   "applicationSourceDigestSuperseded": [
+    {
+      "digest": "20b59cc23f5d5b302749fdbc533a11cbbe04051272c2b61bc3dadb8ff60c9485",
+      "at": "9242d157043cfab328c4d23cd3a7dcaf2804c635",
+      "section": "§303 first deploy"
+    },
     {
       "digest": "51db8f96d76d8e2012f932b0ac74e2e460794dbe221143b586807b824475e7cd",
       "at": "61828222ceef5f1ebcdce424e64ae3a4291032a8",
@@ -1745,10 +1750,10 @@
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "9242d157043cfab328c4d23cd3a7dcaf2804c635",
-  "deployedAt": "§303 — backend dep-daktbqjm8hqs73ekf2qg (Render), frontend dpl_EDDwufhSwuJ6HG1Ji2WsKsAB4XDh (Vercel, production target, aliased to safety-insite.vercel.app). Schema 1800000023000 unchanged, 0 migrations.",
+  "deployedReleaseSha": "e48a42f3e58b18db4324fbf053622353251833b7",
+  "deployedAt": "§303 — backend dep-daktgprl550s73ar0cm0 (Render), frontend dpl_FHtb9sagDZP1TVUth5XAbV4uXHnk (Vercel, production target). Schema 1800000023000 unchanged, 0 migrations. HEAD and both deployed halves carry the SAME sha and the SAME applicationSourceDigest — no false-positive footnote is needed this section.",
   "schemaHead": "1800000023000",
-  "applicationSourceDigestNote": "§303 (SE-5). DEPLOYED at §303 on both halves and read back from the live product: GET /health reports gitCommit 9242d157043cfab328c4d23cd3a7dcaf2804c635, five consecutive stable reads before any proof data was created.",
+  "applicationSourceDigestNote": "§303 (SE-5). DEPLOYED at §303 and read back from the live product: GET /health reports gitCommit e48a42f3e58b18db4324fbf053622353251833b7, five consecutive stable reads. NOTE ON THE LIVE PROOF, STATED PRECISELY: the authenticated production proof matrix was executed against 9242d157, the first §303 deploy. e48a42f3 adds ONE assertion to a test script under backend/scripts/, which backend/tsconfig.json (include: src/**/*) does not compile into dist. A digest over the same file set MINUS backend/scripts/ is b74754f5d8c00cf3f2779ed2c505ea0455c2b0f29b6fd3a3f85ed3235dc263cc at BOTH commits — the running artifact is identical. The redeploy happened anyway so that HEAD and production carry one binding rather than an explained divergence.",
   "artifactOnlyDigestDiagnostic": {
     "value": "fa0330d9d74e58299cb66996b3e86b1c70673a4e822b725db6d909a8dadc51c7",
     "previousValue": "5fb47c7f5ae5f9b93693dbae046a1a5e2cf3c87ccf3cf87cd30b4fcdadd263c6",

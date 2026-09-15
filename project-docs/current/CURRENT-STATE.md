@@ -25,9 +25,10 @@
 > it fails closed. The fix is a **migration**, which §303 did not authorize. Attaching a UUID pipe to
 > `:token` would have hidden a dead feature behind a 400.
 >
-> **Deployed at §303 and proven live.** Both halves run `9242d157…` — backend
-> `dep-daktbqjm8hqs73ekf2qg`, frontend `dpl_EDDwufhSwuJ6HG1Ji2WsKsAB4XDh`, schema unchanged, **0
-> migrations**. `GET /health` was read back five consecutive times before anything was created.
+> **Deployed at §303 and proven live.** Both halves run `e48a42f3…` — backend
+> `dep-daktgprl550s73ar0cm0`, frontend `dpl_FHtb9sagDZP1TVUth5XAbV4uXHnk`, schema unchanged, **0
+> migrations**. The proof matrix ran against `9242d157`, whose compiled artifact is byte-identical:
+> the only later change is one assertion in a `backend/scripts/` test that `dist` never contains. `GET /health` was read back five consecutive times before anything was created.
 > Authenticated in production: all eight affected routes **400** with no SQL, no schema and no echo
 > of the input; unauthenticated malformed still **401**; valid-but-absent still **404**; a real site
 > round-trips **200**; and `serverErrorsInWindow` stayed **0** with **no alert raised**, because no

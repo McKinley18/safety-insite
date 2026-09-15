@@ -49,7 +49,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `20b59cc23f5d5b302749fdbc533a11cbbe04051272c2b61bc3dadb8ff60c9485` — **§303 (SE-5), DEPLOYED at §303 on both halves and read back from the live product.** |
+| **Release binding** | `applicationSourceDigest` = `0f2edbaf6bd88faa8426b0ef2e7b47a1b68bd6b77981db026abcd884c8e57bb4` — **§303 (SE-5), DEPLOYED at §303 on both halves and read back from the live product. HEAD and production carry the same binding.** |
+| Superseded binding | `20b59cc2…` at `9242d157…` — §303's first deploy |
 | Superseded binding | `51db8f96…` at `61828222…` — §302 EN-3 |
 | Superseded binding | `6d3e86ba…` at `de00f896…` — §301 BI-4 |
 | Superseded binding | `84a02553…` at `2170a6ba…` — §300 HZ-6 + HZ-7 |
@@ -58,7 +59,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `9242d157043cfab328c4d23cd3a7dcaf2804c635` — live on **both halves** since §303 (backend `dep-daktbqjm8hqs73ekf2qg`, frontend `dpl_EDDwufhSwuJ6HG1Ji2WsKsAB4XDh`, production target aliased to `safety-insite.vercel.app`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| **Deployed release SHA** | `e48a42f3e58b18db4324fbf053622353251833b7` — live on **both halves** since §303 (backend `dep-daktgprl550s73ar0cm0`, frontend `dpl_FHtb9sagDZP1TVUth5XAbV4uXHnk`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| Predecessor deployed SHA | `9242d157043cfab328c4d23cd3a7dcaf2804c635` — §303's first deploy |
 | Predecessor deployed SHA | `61828222ceef5f1ebcdce424e64ae3a4291032a8` — §302 |
 | Predecessor deployed SHA | `de00f896f87037ffb550d35e8ef134ad02ef34e7` — §301 |
 | Predecessor deployed SHA | `2170a6ba6496d4673b54e68c2b738d89d7e4707f` — §300 |
@@ -1799,6 +1801,15 @@ different layer and it is not evidence about this repair. The application-level 
 metacharacters rests on `a'b`, `;drop` and `1--2`, which *do* reach the application and return the
 product's 400 — and on the disposable-database suite, which drives the full string with no edge in
 the path.
+
+### A note on which commit the live proof ran against, stated precisely
+
+The authenticated production proof matrix was executed against `9242d157`, §303's first deploy.
+`e48a42f3` adds **one assertion to a test script** under `backend/scripts/`, which
+`backend/tsconfig.json` (`include: ["src/**/*"]`) does not compile into `dist`. A digest over the
+same file set **minus** `backend/scripts/` is `b74754f5…` at **both** commits — the running artifact
+is identical. The redeploy happened anyway, so HEAD and production carry **one binding** rather than
+a divergence that has to be explained every time someone reads the table.
 
 ### `SE-6` — the defect that the restraint found
 
