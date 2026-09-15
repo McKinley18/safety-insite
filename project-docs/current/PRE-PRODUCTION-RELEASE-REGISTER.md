@@ -30,12 +30,14 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `4078a5522c33cc81dc7473d905d40e11a5a56d55fdb63d43333ff939e268d912` — **§300, DEPLOYED at §300 on both halves.** |
+| **Release binding** | `applicationSourceDigest` = `84a025531a56da98adb48e1a0d44ad7afe43e824f482715f3041fb9a521a5e32` — **§300 (HZ-6 + HZ-7), DEPLOYED at §300 on both halves.** |
+| Superseded binding | `4078a552…` at `359198f0…` — the §300 HZ-10 repair |
 | Superseded binding | `95c9e343…` at `317daba8…` — the §299 HZ-4/HZ-5 repair, live from §299 to §300 |
 | Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `359198f0c24abf595fc6464901e4eba0d0ffb122` — live on **both halves** since §300 (backend `dep-dakargvqj5pc73ag7lgg`, frontend `dpl_CzfkxmWDeVAmbdyFmWqacAHNtfKu`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| **Deployed release SHA** | `2170a6ba6496d4673b54e68c2b738d89d7e4707f` — live on **both halves** since §300 (backend `dep-dakb8lrm8hqs73dvj99g`, frontend `dpl_3YTi2MmhNihrxYqWuvGhEqYJWn7D`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| Predecessor deployed SHA | `359198f0c24abf595fc6464901e4eba0d0ffb122` — the HZ-10 repair |
 | Predecessor deployed SHA | `317daba88e7ef8c117a2997b6347dae830e8823a` — live from §299 to §300 |
 | Predecessor deployed SHA | `87491ed96f6f09de3de5800fc0a472e20d120413` — live from §295 to §299 |
 
@@ -712,6 +714,50 @@ on the core feature.** No customer is affected today: the variable was empty in 
 §300 and is empty again after it.
 
 **§300's Phase-2 gate holds.** Phase 1 did not pass, so `HZ-6` and `HZ-7` were not started.
+
+**`HZ-6` and `HZ-7` — CLOSED at §300, deployed, and each with its limit stated.**
+
+**`HZ-6`.** One correction to the registered mechanism, which §300 asked for: the remediation
+assumed the value was already in hand because *"the adapter DOES capture the responding model"*.
+That is true of `anthropic-expert-provider.ts` — **a protected module, and not what production
+runs**. Production runs `HostedExpertSemanticTransport`, which parsed the envelope for `usage` and
+threw `model` away with it. The value was not discarded at the product boundary; **it was never
+captured**. **No migration was needed** — `respondedModel` and `latencyMs` already exist on
+`expert_analysis_executions` and were simply never populated.
+
+The repair **reuses the §268 side channel** rather than inventing a second one, because
+`ExpertLegResponse` is element 5 of the §259 candidate identity and the adapter is protected — which
+is precisely why that channel exists. Recorded on **all four outcomes**, and legs that report
+different models are **both** recorded with a `modelsDiverged` flag rather than one silently
+winning. **Historical honesty is asserted, not assumed:** no backfill, no migration, no row touched;
+legacy executions keep `NULL`, and the fold is tested to return `NULL` **even with a model name
+sitting in the environment**. The decisive test stubs `global.fetch` and runs the real transport
+parsing path — no network call, no credential, nothing billed. **Not claimed:** that a live provider
+execution has recorded a non-null `respondedModel`. That needs a hosted Expert call and §300
+authorises none. **CODE AND INTEGRATION PROVEN; LIVE PROVIDER EXECUTION NOT PROVEN.**
+
+**`HZ-7`.** The trace first. The provider carries no severity by contract, admission rates nothing,
+settlement settles the conclusion, and **the report was never the defect** — it printed "Not rated",
+counted it in the summary and invented nothing. The defect is that `riskSnapshot` was `NULL` either
+way, so **nothing distinguished "a reviewer could not rate it yet" from "the workflow never asked"**.
+
+Risk authority, named: `computeFindingRisk` is governed but keyed to a **deterministic decomposition
+hazard**, which an Expert candidate is not; `withReviewerConfirmedRisk` is the human authority and
+already worked; **Expert has none, and gains none here.** So a finalization that would otherwise
+produce a finding rated by nobody must now carry a `riskAssessment` **or** a `ratingDeferred` with a
+reason. **NOT ESTABLISHED remains reachable — only the silent version is gone.**
+
+**The customer-facing output is byte-identical**, and that is the strongest claim:
+`resolveEffectiveSeverity` — the same resolver the report, the executive summary and the completion
+gate use — returns an **identical object** for a `NULL` snapshot and for a deferral-only snapshot.
+The new record is additional, not substitutional.
+
+**The rule is deliberately not Expert-specific.** A finding reaching the report rated by nobody is
+the same problem whatever produced it, and §268's `H-3` proved the deterministic
+create-at-finalization path exists. **Ordering is load-bearing:** placed before the §265 authority
+gate, the risk gate turned an authority refusal into a 400 about risk — the right refusal for the
+wrong reason. §265's `L-1`/`L-2` caught it. §265 asks *may this be asserted*; §300 asks *what does
+anyone say about its risk*; authority comes first.
 
 **HZ-6 — which model answered is not on the record.** `respondedModel` is written as a literal
 `null` and `providerId` records the seam (`hosted-expert-semantic-transport`), with the stated

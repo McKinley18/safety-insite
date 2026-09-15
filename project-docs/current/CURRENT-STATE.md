@@ -1,5 +1,25 @@
 # Safety InSite — current state
 
+> ### §300 COMPLETE — HZ-9, HZ-10, HZ-6 AND HZ-7 ALL CLOSED AND DEPLOYED
+>
+> Deployed at `2170a6ba` on both halves. **0 provider calls, 0 Expert analyses, 0 migrations, $0.**
+> Schema unchanged at `1800000023000` (55/55). Expert stays enabled at 1 analysis / USD 1.00 per
+> workspace per 24 h. New release binding `applicationSourceDigest` `84a02553…`.
+>
+> **`HZ-6`** — the execution record now says which model answered and how long it took, captured
+> from the provider's own response rather than inferred from configuration. No migration (the
+> columns already existed), no protected module touched, no candidate-identity change. Legacy rows
+> keep `NULL`, which means NOT RECORDED, and the fold is tested to refuse to invent a model even
+> with one sitting in the environment. **Code and integration proven; a live provider execution has
+> not been observed and that is stated rather than implied.**
+>
+> **`HZ-7`** — a finalization that would produce a finding rated by nobody must now carry a rating
+> or an explicit attributed deferral. NOT ESTABLISHED stays reachable; only the silent version is
+> gone. The report, the executive summary and the completion gate are **byte-identical** — the
+> deferral is invisible to the resolver they all use.
+>
+> **`BI-4` remains open**: the employer-pro promo is inert. Latent, not live.
+
 > ### HZ-9 AND HZ-10 CLOSED — §300
 >
 > **The live HZ-9 proof found a second copy of the bare-negation defect, and §300 repaired it.**

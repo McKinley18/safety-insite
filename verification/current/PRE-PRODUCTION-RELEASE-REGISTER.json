@@ -2,11 +2,11 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "359198f0c24abf595fc6464901e4eba0d0ffb122",
+  "candidateHead": "2170a6ba6496d4673b54e68c2b738d89d7e4707f",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§300 — HZ-9, HZ-10, HZ-6 and HZ-7 CLOSED; BI-4 open. HZ-6/HZ-7 pending deployment.",
+  "asOf": "§300 COMPLETE — HZ-9, HZ-10, HZ-6 and HZ-7 CLOSED and deployed; BI-4 open.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events.",
   "thresholds": {
@@ -1658,15 +1658,16 @@
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
   "candidateProductSourceCommit": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
-  "applicationSourceDigest": "4078a5522c33cc81dc7473d905d40e11a5a56d55fdb63d43333ff939e268d912",
+  "applicationSourceDigest": "84a025531a56da98adb48e1a0d44ad7afe43e824f482715f3041fb9a521a5e32",
   "applicationSourceDigestSuperseded": [
+    "4078a5522c33cc81dc7473d905d40e11a5a56d55fdb63d43333ff939e268d912",
     "95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613",
     "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "359198f0c24abf595fc6464901e4eba0d0ffb122",
-  "deployedAt": "§300 — backend dep-dakargvqj5pc73ag7lgg, frontend dpl_CzfkxmWDeVAmbdyFmWqacAHNtfKu, both at 359198f0. 0 migrations, schema unchanged at 1800000023000 (55/55).",
+  "deployedReleaseSha": "2170a6ba6496d4673b54e68c2b738d89d7e4707f",
+  "deployedAt": "§300 — backend dep-dakb8lrm8hqs73dvj99g, frontend dpl_3YTi2MmhNihrxYqWuvGhEqYJWn7D, both at 2170a6ba. 0 migrations, schema unchanged at 1800000023000 (55/55). Expert enabled at 1 analysis / USD 1.00, monitoring CONFIGURED, 0 unexpected 5xx, noindex/nofollow served, Render auto-deploy off.",
   "schemaHead": "1800000023000",
   "applicationSourceDigestNote": "DEPLOYED at §295 on both halves at 87491ed96f6f09de3de5800fc0a472e20d120413, binding 7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb. HEAD has moved past it twice since, both times without changing the deployed artifact, and both movements are recorded rather than reconciled by redeploying. §295 added an operator script under backend/scripts/, which is in the digest pattern but is excluded from the build by tsconfig (include src/**, rootDir ./src). §296 added a second operator script AND one npm script entry to backend/package.json, which IS a legitimate build input — so the narrower artifact-only digest moved too, from 5fb47c7f to fa0330d9. MEASURED, NOT ASSUMED: against the deployed commit, dependencies, devDependencies, engines, build:render and start:render are all IDENTICAL, and the only delta is one added scripts key (test:296-webhook-channel) that neither the build command nor the start command invokes. The deployed artifact would therefore be produced identically. NO REDEPLOY — spending a deployment to reconcile an npm script that only runs locally would be spending it on nothing. applicationSourceDigest remains THE binding and its definition is unchanged.",
   "artifactOnlyDigestDiagnostic": {
