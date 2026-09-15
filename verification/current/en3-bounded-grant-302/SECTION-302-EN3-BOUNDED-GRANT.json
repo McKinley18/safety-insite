@@ -1,0 +1,106 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_302_EN3_BOUNDED_PROMOTIONAL_GRANT",
+  "section": "302",
+  "generated": "2026-09-15T23:01:04Z",
+  "providerCalls": 0,
+  "expertExecutions": 0,
+  "spendUsd": 0.0,
+  "migrations": 0,
+  "rootCause": "A promo code wrote planCode='pro' and subscriptionStatus='active' onto the user row. That representation CANNOT EXPIRE (a user row has no endsAt), CANNOT BE REVOKED (emptying the allowlist stops new promotions and downgrades nobody; no product route lowers a planCode), and LIES ABOUT BILLING (an account that never paid asserts an active subscription). §301's cleanup had to DELETE accounts to remove entitlement, which is not available for a real pilot customer.",
+  "previousRepresentation": "user.planCode = 'pro', user.subscriptionStatus = 'active'. Permanent, unrevocable, and indistinguishable from a purchase.",
+  "newRepresentation": "A row in entitlement_grants: source 'pilot', tier 'pro', status 'active', startsAt/endsAt, issuedByUserId NULL, reason carrying provenance. The user row stays free/none.",
+  "grantAuthority": "SERVER. buildPromotionalGrant is handed the id of the account just created and nothing from the request. The module reads no dto field, has no request-shaped input, takes source and tier from module constants, and takes the duration from server environment.",
+  "grantScope": "The single account the server just created, by userId. The resolver and the entitlement guard both look grants up by the authenticated user id, so one account's grant cannot authorize another.",
+  "grantDuration": "7 days by default.",
+  "durationAuthority": {
+    "existingProductDuration": "NONE. §302 asked first, and the only duration rule anywhere is the admin route's ceiling of 90 days for HUMAN-ISSUED operational grants — a maximum for a support action, not an intended promotional term. Borrowing it would have been reading a limit as a recommendation.",
+    "chosen": "7 days, the conservative default §302 directs when none exists.",
+    "configurable": "PROMOTIONAL_GRANT_DAYS, server environment only.",
+    "ceiling": "30 days, which §302 forbids exceeding without a product-owner decision. A configured value above it is CLAMPED and reports that it was clamped, so a misconfiguration cannot silently become a year-long promotion.",
+    "invalidInput": "Anything unparseable, zero or negative falls back to the default rather than producing an already-expired or infinite grant.",
+    "persisted": "The resolved expiry is written into the grant's endsAt."
+  },
+  "grantProvenance": "source, tier, startsAt, endsAt, status, and a reason naming the mechanism, the duration and how that duration was resolved. A promotional_entitlement_granted security audit event records the same, plus durationDays and durationSource. NO SECRET: the promo code is never written into the grant, the audit, or the registration response.",
+  "revocationMechanism": "Two, both product-controlled and neither requiring account deletion: EXPIRY (endsAt passes; the resolver selects only grants with endsAt in the future) and REVOCATION (status set to revoked, via the existing DELETE /admin/entitlement-grants/:id route for a platform administrator).",
+  "reauthorization": "The promo applies ONLY at registration, and buildPromotionalGrant is invoked from exactly one place. An existing account cannot re-present it: a repeat registration on the same email is refused 400 before anything is created. Measured — after a repeat attempt the account still has EXACTLY ONE grant and its expiry is unchanged. There is therefore no self-service perpetual-renewal path.",
+  "permanentAccountBillingStateDuringPromo": "free / none. Nothing was purchased and the record says so, which is the §302 requirement that analytics, billing UI and subscription records must not claim a purchase that did not happen.",
+  "effectiveEntitlementDuringPromo": "pro, resolved by the canonical resolver from the active grant, and reported separately in the registration response as promotionalEntitlement with basis 'bounded_entitlement_grant'.",
+  "staleSessionRepair": {
+    "why": "EN-3 is about making promotional entitlement REVOCABLE. §301 measured that a token minted while a grant was active kept working after the grant was revoked, because EntitlementService.hasFeature answered from the JWT tier claim before it reached the grant lookup. A revocation that waits for a token to expire is not a revocation, so §302's deliverable would have been hollow without this.",
+    "repair": "The session now records HOW its tier was reached (entitlementBasis, minted by the server). A grant-derived session declines to answer from the claim and lets the live grant lookup decide.",
+    "notWidened": "Organization-seat plans are carried purely on the JWT and have no row to check against; they are unchanged. Tokens minted before §302 carry no basis and keep the previous path, so the change cannot retroactively lock out a live session.",
+    "closes": "EN-2, for grant-derived authority."
+  },
+  "defectFoundByTheSuite": "The basis initially asked 'is there a subscription row?' before 'did the grant supply this tier?', so a cancelled subscription beside an active grant reported basis 'subscription' — naming where the ROW is rather than where the AUTHORITY is. Behaviour was correct either way (a cancelled subscription resolves free and the grant lookup then decides), but a basis that misnames its own source is a record nobody can audit. Caught by integration case L-3 and fixed.",
+  "tests": {
+    "gates": "test-302-promotional-grant.ts — 45 checks, in hazlenz:test. Includes all ten §302 security gates, most as SOURCE assertions because 'the caller cannot choose the duration' is a claim about which code paths exist and a behavioural test can only sample the requests someone thought to send.",
+    "integration": "test-302-promotional-grant-integration.ts — 41 checks, in hazlenz:integration:test, against a disposable test_* database with DEV_AUTH_BYPASS refused. Cases A-N.",
+    "headlineAssertions": "I-2: the grant is revoked, THE ACCOUNT STILL LOGS IN, and resolves free — entitlement removed without deleting the account. J-1: the token issued BEFORE revocation is refused AFTER it, with no new login; §301 measured 201 here."
+  },
+  "section301Regression": {
+    "deadFallbackStillAbsent": true,
+    "callerSuppliedPlanStillInert": true,
+    "strengthened": "The §301 guard asserted `const planCode = employerProPromoApplied ? 'pro' : 'free'` — one expression with one server-configured non-free branch. §302 REMOVED the branch, so the account tier at registration is now UNCONDITIONALLY free. The guard was moved to the new, stronger form rather than relaxed: there is no branch at all by which registration can promote an account row.",
+    "historicalReproductionRetargeted": "The §301 BI-4 reproduction used the live account row. §302 no longer produces that shape, so the reproduction now uses a literal pre-§302 row — which is what every account promoted before §302 actually looks like, and what the resolver must still handle for them."
+  },
+  "deployment": {
+    "backend": "dep-dakspd61egvs73bp6fvg, api-pinned to 61828222, status live",
+    "frontend": "dpl_EDeigrCvLxS3mttyhL2p6d2AGFiz, READY, metaGithubCommitSha 61828222",
+    "productionShaBefore": "de00f896f87037ffb550d35e8ef134ad02ef34e7",
+    "productionShaAfter": "61828222ceef5f1ebcdce424e64ae3a4291032a8",
+    "applicationSourceDigestBefore": "6d3e86baef948711a4e464acba2a2742041a078bfbd7be9ada0ef4c4c148890a",
+    "applicationSourceDigestAfter": "51db8f96d76d8e2012f932b0ac74e2e460794dbe221143b586807b824475e7cd",
+    "migrations": 0,
+    "schema": "1800000023000, 55/55, aheadOfBuild [] — unchanged",
+    "renderAutoDeploy": "no / off",
+    "expert": "true, 1 / USD 1.00 — untouched",
+    "monitoring": "CONFIGURED, webhook, 0 server errors",
+    "noindexNofollow": "noindex, nofollow",
+    "unexpected5xx": "none"
+  },
+  "ops2Prevention": {
+    "theProbe": "A NON-MUTATING discriminator. register() checks the promo code BEFORE the agreement requirement and BEFORE any write, so sending the code with acceptedAgreements deliberately omitted returns either 'Invalid promo code' (the code is NOT on the serving instance) or 'Acceptance of ... is required' (the code PASSED the promo gate). Both refusals happen before the account is created, so THE PROBE'S SUCCESS PATH WRITES NOTHING — which is precisely the property §301's read-back lacked.",
+    "beforeCreatingTheAccount": "Polled until the answer was PROMO_LIVE on five CONSECUTIVE probes, so a single sample against one instance of a rolling deploy could not be mistaken for the whole fleet.",
+    "beforeTestingRemoval": "Polled again until PROMO_ABSENT was stable across five consecutive probes.",
+    "mixedVersionServingObserved": false,
+    "ops2Recurrence": "NONE. No orphan was created; every probe was refused before any write."
+  },
+  "liveProductionProof": {
+    "configuration": "EMPLOYER_PRO_PROMO_CODES set to a 53-character random one-off value and PROMOTIONAL_GRANT_DAYS set to 0.003 (~259 seconds) so EXPIRY could be exercised inside the proof window. Both by per-key PUT: 43 -> 45 keys, nothing else added, removed or changed, the three Expert keys byte-identical. The DEFAULT duration in code remains 7 days.",
+    "account": "section302-en3-pilot@release-test.invalid, userId a12b08c5-3138-460e-aeab-9122338b1236. ONE synthetic account, created through the public registration route.",
+    "registration": {
+      "status": 201,
+      "accountPlanCode": "free — THE BILLING STATE IS TRUTHFUL; nothing was purchased",
+      "promoApplied": true,
+      "promotionalEntitlement": "{tier: pro, source: pilot, expiresAt: 2026-09-15T23:04:09.627Z, basis: bounded_entitlement_grant} — reported SEPARATELY from billing state"
+    },
+    "whileTheGrantWasActive": {
+      "freshLoginPlanCode": "pro",
+      "entitlementBasis": "grant",
+      "fullSafeScope": true,
+      "classify": "HTTP 201 — a real deterministic analysis, six applicabilityDecisions, riskBand Critical"
+    },
+    "afterExpiry": {
+      "mechanism": "EXPIRY — product-controlled, requiring no database write, no platform-admin operation and no account deletion. The resolver selects only grants whose endsAt is in the future, so the window closing is itself the removal.",
+      "tokenIssuedInsideTheWindow": "classify 402 — refused after expiry WITHOUT a new login",
+      "accountStillLogsIn": "HTTP 201 — THE ACCOUNT SURVIVES",
+      "freshSession": "planCode free, entitlementBasis none, fullSafeScope false",
+      "classify": "402 PAID_SUBSCRIPTION_REQUIRED",
+      "significance": "THIS IS THE PROPERTY §302 EXISTS TO ESTABLISH. At §301 the only way to remove promotional entitlement was to delete the account. Here the entitlement is gone and the account is intact and usable."
+    },
+    "directProductionDatabaseWrites": 0,
+    "commercialCharges": 0,
+    "platformAdminOperations": 0,
+    "expertExecutions": 0,
+    "providerCalls": 0,
+    "spendUsd": 0.0
+  },
+  "cleanup": {
+    "promoRemoved": "Both EMPLOYER_PRO_PROMO_CODES and PROMOTIONAL_GRANT_DAYS deleted (204 each), the identical artifact redeployed, and the removal confirmed by five consecutive PROMO_ABSENT probes on the serving instance.",
+    "environmentRestored": "BYTE-IDENTICAL to the §302 starting configuration: 43 keys, 0 added, 0 removed, 0 changed.",
+    "temporaryEntitlement": "EXPIRED through the product's own bound. No revocation call was needed and none was made.",
+    "syntheticAccount": "LEFT IN PLACE, which §302 expressly permits when harmless and useful for preserved evidence. It is free-tier with entitlementBasis 'none' and no capability — verified after cleanup — and it is the account that demonstrates entitlement removal WITHOUT deletion, so deleting it would destroy the subject of the proof.",
+    "reusablePrivilegedAccess": "NONE. The promo allowlist is empty, the grant is expired, and the account holds nothing.",
+    "directDatabaseCleanup": "NONE REQUIRED AND NONE PERFORMED."
+  }
+}

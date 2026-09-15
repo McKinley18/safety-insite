@@ -2,11 +2,11 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "de00f896f87037ffb550d35e8ef134ad02ef34e7",
+  "candidateHead": "61828222ceef5f1ebcdce424e64ae3a4291032a8",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§301 — BI-4 CLOSED and proven live; EN-2, EN-3 and OPS-2 opened.",
+  "asOf": "§302 — EN-3 CLOSED and proven live; EN-2 narrowed; OPS-2 open.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events.",
   "thresholds": {
@@ -22,10 +22,10 @@
     "P3": 26,
     "thresholdA": 0,
     "thresholdB": 0,
-    "thresholdC": 19,
+    "thresholdC": 18,
     "byStatus": {
-      "CLOSED": 51,
-      "OPEN": 36,
+      "CLOSED": 52,
+      "OPEN": 35,
       "DEFERRED": 2,
       "BLOCKED": 4
     }
@@ -714,37 +714,37 @@
       "domain": "ENTITLEMENTS",
       "id": "EN-2",
       "description": "Revoking an entitlement grant does not take effect for a session that was already issued: EntitlementService.hasFeature returns on the JWT tier claim before it reaches the grant lookup, so an existing access token retains paid capability until it expires.",
-      "currentState": "FOUND AT §301 WHILE PROVING BI-4, AND MEASURED RATHER THAN INFERRED. With no UserSubscription row, hasFeature takes its else-branch and returns TRUE on normalizeBillingTier(user.planCode) from the JWT — which, for a grant-entitled account, the server itself minted as \"pro\" because getBillingStatus applied the grant at login. The grant lookup further down is never reached. MEASURED: a token minted before revocation still received HTTP 201 from POST /hazlenz/classify after the grant was set to revoked, while a FRESH login for the same account correctly resolved free and was refused 402. THIS IS RETENTION, NOT ESCALATION — the token cannot gain anything it was not issued with, tenant isolation is unaffected, and a fresh session always re-derives authority from server state. The window is bounded by JWT_EXPIRES_IN, which defaults to 15 minutes. CONSEQUENCE FOR OPERATIONS: revoking a grant is not an instant kill switch for live sessions, so any cleanup that must prove capability is gone has to verify with a FRESH login rather than by replaying the old token — which is what the §301 proofs do.",
+      "currentState": "FOUND AT §301 WHILE PROVING BI-4, AND MEASURED RATHER THAN INFERRED. With no UserSubscription row, hasFeature takes its else-branch and returns TRUE on normalizeBillingTier(user.planCode) from the JWT — which, for a grant-entitled account, the server itself minted as \"pro\" because getBillingStatus applied the grant at login. The grant lookup further down is never reached. MEASURED: a token minted before revocation still received HTTP 201 from POST /hazlenz/classify after the grant was set to revoked, while a FRESH login for the same account correctly resolved free and was refused 402. THIS IS RETENTION, NOT ESCALATION — the token cannot gain anything it was not issued with, tenant isolation is unaffected, and a fresh session always re-derives authority from server state. The window is bounded by JWT_EXPIRES_IN, which defaults to 15 minutes. CONSEQUENCE FOR OPERATIONS: revoking a grant is not an instant kill switch for live sessions, so any cleanup that must prove capability is gone has to verify with a FRESH login rather than by replaying the old token — which is what the §301 proofs do. §302 — CLOSED FOR GRANT-DERIVED AUTHORITY, which is the case EN-2 was measured on and the case EN-3 depends on. A revocation that waits for a token to expire would have made §302's bounded, revocable grant hollow, so the session now records HOW its tier was reached (entitlementBasis, minted by the server) and a grant-derived session declines to answer from the JWT claim, letting the live grant lookup decide. MEASURED: the §301 integration case that returned 201 on a pre-revocation token now returns 402, and §302 case J-1 asserts it directly. NOT WIDENED: organization-seat plans are carried purely on the JWT with no row to check against and are unchanged; tokens minted before §302 carry no basis and keep the previous path, so the change cannot retroactively lock out a live session. WHAT REMAINS OPEN is the same staleness for authority that is NOT grant-derived — an organization-seat claim still rides on the JWT for up to JWT_EXPIRES_IN (15 minutes by default) — which is the standard bearer-token trade-off and is now the whole of this entry.",
       "evidence": "verification/current/bi4-entitlement-301/BI4-INTEGRATION-CHAIN.txt, cases E-1 to E-4. Source: src/auth/entitlements/entitlement.service.ts hasFeature; src/auth/auth.module.ts expiresIn default 15m.",
       "severity": "P3",
       "releaseConsequence": "DOES_NOT_BLOCK",
       "owner": "ENGINEERING",
-      "remediation": "Decide deliberately rather than by default. Either accept the 15-minute window and say so, or make hasFeature consult the grant/subscription state before honouring the JWT tier claim — which costs a query on every gated request and is a performance decision, not only a security one. Do NOT shorten the token lifetime as a substitute; that trades a bounded window for a worse login experience without closing the mechanism.",
+      "remediation": "Grant-derived authority is done. For organization-seat claims, decide deliberately: accept the 15-minute window and say so, or have hasFeature consult live organization state before honouring the claim, which costs a query on every gated request.",
       "retestRequirement": "A token minted before revocation is refused by a gated route immediately after the grant is revoked.",
       "status": "OPEN",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
       "blocksThresholdC": false,
-      "note": "Registered, not repaired: §301 scope discipline permits repairing another defect only if it directly prevents a secure BI-4 repair, and this does not — BI-4 is proven with fresh sessions throughout. It is a standard bearer-token trade-off, named so it is a decision rather than an accident.",
-      "lastUpdatedBy": "§301"
+      "note": "Narrowed at §302 rather than closed. The half that mattered for revocability is repaired and proven; the remainder is a bearer-token trade-off on a different authority source.",
+      "lastUpdatedBy": "§302"
     },
     {
       "domain": "ENTITLEMENTS",
       "id": "EN-3",
       "description": "A promo-granted plan is PERMANENT and has no product-controlled revocation: it writes planCode/subscriptionStatus onto the user row, and removing the allowlist does not downgrade accounts already promoted.",
-      "currentState": "FOUND AT §301 WHILE PERFORMING THE REQUIRED CLEANUP. The two entitlement mechanisms are asymmetric. An entitlement_grant is bounded (startsAt/endsAt), revocable (status), attributed (issuedByUserId) and audited — §301 proved revocation removes capability from a fresh session. The PROMO path writes planCode=pro and subscriptionStatus=active directly onto the user row with NO expiry, NO status field of its own, and NO product route that lowers it: there is no downgrade endpoint, and DELETE /auth/me destroys the whole account rather than the entitlement. CONSEQUENCE: emptying EMPLOYER_PRO_PROMO_CODES stops NEW promotions but leaves every already-promoted account on pro indefinitely. §301 cleanup therefore had to delete the synthetic accounts rather than revoke their entitlement, which is a blunter instrument than the grant path offers and is not available at all for a real customer.",
-      "evidence": "verification/current/bi4-entitlement-301/SECTION-301-BI4-REPAIR.json; src/auth/auth.service.ts register (the only writer of user.planCode); the absence of any downgrade route in auth.controller.ts and billing.controller.ts.",
+      "currentState": "FOUND AT §301 WHILE PERFORMING THE REQUIRED CLEANUP. The two entitlement mechanisms are asymmetric. An entitlement_grant is bounded (startsAt/endsAt), revocable (status), attributed (issuedByUserId) and audited — §301 proved revocation removes capability from a fresh session. The PROMO path writes planCode=pro and subscriptionStatus=active directly onto the user row with NO expiry, NO status field of its own, and NO product route that lowers it: there is no downgrade endpoint, and DELETE /auth/me destroys the whole account rather than the entitlement. CONSEQUENCE: emptying EMPLOYER_PRO_PROMO_CODES stops NEW promotions but leaves every already-promoted account on pro indefinitely. §301 cleanup therefore had to delete the synthetic accounts rather than revoke their entitlement, which is a blunter instrument than the grant path offers and is not available at all for a real customer. §302 — REPAIRED. A promotion is now a BOUNDED ENTITLEMENT GRANT and the account row stays truthful. NO MIGRATION: entitlement_grants already carried everything needed, so §302 reuses it rather than inventing a fourth representation of what plan an account is on. THE CALLER DECIDES NOTHING: buildPromotionalGrant receives the id of the account just created and nothing from the request; the module reads no dto field, has no request-shaped input, takes source and tier from constants, and takes the duration from server environment. DURATION: the product defined none — the only rule anywhere was the admin route's 90-day CEILING for human-issued operational grants, which is a limit rather than a recommendation — so 7 days, configurable by PROMOTIONAL_GRANT_DAYS and CLAMPED at 30 because §302 forbids exceeding that without a product-owner decision; a value above the ceiling is clamped and says so, and anything unparseable, zero or negative falls back to the default rather than producing an already-expired or infinite grant. BILLING TRUTH: the account row records free/none, and the temporary capability is reported separately as promotionalEntitlement naming basis bounded_entitlement_grant, so nothing claims a purchase that did not happen. REAUTHORIZATION: the promo applies only at registration, is invoked from exactly one place, and a repeat registration on the same email is refused before anything is created — measured, the account still holds EXACTLY ONE grant with an unchanged expiry, so there is no self-service perpetual-renewal path. PROVENANCE WITHOUT SECRETS: source, tier, bounds and how the duration resolved are recorded in the grant and in a promotional_entitlement_granted audit event; the promo code appears in neither, nor in the registration response. PROVEN: 45 gate assertions and 41 integration assertions through the real HTTP path, the headline ones being that a revoked grant leaves THE ACCOUNT ABLE TO LOG IN while resolving free, and that a token issued BEFORE revocation is refused AFTER it without a new login. LIVE PRODUCTION PROOF COMPLETE. Deployed at 61828222 (backend dep-dakspd61egvs73bp6fvg, frontend dpl_EDeigrCvLxS3mttyhL2p6d2AGFiz), 0 migrations, schema unchanged. ONE synthetic account through the public registration route: the account row came back FREE while promotionalEntitlement reported tier pro expiring in ~259 seconds; a fresh login resolved pro with entitlementBasis grant and fullSafeScope true; and /hazlenz/classify returned 201 with a real analysis at riskBand Critical. AFTER THE GRANT EXPIRED — through the product's own bound, with no database write, no platform-admin operation and no account deletion — the token issued inside the window was refused 402 WITHOUT a new login, THE ACCOUNT STILL LOGGED IN, and its fresh session resolved free / basis none / fullSafeScope false with classify 402. That is the property this entry exists for: at §301 the only way to remove promotional entitlement was to delete the account. OPS-2 DID NOT RECUR: a non-mutating probe — the promo code sent with the agreement deliberately omitted, which the server refuses before any write either way — was polled to five consecutive stable answers before the account was created AND again before testing removal, so no orphan was possible. 0 direct production DB writes, 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. Environment restored byte-identical (43 keys); the synthetic account is left in place as §302 permits — free, no capability, and the subject of the proof.",
+      "evidence": "verification/current/en3-bounded-grant-302/",
       "severity": "P2",
-      "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
+      "releaseConsequence": "DOES_NOT_BLOCK",
       "owner": "PRODUCT",
-      "remediation": "A product decision. The smallest safe architecture is to make the promo ISSUE A BOUNDED entitlement_grant rather than write the user row — reusing the mechanism that is already bounded, revocable, attributed and audited, and leaving planCode to mean \"what the customer pays for\". That also gives pilot/internal entitlement a revocation path it currently lacks. Do NOT simply add a downgrade endpoint; that creates a second way to change entitlement without addressing why there are two representations.",
-      "retestRequirement": "A promo-authorized account can have its entitlement removed through a product-controlled mechanism, without deleting the account, and a fresh session then resolves free.",
-      "status": "OPEN",
+      "remediation": "DONE at §302. Promotions issue a bounded entitlement_grant; the account row is no longer written. No migration, no billing redesign.",
+      "retestRequirement": "npm run test:302-promotional-grant (in hazlenz:test) and test:302-promotional-grant-integration (in hazlenz:integration:test).",
+      "status": "CLOSED",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
-      "blocksThresholdC": true,
+      "blocksThresholdC": false,
       "note": "Registered, not repaired: §301 scope discipline permits repairing another defect only if it directly prevents a secure BI-4 repair. It does not — BI-4 is repaired and proven, and cleanup was completed by account deletion. It does mean the promo path is unsuitable as the long-term pilot/internal entitlement mechanism, which is the question §301 asked and this is the answer to it.",
-      "lastUpdatedBy": "§301"
+      "lastUpdatedBy": "§302"
     },
     {
       "domain": "APP / MOBILE FORMAT",
@@ -1353,7 +1353,7 @@
       "domain": "RELEASE / ROLLBACK",
       "id": "OPS-2",
       "description": "A Render deploy reports status \"live\" before the previous instance stops serving, so a configuration read-back taken immediately after can measure the OLD configuration.",
-      "currentState": "OBSERVED AT §301, AND IT PRODUCED A REAL SIDE EFFECT. The §297 rule is change -> deploy -> read the live configuration back. §301 removed EMPLOYER_PRO_PROMO_CODES, deployed, saw the deploy report status \"live\", and immediately registered an account with the removed code — which SUCCEEDED and was promoted, because the request reached an instance still holding the old environment. A second attempt shortly afterwards correctly returned 400 \"Invalid promo code\". The service record showed the variable absent throughout. CONSEQUENCE: that one read-back created a live pro account in production whose password was not retained, which had to be neutralized directly (see the §301 return). THE RULE IS NOT WRONG, THE READ-BACK IS: a single probe after \"live\" is not sufficient evidence that a configuration change has taken effect everywhere.",
+      "currentState": "OBSERVED AT §301, AND IT PRODUCED A REAL SIDE EFFECT. The §297 rule is change -> deploy -> read the live configuration back. §301 removed EMPLOYER_PRO_PROMO_CODES, deployed, saw the deploy report status \"live\", and immediately registered an account with the removed code — which SUCCEEDED and was promoted, because the request reached an instance still holding the old environment. A second attempt shortly afterwards correctly returned 400 \"Invalid promo code\". The service record showed the variable absent throughout. CONSEQUENCE: that one read-back created a live pro account in production whose password was not retained, which had to be neutralized directly (see the §301 return). THE RULE IS NOT WRONG, THE READ-BACK IS: a single probe after \"live\" is not sufficient evidence that a configuration change has taken effect everywhere. §302 DEMONSTRATED THE PREVENTION WITHOUT REPAIRING THE REGISTER ENTRY. The remediation this entry asks for — poll to a stable answer rather than sampling once, and never use a probe whose success path writes — was applied in practice: a NON-MUTATING discriminator (the promo code sent with the agreement deliberately omitted, which the server refuses before any write whichever way it goes) was polled to five consecutive identical answers before the synthetic account was created and again before testing the removal. No mixed-version serving was observed and no orphan was created. The entry stays OPEN because the practice has not been made a standing rule or a reusable helper; §302 scope discipline permitted repairing another defect only if it prevented a safe EN-3 proof, and following the practice was sufficient.",
       "evidence": "verification/current/bi4-entitlement-301/SECTION-301-BI4-REPAIR.json -> cleanup.rollingDeployWindow.",
       "severity": "P3",
       "releaseConsequence": "DOES_NOT_BLOCK",
@@ -1365,7 +1365,7 @@
       "blocksThresholdB": false,
       "blocksThresholdC": false,
       "note": "Recorded because it is a trap that will recur on every future configuration change, and because the §301 read-back is exactly the shape that is dangerous: a probe whose SUCCESS path creates production state.",
-      "lastUpdatedBy": "§301"
+      "lastUpdatedBy": "§302"
     },
     {
       "domain": "PRESERVATION / REBUILD",
@@ -1712,8 +1712,9 @@
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
   "candidateProductSourceCommit": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
-  "applicationSourceDigest": "6d3e86baef948711a4e464acba2a2742041a078bfbd7be9ada0ef4c4c148890a",
+  "applicationSourceDigest": "51db8f96d76d8e2012f932b0ac74e2e460794dbe221143b586807b824475e7cd",
   "applicationSourceDigestSuperseded": [
+    "6d3e86baef948711a4e464acba2a2742041a078bfbd7be9ada0ef4c4c148890a",
     "84a025531a56da98adb48e1a0d44ad7afe43e824f482715f3041fb9a521a5e32",
     "4078a5522c33cc81dc7473d905d40e11a5a56d55fdb63d43333ff939e268d912",
     "95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613",
@@ -1721,8 +1722,8 @@
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "de00f896f87037ffb550d35e8ef134ad02ef34e7",
-  "deployedAt": "§301 — backend dep-dakrge5bedkc73c8j8ig, frontend dpl_FSZcecTxYuXCfb63dDs8RP8is7h8, both at de00f896. 0 migrations, schema unchanged at 1800000023000 (55/55).",
+  "deployedReleaseSha": "61828222ceef5f1ebcdce424e64ae3a4291032a8",
+  "deployedAt": "§302 — backend dep-dakspd61egvs73bp6fvg, frontend dpl_EDeigrCvLxS3mttyhL2p6d2AGFiz, both at 61828222. 0 migrations, schema unchanged at 1800000023000 (55/55).",
   "schemaHead": "1800000023000",
   "applicationSourceDigestNote": "DEPLOYED at §295 on both halves at 87491ed96f6f09de3de5800fc0a472e20d120413, binding 7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb. HEAD has moved past it twice since, both times without changing the deployed artifact, and both movements are recorded rather than reconciled by redeploying. §295 added an operator script under backend/scripts/, which is in the digest pattern but is excluded from the build by tsconfig (include src/**, rootDir ./src). §296 added a second operator script AND one npm script entry to backend/package.json, which IS a legitimate build input — so the narrower artifact-only digest moved too, from 5fb47c7f to fa0330d9. MEASURED, NOT ASSUMED: against the deployed commit, dependencies, devDependencies, engines, build:render and start:render are all IDENTICAL, and the only delta is one added scripts key (test:296-webhook-channel) that neither the build command nor the start command invokes. The deployed artifact would therefore be produced identically. NO REDEPLOY — spending a deployment to reconcile an npm script that only runs locally would be spending it on nothing. applicationSourceDigest remains THE binding and its definition is unchanged.",
   "artifactOnlyDigestDiagnostic": {

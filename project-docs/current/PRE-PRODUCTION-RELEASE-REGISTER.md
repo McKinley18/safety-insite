@@ -30,14 +30,16 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `6d3e86baef948711a4e464acba2a2742041a078bfbd7be9ada0ef4c4c148890a` — **§301 (BI-4), DEPLOYED at §301 on both halves.** |
+| **Release binding** | `applicationSourceDigest` = `51db8f96d76d8e2012f932b0ac74e2e460794dbe221143b586807b824475e7cd` — **§302 (EN-3), DEPLOYED at §302 on both halves.** |
+| Superseded binding | `6d3e86ba…` at `de00f896…` — §301 BI-4 |
 | Superseded binding | `84a02553…` at `2170a6ba…` — §300 HZ-6 + HZ-7 |
 | Superseded binding | `4078a552…` at `359198f0…` — the §300 HZ-10 repair |
 | Superseded binding | `95c9e343…` at `317daba8…` — the §299 HZ-4/HZ-5 repair, live from §299 to §300 |
 | Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `de00f896f87037ffb550d35e8ef134ad02ef34e7` — live on **both halves** since §301 (backend `dep-dakrge5bedkc73c8j8ig`, frontend `dpl_FSZcecTxYuXCfb63dDs8RP8is7h8`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| **Deployed release SHA** | `61828222ceef5f1ebcdce424e64ae3a4291032a8` — live on **both halves** since §302 (backend `dep-dakspd61egvs73bp6fvg`, frontend `dpl_EDeigrCvLxS3mttyhL2p6d2AGFiz`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| Predecessor deployed SHA | `de00f896f87037ffb550d35e8ef134ad02ef34e7` — §301 |
 | Predecessor deployed SHA | `2170a6ba6496d4673b54e68c2b738d89d7e4707f` — §300 |
 | Predecessor deployed SHA | `359198f0c24abf595fc6464901e4eba0d0ffb122` — the HZ-10 repair |
 | Predecessor deployed SHA | `317daba88e7ef8c117a2997b6347dae830e8823a` — live from §299 to §300 |
@@ -312,8 +314,8 @@ are retained so a later section does not rediscover them as new.
 | **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **CLOSED §300** |
 | **HZ-10** | A **second, independent copy** of the bare-negation defect, in the display evidence boundary: "nobody"/"no one" anywhere in an observation zeroes the risk band and strips every standard. | **P0** | — | Engineering | **CLOSED §300** |
 | **BI-4** | The employer-pro promo code is inert: registration reports Pro and the next login resolves the account to Free with `fullSafeScope` false. | P2 | — | Engineering | **CLOSED §301** |
-| **EN-2** | Revoking a grant does not affect an already-issued token: `hasFeature` returns on the JWT tier claim before reaching the grant lookup, so capability persists until expiry (default 15 min). | P3 | — | Engineering | **OPEN §301** |
-| **EN-3** | A promo-granted plan is permanent and has no product-controlled revocation; emptying the allowlist stops new promotions but does not downgrade accounts already promoted. | P2 | C | Product | **OPEN §301** |
+| **EN-2** | Revoking a grant does not affect an already-issued token. **Closed for grant-derived authority at §302**; what remains is the same staleness for organization-seat claims. | P3 | — | Engineering | **OPEN — narrowed §302** |
+| **EN-3** | A promo-granted plan is permanent and has no product-controlled revocation; emptying the allowlist stops new promotions but does not downgrade accounts already promoted. | P2 | — | Product | **CLOSED §302** |
 | **OPS-2** | A Render deploy reports "live" before the old instance stops serving, so a configuration read-back taken immediately after can measure the OLD configuration. | P3 | — | Engineering | **OPEN §301** |
 
 **HZ-2 — CLOSED at §298.** `EXPERT_EXECUTION_ENABLED` was set to `true` through the approved

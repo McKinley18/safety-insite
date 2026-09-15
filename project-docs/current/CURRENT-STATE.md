@@ -1,5 +1,27 @@
 # Safety InSite — current state
 
+> ### §302 — EN-3 CLOSED: A PROMOTION IS NOW BOUNDED AND REVOCABLE
+>
+> **Removing promotional entitlement no longer means deleting the account.** A promo code now
+> issues a **bounded `entitlement_grant`** — pilot, pro, 7 days by default, configurable and
+> clamped at 30 — instead of writing a permanent `planCode: pro` onto the user row. The account row
+> stays `free/none`, because that is true: nothing was purchased. **No migration**; the grant table
+> already carried everything needed.
+>
+> **Proven live in production.** A single synthetic account registered free-with-a-grant, resolved
+> `pro` with `entitlementBasis: grant`, and reached `/hazlenz/classify` at **201**. When the grant
+> expired — the product's own bound, no DB write, no admin, no deletion — the token issued inside
+> the window was refused **402 without a new login**, **the account still logged in**, and its
+> fresh session resolved free with classify **402**.
+>
+> **`EN-2` is closed for grant-derived authority.** A revocation that waits for a token to expire
+> would have made a "revocable" grant hollow, so a grant-derived session now re-checks live state.
+> Organization-seat claims are unchanged and are what remains of EN-2.
+>
+> **`OPS-2` did not recur.** A non-mutating probe — one whose success path writes nothing — was
+> polled to five consecutive stable answers before the account was created and again before testing
+> removal. 0 direct production DB writes, 0 charges, 0 Expert executions, 0 provider calls, $0.
+
 > ### §301 — BI-4 CLOSED AND PROVEN LIVE
 >
 > **A granted plan now survives the next login, and a requested one still grants nothing.** The
