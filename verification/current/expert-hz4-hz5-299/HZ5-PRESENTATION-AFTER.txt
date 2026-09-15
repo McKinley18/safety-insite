@@ -1,0 +1,109 @@
+
+---- 1. every current server posture has intentional language ----
+
+ok    CONTINUE is in the presentation vocabulary.
+ok    CONTINUE does not render the unreadable fallback. (label: "Work may continue")
+ok    CONTINUE has a non-empty label.
+ok    CONTINUE restrictsWork=false.
+ok    CONTINUE_WITH_CONTROLS is in the presentation vocabulary.
+ok    CONTINUE_WITH_CONTROLS does not render the unreadable fallback. (label: "Continue only with the controls below in place")
+ok    CONTINUE_WITH_CONTROLS has a non-empty label.
+ok    CONTINUE_WITH_CONTROLS restrictsWork=false.
+ok    HOLD_PENDING_VERIFICATION is in the presentation vocabulary.
+ok    HOLD_PENDING_VERIFICATION does not render the unreadable fallback. (label: "Hold this work until the open question is resolved")
+ok    HOLD_PENDING_VERIFICATION has a non-empty label.
+ok    HOLD_PENDING_VERIFICATION restrictsWork=true.
+ok    STOP is in the presentation vocabulary.
+ok    STOP does not render the unreadable fallback. (label: "Stop this work now")
+ok    STOP has a non-empty label.
+ok    STOP restrictsWork=true.
+ok    The module's vocabulary is exactly the four current server postures — no more, no fewer. (saw: CONTINUE, CONTINUE_WITH_CONTROLS, HOLD_PENDING_VERIFICATION, STOP)
+ok    The retired §210J / §226 name STOP_WORK is gone from the vocabulary.
+ok    The retired §210J / §226 name DO_NOT_START is gone from the vocabulary.
+ok    The retired §210J / §226 name NO_IMMEDIATE_RESTRICTION is gone from the vocabulary.
+
+---- 2. every work-restricting posture is visibly restrictive ----
+
+ok    HOLD_PENDING_VERIFICATION carries restrictsWork, which drives the alert treatment.
+ok    HOLD_PENDING_VERIFICATION is not labelled with permissive language. (label: "Hold this work until the open question is resolved")
+ok    STOP carries restrictsWork, which drives the alert treatment.
+ok    STOP is not labelled with permissive language. (label: "Stop this work now")
+ok    STOP is labelled in words an inspector reads as stopping.
+ok    HOLD_PENDING_VERIFICATION is labelled in words an inspector reads as holding.
+ok    Neither permissive posture is marked restrictive — the repair did not become blanket alarm.
+
+---- 3. an unknown posture fails closed ----
+
+ok    "EVACUATE_AREA" is not treated as a known posture.
+ok    "EVACUATE_AREA" renders the explicit unreadable/requires-review presentation.
+ok    "EVACUATE_AREA" FAILS CLOSED: it is presented as restricted, never as permissive.
+ok    "EVACUATE_AREA" does not borrow permissive language.
+ok    "EVACUATE_AREA" does not default to a permissive posture's label.
+ok    "STOP_WORK" is not treated as a known posture.
+ok    "STOP_WORK" renders the explicit unreadable/requires-review presentation.
+ok    "STOP_WORK" FAILS CLOSED: it is presented as restricted, never as permissive.
+ok    "STOP_WORK" does not borrow permissive language.
+ok    "STOP_WORK" does not default to a permissive posture's label.
+ok    "continue" is not treated as a known posture.
+ok    "continue" renders the explicit unreadable/requires-review presentation.
+ok    "continue" FAILS CLOSED: it is presented as restricted, never as permissive.
+ok    "continue" does not borrow permissive language.
+ok    "continue" does not default to a permissive posture's label.
+ok    "" is not treated as a known posture.
+ok    "" renders the explicit unreadable/requires-review presentation.
+ok    "" FAILS CLOSED: it is presented as restricted, never as permissive.
+ok    "" does not borrow permissive language.
+ok    "" does not default to a permissive posture's label.
+
+---- 4. through the whole presentation path ----
+
+ok    "CONTINUE" produces a posture block.
+ok    "CONTINUE" carries the server's own value through untouched.
+ok    "CONTINUE" is marked known end to end.
+ok    "CONTINUE" reaches the panel with the correct restrictiveness.
+ok    "CONTINUE_WITH_CONTROLS" produces a posture block.
+ok    "CONTINUE_WITH_CONTROLS" carries the server's own value through untouched.
+ok    "CONTINUE_WITH_CONTROLS" is marked known end to end.
+ok    "CONTINUE_WITH_CONTROLS" reaches the panel with the correct restrictiveness.
+ok    "HOLD_PENDING_VERIFICATION" produces a posture block.
+ok    "HOLD_PENDING_VERIFICATION" carries the server's own value through untouched.
+ok    "HOLD_PENDING_VERIFICATION" is marked known end to end.
+ok    "HOLD_PENDING_VERIFICATION" reaches the panel with the correct restrictiveness.
+ok    "STOP" produces a posture block.
+ok    "STOP" carries the server's own value through untouched.
+ok    "STOP" is marked known end to end.
+ok    "STOP" reaches the panel with the correct restrictiveness.
+ok    "EVACUATE_AREA" produces a posture block.
+ok    "EVACUATE_AREA" carries the server's own value through untouched.
+ok    "EVACUATE_AREA" is marked unknown end to end.
+ok    "EVACUATE_AREA" reaches the panel with the correct restrictiveness.
+ok    "STOP_WORK" produces a posture block.
+ok    "STOP_WORK" carries the server's own value through untouched.
+ok    "STOP_WORK" is marked unknown end to end.
+ok    "STOP_WORK" reaches the panel with the correct restrictiveness.
+ok    "continue" produces a posture block.
+ok    "continue" carries the server's own value through untouched.
+ok    "continue" is marked unknown end to end.
+ok    "continue" reaches the panel with the correct restrictiveness.
+ok    An absent posture value renders no posture block at all, rather than an empty one.
+ok    "STOP " is normalised to its exact posture rather than failing to read.
+ok    "STOP " resolves to "STOP" and to nothing else.
+ok    " STOP" is normalised to its exact posture rather than failing to read.
+ok    " STOP" resolves to "STOP" and to nothing else.
+ok    "  CONTINUE_WITH_CONTROLS  " is normalised to its exact posture rather than failing to read.
+ok    "  CONTINUE_WITH_CONTROLS  " resolves to "CONTINUE_WITH_CONTROLS" and to nothing else.
+
+---- 5. the exact persisted §298 result ----
+
+ok    The persisted §298 analysis carries posture STOP. (saw "STOP")
+      label          : Stop this work now
+      restrictsWork  : true
+      whatHappensNow : Work on the mezzanine near the twelve-foot pallet-loading opening must stop until the edge is protected: eithe...
+ok    The §298 result renders a posture block.
+ok    The §298 result NO LONGER renders "The operational posture could not be read" — this is HZ-5.
+ok    The §298 result renders as a stop instruction.
+ok    The §298 result is marked work-restricting, so the panel gives it the restrictive treatment.
+ok    The server's own whatHappensNow prose is still carried, unchanged, beneath the label.
+ok    The §298 authority copy is unaffected by the HZ-5 repair — it remains the server's settledForUse, not a locally derived expression.
+
+89 checks passed, 0 failed

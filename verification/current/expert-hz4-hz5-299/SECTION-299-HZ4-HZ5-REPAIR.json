@@ -1,0 +1,179 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_299_EXPOSURE_NEGATION_AND_POSTURE_PRESENTATION_REPAIR",
+  "section": "299",
+  "generated": "2026-09-15T01:30:32Z",
+  "scope": "Repair exactly HZ-4 and HZ-5. No general HazLenz tuning. No new research programme.",
+  "providerCalls": 0,
+  "providerSpendUsd": 0.0,
+  "expertAnalysesCreated": 0,
+  "migrations": 0,
+  "startingHead": "d78150ed91ac4324db084d601035a343f791013a",
+  "constraints": {
+    "expertExecutionEnabled": "true — UNCHANGED. §299 changed no Expert configuration.",
+    "expertDailyAnalysisLimitPerWorkspace": "1 — UNCHANGED",
+    "expertDailyCostLimitUsdPerWorkspace": "1 — UNCHANGED",
+    "expertEntitlementExpanded": false,
+    "externalBetaAuthorized": false,
+    "populationAccuracyClaimed": false,
+    "brandingChanged": false,
+    "protectedModulesModified": false,
+    "expertPathFilesModified": "NONE — verified against d78150ed over tracked changes AND untracked additions"
+  },
+  "hz4": {
+    "priorSeverity": "P1 (§298)",
+    "productOwnerEscalation": "P0 FOR EXTERNAL BETA (§299, before repair)",
+    "finalPriority": "P0 — CLOSED at §299, escalated severity retained on the record",
+    "rootCause": "backend/src/hazlenz/evidence/shared-evidence-facts.ts built `noExposure` as an alternation whose last two members were the BARE words `nobody` and `no one`, anchored to nothing about exposure, and wrote employeeExposure=false at confidence 0.98 status confirmed. The anchored alternative additionally accepted `using`, so a control denial negated exposure even without the bare-word branch. THE UNDERLYING ERROR: a negative person quantifier is not an assertion about exposure; what it negates is decided by the predicate it scopes over.",
+    "semanticModelBefore": "Any occurrence of `nobody` / `no one` anywhere in the observation, or `no <person-noun>` followed by any of exposed|present|entered|working|using, asserts employeeExposure=false. Generic negation words are interchangeable. No notion of predicate, restrictor, or sense.",
+    "semanticModelAfter": "A negative person quantifier scopes over a clause. The restrictive modifier is skipped (the predicate opens at the first finite verb), then the predicate is classified into exactly one of four senses by the EARLIEST family marker it contains: PRESENCE_OR_EXPOSURE, CONTROL_USE, OUTCOME, UNRESOLVED. ONLY PRESENCE_OR_EXPOSURE asserts employeeExposure=false. Nothing asserts the converse: the repair removes a false claim and does not invent employeeExposure=true, because the §298 sentence is vacuously true if nobody is up there and deterministic code must not author a safety semantic it cannot establish.",
+    "quantifierFormsRecognised": "nobody | no one | no-one | no <person-noun>(s) | none of the <person-noun>(s) | not a single <person-noun>. The last two were invisible to the pre-§299 expression.",
+    "regressionFamily": {
+      "file": "backend/scripts/test-299-person-negation-semantics.ts",
+      "groups": [
+        "nobody wearing PPE",
+        "nobody using fall protection",
+        "nobody injured",
+        "nobody struck",
+        "nobody exposed",
+        "nobody present",
+        "no employees on the elevated surface",
+        "workers present without the named control",
+        "ambiguous statements that must remain unresolved",
+        "control mentioned after a genuine presence denial"
+      ],
+      "cases": 27,
+      "mustStillNegate": 10,
+      "mustNotNegate": 17,
+      "preSection299WrongOn": 16,
+      "preSection299RightOn": 11,
+      "whyBothCountsMatter": "The family measures a DISTINCTION, not a direction. A repair that simply stopped negating exposure would fail the 10 that must still negate; a repair that changed nothing would fail the 16 the old expression got wrong.",
+      "preSection299WasWrongInBothDirections": "It also MISSED genuine exposure denials — 'Not a single employee was exposed', 'No employees on the elevated surface', 'None of the crew were on the roof' — so genuine no-exposure handling is improved as well as narrowed.",
+      "gapTheFamilyCaughtDuringDevelopment": "Plural control nouns: 'No employees working in the trench were wearing respirators' classified UNRESOLVED because the marker list is singular. Repaired by an optional plural suffix in the matcher, not by adding the plural to the list.",
+      "checks": "89 passed, 0 failed"
+    },
+    "section298DeterministicBefore": {
+      "measuredAt": "d78150ed, in a read-only git worktree — re-measured, not quoted from §298",
+      "employeeExposureFact": "false, confidence 0.98, status confirmed",
+      "cfr191028Status": "CONTRADICTED",
+      "cfr191028Confidence": 0.05,
+      "exposurePredicate": "CONTRADICTED",
+      "explanation": "Suppressed because submitted evidence contradicts: employee access or exposure.",
+      "assessmentDisposition": "controlled_condition",
+      "reproducesTheSection298Register": true
+    },
+    "section298DeterministicAfter": {
+      "employeeExposureFact": "NOT ASSERTED",
+      "cfr191028Status": "UNKNOWN",
+      "cfr191028Confidence": 0.45,
+      "exposurePredicate": "UNKNOWN, listed in missingPredicates",
+      "explanation": "Candidate only; missing: employee access or exposure.",
+      "assessmentDisposition": "insufficient_evidence",
+      "nobodySentenceReading": "CONTROL_USE, decided by 'harness', predicate read as 'had a harness on'",
+      "nobodyInjuredReading": "OUTCOME, decided by 'injured', predicate read as 'was injured'"
+    },
+    "regulatoryConsequence": "The fall-protection candidate is no longer SUPPRESSED because the word 'Nobody' appears in the observation. It is a candidate with an open exposure predicate, named explicitly in missingPredicates, instead of a candidate actively contradicted at confidence 0.05. NO CFR CITATION IS MANUFACTURED — §299 did not require one and none was produced. The governed standards and evidence architecture remains authoritative for what the candidate becomes next.",
+    "noOvercorrection": "The same note with 'No employees were on the mezzanine' substituted for the harness sentence and EVERY OTHER SENTENCE LEFT IN PLACE still yields employeeExposure=false at 0.98 and still suppresses 1910.28 as CONTRADICTED at 0.05 on exactly the exposure predicate, with assessmentDisposition controlled_condition. The control note still RAISES the rule, so the suppression is a real measurement rather than the rule never having been evaluated.",
+    "expertDisagreementCompatibility": {
+      "disagreementTypesIntact": [
+        "MAY_BE_INCOMPLETE",
+        "MAY_BE_OVERINCLUSIVE",
+        "MAY_REQUIRE_CLOSER_REVIEW",
+        "EVIDENCE_INSUFFICIENT"
+      ],
+      "disagreementTargetsIntact": [
+        "DETERMINISTIC_RESULT",
+        "GOVERNED_STANDARD",
+        "AVAILABLE_EVIDENCE"
+      ],
+      "expertPathFilesTouched": 0,
+      "stillSomethingToContest": "The deterministic projection for the §298 note still emits 29 CFR 1910.28 and still names an open predicate, so 'Expert did not disagree' is not trivially true. The decision is UNKNOWN, NOT SUPPORTED — deterministic code did not acquire a semantic conclusion, so Expert's judgement about exposure is invited rather than pre-empted.",
+      "notClaimed": "That Expert WOULD still disagree on this observation. That is a hosted question and §299 authorised zero provider calls. What is claimed is that nothing removes, narrows or short-circuits Expert's ABILITY to disagree.",
+      "checks": "15 passed, 0 failed"
+    },
+    "result": "CLOSED"
+  },
+  "hz5": {
+    "severity": "P1",
+    "rootCause": "The frontend RESTATES the posture vocabulary because it does not build against backend/, and the restatement went stale when §233 superseded the §210J/§226 names. Nothing asked, in either direction, whether the two lists still agreed, so three dead members looked like coverage while the two live restrictive members were missing.",
+    "completeCurrentServerVocabulary": [
+      "CONTINUE",
+      "CONTINUE_WITH_CONTROLS",
+      "HOLD_PENDING_VERIFICATION",
+      "STOP"
+    ],
+    "howTheVocabularyWasEstablished": "Mechanically, not assumed: §235 and §237 both import IMMEDIATE_SAFETY_POSTURES_233 unchanged, so they are additive successors over the same enum and the §233 four are the whole of it.",
+    "previousFrontendVocabulary": [
+      "STOP_WORK",
+      "DO_NOT_START",
+      "CONTINUE_WITH_CONTROLS",
+      "CONTINUE",
+      "NO_IMMEDIATE_RESTRICTION"
+    ],
+    "repairedFrontendVocabulary": {
+      "CONTINUE": {
+        "label": "Work may continue",
+        "restrictsWork": false
+      },
+      "CONTINUE_WITH_CONTROLS": {
+        "label": "Continue only with the controls below in place",
+        "restrictsWork": false
+      },
+      "HOLD_PENDING_VERIFICATION": {
+        "label": "Hold this work until the open question is resolved",
+        "restrictsWork": true
+      },
+      "STOP": {
+        "label": "Stop this work now",
+        "restrictsWork": true
+      }
+    },
+    "stopRenderingBefore": "The operational posture could not be read",
+    "stopRenderingAfter": "Stop this work now — restrictsWork true, red bordered panel, 'work is restricted' qualifier",
+    "otherRestrictivePostureBefore": "HOLD_PENDING_VERIFICATION: The operational posture could not be read",
+    "otherRestrictivePostureAfter": "Hold this work until the open question is resolved — restrictsWork true",
+    "restrictivenessIsCopiedNotInferred": "restrictsWork is the server's own POSTURE_PERMITS_CONTINUED_WORK, negated, asserted member by member by the parity check. Nothing reads the label or the prose to decide.",
+    "unknownPostureBehavior": "FAILS CLOSED IN BOTH RESPECTS. It still declines to name a posture — 'The operational posture could not be read — treat this work as restricted and have it reviewed' — and now also carries restrictsWork=true, so a value this build has never heard of lands on the restrictive treatment rather than the calm one. Exercised over a plausible future addition (EVACUATE_AREA), a retired name (STOP_WORK), a wrong-case value ('continue') and an empty value. Permissive language is never borrowed and a permissive posture's label is never substituted.",
+    "section298PersistedResultRendering": "verification/current/expert-activation-298/EXPERT-RESULT-298.json — the response the deployed server actually returned — is read from disk and pushed through the same readFromExecution() the panel uses, NOT a hand-authored STOP fixture. It renders 'Stop this work now', restrictsWork true, with the server's whatHappensNow prose unchanged beneath it. ZERO PROVIDER CALLS: the §298 execution is replayed from disk.",
+    "bidirectionalCoverageCheck": {
+      "file": "frontend-next/scripts/check-299-posture-vocabulary-parity.mjs",
+      "readsServerSource": "IMMEDIATE_SAFETY_POSTURES_233 and POSTURE_PERMITS_CONTINUED_WORK, parsed out of backend/src/hazlenz/expert-hazlenz/contract/expert-233-posture-contract.ts",
+      "failsOn": [
+        "a server posture the frontend cannot name",
+        "a frontend posture the server cannot emit (dead vocabulary — the direction that would have caught HZ-5 at §233)",
+        "a restrictsWork disagreement with the server",
+        "two postures sharing a label",
+        "permissive language on a work-restricting posture",
+        "any retired §210J/§226 name"
+      ],
+      "provenToFail": "verification/current/expert-hz4-hz5-299/prove-parity-check-fails.mjs — 7 mutations against COPIES of the two files, including the literal HZ-5 shape, each asserted to exit non-zero, plus the unmutated pair asserted to exit zero. The real sources are never modified."
+    },
+    "presentationProofChecks": "89 passed, 0 failed",
+    "preferExecutableOverScreenshot": "Both proofs are executable module/mapping tests. No screenshot is relied on.",
+    "result": "CLOSED"
+  },
+  "newDefectsFoundWhileRunningTheGateBattery": {
+    "IT-1": "Five Expert integration harnesses (§262, §264, §265, §267, §268) never adopted the §291 registration-time agreement acceptance, so hazlenz:integration:test aborted in §262 before any assertion ran. PRE-EXISTING — reproduces unchanged at d78150ed. Harness defect, not a product defect: the service behaved correctly. Repaired by DERIVING the acceptance from agreementsRequiredAtRegistration(), so a version bump needs no edit. The §291 requirement is not weakened, mocked or disabled. CLOSED.",
+    "IT-2": "§268 assertion E-2 pinned the literal schema version 1800000021000 and failed against a /health/ready answering correctly with 1800000023000. Stale test expectation, not a production defect. Repaired by deriving the expectation from expectedMigrationTimestamps(), the enumerator the endpoint itself uses. CLOSED.",
+    "productionCodeChangedForEither": false
+  },
+  "filesChanged": {
+    "productionSource": [
+      "backend/src/hazlenz/evidence/person-negation-semantics.ts (NEW)",
+      "backend/src/hazlenz/evidence/shared-evidence-facts.ts (the noExposure line and its import)",
+      "frontend-next/lib/expert/expertPresentation.ts (posture presentation contract)",
+      "frontend-next/components/inspection/expert/ExpertAnalysisPanel.tsx (restrictive treatment)"
+    ],
+    "verificationAndHarness": [
+      "backend/scripts/test-299-person-negation-semantics.ts (NEW)",
+      "backend/scripts/test-299-section-298-deterministic-replay.ts (NEW)",
+      "backend/scripts/test-299-expert-disagreement-compatibility.ts (NEW)",
+      "backend/scripts/lib/registration-acceptances.ts (NEW, IT-1)",
+      "backend/scripts/test-262/264/265/267/268 (IT-1 registration acceptance; IT-2 in 268 only)",
+      "frontend-next/lib/expert/__tests__/posturePresentation299.test.ts (NEW)",
+      "frontend-next/lib/expert/__tests__/expertPresentation.test.ts (§265 assertion no longer pins the fallback literal; asserts the property and the new fail-closed half instead)",
+      "frontend-next/scripts/check-299-posture-vocabulary-parity.mjs (NEW)",
+      "verification/current/expert-hz4-hz5-299/ (NEW)"
+    ],
+    "packageScripts": "backend and frontend-next: new 299 gates appended; hazlenz:test extended with the three backend 299 gates. No existing script reordered or removed."
+  }
+}

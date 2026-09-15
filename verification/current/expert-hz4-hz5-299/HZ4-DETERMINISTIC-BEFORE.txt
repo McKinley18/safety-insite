@@ -1,0 +1,42 @@
+===================================================================
+HZ-4 — THE EXACT §298 OBSERVATION THROUGH THE DETERMINISTIC PATH
+BEFORE: measured at the §299 starting commit d78150ed, in a read-only
+        git worktree. Not quoted from the §298 register — re-measured.
+===================================================================
+
+================ the deterministic consequence ================
+
+---- §298 observation, AFTER the §299 repair ----
+  employeeExposure fact         : false (confidence 0.98)
+  assessmentDisposition         : "controlled_condition"
+  29 CFR 1910.28 status         : CONTRADICTED (confidence 0.05)
+  ... exposure predicate        : CONTRADICTED
+  ... missingPredicates         : []
+  ... explanation               : Suppressed because submitted evidence contradicts: employee access or exposure.
+  decisions emitted             : 29 CFR 1910.28=CONTRADICTED
+FAIL  No employeeExposure=false fact is asserted from the §298 observation. (§298 recorded fact-2 employeeExposure false at confidence 0.98, status confirmed.)
+ok    29 CFR 1910.28 is still evaluated -- the repair does not remove the rule from consideration.
+FAIL  The fall-protection candidate is NOT suppressed as CONTRADICTED. (§298 measured CONTRADICTED at confidence 0.05.)
+FAIL  The exposure predicate is not asserted FALSE.
+FAIL  assessmentDisposition is no longer controlled_condition. (saw "controlled_condition")
+
+================ the genuine no-exposure control ================
+
+---- same note with "No employees were on the mezzanine" substituted ----
+  employeeExposure fact         : false (confidence 0.98)
+  assessmentDisposition         : "controlled_condition"
+  29 CFR 1910.28 status         : CONTRADICTED (confidence 0.05)
+  ... exposure predicate        : CONTRADICTED
+  ... missingPredicates         : []
+  ... explanation               : Suppressed because submitted evidence contradicts: employee access or exposure.
+  decisions emitted             : 29 CFR 1910.28=CONTRADICTED
+ok    A genuine "no employees were on the mezzanine" STILL asserts employeeExposure=false. The repair is a distinction, not a blanket removal.
+ok    The control note still raises 29 CFR 1910.28, so the suppression below is a real measurement rather than the rule never having been evaluated.
+ok    That genuine denial still suppresses the fall-protection candidate as CONTRADICTED, on exactly the exposure predicate. The repair narrowed WHICH sentences negate exposure, not WHETHER any do.
+ok    And the disposition is still controlled_condition for the genuinely unexposed note.
+
+5 checks passed, 4 failed
+  FAILED: No employeeExposure=false fact is asserted from the §298 observation. (§298 recorded fact-2 employeeExposure false at confidence 0.98, status confirmed.)
+  FAILED: The fall-protection candidate is NOT suppressed as CONTRADICTED. (§298 measured CONTRADICTED at confidence 0.05.)
+  FAILED: The exposure predicate is not asserted FALSE.
+  FAILED: assessmentDisposition is no longer controlled_condition. (saw "controlled_condition")

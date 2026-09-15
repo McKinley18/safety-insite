@@ -301,13 +301,35 @@ export default function ExpertAnalysisPanel({
           )}
 
           {presentation.posture && (
-            <div className="mt-4 rounded-xl border border-slate-300 bg-white p-3 dark:border-slate-700 dark:bg-slate-900">
-              <p className="text-[11px] font-black uppercase tracking-[0.15em] text-slate-600 dark:text-slate-400">
+            /*
+             * §299 / HZ-5 — A POSTURE THAT RESTRICTS WORK MUST LOOK LIKE ONE.
+             *
+             * §298 returned STOP and this block rendered it in the same neutral slate as
+             * "Work may continue". `restrictsWork` is the server's own
+             * POSTURE_PERMITS_CONTINUED_WORK, negated, and it is TRUE for an unreadable value too,
+             * so a posture this build cannot name lands on the restrictive treatment rather than
+             * the calm one. Nothing here reads the label or the prose to decide.
+             */
+            <div className={
+              presentation.posture.restrictsWork
+                ? "mt-4 rounded-xl border-2 border-red-500 bg-red-50 p-3 dark:border-red-600 dark:bg-red-950/50"
+                : "mt-4 rounded-xl border border-slate-300 bg-white p-3 dark:border-slate-700 dark:bg-slate-900"
+            }>
+              <p className={
+                presentation.posture.restrictsWork
+                  ? "text-[11px] font-black uppercase tracking-[0.15em] text-red-800 dark:text-red-200"
+                  : "text-[11px] font-black uppercase tracking-[0.15em] text-slate-600 dark:text-slate-400"
+              }>
                 Operational posture
+                {presentation.posture.restrictsWork && " — work is restricted"}
                 {/* THE QUALIFIER IS NOT OPTIONAL. An unsettled posture is never shown bare. */}
                 {!presentation.mayPresentAsSettled && " — not yet settled"}
               </p>
-              <p className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
+              <p className={
+                presentation.posture.restrictsWork
+                  ? "mt-1 text-base font-black text-red-900 dark:text-red-100"
+                  : "mt-1 text-base font-black text-slate-900 dark:text-slate-100"
+              }>
                 {presentation.posture.label}
               </p>
               {presentation.posture.whatHappensNow && (

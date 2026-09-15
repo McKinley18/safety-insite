@@ -57,7 +57,9 @@
     "review:286-actions-calendar-batch": "node scripts/review-286-actions-calendar-batch.mjs",
     "measure:286-actions-calendar-offline": "node scripts/measure-286-actions-calendar-offline.mjs",
     "validate:287-action-lifecycle": "npx tsx scripts/validate-287-action-lifecycle.mts",
-    "review:287-action-lifecycle-ux": "node scripts/review-287-action-lifecycle-ux.mjs"
+    "review:287-action-lifecycle-ux": "node scripts/review-287-action-lifecycle-ux.mjs",
+    "test:299-posture-presentation": "npx tsx lib/expert/__tests__/posturePresentation299.test.ts",
+    "check:299-posture-vocabulary": "node scripts/check-299-posture-vocabulary-parity.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

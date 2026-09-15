@@ -69,7 +69,7 @@
     "hazlenz:qa-shard-candidates": "ts-node src/hazlenz/coverage/qa-hazlenz-generated-candidates.ts",
     "hazlenz:scripts:classify": "ts-node scripts/hazlenz/classify-scripts.ts",
     "hazlenz:status": "ts-node scripts/hazlenz/status.ts",
-    "hazlenz:test": "npm run test:261-confirmation-rule && npm run test:264-settlement-contract && npm run test:expert-nocall-harness && npm run test:268-operational-controls && npm run release:check-build-context",
+    "hazlenz:test": "npm run test:261-confirmation-rule && npm run test:264-settlement-contract && npm run test:expert-nocall-harness && npm run test:268-operational-controls && npm run test:299-person-negation && npm run test:299-section-298-replay && npm run test:299-expert-disagreement && npm run release:check-build-context",
     "hazlenz:verify": "ts-node scripts/hazlenz/verify.ts",
     "ingest:cfr:bulk": "ts-node src/standards/ingestion/ingest.cfr.bulk.ts",
     "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
@@ -414,7 +414,10 @@
     "test:294-monitoring-email-channel": "ts-node scripts/test-294-monitoring-email-channel.ts",
     "test:296-webhook-channel": "ts-node scripts/test-296-webhook-channel.ts",
     "review:stack": "ts-node scripts/review/review-stack.ts",
-    "review:stack:release": "ts-node scripts/review/release-review-stack.ts"
+    "review:stack:release": "ts-node scripts/review/release-review-stack.ts",
+    "test:299-person-negation": "ts-node scripts/test-299-person-negation-semantics.ts",
+    "test:299-section-298-replay": "ts-node scripts/test-299-section-298-deterministic-replay.ts",
+    "test:299-expert-disagreement": "ts-node scripts/test-299-expert-disagreement-compatibility.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

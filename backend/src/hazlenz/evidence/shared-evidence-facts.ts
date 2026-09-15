@@ -1,4 +1,5 @@
 import { hasAnyNonNegatedTerm } from '../reasoning-orchestrator/negation-context.util';
+import { readPersonNegation } from './person-negation-semantics';
 
 // V5-C02 shared evidence-fact foundation.
 //
@@ -470,7 +471,17 @@ export function buildEvidenceFacts(input: SharedEvidenceFactInput): ExtractedEvi
     /\b(training (?:poster|example|exercise)|hypothetical|word ['"][^'"]+['"]|says? ['"])/i.test(text) ||
     /\b(?:toy|scale model|miniature|nonoperational mock-?up|display model)\b.{0,60}\b(?:display|case|lobby|exhibit|demonstration)\b/i.test(text);
   const explicitNoCondition = /\b(no (?:equipment servicing|hazardous energy condition|cave-in hazard|unusual impulse noise|active exposure)|not true that)\b/i.test(text);
-  const noExposure = /\b(no (?:employee|worker|miner|laborer|person|one)s? (?:was |were |is |are )?(?:exposed|present|entered|working|using)|nobody|no one)\b/i.test(text);
+  // §299 / HZ-4. THIS LINE USED TO BE AN ALTERNATION ENDING IN THE BARE WORDS `nobody` AND `no one`,
+  // anchored to nothing about exposure, and it wrote `employeeExposure = false` at confidence 0.98
+  // on any observation containing either. "Nobody working up there had a harness on" -- a sentence
+  // that presupposes people working at height -- therefore suppressed 29 CFR 1910.28 as
+  // CONTRADICTED. A negative person quantifier negates ITS PREDICATE, and presence, control use and
+  // injury are three different predicates that generic negation cannot tell apart. The family is
+  // classified in `person-negation-semantics.ts`; only a genuine presence/exposure denial reaches
+  // `employeeExposure`. Nothing asserts the opposite: the repair removes a false claim rather than
+  // inventing its converse.
+  const personNegation = readPersonNegation(text);
+  const noExposure = personNegation.negatesEmployeeExposure;
   const currentHazardNegated = quotedOrNonObservation || explicitNoCondition || correctedBeforeReview || removedFromService;
   if (currentHazardNegated) fact(facts, 'currentHazardState', 'not_established', 'user_text', 0.98,
     correctedBeforeReview || removedFromService ? 'corrected' : 'confirmed',

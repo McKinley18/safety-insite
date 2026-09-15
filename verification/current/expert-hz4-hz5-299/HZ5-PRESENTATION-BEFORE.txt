@@ -1,0 +1,18 @@
+===================================================================
+HZ-5 — BEFORE, measured at the §299 starting commit d78150ed.
+===================================================================
+pre-§299 frontend label for each CURRENT server posture:
+  CONTINUE                   -> "Work may continue"
+  CONTINUE_WITH_CONTROLS     -> "Continue only with the controls below in place"
+  HOLD_PENDING_VERIFICATION  -> "The operational posture could not be read"
+  STOP                       -> "The operational posture could not be read"
+
+pre-§299 frontend label for each RETIRED §210J/§226 posture it still named:
+  STOP_WORK                  -> "Stop this work"
+  DO_NOT_START               -> "Do not start this work"
+  NO_IMMEDIATE_RESTRICTION   -> "No immediate restriction identified"
+
+the exact persisted §298 result, pre-§299:
+  posture block: {
+  "label": "The operational posture could not be read",
+  "whatHappensNow": "Work on the mezzanine near the twelve-foot pallet-loading opening must stop until the edge is protected: either the chain (or a proper gate) is back in place, or workers who must be near the open edge during loading are wearing fall arrest equipment connected to a suitable anchor point. Once a barrier or fall-arrest sys

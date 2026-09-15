@@ -1,0 +1,22 @@
+
+---- the unmutated pair ----
+
+ok    real server + real frontend agree -> exit 0 (expected zero)
+
+---- direction 1: the server emits a posture the frontend cannot name ----
+
+ok    frontend loses STOP (the literal HZ-5 shape) -> exit 1 (expected non-zero)
+ok    frontend loses HOLD_PENDING_VERIFICATION -> exit 1 (expected non-zero)
+ok    server gains a posture the frontend has never heard of -> exit 1 (expected non-zero)
+
+---- direction 2: the frontend names dead vocabulary ----
+
+ok    frontend keeps a retired §210J name (STOP_WORK) -> exit 1 (expected non-zero)
+
+---- the restrictiveness binding ----
+
+ok    frontend renders STOP as permissive -> exit 1 (expected non-zero)
+ok    frontend labels STOP with permissive language -> exit 1 (expected non-zero)
+
+ALL MUTATIONS BEHAVED AS EXPECTED
+

@@ -46,6 +46,7 @@ import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
 } from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
+import { requiredRegistrationAcceptances } from './lib/registration-acceptances';
 
 // ================================================================ the disposable-target guard
 
@@ -192,7 +193,12 @@ async function main(): Promise<void> {
     const email = `s262-${tag}-${suffix}@example.test`;
     await call('/auth/register', {
       method: 'POST',
-      body: { email, password, name: `s262-${tag}`, type: 'individual' },
+      body: {
+        email, password, name: `s262-${tag}`, type: 'individual',
+        // §299 (IT-1). §291 made this required at registration; this harness predates it.
+        // Derived from the registry the service validates against, never spelled out here.
+        acceptedAgreements: requiredRegistrationAcceptances(),
+      },
     });
     const login = await call('/auth/login', { method: 'POST', body: { email, password } });
     return { email, token: login.body.token as string, userId: login.body.user.id as string };

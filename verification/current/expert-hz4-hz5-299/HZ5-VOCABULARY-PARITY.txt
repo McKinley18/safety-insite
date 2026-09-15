@@ -1,0 +1,19 @@
+
+server vocabulary   : CONTINUE, CONTINUE_WITH_CONTROLS, HOLD_PENDING_VERIFICATION, STOP
+frontend vocabulary : CONTINUE, CONTINUE_WITH_CONTROLS, HOLD_PENDING_VERIFICATION, STOP
+
+ok    CONTINUE has intentional user-facing language: "Work may continue"
+ok    CONTINUE_WITH_CONTROLS has intentional user-facing language: "Continue only with the controls below in place"
+ok    HOLD_PENDING_VERIFICATION has intentional user-facing language: "Hold this work until the open question is resolved"
+ok    STOP has intentional user-facing language: "Stop this work now"
+ok    The frontend names no posture the server cannot emit.
+ok    CONTINUE: restrictsWork=false matches the server's POSTURE_PERMITS_CONTINUED_WORK.
+ok    CONTINUE_WITH_CONTROLS: restrictsWork=false matches the server's POSTURE_PERMITS_CONTINUED_WORK.
+ok    HOLD_PENDING_VERIFICATION: restrictsWork=true matches the server's POSTURE_PERMITS_CONTINUED_WORK.
+ok    STOP: restrictsWork=true matches the server's POSTURE_PERMITS_CONTINUED_WORK.
+ok    Every posture has a distinct user-facing label.
+ok    No work-restricting posture carries permissive language.
+ok    None of the retired §210J / §226 posture names are present.
+
+POSTURE VOCABULARY PARITY OK
+

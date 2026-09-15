@@ -1,0 +1,44 @@
+
+---- 1. Expert can still say every one of the four things ----
+
+ok    MAY_BE_INCOMPLETE is still an available disagreement type.
+ok    MAY_BE_OVERINCLUSIVE is still an available disagreement type.
+ok    MAY_REQUIRE_CLOSER_REVIEW is still an available disagreement type.
+ok    EVIDENCE_INSUFFICIENT is still an available disagreement type.
+ok    The disagreement vocabulary is still exactly four members (saw 4).
+ok    DETERMINISTIC_RESULT is still an available disagreement target.
+ok    GOVERNED_STANDARD is still an available disagreement target.
+ok    AVAILABLE_EVIDENCE is still an available disagreement target.
+ok    Expert may still target THE DETERMINISTIC RESULT specifically — the target §298 used.
+
+---- 2. no file on the Expert path was modified by §299 ----
+
+      paths examined (tracked changes + untracked additions): 553
+      tracked modifications since d78150ed: 14
+        M  backend/package.json
+        M  backend/scripts/test-262-expert-authoritative-route.ts
+        M  backend/scripts/test-264-expert-human-confirmation.ts
+        M  backend/scripts/test-265-expert-product-acceptance.ts
+        M  backend/scripts/test-267-product-integration-defects.ts
+        M  backend/scripts/test-268-deployment-safety.ts
+        M  backend/src/hazlenz/evidence/shared-evidence-facts.ts
+        M  frontend-next/components/inspection/expert/ExpertAnalysisPanel.tsx
+        M  frontend-next/lib/expert/__tests__/expertPresentation.test.ts
+        M  frontend-next/lib/expert/expertPresentation.ts
+        M  frontend-next/package.json
+        M  project-docs/current/CURRENT-STATE.md
+        M  project-docs/current/PRE-PRODUCTION-RELEASE-REGISTER.md
+        M  verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json
+ok    No Expert contract, prompt, normalization, adapter or product file was modified. 
+
+---- 3. the deterministic layer still says something Expert could contest ----
+
+      applicabilityDecisions: 29 CFR 1910.28=UNKNOWN
+      evidenceSnapshot facts: 2
+ok    The deterministic layer still emits an applicability decision for the §298 observation, so the Expert request still carries a deterministic conclusion. An empty projection would make "Expert did not disagree" trivially true.
+ok    At least one decision still names a missing predicate — a concrete, quotable deterministic claim for Expert to contest as MAY_BE_INCOMPLETE if it judges the evidence supports it.
+ok    The evidence snapshot is still populated, so the repair did not hollow out what Expert sees.
+ok    The fall-protection decision is UNKNOWN, not SUPPORTED: the repair removed a false deterministic claim without inventing its converse, so the semantic question remains open to Expert.
+ok    And the open question is named explicitly as a missing predicate rather than silently dropped.
+
+15 checks passed, 0 failed

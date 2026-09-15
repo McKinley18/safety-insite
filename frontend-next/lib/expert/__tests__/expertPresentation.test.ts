@@ -25,6 +25,7 @@ import {
   readFromExecution,
   hazardFamilyLabel,
   historyEntryLabel,
+  posturePresentation,
   posturePresentationLabel,
   presentExpertAnalysis,
   subjectDisplayText,
@@ -495,8 +496,23 @@ check(hazardFamilyLabel("lockout_tagout") === "Lockout tagout",
   "A hazard family is formatted rather than looked up in a client-held copy of the taxonomy.");
 check(hazardFamilyLabel("") === "Hazard",
   "An empty hazard family falls back to a neutral word rather than rendering blank.");
-check(posturePresentationLabel("NOT_A_REAL_POSTURE") === "The operational posture could not be read",
+/*
+ * §299 / HZ-5 extended the fallback sentence, so this assertion no longer pins the literal — a
+ * byte-exact expectation on user-facing prose fails on every wording change and says nothing about
+ * the property. The PROPERTY is what §265 cared about, and it is now asserted directly, together
+ * with the fail-closed half §299 added. The full posture vocabulary is exercised in
+ * `posturePresentation299.test.ts`.
+ */
+const unreadable = posturePresentation("NOT_A_REAL_POSTURE");
+check(/could not be read/i.test(unreadable.label),
   "An unreadable posture says so rather than being guessed at.");
+check(unreadable.known === false,
+  "An unreadable posture is not admitted into the known vocabulary.");
+check(unreadable.label !== posturePresentationLabel("CONTINUE")
+  && unreadable.label !== posturePresentationLabel("CONTINUE_WITH_CONTROLS"),
+  "An unreadable posture never borrows a permissive posture's label.");
+check(unreadable.restrictsWork === true,
+  "An unreadable posture FAILS CLOSED: it is presented as restricting work, never as permitting it.");
 check(classificationLabel("SOMETHING_ELSE") === "SOMETHING_ELSE",
   "An unknown classification is passed through rather than relabelled into a meaning it may "
   + "not have.");

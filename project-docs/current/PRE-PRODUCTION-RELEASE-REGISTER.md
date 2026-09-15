@@ -4,7 +4,23 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**.
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**.
+**EXPERT HAZLENZ IS ACTIVE IN PRODUCTION as of §298**, bounded to 1 analysis and USD 1.00 per
+workspace per 24 hours, after exactly one controlled live analysis executed through the complete
+production path with every governance and containment control holding. Whether it stays enabled is
+an open product-owner decision. §298 also opened **five** new entries, two of them P1 — see `HZ-4`
+through `HZ-8`.
+
+**§299 closed `HZ-4` and `HZ-5`, the two P1 external-Beta blockers §298 opened.** The product owner
+escalated `HZ-4` to **P0 for external Beta** before the repair, and that escalation is recorded
+rather than erased: external-Beta safety must not depend on Expert always rescuing a deterministic
+semantic error. `HZ-4` was repaired as a **semantic family** — what a negative person quantifier
+negates is decided by the predicate it scopes over, not by the negation word — and `HZ-5` by giving
+the frontend the **complete current server posture vocabulary** plus a bidirectional coverage check
+that is itself proven to fail. Running the gate battery surfaced **two pre-existing verification-
+infrastructure failures**, `IT-1` and `IT-2`, both closed; neither involved a production change.
+**`HZ-6`, `HZ-7`, `SE-5`, `BR-5` and `EM-2` remain open and external Beta remains blocked.**
+
 **Threshold A is closed. THRESHOLD B IS CLOSED at §297B — a real production failure reached the
 product owner's phone. Controlled internal / product-owner production use is AUTHORIZED. External
 beta is not.** Machine-readable
@@ -78,7 +94,7 @@ the others.
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
 | **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **0 — CLOSED at §297B** |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **18** |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **22** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
 > three could only be closed *by the deployment*. §290 performed the deployment and closed them:
@@ -114,14 +130,14 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **80** | **4** | **7** | **47** | **22** |
+| Entries | **85** | **4** | **9** | **49** | **23** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 41 |
-| OPEN | 32 |
+| CLOSED | 42 |
+| OPEN | 37 |
 | BLOCKED (waiting on a decision or another item) | 4 |
-| DEFERRED (deliberately not v1) | 3 |
+| DEFERRED (deliberately not v1) | 2 |
 
 **A threshold's blocker count is the number of entries still flagged for it.** Closing an entry
 clears its threshold flags and records what it used to block in `wasBlockingThresholds`, so an
@@ -276,13 +292,259 @@ are retained so a later section does not rediscover them as new.
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **HZ-1** | Deterministic HazLenz is the customer-authoritative analysis path and is validated; severity parity across finding, report snapshot and both PDF presentations is proven. | P3 | — | Engineering | CLOSED |
-| **HZ-2** | Expert HazLenz execution is DISABLED in production (EXPERT_EXECUTION_ENABLED=false) and live provider transport has never been exercised. | P2 | — | Product | DEFERRED |
+| **HZ-2** | Expert HazLenz execution is disabled in production and live provider transport has never been exercised. | P2 | — | Product | **CLOSED §298** |
 | **HZ-3** | Report generation could not be reached by hazlenz:verify because object storage is unset in that environment. | P3 | — | Engineering | OPEN |
+| **HZ-4** | The deterministic evidence extractor asserts `employeeExposure=false` from a bare "nobody"/"no one" anywhere in the observation, contradicting the exposure predicate and suppressing the applicable standard. | **P0** | — | Engineering | **CLOSED §299** |
+| **HZ-5** | The Expert frontend's posture label table does not share the server's frozen posture vocabulary, so the two restrictive postures render as "The operational posture could not be read". | **P1** | — | Engineering | **CLOSED §299** |
+| **IT-1** | Five Expert integration harnesses never adopted the §291 registration-time agreement acceptance, so `hazlenz:integration:test` aborted in §262 before reaching any assertion. | P2 | — | Engineering | **CLOSED §299** |
+| **IT-2** | §268 assertion E-2 pinned a literal schema version, so it failed against a readiness endpoint that was answering correctly. | P2 | — | Engineering | **CLOSED §299** |
+| **HZ-6** | The Expert execution record cannot state which model produced a safety analysis, or how long it took. | P2 | C | Engineering | **OPEN §298** |
+| **HZ-7** | A finding finalized from an Expert-cited review carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard. | P2 | C | Product | **OPEN §298** |
+| **HZ-8** | At a workspace analysis ceiling of N, an idempotent replay of a completed Expert request is refused by the ceiling instead of resolving to the execution that already ran. | P3 | — | Engineering | **OPEN §298** |
 
-**HZ-2 — remediation / decision.** Product-owner decision to activate, then a hosted activation runbook with spend controls. Do not activate to satisfy the register.
+**HZ-2 — CLOSED at §298.** `EXPERT_EXECUTION_ENABLED` was set to `true` through the approved
+Render configuration mechanism and made effective by a **deployment** of the already-deployed SHA
+`87491ed9…`, not by a restart. The flag was then proved live **from the running application without
+spending anything**: an execution request carrying an invented `requestVersion` returned 409 from
+inside the claim transaction rather than 503 `EXPERT_EXECUTION_DISABLED`. Exactly **one** controlled
+Expert analysis then executed through the complete production path — 2 provider legs, 60,045 input
+and 7,074 output tokens, **USD 0.190830** against a USD 1.00 ceiling, `transportSubstituted: false`,
+admission `ADMIT`, and a result persisted `server_authored` and byte-identical to the route response
+and to a fresh-session read. No immediate-disable criterion occurred.
 
-*Evidence:* `backend/src/hazlenz/expert-hazlenz-product/expert-operational-controls.ts; hazlenz:verify reports UNVERIFIED_LIVE`  
-*Retest:* A preregistered hosted activation with spend ceiling and refusal accounting.
+Closure means **the architecture executes correctly in production on one observation**. It is not an
+accuracy claim, not external-beta readiness, and not authorization for a broad Expert campaign.
+Expert remains **enabled** with the §298 ceilings still in force — **1 analysis and USD 1.00 per
+workspace per 24 hours** — and whether it stays enabled is a product-owner decision §298
+deliberately does not take.
+
+*Evidence:* `verification/current/expert-activation-298/`  
+*Retest:* Re-reading `/health/ready`, the execution record and the operational event stream.
+
+**HZ-4 — the defect Expert HazLenz found.** `backend/src/hazlenz/evidence/shared-evidence-facts.ts`
+line 473 builds `noExposure` as an alternation whose last two members are the **bare** words
+`nobody` and `no one`, anchored to nothing about exposure; line 478 then writes
+`employeeExposure = false` at confidence **0.98**, status `confirmed`. The §298 walkthrough note
+contains *"Nobody working up there had a harness on"* and *"Nobody was injured"* — two sentences that
+describe a fall hazard, one of which presupposes people working at height. Either matches on its
+own; removing both removes the match; the intended sense (*"no employees were exposed"*) still
+matches through the anchored alternative.
+
+Measured consequence: **29 CFR 1910.28 came back `CONTRADICTED` at confidence 0.05**, *"Suppressed
+because submitted evidence contradicts: employee access or exposure"*, with the other two required
+predicates `SUPPORTED`; `assessmentDisposition` read `controlled_condition`; and the generated
+customer report printed *"HazLenz basis: Candidate only; missing: employee access or exposure"*
+directly beneath the paragraph that describes the exposure. `e.noExposure` gates *worker in fall
+zone*, *occupational employee exposure* (×2) and *miner exposure during the work shift* (×2), so it
+reaches OSHA general industry, OSHA construction and MSHA rules.
+
+**What is not claimed:** the hazard was not missed. The deterministic decomposition still raised
+`fall-protection` at `Critical`, `imminentDanger: true`, `requiresShutdown: true`. The engine
+produced **internally inconsistent output on one observation** — the hazard escalated and its
+regulatory basis suppressed — and it is the regulatory half that is degraded. This is **not an
+Expert defect**: Expert identified it, quoted the contradicting sentence back, and recorded a
+HIGH-confidence `MAY_BE_INCOMPLETE` disagreement, which is the advisory layer doing what it exists
+to do.
+
+*Evidence:* `verification/current/expert-activation-298/` — the persisted deterministic snapshot
+(`fact-2 employeeExposure false, confidence 0.98`), the `applicabilityDecisions` block, the frozen
+report source snapshot and `REPORT-TEXT-298.txt`. The mechanism was reproduced by executing the
+shipped expression against the observation and three controls.  
+*Retest:* The §298 observation re-analysed yields no `CONTRADICTED` exposure verdict and does not
+suppress 29 CFR 1910.28; a genuine *"no employees were exposed"* observation still suppresses it.
+
+**HZ-5 — the product cannot name its own most consequential conclusion.** The frozen §233 contract
+emits one of four values — `CONTINUE`, `CONTINUE_WITH_CONTROLS`, `HOLD_PENDING_VERIFICATION`,
+`STOP`. `frontend-next/lib/expert/expertPresentation.ts` holds a five-member `POSTURE_LABEL` table —
+`STOP_WORK`, `DO_NOT_START`, `CONTINUE_WITH_CONTROLS`, `CONTINUE`, `NO_IMMEDIATE_RESTRICTION` —
+which looks like the retired §210J/§226 vocabulary §233 superseded. **Only two members appear in
+both.** The §298 analysis returned posture `STOP` and the deployed panel rendered *"The operational
+posture could not be read"* above the correct `whatHappensNow` prose. **The two postures the product
+cannot name are exactly the two that restrict work**; both permissive postures render correctly.
+
+It **fails closed** — it declines to name a posture it cannot read rather than rendering a permissive
+one — which is why this is not a §298 immediate-disable criterion. §298 is the first time any
+deployed instance has served the §265 Expert frontend, which is why it was not found earlier.
+
+*Evidence:* the deployed frontend at `safety-insite.vercel.app/inspection-workspace`, logged in as
+the §298 synthetic inspector with no dev bypass; `expert-233-posture-contract.ts`
+`IMMEDIATE_SAFETY_POSTURES_233` versus `expertPresentation.ts` `POSTURE_LABEL`.  
+*Retest:* `STOP` and `HOLD_PENDING_VERIFICATION` render real labels, an unknown value still renders
+the fallback, and a **coverage check fails in both directions** if either side changes.
+
+**HZ-4 — CLOSED at §299, and the product owner escalated it to P0 for external Beta first.** The
+escalation stands on the record rather than being erased by the repair: external-Beta safety must
+not depend on Expert always rescuing a deterministic semantic error.
+
+*Root cause.* A negative person quantifier — `nobody`, `no one`, `no <person-noun>` — **is not an
+assertion about exposure**. What it negates is decided entirely by **the predicate it scopes over**,
+and English offers at least four predicate families that a generic negation word cannot tell apart:
+presence/exposure, control or PPE use, injury or outcome, and none of those. The pre-§299 expression
+treated them as interchangeable, so *"Nobody working up there had a harness on"* — a sentence that
+presupposes people working at height — wrote `employeeExposure = false` at confidence 0.98.
+
+*The repair, and what it deliberately does not do.*
+`backend/src/hazlenz/evidence/person-negation-semantics.ts` classifies each quantified clause into
+`PRESENCE_OR_EXPOSURE`, `CONTROL_USE`, `OUTCOME` or `UNRESOLVED`, and **only the first reaches
+`employeeExposure`**. It skips the restrictive modifier before reading the predicate —
+`Nobody [working up there] [had a harness on]` — which is the precise mechanism of the defect; and
+within the predicate the **earliest** family marker wins, so *"nobody was on the platform wearing a
+harness"* is still a presence denial. **Nothing asserts the converse.** The §298 sentence is
+vacuously true if nobody is up there, so exposure is not entailed, and the repair **removes a false
+claim without inventing its opposite**. The §298 sentence appears in no matching rule: the family
+was repaired, not the phrase.
+
+*The §298 observation, before and after — both re-measured locally in a read-only worktree at
+`d78150ed` rather than quoted from §298.*
+
+| | before | after |
+|---|---|---|
+| `employeeExposure` fact | `false`, confidence **0.98**, `confirmed` | **not asserted** |
+| 29 CFR 1910.28 | **CONTRADICTED**, confidence **0.05** | **UNKNOWN**, confidence 0.45 |
+| exposure predicate | CONTRADICTED | UNKNOWN, listed in `missingPredicates` |
+| explanation | *"Suppressed because submitted evidence contradicts: employee access or exposure"* | *"Candidate only; missing: employee access or exposure"* |
+| `assessmentDisposition` | `controlled_condition` | `insufficient_evidence` |
+
+The standard is now **a candidate with an open predicate instead of a suppressed one**, and **no CFR
+citation is manufactured** — §299 explicitly did not require one, and the governed standards and
+evidence architecture remains authoritative for what the candidate becomes next.
+
+*No overcorrection.* The same note with *"No employees were on the mezzanine"* substituted for the
+harness sentence, **every other sentence left in place**, still yields `employeeExposure = false` at
+0.98 and still suppresses 1910.28 as CONTRADICTED at 0.05. The repair narrowed **which** sentences
+negate exposure, not **whether any do**.
+
+*The regression family.* 27 cases across the ten §299-named groups — 10 that must still negate, 17
+that must not. **The pre-§299 expression is wrong on 16 of the 27 and right on 11**, so the family
+measures a *distinction* rather than a direction; a change that simply stopped negating would fail
+its other half. It was wrong in **both** directions — it also missed *"Not a single employee was
+exposed"*, *"No employees on the elevated surface"* and *"None of the crew were on the roof"* — so
+genuine no-exposure handling is **improved** as well as narrowed. The family caught one real gap
+during development (plural control nouns: *"were wearing respirators"*), which is what it is for.
+
+*Expert disagreement is unaffected, and that was checked rather than asserted.* All four
+disagreement types and all three targets are intact; **no file under any Expert path was added or
+modified**, verified against `d78150ed` over tracked changes *and* untracked additions; and the
+deterministic projection Expert receives still names an open predicate for Expert to contest. The
+fall-protection decision is `UNKNOWN`, **not** `SUPPORTED` — deterministic code did not acquire a
+semantic conclusion here, so Expert's judgement about exposure is invited rather than pre-empted.
+What is **not** claimed is that Expert *would* still disagree on this observation; that is a hosted
+question and §299 authorised zero provider calls.
+
+*Evidence:* `verification/current/expert-hz4-hz5-299/`.
+*Retest:* `npm run test:299-person-negation` and `npm run test:299-section-298-replay`, both wired
+into `hazlenz:test` so the family is a standing gate rather than a one-time proof.
+
+**HZ-5 — CLOSED at §299.** The root cause is that the frontend **restates** the posture vocabulary,
+because it does not build against `backend/`, and the restatement went stale when §233 superseded
+the §210J/§226 names — with nothing asking, **in either direction**, whether the two lists still
+agreed.
+
+*The complete current server vocabulary is four members, and that was established mechanically
+rather than assumed.* §235 and §237 both import `IMMEDIATE_SAFETY_POSTURES_233` unchanged, so they
+are additive successors over the same enum: `CONTINUE`, `CONTINUE_WITH_CONTROLS`,
+`HOLD_PENDING_VERIFICATION`, `STOP`.
+
+| | previous frontend vocabulary | repaired |
+|---|---|---|
+| `CONTINUE` | "Work may continue" | "Work may continue" |
+| `CONTINUE_WITH_CONTROLS` | "Continue only with the controls below in place" | unchanged |
+| `HOLD_PENDING_VERIFICATION` | **absent** → *"The operational posture could not be read"* | "Hold this work until the open question is resolved" |
+| `STOP` | **absent** → *"The operational posture could not be read"* | "Stop this work now" |
+| `STOP_WORK`, `DO_NOT_START`, `NO_IMMEDIATE_RESTRICTION` | named, and the server cannot emit any of them | **removed** |
+
+*Restrictiveness is copied, not inferred.* `restrictsWork` is the server's own
+`POSTURE_PERMITS_CONTINUED_WORK`, negated, and the panel now gives a restricting posture a red
+bordered treatment and a *"work is restricted"* qualifier instead of the neutral slate it previously
+shared with *"Work may continue"*. Nothing reads the label or the prose to decide.
+
+*Fail-closed is preserved and strengthened.* An unknown value still declines to name a posture —
+*"The operational posture could not be read — treat this work as restricted and have it reviewed"* —
+and now **also** carries `restrictsWork: true`, so a future server value this build has never heard
+of lands on the restrictive treatment rather than the calm one. Asserted over a plausible future
+addition, a retired name, a wrong-case value and an empty value; permissive language is never
+borrowed and the permissive labels are never substituted.
+
+*The §298 result itself.* The proof reads
+`verification/current/expert-activation-298/EXPERT-RESULT-298.json` — the response the deployed
+server actually returned — and pushes it through the same `readFromExecution()` the panel uses,
+**not a hand-authored STOP fixture**. It renders "Stop this work now", `restrictsWork: true`, with
+the server's `whatHappensNow` prose unchanged beneath it. **No provider call was made**: the §298
+execution is replayed from disk.
+
+*The coverage check fails in both directions, and it has been watched doing so.*
+`check-299-posture-vocabulary-parity.mjs` reads `IMMEDIATE_SAFETY_POSTURES_233` and
+`POSTURE_PERMITS_CONTINUED_WORK` **out of the server source** and fails on: a server posture the
+frontend cannot name; **a frontend posture the server cannot emit** — the direction that would have
+caught this the day §233 landed, because dead vocabulary looks like coverage; a `restrictsWork`
+disagreement; permissive language on a restrictive posture; and any retired §210J name.
+`prove-parity-check-fails.mjs` runs **seven mutations** against copies of the two files, including
+the literal HZ-5 shape, and asserts a non-zero exit for each — a gate nobody has watched fail is not
+evidence.
+
+*Evidence:* `verification/current/expert-hz4-hz5-299/`.
+*Retest:* `npm run check:299-posture-vocabulary` and `npm run test:299-posture-presentation`.
+
+**IT-1 and IT-2 — two pre-existing gate failures found at §299 while running the battery, both in
+verification infrastructure, neither a production defect.**
+
+`hazlenz:integration:test` had been **aborting in §262 since §291**, and nothing noticed because the
+abort happened before any assertion ran. §291 (SU-1) made acceptance of
+`internal-pre-beta-acknowledgement` **required at registration** — deliberate, correct product
+behaviour — and five harnesses (§262, §264, §265, §267, §268) build their `/auth/register` body by
+hand and were never updated. Each received `400 Acceptance of … is required` and then `401` on the
+login that followed. **It reproduces unchanged at `d78150ed`**, so it is not a §299 regression.
+
+The repair does **not** weaken, mock or disable the §291 requirement — the harnesses now send an
+acceptance and the service still validates and records it, and would still reject a wrong or missing
+version. The acceptance is **derived** from `agreementsRequiredAtRegistration()`, the same registry
+the service validates against, so a version bump flows through with no edit: a hardcoded copy in a
+test is the same failure mode as HZ-5.
+
+Behind it, `IT-2`: §268's `E-2` pinned the literal schema version `1800000021000` and failed against
+a `/health/ready` that was answering **correctly** with `1800000023000`, two migrations later. A
+pinned schema version in a test means every legitimate migration breaks a gate that is supposed to
+be about readiness, and the reflex repair — bump the literal — teaches nobody anything. The
+expectation is now derived from `expectedMigrationTimestamps()`, the enumerator the endpoint itself
+uses, so a genuine drift still fails.
+
+`hazlenz:integration:test` now reports **435 assertions passed, 0 failed** across §261, §262, §264,
+§265, §267 and §268. **No production code changed for either.**
+
+**HZ-6 — which model answered is not on the record.** `respondedModel` is written as a literal
+`null` and `providerId` records the seam (`hosted-expert-semantic-transport`), with the stated
+reason that the transport owns the vendor; `latencyMs` is never written. The adapter **does** capture
+the responding model, so the value exists and is discarded at the product boundary. For §298, vendor
+and model had to be established from the frozen envelope, the absence of any production override,
+the credential's model list, and cost arithmetic that reproduces the recorded `costUsd` at the
+published `claude-sonnet-5` rates. That chain is sound but **configuration-derived, not
+execution-derived**.
+
+*Evidence:* `expert_analysis_executions` row `7c14adbe…`.  
+*Retest:* a successful execution records a non-null `respondedModel` equal to what the provider
+returned, and a non-null `latencyMs`.
+
+**HZ-7 — an Expert-derived finding reaches the report unrated.** Risk is computed at deterministic
+reconciliation, and no finding is reconciled from any Expert analysis by design, so a finding created
+by finalizing an Expert-cited review has `riskSnapshot` NULL. The §298 report printed it as
+*"Not rated"* with *"APPLICABLE STANDARD: Not established for this specific finding"*, while the
+deterministic finding naming the same hazard printed `Critical`, severity 5, likelihood 4. **The
+report is honest about it** — the executive summary states *"1 finding(s) have no established risk
+rating"* and directs a qualified person to rate it before closure — so this is a capability gap, not
+a false claim. Do **not** remediate by having deterministic code infer a severity from Expert's
+posture; that would be deterministic code authoring safety semantics.
+
+*Evidence:* `inspection_findings 80f32efc…`; `expert-activation-298/REPORT-TEXT-298.txt` pages 2-3.  
+*Retest:* no path silently produces an unrated finalized finding.
+
+**HZ-8 — accepted.** The operational gate runs before `claimExecution`, deliberately, so a refusal
+writes no execution row. The side effect is that the idempotent-replay resolution — which cannot
+spend — is unreachable once the ceiling is met. It spent nothing (`providerCallsMade: 0`, no new
+row, attempts unchanged) and the read route is the recovery. Recorded so it is not rediscovered as a
+bug; the reuse path is therefore **NOT_EXERCISED** in production at this configuration.
+
+*Evidence:* replay of `expert-bc9eb0f4…-0` after the ceiling -> 503.  
+*Retest:* not applicable while accepted.
 
 **HZ-3 — unchanged at §289, and the remediation is now more precisely aimed.** `hazlenz:verify` still reports `ENVIRONMENTALLY_BLOCKED`. A §289 attempt to satisfy it by supplying `STORAGE_PROVIDER=local_test` and `STORAGE_LOCAL_ROOT` **did not take effect** — the harness does not pass them into the child process that needs them. So the fix is in `scripts/hazlenz/verify.ts`, not in the environment the operator sets.
 
@@ -1309,6 +1571,88 @@ in production. **An emission layer that now records its own failures is still no
 live half is `MO-1`, it needs the owner's configuration, and it is still open.
 
 The application source changed, so the release binding changed with it. **§295 deployed it.**
+
+---
+
+## §298 — Expert HazLenz is live, it worked, and it caught a defect in the engine beneath it
+
+**One analysis. USD 0.190830. Two provider legs. Zero retries. No immediate-disable criterion.**
+
+`EXPERT_EXECUTION_ENABLED` went from `false` to `true` through the Render per-key env-var route —
+avoiding by construction the whole-list replacement hazard `§297A` recorded — and was made effective
+by a **deployment pinned to the already-deployed commit** `87491ed9…`, so the configuration landed on
+a byte-identical build. 42 variables before, 42 after, 0 added, 0 removed, exactly 3 changed, the
+other 39 byte-identical. `applicationSourceDigest` `7fc9d47e…` unchanged; schema `1800000023000`
+55/55; §274 identity `8c163b31…` re-verified 22/22 with 0 failures. **No source was modified to
+activate Expert.**
+
+**The flag was proved live without spending a cent.** An execution request carrying an invented
+`requestVersion` returned **409** — a refusal raised inside the claim transaction, after the
+operational gate and before any execution row is written. A flag still reading `false` would have
+produced 503 `EXPERT_EXECUTION_DISABLED`. `expert_analysis_executions` was still empty afterwards.
+
+**The ceiling was proved to fail closed three separate ways, and only one of them was live.** The
+unit tier (`test:268-operational-controls`, 64/0, including *a limit of 1 permits the first and
+refuses the second*); the **shipped** control surface executed against the exact values §298 intended
+to set, before they were set; and then, after the one analysis, a live second request refused
+**503 `WORKSPACE_ANALYSIS_CEILING_REACHED`, `providerCallsMade: 0`**, no new execution row. The
+refusal path was never bought with a provider call. Worst-case bounded spend for one analysis is
+**USD 0.273** against the USD 1.00 ceiling — computed from the frozen envelope, not estimated — so
+no higher technical ceiling was needed and none was taken.
+
+**The chain held end to end.** Server-allocated `requestVersion` 2 under the advisory lock; an
+`ANALYSIS_RUNNING` row before any provider contact; `transportSubstituted: false`; admission `ADMIT`
+with empty `conformanceViolations`, `declarationRefusals`, `postureRefusalCodes`,
+`roleJustificationCodes` and `semanticInventions`; `candidateIdentity` **derived from the execution**
+rather than declared; and three-way byte parity, sha256 `37b0a11a5dd5c560…`, across the route
+response, the persisted `resultSnapshot` and a fresh-session read. Six cross-tenant probes from a
+**second entitled workspace** — so the test was not answered by the entitlement gate — all returned
+**404**, never 403.
+
+**Human confirmation was not required, and that was a decision rather than a pass.** The posture
+carried `UNRESOLVED_RESPONSE_OR_FOLLOW_UP`, which is branch B's trigger; branch B additionally
+requires the posture to permit continued work, and the posture was `STOP`. Re-running the **shipped**
+rule on the stored posture reproduced the server's answer, and two counterfactuals flipped it to
+*required* — so the rule had a real opportunity to fire. The confirm/override **transition is
+NOT_EXERCISED** and was not manufactured; forcing one would have needed a second Expert execution.
+The boundary was proved instead: a settlement attempt with a *valid* decision value on the
+`ANALYSIS_AVAILABLE` analysis was refused **409** by the eligibility rule.
+
+**The semantic result was materially reasonable, and it is one observation.** Expert understood the
+note, identified the fall exposure with three exact quotes, declined to raise the suspended-load and
+powered-industrial-truck hazards the *deterministic* decomposition raised on an observation stating
+the forklift was not lifting, preserved one genuine unresolved fact with both branches and a
+decision for each, asked exactly one clarification bound to that same unknown, and returned a `STOP`
+scoped to work near the opening with an explicit resume condition and the note that the unresolved
+gate question *"does not delay the immediate stop"*. It cited **nothing** — `governedRecordCount` is
+0, so it was permitted to cite nothing, and zero CFR-shaped strings appear anywhere in its output.
+**No population-level accuracy claim follows from this.**
+
+**And it caught `HZ-4`.** The deterministic engine had marked employee exposure `CONTRADICTED` and
+suppressed 29 CFR 1910.28 at confidence 0.05, because its extractor read the word *"Nobody"* — in
+*"Nobody working up there had a harness on"* — as an assertion that nobody was exposed. Expert
+quoted the contradicting sentence back and recorded a HIGH-confidence `MAY_BE_INCOMPLETE`
+disagreement. That is the advisory layer earning its place, on the first real analysis it ever ran
+in production.
+
+**Four other defects were opened and none was repaired**, because §298 authorises no source change:
+`HZ-5` (the frontend cannot name `STOP` or `HOLD_PENDING_VERIFICATION` — the two restrictive
+postures — and renders *"The operational posture could not be read"*, failing closed), `HZ-6` (the
+execution record cannot say which model answered), `HZ-7` (an Expert-derived finalized finding
+reaches the report unrated, which the report states honestly rather than fabricating), and `HZ-8`
+(an idempotent replay is shadowed by the ceiling; it spends nothing).
+
+**Housekeeping.** The retained §297 synthetic credential was rotated through the product's own reset
+path, and its invalidation was **executed rather than argued**: a two-phase rotation proved that a
+credential which *did* authenticate returns 401 afterwards. Both §298 pilot entitlement grants were
+revoked and the revocation proved effective (the Expert read route now answers **402**), and both
+§298 synthetic credentials were invalidated. **No account, finding, analysis or report was deleted** —
+report immutability and the audit rows this closure rests on are product guarantees, and the
+§290/§291/§297 precedent is to name synthetic residue rather than tidy it away.
+
+**0 alerts raised. 0 unexpected 5xx. 0 migrations. 0 source changes. 1 deployment. 1 Expert call.**
+
+*Evidence:* `verification/current/expert-activation-298/`
 
 ---
 

@@ -1,0 +1,147 @@
+[
+ {
+  "surface": "frontend /login",
+  "kind": "customer-visible page",
+  "sample": {
+   "title": "Sign in \u00b7 Safety InSite",
+   "tokens": [
+    "Safety InSite",
+    "safety-insite",
+    "safety_insite"
+   ]
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "frontend /command-center",
+  "kind": "customer-visible page",
+  "sample": {
+   "title": "Dashboard \u00b7 Safety InSite",
+   "tokens": [
+    "Safety InSite",
+    "safety-insite",
+    "safety_insite"
+   ]
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "frontend /inspections",
+  "kind": "customer-visible page",
+  "sample": {
+   "title": "Inspections \u00b7 Safety InSite",
+   "tokens": [
+    "Safety InSite",
+    "safety-insite",
+    "safety_insite"
+   ]
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "frontend /inspection-workspace",
+  "kind": "customer-visible page",
+  "sample": {
+   "title": "Inspection workspace \u00b7 Safety InSite",
+   "tokens": [
+    "Safety InSite",
+    "safety-insite",
+    "safety_insite"
+   ]
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "frontend /inspection-complete",
+  "kind": "customer-visible page",
+  "sample": {
+   "title": "Complete inspection \u00b7 Safety InSite",
+   "tokens": [
+    "Safety InSite",
+    "safety-insite",
+    "safety_insite"
+   ]
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "frontend /reports",
+  "kind": "customer-visible page",
+  "sample": {
+   "title": "Reports \u00b7 Safety InSite",
+   "tokens": [
+    "Safety InSite",
+    "safety-insite",
+    "safety_insite"
+   ]
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "backend /health/version",
+  "kind": "API response",
+  "sample": {
+   "appName": "safety-insite-backend"
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "backend /agreements",
+  "kind": "consent document the user accepts",
+  "sample": {
+   "title": "Safety InSite \u2014 Internal / Pre-Beta Use Acknowledgement",
+   "occurrencesInBody": 2
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "generated inspection report (PDF)",
+  "kind": "customer deliverable",
+  "sample": {
+   "occurrences": 6,
+   "samples": [
+    "SAFETY INSITE",
+    "Safety InSite"
+   ]
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "operational event schema",
+  "kind": "externally transmitted to the alert webhook",
+  "sample": {
+   "schema": "safety-insite.operational-event.v1",
+   "sourceField": "safety-insite"
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "infrastructure",
+  "kind": "not customer-visible but externally registered",
+  "sample": {
+   "vercelProductionHost": "safety-insite.vercel.app",
+   "renderService": "safety-insite-backend",
+   "renderRepo": "github.com/McKinley18/safety-insite",
+   "backendHost": "safescope-backend.onrender.com (retired-brand hostname, still live)",
+   "r2Bucket": "insite-production",
+   "corsOrigins": "https://safety-insite.vercel.app"
+  },
+  "externallyTransmitted": true
+ },
+ {
+  "surface": "browser-observed strings",
+  "kind": "customer-visible chrome",
+  "sample": [
+   "Safety InSite / POWERED BY HAZLENZ AI (header logo, every page)",
+   "Access Safety InSite (login heading)",
+   "Enter your email and password to continue to Safety InSite.",
+   "SAFETY INSITE HOME (dashboard eyebrow)",
+   "SAFETY INSITE (inspection workspace eyebrow)",
+   "Saved to Safety InSite (workspace + inspections persistence notice)",
+   "SAFETY INSITE (report PDF page header)",
+   "Safety InSite \u00b7 <site> \u00b7 Inspection Report (report PDF footer, all 5 pages)",
+   "<title> ... \u00b7 Safety InSite (every page title)"
+  ],
+  "externallyTransmitted": true
+ }
+]

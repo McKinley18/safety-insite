@@ -1,0 +1,565 @@
+{
+ "artifact": "SAFETY_INSITE_SECTION_298_EXPERT_HAZLENZ_FIRST_PRODUCTION_ACCEPTANCE",
+ "section": "298",
+ "generated": "2026-09-15T00:46:36Z",
+ "outcome": "EXPERT HAZLENZ IS ACTIVATED IN PRODUCTION AND ONE CONTROLLED LIVE ANALYSIS EXECUTED THROUGH THE COMPLETE PRODUCTION PATH. Every governance and containment control held. No immediate-disable criterion occurred. FIVE NEW DEFECTS ARE REGISTERED, two of them P1 and blocking external beta; none is an Expert containment failure and one of them is a deterministic-engine defect that Expert HazLenz itself caught.",
+ "release": {
+  "startingProductionSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+  "endingProductionSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+  "applicationSourceDigest": "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
+  "digestRecomputedAtTheDeployedSha": true,
+  "artifactOnlyDigestDiagnostic": "5fb47c7f5ae5f9b93693dbae046a1a5e2cf3c87ccf3cf87cd30b4fcdadd263c6",
+  "schemaHead": "1800000023000",
+  "migrationsApplied": "55/55",
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "section274Verification": "verify:274-successor-identity \u2014 22 elements, 2 moved by the authorised path rename, 0 failures, 0 files written, 0 provider calls",
+  "sourceChanges": 0,
+  "migrations": 0,
+  "deployments": 1,
+  "rollbackEvents": 0,
+  "sourceModifiedToActivateExpert": false,
+  "backendSrcIdenticalBetweenHeadAndDeployedSha": true
+ },
+ "syntheticCredentialRotation": {
+  "account": "section297a-probe@release-test.invalid",
+  "userId": "d2c8bbfd-07d5-477b-8f83-fc8344768e4a",
+  "deleted": false,
+  "whyNotDeleted": "The account is the actor on the six \u00a7297 production 500s and on the security_audit_events rows MO-1's closure evidence rests on; deleting the user risks cascading into or orphaning them. \u00a7298 permitted retention for exactly this reason.",
+  "mechanism": "The product's own POST /auth/password-reset/complete was driven, so the rotation went through the shipped bcrypt hashing, passwordChangedAt stamp and refresh-token revocation rather than a hand-written UPDATE of the hash. Only the reset token was planted directly, because the account is on a .invalid domain with no mailbox and the email path would have failed and could have raised an alert.",
+  "passwordHashSha256Before": "f92f3b369dcc493263233a48b59d612869630651f6c04af8a7f17f32926e999d",
+  "passwordHashSha256After": "e722ed337d80940b468b7ff5763be6a7f2aede52e8a9a2aaf1d2c7d8115ba119",
+  "hashChangedFromTheSection297Value": true,
+  "passwordChangedAtBefore": "NULL",
+  "passwordChangedAtAfter": "2026-09-15 00:13:34.383+00",
+  "activeRefreshTokensBefore": 2,
+  "activeRefreshTokensAfter": 0,
+  "oldCredentialInvalidationProof": {
+   "problem": "The \u00a7297 credential was deliberately never preserved, so it cannot be presented to a login form to watch it fail. Replacement of the stored hash already makes it unusable, but that is an argument rather than an executed test.",
+   "method": "A two-phase rotation. Phase A set a known intermediate credential and PROVED it authenticates. Phase B rotated to the final strong random value. The intermediate credential was then presented again.",
+   "phaseA_loginWithIntermediate": {
+    "httpStatus": 201,
+    "authenticated": true,
+    "tokenReturned": true
+   },
+   "phaseB_loginWithTheNowSupersededCredential": {
+    "httpStatus": 401,
+    "authenticated": false,
+    "responseMessage": "Invalid credentials"
+   },
+   "conclusion": "A credential that demonstrably DID authenticate against this account returns 401 after the rotation, and the stored hash also differs from the \u00a7297 value. Both halves are executed facts."
+  },
+  "finalCredential": "40 characters of cryptographically random material. NOT printed, NOT committed, NOT returned, NOT written to any log or evidence file, and NOT retained in this session. Nobody holds it.",
+  "monitoringAlertRaisedWhileDoingIt": false,
+  "whyNoAlert": "The only failures produced were HTTP 401, which the \u00a7291 noise policy never alerts on. /health/ready reported serverErrorsInWindow 0 and an unchanged lastDelivery immediately afterwards."
+ },
+ "preservedReleaseSnapshot": {
+  "expertFlagBefore": "false",
+  "spendGuardBefore": {
+   "EXPERT_DAILY_ANALYSIS_LIMIT_PER_WORKSPACE": "25",
+   "EXPERT_DAILY_COST_LIMIT_USD_PER_WORKSPACE": "10",
+   "EXPERT_SPEND_WINDOW_HOURS": "24",
+   "EXPERT_ANTHROPIC_TIMEOUT_MS": "180000"
+  },
+  "providerConfigurationBefore": {
+   "credential": "ANTHROPIC_API_KEY present, 108 chars, withheld",
+   "model": "claude-sonnet-5 (the frozen envelope default; NO production override is set)",
+   "endpoint": "https://api.anthropic.com (envelope default, no override)",
+   "publishedRates": "input USD 2.00/MTok, output USD 10.00/MTok"
+  },
+  "monitoringBefore": {
+   "alerting": "CONFIGURED",
+   "channel": "webhook",
+   "lastDelivery": "DELIVERY_ACCEPTED status 200 at 2026-09-14T23:59:49.031Z (\u00a7297B)"
+  },
+  "lastDeliveryLaterReadsNull": "EXPECTED, NOT A REGRESSION. getDeliveryHealth() reports lastDelivery only while it is younger than DELIVERY_HEALTH_WINDOW_MS (15 minutes). It is a health signal, not a log. No restart occurred: the Render event stream shows no server_restarted between the \u00a7297B delivery and the \u00a7298 reads.",
+  "environmentVariableCount": 42
+ },
+ "preflight": {
+  "checks": 17,
+  "failed": [],
+  "results": {
+   "providerCredentialPresent": {
+    "pass": true,
+    "detail": "ANTHROPIC_API_KEY present in the production environment, 108 characters, Anthropic key format. The value is withheld and appears in no \u00a7298 artifact."
+   },
+   "providerCredentialValid": {
+    "pass": true,
+    "detail": "GET /v1/models HTTP 200, 11 models listed, 0 model invocations, $0 billed"
+   },
+   "modelMatchesValidatedArchitecture": {
+    "pass": true,
+    "detail": "envelope default 'claude-sonnet-5'; production overrides present: none; model offered by the credential: True"
+   },
+   "expertFlagFalseInConfig": {
+    "pass": true,
+    "detail": "EXPERT_EXECUTION_ENABLED='false'"
+   },
+   "tenantBindingActive": {
+    "pass": true,
+    "detail": "tenant B POST on tenant A's observation -> HTTP 404 Observation not found."
+   },
+   "killSwitchRefusesLive": {
+    "pass": true,
+    "detail": "HTTP 503 code=EXPERT_EXECUTION_DISABLED providerCallsMade=0"
+   },
+   "refusalWroteNoExecutionRow": {
+    "pass": true,
+    "detail": "expert_analysis_executions rows in production = 0"
+   },
+   "expertReadRouteLive": {
+    "pass": true,
+    "detail": "HTTP 200 analysis=None"
+   },
+   "structuralAdmissionActive": {
+    "pass": true,
+    "detail": "execution service binds ADMISSION_252_VERSION; frozen entry point calls admitExpertOutput252"
+   },
+   "rr7AuthorityGateActive": {
+    "pass": true,
+    "detail": "RR-7 preservation referenced in the frozen entry point"
+   },
+   "confirmationBoundaryActive": {
+    "pass": true,
+    "detail": "both confirmation branches present in expert-confirmation-rule.ts"
+   },
+   "providerAccountingActive": {
+    "pass": true,
+    "detail": "usage folded per leg and emitted as expert.provider.usage_recorded"
+   },
+   "spendGuardActive": {
+    "pass": true,
+    "detail": "kill switch + analysis ceiling + cost ceiling evaluated before claimExecution (measured live above)"
+   },
+   "expertPersistencePresent": {
+    "pass": true,
+    "detail": "tables=['expert_analysis_executions', 'hazlenz_analyses', 'human_reviews']; per-producer currentness index=uq_hazlenz_analysis_current_by_producer; check constraints=['ck_hazlenz_analysis_settlement']"
+   },
+   "monitoringConfigured": {
+    "pass": true,
+    "detail": "alerting=CONFIGURED channel=webhook lastDelivery=null"
+   },
+   "noPendingMigration": {
+    "pass": true,
+    "detail": "schema 1800000023000 applied 55/55 aheadOfBuild=[]"
+   },
+   "productionShaUnchanged": {
+    "pass": true,
+    "detail": "87491ed96f6f09de3de5800fc0a472e20d120413"
+   },
+   "_summary": {
+    "checks": 17,
+    "failed": []
+   }
+  },
+  "correction": "expertPersistencePresent named ck_hazlenz_analysis_server_authored_execution, which does not exist. The constraint that enforces the property is ck_hazlenz_analysis_producer_execution, and it IS present, together with ck_hazlenz_analysis_producer, ck_hazlenz_analysis_state and ck_hazlenz_analysis_settlement. The check passed on its substantive criteria; the detail string named the wrong constraint and is corrected here."
+ },
+ "spendCeiling": {
+  "authorized": "EXACTLY ONE successful Expert provider analysis",
+  "preferredCeilingUsd": 1.0,
+  "ceilingRaised": false,
+  "higherTechnicalCeilingRequired": false,
+  "whyOneDollarIsSufficient": "Worst-case bounded spend for ONE analysis, computed from the frozen envelope by executing the shipped control surface: 2 legs x 8,000 max output tokens = 16,000 output tokens at USD 10/MTok = USD 0.160, plus a bounded 56,516 input tokens at USD 2/MTok = USD 0.113. Total USD 0.273 against a USD 1.00 ceiling. maxAttemptsPerLeg is 1, so there is no retry multiplier.",
+  "configured": {
+   "EXPERT_DAILY_ANALYSIS_LIMIT_PER_WORKSPACE": "1",
+   "EXPERT_DAILY_COST_LIMIT_USD_PER_WORKSPACE": "1",
+   "EXPERT_SPEND_WINDOW_HOURS": "24"
+  },
+  "failsClosedProof": {
+   "unitTier": "npm run test:268-operational-controls \u2014 64 passed, 0 failed, including S-7 (a limit of 1 permits the first analysis) and S-8 (the second is refused), S-3 (the cost ceiling refuses independently of the count) and K-6 (the kill switch dominates).",
+   "configurational": "The SHIPPED evaluateExpertExecutionPermission was executed against the EXACT values \u00a7298 intended to set, before they were set. 0 provider calls, 0 database operations. First analysis permitted; second refused WORKSPACE_ANALYSIS_CEILING_REACHED; cost at 1.0000 and at 1.0001 refused WORKSPACE_COST_CEILING_REACHED; cost at 0.9999 permitted; kill switch still dominates with the ceilings set.",
+   "liveInProduction": "After the one analysis, a second execution request was refused HTTP 503 WORKSPACE_ANALYSIS_CEILING_REACHED with providerCallsMade 0 and no new execution row. expert.control.spend_limit_refused was emitted with providerLegsSpent 0. THIS COST NOTHING \u2014 the refusal path was not bought with a provider call."
+  }
+ },
+ "activation": {
+  "mechanism": "Render per-key PUT /v1/services/{id}/env-vars/{key}, so the whole-list replacement hazard \u00a7297A recorded was avoided by construction.",
+  "envDiff": {
+   "countBefore": 42,
+   "countAfter": 42,
+   "added": [],
+   "removed": [],
+   "changed": [
+    "EXPERT_DAILY_ANALYSIS_LIMIT_PER_WORKSPACE",
+    "EXPERT_DAILY_COST_LIMIT_USD_PER_WORKSPACE",
+    "EXPERT_EXECUTION_ENABLED"
+   ],
+   "changedValues": {
+    "EXPERT_DAILY_ANALYSIS_LIMIT_PER_WORKSPACE": "1",
+    "EXPERT_DAILY_COST_LIMIT_USD_PER_WORKSPACE": "1",
+    "EXPERT_EXECUTION_ENABLED": "true"
+   }
+  },
+  "diffRule": "\"three changed\" and \"none lost\" were checked separately: 42 before, 42 after, 0 added, 0 removed, exactly the 3 intended keys changed, and the other 39 values are byte-identical to the pre-activation snapshot.",
+  "deployment": {
+   "id": "dep-dak8v3p5efls73d4ob0g",
+   "requestedCommit": "87491ed96f6f09de3de5800fc0a472e20d120413",
+   "trigger": "api",
+   "status": "live",
+   "commitDeployed": "87491ed96f6f09de3de5800fc0a472e20d120413",
+   "finishedAt": "2026-09-15T00:23:26.000496Z"
+  },
+  "sameArtifact": "The deploy was pinned to commitId 87491ed9\u2026, the already-deployed SHA, so the configuration change was applied to the identical build rather than to whatever the branch happened to point at.",
+  "restartAloneWasNotRelied_on": true,
+  "liveExpertFlagAfterDeployment": {
+   "value": "true",
+   "provedFromTheRunningApplication": "An Expert execution request carrying an invented requestVersion returned HTTP 409 version-conflict \u2014 a refusal raised INSIDE the claim transaction, AFTER the operational gate and BEFORE any execution row is written. A flag still reading false would have produced HTTP 503 EXPERT_EXECUTION_DISABLED instead. expert_analysis_executions was still 0 rows afterwards, so the proof cost nothing and did not consume the one permitted analysis."
+  },
+  "preservedControls": {
+   "stillReady": {
+    "pass": true,
+    "detail": "{\"database\": \"available\", \"schema\": \"current\"}"
+   },
+   "releaseIdentityUnchanged": {
+    "pass": true,
+    "detail": "87491ed96f6f09de3de5800fc0a472e20d120413 nodeVersion=v24.14.1"
+   },
+   "schemaUnchanged": {
+    "pass": true,
+    "detail": "1800000023000 55/55"
+   },
+   "monitoringPreserved": {
+    "pass": true,
+    "detail": "alerting=CONFIGURED channel=webhook serverErrorsInWindow=0"
+   },
+   "expertEnabledInRunningApp": {
+    "pass": true,
+    "detail": "HTTP 409 code/message={\"message\": \"This Expert request carries an execution version that conflicts with this observation\\u2019s analysis history (sent 99; this observation is at 0). No analysis was run and nothing was charged. Reload the observation and request the analysis again \\ (503 EXPERT_EXECUTION_DISABLED would mean still disabled)"
+   },
+   "flagProbeWroteNoExecutionRow": {
+    "pass": true,
+    "detail": "expert_analysis_executions rows = 0"
+   },
+   "noindexPreserved_backend": {
+    "pass": false,
+    "detail": "x-robots-tag: None"
+   },
+   "noindexPreserved_frontend": {
+    "pass": true,
+    "detail": "x-robots-tag: noindex, nofollow"
+   },
+   "autoDeployStillOff": {
+    "pass": true,
+    "detail": "autoDeploy=no trigger=off previews={\"generation\": \"off\"}"
+   },
+   "liveExpertConfiguration": {
+    "pass": true,
+    "detail": "enabled=true analysisLimit=1 costLimitUsd=1 windowHours=24"
+   },
+   "secretsUnchanged": {
+    "pass": true,
+    "detail": "39 of 42 variables byte-identical to the pre-activation snapshot; 3 changed by intent"
+   },
+   "_summary": {
+    "checks": 11,
+    "failed": [
+     "noindexPreserved_backend"
+    ]
+   }
+  },
+  "noindexCorrection": "The \u00a7298 post-deployment check asserted x-robots-tag on the BACKEND and recorded a failure. That expectation was wrong: the noindex/nofollow control is a Next.js header policy (frontend-next/next.config.ts INDEXING_POLICY) and has never applied to the API. The frontend still serves 'noindex, nofollow'. Nothing regressed; the assertion was mis-scoped and is corrected here rather than left standing as a failure."
+ },
+ "controlledObservation": {
+  "regulatoryContext": "osha-general-industry",
+  "jurisdictionProvenance": "USER_CONFIRMED",
+  "text": "Morning walkthrough of the warehouse shipping area. The storage mezzanine above the packing benches was being restocked. On the west side there is a pallet-loading opening about twelve feet wide where the forklift lifts pallets up to the deck. The chain that normally goes across that opening was unhooked and lying on the deck, so the edge was open. One of the stockers was working maybe three feet from that open edge with his back to it, moving cartons off a pallet. It is about a ten foot drop to the concrete below. Nobody working up there had a harness on and I did not see any anchor points. The supervisor told me the chain gets unhooked whenever they are loading and they hook it back afterwards. I do not know whether that opening is supposed to have a proper gate or whether the chain is all they have ever had there. Nobody was injured and the forklift was not lifting at the time I was there.",
+  "provenance": "Authored fresh for \u00a7298. NOT a historical acceptance fixture, NOT a known failure trap, NOT an adversarial puzzle, NOT a driver-role limitation case, NOT malformed, and NOT customer data. No fixture text was copied; the \u00a7230 corpus was checked and no case in it is this scenario.",
+  "whyThisOne": "An ordinary walkthrough note of the kind an inspector types: one consequential and uncontroversial hazard, one genuine unknown the inspector states in their own words, and two details (nobody injured, the forklift not lifting) that invite over-reading. No unrealistic technical detail is required of the user.",
+  "actors": {
+   "tenantA": "section298-expert-a@release-test.invalid \u2014 synthetic, .invalid domain, consent recorded by the server at registration, Pro entitlement by a BOUNDED pilot entitlement_grant on the \u00a7290/\u00a7291 precedent (24h, revoked at cleanup).",
+   "tenantB": "section298-tenant-b@release-test.invalid \u2014 a second synthetic workspace, entitled the same way SO THAT THE ISOLATION TEST IS NOT VACUOUS. An unentitled tenant B would have been refused 402 by the entitlement guard and would never have reached the tenant boundary at all."
+  }
+ },
+ "execution": {
+  "expertCallCount": 1,
+  "analysesExecuted": 1,
+  "providerLegs": 2,
+  "retryCount": 0,
+  "maxAttemptsPerLeg": 1,
+  "requestSentByTheShippedClientShape": "idempotencyKey 'expert-<observationId>-0', optional taskContext, and NO requestVersion \u2014 the exact shape frontend-next/lib/expert/expertApi.ts constructs, confirmed by npm run check:expert-request-construction (6/6 PASS) before the call.",
+  "httpStatus": 201,
+  "wallClockSeconds": 77.38,
+  "executionRecord": {
+   "id": "7c14adbe-32b1-4c6f-90fe-bc385c3d5235",
+   "observationId": "bc9eb0f4-e032-4678-8c56-f6d2ec30f46c",
+   "inspectionId": "8936db9e-15e2-45c3-96b3-beedccc9aeaf",
+   "organizationId": "",
+   "analysisId": "944c1b69-e564-4939-b321-72f98f787eed",
+   "idempotencyKey": "expert-bc9eb0f4-e032-4678-8c56-f6d2ec30f46c-0",
+   "requestVersion": "2",
+   "executionState": "ANALYSIS_AVAILABLE",
+   "candidateIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+   "contractVersion": "hazlenz.expert.first-pass.259",
+   "entryVersion": "hazlenz.expert.production-entry.v1",
+   "admissionVersion": "hazlenz.expert.252.structural-admission.v1",
+   "projectionVersion": "hazlenz.expert.239.posture-projection.v1",
+   "confirmationRuleVersion": "hazlenz.expert.confirmation-required.261-unresolved-classification-boundary",
+   "systemPromptSha": "680f5127776427963d89244eafa32ce57973575ffbfae2f3326ed92fc17be34a",
+   "wireSchemaSha": "3424214f4a7a2768e1761664413746efdd0014e0ba08584f70d49b4e8a1bb033",
+   "providerId": "hosted-expert-semantic-transport",
+   "respondedModel": "",
+   "admission": "ADMIT",
+   "verifierReached": "t",
+   "verifierFactKey": "FP.REQUIRED_CONTROL.observation.706-828.1",
+   "firstPassInputTokens": "45442",
+   "firstPassOutputTokens": "4715",
+   "verifierInputTokens": "14603",
+   "verifierOutputTokens": "2359",
+   "costUsd": "0.190830",
+   "latencyMs": "",
+   "attempts": "2",
+   "failureKind": "",
+   "requestedByUserId": "3b9a1aac-6fc2-45cc-a7ff-594577daf10b"
+  },
+  "transportResult": "HTTP 201, outcome EXECUTED, both legs answered, verifier reached on fact FP.REQUIRED_CONTROL.observation.706-828.1.",
+  "transportSubstituted": false,
+  "transportSubstitutedEvidence": "expert.provider.usage_recorded carries transportSubstituted:false, providerId is 'hosted-expert-semantic-transport' rather than 'local-deterministic-transport', and both legs reported real token counts with a non-null costUsd \u2014 which a substituted transport cannot do. This is the DEPLOYMENT-RUNBOOK step 11 pass condition, met live."
+ },
+ "completeChainProof": [
+  {
+   "link": "USER OBSERVATION",
+   "proof": "POST /inspections/{id}/observations 201; observation bc9eb0f4\u2026 owned by tenant A."
+  },
+  {
+   "link": "SERVER-AUTHORITATIVE EXPERT EXECUTION",
+   "proof": "The client sent only idempotencyKey and taskContext. The server allocated requestVersion 2 itself under the advisory lock (the deterministic analysis holds 1), built the Expert input from its own deterministic run (deterministicBasisDigest 45577f4f\u2026), and wrote an ANALYSIS_RUNNING execution row BEFORE any provider contact."
+  },
+  {
+   "link": "PROVIDER TRANSPORT",
+   "proof": "2 legs, 60,045 input and 7,074 output tokens, USD 0.190830, transportSubstituted false."
+  },
+  {
+   "link": "NON-STRICT COMPLETE SEMANTIC OUTPUT",
+   "proof": "strictSchema false by \u00a7252 product-owner decision; the provider returned a complete structured analysis and the structural obligation was discharged deterministically."
+  },
+  {
+   "link": "DETERMINISTIC STRUCTURAL ADMISSION",
+   "proof": "admission ADMIT under hazlenz.expert.252.structural-admission.v1. conformanceViolations [], declarationRefusals [], postureRefusalCodes [], roleJustificationCodes [], semanticInventions []."
+  },
+  {
+   "link": "AUTHORITY / RR-7 / GOVERNANCE",
+   "proof": "candidateIdentity on the execution record is 8c163b31\u2026 \u2014 EXECUTION-DERIVED from the assembled request, not declared from a list. governedRecordCount 0, so Expert was permitted to cite nothing and cited nothing: zero CFR-shaped strings appear anywhere in the admitted result. RR-7 preservation was not exercised, because nothing was refused."
+  },
+  {
+   "link": "HAZLENZ RESULT",
+   "proof": "analysis 944c1b69\u2026, producer server_authored, engineVersion hazlenz.expert.first-pass.259, protected by ck_hazlenz_analysis_producer_execution."
+  },
+  {
+   "link": "HUMAN-CONFIRMATION / SETTLEMENT BOUNDARY",
+   "proof": "confirmationRequired false, and CORRECTLY so \u2014 see humanConfirmation below."
+  },
+  {
+   "link": "PERSISTENCE",
+   "proof": "Three-way byte parity, sha256 37b0a11a5dd5c560\u2026: the route response, the persisted resultSnapshot and a FRESH-SESSION read are the same bytes."
+  },
+  {
+   "link": "PRODUCT PRESENTATION",
+   "proof": "The deployed Vercel frontend, driven in a real browser with a real login and no dev bypass, rendered the Expert panel, the completed inspection and the generated report. This is the first time a deployed instance has served the \u00a7265 Expert frontend."
+  }
+ ],
+ "semanticReview": {
+  "scope": "ONE production observation. NOTHING HERE IS A POPULATION-LEVEL ACCURACY CLAIM and no architectural conclusion is drawn from it.",
+  "understoodTheObservation": "YES. Ten-foot drop, twelve-foot opening, chain unhooked and on the deck, a stocker three feet from the edge with his back to it, no harness and no anchor points.",
+  "identifiedTheConsequentialHazard": "YES, and it is the material result of the section. Expert raised the active fall exposure AND recorded a HIGH-confidence disagreement with the deterministic engine, which had marked employee access or exposure CONTRADICTED and suppressed 29 CFR 1910.28 at confidence 0.05. Expert quoted the observation back verbatim to show the exclusion rested on a misreading. That deterministic defect is real, is reproduced below, and is registered as HZ-4.",
+  "avoidedManufacturingUnsupportedHazards": "YES. Two candidates, both with exact quotes. It did NOT raise a suspended-load hazard and did NOT raise a powered-industrial-truck hazard \u2014 both of which the DETERMINISTIC decomposition did raise, the first at Critical with imminentDanger true, on an observation that states the forklift was not lifting.",
+  "preservedMaterialUnresolvedFacts": "YES. One declaration, decl-gate-requirement, with branchA, branchB, decisionIfA, decisionIfB, decisionWhileUnresolved, whyNecessaryNow and an evidence span quoted from the inspector's own sentence. The declared property is the proposition whose truth controls the corrective action \u2014 procedural fix versus facility modification.",
+  "clarificationBehaviour": "ONE clarification, bound to the SAME genuine unknown as the declaration, with affectedDecision REQUIRED_CONTROL and a stated evidence gap. This is not the \u00a7204 M10 over-clarification pattern: no clarification was asked about anything the observation already answered.",
+  "correctiveReasoning": "PROPORTIONATE. Posture STOP, scoped to work near the twelve-foot opening rather than to the warehouse; three named corrections; an explicit resume condition; and the statement that the unresolved gate question 'does not delay the immediate stop'. It did not escalate the unresolved fact into a reason to stop everything, which is the over-restriction direction \u00a7254 observed.",
+  "regulatoryRestraint": "HELD. governedRecordCount 0, so Expert had no approved regulatory text to cite and cited none. ZERO CFR-shaped strings in the admitted result. It named no standard, asserted no violation, and asserted no compliance.",
+  "overstatedComplianceOrNoncompliance": false,
+  "uncertaintyHandling": "One uncertainty statement, correctly scoped and correctly labelled as not changing today's action.",
+  "humanReviewBoundaryPreserved": "YES. findingsReconciled false; the disagreement carries recommendsReview true; the browser derives no authority and copies settledForUse.",
+  "notClaimed": "This is one observation on one provider in one run. It establishes that the architecture executes correctly and that this answer was materially reasonable. It establishes nothing about accuracy at any population level."
+ },
+ "deterministicAdmission": {
+  "result": "ADMITTED",
+  "refused": 0,
+  "preservedUnresolved": 0,
+  "requiredDeclarationsAndStructuralFields": "PRESENT. One admitted fact carrying factKey, affectedDecision, source, evidenceSpan, whyUnresolved, branchA, branchB, decisionDivergence (ifA/ifB), priority, status and modelAuthored.",
+  "unsafeRepairOrInvention": "NONE. semanticInventions is empty and no deterministic code authored, repaired or reconstructed any semantic field.",
+  "malformedOutputAdmittedContraryToTheFrozenArchitecture": false
+ },
+ "humanConfirmation": {
+  "confirmationRequired": false,
+  "requirementCorrectlyEvaluated": true,
+  "howThatWasEstablished": "The SHIPPED deriveConfirmationRequired was re-run against the STORED posture and returned the same answer the server recorded. Two counterfactuals were run to prove the rule had a real opportunity to fire: with the SAME driver roles but a posture that PERMITS work, confirmation becomes REQUIRED via branch B; and with the declaration's role changed to UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION, it becomes REQUIRED via branch A.",
+  "whyItDidNotFire": "The posture carries driverRole UNRESOLVED_RESPONSE_OR_FOLLOW_UP, which is branch B's trigger, but branch B additionally requires the posture to permit continued work. The posture is STOP, which does not. Branch A's role is absent. So the answer is a decision, not a vacuous pass.",
+  "transition": "NOT_EXERCISED. No analysis reached ANALYSIS_AWAITING_CONFIRMATION, so no confirm/override transition existed to perform. It was NOT manufactured: forcing one would have required a second Expert execution, which \u00a7298 does not authorise.",
+  "boundaryProvenInstead": "The settlement route was driven with a VALID decision value against the ANALYSIS_AVAILABLE analysis and refused HTTP 409 'This analysis is ANALYSIS_AVAILABLE and is not awaiting confirmation.' The refusal came from the service eligibility rule, not from DTO validation \u2014 an earlier attempt with an invalid decision value was rejected 400 by the pipe and proved nothing, and is recorded here rather than counted.",
+  "bypassed": false,
+  "settlementRowsWritten": 0,
+  "humanReviewRowsFromSettlement": 0,
+  "analysisStateAfterAllProbes": "ANALYSIS_AVAILABLE, settlementReviewId NULL"
+ },
+ "persistence": {
+  "pass": true,
+  "detail": "{\"executeResponse\": \"37b0a11a5dd5c560d778000efe9d515197be413eda3f1408d9d2afe838254ee7\", \"persistedSnapshot\": \"37b0a11a5dd5c560d778000efe9d515197be413eda3f1408d9d2afe838254ee7\", \"freshSessionRead\": \"37b0a11a5dd5c560d778000efe9d515197be413eda3f1408d9d2afe838254ee7\"}",
+  "freshApiRead": "GET /inspections/observations/{id}/expert-analyses/current returned the analysis with a byte-identical payload.",
+  "freshAuthenticatedSession": "Tenant A was logged out and logged in again, receiving a different token; the read returned the same bytes.",
+  "inspectionReload": "The deployed frontend restored the inspection and re-fetched the Expert analysis through the read route.",
+  "expertContentWithheldFromTheInspectionRead": "GET /inspections/{id} carries expertResultWithheld and contains no Expert hazard text.",
+  "perProducerCurrentness": "Both producers coexist on the observation, both 'current': client_supplied at requestVersion 1 and server_authored at 2. Neither superseded the other."
+ },
+ "tenantIsolation": {
+  "secondTenantEntitled": true,
+  "results": {
+   "POST expert-analyses on tenant A's observation": "404 Observation not found",
+   "GET expert-analyses/current": "404 Observation not found",
+   "POST settlement with a VALID body": "404 Observation not found",
+   "GET /inspections/{id}": "404 Inspection not found",
+   "GET /inspection-reports/{id}": "404 Inspection not found",
+   "GET /inspection-reports/{id}/download": "404 Inspection not found"
+  },
+  "notForbidden": "Every refusal is 404, not 403, so a cross-workspace caller cannot learn whether the resource exists.",
+  "mutationsByTenantB": 0,
+  "sessionWasLive": "Tenant B's token was re-issued immediately before the report probes, because an expired token returns 401 and would have made the isolation test vacuous."
+ },
+ "reportIntegration": {
+  "exercised": true,
+  "expertToFindingGate": "A review citing the server-authored Expert analysis was accepted, and finalization was ALLOWED because effectiveDecision.settledForUse is true (EXPERT_ADMITTED_NO_CONFIRMATION_REQUIRED). The finalized finding carries the Expert analysis in selectedAnalysisId and originatingAnalysisId.",
+  "gateScoping": "A review citing the client_supplied deterministic analysis finalized without the Expert gate applying, which is the \u00a7265 scoping.",
+  "report": {
+   "revision": 1,
+   "sizeBytes": 11383,
+   "sha256": "353409892fd6feab1d5257e116fcc98c3bb5fbfb8eaf34a3d87388a046ac3601",
+   "downloadChecksumMatched": true
+  },
+  "immutableRevisionBehaviour": "Regenerating returned revision 1 unchanged: one version row, the same sha256, supersededByVersionId NULL, and the re-downloaded revision-1 bytes hash to the same value.",
+  "hazardParity": "The Expert-derived finding reaches the report under its own hazard key.",
+  "severityParity": "NOT ACHIEVED, AND THE REPORT SAYS SO RATHER THAN INVENTING ONE. The Expert-derived finalized finding carries riskSnapshot NULL, so it prints as 'Not rated' with 'APPLICABLE STANDARD: Not established for this specific finding.' The executive summary states '1 finding(s) have no established risk rating' and directs a qualified person to rate it before closure. Registered as HZ-7.",
+  "noFabricatedVerificationState": "CONFIRMED from the rendered PDF text. The deterministic finding's standard prints as 'Candidate only, qualified review required' with 'HazLenz basis: Candidate only; missing: employee access or exposure', and the basis-and-limitations block states HazLenz output is advisory and requires qualified human review.",
+  "duplicationNote": "Two finalized findings name the same hazard because \u00a7298 deliberately exercised BOTH the Expert-cited and the deterministic finalization paths on one observation. That duplication is an artefact of the test, not a product defect; the missing severity is not."
+ },
+ "monitoring": {
+  "state": "HEALTHY. /health/ready status ready, alerting CONFIGURED, channel webhook, serverErrorsInWindow 0, schema 1800000023000 55/55.",
+  "expertEventsObservedLive": [
+   "expert.control.execution_disabled x1 (the pre-activation kill-switch probe)",
+   "expert.execution.started x1 (analysisLimit 1, costLimitUsd 1)",
+   "expert.execution.admitted x1 (ADMIT, providerLegs 2)",
+   "expert.provider.usage_recorded x1 (providerLegs 2 = expectedProviderLegs 2, costUsd 0.19083, transportSubstituted false)",
+   "expert.control.spend_limit_refused x2 (analyses=1 limit=1, providerLegsSpent 0)"
+  ],
+  "qualifyingMonitoringEvents": 0,
+  "alertsRaisedBySection298": 0,
+  "providerFailureEvents": 0,
+  "unexpected5xx": 0,
+  "the5xxInTheWindow": "All five HTTP 500s in the 24h window are \u00a7297B's SE-5 probes. \u00a7298 produced none. The three 503s are \u00a7298's own deliberate refusals \u2014 one kill switch, two spend ceiling \u2014 which are refusals, not faults.",
+  "webhookDeliveries": 0,
+  "alertManufactured": false,
+  "tokenRedactionNote": "The usage event reports token counts as [redacted] because the \u00a7268 redaction drops keys whose NAME looks content-bearing. The real counts are on the execution record, behind the same access control as the analysis. Recorded as an observation, not a defect."
+ },
+ "providerAndCost": {
+  "provider": "Anthropic",
+  "providerIdOnTheExecutionRecord": "hosted-expert-semantic-transport",
+  "howTheVendorAndModelAreEstablished": "NOT from the execution record, which deliberately records the SEAM rather than the vendor and writes respondedModel as a literal null. They are established from (a) the frozen envelope, whose model is claude-sonnet-5 and whose endpoint is api.anthropic.com, with NO production override present \u2014 verified against the live 42-variable environment at preflight; (b) the credential, validated against Anthropic GET /v1/models, which lists claude-sonnet-5; and (c) the cost arithmetic, which reproduces the recorded costUsd exactly at the envelope's published claude-sonnet-5 rates. Registered as HZ-6.",
+  "model": "claude-sonnet-5",
+  "providerCalls": 2,
+  "successfulAnalyses": 1,
+  "retries": 0,
+  "tokens": {
+   "firstPassInput": 45442,
+   "firstPassOutput": 4715,
+   "verifierInput": 14603,
+   "verifierOutput": 2359,
+   "totalInput": 60045,
+   "totalOutput": 7074
+  },
+  "costUsd": 0.19083,
+  "costIsAuthoritativeOrEstimated": "COMPUTED, not estimated and not vendor-authoritative. (60045/1e6 x 2.00) + (7074/1e6 x 10.00) = 0.12009 + 0.07074 = 0.19083, which equals the persisted costUsd to six decimal places. It is derived from provider-REPORTED token usage at the envelope's published rates; the vendor's own billing record was not read.",
+  "spendCeilingUsd": 1.0,
+  "spendWithinCeiling": true,
+  "totalSectionSpendUsd": 0.19083,
+  "credentialsExposed": "NONE. No key, token or secret value appears in any \u00a7298 artifact."
+ },
+ "immediateDisableCriteria": {
+  "anyTriggered": false,
+  "evaluated": {
+   "1 cross-tenant exposure": "NO \u2014 six cross-tenant probes, all 404, zero mutations.",
+   "2 deterministic admission fails open": "NO \u2014 ADMIT with zero violations, and the structural layer was the thing that qualified the output.",
+   "3 human-confirmation boundary bypassed": "NO \u2014 the rule was correctly evaluated and the settlement route refused an ineligible settlement 409.",
+   "4 unsupported material authority operationally accepted": "NO \u2014 zero citations were produced and governedRecordCount is 0.",
+   "5 material malformed output silently repaired or invented": "NO \u2014 semanticInventions empty.",
+   "6 spend ceiling fails open": "NO \u2014 proven fail-closed at the unit, configurational and live tiers, the last at zero provider cost.",
+   "7 provider execution loops or retries unexpectedly": "NO \u2014 attempts 2 for 2 legs, maxAttemptsPerLeg 1, retryCount 0.",
+   "8 Expert causes uncontrolled production 5xx": "NO \u2014 zero 5xx attributable to \u00a7298.",
+   "9 persisted result differs materially from the admitted result": "NO \u2014 byte-identical, sha256 37b0a11a5dd5c560\u2026.",
+   "10 any other critical safety or security containment failure": "NO. The posture-label defect (HZ-5) fails CLOSED: it declines to name a posture it cannot read and never renders a permissive label in place of a restrictive one, and the corrective prose still reaches the inspector."
+  }
+ },
+ "defects": {
+  "new": [
+   "HZ-4",
+   "HZ-5",
+   "HZ-6",
+   "HZ-7",
+   "HZ-8"
+  ],
+  "repaired": [],
+  "whyNoneWasRepaired": "\u00a7298 authorises no source modification. Every one of the five is registered with a reproduction and a remediation, and none is repaired here."
+ },
+ "constraints": {
+  "expertExecutionEnabledBefore": "false",
+  "expertExecutionEnabledAfter": "true",
+  "expertCalls": 1,
+  "providerCalls": 2,
+  "spendUsd": 0.19083,
+  "sourceChanges": 0,
+  "migrations": 0,
+  "schemaChanges": 0,
+  "deployments": 1,
+  "productionConfigurationChanges": 3,
+  "rollbackEvents": 0,
+  "renameOperations": 0,
+  "thresholdCWork": 0,
+  "externalUsersInvited": 0,
+  "customerDataTouched": "none"
+ },
+ "cleanup": {
+  "grants": [
+   "26542f53-9ada-4bcc-8369-c1600214e2d7|3b9a1aac-6fc2-45cc-a7ff-594577daf10b|revoked|SECTION 298 Expert HazLenz first controlled live acceptance - synthetic A. Bounded to 24h. Revoke at cleanup. REVOKED at 298 cleanup.",
+   "dc0863df-ac94-43f9-9929-5c6393bb31ce|96411627-10a3-43cb-8b3f-403e799c443f|revoked|SECTION 298 Expert HazLenz first controlled live acceptance - synthetic B. Bounded to 24h. Revoke at cleanup. REVOKED at 298 cleanup."
+  ],
+  "entitlementRevocationEffective": {
+   "loginStatus": 201,
+   "expertReadStatus": 402,
+   "message": "A paid subscription is required for this feature."
+  },
+  "credentialInvalidation": {
+   "A": {
+    "resetStatus": 201,
+    "hashChanged": true,
+    "loginWithTheCredentialUsedInSection298": 401,
+    "activeRefreshTokens": 0
+   },
+   "B": {
+    "resetStatus": 201,
+    "hashChanged": true,
+    "loginWithTheCredentialUsedInSection298": 401,
+    "activeRefreshTokens": 0
+   }
+  },
+  "section297Account": {
+   "email": "section297a-probe@release-test.invalid",
+   "planCode": "free",
+   "deletedAt": "NULL",
+   "activeRefreshTokens": "0",
+   "passwordChangedAt": "2026-09-15 00:13:34.383+00"
+  },
+  "residue": {
+   "accounts": 2,
+   "sites": 2,
+   "inspections": 2,
+   "observations": 1,
+   "findings": 4,
+   "expertAnalyses": 1,
+   "expertExecutions": 1,
+   "humanReviews": 4,
+   "correctiveActions": 1,
+   "reportRevisions": 1,
+   "storageObjects": 1,
+   "notDeleted": "Report immutability (RR-2) and the audit rows the Expert acceptance rests on are product guarantees; the \u00a7290/\u00a7291/\u00a7297 precedent is to NAME synthetic residue rather than delete it. No account, finding, analysis or report was removed."
+  }
+ },
+ "brandingInventory": "BRANDING-INVENTORY-298.json",
+ "expertResult": "EXPERT-RESULT-298.json",
+ "reportText": "REPORT-TEXT-298.txt",
+ "terminal": "EXPERT_HAZLENZ_FIRST_PRODUCTION_ACCEPTANCE_COMPLETE \u2014 CONTROLLED_LIVE_EXECUTION_VALIDATED_AND_PRODUCT_OWNER_ENABLEMENT_DECISION_REQUIRED"
+}

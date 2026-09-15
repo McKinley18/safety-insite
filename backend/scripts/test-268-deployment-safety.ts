@@ -51,6 +51,8 @@ import type {
 } from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
 import { writeEvidenceFile } from './lib/evidence-write-gate';
+import { requiredRegistrationAcceptances } from './lib/registration-acceptances';
+import { expectedMigrationTimestamps } from '../src/database/schema-readiness';
 
 const PROTECTED_DATABASE_NAMES = [
   'safescope', 'sentinel_dev', 'sentinel_safety', 'postgres', 'template0', 'template1',
@@ -256,9 +258,23 @@ async function main(): Promise<void> {
   openCase();
   const ready = await call('/health/ready');
   ok('E-1 a migrated database reports READY', ready.status === 200, `${ready.status}`);
+  /*
+   * §299 (IT-2). This assertion used to pin the literal '1800000021000'. Two migrations have landed
+   * since -- §287's CorrectiveActionLifecycle and §291's AgreementAcceptance -- so it failed on a
+   * readiness endpoint that was answering CORRECTLY. Pinning a schema version in a test means every
+   * legitimate migration breaks a gate that is supposed to be about readiness, and the reflex fix is
+   * to bump the literal, which teaches nobody anything.
+   *
+   * The expectation is now DERIVED from the same enumerator the endpoint uses, so what is asserted
+   * is the real property: readiness reports the latest migration on disk, and reports it as a
+   * concrete version rather than null. A drift between the endpoint and the migrations directory
+   * still fails, which is the thing worth catching.
+   */
+  const latestMigration = expectedMigrationTimestamps().slice(-1)[0] ?? null;
   ok('E-2 readiness names the schema version it verified against',
-    ready.body?.schema?.expectedSchemaVersion === '1800000021000',
-    String(ready.body?.schema?.expectedSchemaVersion));
+    latestMigration !== null
+    && ready.body?.schema?.expectedSchemaVersion === latestMigration,
+    `${String(ready.body?.schema?.expectedSchemaVersion)} (latest migration on disk: ${latestMigration})`);
   ok('E-3 readiness reports the schema dependency explicitly, not just the database',
     ready.body?.dependencies?.schema === 'current');
 
@@ -306,7 +322,12 @@ async function main(): Promise<void> {
     const email = `s268-${tag}-${suffix}@example.test`;
     await call('/auth/register', {
       method: 'POST', ip: `10.268.9.${(authIp += 1)}`,
-      body: { email, password, name: `s268-${tag}`, type: 'individual' },
+      body: {
+        email, password, name: `s268-${tag}`, type: 'individual',
+        // §299 (IT-1). §291 made this required at registration; this harness predates it.
+        // Derived from the registry the service validates against, never spelled out here.
+        acceptedAgreements: requiredRegistrationAcceptances(),
+      },
     });
     const login = await call('/auth/login', {
       method: 'POST', ip: `10.268.9.${(authIp += 1)}`, body: { email, password },

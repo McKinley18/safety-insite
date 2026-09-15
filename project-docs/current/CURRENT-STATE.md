@@ -1,5 +1,54 @@
 # Safety InSite — current state
 
+> ### THE TWO P1 EXTERNAL-BETA BLOCKERS §298 OPENED ARE CLOSED — §299
+>
+> **`HZ-4` and `HZ-5` are repaired.** §299 spent **0 provider calls**, created **0 Expert
+> analyses**, applied **0 migrations**, and changed **no Expert configuration** — the flag stays
+> `true` at 1 analysis and USD 1.00 per workspace per 24 hours.
+>
+> **`HZ-4` — the deterministic engine's exposure-negation error — was escalated to `P0` for
+> external Beta by the product owner before repair**, on the grounds that external-Beta safety must
+> not depend on Expert always rescuing a deterministic semantic error. It was repaired as a
+> **semantic family**, not a phrase exception: a negative person quantifier ("nobody", "no one",
+> "no employees") negates **the predicate it scopes over**, and denying a *control*, an *outcome*, or
+> nothing in particular is not denying *exposure*. On the exact §298 observation, 29 CFR 1910.28
+> moves from `CONTRADICTED` at confidence 0.05 to a candidate whose exposure predicate is `UNKNOWN`
+> and named as missing. **No CFR citation is manufactured, and nothing asserts that exposure is
+> true** — the repair removes a false claim without inventing its converse.
+>
+> **`HZ-5` — the product could not name its own most consequential conclusion.** The frontend now
+> carries the complete current server posture vocabulary, a restricting posture is *visibly*
+> restricting, an unknown value still fails closed (and is now presented as restricted rather than
+> merely unnamed), and a **bidirectional** coverage check — itself proven to fail on seven mutations
+> — holds the client table to the server enum in both directions.
+>
+> **Two pre-existing verification-infrastructure failures surfaced while running the gate battery**
+> and are closed as `IT-1` and `IT-2`; `hazlenz:integration:test` had been aborting in §262 since
+> §291 and nothing noticed, because the abort happened before any assertion ran. No production code
+> changed for either.
+>
+> **External Beta remains blocked.** `HZ-6`, `HZ-7`, `SE-5`, `BR-5` and `EM-2` are still open, and
+> §299 makes no accuracy claim and expands no entitlement.
+> Evidence: `verification/current/expert-hz4-hz5-299/`.
+
+> ### EXPERT HAZLENZ IS ACTIVE IN PRODUCTION — §298
+>
+> **`EXPERT_EXECUTION_ENABLED` is `true`**, bounded to **1 analysis and USD 1.00 per workspace per
+> 24 hours**. Exactly one controlled live analysis has executed through the complete production path
+> — 2 provider legs, USD 0.190830, admission `ADMIT`, `transportSubstituted: false`, result
+> persisted `server_authored` and byte-identical to the route response and to a fresh-session read.
+> Every governance and containment control held and no immediate-disable criterion occurred.
+>
+> **This is not external-beta readiness and not an accuracy claim.** It is one observation on one
+> provider in one run. Whether Expert stays enabled during subsequent internal testing is an open
+> product-owner decision. §298 opened five register entries — `HZ-4` … `HZ-8`, two of them P1 —
+> including one the advisory layer found in the deterministic engine beneath it.
+> Evidence: `verification/current/expert-activation-298/`.
+>
+> **Section 5 below is amended by §298:** *"Live provider transport from a deployed instance: never
+> spent"* and *"The frontend against a deployed instance: no deployed instance has served it"* are
+> both now **false**. Both were exercised at §298, and the second is how `HZ-5` was found.
+>
 > ### THRESHOLD B CLOSED — §297B
 >
 > **Controlled internal / product-owner production use is AUTHORIZED.** The product owner may enter
@@ -562,6 +611,9 @@ npm run hazlenz:integration:test    route/auth/idempotency          (creates and
 npm run hazlenz:precommit           before an authorized commit     (everything except live)
 npm run hazlenz:evidence            did accepted evidence change
 npm run beta:readiness              are the deployment mechanisms in place (contacts nothing live)
+npm run test:299-person-negation     §299/HZ-4 the exposure-negation family  (in hazlenz:test)
+npm run test:299-section-298-replay  §299/HZ-4 the exact §298 note, before/after (in hazlenz:test)
+npm run test:299-expert-disagreement §299 Expert can still disagree         (in hazlenz:test)
 npm run migrate:prod                the production migration command (needs DATABASE_URL)
 npm run migrate:prod:dry-run        what would apply; changes nothing
 npm run release:verify-sha          is the intended commit the one serving requests
@@ -570,7 +622,15 @@ npm run release:check-build-context can a secret enter the Docker build context
 
 ```
 cd frontend-next && npm run check:expert-request-construction
+cd frontend-next && npm run check:299-posture-vocabulary
+cd frontend-next && npm run test:299-posture-presentation
 ```
+
+The two §299 frontend commands are the `HZ-5` gate. `check:299-posture-vocabulary` reads the
+server's own `IMMEDIATE_SAFETY_POSTURES_233` and `POSTURE_PERMITS_CONTINUED_WORK` out of
+`backend/src/` and fails **in both directions** — a posture the server emits that the client cannot
+name, and a posture the client names that the server cannot emit. The second direction is the one
+that would have caught `HZ-5` the day §233 landed.
 §267. Runs the real `lib/expert/expertApi.ts` and reports the request it actually transmits. §265's
 acceptance hand-authored its request bodies and therefore could not see that the shipped client
 sent a different one; this measures the code that constructs it.
@@ -608,6 +668,7 @@ Do not load these for ordinary development.
 | beta readiness closure review §266 | `verification/expert-hazlenz-266-.../` |
 | product integration defect closure §267 | `verification/expert-hazlenz-267-.../` |
 | beta infrastructure and operations §268 | `verification/expert-hazlenz-268-.../` |
+| HZ-4 / HZ-5 repair §299 | `verification/current/expert-hz4-hz5-299/` |
 | beta deployment runbook | `project-docs/operations/DEPLOYMENT-RUNBOOK.md` |
 | rollback model | `project-docs/operations/ROLLBACK-MODEL.md` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |

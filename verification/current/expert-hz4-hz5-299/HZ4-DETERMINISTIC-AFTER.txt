@@ -1,0 +1,47 @@
+===================================================================
+HZ-4 — AFTER the §299 repair, at the §299 candidate.
+===================================================================
+
+================ how the two "Nobody" sentences are now read ================
+
+  "Nobody" ... predicate "had a harness on"
+      -> CONTROL_USE (decided by "harness")
+  "Nobody" ... predicate "was injured"
+      -> OUTCOME (decided by "injured")
+ok    Both negative person quantifiers in the §298 note are found (saw 2).
+ok    "Nobody working up there had a harness on" is read as a denial of a CONTROL.
+ok    "Nobody was injured" is read as a denial of an OUTCOME.
+ok    Neither sentence negates employee exposure.
+
+================ the deterministic consequence ================
+
+---- §298 observation, AFTER the §299 repair ----
+  employeeExposure fact         : undefined (confidence 0)
+  assessmentDisposition         : "insufficient_evidence"
+  29 CFR 1910.28 status         : UNKNOWN (confidence 0.45)
+  ... exposure predicate        : UNKNOWN
+  ... missingPredicates         : ["employee access or exposure"]
+  ... explanation               : Candidate only; missing: employee access or exposure.
+  decisions emitted             : 29 CFR 1910.28=UNKNOWN
+ok    No employeeExposure=false fact is asserted from the §298 observation. (§298 recorded fact-2 employeeExposure false at confidence 0.98, status confirmed.)
+ok    29 CFR 1910.28 is still evaluated -- the repair does not remove the rule from consideration.
+ok    The fall-protection candidate is NOT suppressed as CONTRADICTED. (§298 measured CONTRADICTED at confidence 0.05.)
+ok    The exposure predicate is not asserted FALSE.
+ok    assessmentDisposition is no longer controlled_condition. (saw "insufficient_evidence")
+
+================ the genuine no-exposure control ================
+
+---- same note with "No employees were on the mezzanine" substituted ----
+  employeeExposure fact         : false (confidence 0.98)
+  assessmentDisposition         : "controlled_condition"
+  29 CFR 1910.28 status         : CONTRADICTED (confidence 0.05)
+  ... exposure predicate        : CONTRADICTED
+  ... missingPredicates         : []
+  ... explanation               : Suppressed because submitted evidence contradicts: employee access or exposure.
+  decisions emitted             : 29 CFR 1910.28=CONTRADICTED
+ok    A genuine "no employees were on the mezzanine" STILL asserts employeeExposure=false. The repair is a distinction, not a blanket removal.
+ok    The control note still raises 29 CFR 1910.28, so the suppression below is a real measurement rather than the rule never having been evaluated.
+ok    That genuine denial still suppresses the fall-protection candidate as CONTRADICTED, on exactly the exposure predicate. The repair narrowed WHICH sentences negate exposure, not WHETHER any do.
+ok    And the disposition is still controlled_condition for the genuinely unexposed note.
+
+13 checks passed, 0 failed

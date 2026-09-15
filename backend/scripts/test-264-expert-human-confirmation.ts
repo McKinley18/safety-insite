@@ -28,6 +28,7 @@ import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
 } from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
+import { requiredRegistrationAcceptances } from './lib/registration-acceptances';
 
 const PROTECTED_DATABASE_NAMES = [
   'safescope', 'sentinel_dev', 'sentinel_safety', 'postgres', 'template0', 'template1',
@@ -137,7 +138,12 @@ async function main(): Promise<void> {
     const email = `s264-${tag}-${suffix}@example.test`;
     await call('/auth/register', {
       method: 'POST', ip: `10.264.9.${(authIp += 1)}`,
-      body: { email, password, name: `s264-${tag}`, type: 'individual' },
+      body: {
+        email, password, name: `s264-${tag}`, type: 'individual',
+        // §299 (IT-1). §291 made this required at registration; this harness predates it.
+        // Derived from the registry the service validates against, never spelled out here.
+        acceptedAgreements: requiredRegistrationAcceptances(),
+      },
     });
     const login = await call('/auth/login', {
       method: 'POST', ip: `10.264.9.${(authIp += 1)}`, body: { email, password },

@@ -139,8 +139,21 @@ export type ExpertPresentation = {
   humanSettled: boolean;
   /** TRUE when the confirm / change controls should be offered. Usability only. */
   offerSettlementControls: boolean;
-  /** Present only when the analysis is admitted AND the server permits it to be spoken of. */
-  posture: { label: string; whatHappensNow: string } | null;
+  /**
+   * Present only when the analysis is admitted AND the server permits it to be spoken of.
+   *
+   * §299 / HZ-5 added `restrictsWork` and `known`. `restrictsWork` decides the visual treatment —
+   * a posture that stops work must LOOK like one — and it is the server's own
+   * `POSTURE_PERMITS_CONTINUED_WORK`, negated, never anything read off the label or the prose.
+   * `known` is false for a value this build's vocabulary does not contain, which fails closed.
+   */
+  posture: {
+    value: string;
+    label: string;
+    whatHappensNow: string;
+    restrictsWork: boolean;
+    known: boolean;
+  } | null;
   hazards: ExpertHazardView[];
   controls: ExpertControlView[];
   unresolved: ExpertUnresolvedView[];
@@ -163,21 +176,109 @@ const asArray = (value: unknown): unknown[] => (Array.isArray(value) ? value : [
 const asText = (value: unknown): string => (typeof value === "string" ? value.trim() : "");
 
 /**
- * POSTURE LABELS. A one-to-one rename of the server's enum into the inspector's language, with an
- * explicit fallback that states the posture is unreadable rather than guessing at it. Nothing here
- * infers permissiveness: the label is chosen by the value, not by what it seems to allow.
+ * §299 / HZ-5 — THE POSTURE PRESENTATION CONTRACT.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * WHAT WAS WRONG.
+ *
+ * This table used to hold FIVE members — STOP_WORK, DO_NOT_START, CONTINUE_WITH_CONTROLS, CONTINUE,
+ * NO_IMMEDIATE_RESTRICTION — which is the retired §210J / §226 vocabulary that §233 superseded. The
+ * server emits four: CONTINUE, CONTINUE_WITH_CONTROLS, HOLD_PENDING_VERIFICATION, STOP. Only TWO
+ * members appeared in both, and THE TWO THE PRODUCT COULD NOT NAME WERE EXACTLY THE TWO THAT
+ * RESTRICT WORK. The §298 analysis returned STOP and the deployed panel rendered "The operational
+ * posture could not be read" above the correct `whatHappensNow` prose: the product could not name
+ * its own most consequential conclusion. Both permissive postures rendered correctly, which is why
+ * nothing looked broken until a restrictive posture was actually returned.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * WHY THE TABLE IS DECLARED RATHER THAN IMPORTED.
+ *
+ * The frontend does not build against `backend/`. The vocabulary is therefore restated here, and
+ * `scripts/check-299-posture-vocabulary-parity.mjs` reads the server's own
+ * `IMMEDIATE_SAFETY_POSTURES_233` and `POSTURE_PERMITS_CONTINUED_WORK` out of
+ * `backend/src/hazlenz/expert-hazlenz/contract/expert-233-posture-contract.ts` and fails IN BOTH
+ * DIRECTIONS: a posture the server emits and this table does not name is a failure, and a posture
+ * this table names and the server cannot emit is a failure too. The second direction is what would
+ * have caught HZ-5 the day §233 landed — the stale members were never flagged because nothing ever
+ * asked whether they still existed.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * `restrictsWork` IS COPIED, NOT INFERRED.
+ *
+ * It is the server's `POSTURE_PERMITS_CONTINUED_WORK`, negated, and the parity check asserts that
+ * member by member. This file does not read the label, the prose, or anything else for meaning in
+ * order to decide whether work is restricted — deciding that in the browser is exactly the
+ * server-authority recreation the §265 boundary forbids.
  */
-const POSTURE_LABEL: Record<string, string> = {
-  STOP_WORK: "Stop this work",
-  DO_NOT_START: "Do not start this work",
-  CONTINUE_WITH_CONTROLS: "Continue only with the controls below in place",
-  CONTINUE: "Work may continue",
-  NO_IMMEDIATE_RESTRICTION: "No immediate restriction identified",
+export type PosturePresentation = {
+  /** The server's value, carried through so a caller never has to re-derive it from the label. */
+  readonly value: string;
+  readonly label: string;
+  /**
+   * TRUE when the work may not continue on this posture. Drives the restrictive visual treatment.
+   * TRUE for an unreadable value as well — see the fallback below.
+   */
+  readonly restrictsWork: boolean;
+  /** TRUE only for a value the server's current contract actually emits. */
+  readonly known: boolean;
 };
 
-export function posturePresentationLabel(posture: string): string {
-  return POSTURE_LABEL[posture] ?? "The operational posture could not be read";
+const POSTURE_PRESENTATION: Record<string, { label: string; restrictsWork: boolean }> = {
+  CONTINUE: {
+    label: "Work may continue",
+    restrictsWork: false,
+  },
+  CONTINUE_WITH_CONTROLS: {
+    label: "Continue only with the controls below in place",
+    restrictsWork: false,
+  },
+  HOLD_PENDING_VERIFICATION: {
+    label: "Hold this work until the open question is resolved",
+    restrictsWork: true,
+  },
+  STOP: {
+    label: "Stop this work now",
+    restrictsWork: true,
+  },
+};
+
+/**
+ * THE FALLBACK, AND IT FAILS CLOSED IN BOTH RESPECTS.
+ *
+ * It does not guess a posture — it says the posture could not be read and asks for review, which is
+ * the behaviour §298 correctly credited this module with. AND it carries `restrictsWork: true`, so
+ * an unreadable value is never PRESENTED as permissive. A future server value that this build has
+ * never heard of therefore lands on the restrictive treatment and a request for review, not on
+ * "Work may continue".
+ *
+ * `restrictsWork: true` here is a presentation default, not a claim about what the server decided.
+ * The label says so in as many words, so nothing reads it as "HazLenz said stop".
+ */
+const UNREADABLE_POSTURE_LABEL =
+  "The operational posture could not be read — treat this work as restricted and have it reviewed";
+
+export function posturePresentation(posture: string): PosturePresentation {
+  const known = Object.prototype.hasOwnProperty.call(POSTURE_PRESENTATION, posture);
+  if (!known) {
+    return { value: posture, label: UNREADABLE_POSTURE_LABEL, restrictsWork: true, known: false };
+  }
+  const entry = POSTURE_PRESENTATION[posture];
+  return { value: posture, label: entry.label, restrictsWork: entry.restrictsWork, known: true };
 }
+
+export function posturePresentationLabel(posture: string): string {
+  return posturePresentation(posture).label;
+}
+
+/** The vocabulary this build can name. Read by the parity check; not used for rendering. */
+export const PRESENTABLE_POSTURES: readonly string[] = Object.keys(POSTURE_PRESENTATION);
+
+/** Which of them restrict work. Read by the parity check; not used for rendering. */
+export const POSTURE_RESTRICTS_WORK: Readonly<Record<string, boolean>> = Object.freeze(
+  Object.fromEntries(
+    Object.entries(POSTURE_PRESENTATION).map(([k, v]) => [k, v.restrictsWork]),
+  ),
+);
 
 /**
  * HAZARD FAMILY LABELS ARE DERIVED BY FORMATTING, NOT BY A TABLE THIS FILE OWNS.
@@ -340,7 +441,7 @@ export function presentExpertAnalysis(read: ExpertAnalysisRead | null): ExpertPr
   const postureValue = asText(projectedPosture.posture);
   const posture = admittedView && postureValue
     ? {
-      label: posturePresentationLabel(postureValue),
+      ...posturePresentation(postureValue),
       whatHappensNow: asText(projectedPosture.whatHappensNow),
     }
     : null;

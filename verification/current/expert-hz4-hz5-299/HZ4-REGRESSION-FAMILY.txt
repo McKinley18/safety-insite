@@ -1,0 +1,138 @@
+
+================ 1. the four predicate senses are told apart ================
+
+---- nobody wearing PPE ----
+ok    [nobody wearing PPE] sense CONTROL_USE (saw CONTROL_USE) -- Nobody working up there had a harness on and I did not see any anchor points.
+ok    [nobody wearing PPE] preserves exposure -- The §298 sentence. "working up there" restricts which people; "had a harness on" is the predicate, and it denies a control.
+ok    [nobody wearing PPE] sense CONTROL_USE (saw CONTROL_USE) -- Nobody was wearing a harness.
+ok    [nobody wearing PPE] preserves exposure -- Plainest form of the control denial.
+ok    [nobody wearing PPE] sense CONTROL_USE (saw CONTROL_USE) -- No employees were wearing hearing protection in the grinding bay.
+ok    [nobody wearing PPE] preserves exposure -- Person-class quantifier, control predicate.
+ok    [nobody wearing PPE] sense CONTROL_USE (saw CONTROL_USE) -- Nobody had a hard hat on beneath the suspended beam.
+ok    [nobody wearing PPE] preserves exposure -- A control denial in a sentence that also describes an overhead exposure.
+
+---- nobody using fall protection ----
+ok    [nobody using fall protection] sense CONTROL_USE (saw CONTROL_USE) -- No one had fall protection on.
+ok    [nobody using fall protection] preserves exposure -- "no one" is bare; the predicate names fall protection.
+ok    [nobody using fall protection] sense CONTROL_USE (saw CONTROL_USE) -- Nobody up on the mezzanine was tied off.
+ok    [nobody using fall protection] preserves exposure -- The restrictor "up on the mezzanine" reads as a location and must not be taken for the predicate -- this is the precise mechanism of HZ-4.
+ok    [nobody using fall protection] sense CONTROL_USE (saw CONTROL_USE) -- Nobody was using fall protection while working near the edge.
+ok    [nobody using fall protection] preserves exposure -- "using" was a member of the pre-§299 anchored alternative, which made a control denial into an exposure denial even without the bare-word branch.
+ok    [nobody using fall protection] sense CONTROL_USE (saw CONTROL_USE) -- None of the workers were clipped in to the lifeline.
+ok    [nobody using fall protection] preserves exposure -- "none of the ..." is the same quantifier and was invisible to the old pattern.
+
+---- nobody injured ----
+ok    [nobody injured] sense OUTCOME (saw OUTCOME) -- Nobody was injured and the forklift was not lifting at the time I was there.
+ok    [nobody injured] preserves exposure -- The second §298 sentence. An unharmed worker is still an exposed worker.
+ok    [nobody injured] sense OUTCOME (saw OUTCOME) -- No employees were hurt when the panel came down.
+ok    [nobody injured] preserves exposure -- Harm denial with a person-class quantifier.
+
+---- nobody struck ----
+ok    [nobody struck] sense OUTCOME (saw OUTCOME) -- Nobody was struck by the falling load.
+ok    [nobody struck] preserves exposure -- A near miss is the paradigm case of exposure without harm.
+ok    [nobody struck] sense OUTCOME (saw OUTCOME) -- Nobody was caught in the drive when it cycled.
+ok    [nobody struck] preserves exposure -- Outcome denial about a machine the people were evidently at.
+
+---- nobody exposed ----
+ok    [nobody exposed] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- Nobody was exposed to the open edge at any point.
+ok    [nobody exposed] negates exposure -- The intended sense. It must still negate, or the repair has become blanket conservatism.
+ok    [nobody exposed] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- No workers were exposed to the opening.
+ok    [nobody exposed] negates exposure -- The anchored form the old pattern also caught.
+ok    [nobody exposed] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- Not a single employee was exposed during the lift.
+ok    [nobody exposed] negates exposure -- "not a single ..." is the same quantifier and the old pattern missed it entirely.
+
+---- nobody present ----
+ok    [nobody present] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- Nobody was present in the bay while the press was running.
+ok    [nobody present] negates exposure -- Presence denial, bare quantifier.
+ok    [nobody present] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- Nobody entered the excavation.
+ok    [nobody present] negates exposure -- A finite presence verb opens the predicate without any copula.
+ok    [nobody present] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- Nobody was in the trench at the time.
+ok    [nobody present] negates exposure -- Prepositional presence.
+
+---- no employees on the elevated surface ----
+ok    [no employees on the elevated surface] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- No employees were on the platform while the chain was down.
+ok    [no employees on the elevated surface] negates exposure -- The §299 example of a legitimate exposure negation about an elevated surface.
+ok    [no employees on the elevated surface] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- No employees on the elevated surface.
+ok    [no employees on the elevated surface] negates exposure -- Verbless note-taking style: with no finite verb there is no restrictor to skip.
+ok    [no employees on the elevated surface] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- None of the crew were on the roof during the storm.
+ok    [no employees on the elevated surface] negates exposure -- Presence denial in the "none of" form.
+
+---- workers present without the named control ----
+ok    [workers present without the named control] sense UNRESOLVED (saw UNRESOLVED) -- Two stockers were working three feet from the open edge without harnesses.
+ok    [workers present without the named control] preserves exposure -- No negative person quantifier at all. Exposure must be left to the ordinary extractors and must certainly not be negated.
+ok    [workers present without the named control] sense UNRESOLVED (saw UNRESOLVED) -- Workers were present without the named control.
+ok    [workers present without the named control] preserves exposure -- An affirmative presence statement containing the word "without"; nothing here is a person-quantifier negation.
+
+---- ambiguous statements that must remain unresolved ----
+ok    [ambiguous statements that must remain unresolved] sense UNRESOLVED (saw UNRESOLVED) -- Nobody could tell me how long the chain had been down.
+ok    [ambiguous statements that must remain unresolved] preserves exposure -- An epistemic gap about the site's history. It says nothing about presence, control or harm.
+ok    [ambiguous statements that must remain unresolved] sense UNRESOLVED (saw UNRESOLVED) -- Nobody was available to walk the area with me.
+ok    [ambiguous statements that must remain unresolved] preserves exposure -- Availability is not presence. Assigning it either way would be an invented semantic.
+ok    [ambiguous statements that must remain unresolved] sense UNRESOLVED (saw UNRESOLVED) -- Nobody seemed concerned about the opening.
+ok    [ambiguous statements that must remain unresolved] preserves exposure -- An attitude report. The safe answer is to resolve nothing.
+
+---- control mentioned after a genuine presence denial ----
+ok    [control mentioned after a genuine presence denial] sense PRESENCE_OR_EXPOSURE (saw PRESENCE_OR_EXPOSURE) -- Nobody was on the platform wearing a harness.
+ok    [control mentioned after a genuine presence denial] negates exposure -- The presence claim precedes the control noun, so this is a presence denial that happens to mention a control -- the mirror image of the §298 sentence, and it must not be mis-sorted into CONTROL_USE just because a control word occurs.
+
+================ 2. the family measures a distinction, not a direction ================
+
+ok    The family contains 10 cases that MUST still negate exposure.
+ok    The family contains 17 cases that must NOT negate exposure.
+ok    The pre-§299 expression is wrong on 16 of 27 members, so the family distinguishes the repair from the defect rather than passing under both.
+      pre-§299 wrong: Nobody working up there had a harness on and I did not see any anchor points.
+      pre-§299 wrong: Nobody was wearing a harness.
+      pre-§299 wrong: Nobody had a hard hat on beneath the suspended beam.
+      pre-§299 wrong: No one had fall protection on.
+      pre-§299 wrong: Nobody up on the mezzanine was tied off.
+      pre-§299 wrong: Nobody was using fall protection while working near the edge.
+      pre-§299 wrong: Nobody was injured and the forklift was not lifting at the time I was there.
+      pre-§299 wrong: Nobody was struck by the falling load.
+      pre-§299 wrong: Nobody was caught in the drive when it cycled.
+      pre-§299 wrong: Not a single employee was exposed during the lift.
+      pre-§299 wrong: No employees were on the platform while the chain was down.
+      pre-§299 wrong: No employees on the elevated surface.
+      pre-§299 wrong: None of the crew were on the roof during the storm.
+      pre-§299 wrong: Nobody could tell me how long the chain had been down.
+      pre-§299 wrong: Nobody was available to walk the area with me.
+      pre-§299 wrong: Nobody seemed concerned about the opening.
+ok    The pre-§299 expression is right on 11 members, which are the ones the repair must not break.
+
+================ 3. through the shipped buildEvidenceFacts() ================
+
+ok    [nobody wearing PPE] buildEvidenceFacts does not assert employeeExposure=false -- Nobody working up there had a harness on and I did not see any anchor points.
+ok    [nobody wearing PPE] buildEvidenceFacts does not assert employeeExposure=false -- Nobody was wearing a harness.
+ok    [nobody wearing PPE] buildEvidenceFacts does not assert employeeExposure=false -- No employees were wearing hearing protection in the grinding bay.
+ok    [nobody wearing PPE] buildEvidenceFacts does not assert employeeExposure=false -- Nobody had a hard hat on beneath the suspended beam.
+ok    [nobody using fall protection] buildEvidenceFacts does not assert employeeExposure=false -- No one had fall protection on.
+ok    [nobody using fall protection] buildEvidenceFacts does not assert employeeExposure=false -- Nobody up on the mezzanine was tied off.
+ok    [nobody using fall protection] buildEvidenceFacts does not assert employeeExposure=false -- Nobody was using fall protection while working near the edge.
+ok    [nobody using fall protection] buildEvidenceFacts does not assert employeeExposure=false -- None of the workers were clipped in to the lifeline.
+ok    [nobody injured] buildEvidenceFacts does not assert employeeExposure=false -- Nobody was injured and the forklift was not lifting at the time I was there.
+ok    [nobody injured] buildEvidenceFacts does not assert employeeExposure=false -- No employees were hurt when the panel came down.
+ok    [nobody struck] buildEvidenceFacts does not assert employeeExposure=false -- Nobody was struck by the falling load.
+ok    [nobody struck] buildEvidenceFacts does not assert employeeExposure=false -- Nobody was caught in the drive when it cycled.
+ok    [nobody exposed] buildEvidenceFacts asserts employeeExposure=false -- Nobody was exposed to the open edge at any point.
+ok    [nobody exposed] buildEvidenceFacts asserts employeeExposure=false -- No workers were exposed to the opening.
+ok    [nobody exposed] buildEvidenceFacts asserts employeeExposure=false -- Not a single employee was exposed during the lift.
+ok    [nobody present] buildEvidenceFacts asserts employeeExposure=false -- Nobody was present in the bay while the press was running.
+ok    [nobody present] buildEvidenceFacts asserts employeeExposure=false -- Nobody entered the excavation.
+ok    [nobody present] buildEvidenceFacts asserts employeeExposure=false -- Nobody was in the trench at the time.
+ok    [no employees on the elevated surface] buildEvidenceFacts asserts employeeExposure=false -- No employees were on the platform while the chain was down.
+ok    [no employees on the elevated surface] buildEvidenceFacts asserts employeeExposure=false -- No employees on the elevated surface.
+ok    [no employees on the elevated surface] buildEvidenceFacts asserts employeeExposure=false -- None of the crew were on the roof during the storm.
+ok    [workers present without the named control] buildEvidenceFacts does not assert employeeExposure=false -- Two stockers were working three feet from the open edge without harnesses.
+ok    [workers present without the named control] buildEvidenceFacts does not assert employeeExposure=false -- Workers were present without the named control.
+ok    [ambiguous statements that must remain unresolved] buildEvidenceFacts does not assert employeeExposure=false -- Nobody could tell me how long the chain had been down.
+ok    [ambiguous statements that must remain unresolved] buildEvidenceFacts does not assert employeeExposure=false -- Nobody was available to walk the area with me.
+ok    [ambiguous statements that must remain unresolved] buildEvidenceFacts does not assert employeeExposure=false -- Nobody seemed concerned about the opening.
+ok    [control mentioned after a genuine presence denial] buildEvidenceFacts asserts employeeExposure=false -- Nobody was on the platform wearing a harness.
+
+================ 4. the restrictor is never read as the predicate ================
+
+ok    "Nobody working up there had a harness on" -> CONTROL_USE (predicate read as "had a harness on", saw CONTROL_USE)
+ok    "Nobody on the deck was tied off" -> CONTROL_USE (predicate read as "was tied off", saw CONTROL_USE)
+ok    "No employees working in the trench were wearing respirators" -> CONTROL_USE (predicate read as "were wearing respirators", saw CONTROL_USE)
+ok    "Nobody was working in the trench" -> PRESENCE_OR_EXPOSURE (predicate read as "was working in the trench", saw PRESENCE_OR_EXPOSURE)
+
+89 checks passed, 0 failed

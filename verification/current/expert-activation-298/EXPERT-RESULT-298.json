@@ -1,0 +1,277 @@
+{
+ "responseVersion": "hazlenz.expert.262.response.v1",
+ "outcome": "EXECUTED",
+ "executionId": "7c14adbe-32b1-4c6f-90fe-bc385c3d5235",
+ "executionState": "ANALYSIS_AVAILABLE",
+ "analysisState": "ANALYSIS_AVAILABLE",
+ "confirmationRequired": false,
+ "confirmationSubject": null,
+ "effectiveDecision": {
+  "version": "hazlenz.expert.264.effective-decision.v1",
+  "source": "EXPERT_ADMITTED_NO_CONFIRMATION_REQUIRED",
+  "settledForUse": true,
+  "humanSettled": false,
+  "entries": [],
+  "reviewer": null,
+  "statement": "This Expert analysis was admitted and required no human confirmation."
+ },
+ "authorityStatement": "This Expert analysis is available for review. No human confirmation of its operational conclusion is required.",
+ "analysisId": "944c1b69-e564-4939-b321-72f98f787eed",
+ "producer": "server_authored",
+ "analysis": {
+  "kind": "EXPERT_HAZLENZ_SERVER_AUTHORED_ANALYSIS",
+  "candidateIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "contractVersion": "hazlenz.expert.first-pass.259",
+  "entryVersion": "hazlenz.expert.production-entry.v1",
+  "status": "COMPLETE",
+  "admission": "ADMIT",
+  "analysis": {
+   "expertHazardCandidates": [
+    {
+     "candidateKey": "fall-hazard-override",
+     "hazardFamily": "fall_protection",
+     "assertedConditionState": "ACTIVE",
+     "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+     "evidence": [
+      {
+       "sourceId": "observation",
+       "quotedText": "One of the stockers was working maybe three feet from that open edge with his back to it, moving cartons off a pallet."
+      },
+      {
+       "sourceId": "observation",
+       "quotedText": "Nobody working up there had a harness on and I did not see any anchor points."
+      },
+      {
+       "sourceId": "observation",
+       "quotedText": "It is about a ten foot drop to the concrete below."
+      }
+     ],
+     "evidenceBasis": "The observation directly states a worker was actively working three feet from an unguarded open edge, with his back to it, at the time of the walkthrough, with no fall protection in use and no anchor points seen.",
+     "reasoning": "The deterministic engine excluded fall_protection on the basis that employee exposure is contradicted, but the observation explicitly states a stocker was working three feet from the open edge with his back to it while the chain barrier was unhooked and lying on the deck. This is a stated current worker exposure to an unprotected fall edge, not a hypothetical -- it directly contradicts the controlling fact the deterministic assessment relied on.",
+     "confidence": "HIGH",
+     "relationshipToDeterministic": "CONTRADICTS_DETERMINISTIC",
+     "requiresUserConfirmation": false
+    },
+    {
+     "candidateKey": "guarding-open-edge",
+     "hazardFamily": "guarding_interlocks",
+     "assertedConditionState": "ACTIVE",
+     "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+     "evidence": [
+      {
+       "sourceId": "observation",
+       "quotedText": "The chain that normally goes across that opening was unhooked and lying on the deck, so the edge was open."
+      }
+     ],
+     "evidenceBasis": "The observation states the barrier chain that would normally cover the opening was unhooked and lying on the deck at the time of the inspection, leaving the edge open.",
+     "reasoning": "The only physical barrier for the twelve-foot pallet-loading opening was removed and not back in place while a worker was present near the edge, meaning the opening's guarding is currently absent rather than merely historically absent.",
+     "confidence": "HIGH",
+     "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+     "requiresUserConfirmation": false
+    }
+   ],
+   "decisionCriticalClarifications": [
+    {
+     "clarificationId": "clar-edge-protection-standard",
+     "question": "Is the pallet-loading opening required to have a fixed gate or guardrail system rather than relying on a chain that is unhooked during loading, and if so has that requirement ever been implemented at this opening?",
+     "whyItMatters": "If the opening is only ever supposed to have a chain (interim/removable barrier) that is re-hooked immediately after loading, the corrective action is to enforce re-hooking discipline and possibly add fall arrest for the brief loading window. If the opening was always supposed to have a fixed gate or guardrail that closes automatically or a self-closing gate, the corrective action is a physical engineering fix (installing a proper gate) rather than a procedural one, which is a materially different and more significant remediation.",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "criticality": "IMPORTANT",
+     "evidenceGap": "Whether the opening was designed/intended to have a proper self-closing gate versus only ever having had the chain as its barrier.",
+     "relatesToCandidateKey": "guarding-open-edge"
+    }
+   ],
+   "crossHazardInsights": [
+    {
+     "insightId": "insight-forklift-open-edge",
+     "interactionKind": "FALL_EXPOSURE_ANCHORAGE",
+     "participants": [
+      "fall-hazard-override",
+      "guarding-open-edge"
+     ],
+     "reasoning": "The unguarded edge and the absence of any fall arrest (no harness, no anchor points) combine so that a worker who trips, is bumped, or overbalances near the open edge while working with his back to it has no barrier and no fall-arrest system to prevent a ten-foot fall to concrete -- either control alone (a barrier or a harness) would reduce the risk, but neither is present, making the combination the actual current exposure rather than either condition individually.",
+     "confidence": "HIGH"
+    }
+   ],
+   "disagreements": [
+    {
+     "disagreementId": "disagree-fall-protection-na",
+     "target": "DETERMINISTIC_RESULT",
+     "surface": "CONDITION_STATE_INTERPRETATION",
+     "targetRef": "fall_protection assessment (NOT_APPLICABLE)",
+     "disagreementType": "MAY_BE_INCOMPLETE",
+     "reasoning": "The deterministic engine marked employee access or exposure as CONTRADICTED, but the observation explicitly states 'One of the stockers was working maybe three feet from that open edge with his back to it, moving cartons off a pallet' at the very time of the inspection, with the chain unhooked. This is a stated present exposure, not merely a possibility, so the exclusion appears to rest on a misreading of the observation rather than on a fact the observation supports.",
+     "confidence": "HIGH",
+     "recommendsReview": true
+    }
+   ],
+   "expertExplanation": {
+    "summary": "The observation describes a stocker actively working three feet from a ten-foot open edge with his back to it, no harness, no visible anchor points, and the only barrier (a chain) unhooked and lying on the deck -- this is a current, stated fall exposure that contradicts the deterministic engine's exclusion of fall_protection, and it is raised here as an active hazard alongside the related guarding gap for the opening itself. The lack of any fall-arrest equipment combined with the removed barrier compounds the risk of an uncontrolled fall to concrete. One open question remains about whether the opening was ever intended to have a fixed gate versus only ever having had the chain, which determines whether the fix is procedural or an engineering control."
+   },
+   "uncertainty": {
+    "statements": [
+     "It is not stated whether the mezzanine restock work involving the open edge is ongoing/recurring throughout the shift or was a one-time snapshot at the moment of inspection, though this does not change today's required action since exposure was directly observed."
+    ]
+   },
+   "outcome": "ANALYZED",
+   "unresolvedFactDeclarations": [
+    {
+     "declarationId": "decl-gate-requirement",
+     "missingFact": "Whether the pallet-loading opening is required to have a fixed/self-closing gate or guardrail as its permanent edge protection, as opposed to the chain being the intended and only barrier ever provided",
+     "observationSourceId": "observation",
+     "observationSpan": "I do not know whether that opening is supposed to have a proper gate or whether the chain is all they have ever had there.",
+     "notEstablishedBecause": "The observation states the inspector does not know which of these two configurations is the intended one; neither the observation nor the deterministic findings nor any supplied governed record resolves it.",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "branchA": "The opening is required to have a fixed or self-closing gate/guardrail as permanent protection and the chain-only arrangement is a deviation from that requirement",
+     "branchB": "The chain has always been the only edge protection ever installed at this opening and no fixed gate was ever specified for it",
+     "decisionIfA": "The corrective action must include installing or restoring a fixed/self-closing gate or guardrail system at the opening, not merely re-hooking the chain, because the chain-only condition is itself a deviation from the required configuration",
+     "decisionIfB": "The corrective action centers on ensuring the chain is consistently re-hooked immediately after each loading cycle and on providing interim fall protection (e.g., a harness/anchor) for workers who must be near the edge while the chain is down during loading",
+     "decisionWhileUnresolved": "Treat the opening as requiring both consistent chain use and interim fall protection for any worker within the fall zone while the chain is unhooked, until it is established which barrier configuration is required",
+     "whyNecessaryNow": "The nature and scope of the corrective action for this open edge differs materially depending on whether a permanent engineered barrier is owed here or whether the chain is the accepted design, and this determines whether today's fix is procedural or requires facility modification"
+    }
+   ],
+   "immediateSafetyPosture": {
+    "posture": "STOP",
+    "requiredBy": [
+     {
+      "ref": "fall-hazard-override",
+      "refKind": "HAZARD_CANDIDATE",
+      "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+      "roleJustification": {
+       "epistemicCharacter": "ESTABLISHED_CONDITION",
+       "factualBasis": "The observation states a stocker was working three feet from a ten-foot open edge with his back to it, with the chain barrier unhooked and lying on the deck, and no harness or anchor points in use.",
+       "whyDecisionMaterial": "This is an active, uncontrolled fall exposure to a ten-foot drop onto concrete; if it continues, a worker could fall with no barrier and no arrest system.",
+       "whyControllingNotFollowUp": "This is a present exposure to a serious fall hazard, not a documentation or follow-up matter -- it requires the work near the edge to stop until protected.",
+       "alongsideControlConsidered": "The chain that normally covers the opening, which the observation states was unhooked and lying on the deck at the time, providing no protection.",
+       "whyAlongsideControlInsufficient": "The chain was not in place at all during the observed work, and no fall arrest (harness/anchor) was in use, so no control was actually operating alongside the worker near the edge."
+      }
+     },
+     {
+      "ref": "guarding-open-edge",
+      "refKind": "HAZARD_CANDIDATE",
+      "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+      "roleJustification": {
+       "epistemicCharacter": "ESTABLISHED_CONDITION",
+       "factualBasis": "The chain that normally covers the twelve-foot opening was unhooked and lying on the deck, leaving the edge open with no barrier in place.",
+       "whyDecisionMaterial": "Without any barrier at the opening, anyone approaching or working near it is exposed to an unguarded ten-foot drop.",
+       "whyControllingNotFollowUp": "This is the current physical state of the opening, not a matter of records or later action -- it requires immediate re-securing before work resumes near it.",
+       "alongsideControlConsidered": "No control was operating alongside the work; the chain was down and no other guarding (gate, netting, fall arrest) was described.",
+       "whyAlongsideControlInsufficient": "The observation names no barrier or fall-arrest system in effect at the time work was occurring near the edge, so exposure was unmitigated."
+      }
+     },
+     {
+      "ref": "decl-gate-requirement",
+      "refKind": "UNRESOLVED_DECLARATION",
+      "driverRole": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP",
+      "roleJustification": {
+       "epistemicCharacter": "FOLLOW_UP_NON_CONTROLLING",
+       "factualBasis": "The observation states the inspector does not know whether the opening is supposed to have a proper gate or whether the chain is all it has ever had.",
+       "whyDecisionMaterial": "Resolving this determines the scope of the permanent corrective action (engineering fix vs procedural fix), but does not change the immediate requirement to stop work at the unguarded edge now.",
+       "whyControllingNotFollowUp": "The immediate stop is already required by the established, unmitigated fall exposure regardless of which barrier design is ultimately owed; this fact only shapes the longer-term corrective plan."
+      }
+     }
+    ],
+    "acceptedWithoutImmediateAction": [],
+    "requiredControls": [],
+    "resumeCondition": {
+     "resolvedByDeclarationIds": [],
+     "correctionsRequired": [
+      "Re-hook or otherwise restore a barrier across the pallet-loading opening before any worker is permitted near the edge again",
+      "Provide fall protection (harness and anchor point, or equivalent guarding) for any worker who must work near the opening while the barrier is down during loading",
+      "Withdraw workers from within the fall zone of the open edge until one of the above is in effect"
+     ]
+    },
+    "whatHappensNow": "Work on the mezzanine near the twelve-foot pallet-loading opening must stop until the edge is protected: either the chain (or a proper gate) is back in place, or workers who must be near the open edge during loading are wearing fall arrest equipment connected to a suitable anchor point. Once a barrier or fall-arrest system is verified in place, restocking work near that edge may resume. Separately, it should be established whether the opening is meant to have a fixed gate so a durable engineering fix can be planned, but this does not delay the immediate stop."
+   }
+  },
+  "posture": {
+   "posture": "STOP",
+   "requiredBy": [
+    {
+     "ref": "fall-hazard-override",
+     "refKind": "HAZARD_CANDIDATE",
+     "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+    },
+    {
+     "ref": "guarding-open-edge",
+     "refKind": "HAZARD_CANDIDATE",
+     "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+    },
+    {
+     "ref": "decl-gate-requirement",
+     "refKind": "UNRESOLVED_DECLARATION",
+     "driverRole": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+    }
+   ],
+   "acceptedWithoutImmediateAction": [],
+   "requiredControls": [],
+   "resumeCondition": {
+    "resolvedByDeclarationIds": [],
+    "correctionsRequired": [
+     "Re-hook or otherwise restore a barrier across the pallet-loading opening before any worker is permitted near the edge again",
+     "Provide fall protection (harness and anchor point, or equivalent guarding) for any worker who must work near the opening while the barrier is down during loading",
+     "Withdraw workers from within the fall zone of the open edge until one of the above is in effect"
+    ]
+   },
+   "whatHappensNow": "Work on the mezzanine near the twelve-foot pallet-loading opening must stop until the edge is protected: either the chain (or a proper gate) is back in place, or workers who must be near the open edge during loading are wearing fall arrest equipment connected to a suitable anchor point. Once a barrier or fall-arrest system is verified in place, restocking work near that edge may resume. Separately, it should be established whether the opening is meant to have a fixed gate so a durable engineering fix can be planned, but this does not delay the immediate stop."
+  },
+  "admittedFacts": [
+   {
+    "factKey": "FP.REQUIRED_CONTROL.observation.706-828.1",
+    "affectedDecision": "REQUIRED_CONTROL",
+    "source": "FIRST_PASS_MODEL",
+    "evidenceSpan": "I do not know whether that opening is supposed to have a proper gate or whether the chain is all they have ever had there.",
+    "whyUnresolved": "The observation states the inspector does not know which of these two configurations is the intended one; neither the observation nor the deterministic findings nor any supplied governed record resolves it.",
+    "branchA": "The opening is required to have a fixed or self-closing gate/guardrail as permanent protection and the chain-only arrangement is a deviation from that requirement",
+    "branchB": "The chain has always been the only edge protection ever installed at this opening and no fixed gate was ever specified for it",
+    "decisionDivergence": {
+     "ifA": "The corrective action must include installing or restoring a fixed/self-closing gate or guardrail system at the opening, not merely re-hooking the chain, because the chain-only condition is itself a deviation from the required configuration",
+     "ifB": "The corrective action centers on ensuring the chain is consistently re-hooked immediately after each loading cycle and on providing interim fall protection (e.g., a harness/anchor) for workers who must be near the edge while the chain is down during loading"
+    },
+    "priority": "OTHER",
+    "status": "UNRESOLVED",
+    "acceptableEvidence": null,
+    "modelAuthored": true
+   }
+  ],
+  "declarationRefusals": [],
+  "postureRefusalCodes": [],
+  "conformanceViolations": [],
+  "roleJustificationCodes": [],
+  "semanticInventions": [],
+  "verifier": {
+   "reached": true,
+   "factKey": "FP.REQUIRED_CONTROL.observation.706-828.1",
+   "notReachedBecause": null
+  },
+  "basis": {
+   "contextBuilderVersion": "hazlenz.expert.262.server-context.v1",
+   "observationId": "bc9eb0f4-e032-4678-8c56-f6d2ec30f46c",
+   "inspectionId": "8936db9e-15e2-45c3-96b3-beedccc9aeaf",
+   "organizationId": null,
+   "jurisdiction": "osha-general-industry",
+   "jurisdictionProvenance": "USER_CONFIRMED",
+   "allowedHazardFamilyCount": 41,
+   "deterministicFindingCount": 4,
+   "deterministicFamilyDispositionCount": 1,
+   "governedRecordCount": 0,
+   "deterministicBasisDigest": "45577f4ff47f01e3a594bd32573162d24e2baf1734387d1f04c09d5adfc3dc41"
+  }
+ },
+ "provenance": {
+  "candidateIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "contractVersion": "hazlenz.expert.first-pass.259",
+  "entryVersion": "hazlenz.expert.production-entry.v1",
+  "admissionVersion": "hazlenz.expert.252.structural-admission.v1",
+  "projectionVersion": "hazlenz.expert.239.posture-projection.v1",
+  "confirmationRuleVersion": "hazlenz.expert.confirmation-required.261-unresolved-classification-boundary",
+  "admission": "ADMIT",
+  "verifierReached": true,
+  "verifierFactKey": "FP.REQUIRED_CONTROL.observation.706-828.1",
+  "verifierNotReachedBecause": null,
+  "requestedAt": "2026-09-15T00:25:51.817Z",
+  "completedAt": "2026-09-15T00:27:07.980Z"
+ },
+ "failure": null,
+ "findingsReconciled": false
+}
