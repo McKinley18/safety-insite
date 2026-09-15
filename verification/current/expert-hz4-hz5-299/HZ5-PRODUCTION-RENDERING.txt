@@ -1,0 +1,26 @@
+§299 HZ-5 PRODUCTION PROOF — from the DEPLOYED bundle bytes, 0 provider calls
+
+source        : https://safety-insite.vercel.app/inspection-workspace route chunks
+deploymentId  : dpl_Er16fs1N3XokrXwJc4FAMTuRhYjx (named in the served HTML)
+commit        : 317daba88e7ef8c117a2997b6347dae830e8823a
+
+THE POSTURE TABLE, EXTRACTED VERBATIM FROM THE DEPLOYED JAVASCRIPT:
+  {CONTINUE:{label:"Work may continue",restrictsWork:!1},CONTINUE_WITH_CONTROLS:{label:"Continue only with the controls below in place",restrictsWork:!1},HOLD_PENDING_VERIFICATION:{label:"Hold this work until the open question is resolved",restrictsWork:!0},STOP:{label:"Stop this work now",restrictsWork:!0}}
+
+DRIVEN WITH THE PERSISTED §298 RESULT (replayed from disk, no provider call):
+  posture value returned by production at §298 : "STOP"
+  deployed table lookup                       : {"label":"Stop this work now","restrictsWork":true}
+  renders                                     : Stop this work now
+  restrictsWork                               : true
+
+BEFORE §299 the same value rendered: "The operational posture could not be read"
+
+RETIRED §210J/§226 NAMES IN THE DEPLOYED BUNDLE (must be 0):
+  STOP_WORK                  occurrences = 0
+  DO_NOT_START               occurrences = 0
+  NO_IMMEDIATE_RESTRICTION   occurrences = 0
+
+UNKNOWN POSTURE FAILS CLOSED IN THE DEPLOYED BUNDLE:
+  EVACUATE_AREA in table          : false
+  fallback sentence present       : true
+  restrictive qualifier present   : true

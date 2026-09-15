@@ -27,6 +27,19 @@
 > §291 and nothing noticed, because the abort happened before any assertion ran. No production code
 > changed for either.
 >
+> **Deployed at §299.** Both halves run `317daba8…` — backend `dep-daka1lh42hec739qlfo0` (pinned to
+> the commit; Render auto-deploy stays off), frontend `dpl_Er16fs1N3XokrXwJc4FAMTuRhYjx`. **0
+> migrations**, schema unchanged at `1800000023000` (55/55). New release binding
+> `applicationSourceDigest` `95c9e343…`. One configuration key changed — `BUILD_TIMESTAMP`, a §270
+> runbook release step that had never been set.
+>
+> **`HZ-5` is proven in production from the deployed bytes**: the posture table was extracted
+> verbatim from the served JavaScript and the §298 `STOP` was driven through it, rendering *"Stop
+> this work now"*. **`HZ-4`'s production evidence is artifact identity of the running build, not a
+> live behavioural execution** — the classify route is entitlement-guarded and exercising it would
+> mean creating production data §299 did not authorise. That gap is recorded as `HZ-9` rather than
+> folded into the closure.
+>
 > **External Beta remains blocked.** `HZ-6`, `HZ-7`, `SE-5`, `BR-5` and `EM-2` are still open, and
 > §299 makes no accuracy claim and expands no entitlement.
 > Evidence: `verification/current/expert-hz4-hz5-299/`.

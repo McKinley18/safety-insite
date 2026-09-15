@@ -30,10 +30,12 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb` — **§294, DEPLOYED at §295 on both halves.** |
+| **Release binding** | `applicationSourceDigest` = `95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613` — **§299, DEPLOYED at §299 on both halves.** |
+| Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `87491ed96f6f09de3de5800fc0a472e20d120413` — live on **both halves** since §295, schema `1800000023000` (55/55), Node `v24.14.1` pinned |
+| **Deployed release SHA** | `317daba88e7ef8c117a2997b6347dae830e8823a` — live on **both halves** since §299 (backend `dep-daka1lh42hec739qlfo0`, frontend `dpl_Er16fs1N3XokrXwJc4FAMTuRhYjx`), schema `1800000023000` (55/55) **unchanged, 0 migrations**, Node `v24.14.1` pinned |
+| Predecessor deployed SHA | `87491ed96f6f09de3de5800fc0a472e20d120413` — live from §295 to §299 |
 
 > **THE DEPLOYED PRODUCT IS THE §294 REPAIR.** §294 repaired `MO-2` in `backend/src/` and
 > deliberately did not deploy; §295 deployed it **before** any Resend configuration, which was the
@@ -301,6 +303,7 @@ are retained so a later section does not rediscover them as new.
 | **HZ-6** | The Expert execution record cannot state which model produced a safety analysis, or how long it took. | P2 | C | Engineering | **OPEN §298** |
 | **HZ-7** | A finding finalized from an Expert-cited review carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard. | P2 | C | Product | **OPEN §298** |
 | **HZ-8** | At a workspace analysis ceiling of N, an idempotent replay of a completed Expert request is refused by the ceiling instead of resolving to the execution that already ran. | P3 | — | Engineering | **OPEN §298** |
+| **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **OPEN §299** |
 
 **HZ-2 — CLOSED at §298.** `EXPERT_EXECUTION_ENABLED` was set to `true` through the approved
 Render configuration mechanism and made effective by a **deployment** of the already-deployed SHA
@@ -434,6 +437,50 @@ question and §299 authorised zero provider calls.
 *Evidence:* `verification/current/expert-hz4-hz5-299/`.
 *Retest:* `npm run test:299-person-negation` and `npm run test:299-section-298-replay`, both wired
 into `hazlenz:test` so the family is a standing gate rather than a one-time proof.
+
+**Deployed at §299, and what that does and does not prove.**
+
+Production runs `317daba8…` on both halves — backend `dep-daka1lh42hec739qlfo0` (trigger `api`,
+pinned to the commit; `autoDeploy` is `no` before *and* after), frontend
+`dpl_Er16fs1N3XokrXwJc4FAMTuRhYjx`, whose id the served HTML names in its own bytes. **0 migrations,
+schema unchanged at `1800000023000` (55/55, `aheadOfBuild []`).** One configuration key changed —
+`BUILD_TIMESTAMP`, which the §270 runbook makes a release step and which was absent, so
+`/health/version` had been reporting `BUILD_FALLBACK` against a stale June literal. It was set by
+per-key `PUT`, the §298-proven mechanism: 42 → 43 keys, nothing removed, nothing else changed, and
+the three Expert keys byte-identical. Expert stays enabled at 1 analysis / USD 1.00 per workspace
+per 24h. Monitoring `CONFIGURED`, `serverErrorsInWindow` 0, no unexpected 5xx, `noindex, nofollow`
+served, preview protections measured live (the preview the push created returns 302, this
+deployment's own direct URL returns 302, only the production alias serves 200).
+
+**`HZ-5` is proven in production and it cost nothing.** The posture table was extracted **verbatim
+from the deployed JavaScript** served at `/inspection-workspace`, and the posture the deployed
+server actually returned at §298 — `STOP`, replayed from disk — was driven through it:
+
+```
+{CONTINUE:{label:"Work may continue",restrictsWork:!1},
+ CONTINUE_WITH_CONTROLS:{label:"Continue only with the controls below in place",restrictsWork:!1},
+ HOLD_PENDING_VERIFICATION:{label:"Hold this work until the open question is resolved",restrictsWork:!0},
+ STOP:{label:"Stop this work now",restrictsWork:!0}}
+```
+
+`STOP` → *"Stop this work now"*, `restrictsWork: true`, where before §299 the same value rendered
+*"The operational posture could not be read"*. The three retired §210J names occur **zero** times in
+the deployed bundle, and the fail-closed fallback and the *"work is restricted"* qualifier are both
+in the deployed bytes.
+
+**`HZ-4`'s production evidence is weaker, and that is stated rather than smoothed over.** Production
+runs the commit that contains the repair — `/health/version` reports `gitCommit 317daba8` with
+`versionSourceStatus RENDER_GIT_COMMIT`, the Render deploy record agrees, and `build:render` is bare
+`tsc` over `backend/src`, so the deployed `dist` is compiled from exactly that source. **That is
+artifact identity, not a live behavioural execution.** `POST /hazlenz/classify` is guarded by
+`JwtGuard` + `EntitlementGuard(fullSafeScope)` + `RolesGuard`, so exercising it in production needs
+a synthetic account and an entitlement — production writes §299 did not authorise. Two non-invasive
+routes were attempted and both need an owner action: `render ssh` into the running container
+requires an SSH key registered with the Render account, and resetting the §298 synthetic account the
+way §298 did requires a production database credential that is not available locally. **So `HZ-4`
+closes on an executed local proof plus artifact identity, and `HZ-9` records the missing live half
+so the two are never conflated.** The local half is not thin: 117 assertions run through the shipped
+`buildEvidenceFacts()` and `applyEvidenceFoundation()`.
 
 **HZ-5 — CLOSED at §299.** The root cause is that the frontend **restates** the posture vocabulary,
 because it does not build against `backend/`, and the restatement went stale when §233 superseded

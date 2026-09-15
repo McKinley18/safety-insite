@@ -1,0 +1,14 @@
+> ts-node scripts/hazlenz/verify.ts
+
+Expert HazLenz — current state verification (read-only, 0 provider calls)
+
+  Candidate identity                  PASS                      22 elements, 2 moved by the authorised §274 rename, 0 failure(s)
+  Identity constant in the build      PASS                      successor 8c163b312b29… supersedes 0b12adf6e44e…
+  Protected modules                   PASS                      29/29 present
+  Accepted evidence drift             PASS                      0 new (5594 members over 97 manifests; 0 pre-existing, 8 baselined, 2261 external pointers)
+  Current-state manifest              PASS                      agrees with the recomputed identity
+  Provider transport (live)           UNVERIFIED_LIVE           no provider is called by any §263 command
+  Object storage / report generation  ENVIRONMENTALLY_BLOCKED   STORAGE_S3_BUCKET and STORAGE_LOCAL_ROOT are unset; test:knowledge-release-provenance cannot reach report generation
+  Billing and deployment              UNVERIFIED_LIVE           no live environment is contacted
+
+VERIFICATION PASS  —  2 unverified live, 1 environmentally blocked

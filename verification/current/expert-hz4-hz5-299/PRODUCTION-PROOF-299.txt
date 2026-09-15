@@ -1,0 +1,76 @@
+§299 PRODUCTION PROOF — captured 2026-09-15T01:52:38Z
+
+BACKEND /health/version
+{
+    "appName": "safety-insite-backend",
+    "gitCommit": "317daba88e7ef8c117a2997b6347dae830e8823a",
+    "buildTimestamp": "2026-09-15T01:34:41.000Z",
+    "nodeEnv": "production",
+    "versionSourceStatus": "RENDER_GIT_COMMIT",
+    "buildTimestampSourceStatus": "BUILD_TIMESTAMP",
+    "nodeVersion": "v24.14.1",
+    "nodeVersionPinned": ">=24.14.1 <25.0.0"
+}
+
+BACKEND /health/ready
+{
+    "status": "ready",
+    "dependencies": {
+        "database": "available",
+        "schema": "current"
+    },
+    "monitoring": {
+        "alerting": "CONFIGURED",
+        "channel": "webhook",
+        "detail": "OPERATIONAL_ALERT_WEBHOOK_URL is set.",
+        "lastDelivery": null,
+        "serverErrorsInWindow": 0,
+        "policy": {
+            "alertsOn": "every error-severity operational event, plus a burst of 5xx responses",
+            "serverErrorThreshold": 5,
+            "serverErrorWindowMinutes": 5,
+            "dedupeWindowMinutes": 15,
+            "maxAlertsPerWindow": 12,
+            "neverAlertsOn": [
+                "401",
+                "402",
+                "404",
+                "ordinary 400 validation",
+                "expected 409 conflict"
+            ],
+            "emailChannelRequires": [
+                "OPERATIONAL_ALERT_EMAIL",
+                "RESEND_API_KEY",
+                "PASSWORD_RESET_FROM_EMAIL (shared) or OPERATIONAL_ALERT_FROM_EMAIL (override)"
+            ],
+            "senderFallback": "NONE \u2014 a channel with no configured sender reports NOT_CONFIGURED",
+            "dispatchOutcomes": [
+                "DELIVERY_ACCEPTED",
+                "PROVIDER_REJECTED",
+                "NETWORK_FAILURE",
+                "MALFORMED_RESPONSE"
+            ]
+        }
+    },
+    "schema": {
+        "expectedSchemaVersion": "1800000023000",
+        "expectedCount": 55,
+        "appliedCount": 55,
+        "aheadOfBuild": []
+    },
+    "version": {
+        "appName": "safety-insite-backend",
+        "gitCommit": "317daba88e7ef8c117a2997b6347dae830e8823a",
+        "buildTimestamp": "2026-09-15T01:34:41.000Z",
+        "nodeEnv": "production",
+        "versionSourceStatus": "RENDER_GIT_COMMIT",
+        "buildTimestampSourceStatus": "BUILD_TIMESTAMP",
+        "nodeVersion": "v24.14.1",
+        "nodeVersionPinned": ">=24.14.1 <25.0.0"
+    }
+}
+
+FRONTEND production headers
+server: Vercel
+x-robots-tag: noindex, nofollow
+x-vercel-id: iad1::rxlw5-1789437158757-27e82da75145

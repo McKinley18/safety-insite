@@ -175,5 +175,101 @@
       "verification/current/expert-hz4-hz5-299/ (NEW)"
     ],
     "packageScripts": "backend and frontend-next: new 299 gates appended; hazlenz:test extended with the three backend 299 gates. No existing script reordered or removed."
+  },
+  "endingHead": "317daba88e7ef8c117a2997b6347dae830e8823a",
+  "deployment": {
+    "authorizedBy": "§299 — 'Deployment of the repaired candidate is AUTHORIZED after all gates pass.' All gates passed first.",
+    "push": {
+      "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+      "from": "d78150ed91ac4324db084d601035a343f791013a",
+      "to": "317daba88e7ef8c117a2997b6347dae830e8823a"
+    },
+    "candidateEquivalenceToWhatWasDeployedBefore": "backend/src and frontend-next are BYTE-IDENTICAL between the previously deployed SHA 87491ed9 and the §299 base d78150ed — the four intervening commits (§295, §296, §297A, §297B) touched only scripts, docs and verification. So this deployment carries exactly the §299 source changes and nothing else.",
+    "applicationSourceDigest": {
+      "recipe": "git ls-tree -r <sha> --format='%(path) %(objectname)' | grep -E '^(backend/(src|scripts)/|backend/package(-lock)?\\.json|backend/tsconfig|frontend-next/(app|components|lib|public|scripts)/|frontend-next/package(-lock)?\\.json|frontend-next/(next\\.config|tsconfig|tailwind))' | LC_ALL=C sort | shasum -a 256",
+      "recipeVerified": "Reproduces the §294/§295 deployed value 7fc9d47e… at 87491ed9 exactly, so the recipe is confirmed rather than assumed.",
+      "beforeDeployed": "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb (at 87491ed9)",
+      "atSectionBase": "597d231a1cc41ca9c9ff3512f7a70694c19ef93a0f182c9317724db3d9c1ccac (at d78150ed — moved only because §295-§297B added operator scripts under backend/scripts/, which is inside the digest pattern but outside tsconfig's include, so the built artifact was unchanged)",
+      "afterDeployed": "95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613 (at 317daba8 — THE NEW RELEASE BINDING)"
+    },
+    "migrationsApplied": 0,
+    "schemaBefore": "1800000023000 (55/55)",
+    "schemaAfter": "1800000023000 (55/55), aheadOfBuild []",
+    "schemaUnchanged": true,
+    "migrationNeeded": false,
+    "backend": {
+      "platform": "Render",
+      "service": "srv-d7kl74jeo5us73deaor0 (safety-insite-backend)",
+      "deployId": "dep-daka1lh42hec739qlfo0",
+      "trigger": "api, pinned to commitId 317daba8 — autoDeploy is no / trigger off, before AND after",
+      "status": "live",
+      "startedAt": "2026-09-15T01:35:18Z",
+      "finishedAt": "2026-09-15T01:36:59Z",
+      "runningShaBefore": "87491ed96f6f09de3de5800fc0a472e20d120413",
+      "runningShaAfter": "317daba88e7ef8c117a2997b6347dae830e8823a",
+      "shaSource": "/health/version gitCommit, versionSourceStatus RENDER_GIT_COMMIT",
+      "nodeVersion": "v24.14.1, pinned >=24.14.1 <25.0.0"
+    },
+    "configurationChange": {
+      "keysChanged": 1,
+      "key": "BUILD_TIMESTAMP",
+      "why": "The §270 runbook addendum makes this a release step. It was ABSENT, so /health/version reported buildTimestampSourceStatus BUILD_FALLBACK with a stale 2026-06-19 literal.",
+      "mechanism": "Render per-key PUT /v1/services/{id}/env-vars/{key} — the §298-proven mechanism that avoids the whole-list replacement hazard §297A recorded.",
+      "envCountBefore": 42,
+      "envCountAfter": 43,
+      "added": [
+        "BUILD_TIMESTAMP"
+      ],
+      "removed": [],
+      "changed": [],
+      "expertKeysByteIdentical": true,
+      "otherKeysByteIdentical": "42 of 42",
+      "effect": "buildTimestampSourceStatus moved BUILD_FALLBACK -> BUILD_TIMESTAMP, value 2026-09-15T01:34:41Z"
+    },
+    "frontend": {
+      "platform": "Vercel",
+      "project": "prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw (safety-insite, rootDirectory frontend-next)",
+      "deploymentId": "dpl_Er16fs1N3XokrXwJc4FAMTuRhYjx",
+      "target": "production",
+      "readyState": "READY",
+      "metaGithubCommitSha": "317daba88e7ef8c117a2997b6347dae830e8823a",
+      "gitSourceSha": "317daba88e7ef8c117a2997b6347dae830e8823a",
+      "aliasVerification": "The served production HTML at safety-insite.vercel.app names dpl_Er16fs1N3XokrXwJc4FAMTuRhYjx in its own bytes, so the alias is confirmed from what is served and not only from the API.",
+      "noteOnThePush": "The git push created a PREVIEW deployment automatically. Production was NOT affected by it — the production alias still served the 3h-old deployment until the pinned production deployment above was created deliberately."
+    },
+    "rollbackEvents": 0
+  },
+  "productionProof": {
+    "productionShaBefore": "87491ed96f6f09de3de5800fc0a472e20d120413",
+    "productionShaAfter": "317daba88e7ef8c117a2997b6347dae830e8823a",
+    "applicationSourceDigest": "95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613",
+    "schema": "1800000023000, applied 55/55, aheadOfBuild [] — UNCHANGED",
+    "section274Identity": "PASS at the deployed commit — 22 elements, 2 moved by the authorised §274 rename, 0 failures; identity constant in the build successor 8c163b312b29… supersedes 0b12adf6e44e…; protected modules 29/29 present; accepted evidence drift 0 new across 97 manifests.",
+    "expertFlag": "EXPERT_EXECUTION_ENABLED=true — UNCHANGED",
+    "expertLimits": "1 analysis and USD 1.00 per workspace per 24h — UNCHANGED",
+    "monitoring": "CONFIGURED, channel webhook, serverErrorsInWindow 0",
+    "noindexNofollow": "x-robots-tag: noindex, nofollow on the production frontend",
+    "renderAutoDeploy": "autoDeploy no / autoDeployTrigger off — verified AFTER the API deploy, unchanged by it",
+    "previewProtections": "ssoProtection deploymentType all_except_custom_domains. Measured: the preview deployment the push created returns 302, this production deployment's own direct URL returns 302, and only the production alias serves 200.",
+    "unexpected5xx": "NONE. /health/ready, /health/version, /health/live all 200; frontend /, /login, /pricing, /legal all 200; serverErrorsInWindow 0.",
+    "hz5ProductionRendering": {
+      "method": "The posture table was extracted VERBATIM from the deployed /inspection-workspace route chunks served by safety-insite.vercel.app, and the posture value the deployed server actually returned at §298 was driven through it. The §298 execution is replayed from disk.",
+      "providerCalls": 0,
+      "deployedTable": "{CONTINUE:{label:\"Work may continue\",restrictsWork:!1},CONTINUE_WITH_CONTROLS:{label:\"Continue only with the controls below in place\",restrictsWork:!1},HOLD_PENDING_VERIFICATION:{label:\"Hold this work until the open question is resolved\",restrictsWork:!0},STOP:{label:\"Stop this work now\",restrictsWork:!0}}",
+      "section298PostureValue": "STOP",
+      "rendersInProduction": "Stop this work now — restrictsWork true",
+      "renderedBeforeSection299": "The operational posture could not be read",
+      "retiredNamesInDeployedBundle": "STOP_WORK 0, DO_NOT_START 0, NO_IMMEDIATE_RESTRICTION 0",
+      "unknownFailsClosedInDeployedBundle": "EVACUATE_AREA is not in the deployed table; the 'treat this work as restricted and have it reviewed' fallback and the 'work is restricted' qualifier are both present in the deployed bytes.",
+      "result": "HZ-5 PROVEN IN PRODUCTION"
+    },
+    "hz4ProductionEvidence": {
+      "whatWasEstablished": "The production backend is running commit 317daba8, read from /health/version with versionSourceStatus RENDER_GIT_COMMIT and corroborated by the Render deploy record (dep-daka1lh42hec739qlfo0, requestedCommit 317daba8, status live). That commit contains person-negation-semantics.ts and the repaired shared-evidence-facts.ts, and the Render build command is bare tsc over backend/src, so the deployed dist is compiled from exactly that source. The full gate battery ran at that commit.",
+      "classification": "ARTIFACT-IDENTITY EVIDENCE, NOT A LIVE BEHAVIOURAL EXECUTION.",
+      "liveBehaviouralExecution": "NOT_EXERCISED",
+      "whyNot": "POST /hazlenz/classify is guarded by JwtGuard + EntitlementGuard(fullSafeScope) + RolesGuard. Exercising it in production would require creating a synthetic production account and granting it an entitlement — production writes §299 did not authorise. Two non-invasive alternatives were attempted and both require an owner action: `render ssh` into the running container needs a TTY and, underneath, an SSH public key registered with the Render account; and no production database credential is available locally, so the §298 synthetic account's password could not be reset the way §298 reset it.",
+      "doNotRead": "This must NOT be read as 'HZ-4 is verified live in production'. The local half is executed and complete — 89 + 13 + 15 assertions through the shipped buildEvidenceFacts() and applyEvidenceFoundation() — and the production half is an identity argument about which bytes are running. The two are different strengths of claim and are recorded as such.",
+      "howToClose": "One authenticated POST /hazlenz/classify in production carrying the §298 observation text, asserting that 29 CFR 1910.28 comes back UNKNOWN with 'employee access or exposure' in missingPredicates rather than CONTRADICTED. It needs an account with fullSafeScope and it creates no Expert analysis and spends nothing. Requires product-owner authorisation for the production account, or an SSH key on the Render service for a read-only in-container probe."
+    }
   }
 }
