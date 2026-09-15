@@ -1,0 +1,30 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_300_HZ7_RISK_AUTHORITY_TRACE",
+  "section": "300",
+  "generated": "2026-09-15T02:46:31Z",
+  "status": "TRACE COMPLETE — REMEDIATION NOT YET CHOSEN. HZ-7 is registered PRODUCT-owned with three enumerated options, and §300's principle narrows them without selecting one.",
+  "providerCalls": 0,
+  "databaseWrites": 0,
+  "registeredDefinition": "A finding finalized from a review that cites an Expert analysis carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard.",
+  "pathTraced": {
+    "1_expertSemanticResult": "The provider returns hazard candidates and a posture. It carries NO severity and NO risk, by contract.",
+    "2_admission": "expert-252-structural-admission admits or refuses the STRUCTURE. It does not rate anything.",
+    "3_reviewSettlement": "A human review cites the analysis. Settlement records what the reviewer decided about the CONCLUSION, not about risk.",
+    "4_findingRepresentation": "inspection.service.ts finalizeFindingFromReview creates the finding: `riskSnapshot: dto.riskAssessment ? withReviewerConfirmedRisk(null, dto.riskAssessment, user.userId) : null`. THIS IS THE DEFECT SITE. The ternary's else-branch is a silent NULL: nothing requires a rating, nothing records that one was not given, and nothing distinguishes 'the reviewer decided not to rate it' from 'the workflow never asked'.",
+    "5_riskAuthority": "see riskAuthority below",
+    "6_reportMaterialization": "The report reads riskSnapshot. A NULL prints 'Not rated' with 'APPLICABLE STANDARD: Not established for this specific finding', and the executive summary states '1 finding(s) have no established risk rating' and directs a qualified person to rate it before closure. THE REPORT IS HONEST. Nothing fabricates a severity anywhere on this path."
+  },
+  "riskAuthority": {
+    "governedServerAuthority": "inspection.service.ts computeFindingRisk(hazard, hazardKey, riskProfileId), invoked by reconcileDecompositionFindings. It is keyed to a DETERMINISTIC DECOMPOSITION HAZARD. An Expert candidate is not a decomposition hazard, so this function cannot be invoked for an Expert-derived finding without first inventing a hazard record for it — which would be deterministic code authoring safety semantics.",
+    "humanAuthority": "withReviewerConfirmedRisk(snapshot, dto.riskAssessment, userId) — the reviewer's own rating, attributed to their user id and merged OVER the finding-scoped system fields rather than replacing them. FinalizeFindingDto already accepts riskAssessment, so the mechanism exists and works; it is simply optional and unprompted.",
+    "expertAuthority": "NONE, and that is correct and must stay. The provider has no path to set a severity and §300 forbids creating one.",
+    "conclusion": "For an Expert-derived finding the ONLY legitimate governed rating today is the reviewer's. The gap is not that risk cannot be established — it is that the workflow lets a finding be finalized without anyone establishing it and without recording that."
+  },
+  "whatIsNotTheDefect": "The report. It states the absence plainly and refuses to invent a severity, which is the fail-closed behaviour §300 requires be preserved. Any repair must keep NOT ESTABLISHED reachable as a truthful terminal state.",
+  "optionsNarrowed": {
+    "registerOption1": "Expert-derived findings get a risk derivation of their own. NARROWED OUT in its naive form: deriving severity from the Expert result is exactly what §300's risk-rating principle and the register's own note forbid. A NON-naive variant survives — inherit the governed computeFindingRisk output when the SAME observation's deterministic decomposition produced an exactly-matching hazardKey — but on the §298 case the two findings had different keys, so it would not have fired there.",
+    "registerOption2": "Do not offer finalization from an Expert-cited review as a way of creating a NEW finding. Removes the gap by removing the path. Largest workflow change.",
+    "registerOption3": "Require the reviewer to supply the risk, or to record an explicit deferral. Uses the authority that already exists and already works, keeps NOT ESTABLISHED reachable, and removes only the SILENT version of it. Changes FinalizeFindingDto and the frontend finalize flow."
+  },
+  "whyNotChosenHere": "HZ-7 is registered with owner PRODUCT, and the three options differ in what an inspector is required to do at finalization time. §300 constrains the answer (no provider-authored severity, no elimination of truthful unresolved states) but does not select among them, and selecting one is a product decision rather than an engineering one."
+}
