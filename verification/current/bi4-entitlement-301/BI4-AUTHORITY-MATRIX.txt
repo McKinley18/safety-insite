@@ -1,0 +1,63 @@
+
+> safety-insite-backend@1.0.0 test:301-entitlement-authority
+> ts-node scripts/test-301-entitlement-authority.ts
+
+
+---- 1. the §301 security and precedence matrix ----
+
+ok    1  ordinary free registration -> free (saw free)
+ok    3  legitimate server-authorized promo -> pro (saw pro)
+ok    4  active paid subscription -> pro (saw pro)
+ok    5a cancelled subscription, no other authority -> free (saw free)
+ok    5b unpaid subscription, no other authority -> free (saw free)
+ok    6  active bounded entitlement_grant -> pro (saw pro)
+ok    7  expired entitlement_grant -> free (saw free)
+ok    8  revoked entitlement_grant -> free (saw free)
+ok    9a cancelled subscription + active grant -> pro (saw pro)
+ok    9b active subscription + expired grant -> pro (saw pro)
+ok    9c free subscription row + active grant -> pro (saw pro)
+ok    9d promo user row + cancelled subscription row -> free (saw free)
+ok    9d is the precedence rule stated plainly: A LIVE SUBSCRIPTION ROW OUTRANKS THE USER ROW IN BOTH DIRECTIONS. A promo tier on the user row cannot survive a subscription Stripe has ended.
+ok    And a grant is a FLOOR, never a ceiling: it raises free to pro and never lowers anything.
+
+---- 2. a client cannot ask for paid capability ----
+
+ok    auth.service.ts never reads dto.planCode. A caller-supplied plan is a REQUEST, not authority, and the moment one is read into the account row, public registration becomes an entitlement escalation.
+ok    auth.service.ts never reads dto.selectedPlan. A caller-supplied plan is a REQUEST, not authority, and the moment one is read into the account row, public registration becomes an entitlement escalation.
+ok    auth.service.ts never reads dto.subscriptionStatus. A caller-supplied plan is a REQUEST, not authority, and the moment one is read into the account row, public registration becomes an entitlement escalation.
+ok    auth.service.ts never reads dto.tier. A caller-supplied plan is a REQUEST, not authority, and the moment one is read into the account row, public registration becomes an entitlement escalation.
+ok    The account tier is decided by exactly one expression, and its only non-free branch is the server-configured promo. There is no second way to become pro at registration.
+ok    The promo allowlist comes from SERVER ENVIRONMENT, which a registering user cannot write to. This is the trusted server-side condition §301 requires before any promotion is honoured.
+ok    A promo code that is not on the server list is REFUSED rather than ignored, so a guessing attempt fails loudly instead of silently creating a free account.
+
+---- 3. with no promo configured, nothing can be promoted ----
+
+ok    unset EMPLOYER_PRO_PROMO_CODES yields an empty allowlist.
+ok    unset cannot be matched by an empty promo code.
+ok    empty EMPLOYER_PRO_PROMO_CODES yields an empty allowlist.
+ok    empty cannot be matched by an empty promo code.
+ok    whitespace EMPLOYER_PRO_PROMO_CODES yields an empty allowlist.
+ok    whitespace cannot be matched by an empty promo code.
+ok    commas only EMPLOYER_PRO_PROMO_CODES yields an empty allowlist.
+ok    commas only cannot be matched by an empty promo code.
+ok    A configured code is matched.
+ok    An unconfigured code is not.
+
+---- 4. fullSafeScope follows the resolved tier, nothing else ----
+
+ok    pro carries fullSafeScope.
+ok    free does not.
+ok    A legitimately promoted account reaches fullSafeScope — which is BI-4 repaired.
+ok    An ordinary free account does not.
+ok    A revoked grant carries nothing, so cleanup by revocation actually removes capability.
+
+---- 5. this file still describes the shipped resolver ----
+
+ok    Shipped: a live subscription row supplies the tier, else the user row does.
+ok    Shipped: and supplies the status the same way.
+ok    Shipped: a grant raises free to pro and never lowers anything.
+ok    Shipped: the dead `|| (tier === free ? none : active)` alternative is gone, so no future edit can make an unverified tier claim imply an active subscription.
+ok    Shipped: resolveSessionContext now passes the status it always had — the BI-4 repair itself.
+ok    And normalizeStripeSubscriptionStatus is still total, which is WHY that alternative was dead — recorded here so the removal is not mistaken for a behaviour change.
+
+42 checks passed, 0 failed

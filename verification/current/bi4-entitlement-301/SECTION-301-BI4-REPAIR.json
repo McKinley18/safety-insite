@@ -1,0 +1,58 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_301_BI4_ENTITLEMENT_RESOLUTION_REPAIR",
+  "section": "301",
+  "generated": "2026-09-15T21:26:47Z",
+  "providerCalls": 0,
+  "expertAnalyses": 0,
+  "spendUsd": 0.0,
+  "migrations": 0,
+  "rootCause": {
+    "confirmedExecutably": "normalizeStripeSubscriptionStatus was exercised over undefined, null, empty string, whitespace, garbage and every valid status. It returns a NON-EMPTY STRING in all cases — its final line is `return \"none\"`.",
+    "proximate": "AuthService.resolveSessionContext called billingService.getBillingStatus with { userId, email, planCode, type } and WITHHELD subscriptionStatus, although the promo registration deliberately writes `subscriptionStatus: 'active'` onto the user row beside `planCode: 'pro'`. With no status supplied the resolver read 'none' and resolveAccessTier('pro','none',null) returned 'free'.",
+    "secondary": "The `|| (fallbackTier === 'free' ? 'none' : 'active')` alternative in getBillingStatus — evidently intended to treat a paid tier carrying no explicit status as active — IS DEAD FOR EVERY POSSIBLE INPUT, because the left operand is total.",
+    "whyItPresentedAsItDid": "Registration answers from its own local variable and is therefore truthful at that instant; the discrepancy only appears at the NEXT request, when the session is rebuilt through the resolver. That is why §300 saw `planCode: \"pro\"` followed immediately by a free session."
+  },
+  "authorityModel": {
+    "purchasedSubscription": "A UserSubscription row. AUTHORITATIVE IN BOTH DIRECTIONS whenever one exists — it supplies both tier and status and overrides the user row, so it can revoke as well as grant.",
+    "pilotEntitlement": "An entitlement_grants row: source, tier, status, startsAt, endsAt, reason, issuedByUserId. Bounded and revocable. Applied as a FLOOR — it raises a free result to pro and never lowers anything.",
+    "promotionalEntitlement": "A promoCode at registration matching EMPLOYER_PRO_PROMO_CODES, a SERVER ENVIRONMENT allowlist. Writes planCode and subscriptionStatus onto the user row.",
+    "internalSyntheticEntitlement": "No distinct mechanism exists. Internal/synthetic testing uses either the promo path or a bounded entitlement_grant.",
+    "planCode": "On the user row: REQUESTED/GRANTED PLAN INPUT, not authority. On the JWT: the already-RESOLVED decision, minted by the server.",
+    "subscriptionStatus": "On the user row: input to the resolver, paired with planCode. Never authority on its own.",
+    "entitlementGrant": "Server-authoritative, bounded, revocable.",
+    "featureEntitlements": "hasEntitlement(tier, feature) over BILLING_PLAN_DEFINITIONS. fullSafeScope is pro-only. Derived from the resolved tier and from nothing else.",
+    "requestedPlanVersusAuthorizedEntitlement": "dto.planCode and dto.selectedPlan are declared on RegisterDto and NEVER READ by AuthService. They are REQUESTS. The only expression that decides the account tier is `const planCode = employerProPromoApplied ? 'pro' : 'free'`."
+  },
+  "precedence": [
+    "1. A live UserSubscription row, if present, supplies BOTH tier and status and outranks the user row in both directions — a promo tier cannot survive a subscription Stripe has ended.",
+    "2. Otherwise the user row's planCode + subscriptionStatus, resolved through resolveAccessTier, which requires status active or trialing.",
+    "3. An active bounded entitlement_grant is then applied as a FLOOR: free -> pro only.",
+    "4. fullSafeScope follows the single resolved tier."
+  ],
+  "security": {
+    "promoIsServerControlled": true,
+    "evidence": "The allowlist comes from process.env.EMPLOYER_PRO_PROMO_CODES, which a registering user cannot write to. A supplied code that is not on the list is REFUSED with 400 BEFORE any write, so a guessing attempt leaves no account behind. An unset, empty, whitespace or commas-only value yields an empty allowlist that matches nothing.",
+    "publicSelfEscalationPossibleBeforeRepair": false,
+    "whyNot": "dto.planCode and dto.selectedPlan were already never read. The §300 defect made the promo path grant NOTHING; it never made public registration grant TOO MUCH.",
+    "wouldTheObviousRepairHaveCreatedEscalation": false,
+    "butOneObviousVariantWOULDHave": "Making the dead `|| (tier === 'free' ? 'none' : 'active')` branch REACHABLE. That reads as: any account whose TIER claims pro is treated as having an ACTIVE subscription even though nothing says so — an entitlement widening from a caller-influenced field, in the one function every feature gate consults. It was DELETED instead, which is provably behaviour-preserving.",
+    "decision": "PROCEED. A trusted server-side condition exists and was proven unforgeable by the registering user, so §301's STOP criterion is not met."
+  },
+  "repair": [
+    "auth.service.ts resolveSessionContext now passes user.subscriptionStatus into getBillingStatus.",
+    "billing.service.ts: the dead `|| (fallbackTier === 'free' ? 'none' : 'active')` alternative is removed rather than made reachable."
+  ],
+  "canonicalPath": "authorization (server allowlist or grant) -> registration/account row -> fresh authentication -> resolveSessionContext -> getBillingStatus (one resolver) -> effectivePlanCode -> signed JWT -> EntitlementGuard/EntitlementService -> /hazlenz/classify and Expert eligibility. Expert uses the SAME EntitlementGuard with the SAME fullSafeScope key, so it cannot obtain broader authority from a different calculation.",
+  "noMigration": true,
+  "newDefect": "EN-2 — an already-issued token retains capability until it expires, because hasFeature returns on the JWT tier claim before reaching the grant lookup. Measured, not inferred: classify returned 201 on a pre-revocation token while a fresh login correctly resolved free and was refused 402. Retention, not escalation; window bounded by JWT_EXPIRES_IN (default 15m). Registered, not repaired.",
+  "tests": {
+    "unit": "test-301-entitlement-authority.ts — 42 checks, in hazlenz:test",
+    "integration": "test-301-entitlement-integration.ts — 35 checks, in hazlenz:integration:test, against a disposable test_* database with DEV_AUTH_BYPASS refused",
+    "durableAntiSelfPromotionGuard": "A SOURCE assertion that auth.service.ts never reads dto.planCode, dto.selectedPlan, dto.subscriptionStatus or dto.tier, that the account tier is decided by exactly one expression, and that its only non-free branch reads the server environment. A source assertion rather than a behavioural one because the property is 'no code path reads a caller-supplied plan into the account', and a behavioural test can only sample the paths someone thought to try."
+  },
+  "section300Reproduction": {
+    "before": "the pre-repair expression, applied to the very account row the suite had just created, resolves status=none -> tier=free",
+    "after": "the repaired expression, same row, resolves status=active -> tier=pro",
+    "why": "so the suite distinguishes REPAIRED from NEVER-BROKEN. A test that only shows the good state cannot tell those apart."
+  }
+}

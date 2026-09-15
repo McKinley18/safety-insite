@@ -284,6 +284,22 @@ export class AuthService {
       email: user.email,
       planCode: organization?.planCode || user.planCode || 'free',
       type: user.type,
+      /**
+       * §301 / BI-4 — THE OMISSION THAT MADE A GRANTED PLAN EVAPORATE AT LOGIN.
+       *
+       * This call passed the user's TIER and withheld their STATUS. `getBillingStatus` needs both:
+       * with no `UserSubscription` row it resolves through
+       * `resolveAccessTier(tier, status, periodEnd)`, which returns `free` for anything that is not
+       * `active` or `trialing`. Receiving no status, it read `none`, and every account whose tier
+       * lives on the user row rather than in Stripe — which is exactly the employer-pro promo path —
+       * resolved to FREE one request after registration answered `planCode: "pro"`.
+       *
+       * The status is REQUESTED-PLAN INPUT, not authority. `getBillingStatus` still prefers a live
+       * `UserSubscription` row over both of these fields whenever one exists, so passing the status
+       * cannot let a stale row outrank Stripe. What it does is stop the resolver from inferring a
+       * status the caller simply failed to mention.
+       */
+      subscriptionStatus: user.subscriptionStatus,
     }).catch(() => null);
 
     const effectivePlanCode = normalizeBillingTier(

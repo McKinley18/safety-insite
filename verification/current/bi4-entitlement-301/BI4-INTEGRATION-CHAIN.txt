@@ -1,0 +1,54 @@
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789507434446_2699
+resolved target host=127.0.0.1 database=test_insite_1789507434446_2699
+application listening on http://127.0.0.1:58286
+---- A. ordinary free registration (matrix 1) ----
+ok    A-1 an ordinary registration succeeds  [201]
+ok    A-2 and is FREE  [free]
+ok    A-3 the JWT says free  [free]
+ok    A-4 without fullSafeScope  [false]
+ok    A-5 and classify refuses it with 402  [402]
+---- B. legitimate server-authorized promo (matrix 3) — THE BI-4 REPAIR ----
+ok    B-1 a registration carrying the SERVER-CONFIGURED code is promoted  [201 promoApplied=true]
+ok    B-2 registration answers pro  [pro]
+ok    B-3 and the ACCOUNT ROW records both the tier and the status  [pro/active]
+ok    B-4 A FRESH LOGIN STILL RESOLVES PRO. This is the exact step where §300 measured free.  [pro]
+ok    B-5 the JWT carries fullSafeScope  [true]
+ok    B-6 AND /hazlenz/classify RETURNS A DETERMINISTIC CLASSIFICATION RATHER THAN 402  [201]
+ok    B-7 the response is a real analysis, not an empty shell
+   the pre-repair resolution, reproduced from the old expression:
+      pre-repair : status=none -> tier=free
+      post-repair: status=active -> tier=pro
+ok    B-PRE-1 the pre-repair expression resolves this very account to FREE, reproducing §300
+ok    B-PRE-2 and the repaired one resolves it to PRO — the suite distinguishes repaired from never-broken
+---- C. an arbitrary public caller cannot self-promote (matrix 2, 12) ----
+ok    C-1 a registration asking for planCode pro is accepted-or-rejected, never honoured  [201]
+ok    C-2 REQUESTING pro DOES NOT GRANT pro  [free]
+ok    C-3 and the session it gets carries no paid capability
+ok    C-4 classify still refuses it  [402]
+ok    C-5 selectedPlan pro is equally inert  [201/free]
+ok    C-6 GUESSING the promo code is REFUSED, and leaves no account behind  [400]
+ok    C-7 no user row was created by the refused attempt  [0]
+---- D. bounded entitlement grants (matrix 6, 7, 8) ----
+ok    D-0 the grant-case account registered  [201]
+ok    D-1 an ACTIVE bounded grant raises a free account to pro  [pro]
+ok    D-2 and classify accepts it  [201]
+ok    D-3 an EXPIRED grant carries nothing  [free]
+ok    D-4 and classify refuses  [402]
+ok    D-5 a REVOKED grant carries nothing, so revocation is a real cleanup mechanism  [free]
+---- E. a stale session cannot outlive its authority (matrix 10, 11) ----
+ok    E-1 a token minted while entitled works
+      measured: a token minted BEFORE revocation -> classify 201
+      measured: a FRESH login AFTER revocation   -> tier free, fullSafeScope false
+ok    E-2 A FRESH SESSION RE-DERIVES AUTHORITY FROM SERVER STATE: once the grant is revoked, a new login carries no paid capability. This is what makes revocation a real cleanup mechanism and is the §301 matrix-10 requirement.  [free]
+ok    E-3 and that fresh session is refused by classify  [402]
+ok    E-4 the pre-revocation token neither errors nor escalates — it either still carries what it was issued with, or has already lost it. MEASURED: 201. It cannot gain anything it did not have, which is the matrix-11 requirement.  [201]
+      NOTE: an already-issued token RETAINS capability until it expires. EntitlementService.hasFeature returns on the JWT tier claim before it reaches the grant lookup, so revocation is not instant for live sessions. Registered as a §301 finding; cleanup must therefore be verified with a FRESH login, which E-2 does.
+---- F. one tenant's grant does not entitle another (matrix 13) ----
+ok    F-1 tenant B is FREE while tenant A holds an active grant  [free]
+ok    F-2 and classify refuses tenant B  [402]
+---- G. with the promo disabled, nothing is promoted (matrix 16) ----
+ok    G-1 the SAME code that worked in B is refused once the server list is empty  [400]
+ok    G-2 and no account was created  [0]
+================ §301 entitlement integration: 35 passed, 0 failed
+{"providerCalls":0,"expertAnalyses":0,"passed":35,"failed":0}
+dropped test_insite_1789507434446_2699

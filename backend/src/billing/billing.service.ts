@@ -159,9 +159,27 @@ export class BillingService {
         user?.planCode ||
         user?.type,
     );
+    /**
+     * §301 / BI-4 — THE DEAD ALTERNATIVE, REMOVED RATHER THAN REPAIRED.
+     *
+     * This read `normalizeStripeSubscriptionStatus(...) || (fallbackTier === 'free' ? 'none' :
+     * 'active')`. THE RIGHT-HAND BRANCH COULD NEVER RUN, for any input at all:
+     * `normalizeStripeSubscriptionStatus` ends in `return "none"` and so is never falsy. It was
+     * evidently meant to treat a paid tier carrying no explicit status as active, and it never once
+     * did.
+     *
+     * It is deleted rather than made reachable, and the direction matters. Making it live would
+     * mean "any account whose TIER says pro is treated as ACTIVE even though nothing says its
+     * subscription is" — an entitlement WIDENING, derived from a field a caller supplies, in the
+     * one function every feature gate ultimately consults. The §301 security model names
+     * unverified billing claims as insufficient authority, and that branch is exactly one.
+     *
+     * Deleting it is provably behaviour-preserving: the left side is total. What BI-4 actually
+     * needed was for the caller to pass the status it already had, which `resolveSessionContext`
+     * now does.
+     */
     const fallbackStatus =
-      normalizeStripeSubscriptionStatus(user?.subscriptionStatus || user?.billingStatus) ||
-      (fallbackTier === 'free' ? 'none' : 'active');
+      normalizeStripeSubscriptionStatus(user?.subscriptionStatus || user?.billingStatus);
 
     const subscription = await this.findSubscriptionByUserId(userId);
     const now = new Date();

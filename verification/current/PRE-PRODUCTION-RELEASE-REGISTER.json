@@ -6,7 +6,7 @@
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§300 COMPLETE — HZ-9, HZ-10, HZ-6 and HZ-7 CLOSED and deployed; BI-4 open.",
+  "asOf": "§301 — BI-4 CLOSED (pending live production proof); EN-2 opened.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events.",
   "thresholds": {
@@ -15,16 +15,16 @@
     "C": "EXTERNAL CONTROLLED BETA — named external inspectors entering real workplace data."
   },
   "counts": {
-    "total": 90,
+    "total": 91,
     "P0": 6,
     "P1": 8,
     "P2": 52,
-    "P3": 24,
+    "P3": 25,
     "thresholdA": 0,
     "thresholdB": 0,
-    "thresholdC": 19,
+    "thresholdC": 18,
     "byStatus": {
-      "CLOSED": 50,
+      "CLOSED": 51,
       "OPEN": 34,
       "DEFERRED": 2,
       "BLOCKED": 4
@@ -679,19 +679,19 @@
       "domain": "BILLING / SUBSCRIPTIONS",
       "id": "BI-4",
       "description": "The employer-pro promo code is inert: registration reports planCode \"pro\" and promoApplied true, and the very next login resolves the account to free with fullSafeScope false.",
-      "currentState": "FOUND AT §300 WHILE ATTEMPTING THE HZ-9 PROOF, AND MEASURED END TO END IN PRODUCTION. POST /auth/register with a configured promo returned 201, planCode \"pro\", promoApplied true; the JWT minted at the next login carried planCode \"free\", effectivePlanCode \"free\", subscriptionStatus \"none\", billingEntitlements.fullSafeScope false; POST /hazlenz/classify returned 402 PAID_SUBSCRIPTION_REQUIRED. ROOT CAUSE, TWO FAULTS COMPOUNDING: (1) AuthService.resolveSessionContext calls getBillingStatus({userId, email, planCode, type}) and does NOT pass user.subscriptionStatus, although the promo registration deliberately writes subscriptionStatus \"active\" onto the user row next to planCode \"pro\"; (2) in getBillingStatus, `normalizeStripeSubscriptionStatus(...) || (fallbackTier === \"free\" ? \"none\" : \"active\")` has an UNREACHABLE right-hand branch, because normalizeStripeSubscriptionStatus ends in `return \"none\"` and never returns a falsy value. The branch exists precisely to treat a paid tier carrying no explicit status as active. So fallbackStatus is always \"none\", resolveAccessTier(\"pro\",\"none\",null) returns \"free\", and effectivePlanCode — which prefers billingSnapshot.tier — discards the user row's \"pro\". NO CUSTOMER IS AFFECTED TODAY: EMPLOYER_PRO_PROMO_CODES was empty in production before §300 and is empty again after it, so no promo account has ever existed in production. The defect is latent, not live.",
-      "evidence": "verification/current/hz9-entitlement-blocker-300/SECTION-300-PHASE1-HZ9-BLOCKER.json. Source: src/auth/auth.service.ts (register, resolveSessionContext); src/billing/billing.service.ts (getBillingStatus); src/billing/subscription-status.ts (normalizeStripeSubscriptionStatus, resolveAccessTier).",
+      "currentState": "FOUND AT §300 WHILE ATTEMPTING THE HZ-9 PROOF, AND MEASURED END TO END IN PRODUCTION. POST /auth/register with a configured promo returned 201, planCode \"pro\", promoApplied true; the JWT minted at the next login carried planCode \"free\", effectivePlanCode \"free\", subscriptionStatus \"none\", billingEntitlements.fullSafeScope false; POST /hazlenz/classify returned 402 PAID_SUBSCRIPTION_REQUIRED. ROOT CAUSE, TWO FAULTS COMPOUNDING: (1) AuthService.resolveSessionContext calls getBillingStatus({userId, email, planCode, type}) and does NOT pass user.subscriptionStatus, although the promo registration deliberately writes subscriptionStatus \"active\" onto the user row next to planCode \"pro\"; (2) in getBillingStatus, `normalizeStripeSubscriptionStatus(...) || (fallbackTier === \"free\" ? \"none\" : \"active\")` has an UNREACHABLE right-hand branch, because normalizeStripeSubscriptionStatus ends in `return \"none\"` and never returns a falsy value. The branch exists precisely to treat a paid tier carrying no explicit status as active. So fallbackStatus is always \"none\", resolveAccessTier(\"pro\",\"none\",null) returns \"free\", and effectivePlanCode — which prefers billingSnapshot.tier — discards the user row's \"pro\". NO CUSTOMER IS AFFECTED TODAY: EMPLOYER_PRO_PROMO_CODES was empty in production before §300 and is empty again after it, so no promo account has ever existed in production. The defect is latent, not live. §301 — ROOT CAUSE CONFIRMED EXECUTABLY AND REPAIRED. The §300 summary was right and is now proven rather than read: normalizeStripeSubscriptionStatus was exercised over undefined, null, empty, whitespace, garbage and every valid status and returns a NON-EMPTY STRING IN ALL CASES, so the `|| (fallbackTier === \"free\" ? \"none\" : \"active\")` alternative in getBillingStatus is DEAD FOR EVERY POSSIBLE INPUT. The PROXIMATE cause is one omission: resolveSessionContext called getBillingStatus with { userId, email, planCode, type } and withheld subscriptionStatus, although the promo registration deliberately writes it. With the status withheld the resolver read \"none\" and resolveAccessTier(\"pro\",\"none\",null) returned free. THE REPAIR IS THE OMISSION: resolveSessionContext now passes user.subscriptionStatus. The dead alternative was DELETED rather than made reachable — making it live would mean \"any account whose TIER claims pro is treated as ACTIVE even though nothing says its subscription is\", an entitlement WIDENING derived from a caller-supplied field in the one function every feature gate consults. Deletion is provably behaviour-preserving because the left side is total. SECURITY: repairing BI-4 does NOT create public self-escalation. dto.planCode and dto.selectedPlan are declared on RegisterDto and NEVER READ by the service; the only non-free branch at registration is a promoCode matching EMPLOYER_PRO_PROMO_CODES, a SERVER ENVIRONMENT allowlist a registering user cannot write to, and a non-matching code is REFUSED with 400 leaving no account behind. PROVEN END TO END through the real HTTP path on a disposable database (35 assertions, 0 provider calls): an ordinary registration is free and classify refuses it 402; a promo registration is pro, a FRESH LOGIN STILL RESOLVES PRO — the exact step where §300 measured free — and classify returns a deterministic classification; requesting planCode pro or selectedPlan pro yields free and 402; guessing the promo yields 400 and no user row; active grants entitle, expired and revoked grants do not; a fresh session after revocation is free; tenant B is unaffected by tenant A's grant; and with the allowlist emptied the same code that worked is refused. The suite also reproduces the PRE-REPAIR resolution on the very same account row, so it distinguishes repaired from never-broken. 42 further unit assertions cover the precedence matrix and a durable source-level anti-self-promotion guard.",
+      "evidence": "verification/current/bi4-entitlement-301/",
       "severity": "P2",
-      "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
+      "releaseConsequence": "DOES_NOT_BLOCK",
       "owner": "ENGINEERING",
-      "remediation": "Pass the user's own subscriptionStatus into getBillingStatus, and repair the dead fallback so a paid tier with no explicit status resolves as intended rather than through a branch that can never run. Add a test that a promo-registered account reaches fullSafeScope, because the absence of one is why a success response could advertise a plan the account does not have.",
-      "retestRequirement": "A promo-registered account logs in with planCode pro and receives 200 from POST /hazlenz/classify.",
-      "status": "OPEN",
+      "remediation": "DONE at §301. Propagate subscriptionStatus; delete the dead widening branch. No billing redesign, no migration.",
+      "retestRequirement": "npm run test:301-entitlement-authority (in hazlenz:test) and test:301-entitlement-integration (in hazlenz:integration:test).",
+      "status": "CLOSED",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
-      "blocksThresholdC": true,
+      "blocksThresholdC": false,
       "note": "Registered at §300, NOT repaired: §300 Phase 2 is gated on Phase 1 passing and this is neither HZ-6 nor HZ-7. It is also the reason HZ-9 could not be proven — it was the only route to fullSafeScope that does not modify the production database directly.",
-      "lastUpdatedBy": "§300"
+      "lastUpdatedBy": "§301"
     },
     {
       "domain": "ENTITLEMENTS",
@@ -709,6 +709,24 @@
       "blocksThresholdB": false,
       "blocksThresholdC": false,
       "note": null
+    },
+    {
+      "domain": "ENTITLEMENTS",
+      "id": "EN-2",
+      "description": "Revoking an entitlement grant does not take effect for a session that was already issued: EntitlementService.hasFeature returns on the JWT tier claim before it reaches the grant lookup, so an existing access token retains paid capability until it expires.",
+      "currentState": "FOUND AT §301 WHILE PROVING BI-4, AND MEASURED RATHER THAN INFERRED. With no UserSubscription row, hasFeature takes its else-branch and returns TRUE on normalizeBillingTier(user.planCode) from the JWT — which, for a grant-entitled account, the server itself minted as \"pro\" because getBillingStatus applied the grant at login. The grant lookup further down is never reached. MEASURED: a token minted before revocation still received HTTP 201 from POST /hazlenz/classify after the grant was set to revoked, while a FRESH login for the same account correctly resolved free and was refused 402. THIS IS RETENTION, NOT ESCALATION — the token cannot gain anything it was not issued with, tenant isolation is unaffected, and a fresh session always re-derives authority from server state. The window is bounded by JWT_EXPIRES_IN, which defaults to 15 minutes. CONSEQUENCE FOR OPERATIONS: revoking a grant is not an instant kill switch for live sessions, so any cleanup that must prove capability is gone has to verify with a FRESH login rather than by replaying the old token — which is what the §301 proofs do.",
+      "evidence": "verification/current/bi4-entitlement-301/BI4-INTEGRATION-CHAIN.txt, cases E-1 to E-4. Source: src/auth/entitlements/entitlement.service.ts hasFeature; src/auth/auth.module.ts expiresIn default 15m.",
+      "severity": "P3",
+      "releaseConsequence": "DOES_NOT_BLOCK",
+      "owner": "ENGINEERING",
+      "remediation": "Decide deliberately rather than by default. Either accept the 15-minute window and say so, or make hasFeature consult the grant/subscription state before honouring the JWT tier claim — which costs a query on every gated request and is a performance decision, not only a security one. Do NOT shorten the token lifetime as a substitute; that trades a bounded window for a worse login experience without closing the mechanism.",
+      "retestRequirement": "A token minted before revocation is refused by a gated route immediately after the grant is revoked.",
+      "status": "OPEN",
+      "blocksThresholdA": false,
+      "blocksThresholdB": false,
+      "blocksThresholdC": false,
+      "note": "Registered, not repaired: §301 scope discipline permits repairing another defect only if it directly prevents a secure BI-4 repair, and this does not — BI-4 is proven with fresh sessions throughout. It is a standard bearer-token trade-off, named so it is a decision rather than an accident.",
+      "lastUpdatedBy": "§301"
     },
     {
       "domain": "APP / MOBILE FORMAT",

@@ -309,7 +309,8 @@ are retained so a later section does not rediscover them as new.
 | **HZ-8** | At a workspace analysis ceiling of N, an idempotent replay of a completed Expert request is refused by the ceiling instead of resolving to the execution that already ran. | P3 | — | Engineering | **OPEN §298** |
 | **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **CLOSED §300** |
 | **HZ-10** | A **second, independent copy** of the bare-negation defect, in the display evidence boundary: "nobody"/"no one" anywhere in an observation zeroes the risk band and strips every standard. | **P0** | — | Engineering | **CLOSED §300** |
-| **BI-4** | The employer-pro promo code is inert: registration reports Pro and the next login resolves the account to Free with `fullSafeScope` false. | P2 | C | Engineering | **OPEN §300** |
+| **BI-4** | The employer-pro promo code is inert: registration reports Pro and the next login resolves the account to Free with `fullSafeScope` false. | P2 | — | Engineering | **CLOSED §301** |
+| **EN-2** | Revoking a grant does not affect an already-issued token: `hasFeature` returns on the JWT tier claim before reaching the grant lookup, so capability persists until expiry (default 15 min). | P3 | — | Engineering | **OPEN §301** |
 
 **HZ-2 — CLOSED at §298.** `EXPERT_EXECUTION_ENABLED` was set to `true` through the approved
 Render configuration mechanism and made effective by a **deployment** of the already-deployed SHA
