@@ -7,6 +7,8 @@ import { InspectionService } from '../inspection/inspection.service';
 import { validateRasterImage } from '../upload/image-upload.security';
 import { StorageService } from './storage.service';
 import { UploadEvidenceDto } from './dto/upload-evidence.dto';
+// §303 / SE-5. The one shared UUID route-parameter primitive; see the module header.
+import { UuidParam } from '../common/uuid-route-param';
 
 @UseGuards(JwtGuard)
 @Controller()
@@ -17,7 +19,7 @@ export class FilesController {
   @UseInterceptors(FileInterceptor('file', { storage: memoryStorage(), limits: { fileSize: 10 * 1024 * 1024, files: 1 } }))
   async uploadEvidence(
     @Req() req: any,
-    @Param('inspectionId') inspectionId: string,
+    @Param('inspectionId', UuidParam) inspectionId: string,
     @UploadedFile() file: Express.Multer.File,
     @Body() body: UploadEvidenceDto,
   ) {
@@ -34,7 +36,7 @@ export class FilesController {
   }
 
   @Get('files/:id')
-  async download(@Req() req: any, @Param('id') id: string, @Res() response: Response) {
+  async download(@Req() req: any, @Param('id', UuidParam) id: string, @Res() response: Response) {
     const { object, body } = await this.storage.read(req.user, id);
     response.setHeader('Content-Type', object.contentType);
     response.setHeader('Content-Length', body.length);
@@ -45,7 +47,7 @@ export class FilesController {
   }
 
   @Delete('files/:id')
-  async delete(@Req() req: any, @Param('id') id: string) {
+  async delete(@Req() req: any, @Param('id', UuidParam) id: string) {
     await this.storage.tombstone(req.user, id);
     return { deleted: true };
   }

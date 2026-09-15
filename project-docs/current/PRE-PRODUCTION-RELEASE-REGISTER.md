@@ -21,6 +21,25 @@ that is itself proven to fail. Running the gate battery surfaced **two pre-exist
 infrastructure failures**, `IT-1` and `IT-2`, both closed; neither involved a production change.
 **`HZ-6`, `HZ-7`, `SE-5`, `BR-5` and `EM-2` remain open and external Beta remains blocked.**
 
+**§300 closed `HZ-9`, `HZ-6`, `HZ-7` and `HZ-10`; §301 closed `BI-4`; §302 closed `EN-3`.**
+
+**§303 closed `SE-5` — and closed it across the whole affected route family, not on the one route
+that was reported.** The first act of the section was to measure: 24 GET routes carrying an
+identifier path parameter, 7 malformed shapes each, 168 probes. **Eight routes across four
+controllers returned 500**, exactly as §297A's remediation note predicted. The repair is an **input
+boundary** — one shared `ParseUUIDPipe` in `backend/src/common/uuid-route-param.ts`, attached to the
+25 parameters genuinely compared against a `uuid` column, refusing malformed syntax **before any
+query is issued**. No `QueryFailedError` is caught and no driver error is reclassified, and the gate
+proves it by renaming a table out from under a live query and requiring the 500 to survive. The gate
+was **watched to fail**: 13 failing assertions before the repair, 0 after.
+
+**§303 also opened `SE-6`, and deliberately did not repair it.** Asserting that the invite route was
+*not* swept up by the UUID repair exposed that `GET /auth/verify-invite/:token` returns **500 for
+every token**, because `invitation."organizationId"` is `character varying` while `organization."id"`
+is `uuid`. Team invitation is a non-functional feature, and it was already broken before §303 touched
+anything. It is a **migration**, which §303 did not authorize. **`BR-5`, `EM-2`, `SE-6`, `EN-2` and
+`OPS-2` remain open and external Beta remains blocked.**
+
 **Threshold A is closed. THRESHOLD B IS CLOSED at §297B — a real production failure reached the
 product owner's phone. Controlled internal / product-owner production use is AUTHORIZED. External
 beta is not.** Machine-readable
@@ -914,7 +933,8 @@ Every stored field comes from the server: agreement id, version, a **sha256 of t
 | **SE-2** | Access and refresh tokens are held in localStorage rather than httpOnly cookies. | P2 | — | Security | OPEN |
 | **SE-3** | No production security review, dependency-vulnerability gate, or penetration test has been performed. | P2 | C | Security | OPEN |
 | **SE-4** | Secrets handling: provider key, JWT secret, Stripe keys and database URL are environment-only; production validation refuses unsafe combinations. | P3 | — | Infrastructure | OPEN |
-| **SE-5** | A malformed resource identifier reaches the database unvalidated and surfaces as an unhandled HTTP 500. | P2 | C | Engineering | OPEN (§297A) |
+| **SE-5** | A malformed resource identifier reaches the database unvalidated and surfaces as an unhandled HTTP 500. | P2 | — | Engineering | **CLOSED (§303)** |
+| **SE-6** | Invitation verification is broken for **every** token by a schema type mismatch: `invitation."organizationId"` is `character varying` while `organization."id"` is `uuid`, so the relation join is invalid SQL and `GET /auth/verify-invite/:token` returns HTTP 500 unconditionally. | P1 | C | Engineering | OPEN (§303) |
 
 **SE-2 — remediation / decision.** Accept for controlled beta with a short token life, or move to httpOnly cookies with CSRF protection in v1.1. Record the decision.
 
@@ -1697,6 +1717,83 @@ together. Any section that closes an entry must:
 `CURRENT-STATE.md` point here; they do not carry a competing verdict.
 
 ---
+
+## §303 — `SE-5` closed as a route family, and a second defect found by refusing to over-apply the fix
+
+§303 authorized one repair: `SE-5`, the malformed identifier that reached Postgres and came back as
+an unhandled 500. It also forbade the obvious shortcut — *do not merely special-case
+`GET /files/:id`* — and that prohibition is the reason this section found seven more routes.
+
+### Measuring first changed the answer
+
+Twenty-four GET routes carrying an identifier path parameter were driven with seven malformed shapes
+chosen to be different kinds of wrong: a plain non-UUID, SQL metacharacters, a UUID one character
+short, a UUID with a non-hex character, a 5000-character string, a percent-encoded traversal, and a
+single space. One hundred and sixty-eight probes against a live authenticated application.
+
+**Eight routes across four controllers returned 500** — storage, canonical reports, inspection and
+sites. The route §297A probed was the one that happened to be probed, not the only one that was
+broken.
+
+### The repair is an input boundary, and that distinction is the whole point
+
+`backend/src/common/uuid-route-param.ts` holds one stateless `ParseUUIDPipe` instance, wrapping the
+framework's own UUID syntax rule rather than reimplementing it, with a product-owned message that
+names no SQL, no driver and no schema, and does not echo the caller's input. Twenty-five route
+parameters reference it. §303 forbade scattering regex copies across controllers, and the reason is
+not tidiness: eight copies of a shape rule drift, and the first one to drift is the one nobody tests.
+
+§303 equally forbade the other shortcut — converting `QueryFailedError` into 400 after the fact —
+and that one deserves restating, because it is the difference between a fix and a cover-up. A
+dropped table, an exhausted connection pool or a half-applied migration all arrive as
+`QueryFailedError`. Reclassify them as client errors and the product stops reporting its own
+outages. So the suite **renames `storage_objects` out from under a live query and requires 500**.
+That single assertion is what keeps this repair honest.
+
+### Four properties the fix could plausibly have broken, each asserted
+
+* **It is not applied to every `:id`.** A parameter is not a UUID because of its name.
+  `/auth/verify-invite/:token` carries an opaque varchar token; the `:version` route keeps its
+  `ParseIntPipe` contract.
+* **It does not move the security boundary.** A pipe runs *after* guards, so an unauthenticated
+  malformed request is still **401**, never 400 — an anonymous caller cannot use the shape of the
+  refusal to tell a real route from a fabricated one. A well-formed cross-tenant id is still 404.
+* **404 contracts survive.** A valid identifier naming nothing accessible still returns 404. The
+  repair changes *when a query runs*, never what an existing answer means.
+* **Uppercase hexadecimal is accepted.** Rejecting it would be a new client-facing failure invented
+  by the fix.
+
+### The gate was watched to fail
+
+`npm run test:303-malformed-identifier`, wired into `hazlenz:integration:inner` and therefore into
+`hazlenz:precommit`. **13 failing assertions before the repair, 0 after** — both logs retained in
+`verification/current/se5-malformed-identifier-303/`. A gate nobody has watched fail is not evidence.
+
+### `SE-6` — the defect that the restraint found
+
+The assertion that the invite route was *not* swept up by the repair is what exposed it:
+`GET /auth/verify-invite/:token` returns **500 for every token**, valid or not.
+
+Root cause was **proven rather than inferred**. A read-only probe on a disposable database read
+`information_schema` and then issued the exact join TypeORM emits for `relations: ['organization']`:
+`invitation."organizationId"` is `character varying`, `organization."id"` is `uuid`, and the join
+fails with `operator does not exist: uuid = character varying`. The same lookup *without* the
+relation join succeeded. The token column is not the problem; the `ManyToOne` join is.
+
+It **pre-dates §303** — the same 500 appears in the pre-repair measurement log, captured before a
+line of §303 code was written — and it **fails closed**: the exception propagates, so no invitation
+is returned, no membership is granted, and nothing is mutated. Generic response body, no stack, no
+SQL, no echo of the token. It is not an authentication bypass and not a disclosure, so it did not
+meet the bar that would have required stopping for a product-owner decision.
+
+What it *is*: **team invitation is a non-functional feature**, and it is an unauthenticated route
+that produces cheap genuine 500s.
+
+And it is materially different from `SE-5` in the way that decides the remedy. `SE-5` was an
+input-boundary defect — well-formed input worked. `SE-6` is a persistence-schema defect: **no input
+works at all**. Attaching a UUID pipe to `:token` would have been actively harmful, converting an
+unconditional 500 into an unconditional 400 and hiding a wholly non-functional feature behind a
+client error. The fix is a **migration**, and §303 authorized none. Registered, not repaired.
 
 ## §292 — two closed on evidence, two that are not mine to close
 

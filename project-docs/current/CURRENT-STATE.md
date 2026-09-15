@@ -1,5 +1,33 @@
 # Safety InSite — current state
 
+> ### §303 — SE-5 CLOSED, AS A ROUTE FAMILY, AND A SECOND DEFECT REGISTERED RATHER THAN REPAIRED
+>
+> **A malformed identifier no longer becomes a server error.** §303 forbade special-casing the one
+> reported route, so the section measured first: **24 GET routes x 7 malformed shapes = 168 probes**.
+> **Eight routes across four controllers returned 500** — storage, canonical reports, inspection and
+> sites — exactly as §297A's remediation note predicted. The repair is an **input boundary**: one
+> shared `ParseUUIDPipe` in `backend/src/common/uuid-route-param.ts`, attached to the 25 parameters
+> genuinely compared against a `uuid` column, refusing malformed syntax **before any query runs**.
+>
+> **No driver error is reclassified, and the gate proves it.** Converting `QueryFailedError` into 400
+> would turn a dropped table or an exhausted pool into a client error and the product would stop
+> reporting its own outages. So the suite **renames `storage_objects` out from under a live query and
+> requires the 500 to survive**. The pipe is also *not* applied to every parameter named `id`, does
+> *not* move the security boundary (unauthenticated malformed is still **401**, cross-tenant still
+> **404**), and accepts uppercase hex. **The gate was watched to fail: 13 assertions before the
+> repair, 0 after.**
+>
+> **`SE-6` is new, and §303 deliberately did not repair it.** Asserting that the invite route was
+> *not* swept up by the fix exposed that `GET /auth/verify-invite/:token` returns **500 for every
+> token**: `invitation."organizationId"` is `character varying` while `organization."id"` is `uuid`,
+> so the `relations: ['organization']` join is invalid SQL — proven by a read-only probe, not
+> inferred. **Team invitation is a non-functional feature**, it was already broken before §303, and
+> it fails closed. The fix is a **migration**, which §303 did not authorize. Attaching a UUID pipe to
+> `:token` would have hidden a dead feature behind a 400.
+>
+> **`EN-2` (organization-seat claims) and `OPS-2` remain open and are not erased.** 0 direct
+> production DB writes, 0 charges, 0 Expert executions, 0 provider calls, $0.
+
 > ### §302 — EN-3 CLOSED: A PROMOTION IS NOW BOUNDED AND REVOCABLE
 >
 > **Removing promotional entitlement no longer means deleting the account.** A promo code now
@@ -727,6 +755,7 @@ npm run hazlenz:integration:test    route/auth/idempotency          (creates and
 npm run hazlenz:precommit           before an authorized commit     (everything except live)
 npm run hazlenz:evidence            did accepted evidence change
 npm run beta:readiness              are the deployment mechanisms in place (contacts nothing live)
+npm run test:303-malformed-identifier §303/SE-5 malformed identifier containment (in hazlenz:integration:test)
 npm run test:299-person-negation     §299/HZ-4 the exposure-negation family  (in hazlenz:test)
 npm run test:299-section-298-replay  §299/HZ-4 the exact §298 note, before/after (in hazlenz:test)
 npm run test:299-expert-disagreement §299 Expert can still disagree         (in hazlenz:test)
@@ -785,6 +814,7 @@ Do not load these for ordinary development.
 | product integration defect closure §267 | `verification/expert-hazlenz-267-.../` |
 | beta infrastructure and operations §268 | `verification/expert-hazlenz-268-.../` |
 | HZ-4 / HZ-5 repair §299 | `verification/current/expert-hz4-hz5-299/` |
+| SE-5 containment §303 | `verification/current/se5-malformed-identifier-303/` |
 | beta deployment runbook | `project-docs/operations/DEPLOYMENT-RUNBOOK.md` |
 | rollback model | `project-docs/operations/ROLLBACK-MODEL.md` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |

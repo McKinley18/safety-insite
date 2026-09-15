@@ -1,0 +1,104 @@
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789514851139_2279
+registered as run 31440482-35ab-42dd-bcc3-f05c5ec28bd7
+
+> safety-insite-backend@1.0.0 test:303-malformed-identifier
+> ts-node scripts/test-303-malformed-identifier.ts
+
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+resolved target host=127.0.0.1 database=test_insite_1789514851139_2279
+application listening on http://127.0.0.1:65191
+
+---- 1. the exact SE-5 route ----
+
+      GET /files/not-a-uuid -> 400  {"message":"The identifier in the request path is not valid.","error":"Bad Request","statusCode":400}
+ok    SE5-1 GET /files/<malformed> returns 400. Production returned 500 with QueryFailedError: invalid input syntax for type uuid.  [400]
+ok    SE5-2 and is not a server error at all
+ok    SE5-3 the response discloses no driver error, no SQL, no database type detail and no stack  [{"message":"The identifier in the request path is not valid.","error":"Bad Reque]
+ok    SE5-4 and does not echo the caller's malformed identifier back
+
+---- 2. every UUID-backed GET route, with every malformed shape ----
+
+      /files/{id}                                        -> 400
+      /inspection-reports/{id}                           -> 400
+      /inspection-reports/{id}/download                  -> 400
+      /inspection-reports/{id}/revisions                 -> 400
+      /inspections/{id}                                  -> 400
+      /inspections/{id}/completion-readiness             -> 400
+      /inspections/{id}/report                           -> 400
+      /audit-sessions/{id}                               -> 404
+      /classifications/report/{id}                       -> 404
+      /control-verifications/{id}                        -> 404
+      /hazlenz-knowledge/documents/{id}                  -> 402
+      /hazlenz/reasoning-snapshots/{id}                  -> 402
+      /hazlenz/reasoning-snapshots/{id}/raw              -> 402
+      /hazlenz/reviewer-candidates/{id}                  -> 403
+      /hazlenz/supervisor-validations/{id}               -> 402
+      /knowledge/documents/{id}                          -> 404
+      /legacy/pdf/{id}                                   -> 402
+      /legacy/reports/{id}                               -> 401
+      /legacy/reports/{id}/explain                       -> 402
+      /legacy/reports/{id}/recommendations               -> 401
+      /organization/{id}                                 -> 403
+      /reports/{id}/executive-summary                    -> 404
+      /reports/{id}/executive-summary/pdf                -> 404
+      /sites/{id}                                        -> 400
+ok    NO UUID-backed GET route returns 5xx for ANY malformed identifier (24 routes x 7 shapes = 168 probes).
+ok    /files/{id} answers every malformed shape with a bounded 4xx  [400]
+ok    /inspection-reports/{id} answers every malformed shape with a bounded 4xx  [400]
+ok    /inspection-reports/{id}/download answers every malformed shape with a bounded 4xx  [400]
+ok    /inspection-reports/{id}/revisions answers every malformed shape with a bounded 4xx  [400]
+ok    /inspections/{id} answers every malformed shape with a bounded 4xx  [400]
+ok    /inspections/{id}/completion-readiness answers every malformed shape with a bounded 4xx  [400]
+ok    /inspections/{id}/report answers every malformed shape with a bounded 4xx  [400]
+ok    /audit-sessions/{id} answers every malformed shape with a bounded 4xx  [404]
+ok    /classifications/report/{id} answers every malformed shape with a bounded 4xx  [404]
+ok    /control-verifications/{id} answers every malformed shape with a bounded 4xx  [404]
+ok    /hazlenz-knowledge/documents/{id} answers every malformed shape with a bounded 4xx  [402]
+ok    /hazlenz/reasoning-snapshots/{id} answers every malformed shape with a bounded 4xx  [402]
+ok    /hazlenz/reasoning-snapshots/{id}/raw answers every malformed shape with a bounded 4xx  [402]
+ok    /hazlenz/reviewer-candidates/{id} answers every malformed shape with a bounded 4xx  [403]
+ok    /hazlenz/supervisor-validations/{id} answers every malformed shape with a bounded 4xx  [402]
+ok    /knowledge/documents/{id} answers every malformed shape with a bounded 4xx  [404]
+ok    /legacy/pdf/{id} answers every malformed shape with a bounded 4xx  [402]
+ok    /legacy/reports/{id} answers every malformed shape with a bounded 4xx  [401]
+ok    /legacy/reports/{id}/explain answers every malformed shape with a bounded 4xx  [402]
+ok    /legacy/reports/{id}/recommendations answers every malformed shape with a bounded 4xx  [401]
+ok    /organization/{id} answers every malformed shape with a bounded 4xx  [403]
+ok    /reports/{id}/executive-summary answers every malformed shape with a bounded 4xx  [404]
+ok    /reports/{id}/executive-summary/pdf answers every malformed shape with a bounded 4xx  [404]
+ok    /sites/{id} answers every malformed shape with a bounded 4xx  [400]
+
+---- 3. syntactically valid identifiers keep their existing contract ----
+
+ok    A syntactically valid but nonexistent UUID still returns 404 — the repair did not turn absence into a client-syntax error  [404]
+ok    UPPERCASE hexadecimal is valid UUID syntax and is NOT falsely rejected as malformed  [404]
+ok    and specifically does not become a 400
+
+---- 4. routes whose identifier is legitimately NOT a uuid ----
+
+ok    GET /auth/verify-invite/:token still accepts a non-UUID token — the repair was NOT applied to every parameter merely because it identifies something. Its token is a varchar, not a UUID.  [500]
+ok    and it is STILL 500 — unchanged by §303. That is SE-6, a schema/relation type mismatch that breaks invite verification for every token, registered rather than repaired here.  [500]
+      GET /inspections/. -> 200 (normalizes to the collection route)
+ok    A path that NORMALIZES AWAY the identifier reaches the collection route and is not a server error. It returns the caller's own collection, which is that route's correct behaviour and is not an identifier defect.  [200]
+ok    A numeric route parameter keeps its own ParseIntPipe contract  [400]
+
+---- 5. validation must not move the security boundary ----
+
+      unauthenticated GET /files/not-a-uuid -> 401
+ok    AN UNAUTHENTICATED MALFORMED REQUEST IS STILL 401. Validation must not answer before the guard, or an anonymous caller could distinguish a real route from a fabricated one by the shape of its refusal.  [401]
+ok    A syntactically valid identifier belonging to no accessible resource is still 404 for another tenant — nothing new reveals existence  [404]
+
+---- 6. a genuine persistence failure is STILL a server error ----
+
+      with the backing table missing -> 500
+ok    A REAL persistence failure still surfaces as 5xx. The repair rejects malformed SYNTAX before the query; it does not convert database faults into client errors.  [500]
+ok    And that 5xx still discloses no driver detail to the client  [{"statusCode":500,"message":"Internal server error"}]
+
+================ §303 malformed identifier: 40 passed, 0 failed
+{"providerCalls":0,"expertExecutions":0,"routesProbed":24,"malformedShapes":7,"probes":168,"passed":40,"failed":0}
+dropped test_insite_1789514851139_2279

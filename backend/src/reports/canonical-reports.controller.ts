@@ -3,6 +3,8 @@ import { Response } from 'express';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { CanonicalReportsService } from './canonical-reports.service';
+// §303 / SE-5. The one shared UUID route-parameter primitive; see the module header.
+import { UuidParam } from '../common/uuid-route-param';
 
 @UseGuards(JwtGuard, EntitlementGuard)
 @Controller()
@@ -11,7 +13,7 @@ export class CanonicalReportsController {
 
   @RequireEntitlement('cloudReports')
   @Post('inspections/:inspectionId/reports')
-  generate(@Req() req: any, @Param('inspectionId') inspectionId: string) {
+  generate(@Req() req: any, @Param('inspectionId', UuidParam) inspectionId: string) {
     return this.reports.generate(req.user, inspectionId);
   }
 
@@ -20,17 +22,17 @@ export class CanonicalReportsController {
 
   /** The report for one inspection, light metadata only. Null when none has been generated. */
   @Get('inspections/:inspectionId/report')
-  forInspection(@Req() req: any, @Param('inspectionId') inspectionId: string) {
+  forInspection(@Req() req: any, @Param('inspectionId', UuidParam) inspectionId: string) {
     return this.reports.forInspection(req.user, inspectionId);
   }
 
   @Get('inspection-reports/:reportId')
-  get(@Req() req: any, @Param('reportId') reportId: string) {
+  get(@Req() req: any, @Param('reportId', UuidParam) reportId: string) {
     return this.reports.get(req.user, reportId);
   }
 
   @Patch('inspection-reports/:reportId/archive')
-  archive(@Req() req: any, @Param('reportId') reportId: string) {
+  archive(@Req() req: any, @Param('reportId', UuidParam) reportId: string) {
     return this.reports.archive(req.user, reportId);
   }
 
@@ -44,12 +46,12 @@ export class CanonicalReportsController {
    * checksum, and which revision superseded which.
    */
   @Get('inspection-reports/:reportId/revisions')
-  revisions(@Req() req: any, @Param('reportId') reportId: string) {
+  revisions(@Req() req: any, @Param('reportId', UuidParam) reportId: string) {
     return this.reports.revisions(req.user, reportId);
   }
 
   @Get('inspection-reports/:reportId/download')
-  async downloadCurrent(@Req() req: any, @Param('reportId') reportId: string, @Res() response: Response) {
+  async downloadCurrent(@Req() req: any, @Param('reportId', UuidParam) reportId: string, @Res() response: Response) {
     const result = await this.reports.downloadCurrent(req.user, reportId);
     this.sendPdf(response, result);
   }
@@ -57,7 +59,7 @@ export class CanonicalReportsController {
   /** Internal snapshot addressing, retained for the verification suites. See the service. */
   @Get('inspection-reports/:reportId/versions/:version/download')
   async download(
-    @Req() req: any, @Param('reportId') reportId: string,
+    @Req() req: any, @Param('reportId', UuidParam) reportId: string,
     @Param('version', ParseIntPipe) version: number, @Res() response: Response,
   ) {
     const result = await this.reports.download(req.user, reportId, version);

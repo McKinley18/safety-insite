@@ -13,6 +13,8 @@ import {
   UpdateInspectionDto,
 } from './dto/inspection.dto';
 import { InspectionService } from './inspection.service';
+// §303 / SE-5. The one shared UUID route-parameter primitive; see the module header.
+import { UuidParam } from '../common/uuid-route-param';
 
 @UseGuards(JwtGuard)
 @Controller('inspections')
@@ -30,17 +32,17 @@ export class InspectionController {
   }
 
   @Get(':id')
-  get(@Req() req: any, @Param('id') id: string) {
+  get(@Req() req: any, @Param('id', UuidParam) id: string) {
     return this.inspections.get(req.user, id);
   }
 
   @Patch(':id')
-  update(@Req() req: any, @Param('id') id: string, @Body() dto: UpdateInspectionDto) {
+  update(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: UpdateInspectionDto) {
     return this.inspections.update(req.user, id, dto);
   }
 
   @Post(':id/assignments')
-  assign(@Req() req: any, @Param('id') id: string, @Body() dto: AssignInspectionDto) {
+  assign(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: AssignInspectionDto) {
     return this.inspections.assign(req.user, id, dto);
   }
 
@@ -49,37 +51,37 @@ export class InspectionController {
    * transition enforces, so the Finish screen cannot show a readiness the server disagrees with.
    */
   @Get(':id/completion-readiness')
-  completionReadiness(@Req() req: any, @Param('id') id: string) {
+  completionReadiness(@Req() req: any, @Param('id', UuidParam) id: string) {
     return this.inspections.completionReadiness(req.user, id);
   }
 
   @Post(':id/transition')
-  transition(@Req() req: any, @Param('id') id: string, @Body() dto: TransitionInspectionDto) {
+  transition(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: TransitionInspectionDto) {
     return this.inspections.transition(req.user, id, dto);
   }
 
   @Post(':id/observations')
-  addObservation(@Req() req: any, @Param('id') id: string, @Body() dto: CreateObservationDto) {
+  addObservation(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: CreateObservationDto) {
     return this.inspections.addObservation(req.user, id, dto);
   }
 
   @Patch('observations/:id')
-  updateObservation(@Req() req: any, @Param('id') id: string, @Body() dto: UpdateObservationDto) {
+  updateObservation(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: UpdateObservationDto) {
     return this.inspections.updateObservation(req.user, id, dto);
   }
 
   @Post('observations/:id/analyses')
-  addAnalysis(@Req() req: any, @Param('id') id: string, @Body() dto: CreateAnalysisSnapshotDto) {
+  addAnalysis(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: CreateAnalysisSnapshotDto) {
     return this.inspections.addAnalysis(req.user, id, dto);
   }
 
   @Post('observations/:id/reviews')
-  addReview(@Req() req: any, @Param('id') id: string, @Body() dto: CreateHumanReviewDto) {
+  addReview(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: CreateHumanReviewDto) {
     return this.inspections.addReview(req.user, id, dto);
   }
 
   @Post('observations/:id/findings')
-  finalizeFinding(@Req() req: any, @Param('id') id: string, @Body() dto: FinalizeFindingDto) {
+  finalizeFinding(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: FinalizeFindingDto) {
     return this.inspections.finalizeFinding(req.user, id, dto);
   }
 
@@ -91,7 +93,7 @@ export class InspectionController {
   @Post('observations/:id/user-findings')
   createUserAuthoredFinding(
     @Req() req: any,
-    @Param('id') id: string,
+    @Param('id', UuidParam) id: string,
     @Body() dto: CreateUserAuthoredFindingDto,
   ) {
     return this.inspections.createUserAuthoredFinding(req.user, id, dto);

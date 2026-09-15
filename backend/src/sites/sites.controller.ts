@@ -2,6 +2,8 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req, UseGuard
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { CreateSiteDto, UpdateSiteDto } from './dto/site.dto';
 import { SitesService } from './sites.service';
+// §303 / SE-5. The one shared UUID route-parameter primitive; see the module header.
+import { UuidParam } from '../common/uuid-route-param';
 
 @UseGuards(JwtGuard)
 @Controller('sites')
@@ -24,22 +26,22 @@ export class SitesController {
   }
 
   @Get(':id')
-  findOne(@Req() req: any, @Param('id') id: string) {
+  findOne(@Req() req: any, @Param('id', UuidParam) id: string) {
     return this.sites.findAccessible(req.user, id);
   }
 
   @Patch(':id')
-  update(@Req() req: any, @Param('id') id: string, @Body() dto: UpdateSiteDto) {
+  update(@Req() req: any, @Param('id', UuidParam) id: string, @Body() dto: UpdateSiteDto) {
     return this.sites.update(req.user, id, dto);
   }
 
   @Delete(':id')
-  archive(@Req() req: any, @Param('id') id: string) {
+  archive(@Req() req: any, @Param('id', UuidParam) id: string) {
     return this.sites.archive(req.user, id);
   }
 
   @Post(':id/transfer-preview')
-  transferPreview(@Req() req: any, @Param('id') id: string) {
+  transferPreview(@Req() req: any, @Param('id', UuidParam) id: string) {
     return this.sites.transferPreview(req.user, id);
   }
 }
