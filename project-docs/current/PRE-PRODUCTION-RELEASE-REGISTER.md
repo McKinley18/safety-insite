@@ -49,7 +49,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `51db8f96d76d8e2012f932b0ac74e2e460794dbe221143b586807b824475e7cd` — **§302 (EN-3), DEPLOYED at §302 on both halves.** |
+| **Release binding** | `applicationSourceDigest` = `20b59cc23f5d5b302749fdbc533a11cbbe04051272c2b61bc3dadb8ff60c9485` — **§303 (SE-5), DEPLOYED at §303 on both halves and read back from the live product.** |
+| Superseded binding | `51db8f96…` at `61828222…` — §302 EN-3 |
 | Superseded binding | `6d3e86ba…` at `de00f896…` — §301 BI-4 |
 | Superseded binding | `84a02553…` at `2170a6ba…` — §300 HZ-6 + HZ-7 |
 | Superseded binding | `4078a552…` at `359198f0…` — the §300 HZ-10 repair |
@@ -57,7 +58,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `61828222ceef5f1ebcdce424e64ae3a4291032a8` — live on **both halves** since §302 (backend `dep-dakspd61egvs73bp6fvg`, frontend `dpl_EDeigrCvLxS3mttyhL2p6d2AGFiz`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| **Deployed release SHA** | `9242d157043cfab328c4d23cd3a7dcaf2804c635` — live on **both halves** since §303 (backend `dep-daktbqjm8hqs73ekf2qg`, frontend `dpl_EDDwufhSwuJ6HG1Ji2WsKsAB4XDh`, production target aliased to `safety-insite.vercel.app`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| Predecessor deployed SHA | `61828222ceef5f1ebcdce424e64ae3a4291032a8` — §302 |
 | Predecessor deployed SHA | `de00f896f87037ffb550d35e8ef134ad02ef34e7` — §301 |
 | Predecessor deployed SHA | `2170a6ba6496d4673b54e68c2b738d89d7e4707f` — §300 |
 | Predecessor deployed SHA | `359198f0c24abf595fc6464901e4eba0d0ffb122` — the HZ-10 repair |
@@ -1768,6 +1770,35 @@ That single assertion is what keeps this repair honest.
 `npm run test:303-malformed-identifier`, wired into `hazlenz:integration:inner` and therefore into
 `hazlenz:precommit`. **13 failing assertions before the repair, 0 after** — both logs retained in
 `verification/current/se5-malformed-identifier-303/`. A gate nobody has watched fail is not evidence.
+
+### Proven live in production
+
+Deployed on both halves and read back from the live product — `GET /health` reported
+`9242d157…` **five consecutive times** before a single byte of proof data was created, and the
+synthetic account's credentials were written to disk **before** the account existed. §297's rule and
+§301's `OPS-2` lesson, both applied.
+
+Through the real authenticated production HTTP product path:
+
+* **All eight previously-affected routes return `400`**, with an identical product-owned body that
+  carries no SQL, no driver name, no schema, no stack, and **no echo of the caller's input**.
+* **Unauthenticated malformed is still `401`**, not 400 — the boundary did not move.
+* **Valid-but-absent is still `404`** on every route, and an uppercase UUID is accepted.
+* **A real site created through the product path round-trips at `200`.**
+* **`monitoring.serverErrorsInWindow` read 0 before, 0 after and 0 at the end**, `lastDelivery` null
+  throughout. No `service.error_rate_exceeded` alert, because **no server error was produced**. §303
+  manufactured no new 500s to demonstrate that monitoring still works; it forbade exactly that.
+
+Cleanup went through the product path too — `DELETE /sites/:id` 200, `DELETE /auth/me` 200, and the
+same credentials then failed login with 401. **0 provider calls, 0 Expert executions, 0 direct
+production DB writes, 0 charges, $0.**
+
+**One honest limit.** The full `1' OR '1'='1` string never reached the application in production:
+the **Cloudflare edge in front of Render** returned 403 with an HTML body. That is containment at a
+different layer and it is not evidence about this repair. The application-level claim for SQL
+metacharacters rests on `a'b`, `;drop` and `1--2`, which *do* reach the application and return the
+product's 400 — and on the disposable-database suite, which drives the full string with no edge in
+the path.
 
 ### `SE-6` — the defect that the restraint found
 

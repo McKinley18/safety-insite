@@ -25,6 +25,16 @@
 > it fails closed. The fix is a **migration**, which §303 did not authorize. Attaching a UUID pipe to
 > `:token` would have hidden a dead feature behind a 400.
 >
+> **Deployed at §303 and proven live.** Both halves run `9242d157…` — backend
+> `dep-daktbqjm8hqs73ekf2qg`, frontend `dpl_EDDwufhSwuJ6HG1Ji2WsKsAB4XDh`, schema unchanged, **0
+> migrations**. `GET /health` was read back five consecutive times before anything was created.
+> Authenticated in production: all eight affected routes **400** with no SQL, no schema and no echo
+> of the input; unauthenticated malformed still **401**; valid-but-absent still **404**; a real site
+> round-trips **200**; and `serverErrorsInWindow` stayed **0** with **no alert raised**, because no
+> server error was produced. The synthetic account and site were removed through the product path.
+> One honest limit: the full `1' OR '1'='1` string was stopped by the **Cloudflare edge**, not the
+> product, so that one shape proves nothing about this repair.
+>
 > **`EN-2` (organization-seat claims) and `OPS-2` remain open and are not erased.** 0 direct
 > production DB writes, 0 charges, 0 Expert executions, 0 provider calls, $0.
 
