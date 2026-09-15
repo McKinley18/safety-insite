@@ -1,0 +1,12 @@
+
+---- bare person-quantifier check ----
+
+  files scanned            : 1018
+  stimulus files skipped   : 105
+  allowed                  : hazlenz/evidence/person-negation-semantics.ts
+      Owns the rule. This is the one place the vocabulary is allowed to be spelled out.
+  allowed                  : hazlenz/reasoning-l3/word-classes.ts
+      A closed linguistic PRONOUNS list. It classifies parts of speech and asserts nothing about exposure.
+
+ok    No module outside person-negation-semantics.ts decides what "nobody" means.
+

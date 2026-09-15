@@ -1,0 +1,63 @@
+
+---- 1. the exact §298 observation is no longer called controlled ----
+
+      §298 observation
+        disposition="hazard_requires_human_review" risk=Critical/20 imminent=true shutdown=true citation="29 CFR 1910.28" standards=1
+ok    The §298 observation is NOT assessed controlled_condition. (Production measured controlled_condition before this repair.)
+ok    The upstream Critical risk band SURVIVES rather than being overwritten with Controlled.
+ok    The risk score is not zeroed.
+ok    imminentDanger is not flipped to false.
+ok    requiresShutdown is not flipped to false.
+ok    The citation is not stripped.
+ok    The standards list is not emptied.
+
+---- 2. the four predicate senses, at this layer ----
+
+  -- a control denial is not a control --
+ok    [a control denial is not a control] NOT controlled — The §298 sentence. It denies a CONTROL and presupposes people at height.
+ok    [a control denial is not a control] NOT controlled — Plainest form.
+ok    [a control denial is not a control] NOT controlled — "no one" is bare and the predicate names a control.
+
+  -- an outcome denial is not a control --
+ok    [an outcome denial is not a control] NOT controlled — An unharmed worker is an exposed worker.
+ok    [an outcome denial is not a control] NOT controlled — A near miss is exposure without harm.
+
+  -- an unresolved clause is not a control --
+ok    [an unresolved clause is not a control] NOT controlled — An epistemic gap says nothing about presence, control or harm.
+ok    [an unresolved clause is not a control] NOT controlled — Availability is not presence.
+
+  -- a genuine presence denial STILL reads as controlled --
+ok    [a genuine presence denial STILL reads as controlled] controlled — The intended sense. It must still mark the condition controlled.
+ok    [a genuine presence denial STILL reads as controlled] controlled — Presence denial, bare quantifier, correctly read.
+ok    [a genuine presence denial STILL reads as controlled] controlled — A finite presence verb opens the predicate.
+ok    [a genuine presence denial STILL reads as controlled] controlled — "unoccupied" is not a person quantifier and is deliberately left in the alternation.
+
+  -- the non-observation markers are untouched --
+ok    [the non-observation markers are untouched] controlled — Not an observation at all; that member of the alternation is unchanged.
+ok    [the non-observation markers are untouched] controlled — The quoted-word marker is unchanged.
+
+---- 3. the suite measures a distinction, not a direction ----
+
+ok    6 cases MUST still read as controlled — a repair that simply stopped marking anything controlled would fail here.
+ok    7 cases must NOT read as controlled.
+ok    The pre-§300 expression is wrong on 8 of 13 members, so this suite distinguishes the repair from the defect rather than passing under both.
+      pre-§300 wrong: Nobody working up there had a harness on.
+      pre-§300 wrong: Nobody was wearing fall protection near the open edge.
+      pre-§300 wrong: No one had a hard hat on beneath the suspended load.
+      pre-§300 wrong: Nobody was injured when the panel came down.
+      pre-§300 wrong: No one was struck by the falling load.
+      pre-§300 wrong: Nobody could tell me how long the chain had been down.
+      pre-§300 wrong: No one was available to walk the area with me.
+      pre-§300 wrong: No employees were on the mezzanine at any point and the deck was closed to entry.
+ok    And it is right on the rest, which are the ones the repair must not break.
+
+---- 4. the controls-present branch is repaired the same way ----
+
+      control denial, with controlsPresent asserted
+        disposition="hazard_requires_human_review" risk=Critical/20 imminent=true shutdown=true citation="29 CFR 1910.28" standards=1
+ok    A control denial does not reach controlled_condition through the controls-present branch either.
+      presence denial, with controlsPresent asserted
+        disposition="controlled_condition" risk=Controlled/0 imminent=false shutdown=false citation="" standards=0
+ok    A genuine presence denial still does.
+
+26 checks passed, 0 failed

@@ -1,0 +1,29 @@
+
+---- THE CASE THAT MATTERS: the real HZ-10 defect ----
+
+ok    backend/src/hazlenz/display/hazlenz-evidence-boundary.ts as it stood while HZ-10 was live in production
+        exit 1, expected non-zero
+
+---- the repaired file must pass ----
+
+ok    backend/src/hazlenz/display/hazlenz-evidence-boundary.ts as repaired at §300
+        exit 0, expected zero
+
+---- a third copy reintroduced anywhere else ----
+
+ok    a new module matching the bare words in an alternation
+        exit 1, expected non-zero
+ok    the same, spelled 'no-one'
+        exit 1, expected non-zero
+
+---- what must NOT be flagged ----
+
+ok    a comment explaining the defect
+        exit 0, expected zero
+ok    a block comment quoting an observation
+        exit 0, expected zero
+ok    a fixture directory containing such sentences
+        exit 0, expected zero
+
+ALL CASES BEHAVED AS EXPECTED
+

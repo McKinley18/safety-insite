@@ -1,4 +1,5 @@
 import { ClassifyDto } from '../dto/classify.dto';
+import { readPersonNegation } from '../evidence/person-negation-semantics';
 
 type StandardDecisionStatus =
   | 'applicable_after_human_review'
@@ -90,13 +91,66 @@ export function enforceHazLenzEvidenceBoundary(result: any, request: ClassifyDto
   const safeEnergyState = ['deenergized', 'locked-out', 'stopped'].includes(String(observation.energyState || ''));
   const controlsPresent = observation.controlsPresent || [];
   const controlsMissing = observation.controlsMissing || [];
+  /**
+   * §300 / HZ-10 -- WHAT "NOBODY" ACTUALLY NEGATES, AT THE SECOND SITE THAT ASKED.
+   *
+   * ==================== THE DEFECT THIS REPLACES ====================
+   *
+   * This was an alternation whose members included the BARE words `nobody` and `no one`, anchored
+   * to nothing about exposure -- byte-for-byte the same error §299 repaired in
+   * `shared-evidence-facts.ts`, in a module downstream of everything §299 exercised. So every §299
+   * proof passed while this stood, and the §300 HZ-9 live production run is what found it.
+   *
+   * ITS CONSEQUENCE WAS WORSE THAN HZ-4's. `affirmativelyNoExposure` alone sets
+   * `affirmativelyControlled`, which sets `assessmentDisposition = 'controlled_condition'`, sets
+   * `mustDemote` (emptying primaryCitation, primaryStandards, suggestedStandards and standards) and
+   * OVERWRITES `result.risk` with riskScore 0 / Controlled / imminentDanger false /
+   * requiresShutdown false. Measured in production on the §298 observation -- a worker three feet
+   * from an unguarded twelve-foot opening with a ten-foot drop, no harness, no anchor points -- the
+   * response came back CONTROLLED, riskScore 0, no shutdown required. Rewording only those two
+   * words, with every hazard fact identical, returns Critical / 20 / imminentDanger true /
+   * requiresShutdown true. HZ-4 suppressed the regulatory BASIS while the hazard stayed Critical;
+   * this zeroed the HAZARD.
+   *
+   * ==================== THE REPAIR, AND WHY IT IS AN IMPORT ====================
+   *
+   * `readPersonNegation()` is reused rather than reimplemented. A third copy of the rule is how
+   * there came to be a second one: §299 repaired the family in one module and nothing held the
+   * others to it. `scripts/check-bare-person-negation.ts` now fails the build if a bare
+   * `nobody`/`no one` alternation reappears anywhere in `backend/src`, so this cannot recur
+   * silently a third time.
+   *
+   * ==================== WHAT IS DELIBERATELY KEPT ====================
+   *
+   * Only the PERSON-QUANTIFIER members moved. The rest of the alternation is unchanged because it
+   * is not the same kind of claim:
+   *
+   *   "no ... exposure"                an explicit denial of exposure itself, not a quantifier
+   *   "unoccupied"                     a genuine statement that nobody is there
+   *   hypothetical / training example  the non-observation markers, the sibling of
+   *   / "appears only" / quoted word   `quotedOrNonObservation` in the extractor
+   *
+   * Narrowing those would be a different change with different evidence behind it, and §300 scopes
+   * this to the defect that was measured.
+   */
+  const personNegationDeniesExposure = readPersonNegation(request.text).negatesEmployeeExposure;
   const affirmativelyNoExposure =
-    /\b(no (?:employee|worker|person|one|occupant)s? (?:entered|exposed|working|present|using|access)|no (?:active |current )?(?:employee |worker )?exposure|nobody|no one|unoccupied|hypothetical|training example|appears only|word ['"][^'"]+['"] appears only)\b/i.test(request.text);
+    personNegationDeniesExposure ||
+    /\b(no (?:active |current )?(?:employee |worker )?exposure|unoccupied|hypothetical|training example|appears only|word ['"][^'"]+['"] appears only)\b/i.test(request.text);
+  /**
+   * The second alternation carried the same two bare words and they are replaced the same way.
+   *
+   * The remaining members -- fenced, barricaded, locked, secured, passed, within, fully, complete,
+   * closed -- are left alone and are NOT person quantifiers. They are also far more strongly gated:
+   * this branch requires the structured observation to affirmatively state that controls ARE
+   * present and that NONE are missing, which is a human assertion about controls rather than a word
+   * appearing in prose. They are recorded here as a known coarseness, not repaired under §300.
+   */
   const affirmativelyControlled =
     affirmativelyNoExposure ||
     (controlsPresent.length > 0 &&
       controlsMissing.length === 0 &&
-      (safeEnergyState || /\b(no active exposure|no employee access|nobody|no one|unoccupied|fenced|barricaded|locked|removed from service|passed|within|fully|complete|secured|restrained|closed)\b/i.test(request.text)));
+      (safeEnergyState || personNegationDeniesExposure || /\b(no active exposure|no employee access|unoccupied|fenced|barricaded|locked|removed from service|passed|within|fully|complete|secured|restrained|closed)\b/i.test(request.text)));
   const evidenceIncomplete = contradictions.length > 0 || unknownFacts.length > 0 || uncertainAnswer;
   const mustDemote = affirmativelyControlled || evidenceIncomplete;
   const primary = String(result.primaryCitation || '').trim();

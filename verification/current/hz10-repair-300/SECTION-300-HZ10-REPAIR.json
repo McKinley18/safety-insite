@@ -1,0 +1,57 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_300_HZ10_SECOND_COPY_REPAIR",
+  "section": "300",
+  "generated": "2026-09-15T02:29:41Z",
+  "providerCalls": 0,
+  "expertAnalysesCreated": 0,
+  "spendUsd": 0.0,
+  "migrations": 0,
+  "authorization": "Product owner, §300, after the HZ-9 live proof surfaced HZ-10: repair HZ-10 first, then HZ-6 and HZ-7.",
+  "inventoryFirst": {
+    "why": "Two copies of one rule were already known. Repairing the second without asking how many there are would have repeated the §299 mistake at a different scale.",
+    "method": "Swept all of backend/src for the bare words and for the sibling exposure-negation vocabulary (unoccupied, no employee access, no active exposure).",
+    "executableSitesFound": 2,
+    "sites": [
+      "src/hazlenz/display/hazlenz-evidence-boundary.ts:94 — affirmativelyNoExposure",
+      "src/hazlenz/display/hazlenz-evidence-boundary.ts:99 — the affirmativelyControlled second alternation, gated behind controlsPresent>0 && controlsMissing===0"
+    ],
+    "examinedAndCleared": [
+      "src/hazlenz/reasoning-l3/word-classes.ts — a closed linguistic PRONOUNS list. It classifies parts of speech and makes no claim about exposure. Allowlisted with that reason.",
+      "src/hazlenz/brain/scenario-family-knowledge/scenario-family.registry.ts — a confidence-reducer phrase, not a bare-word exposure gate.",
+      "Everything else matching the words is prose, comments, fixtures or evaluation corpora."
+    ]
+  },
+  "repair": {
+    "module": "backend/src/hazlenz/display/hazlenz-evidence-boundary.ts",
+    "approach": "REUSE, NOT REIMPLEMENTATION. Both alternations now call readPersonNegation() from src/hazlenz/evidence/person-negation-semantics.ts — the module §299 created. A third copy of the rule is exactly how there came to be a second one.",
+    "whatMoved": "Only the PERSON-QUANTIFIER members: the bare `nobody` and `no one`, and the `no <person-noun> (entered|exposed|working|present|using|access)` pattern whose `using` and `access` members made a control denial into an exposure denial.",
+    "whatWasDeliberatelyKept": {
+      "no ... exposure": "An explicit denial of exposure itself, not a quantifier.",
+      "unoccupied": "A genuine statement that nobody is there.",
+      "hypothetical / training example / appears only / quoted word": "The non-observation markers — the sibling of quotedOrNonObservation in the extractor.",
+      "fenced / barricaded / locked / secured / passed / within / fully / complete / closed": "Left in the second alternation. They are not person quantifiers, and that branch already requires the structured observation to affirmatively state controls ARE present and NONE missing — a human assertion about controls rather than a word in prose. RECORDED AS A KNOWN COARSENESS, not repaired under §300: narrowing them is a different change with different evidence behind it."
+    }
+  },
+  "behaviouralProof": {
+    "suite": "backend/scripts/test-300-evidence-boundary-negation.ts — 26 checks, 0 failed",
+    "whySeparateFromTheSection299Suite": "§299's family exercises buildEvidenceFacts and applyEvidenceFoundation. This module is downstream of both, which is exactly why every §299 assertion stayed green while the identical defect ran in production. This suite pins THIS layer directly.",
+    "everyProbeStartsEscalated": "The defect was never about what the engine concluded — it was about this layer OVERWRITING a correct conclusion. So each probe begins from a Critical, shutdown-required result carrying a citation, and the assertion is about what survives.",
+    "section298Observation": {
+      "before": "assessmentDisposition controlled_condition, riskBand Controlled, riskScore 0, imminentDanger false, requiresShutdown false, primaryCitation '', standards 0 — MEASURED IN PRODUCTION at §300 Phase 1",
+      "after": "assessmentDisposition hazard_requires_human_review, riskBand Critical, riskScore 20, imminentDanger TRUE, requiresShutdown TRUE, primaryCitation '29 CFR 1910.28', standards 1"
+    },
+    "family": "13 cases over five groups — control denial, outcome denial, unresolved clause, genuine presence denial, and the non-observation markers. 7 must NOT read as controlled and 6 MUST still read as controlled, so the suite measures a DISTINCTION rather than a direction: a repair that simply stopped marking anything controlled would fail its second half.",
+    "preSection300ExpressionWrongOn": "8 of 13 members, right on 5 — so the suite separates the repair from the defect rather than passing under both.",
+    "secondAlternationProven": "With controlsPresent asserted and controlsMissing empty, a control denial no longer reaches controlled_condition, while a genuine presence denial still does."
+  },
+  "newGate": {
+    "script": "backend/scripts/check-bare-person-negation.ts",
+    "wiredInto": "npm run hazlenz:test, and available as npm run check:bare-person-negation",
+    "rule": "Fails the build if ANY module outside person-negation-semantics.ts matches `nobody` or `no one` inside a regular-expression literal in executable code.",
+    "whyItExists": "One repair, two copies, and nothing held the second to the first. §299 proved its repair with 117 assertions and the identical defect stayed live in a module none of them touched. This makes a third copy impossible to introduce silently.",
+    "falsePositivesAvoided": "Comments and block comments are stripped before scanning, and fixture/eval/test/seed directories are skipped — their whole purpose is to CONTAIN such sentences. A check that flagged its own explanatory header would be switched off within a week.",
+    "scanCoverage": "1018 executable files scanned, 105 stimulus files skipped, 2 allowlisted with a stated reason each.",
+    "provenToFail": "verification/current/hz10-repair-300/prove-bare-negation-check-fails.mjs — SEVEN cases against throwaway trees, including THE ACTUAL PRE-REPAIR FILE recovered from git. It exits non-zero on the real HZ-10 defect, on a reintroduction elsewhere, and on the 'no-one' spelling; and exits zero on the repaired file, on comments describing the defect, and on a fixture corpus. A gate nobody has watched fail is not evidence."
+  },
+  "gates": "backend lint; hazlenz:precommit (verify, test, build, integration, evidence); beta:readiness; frontend build; every Expert frontend check. Accepted evidence drift 0 new across 97 manifests."
+}
