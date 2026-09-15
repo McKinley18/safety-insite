@@ -53,5 +53,35 @@
     "scanCoverage": "1018 executable files scanned, 105 stimulus files skipped, 2 allowlisted with a stated reason each.",
     "provenToFail": "verification/current/hz10-repair-300/prove-bare-negation-check-fails.mjs — SEVEN cases against throwaway trees, including THE ACTUAL PRE-REPAIR FILE recovered from git. It exits non-zero on the real HZ-10 defect, on a reintroduction elsewhere, and on the 'no-one' spelling; and exits zero on the repaired file, on comments describing the defect, and on a fixture corpus. A gate nobody has watched fail is not evidence."
   },
-  "gates": "backend lint; hazlenz:precommit (verify, test, build, integration, evidence); beta:readiness; frontend build; every Expert frontend check. Accepted evidence drift 0 new across 97 manifests."
+  "gates": "backend lint; hazlenz:precommit (verify, test, build, integration, evidence); beta:readiness; frontend build; every Expert frontend check. Accepted evidence drift 0 new across 97 manifests.",
+  "liveProductionReProof": {
+    "status": "PROVEN — the repair was re-run through the SAME production HTTP path that measured the defect.",
+    "deployment": {
+      "backend": "dep-dakargvqj5pc73ag7lgg, api-pinned to 359198f0, status live",
+      "frontend": "dpl_CzfkxmWDeVAmbdyFmWqacAHNtfKu, READY, metaGithubCommitSha 359198f0",
+      "productionShaBefore": "317daba88e7ef8c117a2997b6347dae830e8823a",
+      "productionShaAfter": "359198f0c24abf595fc6464901e4eba0d0ffb122",
+      "applicationSourceDigestBefore": "95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613",
+      "applicationSourceDigestAfter": "4078a5522c33cc81dc7473d905d40e11a5a56d55fdb63d43333ff939e268d912",
+      "migrations": 0,
+      "schema": "1800000023000, 55/55, aheadOfBuild [] — unchanged",
+      "renderAutoDeploy": "no / off — unchanged",
+      "expertFlag": "EXPERT_EXECUTION_ENABLED=true, ceilings 1 and USD 1.00 — untouched",
+      "monitoring": "CONFIGURED, webhook, serverErrorsInWindow 0",
+      "unexpected5xx": "none"
+    },
+    "method": "Identical to the HZ-9 proof and under the same Option A authorization: one synthetic account on a .invalid domain registered through the PUBLIC POST /auth/register, ONE pilot entitlement grant bounded to 1 hour, two POST /hazlenz/classify requests, then the grant revoked and the account deleted through the product's own DELETE /auth/me. Exactly two database writes, both on the same entitlement_grants row. 0 provider calls, 0 Expert analyses, $0.",
+    "section298Observation": {
+      "before": "assessmentDisposition controlled_condition · riskBand Controlled · riskScore 0 · imminentDanger false · requiresShutdown false · evidenceStatus 'controlled' · 0 standardDecisions",
+      "after": "assessmentDisposition hazard_requires_human_review · riskBand Critical · riskScore 25 · imminentDanger TRUE · requiresShutdown TRUE · evidenceStatus 'sufficient_for_advisory_candidate' · standardDecisions [29 CFR 1910.28(b)(1), applicable_after_human_review, probable]",
+      "riskReasoningAfter": [
+        "Fall Protection hazards can create serious or fatal exposure.",
+        "Imminent-danger trigger detected in finding text."
+      ],
+      "whatDidNotChange": "employeeExposure is STILL not asserted, and 29 CFR 1910.28 is STILL UNKNOWN at 0.45 with 'employee access or exposure' missing. The HZ-4 repair is untouched and no CFR citation is manufactured: the standard is carried as a PROBABLE candidate for qualified review rather than promoted to a primary citation."
+    },
+    "noPresenceControl": "BYTE-FOR-BYTE UNCHANGED by the repair — still controlled_condition, still Controlled/0/false/false, still 1910.28 CONTRADICTED at 0.05, still employeeExposure=false at 0.98. The repair narrowed WHICH observations are called controlled, not WHETHER any are.",
+    "cleanup": "Grant revoked; account deleted through DELETE /auth/me (200); login afterwards 401. entitlement_grants holds 7 rows with 1 active, and that one is the owner's own pre-existing founder grant.",
+    "distinctionMaintained": "CODE/INTEGRATION PROVEN and LIVE PRODUCTION PROVEN are both now true for HZ-10, and they were established separately and in that order."
+  }
 }

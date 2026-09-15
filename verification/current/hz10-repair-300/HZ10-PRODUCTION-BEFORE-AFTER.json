@@ -1,0 +1,160 @@
+{
+  "note": "Both captures are real POST /hazlenz/classify responses from the deployed production service, on the same input, before and after the §300 HZ-10 repair. 0 provider calls.",
+  "beforeSha": "317daba88e7ef8c117a2997b6347dae830e8823a",
+  "afterSha": "359198f0c24abf595fc6464901e4eba0d0ffb122",
+  "section298Observation": {
+    "before": {
+      "assessmentDisposition": "controlled_condition",
+      "risk": {
+        "riskBand": "Controlled",
+        "riskScore": 0,
+        "imminentDanger": false,
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "regulatoryConclusion": {
+        "advisoryOnly": true,
+        "qualifiedHumanReviewRequired": true,
+        "violationDetermination": "not_determined",
+        "evidenceStatus": "controlled"
+      },
+      "primaryCitation": "",
+      "standardDecisions": [
+        {
+          "citation": "29 CFR 1910.28(b)(1)",
+          "status": "candidate_pending_evidence",
+          "applicabilityStatus": "needs-more-evidence"
+        }
+      ],
+      "applicabilityDecisions": [
+        {
+          "citation": "29 CFR 1910.28",
+          "status": "UNKNOWN",
+          "confidence": 0.45,
+          "missingPredicates": [
+            "employee access or exposure"
+          ]
+        }
+      ],
+      "employeeExposureFacts": []
+    },
+    "after": {
+      "assessmentDisposition": "hazard_requires_human_review",
+      "risk": {
+        "riskBand": "Critical",
+        "riskScore": 25,
+        "imminentDanger": true,
+        "requiresShutdown": true,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure.",
+          "Imminent-danger trigger detected in finding text."
+        ]
+      },
+      "regulatoryConclusion": {
+        "advisoryOnly": true,
+        "qualifiedHumanReviewRequired": true,
+        "violationDetermination": "pending_qualified_review",
+        "evidenceStatus": "sufficient_for_advisory_candidate"
+      },
+      "primaryCitation": "",
+      "standardDecisions": [
+        {
+          "citation": "29 CFR 1910.28(b)(1)",
+          "status": "applicable_after_human_review",
+          "applicabilityStatus": "probable"
+        }
+      ],
+      "applicabilityDecisions": [
+        {
+          "citation": "29 CFR 1910.28",
+          "status": "UNKNOWN",
+          "confidence": 0.45,
+          "missingPredicates": [
+            "employee access or exposure"
+          ]
+        }
+      ],
+      "employeeExposureFacts": []
+    }
+  },
+  "noPresenceControl": {
+    "before": {
+      "assessmentDisposition": "controlled_condition",
+      "risk": {
+        "riskBand": "Controlled",
+        "riskScore": 0,
+        "imminentDanger": false,
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "regulatoryConclusion": {
+        "advisoryOnly": true,
+        "qualifiedHumanReviewRequired": true,
+        "violationDetermination": "not_determined",
+        "evidenceStatus": "controlled"
+      },
+      "primaryCitation": "",
+      "standardDecisions": [
+        {
+          "citation": "29 CFR 1910.28(b)(1)",
+          "status": "candidate_pending_evidence",
+          "applicabilityStatus": "needs-more-evidence"
+        }
+      ],
+      "applicabilityDecisions": [
+        {
+          "citation": "29 CFR 1910.28",
+          "status": "CONTRADICTED",
+          "confidence": 0.05,
+          "missingPredicates": []
+        }
+      ],
+      "employeeExposureFacts": [
+        false,
+        "within_overhead_or_fall_zone"
+      ]
+    },
+    "after": {
+      "assessmentDisposition": "controlled_condition",
+      "risk": {
+        "riskBand": "Controlled",
+        "riskScore": 0,
+        "imminentDanger": false,
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "regulatoryConclusion": {
+        "advisoryOnly": true,
+        "qualifiedHumanReviewRequired": true,
+        "violationDetermination": "not_determined",
+        "evidenceStatus": "controlled"
+      },
+      "primaryCitation": "",
+      "standardDecisions": [
+        {
+          "citation": "29 CFR 1910.28(b)(1)",
+          "status": "candidate_pending_evidence",
+          "applicabilityStatus": "needs-more-evidence"
+        }
+      ],
+      "applicabilityDecisions": [
+        {
+          "citation": "29 CFR 1910.28",
+          "status": "CONTRADICTED",
+          "confidence": 0.05,
+          "missingPredicates": []
+        }
+      ],
+      "employeeExposureFacts": [
+        false,
+        "within_overhead_or_fall_zone"
+      ]
+    }
+  }
+}

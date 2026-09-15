@@ -1,5 +1,17 @@
 # Safety InSite — current state
 
+> ### HZ-9 AND HZ-10 CLOSED — §300
+>
+> **The live HZ-9 proof found a second copy of the bare-negation defect, and §300 repaired it.**
+> `HZ-10` is closed: repaired by **reusing** `readPersonNegation()` rather than writing a third copy
+> of the rule, guarded by a new build gate that fails if the bare words reappear in any regex
+> outside the module that owns them, deployed at `359198f0`, and **re-proven on the same production
+> path that measured the defect**. The §298 observation moved from `controlled_condition` /
+> Controlled / riskScore **0** / no shutdown to `hazard_requires_human_review` / **Critical** /
+> riskScore **25** / **imminentDanger true** / **requiresShutdown true**, carrying
+> 29 CFR 1910.28(b)(1) as a probable candidate — while the genuine no-presence control stayed
+> byte-for-byte unchanged. 0 provider calls, 0 Expert analyses, 0 migrations, $0.
+>
 > ### HZ-9 CLOSED BY LIVE PRODUCTION PROOF — AND IT FOUND A SECOND COPY OF THE DEFECT — §300
 >
 > **`HZ-4`'s repaired behaviour was exercised directly through the deployed production runtime.**

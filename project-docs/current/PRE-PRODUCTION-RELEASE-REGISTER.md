@@ -30,11 +30,13 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613` — **§299, DEPLOYED at §299 on both halves.** |
+| **Release binding** | `applicationSourceDigest` = `4078a5522c33cc81dc7473d905d40e11a5a56d55fdb63d43333ff939e268d912` — **§300, DEPLOYED at §300 on both halves.** |
+| Superseded binding | `95c9e343…` at `317daba8…` — the §299 HZ-4/HZ-5 repair, live from §299 to §300 |
 | Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `317daba88e7ef8c117a2997b6347dae830e8823a` — live on **both halves** since §299 (backend `dep-daka1lh42hec739qlfo0`, frontend `dpl_Er16fs1N3XokrXwJc4FAMTuRhYjx`), schema `1800000023000` (55/55) **unchanged, 0 migrations**, Node `v24.14.1` pinned |
+| **Deployed release SHA** | `359198f0c24abf595fc6464901e4eba0d0ffb122` — live on **both halves** since §300 (backend `dep-dakargvqj5pc73ag7lgg`, frontend `dpl_CzfkxmWDeVAmbdyFmWqacAHNtfKu`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| Predecessor deployed SHA | `317daba88e7ef8c117a2997b6347dae830e8823a` — live from §299 to §300 |
 | Predecessor deployed SHA | `87491ed96f6f09de3de5800fc0a472e20d120413` — live from §295 to §299 |
 
 > **THE DEPLOYED PRODUCT IS THE §294 REPAIR.** §294 repaired `MO-2` in `backend/src/` and
@@ -304,7 +306,7 @@ are retained so a later section does not rediscover them as new.
 | **HZ-7** | A finding finalized from an Expert-cited review carries no risk snapshot, so it reaches the customer report with no severity and no applicable standard. | P2 | C | Product | **OPEN §298** |
 | **HZ-8** | At a workspace analysis ceiling of N, an idempotent replay of a completed Expert request is refused by the ceiling instead of resolving to the execution that already ran. | P3 | — | Engineering | **OPEN §298** |
 | **HZ-9** | HZ-4's repaired interpretation has not been exercised *behaviourally* against the deployed instance; production evidence for it is artifact identity of the running build. | P3 | — | Product | **CLOSED §300** |
-| **HZ-10** | A **second, independent copy** of the bare-negation defect, in the display evidence boundary: "nobody"/"no one" anywhere in an observation zeroes the risk band and strips every standard. | **P0** | C | Engineering | **OPEN §300** |
+| **HZ-10** | A **second, independent copy** of the bare-negation defect, in the display evidence boundary: "nobody"/"no one" anywhere in an observation zeroes the risk band and strips every standard. | **P0** | — | Engineering | **CLOSED §300** |
 | **BI-4** | The employer-pro promo code is inert: registration reports Pro and the next login resolves the account to Free with `fullSafeScope` false. | P2 | C | Engineering | **OPEN §300** |
 
 **HZ-2 — CLOSED at §298.** `EXPERT_EXECUTION_ENABLED` was set to `true` through the approved
@@ -559,6 +561,49 @@ uses, so a genuine drift still fails.
 
 `hazlenz:integration:test` now reports **435 assertions passed, 0 failed** across §261, §262, §264,
 §265, §267 and §268. **No production code changed for either.**
+
+**`HZ-10` — CLOSED at §300, repaired, gated, deployed, and re-proven on the live production path
+that measured it.**
+
+*Inventory before repair.* All of `backend/src` was swept for the bare words and the sibling
+exposure vocabulary **before anything was edited** — repairing the second copy without asking how
+many exist would have repeated the §299 mistake at a different scale. **Exactly two executable
+sites**, both in this module. `reasoning-l3/word-classes.ts` was examined and cleared (a closed
+linguistic `PRONOUNS` list that asserts nothing about exposure). Everything else matching is prose,
+comments, fixtures or evaluation corpora.
+
+*Repair by reuse.* Both alternations now call `readPersonNegation()` — the module §299 created.
+**A third copy of the rule is precisely how there came to be a second one.** Only the
+person-quantifier members moved; `"no … exposure"`, `"unoccupied"` and the non-observation markers
+are deliberately kept, and the control words in the second alternation (`fenced`, `barricaded`,
+`locked`, `secured`, `passed`, `within`, `fully`, `complete`, `closed`) are left alone and
+**recorded as a known coarseness** — they are not person quantifiers, and that branch already
+requires the structured observation to state affirmatively that controls *are* present and none are
+missing.
+
+*The live production re-proof, on the same input that measured the defect:*
+
+| | before (`317daba8`) | after (`359198f0`) |
+|---|---|---|
+| `assessmentDisposition` | `controlled_condition` | **`hazard_requires_human_review`** |
+| `riskBand` / `riskScore` | Controlled / **0** | **Critical / 25** |
+| `imminentDanger` | false | **true** |
+| `requiresShutdown` | false | **true** |
+| `standardDecisions` | *(none)* | **29 CFR 1910.28(b)(1)** — `probable`, `applicable_after_human_review` |
+| risk reasoning | *"describes controls in place…"* | *"Fall Protection hazards can create serious or fatal exposure"* · *"Imminent-danger trigger detected"* |
+
+**The no-presence control is byte-for-byte unchanged** — still `controlled_condition`, still
+Controlled/0, still 1910.28 CONTRADICTED at 0.05. The repair narrowed *which* observations are
+called controlled, not *whether any are*. **And the HZ-4 repair is untouched:** `employeeExposure`
+is still not asserted and 1910.28 is still `UNKNOWN @ 0.45` with the exposure predicate missing — no
+CFR citation is manufactured, the standard is carried as a *probable candidate for qualified
+review*. 0 provider calls, 0 Expert analyses, $0, 0 migrations.
+
+*The gate that stops a third copy.* `check-bare-person-negation.ts` fails the build if any module
+outside `person-negation-semantics.ts` matches the bare words inside a regex literal in executable
+code — 1018 files scanned, comments and fixture/eval directories excluded so it cannot flag its own
+documentation. It is **proven to fail on seven cases, including the actual pre-repair file recovered
+from git**: a gate that would not have caught HZ-10 is not worth having.
 
 **§300 Phase 1 — HZ-9 IS CLOSED, and closing it found something worse.**
 
