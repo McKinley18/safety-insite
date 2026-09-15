@@ -1,5 +1,11 @@
 # Safety InSite — current state
 
+> ### THRESHOLD B CLOSED — §297B
+>
+> **Controlled internal / product-owner production use is AUTHORIZED.** The product owner may enter
+> real data into production under their own control. This is not external beta, not customer
+> onboarding, not commercial launch, not public indexing, and not Expert HazLenz execution.
+>
 > ### RELEASE AUTHORITY MOVED — §288, live evidence §289, DEPLOYED §290, engineering §291, configuration §292, owner-input gate §293
 >
 > The authoritative statement of what prevents release is now

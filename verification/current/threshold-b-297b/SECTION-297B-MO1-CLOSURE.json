@@ -1,0 +1,234 @@
+{
+  "artifact": "SAFETY_INSITE_SECTION_297B_MO1_CLOSURE_AND_THRESHOLD_B",
+  "section": "297B",
+  "generated": "2026-09-15T00:03:12Z",
+  "outcome": "MO-1 CLOSED ON ACTUAL MONITORED RECEIPT. THRESHOLD B CLOSED. Controlled internal / product-owner production use is AUTHORIZED. External beta, customers, commercial launch, public indexing and Expert HazLenz execution are NOT authorized.",
+  "productionSha": "87491ed96f6f09de3de5800fc0a472e20d120413",
+  "applicationSourceDigestDeployed": "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
+  "schemaHead": "1800000023000",
+  "migrationsApplied": "55/55",
+  "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "sourceChanges": 0,
+  "configurationChanges": 0,
+  "deployments": 0,
+  "migrations": 0,
+  "restarts": 0,
+  "windowRule": {
+    "applied": "THE AGED-OUT EVENT WAS NOT COUNTED.",
+    "section297aProbeAt": "2026-09-14T23:43:56Z",
+    "checkedAt": "2026-09-14T23:59:22Z",
+    "elapsedMinutes": 15.5,
+    "windowMinutes": 5,
+    "serverErrorsInWindowAtCheck": 0,
+    "decision": "Window expired, so the directive's fresh-sequence branch applied: exactly FIVE total requests, not four plus a stale one.",
+    "authority": "the product itself — serverErrorCountInWindow() prunes on read, so /health/ready is the authoritative answer rather than arithmetic on timestamps"
+  },
+  "sequence": {
+    "totalQualifyingRequests": 5,
+    "maximumAuthorized": 5,
+    "exceeded": false,
+    "account": "section297a-probe@release-test.invalid (the SAME synthetic account)",
+    "endpoint": "GET /files/:id (the SAME endpoint family)",
+    "technique": "the SAME malformed non-UUID identifier",
+    "realResourceIdentifiersUsed": 0,
+    "customerDataTouched": "none",
+    "tenantEnumeration": "none",
+    "otherEndpointsProbed": 0,
+    "fuzzing": "none",
+    "progression": [
+      {
+        "request": 1,
+        "at": "2026-09-14T23:59:45Z",
+        "status": 500,
+        "serverErrorsInWindow": 1,
+        "lastDelivery": null
+      },
+      {
+        "request": 2,
+        "at": "2026-09-14T23:59:46Z",
+        "status": 500,
+        "serverErrorsInWindow": 2,
+        "lastDelivery": null
+      },
+      {
+        "request": 3,
+        "at": "2026-09-14T23:59:47Z",
+        "status": 500,
+        "serverErrorsInWindow": 3,
+        "lastDelivery": null
+      },
+      {
+        "request": 4,
+        "at": "2026-09-14T23:59:47Z",
+        "status": 500,
+        "serverErrorsInWindow": 4,
+        "lastDelivery": null
+      },
+      {
+        "request": 5,
+        "at": "2026-09-14T23:59:48Z",
+        "status": 500,
+        "serverErrorsInWindow": 5,
+        "lastDelivery": {
+          "outcome": "DELIVERY_ACCEPTED",
+          "channel": "webhook",
+          "at": "2026-09-14T23:59:49.031Z",
+          "status": 200
+        }
+      }
+    ],
+    "belowThresholdBehaviour": "FOUR genuine production 500s produced ZERO alerts and left lastDelivery null at every step.",
+    "thresholdCrossing": "at the fifth qualifying error, exactly as the policy specifies",
+    "alertsRaised": 1,
+    "alertsExpected": 1,
+    "significance": "FIVE ERRORS PRODUCED ONE ALERT. That ratio is the entire purpose of the aggregation and it is now measured in production rather than argued for.",
+    "thresholdsChanged": 0,
+    "monitoringCodeChanged": 0,
+    "configurationChanged": 0,
+    "repeatedAfterReceipt": "NO — no further alerts were manufactured to strengthen evidence"
+  },
+  "monitoringEvent": {
+    "event": "service.error_rate_exceeded",
+    "severity": "error",
+    "at": "2026-09-14T23:59:48.759Z",
+    "metadata": {
+      "path": "/files/:id",
+      "method": "GET",
+      "statusCode": 500,
+      "countInWindow": 5,
+      "failureKind": "QueryFailedError"
+    }
+  },
+  "dispatch": {
+    "outcome": "DELIVERY_ACCEPTED",
+    "channel": "webhook",
+    "httpStatus": 200,
+    "at": "2026-09-14T23:59:49.031Z",
+    "latencyFromEventMs": 272
+  },
+  "destinationReceipt": {
+    "proven": true,
+    "independentSubscriberPoll": "message pzDPWfb8CuTV retrieved at the destination, timestamp 2026-09-14T23:59:48Z",
+    "humanVisible": "CONFIRMED — the notification card containing service.error_rate_exceeded is rendered in the product owner's subscribed ntfy client, unread badge (2) on the tab: the out-of-band check plus this product alert",
+    "messagesAtDestination": 2,
+    "messagesExplanation": "1 out-of-band receiver verification (§297A) + 1 product-generated alert (§297B)",
+    "endToEndLatency": "under 1.3 s from the fifth qualifying 500 to acceptance at the destination",
+    "closedOnReceiptNotSubmission": "A provider 2xx was never sufficient. §294 built the distinction; receipt was verified TWICE — independently at the destination and by eye in the subscribed client."
+  },
+  "configurationTruthfulAfterDispatch": {
+    "alerting": "CONFIGURED",
+    "channel": "webhook",
+    "lastDelivery": {
+      "outcome": "DELIVERY_ACCEPTED",
+      "status": 200
+    },
+    "status": "ready",
+    "significance": "the configuration stayed truthful THROUGH the dispatch rather than only before it — the DEGRADED path built at §294 was available and correctly not taken"
+  },
+  "payloadPrivacyReconfirmedOnTheWire": {
+    "method": "read from the ACTUAL transmitted bytes retrieved at the destination, not from a local reproduction",
+    "sizeBytes": 311,
+    "fields": [
+      "source",
+      "event",
+      "severity",
+      "at",
+      "environment",
+      "release",
+      "metadata.path",
+      "metadata.method",
+      "metadata.statusCode",
+      "metadata.countInWindow",
+      "metadata.failureKind"
+    ],
+    "malformedIdentifierPresent": false,
+    "whyNot": "path is the ROUTE PATTERN (/files/:id) and failureKind is the error CLASS NAME rather than its message — the message is where the supplied identifier would have been. The §268 redaction, verified on live production data.",
+    "customerData": "none",
+    "observationOrHazardText": "none",
+    "names": "none",
+    "emailAddresses": "none",
+    "authorizationMaterial": "none",
+    "cookies": "none",
+    "tokens": "none",
+    "requestBody": "none",
+    "stackTrace": "none",
+    "verdict": "PASS — within the previously approved bounded operational payload contract",
+    "notPreserved": [
+      "the webhook URL",
+      "the ntfy topic secret",
+      "authorization credentials",
+      "cookies",
+      "customer data"
+    ]
+  },
+  "SE_5": {
+    "status": "OPEN — classification PRESERVED UNCHANGED",
+    "repaired": false,
+    "occurrencesObserved": 6,
+    "whyNotRepaired": "It was the stimulus for validating the layer downstream of it. Repairing the stimulus while validating that layer would have destroyed the only confirmed qualifying condition the product has. §297B also forbade closing or repairing it merely because it was being used.",
+    "notNormalBehaviour": "This test must NOT be read as acceptable endpoint behaviour. SE-5 remains a P2 defect blocking external beta.",
+    "mo1DoesNotDependOnIt": "MO-1's closure does not require SE-5 to stay broken: any error-severity condition reaches the same dispatch path.",
+    "disclosureFromUsingIt": "NONE — the resulting alert payload carries the route pattern and the error class name, not the malformed identifier."
+  },
+  "housekeeping": {
+    "syntheticAccount": "section297a-probe@release-test.invalid",
+    "removed": false,
+    "rationale": "RETAINED DELIBERATELY. Removal was permitted only IF safe and only if it destroyed no evidence the register requires. The account is the actor on the six 500s and on the security_audit_events rows that MO-1's closure evidence rests on, and deleting the user risks cascading into or orphaning those rows. §290 set the precedent of naming synthetic residue rather than tidying it away.",
+    "contents": "free plan, one organization row, 0 inspections, 0 observations, 0 findings, 0 reports, 0 storage objects",
+    "residualRisk": "a live credential exists for a synthetic account on a .invalid domain with no data. An actor holding it could generate 500s and therefore alert noise. Stated rather than left implicit; the product owner may have it removed or its password rotated on request."
+  },
+  "results": {
+    "MO-1": "CLOSED",
+    "BR-2": "CLOSED",
+    "MO-2": "CLOSED",
+    "EM-2": "OPEN by decision",
+    "BR-5": "OPEN",
+    "SE-5": "OPEN, unchanged"
+  },
+  "blockers": {
+    "thresholdA": 0,
+    "thresholdBBefore": [
+      "MO-1"
+    ],
+    "thresholdBAfter": [],
+    "thresholdC": 18
+  },
+  "counts": {
+    "total": 80,
+    "P0": 4,
+    "P1": 7,
+    "P2": 47,
+    "P3": 22,
+    "CLOSED": 41,
+    "OPEN": 32,
+    "BLOCKED": 4,
+    "DEFERRED": 3
+  },
+  "thresholdB": "CLOSED",
+  "authorization": {
+    "internalProduction": "AUTHORIZED FOR CONTROLLED INTERNAL / PRODUCT-OWNER PRODUCTION USE",
+    "notAuthorized": [
+      "external Beta",
+      "commercial customers",
+      "public launch",
+      "public indexing",
+      "counsel-unapproved legal terms",
+      "Expert HazLenz execution"
+    ]
+  },
+  "constraints": {
+    "expertExecutionEnabled": false,
+    "expertCalls": 0,
+    "providerCalls": 0,
+    "spendUsd": 0,
+    "migrations": 0,
+    "schemaChanges": 0,
+    "sourceChanges": 0,
+    "deployments": 0,
+    "productionConfigurationChanges": 0,
+    "productionWrites": "0 new — the existing synthetic account was reused; 5 failed reads wrote nothing",
+    "thresholdCWork": 0,
+    "renameOperations": 0
+  },
+  "terminal": "SAFETY_INSITE_INTERNAL_PRODUCTION_THRESHOLD_COMPLETE — THRESHOLD_B_CLOSED_AND_EXPERT_HAZLENZ_PRODUCTION_ACTIVATION_AUTHORIZATION_REQUIRED"
+}

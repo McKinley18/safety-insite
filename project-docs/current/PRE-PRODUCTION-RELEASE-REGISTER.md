@@ -4,9 +4,10 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**.
-**Threshold A is closed. Threshold B stands at ONE owner action: a monitoring destination. The
-architecture is chosen; the receiver does not yet exist.** Machine-readable
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**.
+**Threshold A is closed. THRESHOLD B IS CLOSED at §297B — a real production failure reached the
+product owner's phone. Controlled internal / product-owner production use is AUTHORIZED. External
+beta is not.** Machine-readable
 equivalent, generated from the same entry list so the two cannot disagree:
 [`../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json`](../../verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json).
 
@@ -76,8 +77,8 @@ the others.
 | | Threshold | What it means | Blockers |
 |---|---|---|---|
 | **A** | **CONTROLLED PRODUCTION DEPLOYMENT** | The candidate running in a production environment. **No users, no real data.** | **0 — CLOSED at §290** |
-| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **1** — `MO-1`, an owner action, not engineering |
-| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **19** |
+| **B** | **INTERNAL / OWNER PRODUCTION USE** | Owner-controlled accounts entering **real data**. | **0 — CLOSED at §297B** |
+| **C** | **EXTERNAL CONTROLLED BETA** | **Named external inspectors** entering real workplace data. | **18** |
 
 > **THRESHOLD A IS CLOSED.** §289 reduced it from eight entries to three and observed that those
 > three could only be closed *by the deployment*. §290 performed the deployment and closed them:
@@ -117,8 +118,8 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | Status | Count |
 |---|---|
-| CLOSED | 40 |
-| OPEN | 33 |
+| CLOSED | 41 |
+| OPEN | 32 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 3 |
 
@@ -193,16 +194,23 @@ executing the deployment.
 
 ### Threshold B — internal / owner production use  (11 items)
 
-**ONE item remains, and it is not engineering.** §295 closed `BR-2` and found that `MO-1`'s owner
-boundary is larger than it had been recorded as.
+**THRESHOLD B IS CLOSED.** The last item, `MO-1`, closed at §297B on actual monitored receipt — not
+on a provider 2xx, and not on a manufactured condition.
 
-| | what is actually left | state after §295 |
-|---|---|---|
-| **MO-1** | **A qualifying production condition.** The receiver is configured and proven. | **Architecture CHOSEN at §296: webhook** — and chosen on a product argument, not on cost. The product name is to be replaced before external beta, and a verified sending domain entrenches a name in a way a webhook URL does not. §296 then **proved the webhook branch**, which had never been executed since §294 rewrote the dispatcher (`test:296-webhook-channel`, **15/15**). What is left is the destination itself: §296 searched the already-authorised surface and found **no Slack workspace, no Discord session**, and no inbound receiver on GitHub, Render, Vercel, Neon or Stripe. **Inventing one, standing up an ephemeral one, or pointing it at something nobody reads were each forbidden — and each would have produced a green gate over nothing watching, which is exactly MO-2.** |
-| ~~BR-2~~ | ~~One Neon console read.~~ | **CLOSED at §295** on authoritative console evidence: Free plan, **6-hour** history window, Instant Restore available across it, no snapshots and no schedule. Sufficient for Threshold B; `BR-5` carries the Threshold-C consequence. |
+| | how it closed |
+|---|---|
+| **MO-1** | **CLOSED §297B.** Five genuine production 500s inside the window produced **exactly one** `service.error_rate_exceeded`, dispatched to the configured webhook, accepted `HTTP 200` **272 ms** after the event, retrieved independently at the destination, and **seen in the product owner's subscribed client**. Requests 1–4 produced **no alert at all**, which is the noise policy stating itself. |
+| **BR-2** | **CLOSED §295** on authoritative Neon console evidence: Free plan, 6-hour history window, Instant Restore across it, no snapshot schedule. Sufficient for Threshold B; `BR-5` carries the Threshold-C consequence. |
+| **MO-2** | **CLOSED §294**, before any credential existed — the only order in which it could be closed honestly. |
 
-`PV-3` and `DB-5` closed at §292 and were accepted at §293. `MO-2` opened at §293 and closed at §294.
-`BR-2` closed at §295. `DB-7` remains **DEFERRED**.
+`PV-3` and `DB-5` closed at §292. `DB-7` remains **DEFERRED**. `EM-2` remains **OPEN by decision**, not
+by oversight: a webhook cannot deliver a password-reset link, and permanent email infrastructure waits
+for the product rename.
+
+> **What Threshold B now authorizes, and what it does not.** The product owner may enter **real data**
+> into production under their own control. This is **not** external beta, **not** customer onboarding,
+> **not** commercial launch, **not** public indexing, and **not** Expert HazLenz execution — Expert has
+> never been enabled in production and its first call is a separately authorized bounded acceptance.
 
 Closed at §291: `DB-4`, `DB-6`, `SU-1`, `SU-3`, `PA-1`, `OF-4`. The former Threshold-B list was `MO-1`, `PA-1`, `SU-1`, `SU-3`, `DB-4`, and two opened at §289: **`BR-2`** (Neon's platform
 retention window and PITR setting are unread — one console read) and **`PV-3`** (no Node version is
@@ -831,7 +839,7 @@ Prices are untouched — FREE $0 / PRO $24.99 / EXPERT NOT_A_V1_PLAN, identical 
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **MO-1** | The alerting mechanism is built and proven. No destination is configured in production. | P1 | BC | Infrastructure | OPEN — one configuration step |
+| **MO-1** | The alerting mechanism is built and proven. No destination is configured in production. | P1 | — | Infrastructure | **CLOSED (§297B)** |
 | **MO-2** | The email channel reports itself configured without a deliverable sender, and the delivery result is discarded. | P2 | — | Engineering | **CLOSED (§294)** |
 
 **MO-1 — §291 built the push half, and production still has nowhere to push to.**
@@ -1301,6 +1309,62 @@ in production. **An emission layer that now records its own failures is still no
 live half is `MO-1`, it needs the owner's configuration, and it is still open.
 
 The application source changed, so the release binding changed with it. **§295 deployed it.**
+
+---
+
+## §297B — five errors, one alert, one phone
+
+**`MO-1` is CLOSED and THRESHOLD B is CLOSED.** A real production failure reached the product owner,
+and the evidence is the arrival rather than the attempt.
+
+### The window rule was applied rather than assumed
+
+§297A's 500 was **not** counted. Production reported `serverErrorsInWindow: 0` — 15½ minutes had
+passed against a 5-minute window — so the aged-out event was discarded and a fresh sequence of
+exactly five ran against the same confirmed `SE-5` path.
+
+### The progression is the policy stating itself
+
+| request | status | `serverErrorsInWindow` | `lastDelivery` |
+|---|---|---|---|
+| 1 | 500 | 1 | `null` |
+| 2 | 500 | 2 | `null` |
+| 3 | 500 | 3 | `null` |
+| 4 | 500 | 4 | `null` |
+| **5** | **500** | **5** | **`DELIVERY_ACCEPTED`, 200, 23:59:49.031Z** |
+
+**Four genuine production errors produced no alert at all.** The fifth crossed the threshold and
+produced **exactly one** `service.error_rate_exceeded` — not five. That ratio is the entire purpose of
+the aggregation, and it is now measured in production rather than argued for.
+
+**272 ms** from the monitoring event to `DELIVERY_ACCEPTED`. The alert was then retrieved
+independently at the destination and **confirmed rendered in the product owner's subscribed client**.
+
+### Closed on receipt, never on submission
+
+§294 built the distinction between a provider 2xx and an alert a human actually sees, and §297A/§297B
+honoured it: the alert was verified **twice** — once by an independent subscriber-side poll and once
+by seeing it in the client. Afterwards `/health/ready` still reports `alerting: CONFIGURED`,
+`channel: webhook`, `lastDelivery: DELIVERY_ACCEPTED` — the configuration stayed truthful *through*
+the dispatch, not merely before it.
+
+### The payload was reconfirmed on the bytes that actually left
+
+311 bytes: `source`, `event`, `severity`, `at`, `environment`, `release`, and five metadata fields —
+`path: "/files/:id"`, `method`, `statusCode`, `countInWindow: 5`, `failureKind: "QueryFailedError"`.
+
+**The malformed identifier that caused the errors appears nowhere in it.** `path` is the route
+*pattern* and `failureKind` is the error *class name* rather than its message — which is where the
+identifier would have been. That is the §268 redaction working on live production data, verified on
+the transmitted bytes rather than on a local reproduction.
+
+### `SE-5` was used as an instrument and is not thereby acceptable
+
+Six genuine unhandled 500s have now been observed on that path. It was deliberately **not** repaired
+while it was serving as the stimulus — repairing the stimulus while validating the layer downstream
+of it would have destroyed the only confirmed qualifying condition the product has. Its severity and
+classification are unchanged, and **`MO-1`'s closure does not depend on it staying broken**: any
+error-severity condition reaches the same path.
 
 ---
 
