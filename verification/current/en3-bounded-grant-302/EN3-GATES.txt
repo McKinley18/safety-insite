@@ -1,0 +1,67 @@
+
+> safety-insite-backend@1.0.0 test:302-promotional-grant
+> ts-node scripts/test-302-promotional-grant.ts
+
+
+---- 1. what a promotional grant is ----
+
+      {"userId":"11111111-1111-4111-8111-111111111111","source":"pilot","tier":"pro","status":"active","startsAt":"2026-09-15T12:00:00.000Z","endsAt":"2026-09-22T12:00:00.000Z","issuedByUserId":null,"reason":"Promotional pilot access granted at registration by server-c…"}
+ok    It is created active.
+ok    It confers pro, the minimum tier that makes the promotion meaningful.
+ok    Its source is `pilot`, one of the values the admin grant route already permits.
+ok    It is BOUNDED: 7 days by default.
+ok    issuedByUserId is NULL. No person issued it — the server did, on a configured allowlist — and naming the recipient would attribute the grant to the account it entitles.
+ok    The reason carries provenance: mechanism, bounds and that it is revocable.
+
+---- 2. the duration is the server's, and its ceiling is real ----
+
+ok    Unset configuration yields the conservative default of 7 days.
+ok    A configured value inside the ceiling is honoured.
+ok    A configured value above the ceiling is CLAMPED to 30 days and says so, so a misconfiguration cannot silently become a year-long promotion.
+ok    The ceiling is 30 days, which §302 forbids exceeding without a product-owner decision.
+ok    "0" falls back to the default rather than producing an already-expired or infinite grant.
+ok    "-5" falls back to the default rather than producing an already-expired or infinite grant.
+ok    "forever" falls back to the default rather than producing an already-expired or infinite grant.
+ok    "" falls back to the default rather than producing an already-expired or infinite grant.
+
+---- 3. the ten §302 security gates ----
+
+ok    GATE 1  auth.service.ts never reads dto.planCode; a requested plan is not authority.
+ok    GATE 1  auth.service.ts never reads dto.selectedPlan; a requested plan is not authority.
+ok    GATE 1  auth.service.ts never reads dto.subscriptionStatus; a requested plan is not authority.
+ok    GATE 1  auth.service.ts never reads dto.tier; a requested plan is not authority.
+ok    GATE 1  the account tier at registration is unconditionally free — the promo branch that made it pro is gone, so there is no expression left that could promote an account row.
+ok    GATES 2-4  buildPromotionalGrant is called with ONLY the new account id. Nothing from the request reaches it, so a caller cannot choose the duration, the source or the account.
+ok    GATES 2-4  the promotional-grant module reads no dto field at all.
+ok    GATES 2-4  and has no request-shaped input of any kind.
+ok    GATE 2  the duration comes from SERVER ENVIRONMENT, which a caller cannot write to.
+ok    GATES 3-4  source and tier are module constants, not parameters.
+ok    GATE 4  the grant is scoped to the account the server just created, never to one a caller named.
+ok    GATE 5  the promo applies only at REGISTRATION, and a repeat registration on the same email is refused before anything is created — so the mechanism cannot be re-presented to extend an existing entitlement. There is no other code path that creates a promotional grant.
+ok    GATE 5  buildPromotionalGrant is INVOKED from exactly one place (saw 1), so there is no second route to a second grant. Counted as invocations rather than mentions, because the import is a mention and is not a route.
+ok    GATE 5  and auth.service.ts writes an entitlement_grants row from exactly one place.
+ok    GATES 6-7  the resolver selects grants by status active AND endsAt in the future, so an expired or revoked grant is not found at all.
+ok    GATE 8  a session whose tier CAME FROM A GRANT does not answer from the JWT claim; it falls through to the live grant lookup, so revocation takes effect immediately rather than when the token expires.
+ok    GATE 8  and the basis is minted by the server into the session, not supplied by the client.
+ok    GATE 9  the grant lookup is keyed by the authenticated user id, so one account's grant cannot authorize another.
+ok    GATE 10  the promo code is never written into the grant.
+ok    GATE 10  nor is the allowlist named in anything the grant carries.
+ok    GATE 10  and the registration response does not echo the code back to the client.
+
+---- 4. billing state and effective entitlement are different things ----
+
+ok    The account row no longer claims an active subscription because a promotion exists.
+ok    It records `none`, which is true: nothing was purchased.
+ok    The temporary capability is reported SEPARATELY and explicitly, so no reader has to infer one from the other.
+ok    And it names its own basis, so a consumer can tell a promotion from a purchase.
+ok    While the grant is active the effective entitlement includes fullSafeScope.
+ok    And the account's own billing plan, free, does not.
+
+---- 5. the §301 properties still hold ----
+
+ok    The dead `|| (tier === free ? none : active)` alternative §301 removed is still absent, so no caller-influenced tier claim can imply an active subscription.
+ok    resolveSessionContext still passes the status it has — the BI-4 repair is intact.
+ok    The promo authorization is still a server-configured allowlist check.
+ok    And a non-matching code is still refused before any write.
+
+45 checks passed, 0 failed

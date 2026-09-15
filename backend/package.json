@@ -63,13 +63,13 @@
     "hazlenz:check": "npm run hazlenz:verify && npm run hazlenz:test && npm run build",
     "hazlenz:evidence": "ts-node scripts/hazlenz/evidence-integrity.ts",
     "hazlenz:generate-shard-candidates": "ts-node src/hazlenz/coverage/generate-hazlenz-warm-shard-candidates.ts",
-    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner && npm run test:301-entitlement-integration",
+    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner && npm run test:301-entitlement-integration && npm run test:302-promotional-grant-integration",
     "hazlenz:integration:test": "ts-node scripts/hazlenz/with-disposable-db.ts hazlenz:integration:inner",
     "hazlenz:precommit": "npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence",
     "hazlenz:qa-shard-candidates": "ts-node src/hazlenz/coverage/qa-hazlenz-generated-candidates.ts",
     "hazlenz:scripts:classify": "ts-node scripts/hazlenz/classify-scripts.ts",
     "hazlenz:status": "ts-node scripts/hazlenz/status.ts",
-    "hazlenz:test": "npm run test:261-confirmation-rule && npm run test:264-settlement-contract && npm run test:expert-nocall-harness && npm run test:268-operational-controls && npm run test:299-person-negation && npm run test:299-section-298-replay && npm run test:299-expert-disagreement && npm run test:300-evidence-boundary-negation && npm run check:bare-person-negation && npm run test:300-provider-provenance && npm run test:300-risk-rating-authority && npm run test:301-entitlement-authority && npm run release:check-build-context",
+    "hazlenz:test": "npm run test:261-confirmation-rule && npm run test:264-settlement-contract && npm run test:expert-nocall-harness && npm run test:268-operational-controls && npm run test:299-person-negation && npm run test:299-section-298-replay && npm run test:299-expert-disagreement && npm run test:300-evidence-boundary-negation && npm run check:bare-person-negation && npm run test:300-provider-provenance && npm run test:300-risk-rating-authority && npm run test:301-entitlement-authority && npm run test:302-promotional-grant && npm run release:check-build-context",
     "hazlenz:verify": "ts-node scripts/hazlenz/verify.ts",
     "ingest:cfr:bulk": "ts-node src/standards/ingestion/ingest.cfr.bulk.ts",
     "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
@@ -423,7 +423,9 @@
     "test:300-provider-provenance": "ts-node scripts/test-300-provider-provenance.ts",
     "test:300-risk-rating-authority": "ts-node scripts/test-300-risk-rating-authority.ts",
     "test:301-entitlement-authority": "ts-node scripts/test-301-entitlement-authority.ts",
-    "test:301-entitlement-integration": "ts-node scripts/test-301-entitlement-integration.ts"
+    "test:301-entitlement-integration": "ts-node scripts/test-301-entitlement-integration.ts",
+    "test:302-promotional-grant": "ts-node scripts/test-302-promotional-grant.ts",
+    "test:302-promotional-grant-integration": "ts-node scripts/test-302-promotional-grant-integration.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

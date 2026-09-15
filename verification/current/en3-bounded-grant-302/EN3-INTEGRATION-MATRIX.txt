@@ -1,0 +1,57 @@
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789512474527_3517
+resolved target host=127.0.0.1 database=test_insite_1789512474527_3517
+application listening on http://127.0.0.1:62221
+---- A. ordinary free registration ----
+ok    A-1 free registration: account plan free, no promotional entitlement  [free]
+ok    A-2 no fullSafeScope
+ok    A-3 classify 402
+---- B. arbitrary public pro request ----
+ok    B-1 requesting pro grants nothing  [free]
+ok    B-2 and creates NO grant  [0]
+ok    B-3 free, classify 402
+---- C. invalid promo ----
+ok    C-1 refused  [400]
+ok    C-2 refused BEFORE any privileged grant — no account, so no grant  [0]
+---- D. valid server-authorized promo ----
+ok    D-1 accepted  [201]
+ok    D-2 THE ACCOUNT BILLING PLAN IS FREE — no fabricated paid state  [free]
+ok    D-3 and the stored row says free/none, which is true: nothing was purchased  [free/none]
+ok    D-4 the temporary capability is reported separately, naming its own basis  [{"tier":"pro","source":"pilot","expiresAt":"2026-09-22T22:48:01.872Z","basis":"bounded_entitlement_grant"}]
+ok    D-5 a bounded entitlement_grant was created
+ok    D-6 source pilot, tier pro, active  [pilot/pro/active]
+ok    D-7 BOUNDED to 7 days, persisted in the grant  [7]
+ok    D-8 issuedByUserId NULL — no person issued it
+ok    D-9 THE PROMO SECRET IS NOT IN THE GRANT
+ok    D-10 the grant is audited
+ok    D-11 and the audit carries no secret either
+ok    D-12 provenance recorded: source, tier, bounds, duration and how it was resolved  ["DEFAULT"]
+---- E/F/G. fresh session while the grant is active ----
+ok    E-1 a fresh login resolves the intended capability  [pro]
+ok    E-2 and records that its tier CAME FROM A GRANT, which is what makes revocation immediate  [grant]
+ok    F-1 /hazlenz/classify is permitted  [201]
+ok    F-2 and returns a real analysis
+ok    G-1 Expert eligibility reads the SAME fullSafeScope key from the SAME canonical decision, so it cannot disagree with classify. No Expert execution is performed.
+---- K. the promo cannot be re-presented ----
+ok    K-1 registering the same account again is refused  [400]
+ok    K-2 STILL EXACTLY ONE GRANT — repeated attempts cannot become perpetual entitlement  [1]
+ok    K-3 and the existing expiry was not extended
+---- I/J. revocation, WITHOUT deleting the account ----
+ok    J-1 THE TOKEN ISSUED BEFORE REVOCATION IS NOW REFUSED, without the user logging in again. §301 measured 201 here; a revocation that waits for a token to expire is not a revocation.  [402]
+ok    I-1 THE ACCOUNT STILL EXISTS AND CAN STILL LOG IN  [201]
+ok    I-2 and resolves to free — entitlement removed WITHOUT deleting the account, which is the property §302 exists to establish  [free]
+ok    I-3 classify 402
+---- H. expiry ----
+ok    H-1 an EXPIRED grant authorizes nothing, though its row remains for audit  [free]
+ok    H-2 classify 402
+---- L. a promotion never outranks a purchase ----
+ok    L-1 active subscription + no usable grant -> paid capability
+ok    L-2 active subscription + EXPIRED grant -> paid capability remains
+ok    L-3 cancelled subscription + active promo grant -> promo capability, and it says so  [grant]
+ok    L-4 cancelled subscription + expired grant -> free
+ok    L-5 with both, the SUBSCRIPTION is the basis — a promotion never downgrades a purchase  [subscription]
+---- M. cross-tenant ----
+ok    M-1 tenant B is free while tenant A holds an active promo grant
+ok    M-2 and classify refuses tenant B
+================ §302 promotional grant: 41 passed, 0 failed
+{"providerCalls":0,"expertExecutions":0,"passed":41,"failed":0}
+dropped test_insite_1789512474527_3517

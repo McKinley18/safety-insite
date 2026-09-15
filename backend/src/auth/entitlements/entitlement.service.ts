@@ -42,10 +42,32 @@ export class EntitlementService {
       );
       if (hasEntitlement(liveTier, feature)) return true;
     } else {
-      const jwtTier = normalizeBillingTier(
-        user?.planCode || user?.effectivePlanCode || user?.subscriptionTier,
-      );
-      if (hasEntitlement(jwtTier, feature)) return true;
+      /**
+       * §302 / EN-3 — A GRANT-DERIVED CLAIM IS NOT SELF-SUFFICIENT.
+       *
+       * The JWT's plan claim is the SERVER'S OWN resolved answer, so trusting it is not a
+       * client-trust problem — it is a STALENESS problem, and §301 measured it: a token minted
+       * while a grant was active kept returning 201 from a gated route after the grant was revoked,
+       * because this branch answered before the grant lookup below was ever reached. A revocation
+       * that does not take effect until a token expires is not a revocation, and §302 exists to
+       * make promotional entitlement genuinely revocable.
+       *
+       * So when the session records that its tier CAME FROM A GRANT, this branch declines to
+       * answer and lets the live grant lookup decide. Every other basis is unchanged: an
+       * organization-seat plan is carried purely on the JWT and has no row here to check against,
+       * which is what this fallback exists for.
+       *
+       * A token minted BEFORE §302 carries no basis at all. That is treated as the pre-§302
+       * behaviour rather than as a grant, so the change cannot retroactively lock out a live
+       * session; those tokens expire within JWT_EXPIRES_IN (15 minutes by default).
+       */
+      const basis = typeof user?.entitlementBasis === 'string' ? user.entitlementBasis : null;
+      if (basis !== 'grant') {
+        const jwtTier = normalizeBillingTier(
+          user?.planCode || user?.effectivePlanCode || user?.subscriptionTier,
+        );
+        if (hasEntitlement(jwtTier, feature)) return true;
+      }
     }
 
     if (!hasValidUserId) return false;

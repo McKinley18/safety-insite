@@ -213,6 +213,28 @@ export class BillingService {
       tier,
       planCode: tier,
       plan: tier,
+      /**
+       * §302 / EN-3 — WHERE THIS TIER CAME FROM.
+       *
+       * Carried so the entitlement guard can tell a tier that rests on LIVE, REVOCABLE state from
+       * one that rests on the account or an organization seat. A grant-derived tier must be
+       * re-verified against the grant on every gated request, because revoking a grant that keeps
+       * working until a token expires is not a revocation. Nothing about the tier itself changes;
+       * this only says how it was reached.
+       */
+      tierSource: (
+        // THE GRANT IS CHECKED FIRST, and the order is the whole point. A cancelled subscription
+        // row still EXISTS, so asking "is there a subscription?" first reported `subscription` for
+        // a tier the grant had actually supplied — naming where the ROW is rather than where the
+        // AUTHORITY is. The §302 integration case L-3 caught exactly that. Behaviour was already
+        // correct either way (a cancelled subscription resolves free and the grant lookup then
+        // decides), but a basis that misnames its own source is a record nobody can audit.
+        activeGrant?.tier === 'pro' && paidEffectiveTier === 'free'
+          ? 'grant'
+          : subscription
+            ? 'subscription'
+            : tier === 'free' ? 'none' : 'account'
+      ) as 'subscription' | 'grant' | 'account' | 'none',
       label: getBillingPlanDisplayName(tier),
       monthlyPrice: getBillingPlanMonthlyPrice(tier),
       status: sourceStatus,

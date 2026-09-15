@@ -14,6 +14,7 @@ import { normalizeBillingTier } from '../billing/plan-entitlements';
 import { PasswordResetDeliveryService } from './password-reset-delivery.service';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { EntitlementGrant } from '../billing/entitlement-grant.entity';
+import { buildPromotionalGrant } from '../billing/promotional-grant';
 import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { Notification } from '../notifications/notification.entity';
@@ -117,7 +118,21 @@ export class AuthService {
       finalType = 'company'; // Locked to company tier
     }
 
-    const planCode = employerProPromoApplied ? 'pro' : 'free';
+    /**
+     * §302 / EN-3 — THE ACCOUNT ROW NOW TELLS THE TRUTH ABOUT BILLING.
+     *
+     * This used to read `employerProPromoApplied ? 'pro' : 'free'`, and the line below used to set
+     * `subscriptionStatus: 'active'` to match. Between them they made an account that had never
+     * paid anything assert a purchase — permanently, with no expiry and no route that could lower
+     * it again. §301's cleanup had to DELETE accounts to remove entitlement, which is not something
+     * you can do to a real pilot customer.
+     *
+     * A promotion is now a BOUNDED ENTITLEMENT GRANT, created after the account is saved. The
+     * account's own billing state stays free/none because that is what is true: nothing was
+     * purchased. Effective feature access is resolved from the grant by the canonical resolver, so
+     * the customer gets what the promotion promised without the record claiming they bought it.
+     */
+    const planCode = 'free';
 
     const hashedPassword = await bcrypt.hash(
       password,
@@ -135,7 +150,7 @@ export class AuthService {
       passwordHash: hashedPassword,
       type: finalType || 'individual',
       planCode,
-      subscriptionStatus: employerProPromoApplied ? 'active' : 'none',
+      subscriptionStatus: 'none',
       role: organizationId ? role : 'individual',
       organizationId: null,
     });
@@ -152,6 +167,45 @@ export class AuthService {
      */
     await this.agreements.recordRegistrationAcceptances(user.id, organizationId, acceptedAgreements);
 
+    /**
+     * §302 / EN-3 — THE PROMOTION, AS A BOUNDED GRANT.
+     *
+     * After the user row, for the same reason the acceptance is: a grant pointing at an account
+     * that does not exist would be worse than none.
+     *
+     * EVERY FIELD IS SERVER-DERIVED. `buildPromotionalGrant` is handed the id of the account that
+     * was just created and nothing from the request — there is no parameter through which a caller
+     * could choose the duration, the tier, the source, or another account. The promo code
+     * authorised the grant; it did not describe it, and it is deliberately not written into it.
+     */
+    let promotionalGrant: { id: string; endsAt: Date; tier: string; source: string } | null = null;
+    if (employerProPromoApplied) {
+      const { fields, duration } = buildPromotionalGrant(user.id);
+      const saved = await this.entitlementGrantRepo.save(
+        this.entitlementGrantRepo.create(fields as never),
+      ) as unknown as { id: string; endsAt: Date };
+      promotionalGrant = {
+        id: saved.id, endsAt: saved.endsAt, tier: fields.tier, source: fields.source,
+      };
+      // Auditable provenance, and NO SECRET: the mechanism, the bounds and the resolution of the
+      // configured duration, never the code that authorised it.
+      await this.securityAuditRepo.save(this.securityAuditRepo.create({
+        actorUserId: user.id, organizationId: organizationId || null,
+        action: 'promotional_entitlement_granted',
+        resourceType: 'entitlement_grant', resourceId: saved.id,
+        metadata: {
+          userId: user.id,
+          source: fields.source,
+          tier: fields.tier,
+          startsAt: fields.startsAt.toISOString(),
+          endsAt: fields.endsAt.toISOString(),
+          durationDays: duration.days,
+          durationSource: duration.source,
+          grantedAtRegistration: true,
+        },
+      }));
+    }
+
     if (organizationId) {
       await this.orgService.createActiveMembership({
         userId: user.id,
@@ -166,8 +220,17 @@ export class AuthService {
       message: 'User created successfully',
       userId: user.id,
       organizationId,
+      // §302 / EN-3. THE ACCOUNT'S OWN BILLING PLAN, which is `free` for a promotional account
+      // because nothing was purchased. The temporary capability is reported separately and
+      // explicitly, so no reader has to infer one from the other.
       planCode,
       promoApplied: employerProPromoApplied,
+      promotionalEntitlement: promotionalGrant === null ? null : {
+        tier: promotionalGrant.tier,
+        source: promotionalGrant.source,
+        expiresAt: promotionalGrant.endsAt,
+        basis: 'bounded_entitlement_grant',
+      },
       metadata,
     };
   }
@@ -333,6 +396,11 @@ export class AuthService {
       organizationPlanCode: organization?.planCode || null,
       billingStatus: billingSnapshot?.status || user.subscriptionStatus,
       billingEntitlements: billingSnapshot?.entitlements || null,
+      // §302 / EN-3. HOW THIS SESSION'S TIER WAS REACHED. The entitlement guard uses it to decide
+      // whether the claim may be trusted on its own or must be re-checked against live grant state,
+      // so that revoking a grant takes effect immediately rather than when the token expires.
+      // Absent on tokens minted before §302, which the guard treats as the pre-§302 behaviour.
+      entitlementBasis: billingSnapshot?.tierSource || null,
       hasPaidAccess: billingSnapshot?.hasPaidAccess || false,
       hasProAccess: billingSnapshot?.hasProAccess || false,
       deletedAt: user.deletedAt,

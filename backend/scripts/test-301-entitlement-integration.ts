@@ -172,13 +172,34 @@ async function main(): Promise<void> {
   check(b.res.status === 201 && b.res.body.promoApplied === true,
     'B-1 a registration carrying the SERVER-CONFIGURED code is promoted',
     `${b.res.status} promoApplied=${b.res.body.promoApplied}`);
-  check(b.res.body.planCode === 'pro', 'B-2 registration answers pro', String(b.res.body.planCode));
+  /*
+   * §302 CHANGED THE REPRESENTATION, AND THESE TWO ASSERTIONS MOVED WITH IT.
+   *
+   * At §301 a promotion wrote planCode=pro / subscriptionStatus=active onto the user row, and B-2
+   * and B-3 asserted exactly that. §302 closed EN-3 by making a promotion a BOUNDED GRANT and
+   * leaving the account row truthful, so asserting the old shape would now fail on the improvement.
+   *
+   * The §301 PROPERTY is unchanged and is still what B-4 to B-7 measure: a legitimately authorized
+   * promotion survives the next login and reaches classify. What changed is where the entitlement
+   * lives, and these two now assert the new home.
+   */
+  check(b.res.body.planCode === 'free',
+    'B-2 registration answers FREE for the ACCOUNT PLAN — §302 no longer fabricates paid billing '
+    + 'state for a promotion', String(b.res.body.planCode));
+  check(b.res.body.promotionalEntitlement?.tier === 'pro',
+    'B-2b and reports the temporary capability separately',
+    JSON.stringify(b.res.body.promotionalEntitlement));
 
   const [bRow] = await q(
     'SELECT "planCode", "subscriptionStatus" FROM "user" WHERE email = $1', [b.email]);
-  check(bRow.planCode === 'pro' && bRow.subscriptionStatus === 'active',
-    'B-3 and the ACCOUNT ROW records both the tier and the status',
+  check(bRow.planCode === 'free' && bRow.subscriptionStatus === 'none',
+    'B-3 and the ACCOUNT ROW is truthful: nothing was purchased',
     `${bRow.planCode}/${bRow.subscriptionStatus}`);
+  const [bGrant] = await q(
+    `SELECT g.status, g.tier FROM entitlement_grants g JOIN "user" u ON u.id = g."userId"
+      WHERE u.email = $1`, [b.email]);
+  check(bGrant?.status === 'active' && bGrant?.tier === 'pro',
+    'B-3b the entitlement lives in a BOUNDED GRANT instead', `${bGrant?.status}/${bGrant?.tier}`);
 
   const bLogin = await login(b.email);
   const bClaims = decodeJwt(bLogin.token as string);
@@ -196,16 +217,26 @@ async function main(): Promise<void> {
 
   // ------------------------------------------------ B-PRE: the defect, reproduced
   console.log('\n   the pre-repair resolution, reproduced from the old expression:\n');
+  /*
+   * The row this reproduces is now itself historical. §302 stopped writing planCode=pro /
+   * subscriptionStatus=active at registration, so the live account above no longer has the shape
+   * BI-4 acted on. The reproduction therefore uses a LITERAL representative of the pre-§302 row —
+   * which is what every account promoted before §302 actually looks like, and what the resolver
+   * must still handle correctly for them.
+   */
+  const historicalPromoRow = { planCode: 'pro', subscriptionStatus: 'active' };
   const preRepairFallbackStatus =
     normalizeStripeSubscriptionStatus(undefined as never)   // the status was NOT passed
-    || (bRow.planCode === 'free' ? 'none' : 'active');      // the dead alternative
-  const preRepairTier = resolveAccessTier(bRow.planCode, preRepairFallbackStatus as never, null);
+    || (historicalPromoRow.planCode === 'free' ? 'none' : 'active');  // the dead alternative
+  const preRepairTier = resolveAccessTier(
+    historicalPromoRow.planCode, preRepairFallbackStatus as never, null);
   const postRepairTier = resolveAccessTier(
-    bRow.planCode, normalizeStripeSubscriptionStatus(bRow.subscriptionStatus), null);
+    historicalPromoRow.planCode,
+    normalizeStripeSubscriptionStatus(historicalPromoRow.subscriptionStatus), null);
   console.log(`      pre-repair : status=${preRepairFallbackStatus} -> tier=${preRepairTier}`);
   console.log(`      post-repair: status=${normalizeStripeSubscriptionStatus(bRow.subscriptionStatus)} -> tier=${postRepairTier}`);
   check(preRepairTier === 'free',
-    'B-PRE-1 the pre-repair expression resolves this very account to FREE, reproducing §300');
+    'B-PRE-1 the pre-repair expression resolves a pre-§302 promoted row to FREE, reproducing §300');
   check(postRepairTier === 'pro',
     'B-PRE-2 and the repaired one resolves it to PRO — the suite distinguishes repaired from '
     + 'never-broken');
@@ -322,10 +353,11 @@ async function main(): Promise<void> {
     + `was issued with, or has already lost it. MEASURED: ${staleClassify.status}. It cannot gain `
     + 'anything it did not have, which is the matrix-11 requirement.', `${staleClassify.status}`);
   if (staleClassify.status !== 402) {
-    console.log('      NOTE: an already-issued token RETAINS capability until it expires. '
-      + 'EntitlementService.hasFeature returns on the JWT tier claim before it reaches the grant '
-      + 'lookup, so revocation is not instant for live sessions. Registered as a §301 finding; '
-      + 'cleanup must therefore be verified with a FRESH login, which E-2 does.');
+    console.log('      NOTE: an already-issued token RETAINS capability until it expires.');
+  } else {
+    console.log('      NOTE: §302 closed EN-2 for GRANT-DERIVED authority — a session whose tier '
+      + 'came from a grant re-checks live state, so revocation is immediate rather than waiting '
+      + 'for the token to expire. This case measured 201 at §301 and measures 402 now.');
   }
 
   // ============================================================ F. tenant isolation

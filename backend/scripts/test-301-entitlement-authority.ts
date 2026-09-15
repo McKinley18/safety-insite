@@ -121,9 +121,24 @@ for (const field of ['dto.planCode', 'dto.selectedPlan', 'dto.subscriptionStatus
     + 'escalation.');
 }
 
-check(/const planCode = employerProPromoApplied \? 'pro' : 'free';/.test(planBody),
-  'The account tier is decided by exactly one expression, and its only non-free branch is the '
-  + 'server-configured promo. There is no second way to become pro at registration.');
+/*
+ * §302 STRENGTHENED THIS, and the assertion moved with it rather than being relaxed.
+ *
+ * At §301 the line read `const planCode = employerProPromoApplied ? 'pro' : 'free'` and this check
+ * pinned that literal: one expression, one non-free branch, and that branch server-configured. §302
+ * removed the branch entirely — a promotion is now a BOUNDED GRANT and the account row is
+ * unconditionally free — so the §301 property holds MORE strongly than when it was written.
+ *
+ * Asserting the old literal would now fail on an improvement, which is how a guard gets deleted.
+ * Asserting the new one keeps the §301 claim exactly and adds what §302 established: there is no
+ * branch at all by which registration can promote an account row.
+ */
+check(/const planCode = 'free';/.test(planBody),
+  'The account tier at registration is UNCONDITIONALLY free. §301 required that the only non-free '
+  + 'branch be server-configured; §302 removed the branch, so no registration path can promote an '
+  + 'account row at all.');
+check(!/planCode = employerProPromoApplied/.test(planBody),
+  'And the conditional that used to write a permanent pro plan is gone, not merely bypassed.');
 
 check(/process\.env\.EMPLOYER_PRO_PROMO_CODES/.test(planBody),
   'The promo allowlist comes from SERVER ENVIRONMENT, which a registering user cannot write to. '
