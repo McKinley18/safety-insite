@@ -1,5 +1,27 @@
 # Safety InSite — current state
 
+> ### §301 — BI-4 CLOSED AND PROVEN LIVE
+>
+> **A granted plan now survives the next login, and a requested one still grants nothing.** The
+> proximate cause was one omission: `resolveSessionContext` passed the tier and withheld the
+> status, so the resolver read `none` and returned free. The repair passes it. The dead
+> `|| (tier === 'free' ? 'none' : 'active')` branch — unreachable for every possible input — was
+> **deleted rather than made reachable**, because making it live would treat an unverified tier
+> claim as an active subscription.
+>
+> **No escalation was created, and none existed.** `dto.planCode` and `dto.selectedPlan` are
+> declared on the registration DTO and never read; the only non-free branch is a promo code
+> matching a **server environment** allowlist. Proven live in production on the same deployment:
+> the authorized path reached `/hazlenz/classify` with a real Critical analysis, while a public
+> caller asking for `planCode: "pro"` got free and **402**.
+>
+> **Three findings opened.** `EN-2` — an already-issued token keeps capability until it expires
+> (15 min), so cleanup must be verified with a fresh login. `EN-3` — a promo-granted plan is
+> **permanent and unrevocable**, which is why cleanup had to delete accounts rather than revoke
+> entitlement, and why the promo path is unsuitable as the long-term pilot mechanism. `OPS-2` — a
+> Render deploy reports "live" before the old instance stops serving, which made one read-back
+> measure the old config and create an account that then had to be neutralized directly.
+
 > ### §300 COMPLETE — HZ-9, HZ-10, HZ-6 AND HZ-7 ALL CLOSED AND DEPLOYED
 >
 > Deployed at `2170a6ba` on both halves. **0 provider calls, 0 Expert analyses, 0 migrations, $0.**

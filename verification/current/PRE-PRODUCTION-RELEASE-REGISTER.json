@@ -2,11 +2,11 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "2170a6ba6496d4673b54e68c2b738d89d7e4707f",
+  "candidateHead": "de00f896f87037ffb550d35e8ef134ad02ef34e7",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§301 — BI-4 CLOSED (pending live production proof); EN-2 opened.",
+  "asOf": "§301 — BI-4 CLOSED and proven live; EN-2, EN-3 and OPS-2 opened.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events.",
   "thresholds": {
@@ -15,17 +15,17 @@
     "C": "EXTERNAL CONTROLLED BETA — named external inspectors entering real workplace data."
   },
   "counts": {
-    "total": 91,
+    "total": 93,
     "P0": 6,
     "P1": 8,
-    "P2": 52,
-    "P3": 25,
+    "P2": 53,
+    "P3": 26,
     "thresholdA": 0,
     "thresholdB": 0,
-    "thresholdC": 18,
+    "thresholdC": 19,
     "byStatus": {
       "CLOSED": 51,
-      "OPEN": 34,
+      "OPEN": 36,
       "DEFERRED": 2,
       "BLOCKED": 4
     }
@@ -729,6 +729,24 @@
       "lastUpdatedBy": "§301"
     },
     {
+      "domain": "ENTITLEMENTS",
+      "id": "EN-3",
+      "description": "A promo-granted plan is PERMANENT and has no product-controlled revocation: it writes planCode/subscriptionStatus onto the user row, and removing the allowlist does not downgrade accounts already promoted.",
+      "currentState": "FOUND AT §301 WHILE PERFORMING THE REQUIRED CLEANUP. The two entitlement mechanisms are asymmetric. An entitlement_grant is bounded (startsAt/endsAt), revocable (status), attributed (issuedByUserId) and audited — §301 proved revocation removes capability from a fresh session. The PROMO path writes planCode=pro and subscriptionStatus=active directly onto the user row with NO expiry, NO status field of its own, and NO product route that lowers it: there is no downgrade endpoint, and DELETE /auth/me destroys the whole account rather than the entitlement. CONSEQUENCE: emptying EMPLOYER_PRO_PROMO_CODES stops NEW promotions but leaves every already-promoted account on pro indefinitely. §301 cleanup therefore had to delete the synthetic accounts rather than revoke their entitlement, which is a blunter instrument than the grant path offers and is not available at all for a real customer.",
+      "evidence": "verification/current/bi4-entitlement-301/SECTION-301-BI4-REPAIR.json; src/auth/auth.service.ts register (the only writer of user.planCode); the absence of any downgrade route in auth.controller.ts and billing.controller.ts.",
+      "severity": "P2",
+      "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
+      "owner": "PRODUCT",
+      "remediation": "A product decision. The smallest safe architecture is to make the promo ISSUE A BOUNDED entitlement_grant rather than write the user row — reusing the mechanism that is already bounded, revocable, attributed and audited, and leaving planCode to mean \"what the customer pays for\". That also gives pilot/internal entitlement a revocation path it currently lacks. Do NOT simply add a downgrade endpoint; that creates a second way to change entitlement without addressing why there are two representations.",
+      "retestRequirement": "A promo-authorized account can have its entitlement removed through a product-controlled mechanism, without deleting the account, and a fresh session then resolves free.",
+      "status": "OPEN",
+      "blocksThresholdA": false,
+      "blocksThresholdB": false,
+      "blocksThresholdC": true,
+      "note": "Registered, not repaired: §301 scope discipline permits repairing another defect only if it directly prevents a secure BI-4 repair. It does not — BI-4 is repaired and proven, and cleanup was completed by account deletion. It does mean the promo path is unsuitable as the long-term pilot/internal entitlement mechanism, which is the question §301 asked and this is the answer to it.",
+      "lastUpdatedBy": "§301"
+    },
+    {
       "domain": "APP / MOBILE FORMAT",
       "id": "AF-1",
       "description": "'App' for v1 is a responsive web application with a service worker, not a native binary.",
@@ -1332,6 +1350,24 @@
       "closedBy": "§289"
     },
     {
+      "domain": "RELEASE / ROLLBACK",
+      "id": "OPS-2",
+      "description": "A Render deploy reports status \"live\" before the previous instance stops serving, so a configuration read-back taken immediately after can measure the OLD configuration.",
+      "currentState": "OBSERVED AT §301, AND IT PRODUCED A REAL SIDE EFFECT. The §297 rule is change -> deploy -> read the live configuration back. §301 removed EMPLOYER_PRO_PROMO_CODES, deployed, saw the deploy report status \"live\", and immediately registered an account with the removed code — which SUCCEEDED and was promoted, because the request reached an instance still holding the old environment. A second attempt shortly afterwards correctly returned 400 \"Invalid promo code\". The service record showed the variable absent throughout. CONSEQUENCE: that one read-back created a live pro account in production whose password was not retained, which had to be neutralized directly (see the §301 return). THE RULE IS NOT WRONG, THE READ-BACK IS: a single probe after \"live\" is not sufficient evidence that a configuration change has taken effect everywhere.",
+      "evidence": "verification/current/bi4-entitlement-301/SECTION-301-BI4-REPAIR.json -> cleanup.rollingDeployWindow.",
+      "severity": "P3",
+      "releaseConsequence": "DOES_NOT_BLOCK",
+      "owner": "ENGINEERING",
+      "remediation": "Strengthen the §297 read-back: poll until the expected post-change behaviour is observed, or until a timeout, rather than probing once. For a REMOVAL specifically, prefer a probe that is safe to repeat and creates nothing on success — and never one whose success branch writes a row.",
+      "retestRequirement": "A configuration read-back that polls to a stable answer rather than sampling once.",
+      "status": "OPEN",
+      "blocksThresholdA": false,
+      "blocksThresholdB": false,
+      "blocksThresholdC": false,
+      "note": "Recorded because it is a trap that will recur on every future configuration change, and because the §301 read-back is exactly the shape that is dangerous: a probe whose SUCCESS path creates production state.",
+      "lastUpdatedBy": "§301"
+    },
+    {
       "domain": "PRESERVATION / REBUILD",
       "id": "PV-3",
       "description": "No Node version is pinned, and the Render runtime Node version cannot be read.",
@@ -1676,16 +1712,17 @@
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
   "candidateProductSourceCommit": "4749aba18c05f91dc5d345105b9e30fe909d7f59",
-  "applicationSourceDigest": "84a025531a56da98adb48e1a0d44ad7afe43e824f482715f3041fb9a521a5e32",
+  "applicationSourceDigest": "6d3e86baef948711a4e464acba2a2742041a078bfbd7be9ada0ef4c4c148890a",
   "applicationSourceDigestSuperseded": [
+    "84a025531a56da98adb48e1a0d44ad7afe43e824f482715f3041fb9a521a5e32",
     "4078a5522c33cc81dc7473d905d40e11a5a56d55fdb63d43333ff939e268d912",
     "95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613",
     "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "2170a6ba6496d4673b54e68c2b738d89d7e4707f",
-  "deployedAt": "§300 — backend dep-dakb8lrm8hqs73dvj99g, frontend dpl_3YTi2MmhNihrxYqWuvGhEqYJWn7D, both at 2170a6ba. 0 migrations, schema unchanged at 1800000023000 (55/55). Expert enabled at 1 analysis / USD 1.00, monitoring CONFIGURED, 0 unexpected 5xx, noindex/nofollow served, Render auto-deploy off.",
+  "deployedReleaseSha": "de00f896f87037ffb550d35e8ef134ad02ef34e7",
+  "deployedAt": "§301 — backend dep-dakrge5bedkc73c8j8ig, frontend dpl_FSZcecTxYuXCfb63dDs8RP8is7h8, both at de00f896. 0 migrations, schema unchanged at 1800000023000 (55/55).",
   "schemaHead": "1800000023000",
   "applicationSourceDigestNote": "DEPLOYED at §295 on both halves at 87491ed96f6f09de3de5800fc0a472e20d120413, binding 7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb. HEAD has moved past it twice since, both times without changing the deployed artifact, and both movements are recorded rather than reconciled by redeploying. §295 added an operator script under backend/scripts/, which is in the digest pattern but is excluded from the build by tsconfig (include src/**, rootDir ./src). §296 added a second operator script AND one npm script entry to backend/package.json, which IS a legitimate build input — so the narrower artifact-only digest moved too, from 5fb47c7f to fa0330d9. MEASURED, NOT ASSUMED: against the deployed commit, dependencies, devDependencies, engines, build:render and start:render are all IDENTICAL, and the only delta is one added scripts key (test:296-webhook-channel) that neither the build command nor the start command invokes. The deployed artifact would therefore be produced identically. NO REDEPLOY — spending a deployment to reconcile an npm script that only runs locally would be spending it on nothing. applicationSourceDigest remains THE binding and its definition is unchanged.",
   "artifactOnlyDigestDiagnostic": {

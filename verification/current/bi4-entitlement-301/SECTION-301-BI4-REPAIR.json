@@ -54,5 +54,52 @@
     "before": "the pre-repair expression, applied to the very account row the suite had just created, resolves status=none -> tier=free",
     "after": "the repaired expression, same row, resolves status=active -> tier=pro",
     "why": "so the suite distinguishes REPAIRED from NEVER-BROKEN. A test that only shows the good state cannot tell those apart."
+  },
+  "deployment": {
+    "backend": "dep-dakrge5bedkc73c8j8ig, api-pinned to de00f896, status live",
+    "frontend": "dpl_FSZcecTxYuXCfb63dDs8RP8is7h8, READY, metaGithubCommitSha de00f896",
+    "productionShaBefore": "2170a6ba6496d4673b54e68c2b738d89d7e4707f",
+    "productionShaAfter": "de00f896f87037ffb550d35e8ef134ad02ef34e7",
+    "applicationSourceDigestBefore": "84a025531a56da98adb48e1a0d44ad7afe43e824f482715f3041fb9a521a5e32",
+    "applicationSourceDigestAfter": "6d3e86baef948711a4e464acba2a2742041a078bfbd7be9ada0ef4c4c148890a",
+    "migrations": 0,
+    "schema": "1800000023000, 55/55, aheadOfBuild [] — unchanged",
+    "renderAutoDeploy": "no / off — unchanged",
+    "expert": "EXPERT_EXECUTION_ENABLED=true, ceilings 1 and USD 1.00 — untouched",
+    "monitoring": "CONFIGURED, webhook, serverErrorsInWindow 0",
+    "noindexNofollow": "x-robots-tag: noindex, nofollow",
+    "unexpected5xx": "none"
+  },
+  "liveProductionProof": {
+    "authorizationMechanism": "One 53-character cryptographically random EMPLOYER_PRO_PROMO_CODES value, set by per-key PUT (43 -> 44 keys, nothing else added, removed or changed; the three Expert keys byte-identical) and applied by deploying the identical artifact. Never printed and in no artifact.",
+    "authorizedPath": {
+      "register": "201, planCode pro, promoApplied true",
+      "freshLogin": "JWT planCode pro, billingEntitlements.fullSafeScope true",
+      "classify": "HTTP 201 — a real deterministic analysis: six applicabilityDecisions (30 CFR 56.14107(a), 56.15005, 29 CFR 1910.212(a)(1), 1910.28, 1926.501, 1926.300(b)(2)) and riskBand Critical"
+    },
+    "unauthorizedControlPath": {
+      "register": "201 with planCode FREE and promoApplied false, despite the body asking for planCode pro",
+      "freshLogin": "JWT planCode free, fullSafeScope false",
+      "classify": "HTTP 402 PAID_SUBSCRIPTION_REQUIRED, entitlement fullSafeScope",
+      "meaning": "A public caller cannot self-promote to the same entitlement the authorized path obtained, proven on the same deployment in the same minute."
+    },
+    "directProductionDatabaseWritesDuringTheProof": 0,
+    "commercialCharges": 0,
+    "platformAdminOperations": 0,
+    "expertAnalyses": 0,
+    "providerCalls": 0,
+    "spendUsd": 0.0
+  },
+  "cleanup": {
+    "promoRemoved": "DELETE env-var 204, then the identical artifact deployed again. The service record shows EMPLOYER_PRO_PROMO_CODES absent and the environment byte-identical to its §301 starting state (43 keys, 0 added, 0 removed, 0 changed).",
+    "syntheticAccounts": "Both deleted through the product's own DELETE /auth/me (200 each). Fresh login afterwards 401 for both; the authorized account's token returns 401 from classify.",
+    "rollingDeployWindow": {
+      "whatHappened": "The read-back that was supposed to confirm the removal was taken immediately after the deploy reported status 'live', and it SUCCEEDED — the request reached an instance still holding the old environment and created a promoted account. A second attempt shortly afterwards correctly returned 400 'Invalid promo code' and created nothing.",
+      "consequence": "One live pro account existed in production whose password had not been retained, so DELETE /auth/me was not available for it.",
+      "howItWasResolved": "ONE direct production database transaction, reproducing exactly what DELETE /auth/me does: refresh tokens revoked, email anonymized to deleted-<id>@deleted.safety-insite.local, password hash randomized, planCode returned to free, subscriptionStatus to none, deletedAt set. Verified afterwards: zero live pro accounts on the test domain, and the only active entitlement_grant is the owner's own pre-existing founder grant.",
+      "disclosure": "THIS IS A DEVIATION FROM §301's '0 direct production DB writes'. That requirement is stated for the LIVE PRODUCTION PROOF, and the proof itself used zero — every step of it went through HTTP. The write was CLEANUP of state created by a flawed read-back, and it is reported rather than absorbed.",
+      "registeredAs": "OPS-2"
+    },
+    "residual": "Two soft-deleted, anonymized accounts and one soft-deleted anonymized orphan. No customer data. No entitlement. No inspection, observation, finding or analysis was created."
   }
 }
