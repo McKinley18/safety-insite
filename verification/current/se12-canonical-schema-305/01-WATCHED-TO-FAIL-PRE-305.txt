@@ -1,0 +1,87 @@
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789523025074_5427
+registered as run 2f1430a9-e3d2-4a7e-9760-76266cfdda0b
+
+> safety-insite-backend@1.0.0 check:canonical-schema:inner
+> ts-node scripts/check-canonical-schema.ts
+
+canonical schema gate: replayed database test_insite_1789523025074_5427
+  manifest digest  e4fe7d97692e5b839f80b42d5d1a374fe3fd97a11f2d9a57c40f1770edf4c9aa
+  replay digest    f06e9fe8e8cd17b78b7f40c807180ea7abf46c8c45c8875d3977d7133814c95d
+  manifest tables  69
+  replay tables    56
+  retired/compatibility objects present (not enforced): reports
+
+§305 CANONICAL SCHEMA DRIFT — 68 material difference(s):
+
+  [SHARED_INFRASTRUCTURE] audit_entry_findings: column_default — confidenceScore: expected '0', found 0
+  [SHARED_INFRASTRUCTURE] classification_feedback: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] classification_rule_versions: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] classification_rules: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] classifications: column_type — classificationStatus: expected USER-DEFINED, found character varying
+  [SHARED_INFRASTRUCTURE] classifications: missing_column — reviewReason
+  [SHARED_INFRASTRUCTURE] classifications: column_type — severityLevel: expected integer, found character varying
+  [SHARED_INFRASTRUCTURE] corrective_action_templates: missing_table — present in the canonical manifest, absent from this database
+  [ACTIVE_INDIVIDUAL_BETA] corrective_actions: column_nullability — tenantId: expected NOT NULL, found NULL
+  [ACTIVE_INDIVIDUAL_BETA] corrective_actions: missing_unique — displayId
+  [ACTIVE_INDIVIDUAL_BETA] corrective_actions: missing_index — displayId
+  [SHARED_INFRASTRUCTURE] decision_governance_logs: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] fix_feedback: column_default — id: expected uuid_generate_v4(), found gen_random_uuid()
+  [SHARED_INFRASTRUCTURE] hazard_categories: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] hazard_standard_mappings: missing_table — present in the canonical manifest, absent from this database
+  [ACTIVE_INDIVIDUAL_BETA] notifications: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] recommendation_feedback: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] regulatory_agency: column_type — createdAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_agency: column_type — updatedAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_paragraph: column_type — createdAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_paragraph: column_type — updatedAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_part: column_type — createdAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_part: column_type — updatedAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_section: column_type — createdAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_section: column_type — updatedAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_subpart: column_type — createdAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] regulatory_subpart: column_type — updatedAt: expected timestamp without time zone, found timestamp with time zone
+  [SHARED_INFRASTRUCTURE] report_attachments: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] report_language_templates: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] safescope_audit_records: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] safescope_feedback: column_default — id: expected uuid_generate_v4(), found gen_random_uuid()
+  [SHARED_INFRASTRUCTURE] safescope_feedback: missing_column — safeScopeVersion
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_chunks: column_default — chunkIndex: expected null, found 0
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_chunks: column_type — citation: expected character varying(160), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_chunks: column_default — confidenceWeight: expected '0', found 0.5
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_chunks: column_type — sectionHeading: expected character varying(220), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_documents: column_type — agency: expected character varying(40), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_documents: column_default — agency: expected 'Other', found 'GENERAL'
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_documents: column_type — approvalStatus: expected character varying(40), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_documents: column_type — citation: expected character varying(160), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_documents: column_type — sourceType: expected character varying(60), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_documents: column_type — sourceUrl: expected text, found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_documents: column_type — title: expected character varying(240), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_type — agency: expected character varying(40), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_nullability — metadataJson: expected NOT NULL, found NULL
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_default — metadataJson: expected '{}', found null
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_type — sourceName: expected character varying(160), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_type — sourceType: expected character varying(80), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_type — status: expected character varying(40), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_type — warnings: expected jsonb, found ARRAY
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_ingestion_runs: column_default — warnings: expected '[]', found '{}'
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_retrieval_logs: column_default — confidence: expected '0', found 0
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_retrieval_logs: column_type — findingId: expected character varying(120), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_retrieval_logs: column_type — reportId: expected character varying(120), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_retrieval_logs: column_type — workspaceId: expected character varying(120), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_type — agency: expected character varying(40), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_type — lastKnownVersion: expected character varying(120), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_nullability — metadataJson: expected NOT NULL, found NULL
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_default — metadataJson: expected '{}', found null
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_type — name: expected character varying(160), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_type — sourceType: expected character varying(80), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_type — status: expected character varying(40), found character varying
+  [SHARED_INFRASTRUCTURE] safescope_knowledge_sources: column_type — trustLevel: expected character varying(80), found character varying
+  [ACTIVE_INDIVIDUAL_BETA] site: missing_foreign_key — organizationId -> organization(id) ON DELETE NO ACTION
+  [SHARED_INFRASTRUCTURE] standard_match_feedback: missing_table — present in the canonical manifest, absent from this database
+  [SHARED_INFRASTRUCTURE] standards_master: column_nullability — scope_code: expected NULL, found NOT NULL
+  [ACTIVE_INDIVIDUAL_BETA] user: column_type — organizationId: expected uuid, found character varying
+  [ACTIVE_INDIVIDUAL_BETA] user: missing_foreign_key — organizationId -> organization(id) ON DELETE NO ACTION
+
+A fresh migration replay no longer produces the canonical schema. Either the migration history is missing a change, or the manifest needs regenerating deliberately (npm run s305:manifest) as part of a reviewed schema change.
+dropped test_insite_1789523025074_5427

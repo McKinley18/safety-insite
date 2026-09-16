@@ -1,0 +1,7439 @@
+{
+ "artifact": "SAFETY_INSITE_CANONICAL_SCHEMA_MANIFEST",
+ "establishedBy": "§305 (SE-12)",
+ "generatedFrom": "a fresh database built by replaying the full migration history",
+ "digest": "3a51b1a21294f40649a57ab0f0857fb2816e5e695a7cabe35c05043b9185bf60",
+ "tableCount": 68,
+ "schema": {
+  "tables": [
+   {
+    "name": "agreement_acceptances",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "acceptanceChannel",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "acceptedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "agreementId",
+      "type": "character varying(128)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "agreementVersion",
+      "type": "character varying(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "counselStatusAtAcceptance",
+      "type": "character varying(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "documentDigest",
+      "type": "character varying(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "gen_random_uuid()"
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "userId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "userId",
+      "agreementId",
+      "agreementVersion"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "userId",
+      "acceptedAt\" DESC"
+     ],
+     [
+      "userId",
+      "agreementId",
+      "agreementVersion"
+     ]
+    ]
+   },
+   {
+    "name": "audit_entries",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "auditSessionId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "locationText",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "notes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verificationStatus",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'draft'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "auditSessionId"
+      ],
+      "references": "audit_sessions(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "auditSessionId"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "audit_entry_attachments",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "auditEntryId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "fileName",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "imageUri",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "mimeType",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "auditEntryId"
+      ],
+      "references": "audit_entries(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "auditEntryId"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "audit_entry_findings",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "aiReasoning",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "applicableStandards",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "auditEntryId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "confidenceScore",
+      "type": "double precision",
+      "nullable": false,
+      "default": "'0'"
+     },
+     {
+      "name": "hazardCategoryCode",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "observedCondition",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "severityLevel",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "suggestedFix",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "title",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verificationStatus",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'draft'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "auditEntryId"
+      ],
+      "references": "audit_entries(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "auditEntryId"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "audit_logs",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "actionCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "actorUserId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "afterJson",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "beforeJson",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "entityId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "entityType",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "metadataJson",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "tenantId",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'default'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "tenantId",
+      "createdAt"
+     ]
+    ]
+   },
+   {
+    "name": "audit_sessions",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "auditDate",
+      "type": "date",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "auditorName",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "facilityName",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "organizationId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "publishedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sessionNotes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "siteId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standardsMode",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'msha_hybrid'"
+     },
+     {
+      "name": "status",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'draft'"
+     },
+     {
+      "name": "tenantId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "organizationId"
+     ],
+     [
+      "tenantId"
+     ]
+    ]
+   },
+   {
+    "name": "classification_feedback",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "accepted",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "hazardDescription",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "notes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "selectedStandardId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "suggestedStandardId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "tenantId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "userId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "classification_rule_versions",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "ruleId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "snapshot",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'published'"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "classification_rules",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "code",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "isActive",
+      "type": "boolean",
+      "nullable": false,
+      "default": "true"
+     },
+     {
+      "name": "keywords",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "severity",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "code"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "code"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "classifications",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "areaTypeCode",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "classificationStatus",
+      "type": "USER-DEFINED",
+      "nullable": false,
+      "default": "'pending'"
+     },
+     {
+      "name": "classifierType",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "classifierVersion",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "confidenceScore",
+      "type": "double precision",
+      "nullable": false,
+      "default": "'0'"
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "eventTypeCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "extractedEntities",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "hazardCategoryCode",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "hazardSubcategoryCode",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "likelihoodLevel",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reasoningSummary",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "regulationRefs",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "requiresHumanReview",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "reviewedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reviewReason",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "rootCauseCategoryCode",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "rootCauseSubcategoryCode",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "severityLevel",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "corrective_action_templates",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "bestPracticeOption",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "estimatedRiskReduction",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "hazardCategoryCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "lowCostOption",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "recommendedAction",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "standardId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "title",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "verificationSteps",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "corrective_actions",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "assignedToName",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "assignedToUserId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "category",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "classificationId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "clientRequestId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "closedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "closedByUserId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "closureNotes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "description",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "displayId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "dueDate",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "findingId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "originalSuggestion",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "ownerUserId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "priorityCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "siteId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "source",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "statusCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'open'"
+     },
+     {
+      "name": "tenantId",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'default'"
+     },
+     {
+      "name": "title",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "verifiedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verifiedByUserId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "displayId"
+     ],
+     [
+      "displayId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "displayId"
+     ],
+     [
+      "displayId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ],
+     [
+      "organizationId"
+     ],
+     [
+      "organizationId",
+      "statusCode"
+     ],
+     [
+      "ownerUserId",
+      "statusCode",
+      "dueDate"
+     ],
+     [
+      "reportId",
+      "findingId"
+     ],
+     [
+      "siteId"
+     ],
+     [
+      "statusCode",
+      "priorityCode"
+     ],
+     [
+      "tenantId"
+     ]
+    ]
+   },
+   {
+    "name": "decision_governance_logs",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "confidence",
+      "type": "double precision",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "decisionSource",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "finalHumanDecision",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "finalOutcome",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inputText",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "originalAiDecision",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "overrideApplied",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "overrideReason",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "predictedCategory",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "recommendedAction",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "riskScore",
+      "type": "double precision",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "selectedStandard",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "userReviewed",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "entitlement_grants",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "endsAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "issuedByUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reason",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "source",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "startsAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'active'"
+     },
+     {
+      "name": "tier",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'pro'"
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "userId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "userId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "userId",
+      "status",
+      "endsAt"
+     ]
+    ]
+   },
+   {
+    "name": "expert_analysis_executions",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "admission",
+      "type": "character varying(32)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "admissionVersion",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "analysisId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "attempts",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "candidateIdentity",
+      "type": "character varying(128)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "completedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "confirmationRuleVersion",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "conformanceViolations",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "contractVersion",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "costUsd",
+      "type": "numeric(12,6)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "declarationRefusals",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "entryVersion",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "executionState",
+      "type": "character varying(48)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "failureDetail",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "failureKind",
+      "type": "character varying(80)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "firstPassInputTokens",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "firstPassOutputTokens",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "gen_random_uuid()"
+     },
+     {
+      "name": "idempotencyKey",
+      "type": "character varying(128)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "latencyMs",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "observationId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "postureRefusalCodes",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "producer",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'server_authored'"
+     },
+     {
+      "name": "projectionVersion",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "providerId",
+      "type": "character varying(80)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "rawFirstPass",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "rawVerifier",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "requestedByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "requestVersion",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "respondedModel",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "roleJustificationCodes",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "systemPromptSha",
+      "type": "character varying(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verifierFactKey",
+      "type": "character varying(200)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verifierInputTokens",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verifierNotReachedBecause",
+      "type": "character varying(200)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verifierOutputTokens",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "verifierReached",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "wireSchemaSha",
+      "type": "character varying(64)",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "analysisId"
+      ],
+      "references": "hazlenz_analyses(id)",
+      "onDelete": "SET NULL",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "observationId"
+      ],
+      "references": "observations(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "observationId",
+      "idempotencyKey"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "observationId",
+      "executionState"
+     ],
+     [
+      "observationId",
+      "idempotencyKey"
+     ],
+     [
+      "organizationId\" IS NOT NULL"
+     ]
+    ]
+   },
+   {
+    "name": "fix_feedback",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "approved",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "category",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "created_at",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "original_suggestion",
+      "type": "jsonb",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "report_id",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "user_action",
+      "type": "jsonb",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "category",
+      "approved"
+     ],
+     [
+      "id"
+     ],
+     [
+      "report_id"
+     ]
+    ]
+   },
+   {
+    "name": "hazard",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "description",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "severity",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "inspectionId"
+      ],
+      "references": "inspection(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "inspectionId"
+     ]
+    ]
+   },
+   {
+    "name": "hazard_categories",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "code",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "commonKeywords",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "defaultSeverity",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'medium'"
+     },
+     {
+      "name": "description",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "name",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "code"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "code"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "hazard_standard_mappings",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "confidenceBoost",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "hazardCategoryCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "matchTerms",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reasoningTemplate",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standardId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "hazlenz_analyses",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "advisoryStatus",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'advisory'"
+     },
+     {
+      "name": "analysisState",
+      "type": "character varying(48)",
+      "nullable": false,
+      "default": "'ANALYSIS_AVAILABLE'"
+     },
+     {
+      "name": "confirmationRequired",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "engineVersion",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "expertExecutionId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "idempotencyKey",
+      "type": "character varying(128)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "knowledgeReleaseId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "observationId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "producer",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'client_supplied'"
+     },
+     {
+      "name": "requestedByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "requestVersion",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "resultSnapshot",
+      "type": "jsonb",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "settlementReviewId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'current'"
+     },
+     {
+      "name": "traceId",
+      "type": "character varying(80)",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "expertExecutionId"
+      ],
+      "references": "expert_analysis_executions(id)",
+      "onDelete": "SET NULL",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "observationId"
+      ],
+      "references": "observations(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "requestedByUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "settlementReviewId"
+      ],
+      "references": "human_reviews(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "observationId",
+      "idempotencyKey"
+     ],
+     [
+      "observationId",
+      "requestVersion"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "observationId",
+      "createdAt"
+     ],
+     [
+      "observationId",
+      "idempotencyKey"
+     ],
+     [
+      "observationId",
+      "requestVersion"
+     ],
+     [
+      "producer",
+      "analysisState"
+     ]
+    ]
+   },
+   {
+    "name": "human_reviews",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "analysisId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "decision",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "findingId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "idempotencyKey",
+      "type": "character varying(128)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "observationId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "rationale",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewedByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewedConclusion",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'current'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "analysisId"
+      ],
+      "references": "hazlenz_analyses(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "findingId"
+      ],
+      "references": "inspection_findings(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "observationId"
+      ],
+      "references": "observations(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "reviewedByUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "findingId",
+      "createdAt"
+     ],
+     [
+      "findingId",
+      "status"
+     ],
+     [
+      "id"
+     ],
+     [
+      "observationId",
+      "createdAt"
+     ]
+    ]
+   },
+   {
+    "name": "inspection",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "archivedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "clientRequestId",
+      "type": "character varying(128)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "completedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "completedByUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "createdByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "displayNumber",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "knowledgeReleaseId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "ownerUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "regulatoryContext",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'unknown'"
+     },
+     {
+      "name": "siteId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'draft'"
+     },
+     {
+      "name": "title",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "nullable": false,
+      "default": "1"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ],
+     [
+      "knowledgeReleaseId\" IS NOT NULL"
+     ],
+     [
+      "organizationId"
+     ],
+     [
+      "organizationId",
+      "status"
+     ],
+     [
+      "ownerUserId",
+      "status"
+     ],
+     [
+      "siteId",
+      "status"
+     ]
+    ]
+   },
+   {
+    "name": "inspection_assignments",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "assignedByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "endedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "role",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "userId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "assignedByUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "inspectionId"
+      ],
+      "references": "inspection(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "userId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "inspectionId",
+      "userId",
+      "role"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "inspectionId",
+      "userId",
+      "role"
+     ]
+    ]
+   },
+   {
+    "name": "inspection_findings",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "conclusion",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "finalizedByUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "finalReviewId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "hazardCategory",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "hazardKey",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": "'primary'"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "knowledgeReleaseId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "observationId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "originatingAnalysisId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reviewerDisposition",
+      "type": "character varying(16)",
+      "nullable": false,
+      "default": "'single'"
+     },
+     {
+      "name": "revision",
+      "type": "integer",
+      "nullable": false,
+      "default": "1"
+     },
+     {
+      "name": "riskSnapshot",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "segmentKey",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": "'primary'"
+     },
+     {
+      "name": "selectedAnalysisId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "source",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'hazlenz_decomposition'"
+     },
+     {
+      "name": "sourceCandidate",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "finalizedByUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "finalReviewId"
+      ],
+      "references": "human_reviews(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "inspectionId"
+      ],
+      "references": "inspection(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "observationId"
+      ],
+      "references": "observations(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "originatingAnalysisId"
+      ],
+      "references": "hazlenz_analyses(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "selectedAnalysisId"
+      ],
+      "references": "hazlenz_analyses(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "observationId",
+      "segmentKey",
+      "revision"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "inspectionId",
+      "status"
+     ],
+     [
+      "observationId",
+      "hazardKey",
+      "status"
+     ],
+     [
+      "observationId",
+      "segmentKey"
+     ],
+     [
+      "observationId",
+      "segmentKey",
+      "revision"
+     ]
+    ]
+   },
+   {
+    "name": "inspection_report_versions",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "failureReason",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "generatedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "generatedByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "generatorVersion",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "reportId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sha256",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sizeBytes",
+      "type": "bigint",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sourceFingerprint",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sourceInspectionVersion",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceSnapshot",
+      "type": "jsonb",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "storageObjectId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "supersededByVersionId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "reportId"
+      ],
+      "references": "inspection_reports(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "storageObjectId"
+      ],
+      "references": "storage_objects(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "reportId",
+      "version"
+     ],
+     [
+      "sourceFingerprint\" IS NOT NULL"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "reportId",
+      "version"
+     ],
+     [
+      "sourceFingerprint\" IS NOT NULL"
+     ]
+    ]
+   },
+   {
+    "name": "inspection_reports",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "archivedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "createdByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "ownerUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "inspectionId"
+      ],
+      "references": "inspection(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "inspectionId"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "inspectionId"
+     ]
+    ]
+   },
+   {
+    "name": "invitation",
+    "scope": "DEFERRED_COMPANY_TEAM",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "email",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "isUsed",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "role",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'Auditor'"
+     },
+     {
+      "name": "token",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "organizationId"
+      ],
+      "references": "organization(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "token"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "organizationId"
+     ],
+     [
+      "token"
+     ]
+    ]
+   },
+   {
+    "name": "knowledge_release_events",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "actor",
+      "type": "character varying(160)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "details",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "event",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "fromReleaseId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "outcome",
+      "type": "character varying(16)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reason",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "toReleaseId",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "toReleaseId",
+      "createdAt"
+     ]
+    ]
+   },
+   {
+    "name": "legacy_adoption_quarantine",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "classification",
+      "type": "character varying(60)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "metadata",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'{}'"
+     },
+     {
+      "name": "reason",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewStatus",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'pending_review'"
+     },
+     {
+      "name": "runId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceId",
+      "type": "character varying(180)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceRowHash",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceTable",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "runId"
+      ],
+      "references": "legacy_adoption_runs(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "runId",
+      "sourceTable",
+      "sourceId"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "runId",
+      "sourceTable",
+      "sourceId"
+     ]
+    ]
+   },
+   {
+    "name": "legacy_adoption_records",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "result",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "runId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceId",
+      "type": "character varying(180)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceRowHash",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceTable",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "targetId",
+      "type": "character varying(180)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "targetTable",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "runId"
+      ],
+      "references": "legacy_adoption_runs(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "runId",
+      "sourceTable",
+      "sourceId"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "runId",
+      "sourceTable",
+      "sourceId"
+     ]
+    ]
+   },
+   {
+    "name": "legacy_adoption_runs",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "adoptedRowCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "completedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "operatorLabel",
+      "type": "character varying(160)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "quarantinedRowCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "sourceContentFingerprint",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceIdentityHash",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceRowCount",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceSchemaFingerprint",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "startedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "summary",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'{}'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "legacy_report_quarantine",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "classification",
+      "type": "character varying(50)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "metadata",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "quarantinedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "reason",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewStatus",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'pending_review'"
+     },
+     {
+      "name": "sourceId",
+      "type": "character varying(160)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourcePayloadSha256",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceTable",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "sourceTable",
+      "sourceId"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "sourceTable",
+      "sourceId"
+     ]
+    ]
+   },
+   {
+    "name": "notifications",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "entityId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "entityType",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "message",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "read",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "tenantId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "title",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "type",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "userId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "userId"
+      ],
+      "references": "user(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "userId",
+      "createdAt"
+     ]
+    ]
+   },
+   {
+    "name": "observations",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "clientRequestId",
+      "type": "character varying(128)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "createdByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "evidenceSource",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'direct_observation'"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "rawText",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "nullable": false,
+      "default": "1"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "createdByUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "inspectionId"
+      ],
+      "references": "inspection(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ],
+     [
+      "inspectionId",
+      "createdAt"
+     ]
+    ]
+   },
+   {
+    "name": "organization",
+    "scope": "DEFERRED_COMPANY_TEAM",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "logoPath",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "name",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "planCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'basic'"
+     },
+     {
+      "name": "riskProfileId",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'standard_5x5'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "organization_memberships",
+    "scope": "DEFERRED_COMPANY_TEAM",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "endedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "invitedByUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "joinedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "role",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'member'"
+     },
+     {
+      "name": "status",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'active'"
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "userId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "organizationId"
+      ],
+      "references": "organization(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "userId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "organizationId",
+      "status"
+     ],
+     [
+      "userId",
+      "status"
+     ]
+    ]
+   },
+   {
+    "name": "platform_support_grants",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "approvedByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "expiresAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "platformUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reason",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "revokedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "approvedByUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "organizationId"
+      ],
+      "references": "organization(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "platformUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "platformUserId",
+      "expiresAt"
+     ]
+    ]
+   },
+   {
+    "name": "recommendation_feedback",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "action",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "hazard",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "nullable": false,
+      "default": "nextval('recommendation_feedback_id_seq')"
+     },
+     {
+      "name": "notes",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "replacementText",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "refresh_tokens",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "expiresAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "revokedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "tokenHash",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "userId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "tokenHash"
+     ],
+     [
+      "userId"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_agency",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "code",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "name",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "titleNumber",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "code"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "code"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_paragraph",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "keywords",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "label",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "paragraphPath",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sectionCitation",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sortOrder",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "summaryPlainLanguage",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "textPlain",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "sectionCitation",
+      "textPlain"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "sectionCitation"
+     ],
+     [
+      "sectionCitation",
+      "textPlain"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_part",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agencyCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "customerPack",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "heading",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "part",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "titleNumber",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "agencyCode",
+      "titleNumber",
+      "part"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "agencyCode",
+      "titleNumber",
+      "part"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_release_record_reviews",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "approvalContractVersion",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approvalDigest",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "citation",
+      "type": "character varying(200)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "citationKey",
+      "type": "character varying(200)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "decidedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "decision",
+      "type": "character varying(16)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "frozenReviewStateAtDecision",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "note",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "recordChecksum",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "releaseId",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewerId",
+      "type": "character varying(160)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewerRole",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sourceIdentityDigest",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "substantiveContentDigest",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "supersedesDecisionId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "releaseId",
+      "citationKey",
+      "approvalDigest"
+     ],
+     [
+      "releaseId",
+      "citationKey",
+      "recordChecksum"
+     ],
+     [
+      "releaseId",
+      "decidedAt"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_release_records",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agencyCode",
+      "type": "character varying(24)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approvalContractVersion",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approvalDigest",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approvalPayload",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "citation",
+      "type": "character varying(200)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "citationKey",
+      "type": "character varying(200)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "payload",
+      "type": "jsonb",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "recordChecksum",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "releaseId",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewState",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewStateReason",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sourceIdentityDigest",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standardId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "substantiveContentDigest",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "releaseId",
+      "citationKey"
+     ]
+    ],
+    "indexes": [
+     [
+      "citationKey"
+     ],
+     [
+      "id"
+     ],
+     [
+      "releaseId"
+     ],
+     [
+      "releaseId",
+      "citationKey"
+     ],
+     [
+      "releaseId",
+      "citationKey",
+      "approvalDigest"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_releases",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "activatedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approvedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approvedBy",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "deactivatedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "manifestChecksum",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "parentReleaseId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "parserVersion",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "recordCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "releaseId",
+      "type": "character varying(120)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "releaseVersion",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'draft'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "releaseId"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "releaseId"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_section",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agencyCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "citation",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "heading",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "lastAmendedOn",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "lastSyncedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "part",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "section",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceUrl",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "subpart",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "summaryPlainLanguage",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "textPlain",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "titleNumber",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "upToDateAsOf",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "citation"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "agencyCode"
+     ],
+     [
+      "citation"
+     ],
+     [
+      "id"
+     ],
+     [
+      "part"
+     ],
+     [
+      "titleNumber"
+     ]
+    ]
+   },
+   {
+    "name": "regulatory_subpart",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agencyCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "heading",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "part",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sortOrder",
+      "type": "integer",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "subpart",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "titleNumber",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "agencyCode",
+      "titleNumber",
+      "part",
+      "subpart"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "agencyCode",
+      "titleNumber",
+      "part",
+      "subpart"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "report_language_templates",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "correctiveActionTemplate",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "findingTemplate",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "hazardCategoryCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "professionalSummaryTemplate",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "standardReasoningTemplate",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "reports",
+    "scope": "RETIRED_COMPATIBILITY",
+    "columns": [
+     {
+      "name": "aiStatus",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "confidenceScore",
+      "type": "double precision",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "createdByUserId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "eventDatetime",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "eventTypeCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "frontendReportJson",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "intakeStatus",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'received'"
+     },
+     {
+      "name": "narrative",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reportedDatetime",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reportStatus",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'open'"
+     },
+     {
+      "name": "siteId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceType",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "title",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "organizationId"
+     ]
+    ]
+   },
+   {
+    "name": "reviews",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "afterSnapshot",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "beforeSnapshot",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "classificationId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "notes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewAction",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reviewerUserId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "risk_scores",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "calculatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "classificationId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "compositeRiskScore",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "confidenceModifier",
+      "type": "double precision",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "controlFailureScore",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "recurrenceScore",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "riskBand",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "severityScore",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "trendScore",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_audit_records",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "actorId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "actorRole",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "gen_random_uuid()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "metadata",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'{}'"
+     },
+     {
+      "name": "observationId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "payload",
+      "type": "jsonb",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'active'"
+     },
+     {
+      "name": "traceId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "type",
+      "type": "character varying(50)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "workspaceId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "traceId"
+     ],
+     [
+      "type",
+      "status"
+     ],
+     [
+      "workspaceId"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_feedback",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "action",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "citation",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "classification",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "confidenceBefore",
+      "type": "double precision",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "expertReviewed",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "findingId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "hazLenzVersion",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'v2'"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "promotedToGlobal",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "reason",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "replacementCitation",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reviewerRole",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "riskProfileId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "safeScopeVersion",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'v2'"
+     },
+     {
+      "name": "userId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "workspaceId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "citation"
+     ],
+     [
+      "classification"
+     ],
+     [
+      "id"
+     ],
+     [
+      "workspaceId"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_knowledge_chunks",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "authorityTier",
+      "type": "integer",
+      "nullable": false,
+      "default": "5"
+     },
+     {
+      "name": "chunkIndex",
+      "type": "integer",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "chunkSummary",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "chunkText",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "citation",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "confidenceWeight",
+      "type": "double precision",
+      "nullable": false,
+      "default": "'0'"
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "documentId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "equipmentTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "hazardTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "lessonTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "normalizedRecordChecksum",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sectionHeading",
+      "type": "character varying(220)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standardTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "taskTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "documentId"
+      ],
+      "references": "safescope_knowledge_documents(id)",
+      "onDelete": "CASCADE",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "citation"
+     ],
+     [
+      "documentId"
+     ],
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_knowledge_documents",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agency",
+      "type": "character varying(40)",
+      "nullable": false,
+      "default": "'Other'"
+     },
+     {
+      "name": "approvalStatus",
+      "type": "character varying(40)",
+      "nullable": false,
+      "default": "'draft'"
+     },
+     {
+      "name": "authorityTier",
+      "type": "integer",
+      "nullable": false,
+      "default": "5"
+     },
+     {
+      "name": "citation",
+      "type": "character varying(160)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "equipmentTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "hazardTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "lessonTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "normalizedRecordChecksum",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "parserVersion",
+      "type": "character varying(80)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "publishedAt",
+      "type": "date",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "rawText",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "regulatoryReleaseId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "retrievedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reviewedAt",
+      "type": "date",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sourceDocumentChecksum",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sourceType",
+      "type": "character varying(60)",
+      "nullable": false,
+      "default": "'other'"
+     },
+     {
+      "name": "sourceUrl",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standardTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "summary",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "taskTags",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "title",
+      "type": "character varying(240)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "approvalStatus"
+     ],
+     [
+      "id"
+     ],
+     [
+      "regulatoryReleaseId",
+      "approvalStatus"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_knowledge_ingestion_runs",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agency",
+      "type": "character varying(40)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "approvedCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "completedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "discoveredCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "errorMessage",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "ingestedCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "metadataJson",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'{}'"
+     },
+     {
+      "name": "pendingReviewCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "skippedCount",
+      "type": "integer",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "sourceId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "sourceName",
+      "type": "character varying(160)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceType",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "startedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(40)",
+      "nullable": false,
+      "default": "'queued'"
+     },
+     {
+      "name": "warnings",
+      "type": "text[]",
+      "nullable": false,
+      "default": "'{}'"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_knowledge_retrieval_logs",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agencyMode",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "classification",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "confidence",
+      "type": "double precision",
+      "nullable": false,
+      "default": "'0'"
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "findingId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "matchedChunkIds",
+      "type": "text[]",
+      "nullable": false,
+      "default": "'{}'"
+     },
+     {
+      "name": "query",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "queryText",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reasoningJson",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'{}'"
+     },
+     {
+      "name": "reportId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "retrievedChunkIds",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "selectedChunkIds",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'[]'"
+     },
+     {
+      "name": "topScore",
+      "type": "numeric",
+      "nullable": false,
+      "default": "0"
+     },
+     {
+      "name": "workspaceId",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_knowledge_sources",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agency",
+      "type": "character varying(40)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "baseUrl",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "defaultAuthorityTier",
+      "type": "integer",
+      "nullable": false,
+      "default": "3"
+     },
+     {
+      "name": "description",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "lastCheckedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "lastKnownVersion",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "lastSuccessfulIngestionAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "metadataJson",
+      "type": "jsonb",
+      "nullable": false,
+      "default": "'{}'"
+     },
+     {
+      "name": "name",
+      "type": "character varying(160)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sourceType",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(40)",
+      "nullable": false,
+      "default": "'active'"
+     },
+     {
+      "name": "trustLevel",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": "'official'"
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "name"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "name"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_reasoning_snapshots",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "classification",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "confidenceCalibration",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "decisionExplainability",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "engineVersion",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "equipmentArchetypeContext",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "equipmentReasoningSummary",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "equipmentTaskMechanismContext",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "fullIntelligenceSnapshot",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "intelligenceMetadata",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "operationalReasoning",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reasoningDrift",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standardsReasoning",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "validationStatus",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'generated'"
+     },
+     {
+      "name": "workspaceId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "workspaceLearning",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "classification"
+     ],
+     [
+      "id"
+     ],
+     [
+      "reportId"
+     ],
+     [
+      "validationStatus"
+     ],
+     [
+      "workspaceId"
+     ]
+    ]
+   },
+   {
+    "name": "safescope_supervisor_validations",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "modifiedClassification",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "modifiedRiskAssessment",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "modifiedStandards",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reasoningSnapshotId",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "reportId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reviewerName",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reviewerNotes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "validationDecision",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'accepted'"
+     },
+     {
+      "name": "validationMetadata",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "workspaceId",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "reasoningSnapshotId"
+     ],
+     [
+      "validationDecision"
+     ],
+     [
+      "workspaceId"
+     ]
+    ]
+   },
+   {
+    "name": "security_audit_events",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "action",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "actorUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "metadata",
+      "type": "jsonb",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "resourceId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "resourceType",
+      "type": "character varying(80)",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "actorUserId",
+      "createdAt"
+     ],
+     [
+      "id"
+     ],
+     [
+      "organizationId",
+      "createdAt"
+     ]
+    ]
+   },
+   {
+    "name": "site",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "archivedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "archivedByUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "createdByUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "name",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "ownerUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "organizationId"
+      ],
+      "references": "organization(id)",
+      "onDelete": "NO ACTION",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "organizationId"
+     ],
+     [
+      "organizationId",
+      "archivedAt"
+     ],
+     [
+      "ownerUserId",
+      "archivedAt"
+     ]
+    ]
+   },
+   {
+    "name": "standard_match_feedback",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "action",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "citation",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "created_at",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "hazard_category",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "notes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "query_text",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "replacement_citation",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "report_id",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standard_id",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ]
+    ]
+   },
+   {
+    "name": "standards_master",
+    "scope": "SHARED_INFRASTRUCTURE",
+    "columns": [
+     {
+      "name": "agency_code",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "allowed_use",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'reference'"
+     },
+     {
+      "name": "applicability_schema_version",
+      "type": "character varying(80)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approval_date",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "approved_for_auto_ingestion",
+      "type": "boolean",
+      "nullable": false,
+      "default": "true"
+     },
+     {
+      "name": "authority_tier",
+      "type": "integer",
+      "nullable": false,
+      "default": "3"
+     },
+     {
+      "name": "citation",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "created_at",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "deprecation_status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'active'"
+     },
+     {
+      "name": "effective_date",
+      "type": "date",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "hazard_codes",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "is_active",
+      "type": "boolean",
+      "nullable": false,
+      "default": "true"
+     },
+     {
+      "name": "keywords",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "normalized_record_checksum",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "part_number",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "plain_language_summary",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "release_id",
+      "type": "character varying(120)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "required_controls",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "requires_approval",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "retrieval_date",
+      "type": "date",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "reviewer_approved",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "revision_date",
+      "type": "date",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "scope_code",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "severity_weight",
+      "type": "integer",
+      "nullable": false,
+      "default": "1"
+     },
+     {
+      "name": "source_document_checksum",
+      "type": "character(64)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "source_key",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "source_name",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "source_publication_date",
+      "type": "date",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "source_type",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "source_url",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "standard_text",
+      "type": "text",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "subpart",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "superseded_by_citation",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "title",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "transformation_version",
+      "type": "character varying(80)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "updated_at",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "agency_code",
+      "citation"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "agency_code",
+      "citation"
+     ],
+     [
+      "deprecation_status"
+     ],
+     [
+      "id"
+     ],
+     [
+      "release_id"
+     ]
+    ]
+   },
+   {
+    "name": "storage_objects",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "category",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "clientRequestId",
+      "type": "character varying(128)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "contentType",
+      "type": "character varying(160)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "createdByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "deletedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "deletedByUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "downloadName",
+      "type": "character varying(255)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "expiresAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "objectKey",
+      "type": "character varying(500)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "ownerUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "parentId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "parentType",
+      "type": "character varying(40)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "provider",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sha256",
+      "type": "character(64)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "sizeBytes",
+      "type": "bigint",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(24)",
+      "nullable": false,
+      "default": "'uploading'"
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ],
+     [
+      "objectKey"
+     ]
+    ],
+    "indexes": [
+     [
+      "clientRequestId\" IS NOT NULL"
+     ],
+     [
+      "id"
+     ],
+     [
+      "objectKey"
+     ],
+     [
+      "organizationId",
+      "ownerUserId",
+      "status"
+     ],
+     [
+      "parentType",
+      "parentId"
+     ]
+    ]
+   },
+   {
+    "name": "tasks",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "assignedToUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "completedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "correctiveActionId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "createdByUserId",
+      "type": "uuid",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "description",
+      "type": "text",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "dueDate",
+      "type": "date",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "inspectionId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "ownerUserId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "priority",
+      "type": "character varying(16)",
+      "nullable": false,
+      "default": "'medium'"
+     },
+     {
+      "name": "siteId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(16)",
+      "nullable": false,
+      "default": "'open'"
+     },
+     {
+      "name": "title",
+      "type": "character varying(200)",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "nullable": false,
+      "default": "1"
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "assignedToUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "correctiveActionId"
+      ],
+      "references": "corrective_actions(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "createdByUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "inspectionId"
+      ],
+      "references": "inspection(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "organizationId"
+      ],
+      "references": "organization(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "ownerUserId"
+      ],
+      "references": "user(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     },
+     {
+      "columns": [
+       "siteId"
+      ],
+      "references": "site(id)",
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "correctiveActionId"
+     ],
+     [
+      "id"
+     ],
+     [
+      "organizationId",
+      "dueDate"
+     ],
+     [
+      "ownerUserId",
+      "dueDate"
+     ]
+    ]
+   },
+   {
+    "name": "user",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "deletedAt",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "email",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "firstName",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "lastName",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "name",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "nextBillingDate",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "organizationId",
+      "type": "uuid",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "passwordChangedAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "passwordHash",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     },
+     {
+      "name": "passwordResetExpiresAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "passwordResetTokenHash",
+      "type": "character varying",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "planCode",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'basic'"
+     },
+     {
+      "name": "role",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'Auditor'"
+     },
+     {
+      "name": "subscriptionStatus",
+      "type": "character varying",
+      "nullable": false,
+      "default": "'active'"
+     },
+     {
+      "name": "type",
+      "type": "character varying",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [
+     {
+      "columns": [
+       "organizationId"
+      ],
+      "references": "organization(id)",
+      "onDelete": "NO ACTION",
+      "onUpdate": "NO ACTION"
+     }
+    ],
+    "unique": [
+     [
+      "email"
+     ],
+     [
+      "id"
+     ]
+    ],
+    "indexes": [
+     [
+      "email"
+     ],
+     [
+      "id"
+     ],
+     [
+      "organizationId"
+     ],
+     [
+      "passwordResetTokenHash"
+     ]
+    ]
+   },
+   {
+    "name": "user_subscription",
+    "scope": "ACTIVE_INDIVIDUAL_BETA",
+    "columns": [
+     {
+      "name": "cancelAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "cancelAtPeriodEnd",
+      "type": "boolean",
+      "nullable": false,
+      "default": "false"
+     },
+     {
+      "name": "createdAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "currentPeriodEnd",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "currentPeriodStart",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "id",
+      "type": "uuid",
+      "nullable": false,
+      "default": "uuid_generate_v4()"
+     },
+     {
+      "name": "lastStripeEventAt",
+      "type": "timestamp with time zone",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "lastStripeEventId",
+      "type": "character varying(255)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "status",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'none'"
+     },
+     {
+      "name": "stripeCustomerId",
+      "type": "character varying(255)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "stripePriceId",
+      "type": "character varying(255)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "stripeSubscriptionId",
+      "type": "character varying(255)",
+      "nullable": true,
+      "default": null
+     },
+     {
+      "name": "tier",
+      "type": "character varying(32)",
+      "nullable": false,
+      "default": "'free'"
+     },
+     {
+      "name": "updatedAt",
+      "type": "timestamp with time zone",
+      "nullable": false,
+      "default": "now()"
+     },
+     {
+      "name": "userId",
+      "type": "character varying(64)",
+      "nullable": false,
+      "default": null
+     }
+    ],
+    "primaryKey": [
+     "id"
+    ],
+    "foreignKeys": [],
+    "unique": [
+     [
+      "id"
+     ],
+     [
+      "stripeCustomerId\" IS NOT NULL"
+     ],
+     [
+      "stripeSubscriptionId"
+     ],
+     [
+      "userId"
+     ]
+    ],
+    "indexes": [
+     [
+      "id"
+     ],
+     [
+      "stripeCustomerId\" IS NOT NULL"
+     ],
+     [
+      "stripeSubscriptionId"
+     ],
+     [
+      "userId"
+     ]
+    ]
+   }
+  ]
+ }
+}

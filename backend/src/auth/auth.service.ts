@@ -1,4 +1,5 @@
 import { Injectable, BadRequestException, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import { emitOperationalEvent } from '../observability/operational-events';
 import { AgreementsService } from '../agreements/agreements.service';
 import { createHash, randomBytes } from 'crypto';
 import { RegisterDto } from './dto/register.dto';
@@ -595,7 +596,26 @@ export class AuthService {
           metadata: { originalEmailHash: createHash('sha256').update(originalEmail).digest('hex') },
         }));
       });
-    } catch {
+    } catch (error) {
+      /*
+       * §305 (OB-1) — THE CAUSE REACHES THE OPERATOR, AND NOTHING REACHES THE CUSTOMER.
+       *
+       * This was a bare `catch {}`. It discarded the error object entirely, so a failed account
+       * deletion produced no log line, no operational event and no clue — only a generic 500. §305
+       * met that wall while diagnosing SE-12: account deletion was failing on every migration-built
+       * database with `relation "notifications" does not exist`, and the message had to be recovered
+       * by temporarily instrumenting this method.
+       *
+       * The client contract is UNCHANGED and deliberately so: the caller still receives the same
+       * generic message, because the cause can name a relation, a constraint or a column. The
+       * operator gets the failure KIND only — no message, no identifier, no SQL — which is the same
+       * discipline `report.generation_failed` already follows. The audit row below keeps the fuller
+       * reason inside the customer's own audit trail, where it belongs.
+       */
+      emitOperationalEvent('auth.account_deletion_failed', {
+        failureKind: error instanceof Error ? error.name : 'UnknownError',
+        accountPreserved: true,
+      });
       throw new InternalServerErrorException('Unable to delete account. Please try again.');
     }
 

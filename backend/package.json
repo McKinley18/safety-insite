@@ -65,7 +65,7 @@
     "hazlenz:generate-shard-candidates": "ts-node src/hazlenz/coverage/generate-hazlenz-warm-shard-candidates.ts",
     "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner && npm run test:301-entitlement-integration && npm run test:302-promotional-grant-integration && npm run test:303-malformed-identifier && npm run test:304-invitation-relationship && npm run test:305a-individual-beta-scope",
     "hazlenz:integration:test": "ts-node scripts/hazlenz/with-disposable-db.ts hazlenz:integration:inner",
-    "hazlenz:precommit": "npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence",
+    "hazlenz:precommit": "npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence && npm run check:canonical-schema",
     "hazlenz:qa-shard-candidates": "ts-node src/hazlenz/coverage/qa-hazlenz-generated-candidates.ts",
     "hazlenz:scripts:classify": "ts-node scripts/hazlenz/classify-scripts.ts",
     "hazlenz:status": "ts-node scripts/hazlenz/status.ts",
@@ -428,7 +428,10 @@
     "test:302-promotional-grant-integration": "ts-node scripts/test-302-promotional-grant-integration.ts",
     "test:303-malformed-identifier": "ts-node scripts/test-303-malformed-identifier.ts",
     "test:304-invitation-relationship": "ts-node scripts/test-304-invitation-relationship.ts",
-    "test:305a-individual-beta-scope": "ts-node scripts/test-305a-individual-beta-scope.ts"
+    "test:305a-individual-beta-scope": "ts-node scripts/test-305a-individual-beta-scope.ts",
+    "s305:manifest": "ts-node scripts/s305-build-manifest.ts",
+    "check:canonical-schema:inner": "ts-node scripts/check-canonical-schema.ts",
+    "check:canonical-schema": "ts-node scripts/hazlenz/with-disposable-db.ts check:canonical-schema:inner"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

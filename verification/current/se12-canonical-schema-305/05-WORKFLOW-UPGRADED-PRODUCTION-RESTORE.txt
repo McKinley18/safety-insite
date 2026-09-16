@@ -1,0 +1,60 @@
+ok    B-4 their capability comes from a BOUNDED grant, and the canonical billing route names that basis (EN-3 preserved)  [{"tier":"pro","source":"grant"}]
+ok    B-5 and the account row still says free/none, because nothing was purchased (EN-3 preserved)  [{"planCode":"free","subscriptionStatus":"none"}]
+
+---- C. THE BETA v1 WORKFLOW, END TO END, WITH organizationId NULL ----
+
+ok    C-1 the individual creates a site  [201]
+ok    C-2 and it is owned by the PERSON, not by an organization — the schema represents an individual owner directly  [owner=true org=null]
+ok    C-3 starts an inspection  [201]
+ok    C-4 captures an observation  [201]
+ok    C-5 HAZLENZ ANALYSES IT. This is the capability Beta v1 exists to put in front of people, and it needs no organization.  [201]
+ok    C-6 the analysis persists against the observation  [201]
+ok    C-7 HazLenz produced findings for the individual to review — without this the review and report assertions below would compare undefined with undefined and pass vacuously  [1 pending]
+ok    C-7b THE HUMAN REVIEW BOUNDARY HOLDS FOR ONE PERSON. Every pending finding is confirmed by the individual inspector themselves — no second reviewer, no supervisor, no organization role.  [1/1 finalized]
+ok    C-8 the inspection moves to in_review  [201 ]
+ok    C-9 completion readiness is answerable without an organization  [200]
+ok    C-10 and completes  [201 ]
+ok    C-11 A REPORT IS ISSUED to the individual  [201]
+ok    C-12 and it carries a checksum, so the record the person keeps is verifiable  [7f660c7b6206f92e]
+ok    C-13 the current report reads back  [200]
+ok    C-14 and its revision history is available — the individual can see what changed and when  [200]
+ok    C-15 inspection history lists their own completed inspection  [200]
+ok    C-16 corrective actions are reachable for the individual workflow  [200]
+ok    C-17 the safety calendar is reachable  [200]
+ok    C-18 account management works and still reports no organization  [200]
+ok    C-19 billing status is readable — the individual can see what they have  [200]
+
+---- D. DEFERRED TEAM ROUTES STILL FAIL CLOSED (deferral is not closure) ----
+
+      planted a foreign tenant: 1 organization, 1 member, 1 invitation
+ok    D-read organization settings: no server error  [401]
+ok    D-read organization settings: DISCLOSES NOTHING BELONGING TO THE FOREIGN TENANT. This is SE-13's assertion: an individual with no organization must never receive another workspace, its members or its invitation tokens.  [{"message":"Organization context is required.","error":"Unauthorized",]
+ok    D-list organization members: no server error  [401]
+ok    D-list organization members: DISCLOSES NOTHING BELONGING TO THE FOREIGN TENANT. This is SE-13's assertion: an individual with no organization must never receive another workspace, its members or its invitation tokens.  [{"message":"Organization context is required.","error":"Unauthorized",]
+ok    D-list organization invitations: no server error  [401]
+ok    D-list organization invitations: DISCLOSES NOTHING BELONGING TO THE FOREIGN TENANT. This is SE-13's assertion: an individual with no organization must never receive another workspace, its members or its invitation tokens.  [{"message":"Organization context is required.","error":"Unauthorized",]
+ok    D-create an invitation: no server error  [403]
+ok    D-create an invitation: DISCLOSES NOTHING BELONGING TO THE FOREIGN TENANT. This is SE-13's assertion: an individual with no organization must never receive another workspace, its members or its invitation tokens.  [{"message":"Forbidden resource","error":"Forbidden","statusCode":403}]
+ok    D-create an invitation: the MUTATION is refused outright  [403]
+ok    D-rename an organization: no server error  [403]
+ok    D-rename an organization: DISCLOSES NOTHING BELONGING TO THE FOREIGN TENANT. This is SE-13's assertion: an individual with no organization must never receive another workspace, its members or its invitation tokens.  [{"message":"Forbidden resource","error":"Forbidden","statusCode":403}]
+ok    D-rename an organization: the MUTATION is refused outright  [403]
+ok    D-x reading someone else's organization by id is refused — the tenant check does not depend on the deferred feature being finished  [403]
+ok    D-y invitation acceptance is still refused (SE-10). Deferred, fails closed, and creates nothing.  [400]
+ok    D-z and it leaves no account behind  [0]
+ok    D-w verify-invite answers a bounded 404 rather than a 500 — SE-6's schema repair holds, and the deferred route is safe to leave exposed  [404]
+
+---- E. THE CUSTOMER-FACING SURFACE MAKES NO TEAM PROMISE ----
+
+ok    E-1 the plan and pricing surface promises no team capability. Beta v1 must not advertise unfinished Company/Team functionality as something a customer is buying.  [none]
+ok    E-2 and promises no members or seats either  [none]
+ok    E-3 no page or component calls the organization client functions, so there is no team navigation or control for a Beta user to find. The architecture is retained, not deleted.  [no callers]
+
+---- F. THE INDIVIDUAL CAN LEAVE ----
+
+ok    F-1 ACCOUNT DELETION WORKS ON A MIGRATION-BUILT DATABASE. At §305A this was a 500 caused by the missing `notifications` table (SE-12); §305 converged the migration history and it now completes.  [200]
+ok    F-2 and the account is genuinely anonymised — deletedAt set and the address replaced, not just a 200 returned  [deletedAt=set]
+ok    F-3 and the person can no longer authenticate  [401]
+
+================ §305A individual beta scope: 51 passed, 0 failed
+{"providerCalls":0,"expertExecutions":0,"passed":51,"failed":0,"individualWorkflowReachedReport":true,"accountDeletionWorksOnMigrationBuiltDatabase":true,"organizationRequiredAnywhereInBetaV1":false}

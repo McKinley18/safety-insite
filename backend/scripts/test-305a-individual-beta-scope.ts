@@ -36,6 +36,7 @@ import type { NestExpressApplication } from '@nestjs/platform-express';
 import { DataSource } from 'typeorm';
 
 import { requiredRegistrationAcceptances } from './lib/registration-acceptances';
+import { captureOperationalEventsForVerification } from '../src/observability/operational-events';
 
 const PROTECTED_DATABASE_NAMES = [
   'safescope', 'sentinel_dev', 'sentinel_safety', 'postgres', 'template0', 'template1', 'neondb',
@@ -117,6 +118,22 @@ async function main(): Promise<void> {
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule,
     { logger: process.env.S305A_VERBOSE === '1' ? undefined : false });
+  /*
+   * MATCH PRODUCTION'S BODY LIMIT.
+   *
+   * `main.ts` raises the JSON body limit to 5mb because, in its own words, "the default
+   * body-parser limit (100kb) is too small for a HazLenz multi-hazard analysis". A suite that boots
+   * AppModule directly does not get that, so it has been running at 100kb — fifty times smaller
+   * than the product.
+   *
+   * On an empty database the difference never showed: the deterministic snapshot stayed under the
+   * default. Running this same workflow against a RESTORED PRODUCTION database, where the knowledge
+   * tables are populated and the analysis is correspondingly larger, it returned 413 — a failure
+   * belonging entirely to the harness. A test environment that cannot accept what production accepts
+   * is not testing production.
+   */
+  app.useBodyParser('json', { limit: '5mb' });
+  app.useBodyParser('urlencoded', { limit: '5mb', extended: true } as any);
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, forbidNonWhitelisted: true, transform: true,
   }));
@@ -506,47 +523,82 @@ async function main(): Promise<void> {
   console.log('\n---- F. THE INDIVIDUAL CAN LEAVE ----\n');
   // ===========================================================================================
 
+  /*
+   * §305 INVERTED THIS CASE, AND THAT IS THE POINT OF IT.
+   *
+   * At §305A this asserted a 500. On a migration-built database `deleteAccount` failed with
+   * `relation "notifications" does not exist` — the Notification entity was live, the service
+   * deleted from it, and no migration created the table. Production had it, so deletion worked
+   * there; any environment rebuilt from migration history silently lost the ability to delete an
+   * account, which is a data-protection obligation and not a nicety.
+   *
+   * §305's canonical convergence creates the table, so the assertion is inverted rather than
+   * deleted. It is the sharpest single check that SE-12 is actually closed: this suite runs on a
+   * database built ONLY from migrations, and account deletion is the function that proved the
+   * migration history was not describing production.
+   */
   const deleted = await call('/auth/me', {
     method: 'DELETE', token, body: { password: PASSWORD },
   });
+  check(deleted.status === 200,
+    'F-1 ACCOUNT DELETION WORKS ON A MIGRATION-BUILT DATABASE. At §305A this was a 500 caused by the '
+    + 'missing `notifications` table (SE-12); §305 converged the migration history and it now '
+    + 'completes.', `${deleted.status}`);
+
+  const row = await q(`SELECT "deletedAt", "email" FROM "user" WHERE "id" = $1`,
+    [pro.login.body?.user?.id]);
+  check(row[0]?.deletedAt !== null && !String(row[0]?.email || '').includes('s305a-pro'),
+    'F-2 and the account is genuinely anonymised — deletedAt set and the address replaced, not just '
+    + 'a 200 returned', `deletedAt=${row[0]?.deletedAt ? 'set' : 'null'}`);
 
   /*
-   * MEASURED (SE-12, and it lands on the INDIVIDUAL product). On a migration-built database this
-   * returns 500, because `deleteAccount` deletes from `notifications` and NO MIGRATION CREATES THAT
-   * TABLE. Production has it — the table is in §304's production-only list — so account deletion
-   * works there, and §303 and §304 both exercised it live and got 200.
+   * §305 (OB-1) — A DELETION FAILURE MUST BE OBSERVABLE INSIDE AND OPAQUE OUTSIDE.
    *
-   * This is the single most useful thing §305A found: it shows SE-12 is not a Company/Team problem
-   * that can be deferred with the team feature. It breaks account deletion, which is core
-   * individual Beta and a data-protection obligation, on every environment ever rebuilt from
-   * migration history. It is asserted here as the truth rather than skipped, and repaired in §305
-   * where the canonical schema work belongs — not here, where it would be an unmeasured
-   * convenience fix.
-   *
-   * It also cost real diagnosis time for a second reason worth recording: `deleteAccount` wraps its
-   * transaction in a bare `catch {}` that discards the cause and rethrows a generic 500. Nothing
-   * reached the log. The message had to be recovered by instrumenting the service temporarily.
+   * The failure is INDUCED the same way reality produced it: the `notifications` relation is taken
+   * away, which is exactly the state every migration-built database was in before §305. Asserting
+   * this against a real fault rather than a mock is the difference between testing the handler and
+   * testing a stub of it.
    */
-  const deletionBlockedBySchemaDrift = deleted.status === 500;
-  check(deletionBlockedBySchemaDrift,
-    'F-1 MEASURED (SE-12): account deletion returns 500 on a MIGRATION-BUILT database because '
-    + '`notifications` exists in production but no migration creates it. Production deletes '
-    + 'accounts correctly — §303 and §304 both proved it live at 200. Repaired in §305.',
-    `${deleted.status}`);
+  const obTarget = await registerAndLogin('ob1');
+  /*
+   * Captured through the module's own verification hook rather than by patching a stream. The event
+   * carries severity `error`, so it goes to STDERR, and an earlier attempt that watched stdout saw
+   * nothing and would have reported the repair as missing. `captureOperationalEventsForVerification`
+   * is the intended path and refuses to run outside NODE_ENV=test.
+   */
+  const emitted: Array<Record<string, any>> = [];
+  captureOperationalEventsForVerification((line) => { emitted.push(line as any); });
+  await q('ALTER TABLE "notifications" RENAME TO "notifications__s305"');
+  const induced = await call('/auth/me', {
+    method: 'DELETE', token: obTarget.token, body: { password: PASSWORD },
+  });
+  await q('ALTER TABLE "notifications__s305" RENAME TO "notifications"');
+  captureOperationalEventsForVerification(null);
 
-  const stillThere = await q(
-    `SELECT "deletedAt" FROM "user" WHERE "email" = $1`, [pro.email]);
-  check(stillThere.length === 1 && stillThere[0].deletedAt === null,
-    'F-2 and the failure is CLEAN: the transaction rolled back whole, so the account is not left '
-    + 'half-deleted — not anonymised, not detached from its data, still able to log in',
-    `deletedAt=${stillThere[0]?.deletedAt}`);
+  check(induced.status === 500,
+    'F-4 an induced persistence failure during account deletion still fails, rather than reporting '
+    + 'a success it did not achieve', `${induced.status}`);
+  check(!/notifications|relation|does not exist|QueryFailedError|constraint/i.test(induced.raw),
+    'F-5 and the CLIENT is told nothing about the internals — no relation, no SQL, no driver',
+    induced.raw.slice(0, 90));
+  const failureEvents = emitted.filter((e) => e.event === 'auth.account_deletion_failed');
+  check(failureEvents.length === 1
+    && !!failureEvents[0].metadata?.failureKind
+    && !JSON.stringify(failureEvents[0]).includes('notifications'),
+    'F-6 OB-1 CLOSED: the OPERATOR gets exactly one auth.account_deletion_failed event carrying the '
+    + 'failure KIND and nothing else — no relation name, no SQL. Before §305 a bare `catch {}` '
+    + 'discarded the cause and this produced no signal at all.',
+    JSON.stringify(failureEvents[0]?.metadata || 'no event'));
+
+  const obRow = await q(`SELECT "deletedAt" FROM "user" WHERE "email" = $1`, [obTarget.email]);
+  check(obRow[0]?.deletedAt === null,
+    'F-7 and the account survived the failed deletion intact rather than being half-removed');
 
   const after = await call('/auth/login', {
     method: 'POST', body: { email: pro.email, password: PASSWORD },
   });
-  check(after.status === 200 || after.status === 201,
-    'F-3 which is the safe failure: the person keeps a working account rather than losing access to '
-    + 'data that was never actually removed', `${after.status}`);
+  check(after.status === 401,
+    'F-3 and the person can no longer authenticate', `${after.status}`);
 
   // ===========================================================================================
   await app.close();
@@ -555,7 +607,7 @@ async function main(): Promise<void> {
   console.log(JSON.stringify({
     providerCalls: 0, expertExecutions: 0, passed, failed: failures.length,
     individualWorkflowReachedReport: !!reportId,
-    accountDeletionBlockedByMigrationDrift: deletionBlockedBySchemaDrift,
+    accountDeletionWorksOnMigrationBuiltDatabase: deleted.status === 200,
     organizationRequiredAnywhereInBetaV1: false,
   }));
   if (failures.length) process.exit(1);

@@ -68,6 +68,17 @@ export const OPERATIONAL_EVENTS = [
   'report.generation_failed',
   'schema.readiness_failed',
   'migration.failed',
+  /**
+   * §305 / OB-1. ACCOUNT DELETION FAILED AND THE TRANSACTION ROLLED BACK WHOLE.
+   *
+   * The customer is told only that the deletion did not succeed, which is correct — the cause can
+   * name a relation or a constraint. This event is the OPERATOR's copy, and it carries the failure
+   * KIND alone: no message, no identifier, no SQL. Before §305 this path had a bare `catch {}` that
+   * discarded the cause entirely, so a customer who could not delete their account produced no
+   * signal anywhere. §305 hit that exact wall diagnosing SE-12 and had to instrument the service by
+   * hand to recover `relation "notifications" does not exist`.
+   */
+  'auth.account_deletion_failed',
   // §286 / D-054. The outcome-intelligence loop failed to record a corrective-action closure.
   // The closure itself is unaffected — see CorrectiveActionsService.recordClosureIntelligence.
   'action.closure_intelligence_failed',
@@ -117,6 +128,7 @@ const SEVERITY: Record<OperationalEvent, OperationalSeverity> = {
   'expert.confirmation.required': 'info',
   'expert.confirmation.settled': 'info',
   'storage.operation_failed': 'error',
+  'auth.account_deletion_failed': 'error',
   'report.generation_failed': 'error',
   'schema.readiness_failed': 'error',
   'migration.failed': 'error',
