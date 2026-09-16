@@ -1,5 +1,35 @@
 # Safety InSite — current state
 
+> ### §305 — SE-12 CLOSED: ONE CANONICAL SCHEMA CONTRACT, AND TWO MORE NULL-PREDICATE DEFECTS
+>
+> **The migration history now describes production.** `backend/src/database/canonical-schema.manifest.json`
+> — 68 tables, digest `3a51b1a2…` — is generated **from a fresh migration replay**, so it is by
+> construction a statement about the migration history rather than about production. Convergence
+> migration `1800000025000` meets from **either side**, and was applied to production.
+>
+> **Three-way proof, machine-compared.** Empty database → all migrations → manifest: **0 material
+> differences**, digest reproducible. Restored production → pending convergence → manifest: **0**.
+> Entity contract checked; residual contradictions registered as `SC-2`. *"Application boots"* was
+> never accepted as evidence.
+>
+> **The proven consequence is repaired.** `DELETE /auth/me` returns **200** on a migration-built
+> database — §305A measured 500, `relation "notifications" does not exist` — and in production. The
+> individual workflow passes **62/62** on a fresh replay and on an upgraded production restore.
+>
+> **Durable gate** `npm run check:canonical-schema` in `hazlenz:precommit`, **watched to fail at 68
+> material differences** against pre-§305 history. Constraint and index names are normalized away, so
+> it reports material drift only — the distinction nobody could make before.
+>
+> **`SE-14` — found by the SE-13 sweep, contained and deployed.** `NotificationsService` and
+> `AuditController` decoded the JWT as `{ sub, tenantId, role }`; this product signs **neither**
+> `sub` nor `tenantId`. Both undefined → TypeORM dropped the predicates → every user's
+> notifications, every tenant's audit rows, and any notification **mutable by id**. Neither was
+> exploitable today — but only because the table is empty and because `/audit` needs a role no role
+> produces (`SE-9`). Coincidences, not controls.
+>
+> **`OB-1` CLOSED** — the bare `catch {}` now emits `auth.account_deletion_failed` with the failure
+> kind only; client contract unchanged; proven against a real induced fault. Threshold C: **18 → 17**.
+
 > ### §305A — BETA v1 IS AN INDIVIDUAL INSPECTION PRODUCT, AND PROVING IT FOUND A LIVE DISCLOSURE
 >
 > **Product-owner scope correction.** Beta v1 is an **individual** inspection product; Company/Team
@@ -824,7 +854,8 @@ npm run hazlenz:evidence            did accepted evidence change
 npm run beta:readiness              are the deployment mechanisms in place (contacts nothing live)
 npm run test:303-malformed-identifier §303/SE-5 malformed identifier containment (in hazlenz:integration:test)
 npm run test:304-invitation-relationship §304/SE-6 invitation->organization relation (in hazlenz:integration:test)
-npm run test:305a-individual-beta-scope  §305A individual Beta workflow + SE-13 (in hazlenz:integration:test)
+npm run test:305a-individual-beta-scope  §305A individual Beta workflow + SE-13/SE-14 (in hazlenz:integration:test)
+npm run check:canonical-schema           §305/SE-12 fresh replay vs canonical manifest (in hazlenz:precommit)
 npm run test:299-person-negation     §299/HZ-4 the exposure-negation family  (in hazlenz:test)
 npm run test:299-section-298-replay  §299/HZ-4 the exact §298 note, before/after (in hazlenz:test)
 npm run test:299-expert-disagreement §299 Expert can still disagree         (in hazlenz:test)
@@ -886,6 +917,7 @@ Do not load these for ordinary development.
 | SE-5 containment §303 | `verification/current/se5-malformed-identifier-303/` |
 | SE-6 invitation relation §304 | `verification/current/se6-invitation-relationship-304/` |
 | Beta v1 scope + SE-13 §305A | `verification/current/beta-v1-scope-305a/` |
+| SE-12 canonical schema §305 | `verification/current/se12-canonical-schema-305/` |
 | beta deployment runbook | `project-docs/operations/DEPLOYMENT-RUNBOOK.md` |
 | rollback model | `project-docs/operations/ROLLBACK-MODEL.md` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |

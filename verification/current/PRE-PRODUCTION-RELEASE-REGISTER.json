@@ -6,9 +6,9 @@
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§305 — SE-12 CLOSED: one canonical versioned schema contract, a convergence migration that meets from either side, a three-way machine-compared proof, and a durable drift gate watched to fail. Account deletion works on a migration-built database. OB-1 CLOSED. SE-14 newly found and contained (cross-user notifications and cross-tenant audit, same TypeORM null-predicate class as SE-13) — Threshold B reopens until deployed. SC-2 registered. OPS-2 open.",
+  "asOf": "§305 — SE-12 CLOSED and PRODUCTION CONVERGED: one canonical versioned schema contract (68 tables, digest 3a51b1a2...), a convergence migration applied to production, a three-way machine-compared proof, and a durable drift gate watched to fail at 68 differences. Account deletion works on a migration-built database and in production. OB-1 CLOSED. SE-14 CLOSED (contained, deployed, proven by a non-vacuous two-user isolation gate). SC-2 registered. OPS-2 open.",
   "providerCalls": 0,
-  "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events. §303: DEPLOYED both halves at 9242d157. Live proof through the real authenticated production HTTP product path — malformed identifiers return 400 on all 8 previously-affected routes, valid-absent still 404, a real site round-tripped 200, monitoring.serverErrorsInWindow stayed 0 before/during/after with no alert raised. One synthetic free account and one site created and both removed through the product path (DELETE /sites/:id, DELETE /auth/me; subsequent login 401). 0 provider calls, 0 Expert executions, 0 direct production DB writes, 0 charges, $0. §304: read-only production characterization; fresh backup (7,924,351 bytes, sha256 1b1a5f07…) restored into PostgreSQL 17.11 with 0 errors and verified by per-table content checksum (78/78 identical, 7,228 rows, aggregate d6baf25ddfe4c0f908187f16032c24cf); ONE authorised migration applied (1800000024000); both halves deployed at c28dd43c; live proof through supported product HTTP paths. One synthetic free account created and removed via DELETE /auth/me. monitoring.serverErrorsInWindow stayed 0 throughout, no alert, 0 unexpected 5xx. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305A: one read-only authenticated probe CONFIRMED a live cross-tenant disclosure (SE-13); the probe account was deleted immediately and the disclosed organization is redacted in all evidence. Containment deployed at 4063434b and RE-PROBED: GET /organization/me/settings now returns 401 for an individual with no organization. Individual product re-verified live (site create/read 201/200, SE-5 400 preserved), synthetic state removed through the product path. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0.",
+  "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events. §303: DEPLOYED both halves at 9242d157. Live proof through the real authenticated production HTTP product path — malformed identifiers return 400 on all 8 previously-affected routes, valid-absent still 404, a real site round-tripped 200, monitoring.serverErrorsInWindow stayed 0 before/during/after with no alert raised. One synthetic free account and one site created and both removed through the product path (DELETE /sites/:id, DELETE /auth/me; subsequent login 401). 0 provider calls, 0 Expert executions, 0 direct production DB writes, 0 charges, $0. §304: read-only production characterization; fresh backup (7,924,351 bytes, sha256 1b1a5f07…) restored into PostgreSQL 17.11 with 0 errors and verified by per-table content checksum (78/78 identical, 7,228 rows, aggregate d6baf25ddfe4c0f908187f16032c24cf); ONE authorised migration applied (1800000024000); both halves deployed at c28dd43c; live proof through supported product HTTP paths. One synthetic free account created and removed via DELETE /auth/me. monitoring.serverErrorsInWindow stayed 0 throughout, no alert, 0 unexpected 5xx. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305A: one read-only authenticated probe CONFIRMED a live cross-tenant disclosure (SE-13); the probe account was deleted immediately and the disclosed organization is redacted in all evidence. Containment deployed at 4063434b and RE-PROBED: GET /organization/me/settings now returns 401 for an individual with no organization. Individual product re-verified live (site create/read 201/200, SE-5 400 preserved), synthetic state removed through the product path. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305: read-only characterization; fresh backup (7,926,023 bytes, sha256 202eaba6...) restored into PostgreSQL 17.11 with 0 errors and content-verified; ONE authorised migration applied (1800000025000); deployed at dc9782e0; live proof through supported product HTTP paths including ACCOUNT DELETION. Two synthetic accounts created and both removed via DELETE /auth/me. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0.",
   "thresholds": {
     "A": "CONTROLLED PRODUCTION DEPLOYMENT — the candidate running in a production environment, no users.",
     "B": "INTERNAL / OWNER PRODUCTION USE — owner-controlled accounts entering real data.",
@@ -21,11 +21,11 @@
     "P2": 58,
     "P3": 28,
     "thresholdA": 0,
-    "thresholdB": 1,
-    "thresholdC": 18,
+    "thresholdB": 0,
+    "thresholdC": 17,
     "byStatus": {
-      "CLOSED": 59,
-      "OPEN": 35,
+      "CLOSED": 60,
+      "OPEN": 34,
       "BLOCKED": 4,
       "DEFERRED": 9
     },
@@ -563,17 +563,17 @@
       "domain": "SECURITY",
       "id": "SE-14",
       "description": "Two services decoded the JWT by hand and read claims this product does not sign, so their scope predicates were undefined and TypeORM dropped them — returning every user's notifications, and every tenant's audit log.",
-      "currentState": "FOUND AND CONTAINED AT §305 during the SE-13 generalization sweep. NotificationsService and AuditController each decoded the token as `{ sub, tenantId, role }`. `signAccessToken` signs NEITHER `sub` NOR `tenantId` — it signs `userId` and `organizationId` — so both values were undefined on every request, and §305A had already established what TypeORM 0.3 does with an undefined value in a where object: it DROPS the predicate. NOTIFICATIONS: findMine became `find({ where: {} , take: 50 })` — the 50 most recent notifications of ALL users — and markRead became `findOne({ where: { id } })`, so any notification was readable AND mutable by id, with the saved row returned to the caller. Behind JwtGuard plus the cloudReports entitlement. AUDIT: `/audit` is MOUNTED (AuditModule is imported transitively by classifications, corrective-actions, reviews and taxonomy) and getAuditByTenant(undefined) became `find({ where: {}, take: 100 })` — the 100 most recent audit rows of every tenant. WHAT WAS AND WAS NOT EXPLOITABLE. The notifications table is EMPTY in production, so nothing was disclosable — but that is a coincidence maintained by a second bug, not a control, and it stops holding the moment a corrective action creates a notification. The audit route was unreachable for a different accidental reason: it requires `['owner','admin'].includes(auth.role)`, and the signed role is either an OrganizationRole (member, manager, organization_admin) or `individual` — none of which match. That is the SAME vocabulary mismatch registered as SE-9. Repair SE-9 and the audit route begins disclosing every tenant's audit trail the same day.",
+      "currentState": "FOUND AND CONTAINED AT §305 during the SE-13 generalization sweep. NotificationsService and AuditController each decoded the token as `{ sub, tenantId, role }`. `signAccessToken` signs NEITHER `sub` NOR `tenantId` — it signs `userId` and `organizationId` — so both values were undefined on every request, and §305A had already established what TypeORM 0.3 does with an undefined value in a where object: it DROPS the predicate. NOTIFICATIONS: findMine became `find({ where: {} , take: 50 })` — the 50 most recent notifications of ALL users — and markRead became `findOne({ where: { id } })`, so any notification was readable AND mutable by id, with the saved row returned to the caller. Behind JwtGuard plus the cloudReports entitlement. AUDIT: `/audit` is MOUNTED (AuditModule is imported transitively by classifications, corrective-actions, reviews and taxonomy) and getAuditByTenant(undefined) became `find({ where: {}, take: 100 })` — the 100 most recent audit rows of every tenant. WHAT WAS AND WAS NOT EXPLOITABLE. The notifications table is EMPTY in production, so nothing was disclosable — but that is a coincidence maintained by a second bug, not a control, and it stops holding the moment a corrective action creates a notification. The audit route was unreachable for a different accidental reason: it requires `['owner','admin'].includes(auth.role)`, and the signed role is either an OrganizationRole (member, manager, organization_admin) or `individual` — none of which match. That is the SAME vocabulary mismatch registered as SE-9. Repair SE-9 and the audit route begins disclosing every tenant's audit trail the same day. CONTAINED, DEPLOYED AND PROVEN AT §305. The durable proof is the §305A suite’s NON-VACUOUS isolation gate, which §305 added precisely because SE-13 hid behind an empty table: user B is given a REAL notification and B’s ability to see it is asserted BEFORE A’s inability. A cannot read it (absent from a 200 list), cannot mark it read (401), and B’s row is genuinely untouched; /audit discloses no other tenant’s rows; and when B deletes their account the ON DELETE CASCADE foreign key §305 added removes the notification with it. PRODUCTION VERIFICATION SCOPE, STATED EXACTLY: /notifications and /audit could NOT be exercised in production, because both sit behind paid entitlements (cloudReports, auditTrail), no promotional code is configured there, and creating a paid account would mean a commercial charge. They are verified by the suite on the identical deployed code and are unreachable in production today without a paid subscription.",
       "evidence": "§305 sweep of 39 scope predicates; production probe confirming /audit is mounted (401, not 404); JWT payload inspection confirming neither `sub` nor `tenantId` is signed.",
       "severity": "P0",
       "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
       "owner": "ENGINEERING",
       "remediation": "CONTAINED AT §305. Both now read the claims the product actually signs, REFUSE when no identity is present, and derive the tenant exactly the way CorrectiveActionsService derives it when it WRITES these rows — `tenantId || organizationId || user:<userId>` — so reads and writes agree for an individual, who has no organization. The audit route's role check is left exactly as strict as it was; widening it would be building deferred Company/Team authorization, which §305 forbids.",
       "retestRequirement": "An individual and a second user each hold notifications; neither can read or mark read the other's. Closes when deployed and re-probed.",
-      "status": "OPEN",
+      "status": "CLOSED",
       "blocksThresholdA": false,
-      "blocksThresholdB": true,
-      "blocksThresholdC": true,
+      "blocksThresholdB": false,
+      "blocksThresholdC": false,
       "note": "Same root cause as SE-13 in two more places, which is why §305 swept for the class rather than fixing one site. The sweep covered 39 where-objects built from possibly-null authority values; the other candidates were already guarded — reports, classifications, reviews and control-verifications each resolve scope through requireOrganization, inspection.assign refuses before querying when the inspection has no organization, and corrective-actions wraps its membership lookup in an explicit organizationId check. Route-parameter lookups are additionally bounded by §303's UuidParam, which rejects a non-UUID before it can reach a query.",
       "lastUpdatedBy": "§305"
     },
@@ -1962,12 +1962,17 @@
       "lastUpdatedBy": "§304"
     }
   ],
-  "candidateHeadPredecessor": "c28dd43c1c54453029848a03422489073ffc2277",
+  "candidateHeadPredecessor": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
   "candidateProductSourceCommit": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
   "applicationSourceDigest": "52bde7ae445022159d5dba07f15b1b83e810bf5927c558e99bf97975191ff29d",
   "applicationSourceDigestSuperseded": [
+    {
+      "digest": "52bde7ae445022159d5dba07f15b1b83e810bf5927c558e99bf97975191ff29d",
+      "at": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
+      "section": "§305A SE-13"
+    },
     {
       "digest": "b0827e69deb3aef59b3e370a63be418feb7bb8ae49a8e87b48f4c78a61e5ee12",
       "at": "c28dd43c1c54453029848a03422489073ffc2277",
@@ -1996,9 +2001,9 @@
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
-  "deployedAt": "§305A — backend dep-dakuubad0e5s73fv2g3g (Render), frontend dpl_6JMghjaHzD6pWGWkvQ53LrS5VMiW (Vercel, production target). Schema 1800000024000 (56/56) unchanged, 0 migrations.",
-  "schemaHead": "1800000024000",
+  "deployedReleaseSha": "dc9782e0ab2406e31275c2337894f364417683cc",
+  "deployedAt": "§305 — backend dep-dakvgggae00c73f15rhg (Render), frontend dpl_BndpQ12CYHo5ZFqyZnQf2hbWL5td (Vercel). ONE MIGRATION APPLIED: 1800000025000. Order migrate-then-deploy, with the intermediate state measured: the serving build reported READY with aheadOfBuild [\"1800000025000\"].",
+  "schemaHead": "1800000025000",
   "applicationSourceDigestNote": "§305A (SE-13 containment + Beta v1 scope correction). DEPLOYED and read back from the live product: GET /health reports gitCommit 4063434bce79572a615ed7b7ff7846a7a4981f1b, five consecutive stable reads.",
   "artifactOnlyDigestDiagnostic": {
     "value": "fa0330d9d74e58299cb66996b3e86b1c70673a4e822b725db6d909a8dadc51c7",
@@ -2034,5 +2039,18 @@
     "externalBetaReady": false,
     "productOwnerDecisionRequired": "whether Expert remains enabled during subsequent internal testing",
     "evidence": "verification/current/expert-activation-298/"
+  },
+  "canonicalSchemaManifest": {
+    "path": "backend/src/database/canonical-schema.manifest.json",
+    "digest": "3a51b1a21294f40649a57ab0f0857fb2816e5e695a7cabe35c05043b9185bf60",
+    "tables": 68,
+    "byScope": {
+      "ACTIVE_INDIVIDUAL_BETA": 18,
+      "SHARED_INFRASTRUCTURE": 46,
+      "DEFERRED_COMPANY_TEAM": 3,
+      "RETIRED_COMPATIBILITY": 1
+    },
+    "gate": "npm run check:canonical-schema (in hazlenz:precommit)",
+    "note": "Generated FROM a fresh migration replay, so it is by construction a statement about the migration history. Production matches it with 0 MATERIAL differences; production’s raw digest differs because it retains RETIRED_COMPATIBILITY tables and two tolerated legacy columns, which are deliberately not required of a rebuilt environment."
   }
 }

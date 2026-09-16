@@ -472,6 +472,74 @@ async function main(): Promise<void> {
     + 'the deferred route is safe to leave exposed', `${verifyInvite.status}`);
 
   // ===========================================================================================
+  console.log('\n---- D2. NON-VACUOUS CROSS-USER ISOLATION: A REAL RESOURCE OWNED BY SOMEONE ELSE ----\n');
+  // ===========================================================================================
+
+  /*
+   * §305 (SE-14). The defect this guards was that NotificationsService read `sub` and `tenantId`
+   * from a token that signs NEITHER, so both predicates were undefined and TypeORM dropped them:
+   * `findMine` returned the 50 most recent notifications of ALL users, and `markRead` could read
+   * AND mutate any notification by id.
+   *
+   * §305 requires this to be proven NON-VACUOUSLY, and that requirement is the whole lesson of
+   * SE-13: an isolation test with nothing to leak passes for the wrong reason. So a second
+   * individual — user B — is given a REAL notification first, and only then is user A asked for it.
+   *
+   * Both users are individuals with no organization, which is the Beta v1 shape. Their tenant is the
+   * synthetic `user:<id>` that CorrectiveActionsService writes, so this also proves reads and writes
+   * agree on that derivation.
+   */
+  const userB = await registerAndLogin('isolation-b', { promoCode: PROMO });
+  const userBId = userB.login.body?.user?.id as string;
+  const notificationId = require('crypto').randomUUID();
+  await q(
+    `INSERT INTO "notifications" ("id","tenantId","userId","type","title","message","read")
+     VALUES ($1,$2,$3,'system','B private notification','Only user B may see this.',false)`,
+    [notificationId, `user:${userBId}`, userBId],
+  );
+  console.log(`      user B owns a real notification`);
+
+  const bSees = await call('/notifications', { token: userB.token });
+  check(bSees.status === 200 && JSON.stringify(bSees.body).includes(notificationId),
+    'D2-1 user B can see their OWN notification — without this the isolation assertions below would '
+    + 'pass against an empty list, which is exactly how SE-13 hid', `${bSees.status}`);
+
+  const aSees = await call('/notifications', { token });
+  check(aSees.status === 200 && !JSON.stringify(aSees.body).includes(notificationId)
+    && !JSON.stringify(aSees.body).includes('Only user B may see this'),
+    'D2-2 SE-14: user A CANNOT READ user B\'s notification. Before §305 this returned the 50 most '
+    + 'recent notifications of every user in the database.',
+    `${aSees.status} ${JSON.stringify(aSees.body).slice(0, 60)}`);
+
+  const aMutates = await call(`/notifications/${notificationId}/read`, { method: 'PATCH', token });
+  check(aMutates.status >= 400,
+    'D2-3 SE-14: user A CANNOT MARK user B\'s notification read. markRead previously filtered on id '
+    + 'alone, so it both disclosed and MUTATED another user\'s row.', `${aMutates.status}`);
+
+  const stillUnread = await q(`SELECT "read" FROM "notifications" WHERE "id" = $1`, [notificationId]);
+  check(stillUnread[0]?.read === false,
+    'D2-4 and B\'s notification is genuinely untouched, not merely hidden from the response',
+    `read=${stillUnread[0]?.read}`);
+
+  const aAudit = await call('/audit', { token });
+  check(aAudit.status >= 400 || !JSON.stringify(aAudit.body).includes(userBId),
+    'D2-5 SE-14: the mounted /audit route discloses no other tenant\'s audit rows. It previously '
+    + 'called getAuditByTenant(undefined), which returned the 100 most recent audit rows of EVERY '
+    + 'tenant.', `${aAudit.status}`);
+
+  const bGone = await call('/auth/me', {
+    method: 'DELETE', token: userB.token, body: { password: PASSWORD },
+  });
+  check(bGone.status === 200,
+    'D2-6 and user B can still delete their account, cascading their notifications away',
+    `${bGone.status}`);
+  const cascaded = await q(`SELECT count(*)::int AS n FROM "notifications" WHERE "id" = $1`,
+    [notificationId]);
+  check(cascaded[0].n === 0,
+    'D2-7 the ON DELETE CASCADE foreign key §305 added did its job — no orphaned notification '
+    + 'survives the account it belonged to', `${cascaded[0].n} rows`);
+
+  // ===========================================================================================
   console.log('\n---- E. THE CUSTOMER-FACING SURFACE MAKES NO TEAM PROMISE ----\n');
   // ===========================================================================================
 
