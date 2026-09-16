@@ -245,20 +245,23 @@ async function main(): Promise<void> {
     + 'every parameter merely because it identifies something. Its token is a varchar, not a UUID.',
     `${invite.status}`);
   /*
-   * THIS ROUTE IS BROKEN, AND NOT BY §303. It returned 500 in the pre-repair measurement too.
-   * The cause is a SCHEMA/RELATION mismatch, not malformed input: `invitation.organizationId` is
-   * `character varying` while `organization.id` is `uuid`, so the `relations: ['organization']`
-   * join in verifyInvitation() raises `operator does not exist: uuid = character varying` for
-   * EVERY token, valid or not. Registered separately as SE-6.
+   * THIS ROUTE WAS BROKEN AT §303, AND IS REPAIRED AT §304.
    *
-   * It is asserted here as UNCHANGED rather than as passing, because pretending it were fixed
-   * would make the §303 evidence misleading, and "fixing" it by attaching a UUID pipe would hide a
-   * broken feature behind a 400.
+   * At §303 it returned 500 for every token on a migration-built database, and this case asserted
+   * that unchanged 500 openly rather than pretending §303 had fixed it. §304 repaired the cause:
+   * `invitation."organizationId"` was `character varying` against a `uuid` primary key in the
+   * migration history, so the `relations: ['organization']` join was invalid SQL. Migration
+   * 1800000024000 aligns it.
+   *
+   * The assertion is INVERTED here rather than deleted, because what §303 needs from this route is
+   * unchanged and is the reason it is probed at all: the token is an opaque varchar, UuidParam is
+   * deliberately NOT attached to it, and it must answer on its own terms — which is now 404.
    */
-  check(invite.status === 500,
-    'and it is STILL 500 — unchanged by §303. That is SE-6, a schema/relation type mismatch that '
-    + 'breaks invite verification for every token, registered rather than repaired here.',
-    `${invite.status}`);
+  check(invite.status === 404,
+    'and it answers 404 on its own terms. It returned 500 at §303 (SE-6, a schema/relation type '
+    + 'mismatch in the migration history) and §304 repaired that; what matters to §303 is unchanged '
+    + '— the token is not a UUID and is not treated as one.',
+    `${invite.status}`)
 
   /*
    * `/inspections/.` is NOT a malformed identifier reaching the id route — the path normalizes to

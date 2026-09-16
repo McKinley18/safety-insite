@@ -1,0 +1,239 @@
+{
+ "productionTables": 78,
+ "migrationDerivedTables": 57,
+ "tablesOnlyInProduction": [
+  "classification_feedback",
+  "classification_rule_versions",
+  "classification_rules",
+  "control_verifications",
+  "corrective_action_templates",
+  "decision_governance_logs",
+  "finding",
+  "hazard_categories",
+  "hazard_standard_mappings",
+  "hazard_taxonomy",
+  "notifications",
+  "outcomes",
+  "recommendation_feedback",
+  "regulatory_profile",
+  "report",
+  "report_attachments",
+  "report_language_templates",
+  "safescope_audit_records",
+  "standard_match_feedback",
+  "standards",
+  "users"
+ ],
+ "tablesOnlyFromMigrations": [],
+ "columnTypeDivergences": [
+  {
+   "column": "classifications.classificationStatus",
+   "production": "USER-DEFINED",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "classifications.severityLevel",
+   "production": "integer",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "invitation.organizationId",
+   "production": "uuid",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "regulatory_agency.createdAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_agency.updatedAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_paragraph.createdAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_paragraph.updatedAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_part.createdAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_part.updatedAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_section.createdAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_section.updatedAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_subpart.createdAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "regulatory_subpart.updatedAt",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone"
+  },
+  {
+   "column": "safescope_knowledge_chunks.citation",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_chunks.sectionHeading",
+   "production": "character varying(220)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_documents.agency",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_documents.approvalStatus",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_documents.citation",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_documents.sourceType",
+   "production": "character varying(60)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_documents.sourceUrl",
+   "production": "text",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_documents.title",
+   "production": "character varying(240)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_ingestion_runs.agency",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_ingestion_runs.sourceName",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_ingestion_runs.sourceType",
+   "production": "character varying(80)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_ingestion_runs.status",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_ingestion_runs.warnings",
+   "production": "jsonb",
+   "fromMigrations": "ARRAY"
+  },
+  {
+   "column": "safescope_knowledge_retrieval_logs.findingId",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_retrieval_logs.reportId",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_retrieval_logs.workspaceId",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_sources.agency",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_sources.lastKnownVersion",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_sources.name",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_sources.sourceType",
+   "production": "character varying(80)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_sources.status",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "safescope_knowledge_sources.trustLevel",
+   "production": "character varying(80)",
+   "fromMigrations": "character varying"
+  },
+  {
+   "column": "user.organizationId",
+   "production": "uuid",
+   "fromMigrations": "character varying"
+  }
+ ],
+ "columnsOnlyInProduction": [
+  "classifications.reviewReason",
+  "reports.archivedAt",
+  "reports.area",
+  "reports.deletedAt",
+  "reports.displayId",
+  "reports.equipment",
+  "reports.hazardDescription",
+  "reports.immediateDanger",
+  "reports.likelyStandards",
+  "reports.notes",
+  "reports.reviewDecision",
+  "reports.reviewDecisionNotes",
+  "reports.reviewedAt",
+  "reports.severity",
+  "reports.tenantId",
+  "reports.workActivity",
+  "safescope_feedback.safeScopeVersion",
+  "user.legacy_id",
+  "user.password"
+ ],
+ "columnsOnlyFromMigrations": [
+  "safescope_feedback.hazLenzVersion",
+  "safescope_knowledge_retrieval_logs.agencyMode",
+  "safescope_knowledge_retrieval_logs.classification",
+  "safescope_knowledge_retrieval_logs.matchedChunkIds",
+  "safescope_knowledge_retrieval_logs.query",
+  "safescope_knowledge_retrieval_logs.topScore"
+ ]
+}

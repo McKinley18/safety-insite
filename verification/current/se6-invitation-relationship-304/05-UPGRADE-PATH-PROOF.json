@@ -1,0 +1,38 @@
+{
+ "fixture": "live production backup restored into PostgreSQL 17.11 (exact production major.minor), then ONLY the pending \u00a7304 migration applied",
+ "tables": {
+  "before": 78,
+  "after": 78
+ },
+ "rowTotal": {
+  "before": 7228,
+  "after": 7229,
+  "note": "+1 is the migrations row this migration inserts. No business row was read, written or deleted."
+ },
+ "migrations": {
+  "before": 55,
+  "after": 56,
+  "head": "AlignInvitationOrganizationRelation1800000024000"
+ },
+ "tablesWithChangedContent": [
+  "migrations"
+ ],
+ "columns": {
+  "added": [],
+  "removed": []
+ },
+ "constraints": {
+  "added": [
+   "invitation:FK_invitation_organization:FOREIGN KEY (\"organizationId\") REFERENCES organization(id) ON DELETE RESTRICT"
+  ],
+  "removed": [
+   "invitation:FK_5c00d7d515395f91bd1fee19f32:FOREIGN KEY (\"organizationId\") REFERENCES organization(id)"
+  ]
+ },
+ "indexes": {
+  "added": [
+   "invitation:uq_invitation_token:CREATE UNIQUE INDEX uq_invitation_token ON public.invitation USING btree (token)"
+  ],
+  "removed": []
+ }
+}

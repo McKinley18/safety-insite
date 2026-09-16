@@ -1,0 +1,12 @@
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+
+{
+ "tablesCompared": 78,
+ "contentIdentical": 78,
+ "differing": 0,
+ "diffs": [],
+ "productionRowTotal": 7228,
+ "aggregateProduction": "d6baf25ddfe4c0f908187f16032c24cf",
+ "aggregateRestored": "d6baf25ddfe4c0f908187f16032c24cf"
+}

@@ -1,0 +1,78 @@
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789517560860_1649
+registered as run 6310070b-1d76-4f4b-b8c7-d3b4925f15bb
+
+> safety-insite-backend@1.0.0 test:304-invitation-relationship
+> ts-node scripts/test-304-invitation-relationship.ts
+
+resolved target host=127.0.0.1 database=test_insite_1789517560860_1649
+application listening on http://127.0.0.1:53284
+
+---- A. THE SCHEMA CONTRACT, on a migration-built database ----
+
+FAIL  A-1 invitation."organizationId" is uuid on a database built from the migrations. Before §304 this was character varying, and THAT is SE-6 — the migration history did not describe the relationship the entity declares.  [character varying]
+ok    A-2 and organization."id" is uuid, so the two now agree  [uuid]
+FAIL  A-3 exactly one foreign key, to organization(id), ON DELETE RESTRICT — the same policy organization_memberships, site, inspection and corrective_actions already use. Not CASCADE: an invitation is a membership-granting credential and must not vanish with its issuer.
+ok    A-4 organizationId is indexed — getInvitations filters on it on every read, and a foreign key does not index the referencing side  [PK_invitation_id,UQ_invitation_token,idx_invitation_organization_id]
+ok    A-5 token is unique, so "find one invitation by token" is a lookup rather than a silent non-determinism  [PK_invitation_id,UQ_invitation_token,idx_invitation_organization_id]
+FAIL  A-6 THE RELATION JOIN EXECUTES. This is the exact statement TypeORM emits for relations:['organization'], and it is what raised `operator does not exist: uuid = character varying` before §304.  [operator does not exist: uuid = character varying]
+
+---- B. verify-invite: bounded, and no longer a server error ----
+
+FAIL  B-1 an unknown token is 404, not 500. On a migration-built database this was a server error for EVERY token, valid or not.  [500]
+ok    B-2 and the refusal discloses no driver, SQL or column-type detail  [{"statusCode":500,"message":"Internal server error"}]
+ok    B-3 the token is NOT treated as a UUID — §303's UuidParam is deliberately not attached here, because the token is an opaque varchar and a 400 would hide the route behind a shape rule  [500]
+
+---- C. CAN AN ORGANIZATION OWNER ACTUALLY CREATE AN INVITATION? ----
+
+ok    C-0 an owner account exists and can authenticate
+ok    C-1 the owner session resolves the organization from the membership table, which is the server-authoritative source  [3e99c1f2-709c-46b2-beee-0d3f95178b37]
+      session role = "organization_admin"
+      POST /organization/me/invite -> 402 {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_REQUIRED","entitlement":"teamMe
+ok    C-2 the guarded invitation-creation route does not produce a server error  [402]
+ok    C-3 MEASURED (SE-8): the organization owner is refused 402 teamMembers. An organization whose planCode is 'company' does not confer teamMembers on the owner's account, so nobody can create an invitation through the supported route. Registered, NOT repaired.  [402 PAID_SUBSCRIPTION_REQUIRED]
+ok    C-4 MEASURED (SE-9): NO OrganizationRole value satisfies the invite routes' @Roles list. OrganizationRole is {member, manager, organization_admin}; the routes require {ORG_OWNER, Owner, Admin, SAFETY_DIRECTOR}. Since the session role is membership.role whenever a membership exists, every organization member is refused even with the entitlement. Two vocabularies, nothing holding them to each other. Registered, NOT repaired.  [0 satisfying values]
+
+---- D. THE LIFECYCLE, on an invitation created through the service contract ----
+
+      minted invitation token 6e17…(32 chars)
+FAIL  D-1 the invitation persists with a uuid organizationId holding the real organization id  [character varying]
+FAIL  D-2 a VALID token verifies — the case that returned 500 for every token before §304  [500]
+FAIL  D-3 AND THE ORGANIZATION RELATION LOADS. This is the join that defines SE-6, resolved through the real unauthenticated product route.  [undefined]
+ok    D-4 (recorded) the verification response shape is what the invite screen consumes
+FAIL  D-5 an invalid token FAILS CLOSED with 404  [500]
+ok    D-6 MEASURED: invitations have NO expiry. There is no column, no bound and no check — only the refusal message claims one. An invitation token is therefore valid until used, forever. Registered, not repaired.  [0 expiry columns]
+
+---- E. ACCEPTANCE — WHICH THE PRODUCT DOES NOT ACCEPT ----
+
+      POST /auth/register with inviteToken -> 400 {"message":["property inviteToken should not exist"],"error":"Bad Request","statusCode":400}
+ok    E-1 MEASURED (SE-10): AN INVITATION CANNOT BE ACCEPTED. RegisterDto does not declare `inviteToken`, and the global ValidationPipe runs with forbidNonWhitelisted, so the token is rejected before AuthService.register — which fully implements the handshake — is reached. Confirmed identically against live production. Registered, NOT repaired.  [400]
+ok    E-2 and the refusal is clean: no account, no membership, no half-accepted invitation left behind  [0 users]
+ok    E-3 and the invitation is still unused — a refused acceptance does not consume the credential
+FAIL  E-4 A USED INVITATION FAILS CLOSED. Once consumed, the token is indistinguishable from an unknown one — same 404, same message — so a used credential cannot be re-presented and its existence is not confirmed to a holder.  [500]
+
+---- F. TENANT ISOLATION, at the level the product actually reaches ----
+
+FAIL  F-1 organization B's invitation resolves to B — through the same repaired relation join, and never to A. A token names its own tenant.  [undefined]
+FAIL  F-2 and A's invitation resolves to A. Two tenants, two tokens, no leakage between them.  [undefined]
+ok    F-3 B's verification response carries nothing belonging to A — verifying a token discloses only its own organization
+ok    F-4 organization A still has exactly its owner. Every refused acceptance above created no membership anywhere.  [1]
+
+---- G. TOKEN SECURITY ----
+
+ok    G-1 tokens are opaque, hex, at least 128 bits, and distinct between invitations to the same organization  [7d3a…(32 chars) vs 82d5…(32 chars)]
+ok    G-2 and a token is not derived from the organization or the invitee — it cannot be guessed from what an attacker already knows
+ok    G-3 the database REFUSES a duplicate token, so verifyInvitation's findOne-by-token resolves one invitation by construction rather than by luck
+FAIL  G-4 and it refuses an invitation that names an organization which does not exist — the foreign key makes an orphaned credential unrepresentable
+FAIL  G-5 RESTRICT holds: an organization with invitations outstanding cannot be deleted out from under them. Under CASCADE the evidence that they were issued would simply vanish.
+
+---- H. SE-5 AND EN-3 MUST NOT REGRESS ----
+
+FAIL  H-1 SE-5 PRESERVED: the invite token route still accepts a non-UUID token and answers 404. UuidParam is deliberately not attached to it.  [500]
+ok    H-2 SE-5 PRESERVED: a malformed identifier on a UUID-backed route is still a bounded 400, not a 500  [400]
+ok    H-3 EN-3 PRESERVED: holding an organization membership in a company-plan workspace does NOT write a purchased subscription onto the account. The account row still says free/none, which is true — nothing was bought. (It is also why SE-8 refuses the owner: entitlement is resolved from the account, and the organization plan never reaches it.)  [{"plan":"free","status":"none","orgPlan":"company"}]
+ok    H-4 EN-3 PRESERVED: and no entitlement_grant was invented by organization membership  [0]
+
+================ §304 invitation relationship: 23 passed, 14 failed
+{"providerCalls":0,"expertExecutions":0,"passed":23,"failed":14,"invitationCreationRouteReachable":false,"invitationExpiryImplemented":false}
+dropped test_insite_1789517560860_1649

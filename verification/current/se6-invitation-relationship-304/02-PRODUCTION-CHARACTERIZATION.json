@@ -1,0 +1,82 @@
+
+
+{
+ "server": "PostgreSQL 17.11 (c4ba6b8)",
+ "database": "neondb",
+ "migrationsApplied": 55,
+ "migrationHead": "AgreementAcceptance1800000023000",
+ "types": [
+  {
+   "table_name": "invitation",
+   "column_name": "id",
+   "data_type": "uuid",
+   "is_nullable": "NO"
+  },
+  {
+   "table_name": "invitation",
+   "column_name": "organizationId",
+   "data_type": "uuid",
+   "is_nullable": "NO"
+  },
+  {
+   "table_name": "invitation",
+   "column_name": "token",
+   "data_type": "character varying",
+   "is_nullable": "NO"
+  },
+  {
+   "table_name": "organization",
+   "column_name": "id",
+   "data_type": "uuid",
+   "is_nullable": "NO"
+  },
+  {
+   "table_name": "organization_memberships",
+   "column_name": "organizationId",
+   "data_type": "uuid",
+   "is_nullable": "NO"
+  },
+  {
+   "table_name": "user",
+   "column_name": "organizationId",
+   "data_type": "uuid",
+   "is_nullable": "YES"
+  }
+ ],
+ "invitationRowCount": 0,
+ "nullOrganizationId": 0,
+ "nonNullOrganizationId": 0,
+ "uuidParseable": 0,
+ "notParseable": 0,
+ "matchedOrganization": 0,
+ "orphaned": 0,
+ "organizationRowCount": 8,
+ "membershipRowCount": 8,
+ "indexes": [
+  {
+   "indexname": "PK_beb994737756c0f18a1c1f8669c",
+   "indexdef": "CREATE UNIQUE INDEX \"PK_beb994737756c0f18a1c1f8669c\" ON public.invitation USING btree (id)"
+  },
+  {
+   "indexname": "idx_invitation_organization_id",
+   "indexdef": "CREATE INDEX idx_invitation_organization_id ON public.invitation USING btree (\"organizationId\")"
+  }
+ ],
+ "constraints": [
+  {
+   "conname": "FK_5c00d7d515395f91bd1fee19f32",
+   "contype": "f",
+   "def": "FOREIGN KEY (\"organizationId\") REFERENCES organization(id)"
+  },
+  {
+   "conname": "PK_beb994737756c0f18a1c1f8669c",
+   "contype": "p",
+   "def": "PRIMARY KEY (id)"
+  }
+ ],
+ "foreignKeyExists": true,
+ "invitationLikeTables": [
+  "invitation"
+ ],
+ "joinWorksInProduction": true
+}

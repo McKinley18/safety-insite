@@ -218,11 +218,25 @@ async function main(): Promise<void> {
     readyAll.expectedSchemaVersion === expected[expected.length - 1],
     String(readyAll.expectedSchemaVersion));
 
+  /*
+   * §304 (IT-3) — WITHHOLD THREE, EXPECT THOSE THREE.
+   *
+   * This pinned the literal '1800000021000' as one of the three it expected to be reported missing,
+   * which was true only while 021000 happened to be among the last three migrations in the
+   * artifact. §304 added 1800000024000 and the assertion failed on a correct readiness evaluator —
+   * the same failure shape as IT-2, where §268 E-2 pinned a literal migration timestamp.
+   *
+   * The property this case actually means is "the set reported missing is exactly the set that was
+   * withheld". Deriving it from `withheld` says that, is self-maintaining as migrations are added,
+   * and is STRICTER than the original: it now requires all three to be named rather than one.
+   */
+  const withheld = expected.slice(-3);
   const behind = await evaluateSchemaReadiness(fakeDb(expected.slice(0, -3)), directory);
   ok('R-5 a database missing the three backlog migrations is NOT READY', behind.ready === false);
   ok('R-6 it names exactly which migrations are missing',
-    behind.missing.length === 3
-      && behind.missing.includes('1800000021000'), behind.missing.join(','));
+    behind.missing.length === withheld.length
+      && withheld.every((t) => behind.missing.includes(t)),
+    `missing=${behind.missing.join(',')} withheld=${withheld.join(',')}`);
   ok('R-7 the reason explains the consequence rather than only the fact',
     /SCHEMA_BEHIND_CODE/.test(behind.reason) && /before activating/i.test(behind.reason));
 
