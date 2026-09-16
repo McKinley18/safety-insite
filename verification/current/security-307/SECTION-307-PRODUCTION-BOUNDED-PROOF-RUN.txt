@@ -1,0 +1,79 @@
+§307 PRODUCTION BOUNDED PROOF  —  https://safescope-backend.onrender.com
+
+ok    P-0  the instance answering every probe below is serving the §307 release commit  [ea06f08373e2]
+ok    P-1  SE-17: the unauthenticated readiness endpoint no longer publishes the alerting thresholds  [policy=absent]
+ok    P-2  and every operator-facing state is still reported — a threshold was removed, not observability  [{"alerting":"CONFIGURED","email":"NOT_CONFIGURED","schema":"1800000025000"}]
+ok    P-3  and readiness discloses no host, credential or internal path
+ok    P-4  CORS still returns the exact frontend origin for the frontend  [https://safety-insite.vercel.app]
+ok    P-5  and returns NO allow-origin for a foreign origin  [absent]
+ok    P-6  backend returns strict-transport-security  [max-age=31536000; includeSubDomains]
+ok    P-6  backend returns x-content-type-options  [nosniff]
+ok    P-6  backend returns x-frame-options  [SAMEORIGIN]
+ok    P-6  backend returns content-security-policy  [default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests]
+ok    P-6  backend returns referrer-policy  [no-referrer]
+ok    P-6  backend returns cross-origin-opener-policy  [same-origin]
+ok    P-6  backend returns cross-origin-resource-policy  [same-origin]
+ok    P-7  and does not advertise x-powered-by  [absent]
+ok    P-8  unauthenticated inspections: refused  [401]
+ok    P-8b unauthenticated inspections: discloses nothing
+ok    P-8  unauthenticated reports: refused  [401]
+ok    P-8b unauthenticated reports: discloses nothing
+ok    P-8  unauthenticated actions: refused  [401]
+ok    P-8b unauthenticated actions: discloses nothing
+ok    P-8  unauthenticated notifications: refused  [401]
+ok    P-8b unauthenticated notifications: discloses nothing
+ok    P-8  unauthenticated audit: refused  [401]
+ok    P-8b unauthenticated audit: discloses nothing
+ok    P-8  unauthenticated organization members: refused  [401]
+ok    P-8b unauthenticated organization members: discloses nothing
+ok    P-8  unauthenticated entitlement grant MINT: refused. (An unauthenticated GET on this path is a router 404 before any guard, because the controller declares POST only — which is why the probe drives the route that exists.)  [401]
+ok    P-8b unauthenticated entitlement grant MINT: discloses nothing
+ok    P-9  a synthetic .invalid account registers  [201 {"message":"User created successfully","userId":"6025135e-eb30-480c-9aaa-6fbb4934b407","or]
+ok    P-10 it logs in as an individual with organizationId NULL  [201]
+ok    P-11 forbidNonWhitelisted is LIVE in production: a site carrying ownerUserId is refused 400  [400]
+ok    P-11 forbidNonWhitelisted is LIVE in production: a site carrying organizationId is refused 400  [400]
+ok    P-11 forbidNonWhitelisted is LIVE in production: a site carrying workspaceId is refused 400  [400]
+ok    P-12 and a profile update carrying role/planCode is refused 400  [400]
+ok    P-13 SE-16: the route that calls dataSource.synchronize() answers 404 in production  [404]
+ok    P-13b and says nothing about what it would have done  [{"message":"Not Found","statusCode":404}]
+ok    P-14 a FREE individual is refused paid HazLenz capability with 402  [402]
+ok    P-15 and a caller-supplied planCode does not promote (§301 preserved)  [402]
+ok    P-16 an unentitled individual cannot invoke paid Expert capability. NO provider call is reachable from here.  [402]
+ok    P-17 a foreign/unknown inspection id is refused with a client error  [404]
+ok    P-17b and discloses nothing internal
+ok    P-17 a foreign/unknown site id is refused with a client error  [404]
+ok    P-17b and discloses nothing internal
+ok    P-17 a foreign/unknown report id is refused with a client error  [404]
+ok    P-17b and discloses nothing internal
+ok    P-17 a foreign/unknown file id is refused with a client error  [404]
+ok    P-17b and discloses nothing internal
+ok    P-18 a malformed inspection identifier is a client error, never a 500 (SE-5 preserved)  [400]
+ok    P-18b and discloses nothing
+ok    P-18 a malformed file identifier is a client error, never a 500 (SE-5 preserved)  [400]
+ok    P-18b and discloses nothing
+ok    P-18 a malformed file, SQL-shaped identifier is a client error, never a 500 (SE-5 preserved)  [403]
+ok    P-18b and discloses nothing
+ok    P-18 a malformed file, traversal identifier is a client error, never a 500 (SE-5 preserved)  [400]
+ok    P-18b and discloses nothing
+ok    P-19 the retired legacy PDF route still answers the same way after puppeteer was removed from the artifact  [402 {"message":"A paid subscription is required for this feature.","code":"PAID_SUBS]
+ok    P-20 deferred/privileged read organization settings: no server error  [401]
+ok    P-20c deferred/privileged read organization settings: discloses nothing
+ok    P-20 deferred/privileged list members: no server error  [402]
+ok    P-20c deferred/privileged list members: discloses nothing
+ok    P-20 deferred/privileged create an invitation: no server error  [402]
+ok    P-20b deferred/privileged create an invitation: the MUTATION is refused  [402]
+ok    P-20c deferred/privileged create an invitation: discloses nothing
+ok    P-20 deferred/privileged mint an entitlement grant: no server error  [403]
+ok    P-20b deferred/privileged mint an entitlement grant: the MUTATION is refused  [403]
+ok    P-20c deferred/privileged mint an entitlement grant: discloses nothing
+ok    P-21 the account works before deletion — so P-22 measures deletion  [200]
+ok    P-22 CLEANUP: the synthetic account deletes itself through the product route  [200]
+ok    P-23 and the SAME still-unexpired token is refused afterwards  [401]
+ok    P-24 and the deleted account cannot log in again — no residue  [401]
+ok    P-25 the service is healthy after every probe above  [200]
+
+==========================================================================================
+§307 PRODUCTION BOUNDED PROOF: 71 passed, 0 failed.
+Expert executions: 0. Provider calls: 0. Charges: 0. Spend: $0.00.
+Retained synthetic state: none — the one account created was deleted through DELETE /auth/me.
+==========================================================================================

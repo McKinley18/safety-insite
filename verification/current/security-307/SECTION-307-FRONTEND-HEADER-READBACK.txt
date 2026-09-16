@@ -1,0 +1,37 @@
+=== §307 production frontend header read-back — 2026-09-16T21:18:09Z ===
+--- https://safety-insite.vercel.app/ ---
+content-security-policy: frame-ancestors 'none'
+cross-origin-opener-policy: same-origin
+permissions-policy: camera=(self), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-robots-tag: noindex, nofollow
+--- https://safety-insite.vercel.app/login ---
+content-security-policy: frame-ancestors 'none'
+cross-origin-opener-policy: same-origin
+permissions-policy: camera=(self), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-robots-tag: noindex, nofollow
+--- https://safety-insite.vercel.app/register ---
+content-security-policy: frame-ancestors 'none'
+cross-origin-opener-policy: same-origin
+permissions-policy: camera=(self), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-robots-tag: noindex, nofollow
+--- https://safety-insite.vercel.app/inspection-workspace ---
+content-security-policy: frame-ancestors 'none'
+cross-origin-opener-policy: same-origin
+permissions-policy: camera=(self), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-robots-tag: noindex, nofollow

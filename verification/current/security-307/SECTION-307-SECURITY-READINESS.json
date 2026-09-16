@@ -6,25 +6,42 @@
   "providerCalls": 0,
   "expertExecutions": 0,
   "spendUsd": 0,
-  "directDatabaseWrites": "none against production; every mutation in this section ran against a disposable test_insite_* database created and dropped by scripts/hazlenz/with-disposable-db.ts",
-
+  "directDatabaseWrites": "NONE BY HAND, anywhere. Every mutation in the local review ran against a disposable test_insite_* database created and dropped by scripts/hazlenz/with-disposable-db.ts. In production, the only writes were made THROUGH PRODUCT ROUTES by the bounded proof: two synthetic account registrations and their two deletions, plus the security-audit rows the product writes for them. No psql, no migration, no seed, no schema change.",
   "scannerAndPolicy": {
     "scanner": "npm audit --omit=dev --json (npm 10.8.2)",
     "why": "The authoritative package-manager audit for both ecosystems. No third-party scanner was installed into the product to satisfy this section.",
     "gate": "backend/scripts/security-dependency-gate.ts, run as `npm run security:deps` from backend/",
     "exceptionRegister": "backend/security/dependency-exceptions.json",
-    "exitCodes": { "0": "PASS", "1": "FAIL (blocking finding, expired exception, or a blocking severity excused by prose alone)", "2": "UNKNOWN (the scan could not execute)" },
+    "exitCodes": {
+      "0": "PASS",
+      "1": "FAIL (blocking finding, expired exception, or a blocking severity excused by prose alone)",
+      "2": "UNKNOWN (the scan could not execute)"
+    },
     "notInPrecommit": "Deliberate. npm audit queries a remote advisory service, so its answer changes with the calendar as well as with the lockfile. §307 explicitly warns against a gate whose output moves during an unrelated precommit; this is an intentional release-readiness command with captured evidence.",
     "scannerFailureBehaviour": "A non-JSON body, an `error` object, an absent `metadata` block, or a production dependency count below 20 all produce UNKNOWN and exit 2. Classification is read from the JSON body and never from npm's exit code, so lowering `audit-level` in a config file cannot buy a pass.",
     "watchedToFail": [
-      { "path": "a reintroduced HIGH production finding (multer pinned back to 2.2.0)", "result": "FAIL, exit 1, three GHSAs named" },
-      { "path": "an expired exception (expiresAt moved to 2026-01-01)", "result": "FAIL, exit 1" },
-      { "path": "the applicability predicate stops holding (an @Sse() route added)", "result": "FAIL, exit 1, naming the file that broke it" },
-      { "path": "the scanner cannot reach a registry", "result": "UNKNOWN, exit 2" },
-      { "path": "control — restored state", "result": "PASS, exit 0" }
+      {
+        "path": "a reintroduced HIGH production finding (multer pinned back to 2.2.0)",
+        "result": "FAIL, exit 1, three GHSAs named"
+      },
+      {
+        "path": "an expired exception (expiresAt moved to 2026-01-01)",
+        "result": "FAIL, exit 1"
+      },
+      {
+        "path": "the applicability predicate stops holding (an @Sse() route added)",
+        "result": "FAIL, exit 1, naming the file that broke it"
+      },
+      {
+        "path": "the scanner cannot reach a registry",
+        "result": "UNKNOWN, exit 2"
+      },
+      {
+        "path": "control — restored state",
+        "result": "PASS, exit 0"
+      }
     ]
   },
-
   "dependencyInventory": {
     "productionEcosystems": [
       "backend — Node/npm, package-lock v3, Render native Node runtime v24.14.1 (engines >=24.14.1 <25.0.0)",
@@ -34,26 +51,71 @@
       "backend/Dockerfile": "FROM node:20-alpine. Production does NOT build from this Dockerfile — /health/version reports nodeVersion v24.14.1 sourced from Render's native Node environment, and the service record shows env=node rather than an image build. The file's node:20 base contradicts the package.json engines pin and would fail EBADENGINE if anyone ever built it. Recorded as an observation, not a production dependency."
     },
     "before": {
-      "backend": { "directProduction": 33, "transitiveProductionTreeNodes": 468, "devOnlyTreeNodes": 33 },
-      "frontendNext": { "directProduction": 10, "transitiveProductionTreeNodes": 51, "devOnlyTreeNodes": 390 }
+      "backend": {
+        "directProduction": 33,
+        "transitiveProductionTreeNodes": 468,
+        "devOnlyTreeNodes": 33
+      },
+      "frontendNext": {
+        "directProduction": 10,
+        "transitiveProductionTreeNodes": 51,
+        "devOnlyTreeNodes": 390
+      }
     },
     "after": {
-      "backend": { "directProduction": 32, "transitiveProductionTreeNodes": 387, "devOnlyTreeNodes": 32 },
-      "frontendNext": { "directProduction": 10, "transitiveProductionTreeNodes": 51, "devOnlyTreeNodes": 390 }
+      "backend": {
+        "directProduction": 32,
+        "transitiveProductionTreeNodes": 387,
+        "devOnlyTreeNodes": 32
+      },
+      "frontendNext": {
+        "directProduction": 10,
+        "transitiveProductionTreeNodes": 51,
+        "devOnlyTreeNodes": 390
+      }
     }
   },
-
   "findingsBefore": {
-    "backendProduction": { "critical": 0, "high": 10, "moderate": 6, "low": 0 },
-    "frontendProduction": { "critical": 1, "high": 2, "moderate": 4, "low": 0 },
-    "frontendIncludingDev": { "critical": 1, "high": 5, "moderate": 4, "low": 0 }
+    "backendProduction": {
+      "critical": 0,
+      "high": 10,
+      "moderate": 6,
+      "low": 0
+    },
+    "frontendProduction": {
+      "critical": 1,
+      "high": 2,
+      "moderate": 4,
+      "low": 0
+    },
+    "frontendIncludingDev": {
+      "critical": 1,
+      "high": 5,
+      "moderate": 4,
+      "low": 0
+    }
   },
   "findingsAfter": {
-    "backendProduction": { "critical": 0, "high": 0, "moderate": 3, "low": 0, "distinctRootAdvisories": 1 },
-    "frontendProduction": { "critical": 0, "high": 0, "moderate": 0, "low": 0 },
-    "frontendIncludingDev": { "critical": 0, "high": 0, "moderate": 0, "low": 0 }
+    "backendProduction": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 3,
+      "low": 0,
+      "distinctRootAdvisories": 1
+    },
+    "frontendProduction": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0
+    },
+    "frontendIncludingDev": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0
+    }
   },
-
   "criticalFindings": [
     {
       "id": "GHSA-2xp9-vwfh-vxw4 / GHSA-p293-qw3h-jr36",
@@ -68,32 +130,142 @@
       "verification": "npm audit --omit=dev reports 0 critical; the frontend production build succeeds and renders all 25 routes."
     }
   ],
-
   "highFindings": [
-    { "packages": ["multer"], "ids": ["GHSA-wc9g-mqfw-jrwm", "GHSA-qfvm-cv95-jqjf", "GHSA-535w-7cp7-47q4", "GHSA-qvfw-j98x-7q72 (low)"], "summary": "Denial of service via crafted multipart field names, a file-descriptor leak on aborted uploads, an oversized array index in field names, and a file-size-limit bypass.", "applicability": "REACHABLE. multer backs POST /inspections/:id/evidence and POST /upload/logo — authenticated, but authentication is not a DoS control.", "disposition": "REPAIRED. Root dependency moved ^2.2.0 -> ^2.4.0; the existing `\"multer\": \"$multer\"` override propagates it to @nestjs/platform-express, which pins 2.0.2 exactly. No NestJS major migration." },
-    { "packages": ["express", "body-parser", "qs"], "ids": ["GHSA-x5fp-wj9c-mxmx", "GHSA-4mjr-xmp4-gh2g"], "summary": "qs array-limit bypass via bracket-key comma parsing, and denial of service via an attacker-controlled isBuffer.", "applicability": "REACHABLE on every request that carries a query string or a body.", "disposition": "REPAIRED by overrides: express 4.22.2 -> 4.22.3, body-parser 1.20.6 -> 1.20.8, qs 6.15.3 -> 6.16.0. All within express's 4.x line." },
-    { "packages": ["brace-expansion"], "ids": ["GHSA-rgw5-rvv9-x895"], "summary": "Denial of service via unbounded intermediate arrays.", "disposition": "REPAIRED by override 5.0.8 -> 5.0.12 (backend production tree only)." },
-    { "packages": ["ip-address"], "ids": ["GHSA-mwp4-54f8-5fhr", "GHSA-4xrf-jv44-h6hh", "GHSA-22jq-vg5j-6vgg"], "summary": "Leading-zero octets decoded as decimal, CIDR suffixes suppressing special-use classification, and IPv4-mapped/NAT64 misclassification — each able to bypass an SSRF or trust-boundary check.", "disposition": "REPAIRED by override -> 10.7.2." },
-    { "packages": ["js-yaml"], "ids": ["GHSA-5p4m-2wfm-xmqj", "GHSA-2883-xcg3-v3hh"], "summary": "Quadratic CPU consumption in !!omap resolution, and maxTotalMergeKeys failing to bound CPU for empty merge sources.", "disposition": "REPAIRED by override -> 4.3.2." },
-    { "packages": ["puppeteer", "puppeteer-core", "@puppeteer/browsers", "extract-zip"], "ids": ["GHSA-jmr9-qjv8-65gv", "GHSA-7pqw-9j4j-h8q3"], "summary": "extract-zip unvalidated symlink path traversal and arbitrary file writes through symlink archive entries, reached through @puppeteer/browsers. CVSS 8.1. NO forward fix exists — npm's proposed 'fix' is a DOWNGRADE to puppeteer 19.8.0.", "applicability": "puppeteer's only importer anywhere in the application was src/pdf/pdf.service.ts, provided by PdfModule, whose only route (GET /legacy/pdf/:id) has thrown 410 Gone unconditionally since legacy PDF generation was retired. Customer reports are produced by src/reports/pdf/pdf.service.ts on pdfkit.", "disposition": "REPAIRED BY REMOVAL rather than excepted. An exception would have been a claim about reachability; deleting the dead provider removes the dependency and 441 packages, including Chromium, from the production artifact. GET /legacy/pdf/:id still answers 410 with the same sentence.", "artifactEffect": "backend production tree 468 -> 387 nodes." },
-    { "packages": ["sharp", "nanoid"], "ids": ["GHSA-rgj7-g3m4-5g8c", "GHSA-2v37-7h3g-55p8"], "summary": "libheif vulnerabilities reached through sharp; nanoid custom generators looping indefinitely at size zero.", "disposition": "REPAIRED by overrides sharp -> 0.35.4, nanoid -> 3.3.19." }
+    {
+      "packages": [
+        "multer"
+      ],
+      "ids": [
+        "GHSA-wc9g-mqfw-jrwm",
+        "GHSA-qfvm-cv95-jqjf",
+        "GHSA-535w-7cp7-47q4",
+        "GHSA-qvfw-j98x-7q72 (low)"
+      ],
+      "summary": "Denial of service via crafted multipart field names, a file-descriptor leak on aborted uploads, an oversized array index in field names, and a file-size-limit bypass.",
+      "applicability": "REACHABLE. multer backs POST /inspections/:id/evidence and POST /upload/logo — authenticated, but authentication is not a DoS control.",
+      "disposition": "REPAIRED. Root dependency moved ^2.2.0 -> ^2.4.0; the existing `\"multer\": \"$multer\"` override propagates it to @nestjs/platform-express, which pins 2.0.2 exactly. No NestJS major migration."
+    },
+    {
+      "packages": [
+        "express",
+        "body-parser",
+        "qs"
+      ],
+      "ids": [
+        "GHSA-x5fp-wj9c-mxmx",
+        "GHSA-4mjr-xmp4-gh2g"
+      ],
+      "summary": "qs array-limit bypass via bracket-key comma parsing, and denial of service via an attacker-controlled isBuffer.",
+      "applicability": "REACHABLE on every request that carries a query string or a body.",
+      "disposition": "REPAIRED by overrides: express 4.22.2 -> 4.22.3, body-parser 1.20.6 -> 1.20.8, qs 6.15.3 -> 6.16.0. All within express's 4.x line."
+    },
+    {
+      "packages": [
+        "brace-expansion"
+      ],
+      "ids": [
+        "GHSA-rgw5-rvv9-x895"
+      ],
+      "summary": "Denial of service via unbounded intermediate arrays.",
+      "disposition": "REPAIRED by override 5.0.8 -> 5.0.12 (backend production tree only)."
+    },
+    {
+      "packages": [
+        "ip-address"
+      ],
+      "ids": [
+        "GHSA-mwp4-54f8-5fhr",
+        "GHSA-4xrf-jv44-h6hh",
+        "GHSA-22jq-vg5j-6vgg"
+      ],
+      "summary": "Leading-zero octets decoded as decimal, CIDR suffixes suppressing special-use classification, and IPv4-mapped/NAT64 misclassification — each able to bypass an SSRF or trust-boundary check.",
+      "disposition": "REPAIRED by override -> 10.7.2."
+    },
+    {
+      "packages": [
+        "js-yaml"
+      ],
+      "ids": [
+        "GHSA-5p4m-2wfm-xmqj",
+        "GHSA-2883-xcg3-v3hh"
+      ],
+      "summary": "Quadratic CPU consumption in !!omap resolution, and maxTotalMergeKeys failing to bound CPU for empty merge sources.",
+      "disposition": "REPAIRED by override -> 4.3.2."
+    },
+    {
+      "packages": [
+        "puppeteer",
+        "puppeteer-core",
+        "@puppeteer/browsers",
+        "extract-zip"
+      ],
+      "ids": [
+        "GHSA-jmr9-qjv8-65gv",
+        "GHSA-7pqw-9j4j-h8q3"
+      ],
+      "summary": "extract-zip unvalidated symlink path traversal and arbitrary file writes through symlink archive entries, reached through @puppeteer/browsers. CVSS 8.1. NO forward fix exists — npm's proposed 'fix' is a DOWNGRADE to puppeteer 19.8.0.",
+      "applicability": "puppeteer's only importer anywhere in the application was src/pdf/pdf.service.ts, provided by PdfModule, whose only route (GET /legacy/pdf/:id) has thrown 410 Gone unconditionally since legacy PDF generation was retired. Customer reports are produced by src/reports/pdf/pdf.service.ts on pdfkit.",
+      "disposition": "REPAIRED BY REMOVAL rather than excepted. An exception would have been a claim about reachability; deleting the dead provider removes the dependency and 441 packages, including Chromium, from the production artifact. GET /legacy/pdf/:id still answers 410 with the same sentence.",
+      "artifactEffect": "backend production tree 468 -> 387 nodes."
+    },
+    {
+      "packages": [
+        "sharp",
+        "nanoid"
+      ],
+      "ids": [
+        "GHSA-rgj7-g3m4-5g8c",
+        "GHSA-2v37-7h3g-55p8"
+      ],
+      "summary": "libheif vulnerabilities reached through sharp; nanoid custom generators looping indefinitely at size zero.",
+      "disposition": "REPAIRED by overrides sharp -> 0.35.4, nanoid -> 3.3.19."
+    }
   ],
-
   "moderateFindings": [
-    { "packages": ["dompurify", "fflate", "baseline-browser-mapping"], "disposition": "REPAIRED by overrides -> 3.4.15, 0.8.3, 2.11.24." },
-    { "packages": ["uuid (nested under @nestjs/typeorm)"], "id": "GHSA-w5hq-g745-h8pq", "summary": "Missing buffer bounds check in v3/v5/v6 when buf is provided.", "applicability": "@nestjs/typeorm calls only v4() and passes no buf, so the advisory was already non-applicable.", "disposition": "REPAIRED ANYWAY, because a fix beats an exception: nested override `@nestjs/typeorm > uuid` -> 11.1.1, smoke-tested to produce a v4 UUID at runtime." },
-    { "packages": ["@nestjs/core", "@nestjs/platform-express", "@nestjs/typeorm"], "id": "GHSA-36xv-jgw5-4q75", "summary": "SseStream._transform() interpolates message.type and message.id into Server-Sent Events output without neutralising CR/LF. CVSS 6.1. One root advisory; npm reports it three times because it repeats a dependency's finding on every dependent.", "disposition": "ACCEPTED EXCEPTION, expiring 2026-12-31.", "reason": "The published fix is @nestjs/core 11.1.18 — a NestJS 10 -> 11 major migration, which §307 classifies as a product-owner decision rather than an in-slice repair. The advisory's own stated precondition is developer code mapping user-influenced data onto an SSE message's type or id field. This product has no SSE surface, so SseStream is never constructed.", "howTheExceptionStaysHonest": "The register entry names applicabilityCheck `no-sse-surface`, which the gate RE-RUNS on every invocation across 2,389 source files and fails if any @Sse() decorator, text/event-stream response or EventSource client appears. Watched to fail by adding a probe @Sse() route." }
+    {
+      "packages": [
+        "dompurify",
+        "fflate",
+        "baseline-browser-mapping"
+      ],
+      "disposition": "REPAIRED by overrides -> 3.4.15, 0.8.3, 2.11.24."
+    },
+    {
+      "packages": [
+        "uuid (nested under @nestjs/typeorm)"
+      ],
+      "id": "GHSA-w5hq-g745-h8pq",
+      "summary": "Missing buffer bounds check in v3/v5/v6 when buf is provided.",
+      "applicability": "@nestjs/typeorm calls only v4() and passes no buf, so the advisory was already non-applicable.",
+      "disposition": "REPAIRED ANYWAY, because a fix beats an exception: nested override `@nestjs/typeorm > uuid` -> 11.1.1, smoke-tested to produce a v4 UUID at runtime."
+    },
+    {
+      "packages": [
+        "@nestjs/core",
+        "@nestjs/platform-express",
+        "@nestjs/typeorm"
+      ],
+      "id": "GHSA-36xv-jgw5-4q75",
+      "summary": "SseStream._transform() interpolates message.type and message.id into Server-Sent Events output without neutralising CR/LF. CVSS 6.1. One root advisory; npm reports it three times because it repeats a dependency's finding on every dependent.",
+      "disposition": "ACCEPTED EXCEPTION, expiring 2026-12-31.",
+      "reason": "The published fix is @nestjs/core 11.1.18 — a NestJS 10 -> 11 major migration, which §307 classifies as a product-owner decision rather than an in-slice repair. The advisory's own stated precondition is developer code mapping user-influenced data onto an SSE message's type or id field. This product has no SSE surface, so SseStream is never constructed.",
+      "howTheExceptionStaysHonest": "The register entry names applicabilityCheck `no-sse-surface`, which the gate RE-RUNS on every invocation across 2,389 source files and fails if any @Sse() decorator, text/event-stream response or EventSource client appears. Watched to fail by adding a probe @Sse() route."
+    }
   ],
-
   "lowFindings": [
-    { "packages": ["multer"], "id": "GHSA-qvfw-j98x-7q72", "summary": "File-size-limit bypass via an async fileFilter race.", "disposition": "REPAIRED as part of the multer 2.4.0 move." }
+    {
+      "packages": [
+        "multer"
+      ],
+      "id": "GHSA-qvfw-j98x-7q72",
+      "summary": "File-size-limit bypass via an async fileFilter race.",
+      "disposition": "REPAIRED as part of the multer 2.4.0 move."
+    }
   ],
-
   "devOnlyAcceptedAsTechnicalDebt": {
     "statement": "None remain. After the repairs the frontend reports 0 findings at every severity INCLUDING the dev tree, and the backend's only remaining finding is the excepted production advisory above.",
     "oneOverCorrectionFoundAndReversed": "A blanket `brace-expansion: 5.0.12` override was first applied to the frontend as well. brace-expansion is DEV-ONLY there, and the override forced minimatch@3's nested copy to v5, whose export shape minimatch@3 cannot use — `npm run lint` died with `TypeError: expand is not a function`. §307's own warning about upgrading without analysis, demonstrated. The override was removed; npm then resolved minimatch's nested brace-expansion to 1.1.21 and the top-level to 5.0.12 independently, lint runs again, and the frontend audit is still clean at every severity."
   },
-
   "securitySuite": {
     "file": "backend/scripts/test-307-security-boundary.ts",
     "run": "npm run test:307-security-boundary:db (standalone) — also wired into hazlenz:integration:inner",
@@ -107,7 +279,6 @@
       "mutationProbe": "The ownership predicate in InspectionService.findAccessible was disabled (`if (!sameScope && false)`) and the suite re-run: 27 assertions failed across cross-user read, write, report generation, report archive, revision history, download and the Expert read — including the immutable-report tamper. The file was restored and its SHA-256 re-verified. Evidence: SECTION-307-MUTATION-PROBE-RUN.txt"
     }
   },
-
   "phaseResults": {
     "authenticationAndSession": "PASS. No token, four malformed shapes, a rewritten signature, a payload re-pointed at another user's id and promoted to pro, an `alg: none` token, an expired token, a token signed with an attacker-chosen secret, and a validly signed token for a non-existent user are all refused 401 with no disclosure. The suite holds the real signing secret, so the forgeries are real forgeries.",
     "deletedAccountToken": "PASS, and non-vacuously: the account is proven to WORK before deletion, then deleted through the product route, and the SAME still-unexpired access token is refused 401 on /auth/me and on customer routes.",
@@ -126,7 +297,6 @@
     "deferredRoutes": "PASS. Ten deferred or privileged routes answer 401/403/404/400, disclose nothing belonging to the planted foreign tenant, and refuse every mutation. Verified by effect: no membership and no invitation was created, and A gained neither a role nor an organization. verify-invite answers a bounded 404 (SE-6 preserved).",
     "httpSecuritySurface": "Source-contract assertions only, and the suite says so: helmet, x-powered-by, the CORS callback, the body limits and the production-environment refusals are applied by bootstrap() in main.ts, which the harness does not run. Applying helmet inside the harness would measure the harness. The behavioural proof is the deployed read-back recorded under productionProof."
   },
-
   "secretsReview": {
     "trackedRepository": "CLEAN. Every one of the 13 secret-valued production environment variables was searched for, by exact value, across all 9,046 tracked files: zero occurrences. The two matches the search reported were PASSWORD_RESET_FRONTEND_URL (a public frontend URL) and STRIPE_PRO_PRICE_ID (a public catalogue identifier), neither of which is a secret; they were matched only because the variable names contain PASSWORD and STRIPE.",
     "gitHistory": "CLEAN. `git log --all -S<value>` for JWT_SECRET, ANTHROPIC_API_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, DATABASE_URL, STORAGE_S3_SECRET_ACCESS_KEY, DB_PASSWORD, MAINTENANCE_SEED_TOKEN and OPERATIONAL_ALERT_WEBHOOK_URL: zero commits reachable from any ref contain any of them.",
@@ -135,15 +305,25 @@
     "noRotationPerformed": "Correct. Nothing was rotated merely because it exists in secret storage.",
     "oneObservation": "FRONTEND_URL carries a trailing slash (https://safety-insite.vercel.app/) while CORS_ORIGINS does not. main.ts pushes the RAW FRONTEND_URL into the allowed-origin list, so that entry can never match an Origin header. Harmless — CORS_ORIGINS covers the real origin and the exact-match behaviour was confirmed live — but it means the allow-list carries one dead entry."
   },
-
   "frontendClientBoundary": {
-    "nextPublicVariables": ["NEXT_PUBLIC_ALLOW_INDEXING", "NEXT_PUBLIC_API_BASE_URL", "NEXT_PUBLIC_API_URL", "NEXT_PUBLIC_BUILD_TIMESTAMP", "NEXT_PUBLIC_DEV_FORCE_PRO", "NEXT_PUBLIC_DISABLE_AUTH", "NEXT_PUBLIC_ENABLE_SW_IN_DEV", "NEXT_PUBLIC_FRONTEND_VERSION", "NEXT_PUBLIC_GIT_SHA", "NEXT_PUBLIC_INDEXING_POLICY", "NEXT_PUBLIC_SHELL_CACHE_GENERATION"],
+    "nextPublicVariables": [
+      "NEXT_PUBLIC_ALLOW_INDEXING",
+      "NEXT_PUBLIC_API_BASE_URL",
+      "NEXT_PUBLIC_API_URL",
+      "NEXT_PUBLIC_BUILD_TIMESTAMP",
+      "NEXT_PUBLIC_DEV_FORCE_PRO",
+      "NEXT_PUBLIC_DISABLE_AUTH",
+      "NEXT_PUBLIC_ENABLE_SW_IN_DEV",
+      "NEXT_PUBLIC_FRONTEND_VERSION",
+      "NEXT_PUBLIC_GIT_SHA",
+      "NEXT_PUBLIC_INDEXING_POLICY",
+      "NEXT_PUBLIC_SHELL_CACHE_GENERATION"
+    ],
     "assessment": "All are intentionally public configuration. Two are development bypasses — NEXT_PUBLIC_DISABLE_AUTH and NEXT_PUBLIC_DEV_FORCE_PRO — and both were checked against the DEPLOYED bundles rather than against the source.",
     "deployedBundleScan": "16 chunks were downloaded from the production deployment across /, /login, /register, /dashboard and /settings and searched for sk_live_, sk_test_, rk_live_, whsec_, sk-ant-, AKIA, postgres:// URLs, PEM private keys, re_ and ghp_ tokens: zero matches. Neither dev bypass flag appears inlined in any chunk, so neither was set to true at build time. The only embedded endpoint is the intended public API base URL.",
     "sourceMaps": "Not served. Four chunk .map URLs return 404 and no chunk carries a sourceMappingURL comment.",
     "oneSourceObservation": "planEntitlements.ts:136 returns 'pro' on NEXT_PUBLIC_DEV_FORCE_PRO without the NODE_ENV !== 'production' guard that AppShell.tsx and auth.ts both apply. It is presentation only — the server is authoritative on entitlement and §307 re-proved that — and the flag is not set in production. Recorded as an observation, not a defect."
   },
-
   "sc2SecurityConsequence": {
     "question": "§307 authorises repairing SC-2 only if one of its two entity-versus-database contradictions creates an ACTUAL security consequence.",
     "halfOne": "The six standards_master columns the entity declares and no database has. The two routes that read that table — POST /standards/match and POST /applicable-standards/suggest — were driven by an authenticated individual and answered 201 and 400 respectively. No 500, no disclosure. Not reachable as a security consequence.",
@@ -151,7 +331,6 @@
     "verdict": "SC-2 has NO security consequence. It stays OPEN and unrepaired, as §307 directs.",
     "durable": "Both halves are assertions C-sc2-1/2/3 in the §307 suite, so a future change that makes either half reachable fails a test rather than going unnoticed."
   },
-
   "newDefectsFoundAndRepaired": [
     {
       "id": "SE-16",
@@ -190,7 +369,6 @@
       "severity": "P2"
     }
   ],
-
   "newDefectsRegisteredNotRepaired": [
     {
       "id": "SE-20",
@@ -204,13 +382,11 @@
       "status": "OPEN"
     }
   ],
-
   "observationsNotDefects": [
     "NotificationsService.markRead answers 401 Unauthorized when a notification is not found in the caller's scope, where 404 would be the ordinary answer. It fails closed and discloses nothing, so it is not a security defect; but a well-behaved SPA may log the user out on a benign not-found. UX, not security.",
     "backend/Dockerfile declares FROM node:20-alpine while package.json pins engines >=24.14.1 <25.0.0. Production does not build from this Dockerfile — Render runs a native Node environment and /health/version reports v24.14.1 — so it is not a production dependency. Anyone who did build the image would get EBADENGINE.",
     "The 188 ESLint errors in frontend-next (168 no-explicit-any, 17 setState-in-effect, 2 unescaped entities, 1 TDZ) are all in app/, components/ and lib/ files that §307 did not touch, with eslint 9.39.4 and eslint-config-next 16.2.12 both unchanged by the Next upgrade. next.config.ts, the one frontend source file §307 changed, is lint-clean."
   ],
-
   "preservedUnchanged": {
     "EXPERT_EXECUTION_ENABLED": "true in production, untouched",
     "expertLimits": "1 analysis/workspace/24h, USD 1.00/workspace/24h, EXPERT_SPEND_WINDOW_HOURS 24 — untouched, and re-asserted by F-6",
@@ -222,5 +398,35 @@
     "BR-5": "OPEN, untouched",
     "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED, untouched",
     "OPS-2": "OPEN, untouched"
+  },
+  "productionProof": {
+    "releaseSha": "ea06f08373e2daf1090d94a6258c6bf7333023c5",
+    "previousReleaseSha": "a6da42061a473d6ced5964084aeeb68604fdd6d8",
+    "renderDeploy": "dep-dalgahh42hec73ccvmp0, trigger api, status live",
+    "buildTimestamp": "2026-09-16T21:08:15Z, stamped on the service BEFORE the deploy per the §270 runbook step; /health/version reports buildTimestampSourceStatus BUILD_TIMESTAMP rather than BUILD_FALLBACK",
+    "runningShaVerification": "npm run release:verify-sha -- --expected=ea06f083… => RUNNING SHA OK, version source RENDER_GIT_COMMIT",
+    "fiveStableReadBacks": "Five reads of /health/version and /health/ready at 12-second intervals, all identical: gitCommit ea06f08373e2, buildTimestampSourceStatus BUILD_TIMESTAMP, node v24.14.1, alerting CONFIGURED, policyPublished false, schema 1800000025000 57/57. OPS-2's failure mode — a deploy reporting live before the old instance stops serving — is why five were taken rather than one.",
+    "frontendDeploy": "Vercel production deploy of the same tree (dpl_6NeZUe6KKCincotR7VZmB3NhvaK9). Vercel git auto-deploy has been disabled since §269, so the deploy was explicit. The project root directory is frontend-next, so the CLI runs from the repository root, and --archive=tgz was required because the repository exceeds Vercel's 15,000-file direct-upload limit.",
+    "frontendHeaderReadBack": "All six headers confirmed returned on /, /login, /register and /inspection-workspace: Content-Security-Policy frame-ancestors none, X-Frame-Options DENY, X-Content-Type-Options nosniff, Referrer-Policy strict-origin-when-cross-origin, Permissions-Policy camera=(self) microphone=() geolocation=(), Cross-Origin-Opener-Policy same-origin. SE-19 is proven in production rather than asserted from source.",
+    "boundedProof": "71 assertions passed, 0 failed. verification/current/security-307/SECTION-307-PRODUCTION-BOUNDED-PROOF-RUN.txt",
+    "whatTheBoundedProofEstablished": [
+      "P-0 every probe below ran against the §307 release commit, read from /health/version.",
+      "P-1..P-3 SE-17 proven live: the unauthenticated readiness endpoint no longer publishes the alerting thresholds, while the alerting state, channel, detail, error count, email capability and schema position are all still reported, and nothing internal is disclosed.",
+      "P-4..P-5 CORS unchanged: the exact frontend origin is returned for the frontend and NO allow-origin is returned for a foreign origin.",
+      "P-6..P-7 the backend returns HSTS, nosniff, X-Frame-Options, a Content-Security-Policy, Referrer-Policy, COOP and CORP, and does not advertise x-powered-by.",
+      "P-8 seven unauthenticated surfaces refuse with 401/403 and disclose nothing; the entitlement-grant MINT refuses unauthenticated.",
+      "P-11..P-12 forbidNonWhitelisted is LIVE in production — a site carrying ownerUserId, organizationId or workspaceId is refused 400, and a profile update carrying role/planCode is refused 400. This is the mechanism the SE-18 repair relies on.",
+      "P-13 SE-16 proven live: the route that calls dataSource.synchronize() answers 404 in production and says nothing about what it would have done.",
+      "P-14..P-16 entitlement authority live: a free individual is refused 402, a caller-supplied planCode does not promote (§301 preserved), and an unentitled individual cannot invoke paid Expert capability. No provider call is reachable from any of it.",
+      "P-17..P-18 a foreign or unknown inspection, site, report or file id is refused with a client error disclosing nothing, and a malformed, SQL-shaped or traversal identifier is a client error rather than a 500 (SE-5 preserved).",
+      "P-19 the retired legacy PDF route behaves exactly as before after puppeteer left the artifact.",
+      "P-20 four deferred or privileged routes answer without a server error, refuse every mutation, and disclose nothing.",
+      "P-21..P-24 account deletion live: the account works before deletion, deletes through the product route, the SAME still-unexpired token is refused afterwards, and the deleted account cannot log in again.",
+      "P-25 the service is healthy after every probe."
+    ],
+    "unexpected5xx": "None. /health/ready reports serverErrorsInWindow 0 after every probe, and alerting is CONFIGURED on the webhook channel with lastDelivery null — nothing crossed a threshold.",
+    "productionSafety": "No load test, no credential brute force, no port scan, no destructive injection, no high-volume traffic, no charge, no Expert execution and no provider call. The heaviest single action was creating one synthetic account per run.",
+    "directDatabaseWrites": "None by hand. Every production write went through a product route.",
+    "cleanupAndRetainedState": "Two synthetic accounts were created across the two proof runs (the first run exposed a defect in one of the PROBES — an unauthenticated GET on a POST-only route is a router 404 before any guard — which was corrected and the proof re-run). BOTH were deleted through DELETE /auth/me, both had their still-unexpired tokens refused afterwards, and both were confirmed unable to log in again. The product's account deletion is an ANONYMISING SOFT DELETE, so what remains in production is two user rows named 'Deleted User' with anonymised deleted-<uuid>@deleted.safety-insite.local addresses, random password hashes and deletedAt set, plus their account_deleted security-audit rows — exactly what the product defines deletion to mean, and stated here rather than reported as 'no residue'. No synthetic site, inspection, observation, report, file or notification was created: the three POST /sites attempts were the mass-assignment probes and all three were refused 400."
   }
 }
