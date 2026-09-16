@@ -23,6 +23,32 @@ infrastructure failures**, `IT-1` and `IT-2`, both closed; neither involved a pr
 
 **§300 closed `HZ-9`, `HZ-6`, `HZ-7` and `HZ-10`; §301 closed `BI-4`; §302 closed `EN-3`.**
 
+**§304 corrected `SE-6`, repaired its schema half, and found that the feature underneath it was
+never built.** §304's first act was to confirm §303's claim independently, and it is **false**:
+production answers `GET /auth/verify-invite/:token` with **404**, because its
+`invitation."organizationId"` is already `uuid` with a foreign key. Production's table was created by
+TypeORM **`synchronize`** before migrations were baselined — its constraint names are
+TypeORM-generated, not the migration's. The real defect is that **the migration history does not
+describe production**: `1779000000000` declares the column `character varying`, so *every database
+built from migrations* 500s on the relation join — which is every disposable verification database
+in this repository, and any environment ever rebuilt by replaying history.
+
+Migration `1800000024000` converges from either starting point — a **no-op against production**, the
+repair everywhere else — with `ON DELETE RESTRICT` (an invitation is a membership-granting credential,
+so it must not vanish with its issuer), an index, and a unique token. The backup was **content-verified**
+(78/78 tables identical after restoring into PostgreSQL 17.11) and the upgrade path proven on that
+restore before production was touched: **no column changed, and the only table with changed content
+was `migrations`**.
+
+**`SE-6` is `PARTIALLY_CLOSED`, deliberately.** The lifecycle cannot be exercised because the
+team-invitation feature is **not built**, and §304 registered five independent reasons rather than
+building it: **`SE-7`** no route creates an organization; **`SE-8`** a company-plan owner is refused
+402 `teamMembers`; **`SE-9`** no `OrganizationRole` satisfies the invite routes' `@Roles` list;
+**`SE-10`** `inviteToken` is rejected by the DTO whitelist — *this, not `SE-6`, is why invitation
+fails in production*; **`SE-11`** invitations never expire. **`SE-12`** records the wider drift: 36
+column-type divergences and 21 production-only tables. **`IT-3`** closed — §268 `R-6` pinned a literal
+migration timestamp, the third of its kind after `IT-1` and `IT-2`.
+
 **§303 closed `SE-5` — and closed it across the whole affected route family, not on the one route
 that was reported.** The first act of the section was to measure: 24 GET routes carrying an
 identifier path parameter, 7 malformed shapes each, 168 probes. **Eight routes across four
@@ -49,7 +75,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `0f2edbaf6bd88faa8426b0ef2e7b47a1b68bd6b77981db026abcd884c8e57bb4` — **§303 (SE-5), DEPLOYED at §303 on both halves and read back from the live product. HEAD and production carry the same binding.** |
+| **Release binding** | `applicationSourceDigest` = `b0827e69deb3aef59b3e370a63be418feb7bb8ae49a8e87b48f4c78a61e5ee12` — **§304 (SE-6), DEPLOYED at §304 on both halves and read back from the live product.** |
+| Superseded binding | `0f2edbaf…` at `e48a42f3…` — §303 SE-5 |
 | Superseded binding | `20b59cc2…` at `9242d157…` — §303's first deploy |
 | Superseded binding | `51db8f96…` at `61828222…` — §302 EN-3 |
 | Superseded binding | `6d3e86ba…` at `de00f896…` — §301 BI-4 |
@@ -59,7 +86,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `e48a42f3e58b18db4324fbf053622353251833b7` — live on **both halves** since §303 (backend `dep-daktgprl550s73ar0cm0`, frontend `dpl_FHtb9sagDZP1TVUth5XAbV4uXHnk`), schema `1800000023000` (55/55) **unchanged, 0 migrations** |
+| **Deployed release SHA** | `c28dd43c1c54453029848a03422489073ffc2277` — live on **both halves** since §304 (backend `dep-dakub8tg1s2s73djek60`, frontend `dpl_6xqLaM26BQax1oNaM5S1uZRZ2w2E`), schema **`1800000024000` (56/56) — ONE migration applied at §304** |
+| Predecessor deployed SHA | `e48a42f3e58b18db4324fbf053622353251833b7` — §303, schema `1800000023000` (55/55) |
 | Predecessor deployed SHA | `9242d157043cfab328c4d23cd3a7dcaf2804c635` — §303's first deploy |
 | Predecessor deployed SHA | `61828222ceef5f1ebcdce424e64ae3a4291032a8` — §302 |
 | Predecessor deployed SHA | `de00f896f87037ffb550d35e8ef134ad02ef34e7` — §301 |

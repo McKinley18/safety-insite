@@ -1,5 +1,34 @@
 # Safety InSite — current state
 
+> ### §304 — SE-6 CORRECTED AND ITS SCHEMA HALF REPAIRED; THE FEATURE UNDER IT WAS NEVER BUILT
+>
+> **§303's claim about SE-6 was wrong, and §304 measured it.** Production answers
+> `GET /auth/verify-invite/:token` with **404**, not 500 — its `invitation."organizationId"` is
+> already `uuid` with a foreign key, because the table was created by TypeORM **`synchronize`**
+> before migrations were baselined. The real defect is that **the migration history does not
+> describe production**: `1779000000000` declares the column `character varying`, so every database
+> *built from migrations* 500s on the relation join. That is every disposable verification database
+> here, and any environment ever rebuilt by replaying history.
+>
+> **Migration `1800000024000` converges from either starting point** — a no-op against production,
+> the repair everywhere else: `uuid` via a guarded `USING`, FK `ON DELETE RESTRICT` (an invitation
+> is a membership-granting credential), an index, and a unique token. Backup **content-verified**
+> (78/78 tables identical, restored into PostgreSQL 17.11), upgrade path proven on that restore
+> first — **no column changed, only `migrations` gained a row**. Deployed `c28dd43c` on both halves,
+> schema `1800000024000` (56/56). Migrate-then-deploy, with the intermediate `aheadOfBuild` state
+> measured rather than assumed. `serverErrorsInWindow` stayed **0**, no alert.
+>
+> **`SE-6` is `PARTIALLY_CLOSED` on purpose.** The invitation lifecycle cannot be exercised because
+> the team-invitation feature **is not built**, and §304 registered five independent reasons rather
+> than building it: **SE-7** no route creates an organization; **SE-8** a company-plan owner is
+> refused 402 `teamMembers`; **SE-9** no `OrganizationRole` satisfies the invite routes' `@Roles`
+> list; **SE-10** `inviteToken` is rejected by the DTO whitelist — *this, not SE-6, is why invitation
+> fails in production*; **SE-11** invitations never expire. **SE-12** records the wider drift (36
+> column-type divergences, 21 production-only tables). **IT-3** closed.
+>
+> **EN-2 and OPS-2 remain open and are not erased.** 0 charges, 0 platform-admin operations,
+> 0 Expert executions, 0 provider calls, $0.
+
 > ### §303 — SE-5 CLOSED, AS A ROUTE FAMILY, AND A SECOND DEFECT REGISTERED RATHER THAN REPAIRED
 >
 > **A malformed identifier no longer becomes a server error.** §303 forbade special-casing the one
@@ -767,6 +796,7 @@ npm run hazlenz:precommit           before an authorized commit     (everything 
 npm run hazlenz:evidence            did accepted evidence change
 npm run beta:readiness              are the deployment mechanisms in place (contacts nothing live)
 npm run test:303-malformed-identifier §303/SE-5 malformed identifier containment (in hazlenz:integration:test)
+npm run test:304-invitation-relationship §304/SE-6 invitation->organization relation (in hazlenz:integration:test)
 npm run test:299-person-negation     §299/HZ-4 the exposure-negation family  (in hazlenz:test)
 npm run test:299-section-298-replay  §299/HZ-4 the exact §298 note, before/after (in hazlenz:test)
 npm run test:299-expert-disagreement §299 Expert can still disagree         (in hazlenz:test)
@@ -826,6 +856,7 @@ Do not load these for ordinary development.
 | beta infrastructure and operations §268 | `verification/expert-hazlenz-268-.../` |
 | HZ-4 / HZ-5 repair §299 | `verification/current/expert-hz4-hz5-299/` |
 | SE-5 containment §303 | `verification/current/se5-malformed-identifier-303/` |
+| SE-6 invitation relation §304 | `verification/current/se6-invitation-relationship-304/` |
 | beta deployment runbook | `project-docs/operations/DEPLOYMENT-RUNBOOK.md` |
 | rollback model | `project-docs/operations/ROLLBACK-MODEL.md` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |
