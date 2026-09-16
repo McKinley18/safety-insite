@@ -1,5 +1,34 @@
 # Safety InSite — current state
 
+> ### §306 — PASSWORD RECOVERY IS ENGINEERING-COMPLETE, AND IT WAS NOT JUST A MISSING CREDENTIAL
+>
+> **EM-2 had been carried as "production has no Resend credential", which sounds procurement-shaped.**
+> §306 said not to assume the implementation was correct because of that framing — and it was not.
+>
+> **The defect that mattered:** `resetPassword` was a read-modify-write with bcrypt at 12 rounds in
+> the middle. Two concurrent completions of the **same token** both returned *"Password reset
+> successful"*, and only **one** of the two passwords actually worked — so one caller was told they
+> had set a password they had not. Repaired by claiming the token in a single conditional `UPDATE`
+> that matches and clears it and returns the affected row. Registered as **`SE-15`**.
+>
+> **Also repaired:** delivery failures were discarded by a bare `catch` so `NOT_CONFIGURED`,
+> `PROVIDER_REJECTED` and `NETWORK_FAILURE` were indistinguishable internally (**`OB-2`** — the OB-1
+> shape again); the provider *was* the abstraction, so Resend is now one transport behind an
+> interface and auth logic references it nowhere; the brand was baked into the email (**`CS-3`**) and
+> now comes from `PRODUCT_NAME`; readiness said nothing about email and now reports
+> `CONFIGURED` / `NOT_CONFIGURED` / `DEGRADED`; and the 30-minute expiry was written twice.
+>
+> **Already right, and now proven:** 256-bit tokens, digest-only storage verified by recomputation,
+> byte-identical responses for known/unknown/case-variant addresses plus a timing comparison,
+> reset-path password strength equal to registration, immediate session death via
+> `passwordChangedAt`, configuration-only reset URLs immune to Host-header injection, throttling.
+> **51 assertions, 0 failed, zero emails sent.**
+>
+> **EM-2 is NOT closed.** Nothing has reached a real mailbox. Status is
+> `ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED`: activation awaits the brand decision and a
+> sending domain, and §306 deliberately established no permanent infrastructure under the temporary
+> name.
+
 > ### §305 — SE-12 CLOSED: ONE CANONICAL SCHEMA CONTRACT, AND TWO MORE NULL-PREDICATE DEFECTS
 >
 > **The migration history now describes production.** `backend/src/database/canonical-schema.manifest.json`
@@ -856,6 +885,7 @@ npm run test:303-malformed-identifier §303/SE-5 malformed identifier containmen
 npm run test:304-invitation-relationship §304/SE-6 invitation->organization relation (in hazlenz:integration:test)
 npm run test:305a-individual-beta-scope  §305A individual Beta workflow + SE-13/SE-14 (in hazlenz:integration:test)
 npm run check:canonical-schema           §305/SE-12 fresh replay vs canonical manifest (in hazlenz:precommit)
+npm run test:306-password-recovery       §306/EM-2 password recovery matrix (in hazlenz:integration:test)
 npm run test:299-person-negation     §299/HZ-4 the exposure-negation family  (in hazlenz:test)
 npm run test:299-section-298-replay  §299/HZ-4 the exact §298 note, before/after (in hazlenz:test)
 npm run test:299-expert-disagreement §299 Expert can still disagree         (in hazlenz:test)
@@ -918,6 +948,7 @@ Do not load these for ordinary development.
 | SE-6 invitation relation §304 | `verification/current/se6-invitation-relationship-304/` |
 | Beta v1 scope + SE-13 §305A | `verification/current/beta-v1-scope-305a/` |
 | SE-12 canonical schema §305 | `verification/current/se12-canonical-schema-305/` |
+| EM-2 password recovery §306 | `verification/current/em2-password-recovery-306/` |
 | beta deployment runbook | `project-docs/operations/DEPLOYMENT-RUNBOOK.md` |
 | rollback model | `project-docs/operations/ROLLBACK-MODEL.md` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |

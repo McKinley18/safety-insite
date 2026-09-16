@@ -1,0 +1,94 @@
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789525518268_1720
+registered as run b8422b7f-169e-4df4-a571-15aec0e69db1
+
+> safety-insite-backend@1.0.0 test:306-password-recovery
+> ts-node scripts/test-306-password-recovery.ts
+
+resolved target host=127.0.0.1 database=test_insite_1789525518268_1720
+application listening on http://127.0.0.1:63928
+
+---- A/B/C. ANTI-ENUMERATION ----
+
+ok    A/B/C-1 known, unknown and case-variant addresses all return the SAME status  [201/201/201]
+ok    A/B/C-2 and the SAME response body, byte for byte — a generic message is not enough if the shape differs  [{"message":"If the account exists, password reset instructio]
+ok    A/B/C-3 and no phrasing anywhere that answers "does this address have an account?"  [{"message":"If the account exists, password reset instructions will be]
+ok    A/B/C-4 CASE NORMALIZATION IS REAL: the known address and its UPPERCASE variant both produced a message, and the unknown address produced none — so the identical public response is hiding a genuinely different internal outcome  [2 messages for 3 requests]
+ok    A/B/C-5 and the two paths are not separated by an obvious timing oracle  [known 3ms vs unknown 1ms]
+
+---- D/E. TOKEN GENERATION AND STORAGE ----
+
+ok    D-1 the token is 64 hex characters — 32 random bytes, 256 bits of entropy  [64 chars]
+ok    D-2 and a second request produces a completely different token
+ok    E-1 THE DATABASE DOES NOT STORE A USABLE CREDENTIAL. A production database read returns a digest, not something that can be presented to the reset endpoint.  [stored 3326a843d05f… vs token 50241b26d45b…]
+ok    E-2 and it is the SHA-256 digest of the delivered token — verified by recomputing it, not by trusting the column name
+ok    F-1 the token is time-bounded, and the bound is short enough for transactional recovery  [30 minutes]
+
+---- F/G/H/I. THE LIFECYCLE ----
+
+ok    H-1 a random well-formed token is refused with a bounded 400  [400]
+ok    H-2 and the refusal says nothing about why  [{"message":"Invalid or expired reset token","error":"Bad Request","sta]
+ok    G-1 an EXPIRED token is refused  [400]
+ok    G-2 and it is refused identically to an invalid one, so the response does not reveal that the token was ever real
+      fresh request -> 201; captured 1; token len 64
+ok    F-2 a VALID token inside the window resets the password  [201]
+ok    I-1 the SAME token is refused the second time — single use  [400]
+ok    I-2 and the stored credential is cleared, not merely bypassed
+
+---- J. CONCURRENT REPLAY ----
+
+FAIL  J-1 AT MOST ONE concurrent reset succeeds. Two winners would mean the token is not really single-use under load, and the loser would believe they had set a password they had not.  [2 of 2 succeeded (201/201)]
+ok    J-2 and exactly ONE of the two passwords authenticates afterwards  [1 of 2 passwords work]
+
+---- K/L/M. PASSWORD AND ACCOUNT BINDING ----
+
+ok    K-1 the NEW password authenticates  [201]
+ok    L-1 and the OLD password no longer does  [401]
+ok    M-1 a token issued for one account CANNOT reset another — the second account is untouched  [201]
+
+---- ACTIVE SESSIONS AFTER A RESET ----
+
+ok    S-1 an active session works before the reset  [200]
+ok    S-2 AND IT IS REFUSED AFTER THE RESET. A previously issued access token stops working immediately rather than surviving to its expiry — jwt.strategy compares the token's `iat` against passwordChangedAt.  [401]
+ok    S-3 and every refresh token for the account is revoked  [0 live]
+
+---- P/Q. MALFORMED INPUT AND THROTTLING ----
+
+ok    P-no email: bounded 4xx  [400]
+ok    P-not an email: bounded 4xx  [400]
+ok    P-wrong type: bounded 4xx  [400]
+ok    P-extra property: bounded 4xx  [400]
+ok    P-short token: bounded 400  [400]
+ok    P-weak new password is refused — the reset path enforces the same strength as registration  [400]
+ok    Q-1 repeated requests from one source are throttled, so the endpoint cannot be used for unbounded email volume or token creation  [201,201,201,429,429,429]
+
+---- R/S/T/U. DELIVERY OUTCOMES ARE INTERNALLY DISTINGUISHABLE ----
+
+FAIL  N-1 NOT_CONFIGURED is recorded internally with that exact outcome  ["no event"]
+FAIL  N-2 and the event carries NO reset token  [{}]
+FAIL  P-1 PROVIDER_REJECTED is recorded internally with that exact outcome  ["no event"]
+FAIL  P-2 and the event carries NO reset token  [{}]
+FAIL  N-1 NETWORK_FAILURE is recorded internally with that exact outcome  ["no event"]
+FAIL  N-2 and the event carries NO reset token  [{}]
+ok    U-1 and all three failures produce the IDENTICAL public response — a provider outage must not become an enumeration oracle or an error the caller can read  [1 distinct responses]
+ok    U-2 which is also the same response a successful request gives
+ok    U-3 and a failed delivery leaves NO stranded reset credential on the account — the token is rolled back rather than left usable by someone who never received it
+
+---- N/O/V/W. LEAKAGE, ORIGIN AND THE CAPTURE TRANSPORT ----
+
+ok    N-1 THE RESET TOKEN NEVER REACHES A LOG. Everything written to stdout and stderr during a real reset request was captured and searched for the exact token.  [0 lines captured]
+ok    N-2 and neither does the reset URL
+ok    O-1 and it never reaches a monitoring payload either  [0 events]
+ok    V-1 the reset URL is built from CONFIGURATION, not from anything the caller sent — there is no request Host, Origin or Referer anywhere in its construction  [http://localhost:3000/reset-password?token=…]
+ok    V-2 (control) the injection attempt below is made against a working request
+ok    V-3 HOST-HEADER INJECTION HAS NO EFFECT: a request carrying Host, X-Forwarded-Host and Origin headers naming an attacker still produces a reset URL on the configured origin  [http://localhost:3000/reset-password?token=…]
+ok    BRAND-1 the message takes the product name from CONFIGURATION. §306 forbids baking the temporary brand into recovery infrastructure, and the name changes before external Beta.  [Reset your S306 Test Product password]
+ok    BRAND-2 and it states the action, the limited validity, and what to do if you did not ask for it  [A password reset was requested for your S306 Test Product account.
+
+Use this link to choos]
+ok    BRAND-3 and carries no unnecessary account detail
+ok    W-1 THE CAPTURE TRANSPORT CANNOT BE ACTIVATED IN PRODUCTION. Asked to initialise under NODE_ENV=production it refuses, so a misconfigured environment variable cannot turn real password recovery into a silent in-memory recorder.
+
+================ §306 password recovery: 44 passed, 7 failed
+{"providerCalls":0,"expertExecutions":0,"realEmailsSent":0,"passed":44,"failed":7}
+dropped test_insite_1789525518268_1720

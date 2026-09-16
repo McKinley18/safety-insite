@@ -79,6 +79,19 @@ export const OPERATIONAL_EVENTS = [
    * hand to recover `relation "notifications" does not exist`.
    */
   'auth.account_deletion_failed',
+  /**
+   * §306 / EM-2. A PASSWORD-RESET MESSAGE WAS NOT DELIVERED, and the account has been left with NO
+   * reset credential so nothing is stranded.
+   *
+   * The `outcome` distinguishes NOT_CONFIGURED (no provider credential — the expected state until a
+   * sending domain exists), PROVIDER_REJECTED (the provider answered and said no) and
+   * NETWORK_FAILURE (it never answered). Those need different fixes and used to be
+   * indistinguishable, because the delivery error was discarded by a bare catch.
+   *
+   * It carries NO reset token, NO reset URL and NO message body. The §306 suite captures stdout and
+   * stderr during a real reset request and searches for the exact token to prove it.
+   */
+  'auth.password_reset_delivery_failed',
   // §286 / D-054. The outcome-intelligence loop failed to record a corrective-action closure.
   // The closure itself is unaffected — see CorrectiveActionsService.recordClosureIntelligence.
   'action.closure_intelligence_failed',
@@ -129,6 +142,7 @@ const SEVERITY: Record<OperationalEvent, OperationalSeverity> = {
   'expert.confirmation.settled': 'info',
   'storage.operation_failed': 'error',
   'auth.account_deletion_failed': 'error',
+  'auth.password_reset_delivery_failed': 'error',
   'report.generation_failed': 'error',
   'schema.readiness_failed': 'error',
   'migration.failed': 'error',

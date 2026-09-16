@@ -13,6 +13,18 @@ import { getRequestMetadata } from '../common/utils/request-metadata';
 import { BillingService } from '../billing/billing.service';
 import { normalizeBillingTier } from '../billing/plan-entitlements';
 import { PasswordResetDeliveryService } from './password-reset-delivery.service';
+import { PasswordResetDeliveryOutcome } from './password-reset-transport';
+
+/**
+ * §306 (EM-2) — THE RESET WINDOW, NAMED ONCE.
+ *
+ * Thirty minutes was already the product's choice and §306 preserves it: long enough to find the
+ * message in a spam folder, short enough that a leaked mailbox is not a standing key to the
+ * account. It was previously written twice — once as `30 * 60 * 1000` in the expiry and once as
+ * `expiresMinutes: 30` in the email — which is exactly how an email comes to promise a window the
+ * server does not enforce.
+ */
+export const PASSWORD_RESET_EXPIRY_MINUTES = 30;
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { EntitlementGrant } from '../billing/entitlement-grant.entity';
 import { buildPromotionalGrant } from '../billing/promotional-grant';
@@ -635,22 +647,52 @@ export class AuthService {
     if (user) {
       const token = randomBytes(32).toString('hex');
       user.passwordResetTokenHash = this.hashResetToken(token);
-      user.passwordResetExpiresAt = new Date(Date.now() + 30 * 60 * 1000);
+      user.passwordResetExpiresAt = new Date(Date.now() + PASSWORD_RESET_EXPIRY_MINUTES * 60 * 1000);
       await this.userRepo.save(user);
 
       if (process.env.NODE_ENV !== 'production' && process.env.DEV_EXPOSE_RESET_TOKEN === 'true') {
         developmentResetToken = token;
       }
+      /*
+       * §306 (EM-2) — THE INTERNAL RESULT IS RECORDED; THE PUBLIC RESPONSE NEVER CHANGES.
+       *
+       * This was a bare `catch {}`: every delivery failure looked identical from the inside, so an
+       * operator could not tell "no credential is configured" from "the provider rejected that
+       * address" from "the network is down". §306 requires those to be distinguishable internally
+       * while remaining indistinguishable publicly, and `send` now returns a typed outcome rather
+       * than throwing.
+       *
+       * ON FAILURE THE RESET CREDENTIAL IS ROLLED BACK. That is the important half: leaving a live
+       * token on an account whose owner never received it would be a credential nobody asked for
+       * and nobody can see, sitting there until it expires.
+       */
+      let outcome: PasswordResetDeliveryOutcome = 'NETWORK_FAILURE';
       try {
-        await this.passwordResetDelivery.send({
+        outcome = await this.passwordResetDelivery.send({
           email: user.email,
           resetUrl: this.passwordResetDelivery.buildResetUrl(token),
-          expiresMinutes: 30,
+          expiresMinutes: PASSWORD_RESET_EXPIRY_MINUTES,
         });
       } catch {
+        // buildResetUrl throws when the public base URL is unconfigured or is not HTTPS in
+        // production. That is a configuration fault, not a provider one.
+        outcome = 'NOT_CONFIGURED';
+      }
+
+      if (outcome !== 'DELIVERED') {
         user.passwordResetTokenHash = null;
         user.passwordResetExpiresAt = null;
         await this.userRepo.save(user);
+        /*
+         * The event carries the OUTCOME and the transport NAME. It does not carry the token, the
+         * reset URL, the message, or the address — an operator needs to know that recovery is not
+         * working and why, not who tried to use it.
+         */
+        emitOperationalEvent('auth.password_reset_delivery_failed', {
+          outcome,
+          transport: this.passwordResetDelivery.transportName,
+          resetCredentialRolledBack: true,
+        });
       }
     }
 
@@ -660,28 +702,82 @@ export class AuthService {
     };
   }
 
+  /**
+   * §306 (EM-2) — SINGLE USE IS ENFORCED BY THE DATABASE, NOT BY THE ORDER OF TWO STATEMENTS.
+   *
+   * =============================================================================================
+   * WHAT WAS WRONG.
+   *
+   * This was a read-modify-write: SELECT the user by token hash, hash the new password, then SAVE.
+   * Nothing serialised those three steps, and the middle one is deliberately SLOW — bcrypt at 12
+   * rounds takes a few hundred milliseconds, which is a generous window for a second request
+   * carrying the same token to pass the same SELECT.
+   *
+   * §306 says to prove the behaviour rather than assume an update makes it atomic, and the proof
+   * is the reason this changed: two concurrent completions of one token, with DIFFERENT new
+   * passwords, both succeeded. Two "Password reset successful" responses, and only one of the two
+   * passwords actually worked afterwards — so one caller was told they had set a password they had
+   * not set, and would be locked out believing otherwise.
+   *
+   * =============================================================================================
+   * HOW IT IS FIXED.
+   *
+   * The token is CLAIMED by a single conditional UPDATE that both matches the token and clears it,
+   * returning the affected row. Postgres serialises concurrent updates to the same row, so exactly
+   * one caller can observe a row here; the loser matches nothing, because the winner has already
+   * nulled the hash, and receives the same refusal an invalid token gets.
+   *
+   * The password is hashed only AFTER the claim succeeds. That also removes the wasted bcrypt work
+   * on every invalid-token attempt, which was a small but free denial-of-service amplifier.
+   */
   async resetPassword(token: string, newPassword: string) {
     const tokenHash = this.hashResetToken(token);
-    const user = await this.userRepo
-      .createQueryBuilder('user')
-      .addSelect(['user.passwordHash', 'user.passwordResetTokenHash'])
-      .where('user.passwordResetTokenHash = :tokenHash', { tokenHash })
-      .andWhere('user.passwordResetExpiresAt > :now', { now: new Date() })
-      .andWhere('user.deletedAt IS NULL')
-      .getOne();
 
-    if (!user) throw new BadRequestException('Invalid or expired reset token');
+    const claimResult = await this.dataSource.query(
+      `UPDATE "user"
+          SET "passwordResetTokenHash" = NULL,
+              "passwordResetExpiresAt" = NULL
+        WHERE "passwordResetTokenHash" = $1
+          AND "passwordResetExpiresAt" > now()
+          AND "deletedAt" IS NULL
+        RETURNING "id"`,
+      [tokenHash],
+    );
 
-    user.passwordHash = await bcrypt.hash(
+    /*
+     * TypeORM's Postgres driver returns bare rows for a SELECT but `[rows, rowCount]` for an
+     * UPDATE ... RETURNING. Reading it as bare rows made a perfectly valid claim look like two
+     * results and refused it — the §306 suite caught that as "a valid token inside the window is
+     * rejected", which is a total failure of the feature rather than a subtlety. Both shapes are
+     * handled so the behaviour does not depend on a driver detail.
+     */
+    const claimed: Array<{ id: string }> = Array.isArray(claimResult) && Array.isArray(claimResult[0])
+      ? claimResult[0]
+      : claimResult;
+
+    /*
+     * One refusal for every reason: unknown token, expired token, already-used token, deleted
+     * account. A caller must not be able to tell which, or the endpoint reports whether a token was
+     * ever real.
+     */
+    if (claimed.length !== 1) throw new BadRequestException('Invalid or expired reset token');
+    const userId = claimed[0].id;
+
+    const passwordHash = await bcrypt.hash(
       newPassword,
       Number(process.env.BCRYPT_ROUNDS || 12),
     );
-    user.passwordResetTokenHash = null;
-    user.passwordResetExpiresAt = null;
-    user.passwordChangedAt = new Date();
-    await this.userRepo.save(user);
+    const passwordChangedAt = new Date();
+    await this.userRepo.update({ id: userId }, { passwordHash, passwordChangedAt });
+
+    /*
+     * Every refresh token is revoked, and `passwordChangedAt` invalidates access tokens issued
+     * before this moment — `jwt.strategy` refuses a token whose `iat` precedes it. Together those
+     * mean a session stolen before the reset stops working immediately rather than surviving to its
+     * own expiry, which is the property a password reset is supposed to buy.
+     */
     await this.refreshTokenRepo.update(
-      { userId: user.id, revokedAt: IsNull() },
+      { userId, revokedAt: IsNull() },
       { revokedAt: new Date() },
     );
     return { message: 'Password reset successful' };

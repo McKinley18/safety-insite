@@ -1,4 +1,5 @@
 import { Controller, Get, ServiceUnavailableException } from '@nestjs/common';
+import { passwordResetEmailCapability } from '../auth/password-reset-transport';
 import { HealthService } from './health.service';
 import { describeAlertConfiguration, serverErrorCountInWindow, OPERATIONAL_ALERT_POLICY } from '../observability/operational-alerts';
 import { emitOperationalEvent } from '../observability/operational-events';
@@ -78,9 +79,29 @@ export class HealthController {
      * does not take the product down with it.
      */
     const alerting = describeAlertConfiguration();
+    /*
+     * §306 (EM-2) — EMAIL CAPABILITY IS REPORTED, NOT INFERRED FROM SILENCE.
+     *
+     * Readiness already distinguished monitoring-alert channel states; password-reset delivery had
+     * no reported state at all, so "we cannot send recovery email" looked exactly like "everything
+     * is fine" from outside. It reads only whether variables are PRESENT — no secret value is read,
+     * compared or returned — and says nothing about any individual delivery, which belongs to the
+     * operational event stream.
+     *
+     * NOT_CONFIGURED is the honest and expected state until a sending domain exists. It does not
+     * make the service unready: the product runs, and recovery requests are still accepted and
+     * answered generically with no reset credential left stranded on the account.
+     */
+    const email = passwordResetEmailCapability();
     return {
       status: 'ready',
       dependencies: { database: 'available', schema: 'current' },
+      passwordResetEmail: {
+        state: email.state,
+        provider: email.provider,
+        missing: email.missing,
+        detail: email.detail,
+      },
       monitoring: {
         alerting: alerting.state,
         channel: alerting.channel,
