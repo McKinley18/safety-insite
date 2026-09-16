@@ -1,0 +1,86 @@
+{
+  "schema": "insite.dependency-gate.v1",
+  "section": "307",
+  "startedAt": "2026-09-16T20:56:04.085Z",
+  "finishedAt": "2026-09-16T20:56:05.584Z",
+  "strict": false,
+  "result": "PASS",
+  "policy": {
+    "section": "307",
+    "appliesTo": "Safety InSite external individual Beta",
+    "blockingSeverities": [
+      "critical",
+      "high"
+    ],
+    "reviewedSeverities": [
+      "moderate",
+      "low"
+    ],
+    "statement": [
+      "A CRITICAL production-dependency advisory blocks the Beta unless an exception below proves",
+      "it is non-applicable by a mechanically re-checkable predicate.",
+      "A HIGH production-dependency advisory blocks unless applicability can be excluded the same way.",
+      "MODERATE and LOW findings do not block by themselves; they are recorded here once reviewed so",
+      "the gate can tell a reviewed finding from a NEW one, and the gate names every unreviewed one.",
+      "A dev-only finding is out of scope for this gate, which audits the production tree only.",
+      "A scan that cannot execute is UNKNOWN. It is never PASS.",
+      "npm audit repeats one advisory on every dependent; this register lists ROOT advisories only, because the gate collapses propagation before matching."
+    ]
+  },
+  "scans": {
+    "backend": {
+      "state": "SCANNED",
+      "productionDependencies": 387,
+      "devDependencies": 32,
+      "totalDependencies": 425,
+      "npmReportedCounts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 3,
+        "high": 0,
+        "critical": 0,
+        "total": 3
+      },
+      "rootAdvisories": 1
+    },
+    "frontend-next": {
+      "state": "SCANNED",
+      "productionDependencies": 51,
+      "devDependencies": 390,
+      "totalDependencies": 494,
+      "npmReportedCounts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "rootAdvisories": 0
+    }
+  },
+  "blocking": [],
+  "excepted": [
+    {
+      "ecosystem": "backend",
+      "id": "GHSA-36xv-jgw5-4q75",
+      "package": "@nestjs/core",
+      "severity": "moderate",
+      "title": "@nestjs/core Improperly Neutralizes Special Elements in Output Used by a Downstream Component ('Injection')",
+      "url": "https://github.com/advisories/GHSA-36xv-jgw5-4q75",
+      "vulnerableRange": "<=11.1.17",
+      "direct": true,
+      "fixAvailable": {
+        "name": "@nestjs/core",
+        "version": "12.0.3",
+        "isSemVerMajor": true
+      },
+      "exceptionId": "GHSA-36xv-jgw5-4q75",
+      "applicabilityCheck": "no-sse-surface",
+      "applicabilityDetail": "no SSE surface across 2389 source files (no @Sse route, no text/event-stream response, no EventSource client)",
+      "expiresAt": "2026-12-31"
+    }
+  ],
+  "unreviewed": [],
+  "staleExceptions": []
+}

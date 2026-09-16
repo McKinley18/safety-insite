@@ -462,7 +462,12 @@ export class HazLenzController {
         body.scopes,
         body.evidenceTexts,
         body.riskProfileId,
-        body.workspaceId || context.workspaceId,
+        // §307. The governance context, and ONLY the governance context. This was
+        // `body.workspaceId || context.workspaceId`, which let a caller name the workspace their
+        // own request was analysed in. `workspaceId` is no longer declared on `ClassifyDto`, so a
+        // body carrying it is now rejected by the global pipe before this line runs; this reads the
+        // server-derived value directly so the authority cannot be re-introduced by a DTO edit.
+        context.workspaceId,
         body.priorFindings,
         body.visualAttachments,
         context,

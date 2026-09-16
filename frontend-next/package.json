@@ -67,7 +67,7 @@
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
     "lucide-react": "^1.14.0",
-    "next": "^16.2.12",
+    "next": "^16.3.5",
     "postcss": "^8.5.24",
     "react": "19.2.4",
     "react-dom": "19.2.4",
@@ -88,7 +88,10 @@
   },
   "overrides": {
     "postcss": "$postcss",
-    "sharp": "0.35.3",
-    "dompurify": "3.4.12"
+    "sharp": "0.35.4",
+    "dompurify": "3.4.15",
+    "nanoid": "3.3.19",
+    "fflate": "0.8.3",
+    "baseline-browser-mapping": "2.11.24"
   }
 }

@@ -991,7 +991,11 @@ export class HazLenzService {
             status: "offline_captured",
             payload: result,
             metadata: { observationText: input.observationText, isOffline: true, syncRequired: true },
-            workspaceId: input.workspaceId || user?.workspaceId,
+            // §307. Server-derived first. The governance context is resolved from the
+            // authenticated principal; a caller-supplied identifier may only be a fallback for a
+            // request that has no authenticated context at all (offline capture), never an
+            // override of one that does.
+            workspaceId: user?.workspaceId || input.workspaceId,
             inspectionId: input.localInspectionId,
             observationId: input.localObservationId,
             traceId: result.offlineTraceId
@@ -1637,7 +1641,8 @@ export class HazLenzService {
             generatedActions,
             additionalHazards: [],
             priorFindings,
-            workspaceId: workspaceId || user?.workspaceId,
+            // §307. Same precedence rule as the persistence path above.
+            workspaceId: user?.workspaceId || workspaceId,
             supervisorValidations: [],
           });
 

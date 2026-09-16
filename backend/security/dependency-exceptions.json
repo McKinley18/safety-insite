@@ -1,0 +1,53 @@
+{
+  "schema": "insite.dependency-exceptions.v1",
+  "policy": {
+    "section": "307",
+    "appliesTo": "Safety InSite external individual Beta",
+    "blockingSeverities": [
+      "critical",
+      "high"
+    ],
+    "reviewedSeverities": [
+      "moderate",
+      "low"
+    ],
+    "statement": [
+      "A CRITICAL production-dependency advisory blocks the Beta unless an exception below proves",
+      "it is non-applicable by a mechanically re-checkable predicate.",
+      "A HIGH production-dependency advisory blocks unless applicability can be excluded the same way.",
+      "MODERATE and LOW findings do not block by themselves; they are recorded here once reviewed so",
+      "the gate can tell a reviewed finding from a NEW one, and the gate names every unreviewed one.",
+      "A dev-only finding is out of scope for this gate, which audits the production tree only.",
+      "A scan that cannot execute is UNKNOWN. It is never PASS.",
+      "npm audit repeats one advisory on every dependent; this register lists ROOT advisories only, because the gate collapses propagation before matching."
+    ]
+  },
+  "exceptions": [
+    {
+      "id": "GHSA-36xv-jgw5-4q75",
+      "ecosystem": "backend",
+      "package": "@nestjs/core",
+      "severity": "moderate",
+      "cvss": 6.1,
+      "title": "SseStream._transform() interpolates message.type and message.id into Server-Sent Events output without neutralising CR/LF",
+      "installedVersion": "10.4.22",
+      "firstPatchedVersion": "11.1.18",
+      "fixRequiresMajorMigration": true,
+      "applicabilityCheck": "no-sse-surface",
+      "rationale": [
+        "The advisory's own stated precondition is that developer code maps user-influenced data onto",
+        "the `type` or `id` fields of an SSE message: 'Direct HTTP request input does not reach these",
+        "fields without developer code bridging the gap.' This product declares no SSE surface at all,",
+        "so SseStream is never constructed and the vulnerable interpolation never executes.",
+        "The check `no-sse-surface` re-proves that mechanically on every gate run by refusing if any",
+        "@Sse() decorator, text/event-stream response or EventSource client appears in the repository.",
+        "The published fix is @nestjs/core 11.1.18, which is a NestJS 10 -> 11 major migration. Section",
+        "307 classifies a large dependency major-version migration as a product-owner decision rather",
+        "than an in-slice repair, and the finding is MODERATE, so it is recorded rather than forced."
+      ],
+      "reviewedAt": "2026-09-16",
+      "reviewedIn": "307",
+      "expiresAt": "2026-12-31"
+    }
+  ]
+}

@@ -63,7 +63,7 @@
     "hazlenz:check": "npm run hazlenz:verify && npm run hazlenz:test && npm run build",
     "hazlenz:evidence": "ts-node scripts/hazlenz/evidence-integrity.ts",
     "hazlenz:generate-shard-candidates": "ts-node src/hazlenz/coverage/generate-hazlenz-warm-shard-candidates.ts",
-    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner && npm run test:301-entitlement-integration && npm run test:302-promotional-grant-integration && npm run test:303-malformed-identifier && npm run test:304-invitation-relationship && npm run test:305a-individual-beta-scope && npm run test:306-password-recovery",
+    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner && npm run test:301-entitlement-integration && npm run test:302-promotional-grant-integration && npm run test:303-malformed-identifier && npm run test:304-invitation-relationship && npm run test:305a-individual-beta-scope && npm run test:306-password-recovery && npm run test:307-security-boundary",
     "hazlenz:integration:test": "ts-node scripts/hazlenz/with-disposable-db.ts hazlenz:integration:inner",
     "hazlenz:precommit": "npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence && npm run check:canonical-schema",
     "hazlenz:qa-shard-candidates": "ts-node src/hazlenz/coverage/qa-hazlenz-generated-candidates.ts",
@@ -432,7 +432,11 @@
     "s305:manifest": "ts-node scripts/s305-build-manifest.ts",
     "check:canonical-schema:inner": "ts-node scripts/check-canonical-schema.ts",
     "check:canonical-schema": "ts-node scripts/hazlenz/with-disposable-db.ts check:canonical-schema:inner",
-    "test:306-password-recovery": "ts-node scripts/test-306-password-recovery.ts"
+    "test:306-password-recovery": "ts-node scripts/test-306-password-recovery.ts",
+    "security:deps": "ts-node scripts/security-dependency-gate.ts",
+    "security:deps:strict": "ts-node scripts/security-dependency-gate.ts --strict",
+    "test:307-security-boundary": "ts-node scripts/test-307-security-boundary.ts",
+    "test:307-security-boundary:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:307-security-boundary"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",
@@ -456,12 +460,11 @@
     "cookie-parser": "^1.4.7",
     "fast-xml-parser": "^5.8.0",
     "helmet": "^8.1.0",
-    "multer": "^2.2.0",
+    "multer": "^2.4.0",
     "natural": "^8.1.1",
     "passport-jwt": "^4.0.1",
     "pdfkit": "^0.19.1",
     "pg": "^8.11.0",
-    "puppeteer": "^24.43.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "stripe": "^22.1.1",
@@ -477,7 +480,6 @@
     "@types/multer": "^2.1.0",
     "@types/node": "^20.0.0",
     "@types/pdfkit": "^0.17.6",
-    "@types/puppeteer": "^5.4.7",
     "@types/uuid": "^10.0.0",
     "@types/xml2js": "^0.4.14",
     "nodemon": "^3.0.0",
@@ -486,11 +488,16 @@
   },
   "overrides": {
     "multer": "$multer",
-    "body-parser": "1.20.6",
-    "express": "4.22.2",
+    "body-parser": "1.20.8",
+    "express": "4.22.3",
     "file-type": "21.3.2",
-    "qs": "6.15.3",
+    "qs": "6.16.0",
     "mongoose": "9.7.2",
-    "brace-expansion": "5.0.8"
+    "brace-expansion": "5.0.12",
+    "js-yaml": "4.3.2",
+    "ip-address": "10.7.2",
+    "@nestjs/typeorm": {
+      "uuid": "11.1.1"
+    }
   }
 }

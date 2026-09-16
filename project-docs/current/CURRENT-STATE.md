@@ -1,5 +1,48 @@
 # Safety InSite — current state
 
+> ### §307 — SE-3 CLOSED: A DEPENDENCY GATE THAT CAN SAY "UNKNOWN", AND A REVIEW PROVEN BY BREAKING IT
+>
+> **Dependencies: one CRITICAL, twelve HIGH and ten MODERATE across both production trees became
+> zero critical, zero high, and one excepted moderate.** The critical was Next.js 16.2.12's
+> unauthenticated RCE in the Image Optimization API — and unreachability was **not** argued, because
+> `/_next/image` answered **200** on the deployed frontend although `next/image` is imported nowhere
+> in the source. A deployed route is in scope whether or not the product uses it.
+>
+> **The one HIGH with no forward fix was removed rather than excepted.** `extract-zip`'s symlink path
+> traversal (CVSS 8.1) reaches production through `@puppeteer/browsers`, and npm's proposed "fix" is
+> a *downgrade*. But `puppeteer`'s only importer anywhere was `src/pdf/pdf.service.ts`, behind a
+> route that has answered **410 Gone** unconditionally since legacy PDF generation was retired. An
+> exception would have been a claim about reachability. Deleting the dead provider took **441
+> packages, including Chromium, out of the production artifact** — 468 → 387 tree nodes.
+>
+> **The gate refuses to lie about not knowing.** `npm run security:deps` — deliberately *not* in
+> `hazlenz:precommit`, because `npm audit` queries a remote service and a gate that reddens an
+> unrelated typo fix is a gate people stop believing. **A scan that cannot execute is `UNKNOWN`
+> (exit 2), never `PASS`.** Classification is read from the JSON body, not npm's exit code, so an
+> `audit-level` in a config file cannot buy a pass. **An exception must carry a predicate, not a
+> paragraph:** the one accepted entry names a check the gate re-derives across 2,389 source files
+> every run. **All four refusal paths watched to fail**, control passing.
+>
+> **The review: 334 assertions, 0 failed, 0 provider calls, 0 Expert executions, $0.** Non-vacuous by
+> construction — user B is driven through the entire Beta v1 workflow first and the suite *aborts*
+> rather than reporting green on an empty fixture. **Proven by mutation:** disabling the single
+> ownership predicate in `InspectionService.findAccessible` failed **27** assertions.
+>
+> **Four defects found and repaired inside the section.** `SE-16`: `/maintenance/seed-safescope`
+> calls `dataSource.synchronize()` — the one thing §305 made impossible — contained only by an env
+> flag; production now refuses *first*, ahead of the flag. `SE-17`: `/health/ready` was publishing
+> the alerting thresholds unauthenticated, which is a pacing guide. `SE-18`: classify let a caller
+> name its own workspace. `SE-19`: the frontend returned no `frame-ancestors`.
+>
+> **`SE-20` was found, measured, and deliberately left OPEN.** Every individual resolves to the same
+> literal workspace `'default'`. Nothing leaks today — and the reason is a *role* gate, not a scope
+> gate, which is §305's "coincidences, not controls" again. Its repair reinterprets customer data,
+> so it is the product owner's call, not an in-slice fix.
+>
+> **`SC-2` was measured for a security consequence and has none.** Every timestamp that carries an
+> authorization decision — `passwordChangedAt`, `passwordResetExpiresAt`, `refresh_tokens.expiresAt`
+> — is already `timestamptz`. It stays OPEN, unrepaired.
+
 > ### §306 — PASSWORD RECOVERY IS ENGINEERING-COMPLETE, AND IT WAS NOT JUST A MISSING CREDENTIAL
 >
 > **EM-2 had been carried as "production has no Resend credential", which sounds procurement-shaped.**

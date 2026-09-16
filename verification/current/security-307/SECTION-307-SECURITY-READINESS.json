@@ -1,0 +1,226 @@
+{
+  "schema": "insite.section-evidence.v1",
+  "section": "307",
+  "title": "SE-3 — individual-Beta security readiness and dependency-vulnerability gate",
+  "capturedAt": "2026-09-16",
+  "providerCalls": 0,
+  "expertExecutions": 0,
+  "spendUsd": 0,
+  "directDatabaseWrites": "none against production; every mutation in this section ran against a disposable test_insite_* database created and dropped by scripts/hazlenz/with-disposable-db.ts",
+
+  "scannerAndPolicy": {
+    "scanner": "npm audit --omit=dev --json (npm 10.8.2)",
+    "why": "The authoritative package-manager audit for both ecosystems. No third-party scanner was installed into the product to satisfy this section.",
+    "gate": "backend/scripts/security-dependency-gate.ts, run as `npm run security:deps` from backend/",
+    "exceptionRegister": "backend/security/dependency-exceptions.json",
+    "exitCodes": { "0": "PASS", "1": "FAIL (blocking finding, expired exception, or a blocking severity excused by prose alone)", "2": "UNKNOWN (the scan could not execute)" },
+    "notInPrecommit": "Deliberate. npm audit queries a remote advisory service, so its answer changes with the calendar as well as with the lockfile. §307 explicitly warns against a gate whose output moves during an unrelated precommit; this is an intentional release-readiness command with captured evidence.",
+    "scannerFailureBehaviour": "A non-JSON body, an `error` object, an absent `metadata` block, or a production dependency count below 20 all produce UNKNOWN and exit 2. Classification is read from the JSON body and never from npm's exit code, so lowering `audit-level` in a config file cannot buy a pass.",
+    "watchedToFail": [
+      { "path": "a reintroduced HIGH production finding (multer pinned back to 2.2.0)", "result": "FAIL, exit 1, three GHSAs named" },
+      { "path": "an expired exception (expiresAt moved to 2026-01-01)", "result": "FAIL, exit 1" },
+      { "path": "the applicability predicate stops holding (an @Sse() route added)", "result": "FAIL, exit 1, naming the file that broke it" },
+      { "path": "the scanner cannot reach a registry", "result": "UNKNOWN, exit 2" },
+      { "path": "control — restored state", "result": "PASS, exit 0" }
+    ]
+  },
+
+  "dependencyInventory": {
+    "productionEcosystems": [
+      "backend — Node/npm, package-lock v3, Render native Node runtime v24.14.1 (engines >=24.14.1 <25.0.0)",
+      "frontend-next — Node/npm, package-lock v3, Next 16 on Vercel"
+    ],
+    "notAProductionEcosystem": {
+      "backend/Dockerfile": "FROM node:20-alpine. Production does NOT build from this Dockerfile — /health/version reports nodeVersion v24.14.1 sourced from Render's native Node environment, and the service record shows env=node rather than an image build. The file's node:20 base contradicts the package.json engines pin and would fail EBADENGINE if anyone ever built it. Recorded as an observation, not a production dependency."
+    },
+    "before": {
+      "backend": { "directProduction": 33, "transitiveProductionTreeNodes": 468, "devOnlyTreeNodes": 33 },
+      "frontendNext": { "directProduction": 10, "transitiveProductionTreeNodes": 51, "devOnlyTreeNodes": 390 }
+    },
+    "after": {
+      "backend": { "directProduction": 32, "transitiveProductionTreeNodes": 387, "devOnlyTreeNodes": 32 },
+      "frontendNext": { "directProduction": 10, "transitiveProductionTreeNodes": 51, "devOnlyTreeNodes": 390 }
+    }
+  },
+
+  "findingsBefore": {
+    "backendProduction": { "critical": 0, "high": 10, "moderate": 6, "low": 0 },
+    "frontendProduction": { "critical": 1, "high": 2, "moderate": 4, "low": 0 },
+    "frontendIncludingDev": { "critical": 1, "high": 5, "moderate": 4, "low": 0 }
+  },
+  "findingsAfter": {
+    "backendProduction": { "critical": 0, "high": 0, "moderate": 3, "low": 0, "distinctRootAdvisories": 1 },
+    "frontendProduction": { "critical": 0, "high": 0, "moderate": 0, "low": 0 },
+    "frontendIncludingDev": { "critical": 0, "high": 0, "moderate": 0, "low": 0 }
+  },
+
+  "criticalFindings": [
+    {
+      "id": "GHSA-2xp9-vwfh-vxw4 / GHSA-p293-qw3h-jr36",
+      "package": "next",
+      "installedBefore": "16.2.12",
+      "titles": [
+        "Next.js: Unauthenticated Remote Code Execution in Image Optimization API when AVIF files are used",
+        "Next.js: Unauthenticated Remote Code Execution on windows-hosted servers"
+      ],
+      "applicability": "next/image is imported nowhere in the application source, but the Image Optimization endpoint is DEPLOYED and externally reachable: GET https://safety-insite.vercel.app/_next/image?url=%2Ffavicon.ico&w=64&q=75 answered 200. §307's own rule that a deferred-but-deployed route stays in security scope applies to a framework route just as much as to a product one, so unreachability was not argued.",
+      "disposition": "REPAIRED by upgrading next 16.2.12 -> 16.3.5, a minor upgrade inside the same major. Not a migration.",
+      "verification": "npm audit --omit=dev reports 0 critical; the frontend production build succeeds and renders all 25 routes."
+    }
+  ],
+
+  "highFindings": [
+    { "packages": ["multer"], "ids": ["GHSA-wc9g-mqfw-jrwm", "GHSA-qfvm-cv95-jqjf", "GHSA-535w-7cp7-47q4", "GHSA-qvfw-j98x-7q72 (low)"], "summary": "Denial of service via crafted multipart field names, a file-descriptor leak on aborted uploads, an oversized array index in field names, and a file-size-limit bypass.", "applicability": "REACHABLE. multer backs POST /inspections/:id/evidence and POST /upload/logo — authenticated, but authentication is not a DoS control.", "disposition": "REPAIRED. Root dependency moved ^2.2.0 -> ^2.4.0; the existing `\"multer\": \"$multer\"` override propagates it to @nestjs/platform-express, which pins 2.0.2 exactly. No NestJS major migration." },
+    { "packages": ["express", "body-parser", "qs"], "ids": ["GHSA-x5fp-wj9c-mxmx", "GHSA-4mjr-xmp4-gh2g"], "summary": "qs array-limit bypass via bracket-key comma parsing, and denial of service via an attacker-controlled isBuffer.", "applicability": "REACHABLE on every request that carries a query string or a body.", "disposition": "REPAIRED by overrides: express 4.22.2 -> 4.22.3, body-parser 1.20.6 -> 1.20.8, qs 6.15.3 -> 6.16.0. All within express's 4.x line." },
+    { "packages": ["brace-expansion"], "ids": ["GHSA-rgw5-rvv9-x895"], "summary": "Denial of service via unbounded intermediate arrays.", "disposition": "REPAIRED by override 5.0.8 -> 5.0.12 (backend production tree only)." },
+    { "packages": ["ip-address"], "ids": ["GHSA-mwp4-54f8-5fhr", "GHSA-4xrf-jv44-h6hh", "GHSA-22jq-vg5j-6vgg"], "summary": "Leading-zero octets decoded as decimal, CIDR suffixes suppressing special-use classification, and IPv4-mapped/NAT64 misclassification — each able to bypass an SSRF or trust-boundary check.", "disposition": "REPAIRED by override -> 10.7.2." },
+    { "packages": ["js-yaml"], "ids": ["GHSA-5p4m-2wfm-xmqj", "GHSA-2883-xcg3-v3hh"], "summary": "Quadratic CPU consumption in !!omap resolution, and maxTotalMergeKeys failing to bound CPU for empty merge sources.", "disposition": "REPAIRED by override -> 4.3.2." },
+    { "packages": ["puppeteer", "puppeteer-core", "@puppeteer/browsers", "extract-zip"], "ids": ["GHSA-jmr9-qjv8-65gv", "GHSA-7pqw-9j4j-h8q3"], "summary": "extract-zip unvalidated symlink path traversal and arbitrary file writes through symlink archive entries, reached through @puppeteer/browsers. CVSS 8.1. NO forward fix exists — npm's proposed 'fix' is a DOWNGRADE to puppeteer 19.8.0.", "applicability": "puppeteer's only importer anywhere in the application was src/pdf/pdf.service.ts, provided by PdfModule, whose only route (GET /legacy/pdf/:id) has thrown 410 Gone unconditionally since legacy PDF generation was retired. Customer reports are produced by src/reports/pdf/pdf.service.ts on pdfkit.", "disposition": "REPAIRED BY REMOVAL rather than excepted. An exception would have been a claim about reachability; deleting the dead provider removes the dependency and 441 packages, including Chromium, from the production artifact. GET /legacy/pdf/:id still answers 410 with the same sentence.", "artifactEffect": "backend production tree 468 -> 387 nodes." },
+    { "packages": ["sharp", "nanoid"], "ids": ["GHSA-rgj7-g3m4-5g8c", "GHSA-2v37-7h3g-55p8"], "summary": "libheif vulnerabilities reached through sharp; nanoid custom generators looping indefinitely at size zero.", "disposition": "REPAIRED by overrides sharp -> 0.35.4, nanoid -> 3.3.19." }
+  ],
+
+  "moderateFindings": [
+    { "packages": ["dompurify", "fflate", "baseline-browser-mapping"], "disposition": "REPAIRED by overrides -> 3.4.15, 0.8.3, 2.11.24." },
+    { "packages": ["uuid (nested under @nestjs/typeorm)"], "id": "GHSA-w5hq-g745-h8pq", "summary": "Missing buffer bounds check in v3/v5/v6 when buf is provided.", "applicability": "@nestjs/typeorm calls only v4() and passes no buf, so the advisory was already non-applicable.", "disposition": "REPAIRED ANYWAY, because a fix beats an exception: nested override `@nestjs/typeorm > uuid` -> 11.1.1, smoke-tested to produce a v4 UUID at runtime." },
+    { "packages": ["@nestjs/core", "@nestjs/platform-express", "@nestjs/typeorm"], "id": "GHSA-36xv-jgw5-4q75", "summary": "SseStream._transform() interpolates message.type and message.id into Server-Sent Events output without neutralising CR/LF. CVSS 6.1. One root advisory; npm reports it three times because it repeats a dependency's finding on every dependent.", "disposition": "ACCEPTED EXCEPTION, expiring 2026-12-31.", "reason": "The published fix is @nestjs/core 11.1.18 — a NestJS 10 -> 11 major migration, which §307 classifies as a product-owner decision rather than an in-slice repair. The advisory's own stated precondition is developer code mapping user-influenced data onto an SSE message's type or id field. This product has no SSE surface, so SseStream is never constructed.", "howTheExceptionStaysHonest": "The register entry names applicabilityCheck `no-sse-surface`, which the gate RE-RUNS on every invocation across 2,389 source files and fails if any @Sse() decorator, text/event-stream response or EventSource client appears. Watched to fail by adding a probe @Sse() route." }
+  ],
+
+  "lowFindings": [
+    { "packages": ["multer"], "id": "GHSA-qvfw-j98x-7q72", "summary": "File-size-limit bypass via an async fileFilter race.", "disposition": "REPAIRED as part of the multer 2.4.0 move." }
+  ],
+
+  "devOnlyAcceptedAsTechnicalDebt": {
+    "statement": "None remain. After the repairs the frontend reports 0 findings at every severity INCLUDING the dev tree, and the backend's only remaining finding is the excepted production advisory above.",
+    "oneOverCorrectionFoundAndReversed": "A blanket `brace-expansion: 5.0.12` override was first applied to the frontend as well. brace-expansion is DEV-ONLY there, and the override forced minimatch@3's nested copy to v5, whose export shape minimatch@3 cannot use — `npm run lint` died with `TypeError: expand is not a function`. §307's own warning about upgrading without analysis, demonstrated. The override was removed; npm then resolved minimatch's nested brace-expansion to 1.1.21 and the top-level to 5.0.12 independently, lint runs again, and the frontend audit is still clean at every severity."
+  },
+
+  "securitySuite": {
+    "file": "backend/scripts/test-307-security-boundary.ts",
+    "run": "npm run test:307-security-boundary:db (standalone) — also wired into hazlenz:integration:inner",
+    "result": "334 assertions passed, 0 failed",
+    "providerCalls": 0,
+    "expertExecutions": 0,
+    "environment": "disposable test_insite_* database, NODE_ENV=test, DEV_AUTH_BYPASS forced false, EXPERT_EXECUTION_ENABLED=false and the provider credential deleted before AppModule is required",
+    "nonVacuity": {
+      "fixture": "User B is driven through the whole Beta v1 workflow first — site, inspection, observation, HazLenz analysis, human review, finalized finding, completion, ISSUED immutable report, revision history, a real uploaded evidence object, a corrective action and a notification — and the suite ABORTS rather than reporting a green run if any of it is missing.",
+      "thirdPrincipal": "A real organization with a real member and a real organization-scoped inspection is planted, so the null-authority assertions have an organization-scoped row to fail to reach, and the reverse direction is asserted too.",
+      "mutationProbe": "The ownership predicate in InspectionService.findAccessible was disabled (`if (!sameScope && false)`) and the suite re-run: 27 assertions failed across cross-user read, write, report generation, report archive, revision history, download and the Expert read — including the immutable-report tamper. The file was restored and its SHA-256 re-verified. Evidence: SECTION-307-MUTATION-PROBE-RUN.txt"
+    }
+  },
+
+  "phaseResults": {
+    "authenticationAndSession": "PASS. No token, four malformed shapes, a rewritten signature, a payload re-pointed at another user's id and promoted to pro, an `alg: none` token, an expired token, a token signed with an attacker-chosen secret, and a validly signed token for a non-existent user are all refused 401 with no disclosure. The suite holds the real signing secret, so the forgeries are real forgeries.",
+    "deletedAccountToken": "PASS, and non-vacuously: the account is proven to WORK before deletion, then deleted through the product route, and the SAME still-unexpired access token is refused 401 on /auth/me and on customer routes.",
+    "passwordResetSessionRegression": "PASS (§306 preserved). A token issued before the password changed is refused afterwards by passwordChangedAt rather than by expiry, and the pre-change refresh token cannot be exchanged for a working session. Additionally: with delivery NOT_CONFIGURED no reset credential is left stranded on the account, the response carries no token, and a known and an unknown address receive byte-identical answers — the recovery form is not an account-enumeration oracle.",
+    "refreshTokens": "PASS. A refresh token exchanges once, logout is accepted, and replaying the logged-out token does not produce a working session. A refresh token resolves only to its own owner.",
+    "objectOwnership": "PASS across 26 cross-user operations on B's site, inspection, observation, analysis, review, finding, Expert analysis (read and request), report, revision, download, versioned download, archive, corrective action, evidence file and notification. Every one is refused with a 4xx, echoes none of B's identifiers or content, and discloses nothing internal. Six list routes contain nothing of B's while B's own list still contains B's inspection.",
+    "ownershipIntegrity": "PASS, read from the rows rather than from the responses A received: B's site name, notification read-flag, evidence object, corrective action status and title, and issued report are all unchanged after A's attempts.",
+    "nullAuthorityContext": "PASS in both directions. Two organization-less individuals cannot reach an organization-scoped inspection, the organization member CAN (so the refusals are scoping, not a dead route), and an organization principal cannot reach an individual's inspection. The HazLenz persistence audit surface refuses an individual a named foreign workspace and discloses nothing with no workspace named. /audit discloses no other principal's rows.",
+    "expertSpendAuthority": "PASS. Spend usage is read for { organizationId from the inspection, userId from the token } with no path from a request body to either. Proven non-vacuously in process: a planted execution row costing USD 0.75 counts in ITS OWNER's window and NOT in the other individual's, and not in an organization's — the null-organization branch scopes by requestedByUserId rather than dropping the predicate. Production limits still read 1 analysis / USD 1.00 per workspace per 24h with maxAttemptsPerLeg 1, and a workspace at the ceiling is refused.",
+    "massAssignment": "PASS on 16 probes. Every undeclared server-authoritative field — ownerUserId, organizationId, tenantId, workspaceId, role, planCode, subscriptionStatus, passwordHash, producer, analysisState, provider, model, executionEnabled, spend ceilings, audit actor — is REFUSED 400 by the global forbidNonWhitelisted pipe rather than silently dropped. Verified by effect: not one mass-assignment registration created an account, and user A was not promoted, re-planned, re-subscribed or given an organization.",
+    "entitlementAuthority": "PASS (§301 / §302 preserved). A free individual is refused 402; caller-supplied planCode, selectedPlan, entitlements and hasProAccess do not promote, and neither do caller-supplied headers. The free account row is still free/none afterwards. An unentitled individual cannot invoke paid Expert capability, and an ordinary individual cannot mint an entitlement grant.",
+    "fileAndStorage": "PASS. A malformed UUID, a SQL-shaped identifier, a traversal string, a null byte and a valid-but-foreign UUID are all client errors and never a 500 (SE-5 preserved). Four hostile filenames — traversal, CRLF header injection, a Content-Disposition break-out and a 400-character name — all produce a server-minted object key of the form category/date/uuid carrying nothing of the filename, a sanitised download name, a Content-Disposition with no injected directive, and nosniff. A non-image body declared image/png is refused because the validator reads the bytes. A 6mb body is refused 413.",
+    "immutableReport": "PASS. A is refused on rewriting, archiving, regenerating over and deleting B's report, and every inspection_report_versions row is byte-identical afterwards — same version count, status, sha256, source fingerprint and storage object — as is the report's own ownership and archivedAt.",
+    "rateLimiting": "PASS, measured locally from pinned source addresses on synthetic .invalid accounts rather than against production. Login 429s at attempt 6 against a declared 5/60s, registration at 6, password-reset request at 4 against 3/60s. A different source address is not collaterally throttled, so one abuser cannot lock every customer out. The Expert route carries its own 10/60s throttle on top of the kill switch, and the unauthenticated health surface is inside the global 100/60s.",
+    "errorDisclosure": "PASS across twelve probes producing 400, 401, 402, 404, 409, 410 and 503. No external body exposes SQL text, a stack frame, a filesystem path, a database host, a provider credential, a bcrypt hash, a raw reset or invitation token, TypeORM internals, or another user's identifiers.",
+    "deferredRoutes": "PASS. Ten deferred or privileged routes answer 401/403/404/400, disclose nothing belonging to the planted foreign tenant, and refuse every mutation. Verified by effect: no membership and no invitation was created, and A gained neither a role nor an organization. verify-invite answers a bounded 404 (SE-6 preserved).",
+    "httpSecuritySurface": "Source-contract assertions only, and the suite says so: helmet, x-powered-by, the CORS callback, the body limits and the production-environment refusals are applied by bootstrap() in main.ts, which the harness does not run. Applying helmet inside the harness would measure the harness. The behavioural proof is the deployed read-back recorded under productionProof."
+  },
+
+  "secretsReview": {
+    "trackedRepository": "CLEAN. Every one of the 13 secret-valued production environment variables was searched for, by exact value, across all 9,046 tracked files: zero occurrences. The two matches the search reported were PASSWORD_RESET_FRONTEND_URL (a public frontend URL) and STRIPE_PRO_PRICE_ID (a public catalogue identifier), neither of which is a secret; they were matched only because the variable names contain PASSWORD and STRIPE.",
+    "gitHistory": "CLEAN. `git log --all -S<value>` for JWT_SECRET, ANTHROPIC_API_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, DATABASE_URL, STORAGE_S3_SECRET_ACCESS_KEY, DB_PASSWORD, MAINTENANCE_SEED_TOKEN and OPERATIONAL_ALERT_WEBHOOK_URL: zero commits reachable from any ref contain any of them.",
+    "credentialedUrlsInTrackedFiles": "All are local or docker-internal — 127.0.0.1, localhost, `db`, `offline-db`, `db.invalid` — with the literal username `user`. No production host and no live credential.",
+    "productionConfiguration": "Read through the owner's already-authorised Render API session. 43 variables. NODE_ENV=production, DEV_AUTH_BYPASS=false, TYPEORM_SYNCHRONIZE=false, CORS_ORIGINS is one exact HTTPS origin, TRUST_PROXY_HOPS=1, STORAGE_PROVIDER=s3, ENABLE_MAINTENANCE_SEED=false, EXPERT_EXECUTION_ENABLED=true with the 1/USD-1.00/24h limits. No secret value is reproduced in this record; secrets are recorded by length and a truncated SHA-256 only.",
+    "noRotationPerformed": "Correct. Nothing was rotated merely because it exists in secret storage.",
+    "oneObservation": "FRONTEND_URL carries a trailing slash (https://safety-insite.vercel.app/) while CORS_ORIGINS does not. main.ts pushes the RAW FRONTEND_URL into the allowed-origin list, so that entry can never match an Origin header. Harmless — CORS_ORIGINS covers the real origin and the exact-match behaviour was confirmed live — but it means the allow-list carries one dead entry."
+  },
+
+  "frontendClientBoundary": {
+    "nextPublicVariables": ["NEXT_PUBLIC_ALLOW_INDEXING", "NEXT_PUBLIC_API_BASE_URL", "NEXT_PUBLIC_API_URL", "NEXT_PUBLIC_BUILD_TIMESTAMP", "NEXT_PUBLIC_DEV_FORCE_PRO", "NEXT_PUBLIC_DISABLE_AUTH", "NEXT_PUBLIC_ENABLE_SW_IN_DEV", "NEXT_PUBLIC_FRONTEND_VERSION", "NEXT_PUBLIC_GIT_SHA", "NEXT_PUBLIC_INDEXING_POLICY", "NEXT_PUBLIC_SHELL_CACHE_GENERATION"],
+    "assessment": "All are intentionally public configuration. Two are development bypasses — NEXT_PUBLIC_DISABLE_AUTH and NEXT_PUBLIC_DEV_FORCE_PRO — and both were checked against the DEPLOYED bundles rather than against the source.",
+    "deployedBundleScan": "16 chunks were downloaded from the production deployment across /, /login, /register, /dashboard and /settings and searched for sk_live_, sk_test_, rk_live_, whsec_, sk-ant-, AKIA, postgres:// URLs, PEM private keys, re_ and ghp_ tokens: zero matches. Neither dev bypass flag appears inlined in any chunk, so neither was set to true at build time. The only embedded endpoint is the intended public API base URL.",
+    "sourceMaps": "Not served. Four chunk .map URLs return 404 and no chunk carries a sourceMappingURL comment.",
+    "oneSourceObservation": "planEntitlements.ts:136 returns 'pro' on NEXT_PUBLIC_DEV_FORCE_PRO without the NODE_ENV !== 'production' guard that AppShell.tsx and auth.ts both apply. It is presentation only — the server is authoritative on entitlement and §307 re-proved that — and the flag is not set in production. Recorded as an observation, not a defect."
+  },
+
+  "sc2SecurityConsequence": {
+    "question": "§307 authorises repairing SC-2 only if one of its two entity-versus-database contradictions creates an ACTUAL security consequence.",
+    "halfOne": "The six standards_master columns the entity declares and no database has. The two routes that read that table — POST /standards/match and POST /applicable-standards/suggest — were driven by an authenticated individual and answered 201 and 400 respectively. No 500, no disclosure. Not reachable as a security consequence.",
+    "halfTwo": "timestamp versus timestamptz. This is the half that could have mattered, because a naive timestamp read through a timezone-aware driver lands on a different INSTANT, and three timestamps in this product are authorization inputs rather than display: user.passwordChangedAt (which kills every token issued before a password change), user.passwordResetExpiresAt, and refresh_tokens.expiresAt. All three were MEASURED on a fresh migration replay and all three are `timestamp with time zone`, agreeing with their entities. The mismatched columns are user.deletedAt and user.nextBillingDate; deletedAt participates only in a truthiness check (`if (!user || user.deletedAt) throw`), which no timezone interpretation can turn into null.",
+    "verdict": "SC-2 has NO security consequence. It stays OPEN and unrepaired, as §307 directs.",
+    "durable": "Both halves are assertions C-sc2-1/2/3 in the §307 suite, so a future change that makes either half reachable fails a test rather than going unnoticed."
+  },
+
+  "newDefectsFoundAndRepaired": [
+    {
+      "id": "SE-16",
+      "title": "A production-reachable route called dataSource.synchronize(), contained only by an environment flag",
+      "detail": "POST /maintenance/seed-safescope runs an ad-hoc ALTER TABLE and then `await this.dataSource.synchronize(false)`. A runtime synchronize is precisely what §305 spent a section making impossible: the canonical schema manifest is a statement about the MIGRATION HISTORY, and a route that lets TypeORM reconcile the live schema against entity metadata can move production off that history, after which check:canonical-schema describes a database that no longer exists. TYPEORM_SYNCHRONIZE=false does not help, because this is a direct call.",
+      "containmentBefore": "ENABLE_MAINTENANCE_SEED=false in production, so the route answers 404. Containment by configuration: one operator setting the flag to seed knowledge would hand any authenticated account that also holds the maintenance token a schema synchronize against the live database.",
+      "repair": "Production is refused FIRST, before the flag is read, with the same 404 the flag already produced. The observable behaviour of the deployed service is byte-identical; what changed is that the flag is no longer the only thing between production and synchronize(). Development and disposable databases are unaffected.",
+      "durable": "Assertion K-synchronize checks the ORDER of the two refusals against the actual call site, and K-synchronize-sweep proves no other module in src/ calls synchronize() at all.",
+      "severity": "P2"
+    },
+    {
+      "id": "SE-17",
+      "title": "The unauthenticated readiness endpoint published the alerting thresholds",
+      "detail": "GET /health/ready has no authentication by design, and was answering with OPERATIONAL_ALERT_POLICY in full: serverErrorThreshold 5, serverErrorWindowMinutes 5, dedupeWindowMinutes 15, maxAlertsPerWindow 12, and the list of statuses that never alert (401, 402, 404, ordinary 400 validation, expected 409 conflict). Read as an attacker reads it, that is a published pacing guide — stay under five 5xx in five minutes, prefer 401/402/404, and nothing reaches a human.",
+      "repair": "The policy block is removed from the unauthenticated response. OPERATIONAL_ALERT_POLICY is unchanged and still exported; §294's and §296's suites assert against the constant directly, which is where a threshold assertion belongs. Nothing about what alerts, or when, is altered.",
+      "deliberatelyKept": "alerting state (CONFIGURED / NOT_CONFIGURED / DEGRADED), channel, detail, lastDelivery, serverErrorsInWindow, the passwordResetEmail state and its `missing` variable names, and the schema position. §291's whole point is that 'nothing is watching' must be reported as a fact; and the missing variable NAMES are already public in the source and the register, while an attacker can establish that recovery mail does not arrive simply by requesting a reset. Removing them would cost the operator the one line that says what to set and buy nothing. This is a threshold removed, not observability.",
+      "durable": "Assertions C-8, C-9, C-10.",
+      "severity": "P3"
+    },
+    {
+      "id": "SE-18",
+      "title": "POST /hazlenz/classify accepted a caller-supplied workspaceId that outranked the server-derived context",
+      "detail": "The controller read `body.workspaceId || context.workspaceId`, so a caller-named workspace identifier took precedence over the one resolved from the authenticated principal. §307 measured the consequence honestly and found none: the workspaceId selects among site policies that are SHIPPED FIXTURES rather than customer rows, and probes with a foreign organization id, another individual's synthetic workspace, organizationId, tenantId and ownerUserId returned nothing belonging to the named workspace. This is not a repaired disclosure. It is an authority-shaped field the server had stopped owning — the defect class §305A and §305 named.",
+      "repair": "workspaceId is REMOVED from ClassifyDto, so the global forbidNonWhitelisted pipe now rejects a body carrying it with 400 rather than silently dropping it — §262's 'the rejection is structural' rule. The controller reads context.workspaceId directly, and the two service sites that read `input.workspaceId || user?.workspaceId` now read the server-derived value first.",
+      "clientImpact": "None. workspaceId appears in the frontend's HazLenz client only as an optional TYPE member and is never assigned a value anywhere in the shipped client.",
+      "durable": "Assertions C-3 (five authority-shaped fields, each 400) and C-3c (the same request WITHOUT an authority field still succeeds, so C-3 measures the field rather than a broken route).",
+      "severity": "P2"
+    },
+    {
+      "id": "SE-19",
+      "title": "The production frontend returned no framing, sniffing or referrer protection",
+      "detail": "The deployed frontend answered with exactly two headers of interest — Vercel's own Strict-Transport-Security, and the §290 X-Robots-Tag. No Content-Security-Policy, no frame-ancestors, no X-Frame-Options, no X-Content-Type-Options, no Referrer-Policy, no Permissions-Policy. The application that holds the session token in localStorage (SE-2, accepted for Beta on the strength of a short token life) could therefore be framed by any origin and driven by clicks the user believed they were aiming somewhere else. SE-2's acceptance reasoning assumes the token is hard to reach; it says nothing about an attacker who never needs to read it.",
+      "repair": "next.config.ts now returns Content-Security-Policy: frame-ancestors 'none', X-Frame-Options: DENY, X-Content-Type-Options: nosniff, Referrer-Policy: strict-origin-when-cross-origin, Permissions-Policy: camera=(self), microphone=(), geolocation=(), and Cross-Origin-Opener-Policy: same-origin, on every path.",
+      "whatIsDeliberatelyAbsent": "script-src. A real script policy for an App Router build needs per-request nonces, which means a middleware layer this product does not have and §307 does not authorise building. Shipping script-src 'unsafe-inline' 'unsafe-eval' to make a CSP header appear would be a header that looks like a control and is not one — the exact failure §307 names. Registered as remaining work rather than faked.",
+      "whyCameraIsSelf": "Field capture uses <input capture=\"environment\"> on /inspection-workspace, which Chrome gates on the camera permission policy. camera=() would break the product's primary mobile flow — a correction more conservative than the risk.",
+      "severity": "P2"
+    }
+  ],
+
+  "newDefectsRegisteredNotRepaired": [
+    {
+      "id": "SE-20",
+      "title": "Every individual Beta principal resolves to one shared literal governance workspace, `default`",
+      "detail": "resolveHazLenzGovernanceContext returns `workspaceId: user.organizationId || user.workspaceId || 'default'`. The JWT strategy produces no workspaceId at all and an individual has no organization, so EVERY individual in the deployment resolves to the same literal string. HazLenzPersistenceController builds the same value. The absence does not make a predicate disappear — it collapses every individual into one shared scope, which is the same class of fault read the other way round.",
+      "containment": "MEASURED, and it is a role gate rather than a scope gate. The three HazLenz surfaces scoped by that value — /hazlenz/persistence/audit-records and its trail and candidates routes — carry @Roles('ORG_OWNER','SAFETY_DIRECTOR','SUPERVISOR','AUDITOR','SUPER_ADMIN'), and an individual's role is `individual`. §307 drove an authenticated individual at them with and without a named foreign workspace: 403 both times. Nothing is disclosed today.",
+      "whyItIsStillRegistered": "Because that is a coincidence, not a control — §305's own phrase for the SE-14 shape. The containment is one role string away from failing, and the service's own getById and updateStatus guards read `record.workspaceId && record.workspaceId !== user.workspaceId`, so a record with a NULL workspaceId passes the cross-workspace check entirely.",
+      "whyItWasNotREPAIRED": "The obvious repair is to derive an individual's workspace as `user:<userId>`, mirroring what CorrectiveActionsService already does for tenantId. That changes the workspace identity written on every future HazLenz persistence row and changes which existing rows a principal can reach — customer-data reinterpretation, which §307 lists as a STOP-for-product-owner decision rather than an in-slice repair.",
+      "severity": "P2",
+      "blocksThresholdC": false,
+      "status": "OPEN"
+    }
+  ],
+
+  "observationsNotDefects": [
+    "NotificationsService.markRead answers 401 Unauthorized when a notification is not found in the caller's scope, where 404 would be the ordinary answer. It fails closed and discloses nothing, so it is not a security defect; but a well-behaved SPA may log the user out on a benign not-found. UX, not security.",
+    "backend/Dockerfile declares FROM node:20-alpine while package.json pins engines >=24.14.1 <25.0.0. Production does not build from this Dockerfile — Render runs a native Node environment and /health/version reports v24.14.1 — so it is not a production dependency. Anyone who did build the image would get EBADENGINE.",
+    "The 188 ESLint errors in frontend-next (168 no-explicit-any, 17 setState-in-effect, 2 unescaped entities, 1 TDZ) are all in app/, components/ and lib/ files that §307 did not touch, with eslint 9.39.4 and eslint-config-next 16.2.12 both unchanged by the Next upgrade. next.config.ts, the one frontend source file §307 changed, is lint-clean."
+  ],
+
+  "preservedUnchanged": {
+    "EXPERT_EXECUTION_ENABLED": "true in production, untouched",
+    "expertLimits": "1 analysis/workspace/24h, USD 1.00/workspace/24h, EXPERT_SPEND_WINDOW_HOURS 24 — untouched, and re-asserted by F-6",
+    "canonicalSchema": "PASS — 68 tables, 0 material differences, digest 3a51b1a21294f40649a57ab0f0857fb2816e5e695a7cabe35c05043b9185bf60, unchanged. No migration was written and none was needed.",
+    "schemaHead": "1800000025000, 57/57, aheadOfBuild []",
+    "evidenceIntegrity": "PASS — 97 manifests, 5,594 members verified, 0 new drift. Deleting backend/src/pdf/pdf.service.ts broke no frozen manifest membership.",
+    "SE-15_OB-2_CS-3": "closed at §306, untouched",
+    "SC-2": "OPEN, unrepaired — no security consequence, measured",
+    "BR-5": "OPEN, untouched",
+    "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED, untouched",
+    "OPS-2": "OPEN, untouched"
+  }
+}

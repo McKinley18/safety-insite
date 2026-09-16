@@ -1,7 +1,7 @@
 import { Controller, Get, ServiceUnavailableException } from '@nestjs/common';
 import { passwordResetEmailCapability } from '../auth/password-reset-transport';
 import { HealthService } from './health.service';
-import { describeAlertConfiguration, serverErrorCountInWindow, OPERATIONAL_ALERT_POLICY } from '../observability/operational-alerts';
+import { describeAlertConfiguration, serverErrorCountInWindow } from '../observability/operational-alerts';
 import { emitOperationalEvent } from '../observability/operational-events';
 
 @Controller('health')
@@ -102,13 +102,41 @@ export class HealthController {
         missing: email.missing,
         detail: email.detail,
       },
+      /*
+       * §307 — THE ALERTING POLICY NUMBERS ARE NO LONGER PUBLISHED TO AN UNAUTHENTICATED CALLER.
+       *
+       * `/health/ready` has no authentication, by design: an orchestrator has to be able to ask.
+       * It was answering with `OPERATIONAL_ALERT_POLICY` in full — `serverErrorThreshold: 5`,
+       * `serverErrorWindowMinutes: 5`, `dedupeWindowMinutes: 15`, `maxAlertsPerWindow: 12` and the
+       * list of statuses that never alert. Read as an attacker reads it, that is a published
+       * pacing guide: stay under five 5xx in five minutes, prefer 401/402/404, and nothing ever
+       * reaches a human. Detection thresholds are one of the few operational facts whose value
+       * comes entirely from not being known.
+       *
+       * WHAT IS DELIBERATELY KEPT, because §307 also says preserve internal observability and
+       * because making a readiness endpoint less useful is not a security win:
+       *
+       *   - `alerting` — CONFIGURED / NOT_CONFIGURED / DEGRADED. §291/§294's whole point is that
+       *     "nothing is watching" must be reported as a fact rather than left as an assumption,
+       *     and hiding it would hide the gap rather than the threshold.
+       *   - `channel`, `detail`, `lastDelivery` — what an operator reads at 02:00.
+       *   - `serverErrorsInWindow` — the observation, not the rule applied to it. A count tells an
+       *     operator the service is unhappy; on its own it does not say when anyone finds out.
+       *   - `passwordResetEmail.missing` (below) — the variable NAMES are already public in the
+       *     source and the register, and an attacker can establish that recovery mail does not
+       *     arrive simply by requesting a reset. Removing them would cost the operator the one
+       *     line that says what to set and buy nothing.
+       *
+       * The policy itself is unchanged and `OPERATIONAL_ALERT_POLICY` remains exported: §294's and
+       * §296's suites assert against the constant directly, which is where a threshold assertion
+       * belongs. Nothing about what alerts, or when, is altered by this.
+       */
       monitoring: {
         alerting: alerting.state,
         channel: alerting.channel,
         detail: alerting.reason,
         lastDelivery: alerting.lastDelivery ?? null,
         serverErrorsInWindow: serverErrorCountInWindow(),
-        policy: OPERATIONAL_ALERT_POLICY,
       },
       schema: {
         expectedSchemaVersion: schema.expectedSchemaVersion,

@@ -98,12 +98,50 @@ const frontendVersion = resolveFrontendVersion();
 const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
 const INDEXING_POLICY = allowIndexing ? "index, follow" : "noindex, nofollow";
 
+/**
+ * §307 — THE BROWSER-SIDE SECURITY HEADERS, AND AN HONEST STATEMENT OF WHAT IS NOT HERE.
+ *
+ * §307 measured the deployed production frontend and it returned exactly two headers of interest:
+ * `Strict-Transport-Security` (Vercel's own) and the `X-Robots-Tag` below. There was no
+ * `X-Frame-Options`, no `frame-ancestors`, no `X-Content-Type-Options` and no `Referrer-Policy` —
+ * so the application that holds the session token in `localStorage` (`SE-2`, accepted for Beta on
+ * the strength of a short token life) could be framed by any origin and driven by clicks the user
+ * believed they were aiming somewhere else. `SE-2`'s acceptance reasoning assumes the token is
+ * hard to reach; it says nothing about an attacker who never needs to read it because the victim's
+ * own browser performs the action.
+ *
+ * WHAT IS DELIBERATELY ABSENT: `script-src`. A real script policy for an App Router build needs
+ * per-request nonces, which means a proxy/middleware layer this product does not have and which
+ * §307 does not authorise building. Shipping `script-src 'unsafe-inline' 'unsafe-eval'` to make a
+ * CSP header appear would be worse than shipping none: it is a header that looks like a control
+ * and is not one, which is the exact failure mode §307 names ("do not claim browser protection
+ * from a header that is not actually returned"). So the CSP here carries `frame-ancestors` only —
+ * the one directive that is load-bearing, cannot be expressed by a `<meta>` tag, and has no
+ * ability to break a page. The script policy is registered as remaining work rather than faked.
+ *
+ * `camera=(self)` rather than `camera=()`: field capture uses `<input capture="environment">` on
+ * `/inspection-workspace`, which Chrome gates on the camera permission policy. Locking it to
+ * nothing would break the product's primary mobile flow — a correction that is more conservative
+ * than the risk and therefore the wrong correction.
+ */
+const SECURITY_HEADERS = [
+  { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(self), microphone=(), geolocation=()" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+];
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
       {
         source: "/:path*",
-        headers: [{ key: "X-Robots-Tag", value: INDEXING_POLICY }],
+        headers: [
+          { key: "X-Robots-Tag", value: INDEXING_POLICY },
+          ...SECURITY_HEADERS,
+        ],
       },
     ];
   },

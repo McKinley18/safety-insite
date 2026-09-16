@@ -1,5 +1,4 @@
 import { Controller, Get, GoneException, Param, Req, Res, UseGuards } from '@nestjs/common';
-import { PdfService } from './pdf.service';
 import { ReportsService } from '../reports/reports.service';
 import { Response, Request } from 'express';
 import { JwtGuard } from '../auth/guards/jwt.guard';
@@ -9,10 +8,7 @@ import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entit
 @RequireEntitlement('cloudReports')
 @Controller('legacy/pdf')
 export class PdfController {
-  constructor(
-    private readonly pdfService: PdfService,
-    private readonly reportsService: ReportsService,
-  ) {}
+  constructor(private readonly reportsService: ReportsService) {}
 
   @Get(':id')
   async generate(

@@ -117,8 +117,37 @@ function authorityWeight(authorityTier: number) {
 export class MaintenanceSeedController {
   constructor(private readonly dataSource: DataSource) {}
 
+  /**
+   * §307 — THIS ROUTE MAY NOT RUN IN PRODUCTION, AND THAT IS NOW A CODE RULE.
+   *
+   * WHAT WAS FOUND. The handler below calls `this.dataSource.synchronize(false)` after an ad-hoc
+   * `ALTER TABLE`. A runtime `synchronize()` is the single thing §305 spent a whole section making
+   * impossible: the canonical schema manifest is a statement about the MIGRATION HISTORY, and a
+   * route that lets TypeORM reconcile the live schema against entity metadata can silently move
+   * production off that history — after which `check:canonical-schema` is describing a database
+   * that no longer exists. `TYPEORM_SYNCHRONIZE=false` does not help: this is a direct call.
+   *
+   * WHAT PROTECTED IT BEFORE. Only `ENABLE_MAINTENANCE_SEED`, which is `false` in production today,
+   * so the route answers 404 and nothing runs. That is containment by CONFIGURATION: one operator
+   * who sets the flag to seed some knowledge hands any authenticated account that also holds the
+   * maintenance token a schema synchronize against the live database. §305's own words for this
+   * shape were "coincidences, not controls".
+   *
+   * WHAT CHANGED, AND WHAT DID NOT. Production is refused first, before the flag is even read, with
+   * the same `404` the flag already produces — so the OBSERVABLE behaviour of the deployed service
+   * is byte-identical today and no caller can tell the difference. What changed is that the flag is
+   * no longer the only thing standing between production and `synchronize()`. The route keeps
+   * working in development and on disposable databases, which is where seeding belongs.
+   *
+   * WHY NOT DELETE IT. Deleting the handler would also delete the seeding capability that
+   * development uses, which is a product change §307 does not authorise. The narrow defect is that
+   * a schema-mutating path was reachable in production at all.
+   */
   @Post('seed-safescope')
   async seedHazLenz(@Headers('x-maintenance-token') token: string, @Body() body: any) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new NotFoundException();
+    }
     if (process.env.ENABLE_MAINTENANCE_SEED !== 'true') {
       throw new NotFoundException();
     }

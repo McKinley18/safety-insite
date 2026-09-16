@@ -191,14 +191,19 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **85** | **4** | **9** | **49** | **23** |
+| Entries | **90** | **4** | **9** | **53** | **24** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 42 |
-| OPEN | 37 |
+| CLOSED | 46 |
+| OPEN | 38 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
+
+**§307 added five entries and closed four of them in the same section** — `SE-16`, `SE-17`, `SE-18`
+and `SE-19` were found by the security review and repaired inside it; `SE-20` was found, measured,
+and deliberately left open because its repair is customer-data reinterpretation rather than a
+security fix. `SE-3` closed on top of that.
 
 **A threshold's blocker count is the number of entries still flagged for it.** Closing an entry
 clears its threshold flags and records what it used to block in `wasBlockingThresholds`, so an
@@ -300,12 +305,13 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (29 items, including all six P0)
+### Threshold C — external controlled beta  (28 items, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-3`, `SE-5`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294**
+`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-5`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294** ·
+`SE-3` **closed at §307**
 
 **`DB-4` is new at §289 and it is not legal work.** The cross-tenant recurrence path that `TI-2`
 describes is **reachable in production**, because the `outcomes` table exists there although no
@@ -963,20 +969,150 @@ Every stored field comes from the server: agreement id, version, a **sha256 of t
 |---|---|---|---|---|---|
 | **SE-1** | Authentication and authorization architecture verified: 15-minute access tokens, refresh tokens, production refuses to start without JWT_SECRET, global and per-route throttling, server-owned authority on entitlement and lifecycle state. | P3 | — | Security | CLOSED |
 | **SE-2** | Access and refresh tokens are held in localStorage rather than httpOnly cookies. | P2 | — | Security | OPEN |
-| **SE-3** | No production security review, dependency-vulnerability gate, or penetration test has been performed. | P2 | C | Security | OPEN |
+| **SE-3** | No production security review, dependency-vulnerability gate, or penetration test has been performed. | P2 | C | Security | **CLOSED (§307)** |
 | **SE-4** | Secrets handling: provider key, JWT secret, Stripe keys and database URL are environment-only; production validation refuses unsafe combinations. | P3 | — | Infrastructure | OPEN |
 | **SE-5** | A malformed resource identifier reaches the database unvalidated and surfaces as an unhandled HTTP 500. | P2 | — | Engineering | **CLOSED (§303)** |
 | **SE-6** | Invitation verification is broken for **every** token by a schema type mismatch: `invitation."organizationId"` is `character varying` while `organization."id"` is `uuid`, so the relation join is invalid SQL and `GET /auth/verify-invite/:token` returns HTTP 500 unconditionally. | P1 | C | Engineering | OPEN (§303) |
+| **SE-16** | `POST /maintenance/seed-safescope` calls `dataSource.synchronize(false)` against the live database. Contained in production only by `ENABLE_MAINTENANCE_SEED=false` — configuration, not code. | P2 | — | Engineering | **CLOSED (§307)** |
+| **SE-17** | `GET /health/ready` is unauthenticated by design and was publishing the full alerting policy: the 5-errors-in-5-minutes threshold, the 15-minute dedupe window, the 12-per-window ceiling and the list of statuses that never alert. | P3 | — | Security | **CLOSED (§307)** |
+| **SE-18** | `POST /hazlenz/classify` read `body.workspaceId \|\| context.workspaceId`, so a caller-named workspace outranked the one derived from the authenticated principal. | P2 | — | Security | **CLOSED (§307)** |
+| **SE-19** | The deployed frontend returned no `frame-ancestors`, `X-Frame-Options`, `X-Content-Type-Options` or `Referrer-Policy`, so the application holding the session token in `localStorage` could be framed and click-driven by any origin. | P2 | — | Security | **CLOSED (§307)** |
+| **SE-20** | Every individual Beta principal resolves to one shared literal governance workspace, `'default'`. Nothing is disclosed today, and the reason is a role gate rather than a scope gate. | P2 | — | Engineering | OPEN (§307) |
 
 **SE-2 — remediation / decision.** Accept for controlled beta with a short token life, or move to httpOnly cookies with CSRF protection in v1.1. Record the decision.
 
 *Evidence:* `frontend-next/lib/auth.ts:120-161`  
 *Retest:* If changed: a full auth regression plus CSRF coverage.
 
-**SE-3 — remediation / decision.** A dependency advisory scan in the release path, and a scoped review of the authenticated API surface before external users. Do not test against production.
+**SE-3 — CLOSED at §307, and what closing it actually required.** Both halves were delivered.
 
-*Evidence:* `no security gate in the repository's gate set`  
-*Retest:* A clean advisory scan and a recorded review.
+*The dependency half.* Production trees only, both ecosystems, `npm audit --omit=dev`. **Before: one
+CRITICAL, twelve HIGH, ten MODERATE across the two. After: zero critical, zero high, and a single
+excepted moderate.** The critical was Next.js 16.2.12's unauthenticated RCE in the Image
+Optimization API — and unreachability was *not* argued, because `/_next/image` answered **200** on
+the deployed frontend even though `next/image` is imported nowhere in the source. A deployed route
+is in scope whether or not the product uses it. Fixed by 16.2.12 → 16.3.5, a minor upgrade.
+
+*The one HIGH with no forward fix was removed rather than excepted.* `extract-zip`'s symlink path
+traversal (CVSS 8.1) reaches production through `@puppeteer/browsers`, and npm's proposed "fix" is a
+**downgrade** to puppeteer 19.8.0. But `puppeteer`'s only importer anywhere in the application was
+`src/pdf/pdf.service.ts`, provided by a module whose only route has answered **410 Gone**
+unconditionally since legacy PDF generation was retired. An exception would have been a claim about
+reachability; deleting the dead provider removes the dependency. **441 packages, including Chromium,
+left the production artifact** — 468 → 387 tree nodes. `GET /legacy/pdf/:id` still answers 410 with
+the same sentence.
+
+*The durable gate.* `npm run security:deps` (`backend/scripts/security-dependency-gate.ts`).
+Deliberately **not** in `hazlenz:precommit`: `npm audit` queries a remote advisory service, so its
+answer is a function of the calendar as well as the lockfile, and a gate that reddens an unrelated
+typo fix is a gate people stop believing. **A scan that cannot execute is `UNKNOWN` (exit 2), never
+`PASS`** — a non-JSON body, an `error` object, an absent `metadata` block or an implausibly small
+production tree all trip it, and classification is read from the JSON body rather than npm's exit
+code so an `audit-level` in a config file cannot buy a pass. **An exception must carry a predicate,
+not a paragraph:** the one accepted entry names `applicabilityCheck: no-sse-surface`, which the gate
+re-derives across 2,389 source files on every run and fails the moment an `@Sse()` route appears.
+**All four refusal paths were watched to fail** — a reintroduced HIGH, an expired exception, a broken
+predicate, and no registry — with the control run passing.
+
+*The review half.* `backend/scripts/test-307-security-boundary.ts`, **334 assertions, 0 failed**,
+zero provider calls, zero Expert executions, $0. And it is **non-vacuous by construction**: user B is
+driven through the entire Beta v1 workflow — issued immutable report, real uploaded evidence,
+corrective action, notification — and the suite *aborts* rather than reporting green if any of it is
+missing; a real organization with a real member and a real organization-scoped inspection is planted
+so the null-authority assertions have something to fail to reach. **Proven by mutation:** disabling
+the single ownership predicate in `InspectionService.findAccessible` failed **27** assertions across
+cross-user read, write, report generation, archive, revision history, download and the Expert read.
+
+*Evidence:* `verification/current/security-307/` — `SECTION-307-SECURITY-READINESS.json`,
+`SECTION-307-DEPENDENCY-GATE.json`, the full suite run, and the mutation-probe run.  
+*Retest:* `npm run security:deps` and `npm run test:307-security-boundary:db`.
+
+**SE-16 — CLOSED at §307.** A runtime `synchronize()` is the one thing §305 spent a section making
+impossible: the canonical manifest is a statement about the *migration history*, and a route that
+lets TypeORM reconcile the live schema against entity metadata moves production off it — after which
+`check:canonical-schema` is describing a database that no longer exists. `TYPEORM_SYNCHRONIZE=false`
+does not help, because this is a direct call. Production is now refused **first**, ahead of the
+feature flag, with the same 404 the flag already produced — so the deployed service's observable
+behaviour is byte-identical and what changed is that the flag is no longer the only thing in the way.
+
+*Evidence:* `backend/src/maintenance/maintenance-seed.controller.ts`  
+*Retest:* §307 assertions `K-synchronize` (which checks the *order* of the two refusals against the
+actual call site) and `K-synchronize-sweep` (no other module in `src/` calls `synchronize()` at all).
+
+**SE-17 — CLOSED at §307.** Read as an attacker reads it, the published policy was a pacing guide:
+stay under five 5xx in five minutes, prefer 401/402/404, and nothing ever reaches a human. Detection
+thresholds are one of the few operational facts whose value comes entirely from not being known. The
+policy block is gone from the unauthenticated response; `OPERATIONAL_ALERT_POLICY` is unchanged and
+still exported, and §294's and §296's suites assert against the constant directly, which is where a
+threshold assertion belongs. **Nothing about what alerts, or when, changed.** Everything an operator
+reads at 02:00 stayed: the `CONFIGURED`/`NOT_CONFIGURED`/`DEGRADED` state, the channel, the detail,
+the last delivery, the error count in the window, the email capability and its missing variable
+names, and the schema position. A threshold was removed, not observability.
+
+*Evidence:* `backend/src/health/health.controller.ts`  
+*Retest:* §307 assertions `C-8`, `C-9`, `C-10`.
+
+**SE-18 — CLOSED at §307, and the honest severity is "authority", not "disclosure".** §307 measured
+the consequence rather than assuming one: the `workspaceId` selects among site policies that are
+*shipped fixtures*, not customer rows, and probes naming a foreign organization, another individual's
+synthetic workspace, `organizationId`, `tenantId` and `ownerUserId` returned nothing belonging to any
+of them. Nothing leaked. What was wrong is that an authority-shaped field was one the server had
+stopped owning — the §305A/§305 defect class. `workspaceId` is now **removed from `ClassifyDto`**, so
+the global `forbidNonWhitelisted` pipe rejects a body carrying it with 400 rather than dropping it
+silently (§262's "the rejection is structural"), and the controller and both service sites read the
+server-derived value. No client is affected: `workspaceId` exists in the frontend's HazLenz client
+only as an optional *type* member and is never assigned a value anywhere.
+
+*Evidence:* `backend/src/hazlenz/dto/classify.dto.ts`, `hazlenz.controller.ts`, `hazlenz.service.ts`  
+*Retest:* §307 assertions `C-3` (five authority-shaped fields, each 400) and `C-3c` (the same request
+*without* an authority field still succeeds, so `C-3` measures the field and not a broken route).
+
+**SE-19 — CLOSED at §307, with one thing deliberately left undone and said out loud.** `SE-2`
+accepts tokens in `localStorage` for Beta on the strength of a short token life. That reasoning
+assumes the token is hard to *reach*; it says nothing about an attacker who never needs to read it
+because the victim's own browser performs the action. The deployed frontend returned no
+`frame-ancestors` and no `X-Frame-Options`, so it could be framed by any origin. It now returns
+`Content-Security-Policy: frame-ancestors 'none'`, `X-Frame-Options: DENY`, `nosniff`,
+`Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(self),
+microphone=(), geolocation=()` and `Cross-Origin-Opener-Policy: same-origin`.
+
+**`script-src` is deliberately absent.** A real script policy for an App Router build needs
+per-request nonces, which means a middleware layer this product does not have and §307 does not
+authorise building. Shipping `script-src 'unsafe-inline' 'unsafe-eval'` to make a CSP header *appear*
+would be worse than shipping none — a header that looks like a control and is not one, which is the
+exact failure §307 names. `camera=(self)` rather than `camera=()` because field capture uses
+`<input capture="environment">`, which Chrome gates on that policy; locking it to nothing would break
+the primary mobile flow, a correction more conservative than the risk. **A full script policy is the
+remaining frontend security work**, and it is a `v1.1` item, not a Beta blocker.
+
+*Evidence:* `frontend-next/next.config.ts`; production read-back recorded in the §307 evidence.  
+*Retest:* read the headers off the deployed production response.
+
+**SE-20 — OPEN, and deliberately not repaired.** `resolveHazLenzGovernanceContext` returns
+`user.organizationId || user.workspaceId || 'default'`. The JWT strategy produces no `workspaceId` at
+all and an individual has no organization, so **every individual in the deployment resolves to the
+same literal string**. The absence does not make a predicate disappear — it collapses every
+individual into one shared scope, which is the same fault read the other way round.
+
+**Nothing is disclosed today, and §307 measured why.** The three surfaces scoped by that value —
+`/hazlenz/persistence/audit-records` and its trail and candidate routes — carry
+`@Roles('ORG_OWNER','SAFETY_DIRECTOR','SUPERVISOR','AUDITOR','SUPER_ADMIN')`, and an individual's
+role is `individual`. An authenticated individual was driven at them with and without a named foreign
+workspace and got **403 both times**. That is a *role* gate, not a scope gate — §305's own phrase for
+this shape was "coincidences, not controls" — and one role string away from failing. The service's
+own `getById` and `updateStatus` also guard with `record.workspaceId && record.workspaceId !==
+user.workspaceId`, so a record with a NULL workspace passes the cross-workspace check entirely.
+
+*Why it was left open:* the obvious repair is to derive an individual's workspace as
+`user:<userId>`, mirroring what `CorrectiveActionsService` already does for `tenantId`. That changes
+the workspace identity written on every future HazLenz persistence row **and** changes which existing
+rows a principal can reach — customer-data reinterpretation, which §307 lists as a stop-for-product-
+owner decision rather than an in-slice repair.
+
+*Evidence:* `backend/src/hazlenz/workspace-governance-access/hazlenz-governance-context.ts`,
+`backend/src/hazlenz/persistence/persistence.service.ts`  
+*Retest:* a two-individual fixture proving one individual's HazLenz audit records are unreachable by
+another **without** relying on the role gate.
 
 **SE-4 — remediation / decision.** Confirm Vercel Preview environment scopes do not carry production secrets before any external preview sharing.
 

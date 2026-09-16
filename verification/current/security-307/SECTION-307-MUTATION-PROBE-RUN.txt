@@ -1,0 +1,435 @@
+
+> safety-insite-backend@1.0.0 test:307-security-boundary:db
+> ts-node scripts/hazlenz/with-disposable-db.ts test:307-security-boundary
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789592352816_1829
+registered as run 3ef6dc80-0851-4d5b-aa27-f33cb4d621bb
+
+> safety-insite-backend@1.0.0 test:307-security-boundary
+> ts-node scripts/test-307-security-boundary.ts
+
+◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+resolved target host=127.0.0.1 database=test_insite_1789592352816_1829
+application listening on http://127.0.0.1:50018
+
+---- SETUP. TWO INDIVIDUALS, AND A REAL WORKFLOW OWNED BY B ----
+
+ok    S-1 two distinct entitled individual accounts exist  [6f520d00-e4df-4459-b416-842d81246b62 / 68aec86e-ce40-4313-b4d0-a83c539c2e46]
+ok    S-2 both carry organizationId NULL — the Beta v1 shape, and the branch where a dropped predicate would broaden rather than narrow
+ok    S-3 user B owns a real site, inspection, observation and analysis  [201/201/201/201]
+ok    S-4 HazLenz produced reviewable findings for B — without them the review, completion and report assertions below would compare undefined with undefined  [1 pending]
+ok    S-5 B finalized every pending finding  [1/1]
+ok    S-7 B uploaded a real evidence object, so the file-isolation assertions have something to fail to reach  [201]
+ok    S-6 B completed the inspection and an immutable report was ISSUED  [201/201]
+ok    S-8 B owns a real corrective action  [201 {"displayId":"ACT-000F1DD7","inspectionId":"d8a7c40f-cc03-41de-9cc7-867ed4e98d53","tenantI]
+ok    S-9 B can read their own report revision history  [200]
+
+---- A. AUTHENTICATION AND SESSION BOUNDARY ----
+
+ok    A-0 the suite holds the signing secret, so a FORGED token is a real forgery rather than a random string  [len=25]
+ok    A-1 no token: refused 401  [401]
+ok    A-2 malformed token (not a JWT): refused 401  [401]
+ok    A-2b malformed token (not a JWT): the refusal discloses nothing
+ok    A-2 malformed token (two segments only): refused 401  [401]
+ok    A-2b malformed token (two segments only): the refusal discloses nothing
+ok    A-2 malformed token (empty bearer): refused 401  [401]
+ok    A-2b malformed token (empty bearer): the refusal discloses nothing
+ok    A-2 malformed token (base64 garbage): refused 401  [401]
+ok    A-2b malformed token (base64 garbage): the refusal discloses nothing
+ok    A-3 a VALID payload with a rewritten signature is refused — the signature is verified, not merely present  [401]
+ok    A-4 A's token re-pointed at B's userId and promoted to pro is refused — claims are signed, so rewriting one invalidates the token  [401]
+ok    A-5 an `alg: none` token is refused  [401]
+ok    A-6 a correctly signed but EXPIRED token is refused — expiry is enforced, not ignored  [401]
+ok    A-7 a well-formed token signed with the WRONG secret is refused  [401]
+ok    A-8 a validly signed token for a user that does not exist is refused — the strategy re-reads the account rather than trusting the claim  [401]
+ok    A-9 the soon-to-be-deleted account works BEFORE deletion — so A-10 measures deletion rather than a broken fixture  [200]
+ok    A-9b the account deletes  [200]
+ok    A-10 THE SAME STILL-UNEXPIRED TOKEN IS NOW REFUSED. A deleted account's live access token must die with the account, not fifteen minutes later.  [401]
+ok    A-10b and it reaches no customer route either  [401]
+ok    A-11 the pre-reset session is live BEFORE the reset — the regression below is non-vacuous  [200]
+{"schema":"safety-insite.operational-event.v1","event":"auth.password_reset_delivery_failed","severity":"error","at":"2026-09-16T20:59:22.045Z","metadata":{"outcome":"NOT_CONFIGURED","transport":"unconfigured","resetCredentialRolledBack":"[redacted]"}}
+ok    A-12 a reset request is accepted (and, with no provider configured, delivers nothing)  [201]
+ok    A-12b and the response carries NO reset credential  [{"message":"If the account exists, password reset instructions will be sent."}]
+ok    A-13 with delivery NOT_CONFIGURED, NO reset credential is left stranded on the account — the request is still accepted and answered generically (§306 preserved)  [none]
+{"schema":"safety-insite.operational-event.v1","event":"auth.password_reset_delivery_failed","severity":"error","at":"2026-09-16T20:59:22.048Z","metadata":{"outcome":"NOT_CONFIGURED","transport":"unconfigured","resetCredentialRolledBack":"[redacted]"}}
+ok    A-13b a KNOWN and an UNKNOWN address receive byte-identical answers — the recovery form is not an account-enumeration oracle  [201:{"message":"If the account exists, password reset  vs 201:{"message":"If the account exists, password reset ]
+ok    A-14 PASSWORD-RESET SESSION REGRESSION (§306 preserved): a token issued BEFORE the password changed is refused afterwards, by `passwordChangedAt` rather than by expiry  [401 (passwordChangedAt set directly; PATCH route declined)]
+ok    A-15 and the pre-change REFRESH token cannot be exchanged for a working session either — otherwise the invalidation would be one round trip deep  [201]
+ok    A-16 a refresh token exchanges for a session  [201]
+ok    A-17 logout is accepted  [201]
+ok    A-18 REPLAYING a logged-out refresh token does not produce a working session  [401]
+ok    A-19 a refresh token resolves to ITS OWN owner and cannot be redeemed as somebody else  [68aec86e-ce40-4313-b4d0-a83c539c2e46]
+
+---- B. OBJECT OWNERSHIP: A AGAINST EVERY RESOURCE B OWNS ----
+
+ok    B-site: read: REFUSED with a client error (no server error, no success)  [404]
+ok    B-site: read: the refusal echoes none of B's identifiers or content back
+ok    B-site: read: and discloses no internals
+ok    B-site: update: REFUSED with a client error (no server error, no success)  [404]
+ok    B-site: update: the refusal echoes none of B's identifiers or content back
+ok    B-site: update: and discloses no internals
+ok    B-site: delete: REFUSED with a client error (no server error, no success)  [404]
+ok    B-site: delete: the refusal echoes none of B's identifiers or content back
+ok    B-site: delete: and discloses no internals
+FAIL  B-inspection: read: REFUSED with a client error (no server error, no success)  [200]
+FAIL  B-inspection: read: the refusal echoes none of B's identifiers or content back  [630fc9d4-810,d8a7c40f-cc0,456e6f11-ad2,68aec86e-ce4,s307 B inspe]
+FAIL  B-inspection: read: and discloses no internals  [SQL text]
+ok    B-inspection: add observation: REFUSED with a client error (no server error, no success)  [409]
+ok    B-inspection: add observation: the refusal echoes none of B's identifiers or content back
+ok    B-inspection: add observation: and discloses no internals
+ok    B-inspection: reopen/transition: REFUSED with a client error (no server error, no success)  [400]
+ok    B-inspection: reopen/transition: the refusal echoes none of B's identifiers or content back
+ok    B-inspection: reopen/transition: and discloses no internals
+FAIL  B-inspection: completion readiness: REFUSED with a client error (no server error, no success)  [200]
+ok    B-inspection: completion readiness: the refusal echoes none of B's identifiers or content back
+ok    B-inspection: completion readiness: and discloses no internals
+FAIL  B-inspection: generate a report: REFUSED with a client error (no server error, no success)  [201]
+FAIL  B-inspection: generate a report: the refusal echoes none of B's identifiers or content back  [d8a7c40f-cc0,4a02e198-9a6]
+ok    B-inspection: generate a report: and discloses no internals
+FAIL  B-inspection: read the current report: REFUSED with a client error (no server error, no success)  [200]
+FAIL  B-inspection: read the current report: the refusal echoes none of B's identifiers or content back  [d8a7c40f-cc0,4a02e198-9a6]
+ok    B-inspection: read the current report: and discloses no internals
+ok    B-inspection: evidence upload: REFUSED with a client error (no server error, no success)  [409]
+ok    B-inspection: evidence upload: the refusal echoes none of B's identifiers or content back
+ok    B-inspection: evidence upload: and discloses no internals
+FAIL  B-observation: edit: REFUSED with a client error (no server error, no success)  [200]
+FAIL  B-observation: edit: the refusal echoes none of B's identifiers or content back  [d8a7c40f-cc0,456e6f11-ad2,68aec86e-ce4]
+ok    B-observation: edit: and discloses no internals
+ok    B-observation: persist an analysis: REFUSED with a client error (no server error, no success)  [409]
+ok    B-observation: persist an analysis: the refusal echoes none of B's identifiers or content back
+ok    B-observation: persist an analysis: and discloses no internals
+FAIL  B-observation: review a finding: REFUSED with a client error (no server error, no success)  [201]
+FAIL  B-observation: review a finding: the refusal echoes none of B's identifiers or content back  [456e6f11-ad2]
+ok    B-observation: review a finding: and discloses no internals
+ok    B-observation: finalize a finding: REFUSED with a client error (no server error, no success)  [404]
+ok    B-observation: finalize a finding: the refusal echoes none of B's identifiers or content back
+ok    B-observation: finalize a finding: and discloses no internals
+FAIL  B-observation: read the Expert analysis: REFUSED with a client error (no server error, no success)  [200]
+ok    B-observation: read the Expert analysis: the refusal echoes none of B's identifiers or content back
+ok    B-observation: read the Expert analysis: and discloses no internals
+{"schema":"safety-insite.operational-event.v1","event":"expert.control.execution_disabled","severity":"warning","at":"2026-09-16T20:59:22.545Z","metadata":{"observationId":"456e6f11-ad27-4cdf-a5e9-8a54d31788c1","inspectionId":"d8a7c40f-cc03-41de-9cc7-867ed4e98d53","organizationId":null,"reason":"EXPERT_EXECUTION_DISABLED","detail":"EXPERT_EXECUTION_ENABLED=false","analysesInWindow":0,"costUsdInWindow":0,"providerLegsSpent":0}}
+FAIL  B-observation: REQUEST an Expert analysis: REFUSED with a client error (no server error, no success)  [503]
+ok    B-observation: REQUEST an Expert analysis: the refusal echoes none of B's identifiers or content back
+ok    B-observation: REQUEST an Expert analysis: and discloses no internals
+FAIL  B-report: read by id: REFUSED with a client error (no server error, no success)  [200]
+FAIL  B-report: read by id: the refusal echoes none of B's identifiers or content back  [d8a7c40f-cc0,4a02e198-9a6]
+ok    B-report: read by id: and discloses no internals
+FAIL  B-report: revision history: REFUSED with a client error (no server error, no success)  [200]
+FAIL  B-report: revision history: the refusal echoes none of B's identifiers or content back  [d8a7c40f-cc0,4a02e198-9a6]
+ok    B-report: revision history: and discloses no internals
+ok    B-report: download: REFUSED with a client error (no server error, no success)  [404]
+ok    B-report: download: the refusal echoes none of B's identifiers or content back
+ok    B-report: download: and discloses no internals
+ok    B-report: download a specific revision: REFUSED with a client error (no server error, no success)  [404]
+ok    B-report: download a specific revision: the refusal echoes none of B's identifiers or content back
+ok    B-report: download a specific revision: and discloses no internals
+FAIL  B-report: archive (mutate an issued record): REFUSED with a client error (no server error, no success)  [200]
+FAIL  B-report: archive (mutate an issued record): the refusal echoes none of B's identifiers or content back  [4a02e198-9a6]
+ok    B-report: archive (mutate an issued record): and discloses no internals
+ok    B-corrective action: update: REFUSED with a client error (no server error, no success)  [404]
+ok    B-corrective action: update: the refusal echoes none of B's identifiers or content back
+ok    B-corrective action: update: and discloses no internals
+ok    B-corrective action: close: REFUSED with a client error (no server error, no success)  [400]
+ok    B-corrective action: close: the refusal echoes none of B's identifiers or content back
+ok    B-corrective action: close: and discloses no internals
+FAIL  B-file: download: REFUSED with a client error (no server error, no success)  [200]
+ok    B-file: download: the refusal echoes none of B's identifiers or content back
+ok    B-file: download: and discloses no internals
+ok    B-file: delete: REFUSED with a client error (no server error, no success)  [404]
+ok    B-file: delete: the refusal echoes none of B's identifiers or content back
+ok    B-file: delete: and discloses no internals
+ok    B-notification: mark read: REFUSED with a client error (no server error, no success)  [401]
+ok    B-notification: mark read: the refusal echoes none of B's identifiers or content back
+ok    B-notification: mark read: and discloses no internals
+ok    B-integrity-1 B's site is unchanged after A's update and delete attempts  [s307 B site 1789592359382]
+ok    B-integrity-2 B's notification is still unread — A's PATCH mutated nothing  [read=false]
+ok    B-integrity-3 B's evidence object still downloads for B — A's DELETE removed nothing  [200]
+ok    B-integrity-4 B's corrective action was neither closed nor retitled by A — read from the row rather than from a response A was given  [{"statusCode":"open","title":"Refit the head pulley guard before restart"}]
+ok    B-integrity-5 B's issued report is still readable and was not archived by A  [200]
+ok    B-list inspections: answers without a server error  [200]
+ok    B-list inspections: contains nothing of B's  [2 bytes]
+ok    B-list sites: answers without a server error  [200]
+ok    B-list sites: contains nothing of B's  [50 bytes]
+ok    B-list reports: answers without a server error  [200]
+ok    B-list reports: contains nothing of B's  [2 bytes]
+ok    B-list corrective actions: answers without a server error  [200]
+ok    B-list corrective actions: contains nothing of B's  [50 bytes]
+ok    B-list notifications: answers without a server error  [200]
+ok    B-list notifications: contains nothing of B's  [2 bytes]
+ok    B-list calendar: answers without a server error  [200]
+ok    B-list calendar: contains nothing of B's  [2 bytes]
+ok    B-list-nonvacuous B's own inspection DOES appear in B's list — the list route works, so A's empty list is scoping rather than a broken endpoint
+
+---- C. NULL AUTHORITY CONTEXT: ABSENCE MUST NOT BROADEN ----
+
+ok    C-0 a THIRD principal exists inside a real organization, owning a real inspection — so the assertions below have an organization-scoped row to fail to reach  [201]
+ok    C-1 individual A (organizationId null): a NULL organization does not reach an organization-scoped inspection — a dropped predicate would have returned it  [A: 404]
+ok    C-1 individual B (organizationId null): a NULL organization does not reach an organization-scoped inspection — a dropped predicate would have returned it  [B: 404]
+ok    C-1b and the organization member DOES reach it — the refusals above are scoping, not a dead route  [200]
+FAIL  C-2 and an ORGANIZATION principal cannot reach an INDIVIDUAL's inspection either  [200]
+ok    C-3 classify with a caller-supplied workspaceId: STRUCTURALLY REJECTED with 400. §307 removed workspaceId from ClassifyDto, so every authority-shaped identifier is now an undeclared property and the global pipe refuses it rather than letting it win a precedence contest against the server-derived context.  [400]
+ok    C-3b classify with a caller-supplied workspaceId: returns nothing belonging to the named workspace  [400]
+ok    C-3 classify with a caller-supplied workspaceId = another individual: STRUCTURALLY REJECTED with 400. §307 removed workspaceId from ClassifyDto, so every authority-shaped identifier is now an undeclared property and the global pipe refuses it rather than letting it win a precedence contest against the server-derived context.  [400]
+ok    C-3b classify with a caller-supplied workspaceId = another individual: returns nothing belonging to the named workspace  [400]
+ok    C-3 classify with a caller-supplied organizationId: STRUCTURALLY REJECTED with 400. §307 removed workspaceId from ClassifyDto, so every authority-shaped identifier is now an undeclared property and the global pipe refuses it rather than letting it win a precedence contest against the server-derived context.  [400]
+ok    C-3b classify with a caller-supplied organizationId: returns nothing belonging to the named workspace  [400]
+ok    C-3 classify with a caller-supplied tenantId: STRUCTURALLY REJECTED with 400. §307 removed workspaceId from ClassifyDto, so every authority-shaped identifier is now an undeclared property and the global pipe refuses it rather than letting it win a precedence contest against the server-derived context.  [400]
+ok    C-3b classify with a caller-supplied tenantId: returns nothing belonging to the named workspace  [400]
+ok    C-3 classify with a caller-supplied ownerUserId: STRUCTURALLY REJECTED with 400. §307 removed workspaceId from ClassifyDto, so every authority-shaped identifier is now an undeclared property and the global pipe refuses it rather than letting it win a precedence contest against the server-derived context.  [400]
+ok    C-3b classify with a caller-supplied ownerUserId: returns nothing belonging to the named workspace  [400]
+ok    C-3c and the SAME request without an authority field still succeeds — C-3 measures the field, not a broken route  [201]
+ok    C-7 readiness answers unauthenticated, as an orchestrator requires  [200]
+ok    C-8 §307: and it no longer publishes the ALERTING THRESHOLDS to an unauthenticated caller — a detection threshold is a pacing guide for anyone who reads it  [policy absent]
+ok    C-9 while every operator-facing state §291/§294/§306/§268 put there is still reported — the repair removed a threshold, not observability  [{"alerting":"NOT_CONFIGURED","email":"NOT_CONFIGURED","schema":"1800000025000"}]
+ok    C-10 and readiness discloses no host, credential or internal path
+ok    C-4 the HazLenz persistence audit surface refuses an individual a named foreign workspace  [403]
+ok    C-5 and with no workspace named it discloses nothing of another individual's  [403]
+ok    C-6 the /audit route discloses no other principal's rows  [401]
+ok    C-sc2-1 standards match: the SC-2 standards_master column contradiction is not reachable as a 500 by an authenticated individual  [201]
+ok    C-sc2-2 standards match: and nothing internal is disclosed either way
+ok    C-sc2-1 applicable standards suggest: the SC-2 standards_master column contradiction is not reachable as a 500 by an authenticated individual  [400]
+ok    C-sc2-2 applicable standards suggest: and nothing internal is disclosed either way
+ok    C-sc2-3 EVERY timestamp that participates in an authorization decision — passwordChangedAt, passwordResetExpiresAt and refresh_tokens.expiresAt — is timestamptz and agrees with its entity, so SC-2's timestamp contradiction cannot shift a session-invalidation or expiry instant. SC-2 therefore has no security consequence and stays OPEN, unrepaired.  [[{"table_name":"refresh_tokens","column_name":"expiresAt","data_type":"timestamp with time zone"},{"table_name":"user","column_name":"passwordChangedAt","data_type":"timestamp with time zone"},{"table_name":"user","column_name":"passwordResetExpiresAt","data_type":"timestamp with time zone"}]]
+
+---- D. MASS ASSIGNMENT / DTO BOUNDARY ----
+
+ok    D-site: ownerUserId: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-site: ownerUserId: and the refusal discloses nothing
+ok    D-site: organizationId: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-site: organizationId: and the refusal discloses nothing
+ok    D-inspection: ownerUserId: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-inspection: ownerUserId: and the refusal discloses nothing
+ok    D-inspection: organizationId: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-inspection: organizationId: and the refusal discloses nothing
+ok    D-profile: role: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-profile: role: and the refusal discloses nothing
+ok    D-profile: planCode: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-profile: planCode: and the refusal discloses nothing
+ok    D-profile: subscriptionStatus: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-profile: subscriptionStatus: and the refusal discloses nothing
+ok    D-profile: passwordHash: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-profile: passwordHash: and the refusal discloses nothing
+ok    D-registration: role: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-registration: role: and the refusal discloses nothing
+ok    D-registration: organizationId: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-registration: organizationId: and the refusal discloses nothing
+ok    D-registration: subscriptionStatus: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-registration: subscriptionStatus: and the refusal discloses nothing
+ok    D-analysis: producer/provenance: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-analysis: producer/provenance: and the refusal discloses nothing
+ok    D-expert: workspaceId / spend ceiling: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-expert: workspaceId / spend ceiling: and the refusal discloses nothing
+ok    D-expert: provider/model authority: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-expert: provider/model authority: and the refusal discloses nothing
+ok    D-corrective action: tenantId/ownerUserId: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-corrective action: tenantId/ownerUserId: and the refusal discloses nothing
+ok    D-corrective action: audit actor: the undeclared server-authoritative field is REFUSED, not dropped  [400]
+ok    D-corrective action: audit actor: and the refusal discloses nothing
+ok    D-verify-1 not one of the mass-assignment registrations created an account  [0 rows]
+ok    D-verify-2 and user A was not promoted, re-planned, re-subscribed or given an organization by any of it  [{"role":"individual","planCode":"free","subscriptionStatus":"none","organizationId":null}]
+
+---- E. ENTITLEMENT AUTHORITY (§301 / §302 preserved) ----
+
+ok    E-1 a FREE individual is refused HazLenz with 402  [402]
+ok    E-2 a caller-supplied planCode does not promote entitlement (§301 preserved)  [402]
+ok    E-2 a caller-supplied selectedPlan does not promote entitlement (§301 preserved)  [402]
+ok    E-2 a caller-supplied entitlements does not promote entitlement (§301 preserved)  [402]
+ok    E-2 a caller-supplied hasProAccess does not promote entitlement (§301 preserved)  [402]
+ok    E-3 AN UNENTITLED INDIVIDUAL CANNOT INVOKE PAID EXPERT CAPABILITY. The refusal happens above anything that could reach a provider.  [402]
+ok    E-4 nor does a caller-supplied HEADER promote entitlement  [402]
+ok    E-5 and the free account row is still free/none after every attempt  [{"planCode":"free","subscriptionStatus":"none"}]
+ok    E-6 an ordinary individual cannot mint themselves an entitlement grant through the admin route  [403]
+
+---- F. EXPERT / HAZLENZ EXECUTION AUTHORITY, WITHOUT EXECUTING ----
+
+ok    F-0 user A owns an observation of their own, so the kill-switch assertion below is made by the legitimate owner rather than deflected by an ownership refusal  [201]
+{"schema":"safety-insite.operational-event.v1","event":"expert.control.execution_disabled","severity":"warning","at":"2026-09-16T20:59:23.753Z","metadata":{"observationId":"4f9d4fdd-6147-40b2-9479-cbf72a0fbe41","inspectionId":"97c74a26-a7af-41b9-b763-c9769d658021","organizationId":null,"reason":"EXPERT_EXECUTION_DISABLED","detail":"EXPERT_EXECUTION_ENABLED=false","analysesInWindow":0,"costUsdInWindow":0,"providerLegsSpent":0}}
+ok    F-1 THE ENTITLED OWNER IS REFUSED BY THE KILL SWITCH with 503 — EXPERT_EXECUTION_ENABLED=false is evaluated before the pre-spend claim  [503]
+ok    F-1b and it names the kill switch rather than an entitlement or ownership failure  [EXPERT_EXECUTION_DISABLED]
+ok    F-1c and reports zero provider calls made  [0]
+ok    F-2 NOT ONE EXPERT EXECUTION ROW EXISTS for any principal or idempotency key this suite created, after every Expert attempt it made — a refusal before the claim writes nothing  [0 rows]
+ok    F-3 B's spend window counts B's own execution — non-vacuous  [{"analysesInWindow":1,"costUsdInWindow":0.75}]
+ok    F-4 AND A'S WINDOW DOES NOT. Two organization-less individuals do not share one ceiling: the null-organization branch scopes by requestedByUserId rather than dropping the predicate.  [{"analysesInWindow":0,"costUsdInWindow":0}]
+ok    F-5 and an organization's window does not absorb an individual's spend either  [{"analysesInWindow":0,"costUsdInWindow":0}]
+ok    F-6 the production limit surface still reads 1 analysis and USD 1.00 per workspace per 24h, with no automatic retry — §307 changes none of it  [{"executionEnabled":true,"dailyAnalysisLimitPerWorkspace":1,"dailyCostLimitUsdPerWorkspace":1,"windowHours":24,"expectedProviderLegsPerAnalysis":2,"perLegTimeoutMs":180000,"maxAttemptsPerLeg":1}]
+ok    F-7 and a workspace at the ceiling is refused  [WORKSPACE_ANALYSIS_CEILING_REACHED]
+
+---- G. FILE / STORAGE BOUNDARY ----
+
+ok    G-malformed UUID: refused with a client error, never a 500 (SE-5 preserved)  [400]
+ok    G-malformed UUID: and discloses no SQL, path or internal detail
+ok    G-SQL-shaped identifier: refused with a client error, never a 500 (SE-5 preserved)  [400]
+ok    G-SQL-shaped identifier: and discloses no SQL, path or internal detail
+ok    G-path traversal identifier: refused with a client error, never a 500 (SE-5 preserved)  [400]
+ok    G-path traversal identifier: and discloses no SQL, path or internal detail
+ok    G-null byte: refused with a client error, never a 500 (SE-5 preserved)  [400]
+ok    G-null byte: and discloses no SQL, path or internal detail
+ok    G-valid but foreign UUID: refused with a client error, never a 500 (SE-5 preserved)  [404]
+ok    G-valid but foreign UUID: and discloses no SQL, path or internal detail
+ok    G-filename "../../../../etc/passwd.png": the OBJECT KEY is server-minted and carries nothing of the filename  [evidence/2026-09-16/652b27fa-1dd4-42c0-bd9f-74aacce4d975]
+ok    G-filename "../../../../etc/passwd.png": the stored download name is sanitised  [passwd.png]
+ok    G-filename "../../../../etc/passwd.png": the Content-Disposition header carries no injected directive  [attachment; filename="passwd.png"]
+ok    G-filename "../../../../etc/passwd.png": the download is served nosniff  [nosniff]
+ok    G-filename "evidence\n\nSet-Cookie: sessio": the OBJECT KEY is server-minted and carries nothing of the filename  [evidence/2026-09-16/2d5791c2-ede3-4fc8-9023-c6e2e17b5d89]
+ok    G-filename "evidence\n\nSet-Cookie: sessio": the stored download name is sanitised  [evidenceSet-Cookie_ session_stolen.png]
+ok    G-filename "evidence\n\nSet-Cookie: sessio": the Content-Disposition header carries no injected directive  [attachment; filename="evidenceSet-Cookie_ session_stolen.png"]
+ok    G-filename "evidence\n\nSet-Cookie: sessio": the download is served nosniff  [nosniff]
+ok    G-filename "evidence";attachment;filenam": the OBJECT KEY is server-minted and carries nothing of the filename  [evidence/2026-09-16/3e4bada9-9754-4d7b-b0b1-8b98cf0d9c47]
+ok    G-filename "evidence";attachment;filenam": the stored download name is sanitised  [evidence__attachment_filename__stolen.pn]
+ok    G-filename "evidence";attachment;filenam": the Content-Disposition header carries no injected directive  [attachment; filename="evidence__attachment_filename__stolen.png"]
+ok    G-filename "evidence";attachment;filenam": the download is served nosniff  [nosniff]
+ok    G-filename "AAAAAAAAAAAAAAAAAAAAAAAAAAAA": the OBJECT KEY is server-minted and carries nothing of the filename  [evidence/2026-09-16/d00f07cd-5654-496f-927f-43cc26331628]
+ok    G-filename "AAAAAAAAAAAAAAAAAAAAAAAAAAAA": the stored download name is sanitised  [AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]
+ok    G-filename "AAAAAAAAAAAAAAAAAAAAAAAAAAAA": the Content-Disposition header carries no injected directive  [attachment; filename="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]
+ok    G-filename "AAAAAAAAAAAAAAAAAAAAAAAAAAAA": the download is served nosniff  [nosniff]
+ok    G-content-type: a non-image body with an image/png declaration is refused — the validator reads the BYTES, not the caller's claim  [400]
+ok    G-body-limit: a body above the 5mb limit is refused with a client error rather than accepted or crashed  [413]
+
+---- H. IMMUTABLE REPORT BOUNDARY ----
+
+ok    H-0 B's issued report has at least one version row carrying a 64-character SHA-256 of the artifact, so tampering is detectable at all  [2 version(s), sha256=c971d87a72940efc]
+ok    H-rewrite the report by id: A is refused  [404]
+FAIL  H-archive the report: A is refused  [200]
+FAIL  H-regenerate over the inspection: A is refused  [201]
+ok    H-delete the report: A is refused  [404]
+FAIL  H-1 AND EVERY VERSION ROW IS BYTE-IDENTICAL AFTERWARDS — same version count, same status, same sha256, same source fingerprint, same storage object. The report is unchanged in FACT, not merely unchanged in the response A received.  [[{"version":1,"status":"superseded","sha256":"c971d87a72940efc88038711ddfe9961662878fcb9d7 -> [{"version":1,"status":"superseded","sha256":"c971d87a72940efc88038711ddfe9961662878fcb9d7]
+ok    H-2 and the report itself was not archived or re-owned  [identical]
+
+---- I. RATE LIMITING / RESOURCE ABUSE ----
+
+ok    I-login: bounded — the route answers 429 at attempt 6 from one source address (declared limit 5/60s)  [429 at 6]
+ok    I-registration: bounded — the route answers 429 at attempt 6 from one source address (declared limit 5/60s)  [429 at 6]
+ok    I-password-reset request: bounded — the route answers 429 at attempt 4 from one source address (declared limit 3/60s)  [429 at 4]
+ok    I-independence a DIFFERENT source address is not collaterally throttled — the bucket is per-caller rather than global, so one abuser cannot lock every customer out  [401]
+{"schema":"safety-insite.operational-event.v1","event":"expert.control.execution_disabled","severity":"warning","at":"2026-09-16T20:59:24.034Z","metadata":{"observationId":"4f9d4fdd-6147-40b2-9479-cbf72a0fbe41","inspectionId":"97c74a26-a7af-41b9-b763-c9769d658021","organizationId":null,"reason":"EXPERT_EXECUTION_DISABLED","detail":"EXPERT_EXECUTION_ENABLED=false","analysesInWindow":0,"costUsdInWindow":0,"providerLegsSpent":0}}
+ok    I-expert the most expensive route in the product is still behind the kill switch as well as its 10/60s throttle  [503]
+ok    I-health the unauthenticated health surface is inside the global throttle  [100]
+
+---- J. ERROR DISCLOSURE ACROSS THE STATUS RANGE ----
+
+ok    J-400 validation (400): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":["name must be a string","email must be an email"]
+ok    J-400 validation (400): and no other user's identifiers  [400]
+ok    J-400 malformed JSON (400): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"Unexpected end of JSON input","error":"Bad Reque]
+ok    J-400 malformed JSON (400): and no other user's identifiers  [400]
+ok    J-400 malformed identifier (400): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"The identifier in the request path is not valid.]
+ok    J-400 malformed identifier (400): and no other user's identifiers  [400]
+ok    J-401 unauthenticated (401): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"No token provided","error":"Unauthorized","statu]
+ok    J-401 unauthenticated (401): and no other user's identifiers  [401]
+ok    J-401 bad token (401): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"Invalid token","error":"Unauthorized","statusCod]
+ok    J-401 bad token (401): and no other user's identifiers  [401]
+ok    J-402 entitlement (402): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"A paid subscription is required for this feature]
+ok    J-402 entitlement (402): and no other user's identifiers  [402]
+FAIL  J-403/404 foreign resource (200): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [SQL text]
+FAIL  J-403/404 foreign resource (200): and no other user's identifiers  [200]
+ok    J-404 unknown route (404): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"Cannot GET /this-route-does-not-exist","error":"]
+ok    J-404 unknown route (404): and no other user's identifiers  [404]
+ok    J-404 unknown id (404): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"Inspection not found.","error":"Not Found","stat]
+ok    J-404 unknown id (404): and no other user's identifiers  [404]
+ok    J-409 stale version (409): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"Inspection was modified by another request.","er]
+ok    J-409 stale version (409): and no other user's identifiers  [409]
+ok    J-410 retired route (410): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"Legacy PDF generation is retired. Retrieve the i]
+ok    J-410 retired route (410): and no other user's identifiers  [410]
+{"schema":"safety-insite.operational-event.v1","event":"expert.control.execution_disabled","severity":"warning","at":"2026-09-16T20:59:24.053Z","metadata":{"observationId":"4f9d4fdd-6147-40b2-9479-cbf72a0fbe41","inspectionId":"97c74a26-a7af-41b9-b763-c9769d658021","organizationId":null,"reason":"EXPERT_EXECUTION_DISABLED","detail":"EXPERT_EXECUTION_ENABLED=false","analysesInWindow":0,"costUsdInWindow":0,"providerLegsSpent":0}}
+ok    J-503 kill switch (503): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token  [{"message":"Expert analysis is temporarily unavailable. Your]
+ok    J-503 kill switch (503): and no other user's identifiers  [503]
+ok    J-coverage the probes actually produced a spread of statuses rather than one repeated answer  [200,400,401,402,404,409,410,503]
+ok    J-induced even a hostile body that reaches the engine returns nothing internal  [201 ]
+
+---- K. DEFERRED COMPANY/TEAM ROUTES STILL FAIL CLOSED ----
+
+ok    K-read organization settings: no server error  [401]
+ok    K-read organization settings: discloses nothing belonging to the foreign tenant  [{"message":"Organization context is required.","error":"Unau]
+ok    K-list members: no server error  [401]
+ok    K-list members: discloses nothing belonging to the foreign tenant  [{"message":"Organization context is required.","error":"Unau]
+ok    K-list invitations: no server error  [401]
+ok    K-list invitations: discloses nothing belonging to the foreign tenant  [{"message":"Organization context is required.","error":"Unau]
+ok    K-read a FOREIGN organization by id: no server error  [403]
+ok    K-read a FOREIGN organization by id: discloses nothing belonging to the foreign tenant  [{"message":"You can only view your own organization.","error]
+ok    K-create an invitation: no server error  [403]
+ok    K-create an invitation: discloses nothing belonging to the foreign tenant  [{"message":"Forbidden resource","error":"Forbidden","statusC]
+ok    K-create an invitation: the MUTATION is refused outright  [403]
+ok    K-rename an organization: no server error  [403]
+ok    K-rename an organization: discloses nothing belonging to the foreign tenant  [{"message":"Forbidden resource","error":"Forbidden","statusC]
+ok    K-rename an organization: the MUTATION is refused outright  [403]
+ok    K-upload an organization logo: no server error  [400]
+ok    K-upload an organization logo: discloses nothing belonging to the foreign tenant  [{"message":"Logo upload failed.","error":"Bad Request","stat]
+ok    K-upload an organization logo: the MUTATION is refused outright  [400]
+ok    K-run the maintenance seed: no server error  [404]
+ok    K-run the maintenance seed: discloses nothing belonging to the foreign tenant  [{"message":"Not Found","statusCode":404}]
+ok    K-run the maintenance seed: the MUTATION is refused outright  [404]
+ok    K-run a regulatory sync: no server error  [403]
+ok    K-run a regulatory sync: discloses nothing belonging to the foreign tenant  [{"message":"Forbidden resource","error":"Forbidden","statusC]
+ok    K-run a regulatory sync: the MUTATION is refused outright  [403]
+ok    K-mint an entitlement grant: no server error  [403]
+ok    K-mint an entitlement grant: discloses nothing belonging to the foreign tenant  [{"message":"Platform administrator access is required.","err]
+ok    K-mint an entitlement grant: the MUTATION is refused outright  [403]
+ok    K-effect-1 no membership was created by any of it  [1 -> 1]
+ok    K-effect-2 and no invitation was created  [1 -> 1]
+ok    K-effect-3 and A gained neither a role nor an organization  [{"role":"individual","organizationId":null}]
+ok    K-invite verify-invite answers a bounded 404 with no disclosure (SE-6 preserved)  [404]
+ok    K-synchronize the only route that calls dataSource.synchronize() refuses production FIRST, ahead of the feature flag — so the flag is no longer the only thing between production and a runtime schema synchronize (§305 canonical-schema contract preserved)  [productionRefusal@6827 flag@6919 synchronize@7895]
+ok    K-synchronize-sweep and no OTHER module in src/ calls synchronize() at all  [none]
+
+---- L. HTTP SECURITY SURFACE ON THE APPLICATION ITSELF ----
+
+ok    L-source helmet() is applied globally
+ok    L-source x-powered-by is disabled
+ok    L-source the validation pipe forbids non-whitelisted properties
+ok    L-source the validation pipe whitelists
+ok    L-source CORS uses an origin CALLBACK rather than a wildcard
+ok    L-source a disallowed origin is refused
+ok    L-source the JSON body limit is bounded
+ok    L-source the urlencoded body limit is bounded
+ok    L-source production configuration is validated before the app is created
+ok    L-source CORS is never a wildcard or unconditional `true`
+ok    L-source production refuses DEV_AUTH_BYPASS
+ok    L-source production refuses TYPEORM_SYNCHRONIZE
+ok    L-source production requires a non-development JWT secret of at least 32 characters
+ok    L-source production requires exact HTTPS CORS origins
+ok    L-source production bounds TRUST_PROXY_HOPS
+
+---- CLEANUP ----
+
+ok    Z-cleanup user A deletes their own account through the product route  [200]
+ok    Z-cleanup user B deletes their own account through the product route  [200]
+ok    Z-cleanup user free deletes their own account through the product route  [200]
+
+================================================================================================
+§307 SECURITY BOUNDARY: 307 passed, 27 failed.
+Expert executions: 0. Provider calls: 0. Spend: $0.00.
+
+FAILED:
+  - B-inspection: read: REFUSED with a client error (no server error, no success)
+  - B-inspection: read: the refusal echoes none of B's identifiers or content back
+  - B-inspection: read: and discloses no internals
+  - B-inspection: completion readiness: REFUSED with a client error (no server error, no success)
+  - B-inspection: generate a report: REFUSED with a client error (no server error, no success)
+  - B-inspection: generate a report: the refusal echoes none of B's identifiers or content back
+  - B-inspection: read the current report: REFUSED with a client error (no server error, no success)
+  - B-inspection: read the current report: the refusal echoes none of B's identifiers or content back
+  - B-observation: edit: REFUSED with a client error (no server error, no success)
+  - B-observation: edit: the refusal echoes none of B's identifiers or content back
+  - B-observation: review a finding: REFUSED with a client error (no server error, no success)
+  - B-observation: review a finding: the refusal echoes none of B's identifiers or content back
+  - B-observation: read the Expert analysis: REFUSED with a client error (no server error, no success)
+  - B-observation: REQUEST an Expert analysis: REFUSED with a client error (no server error, no success)
+  - B-report: read by id: REFUSED with a client error (no server error, no success)
+  - B-report: read by id: the refusal echoes none of B's identifiers or content back
+  - B-report: revision history: REFUSED with a client error (no server error, no success)
+  - B-report: revision history: the refusal echoes none of B's identifiers or content back
+  - B-report: archive (mutate an issued record): REFUSED with a client error (no server error, no success)
+  - B-report: archive (mutate an issued record): the refusal echoes none of B's identifiers or content back
+  - B-file: download: REFUSED with a client error (no server error, no success)
+  - C-2 and an ORGANIZATION principal cannot reach an INDIVIDUAL's inspection either
+  - H-archive the report: A is refused
+  - H-regenerate over the inspection: A is refused
+  - H-1 AND EVERY VERSION ROW IS BYTE-IDENTICAL AFTERWARDS — same version count, same status, same sha256, same source fingerprint, same storage object. The report is unchanged in FACT, not merely unchanged in the response A received.
+  - J-403/404 foreign resource (200): the external body exposes no SQL, stack frame, filesystem path, database host, credential, hash or token
+  - J-403/404 foreign resource (200): and no other user's identifiers
+================================================================================================
+dropped test_insite_1789592352816_1829

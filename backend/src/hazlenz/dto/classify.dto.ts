@@ -121,9 +121,26 @@ export class ClassifyDto {
   @IsString()
   riskProfileId?: "simple_4x4" | "standard_5x5" | "advanced_6x6";
 
-  @IsOptional()
-  @IsString()
-  workspaceId?: string;
+  /**
+   * §307 — `workspaceId` IS GONE FROM THIS CONTRACT, AND ITS ABSENCE IS THE CONTROL.
+   *
+   * It used to be declared here and the controller read `body.workspaceId || context.workspaceId`,
+   * so a CALLER-SUPPLIED workspace identifier took precedence over the one the server derived from
+   * the authenticated principal. Nothing customer-owned turned out to be reachable through it — the
+   * site policies it selects are shipped fixtures, not customer rows, and §307 measured that — so
+   * this is not a repaired disclosure. It is the removal of an authority-shaped field from the
+   * request contract, which §305A/§305 named as the defect class that keeps costing this product:
+   * an authority value that a caller can name is one the server has stopped owning.
+   *
+   * REMOVED RATHER THAN IGNORED. The global `ValidationPipe` runs `forbidNonWhitelisted`, so an
+   * undeclared property is REJECTED with 400 rather than silently dropped — §262's "the rejection
+   * is structural" rule. Silently ignoring it would leave a caller believing their value was
+   * honoured and would leave the next reader unable to tell whether it was.
+   *
+   * NOTHING SENT IT. `workspaceId` appears in the frontend's HazLenz client only as an optional
+   * TYPE member; it is never assigned a value anywhere in the shipped client, so no request in the
+   * product carried it.
+   */
 
   @IsOptional()
   @IsArray()
