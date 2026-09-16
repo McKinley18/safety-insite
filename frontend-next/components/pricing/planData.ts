@@ -108,7 +108,7 @@ export const LAUNCH_PLANS: readonly LaunchPlan[] = [
         title: "Reports and records",
         items: [
           "Professional inspection reports",
-          "Cloud reports and team members",
+          "Cloud reports",
           "Inspection planning and assignment tools",
           "Dashboards, analytics, and audit trail",
         ],
@@ -170,7 +170,7 @@ export const COMPARISON_ROWS: readonly (readonly [string, string, string])[] = [
   ["Recorded findings and risk scoring", "No", "Yes"],
   ["Corrective action reasoning and tracking", "No", "Yes"],
   ["Generated inspection reports", "No", "Yes"],
-  ["Cloud reports and team members", "No", "Yes"],
+  ["Cloud reports", "No", "Yes"],
   ["Advanced review controls and audit trail", "No", "Yes"],
   ["Inspection planning and assignment tools", "No", "Yes"],
   ["Advanced dashboards", "No", "Yes"],

@@ -1,0 +1,620 @@
+{
+ "artifact": "SECTION_305A_SE12_OBJECT_CLASSIFICATION",
+ "purpose": "§305A requires every SE-12 divergence to be classified A (Beta v1 individual product), B (deferred Company/Team), C (shared infrastructure) or D (retired/unknown), so deferred team schema does not drive unnecessary Beta work. This is the INPUT to §305, not its conclusion: entries marked CANDIDATE are reasoned from live-entity presence and from what the §305A workflow suite did and did not touch, and §305 must confirm each against the code that owns it before changing anything.",
+ "method": "Live entity detection over src/ (explicit @Entity('name') and bare @Entity() with the derived table name). Beta v1 exercise evidence from scripts/test-305a-individual-beta-scope.ts, which drove the complete individual workflow to an issued report on a database built ONLY from migration history — that is, a database missing every production-only table listed here. Exactly one of them broke it.",
+ "headline": "18 of the 21 production-only tables HAVE A LIVE ENTITY, so application code can reach tables no migration creates. The Beta v1 workflow nonetheless completed without 20 of the 21; `notifications` is the one that broke, and it broke account deletion.",
+ "counts": {
+  "C": 47,
+  "D": 16,
+  "A": 18,
+  "B": 1
+ },
+ "objects": [
+  {
+   "object": "classification_feedback",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "classification_rule_versions",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "classification_rules",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "control_verifications",
+   "kind": "table present only in production",
+   "liveEntity": false,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "corrective_action_templates",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "decision_governance_logs",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "finding",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "hazard_categories",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "hazard_standard_mappings",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "hazard_taxonomy",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "notifications",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": true,
+   "category": "A",
+   "basis": "PROVEN ACTIVE: §305A drove account deletion on a migration-built database and it failed with `relation \"notifications\" does not exist`. Individual-product, and a data-protection obligation."
+  },
+  {
+   "object": "outcomes",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "recommendation_feedback",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "regulatory_profile",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "report",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "report_attachments",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "report_language_templates",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "safescope_audit_records",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "standard_match_feedback",
+   "kind": "table present only in production",
+   "liveEntity": true,
+   "exercisedByBetaV1Suite": false,
+   "category": "C",
+   "basis": "CANDIDATE SHARED INFRASTRUCTURE (HazLenz knowledge, classification, feedback or templates). It has a live entity, so code can reach it, but the Beta v1 workflow ran to a completed report without it. §305 must determine per table whether the entity is live or vestigial."
+  },
+  {
+   "object": "standards",
+   "kind": "table present only in production",
+   "liveEntity": false,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "users",
+   "kind": "table present only in production",
+   "liveEntity": false,
+   "exercisedByBetaV1Suite": false,
+   "category": "D",
+   "basis": "CANDIDATE RETIRED/UNKNOWN: a canonical successor exists under a different name (user / reports / inspection_findings), or the object is the already-registered DB-4 unexplained table. Not exercised by the Beta v1 workflow. §305 must confirm before acting."
+  },
+  {
+   "object": "classifications.classificationStatus",
+   "kind": "column type divergence",
+   "production": "USER-DEFINED",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "classifications.severityLevel",
+   "kind": "column type divergence",
+   "production": "integer",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "invitation.organizationId",
+   "kind": "column type divergence",
+   "production": "uuid",
+   "fromMigrations": "character varying",
+   "category": "B",
+   "basis": "DEFERRED COMPANY/TEAM — already REPAIRED at §304 (SE-6). Listed for completeness."
+  },
+  {
+   "object": "regulatory_agency.createdAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_agency.updatedAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_paragraph.createdAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_paragraph.updatedAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_part.createdAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_part.updatedAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_section.createdAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_section.updatedAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_subpart.createdAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "regulatory_subpart.updatedAt",
+   "kind": "column type divergence",
+   "production": "timestamp without time zone",
+   "fromMigrations": "timestamp with time zone",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_chunks.citation",
+   "kind": "column type divergence",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_chunks.sectionHeading",
+   "kind": "column type divergence",
+   "production": "character varying(220)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_documents.agency",
+   "kind": "column type divergence",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_documents.approvalStatus",
+   "kind": "column type divergence",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_documents.citation",
+   "kind": "column type divergence",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_documents.sourceType",
+   "kind": "column type divergence",
+   "production": "character varying(60)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_documents.sourceUrl",
+   "kind": "column type divergence",
+   "production": "text",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_documents.title",
+   "kind": "column type divergence",
+   "production": "character varying(240)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_ingestion_runs.agency",
+   "kind": "column type divergence",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_ingestion_runs.sourceName",
+   "kind": "column type divergence",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_ingestion_runs.sourceType",
+   "kind": "column type divergence",
+   "production": "character varying(80)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_ingestion_runs.status",
+   "kind": "column type divergence",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_ingestion_runs.warnings",
+   "kind": "column type divergence",
+   "production": "jsonb",
+   "fromMigrations": "ARRAY",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.findingId",
+   "kind": "column type divergence",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.reportId",
+   "kind": "column type divergence",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.workspaceId",
+   "kind": "column type divergence",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_sources.agency",
+   "kind": "column type divergence",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_sources.lastKnownVersion",
+   "kind": "column type divergence",
+   "production": "character varying(120)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_sources.name",
+   "kind": "column type divergence",
+   "production": "character varying(160)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_sources.sourceType",
+   "kind": "column type divergence",
+   "production": "character varying(80)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_sources.status",
+   "kind": "column type divergence",
+   "production": "character varying(40)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "safescope_knowledge_sources.trustLevel",
+   "kind": "column type divergence",
+   "production": "character varying(80)",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE or knowledge table."
+  },
+  {
+   "object": "user.organizationId",
+   "kind": "column type divergence",
+   "production": "uuid",
+   "fromMigrations": "character varying",
+   "category": "C",
+   "basis": "SHARED INFRASTRUCTURE. uuid in production, character varying from migrations — the same class as SE-6 and the last one of that class. LATENT: nothing currently loads the user->organization relation, so it does not break Beta v1 today."
+  },
+  {
+   "object": "classifications.reviewReason",
+   "kind": "column present only in production",
+   "category": "D",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.archivedAt",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.area",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.deletedAt",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.displayId",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.equipment",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.hazardDescription",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.immediateDanger",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.likelyStandards",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.notes",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.reviewDecision",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.reviewDecisionNotes",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.reviewedAt",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.severity",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.tenantId",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "reports.workActivity",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "safescope_feedback.safeScopeVersion",
+   "kind": "column present only in production",
+   "category": "D",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "user.legacy_id",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "user.password",
+   "kind": "column present only in production",
+   "category": "A",
+   "basis": "Present in production, absent from migration history."
+  },
+  {
+   "object": "safescope_feedback.hazLenzVersion",
+   "kind": "column present only from migrations",
+   "category": "D",
+   "basis": "Declared by migration history but absent in production — the history describes something production does not have."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.agencyMode",
+   "kind": "column present only from migrations",
+   "category": "D",
+   "basis": "Declared by migration history but absent in production — the history describes something production does not have."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.classification",
+   "kind": "column present only from migrations",
+   "category": "D",
+   "basis": "Declared by migration history but absent in production — the history describes something production does not have."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.matchedChunkIds",
+   "kind": "column present only from migrations",
+   "category": "D",
+   "basis": "Declared by migration history but absent in production — the history describes something production does not have."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.query",
+   "kind": "column present only from migrations",
+   "category": "D",
+   "basis": "Declared by migration history but absent in production — the history describes something production does not have."
+  },
+  {
+   "object": "safescope_knowledge_retrieval_logs.topScore",
+   "kind": "column present only from migrations",
+   "category": "D",
+   "basis": "Declared by migration history but absent in production — the history describes something production does not have."
+  }
+ ]
+}

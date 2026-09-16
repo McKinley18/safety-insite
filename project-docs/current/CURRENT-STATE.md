@@ -1,5 +1,32 @@
 # Safety InSite — current state
 
+> ### §305A — BETA v1 IS AN INDIVIDUAL INSPECTION PRODUCT, AND PROVING IT FOUND A LIVE DISCLOSURE
+>
+> **Product-owner scope correction.** Beta v1 is an **individual** inspection product; Company/Team
+> functionality is deferred. `SE-6` is **CLOSED**; `SE-7`–`SE-11`, `EN-2` (seat half) and `TI-3` are
+> **DEFERRED** — preserved, not deleted — after each was re-checked and found to **fail closed**.
+> Threshold C: **24 → 19**.
+>
+> **The individual workflow is proven, not asserted.** 51 assertions, 0 failed: register → site →
+> inspection → observation → HazLenz → human review of every finding → completed → **issued report
+> with a checksum** → history → actions → calendar → account, all with `organizationId: null`, no
+> membership row, and the site owned by the **person**. A *free* individual is still refused HazLenz
+> **402**, so BI-4 and EN-3 are untouched.
+>
+> **`SE-13` — a live cross-tenant disclosure, found because that proof planted a foreign tenant.**
+> TypeORM drops a `where` condition whose value is null, so `findOne({where:{id:null}})` ran as
+> `SELECT … LIMIT 1` with **no WHERE**. Confirmed in **live production**: an individual with no
+> organization received a real company-plan workspace, **HTTP 200**, from a route guarded by
+> `JwtGuard` alone. **Contained** using the `requireOrganization` convention the other four services
+> already use. **Threshold B reopens until it is deployed.**
+>
+> **`SE-12` raised to P0 and NOT deferred.** On a migration-built database, account deletion fails:
+> `relation "notifications" does not exist` — a live entity with no migration. Production has the
+> table, so deletion works there; a *rebuilt* environment loses a core individual function and a
+> data-protection obligation. Of 82 divergent objects classified A/B/C/D, **exactly one is
+> Company/Team**. New: `OB-1` (a bare `catch {}` hides deletion failures), `CS-1` (the pricing
+> surface advertised team members — corrected), `SC-1`.
+
 > ### §304 — SE-6 CORRECTED AND ITS SCHEMA HALF REPAIRED; THE FEATURE UNDER IT WAS NEVER BUILT
 >
 > **§303's claim about SE-6 was wrong, and §304 measured it.** Production answers
@@ -797,6 +824,7 @@ npm run hazlenz:evidence            did accepted evidence change
 npm run beta:readiness              are the deployment mechanisms in place (contacts nothing live)
 npm run test:303-malformed-identifier §303/SE-5 malformed identifier containment (in hazlenz:integration:test)
 npm run test:304-invitation-relationship §304/SE-6 invitation->organization relation (in hazlenz:integration:test)
+npm run test:305a-individual-beta-scope  §305A individual Beta workflow + SE-13 (in hazlenz:integration:test)
 npm run test:299-person-negation     §299/HZ-4 the exposure-negation family  (in hazlenz:test)
 npm run test:299-section-298-replay  §299/HZ-4 the exact §298 note, before/after (in hazlenz:test)
 npm run test:299-expert-disagreement §299 Expert can still disagree         (in hazlenz:test)
@@ -857,6 +885,7 @@ Do not load these for ordinary development.
 | HZ-4 / HZ-5 repair §299 | `verification/current/expert-hz4-hz5-299/` |
 | SE-5 containment §303 | `verification/current/se5-malformed-identifier-303/` |
 | SE-6 invitation relation §304 | `verification/current/se6-invitation-relationship-304/` |
+| Beta v1 scope + SE-13 §305A | `verification/current/beta-v1-scope-305a/` |
 | beta deployment runbook | `project-docs/operations/DEPLOYMENT-RUNBOOK.md` |
 | rollback model | `project-docs/operations/ROLLBACK-MODEL.md` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |
