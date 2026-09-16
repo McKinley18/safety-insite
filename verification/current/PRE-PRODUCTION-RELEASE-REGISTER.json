@@ -2,7 +2,7 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298, HZ-4/HZ-5 §299, HZ-9/HZ-6/HZ-7 §300, BI-4 §301, EN-3 §302, SE-5 §303",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
+  "candidateHead": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -1965,8 +1965,8 @@
   "candidateHeadPredecessor": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
-  "candidateProductSourceCommit": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
-  "applicationSourceDigest": "52bde7ae445022159d5dba07f15b1b83e810bf5927c558e99bf97975191ff29d",
+  "candidateProductSourceCommit": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
+  "applicationSourceDigest": "4bc279a5af67e136a9ff5f93850826ab9d520def3aee8c24fa8f3491e5545540",
   "applicationSourceDigestSuperseded": [
     {
       "digest": "52bde7ae445022159d5dba07f15b1b83e810bf5927c558e99bf97975191ff29d",
@@ -2001,10 +2001,10 @@
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "dc9782e0ab2406e31275c2337894f364417683cc",
-  "deployedAt": "§305 — backend dep-dakvgggae00c73f15rhg (Render), frontend dpl_BndpQ12CYHo5ZFqyZnQf2hbWL5td (Vercel). ONE MIGRATION APPLIED: 1800000025000. Order migrate-then-deploy, with the intermediate state measured: the serving build reported READY with aheadOfBuild [\"1800000025000\"].",
+  "deployedReleaseSha": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
+  "deployedAt": "§305 — backend dep-dakvkhu7bikc73dretl0 (Render), frontend dpl_DGBTx8eGynYPhEjnCn5W2WUeypbo (Vercel). Schema 1800000025000 (57/57). The convergence migration was applied at the preceding deploy (dc9782e0); this redeploy carries a test-suite-only change and the artifact-only digest is d701f77f… at BOTH commits, so HEAD and production hold one binding.",
   "schemaHead": "1800000025000",
-  "applicationSourceDigestNote": "§305A (SE-13 containment + Beta v1 scope correction). DEPLOYED and read back from the live product: GET /health reports gitCommit 4063434bce79572a615ed7b7ff7846a7a4981f1b, five consecutive stable reads.",
+  "applicationSourceDigestNote": "§305 (SE-12). DEPLOYED and read back: GET /health reports gitCommit 96601e9004ee4bfda886f20c40b3ab93f7ae9110, five consecutive stable reads, /health/ready expectedSchemaVersion 1800000025000 with 57/57 applied and aheadOfBuild empty.",
   "artifactOnlyDigestDiagnostic": {
     "value": "fa0330d9d74e58299cb66996b3e86b1c70673a4e822b725db6d909a8dadc51c7",
     "previousValue": "5fb47c7f5ae5f9b93693dbae046a1a5e2cf3c87ccf3cf87cd30b4fcdadd263c6",
