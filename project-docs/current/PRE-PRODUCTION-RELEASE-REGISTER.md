@@ -75,7 +75,7 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `b0827e69deb3aef59b3e370a63be418feb7bb8ae49a8e87b48f4c78a61e5ee12` — **§304 (SE-6), DEPLOYED at §304 on both halves and read back from the live product.** |
+| **Release binding** | `applicationSourceDigest` = `91eaa67cb91fe1bc956b16027bac2bdd65d2937eaca0071a7d37c3fe95739fe6` — **§307 (SE-3), DEPLOYED and read back from the live product over five stable reads.** Recomputed by the documented command, which reproduced §306's `0eb8e0bd…` at `a6da4206` exactly before being applied to the new release, so the method was checked against a known answer rather than assumed. Identical at the deployed release `ea06f083` and at HEAD `08737c20`, because the evidence commit touches only `verification/`. |
 | Superseded binding | `0f2edbaf…` at `e48a42f3…` — §303 SE-5 |
 | Superseded binding | `20b59cc2…` at `9242d157…` — §303's first deploy |
 | Superseded binding | `51db8f96…` at `61828222…` — §302 EN-3 |
