@@ -869,7 +869,8 @@ bug; the reuse path is therefore **NOT_EXERCISED** in production at this configu
 |---|---|---|---|---|---|
 | **LG-1** | Controlled Beta Terms and Beta Privacy Notice are DRAFTED but carry 'LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED' and five unresolved contracting placeholders. | P0 | C | Legal Counsel | BLOCKED |
 | **LG-2** | Liability allocation, caps and exclusions are DELIBERATELY UNDRAFTED in the Terms. | P0 | C | Legal Counsel | BLOCKED |
-| **LG-3** | No /terms and no /privacy route exists. The drafted documents are unreachable from the running product. | P0 | C | Engineering | BLOCKED |
+| **LG-3** | No `/terms` and no `/privacy` route exists. The drafted documents are unreachable from the running product. | P0 | C | ENGINEERING | **ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED (§308)** |
+| **LG-4** | `/terms` and `/privacy` returned 200 and were still unreachable: the app shell redirects any path not in its public allow-list to `/login`, and the two new routes were not in it. | P1 | — | Engineering | **CLOSED (§308)** |
 
 **LG-1 — remediation / decision.** Counsel review and approval, plus the product owner supplying the entity, address, contact, governing law and beta term. Engineering owes nothing here.
 
@@ -881,7 +882,67 @@ bug; the reuse path is therefore **NOT_EXERCISED** in production at this configu
 *Evidence:* `project-docs/legal/CONTROLLED-BETA-TERMS.md line 116-120`  
 *Retest:* Counsel-approved clause present and linked from the accepted agreement.
 
-**LG-3 — remediation / decision.** Publish the approved documents at stable, versioned routes once LG-1 clears. Engineering work is small and is blocked on counsel, not on capacity.
+**LG-3 — ENGINEERING COMPLETE at §308, and deliberately NOT called closed.** The register's own
+definition of LG-3 is that the *drafted documents are unreachable from the running product*. The
+engineering half of that is finished and proven; the other half is a counsel act that has not
+happened, so the status is `ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED` rather than CLOSED.
+§308 is explicit that the definition must not be manipulated to reduce Threshold C, and it has not
+been: **LG-3 still blocks Threshold C.**
+
+*What exists now.* `/terms` and `/privacy` are real routes that answer **200 unconditionally** —
+§308 forbids a 404 "due missing engineering", and a route created only at approval time would be
+exactly that. Behind them is a publication lifecycle — `DRAFT`, `APPROVED_NOT_EFFECTIVE`, `ACTIVE`,
+`SUPERSEDED` — that is **server and build authoritative**, not a hidden frontend control.
+
+**There is no directory scan.** §308's "no hidden fallback to latest file" is structural here: the
+registry never lists a directory, so a file under `backend/legal-documents/` is inert until a human
+enumerates it with an exact version, effective date, state, approval record and digest. Dropping a
+file in does nothing. And the publication root is a **different tree** from `project-docs/legal/`,
+so no `sourceFile` value can even name a draft.
+
+**Code cannot promote a DRAFT.** `counselApproval` is a required property and is `null` for DRAFT;
+a registry entry claiming any later state with a null or empty approver is **refused at load** and
+the application does not start. §308's central rule is enforced by a boot failure, not a convention.
+
+**A published version is immutable, and that is watched to fail.** The registry recomputes the
+sha256 of every body from its file and refuses on a mismatch. §308 phase 3 *actually appends a byte*
+to a published fixture, records the refusal, restores the file and re-hashes it to prove the
+repository is unchanged. An accepted version therefore cannot be edited underneath the people who
+accepted it.
+
+**The acceptance binding is §291's, reused rather than rebuilt.** An ACTIVE document is projected
+into the agreement shape as `legal:terms` / `legal:privacy`, so it inherits server-resolved
+versions, server-computed digests, server-generated timestamps and insert-only evidence — all
+already proven. **No migration was needed**: `agreement_acceptances.documentDigest` is `varchar(64)`,
+which is exactly a sha256. The requirement is **derived from publication state**, so today's
+registration is unchanged and activation turns enforcement on by itself; there is no second switch
+to forget.
+
+*Proven:* the whole A–T matrix, **58 assertions, 0 failed**, over three phases run as separate
+processes because A/B need an empty registry and C–Q need a populated one. Non-vacuous: each phase
+asserts its own precondition and aborts rather than reporting green. Mutation-proven: disabling
+server-side version resolution failed requirements K and M.
+
+*Evidence:* `verification/current/legal-publication-308/`  
+*Retest:* `npm run check:legal-documents`, `npm run test:308-legal-publication:db`,
+`npm run test:legal-render`.
+
+**What counsel must still do, and it is the only thing left.** Resolve the five contracting
+placeholders (`LG-1`), draft the liability allocation (`LG-2`), approve the exact bodies, decide the
+brand replacement across the 17 inventoried occurrences, and authorise effective dates. Then
+engineering places each approved body in `backend/legal-documents/` and adds **one registry entry**.
+Nothing else changes — not the routes, not the renderer, not the acceptance binding, not the
+registration flow, not the frontend.
+
+**LG-4 — CLOSED at §308, and it is the reason this section ran a browser.** Both routes returned
+**HTTP 200**, the backend served the correct state, the gate passed and the acceptance suite passed
+58/58 — and a browser navigating to `/terms` landed on `/login`. `AppShell` redirects any path not
+in its public allow-list, and the two new routes were not in it. **A route that serves correctly and
+cannot be reached is not published**, which is precisely the condition LG-3 was raised about. Found
+by running the product, not by reading it.
+
+*Evidence:* `frontend-next/components/layout/AppShell.tsx`  
+*Retest:* load `/terms` and `/privacy` signed out and confirm no redirect.
 
 *Evidence:* `frontend-next/app/legal/page.tsx; no terms or privacy route under frontend-next/app`  
 *Retest:* Both routes reachable, versioned, and linked from signup.

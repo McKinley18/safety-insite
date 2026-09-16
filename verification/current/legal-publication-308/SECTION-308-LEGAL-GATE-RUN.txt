@@ -1,0 +1,69 @@
+
+> safety-insite-backend@1.0.0 check:legal-documents
+> ts-node scripts/check-legal-documents.ts
+
+================================================================================================
+§308 LEGAL PUBLICATION GATE — deterministic, offline, read-only
+================================================================================================
+
+-- 1. the registry loads, and every declared digest matches its file --
+
+  ok    the registry resolves for the production set, the standard fixture set and the hostile fixture set  [3 standard + 1 hostile document(s)]
+  ok    the registry REFUSES to load when two ACTIVE documents of one type are present — the one-ACTIVE-per-type rule is enforced by throwing, not by convention
+  ok    terms@0.0.0-test.1: the file's sha256 matches the declared digest — a published version has not been edited underneath the people who accepted it  [08e633f1c6fcaf38]
+  ok    privacy@0.0.0-test.1: the file's sha256 matches the declared digest — a published version has not been edited underneath the people who accepted it  [c58811b0d2d7baa6]
+  ok    privacy@0.0.0-test.2: the file's sha256 matches the declared digest — a published version has not been edited underneath the people who accepted it  [4b0cbb4c40df79be]
+  ok    terms@0.0.0-hostile.1: the file's sha256 matches the declared digest — a published version has not been edited underneath the people who accepted it  [14a729db5843c4a6]
+
+-- 2. production cannot publish a synthetic fixture --
+
+  ok    no synthetic document appears in the PRODUCTION registry — the one mistake the NODE_ENV guard and the boot guard cannot see is a fixture pasted in by hand  [0 production entr(ies), 0 synthetic]
+  ok    fixtures are refused in production even with LEGAL_TEST_FIXTURES=true — NODE_ENV is checked FIRST, so no environment value can enable them
+  ok    and the production registry resolves to zero synthetic entries under those flags
+
+-- 3. publication state is honest --
+
+  ok    terms@0.0.0-test.1: ACTIVE records who approved it — code cannot promote a document past DRAFT  [SYNTHETIC TEST FIXTURE — NO COUNSEL INVOLVED]
+  ok    terms@0.0.0-test.1: ACTIVE carries an effective date  [2026-01-01]
+  ok    privacy@0.0.0-test.1: SUPERSEDED records who approved it — code cannot promote a document past DRAFT  [SYNTHETIC TEST FIXTURE — NO COUNSEL INVOLVED]
+  ok    privacy@0.0.0-test.1: SUPERSEDED carries an effective date  [2026-01-01]
+  ok    privacy@0.0.0-test.2: ACTIVE records who approved it — code cannot promote a document past DRAFT  [SYNTHETIC TEST FIXTURE — NO COUNSEL INVOLVED]
+  ok    privacy@0.0.0-test.2: ACTIVE carries an effective date  [2026-01-02]
+  ok    terms@0.0.0-hostile.1: ACTIVE records who approved it — code cannot promote a document past DRAFT  [SYNTHETIC TEST FIXTURE — NO COUNSEL INVOLVED]
+  ok    terms@0.0.0-hostile.1: ACTIVE carries an effective date  [2026-01-01]
+  ok    at most one ACTIVE terms document — "the current terms" has exactly one answer  [0.0.0-test.1]
+  ok    at most one ACTIVE privacy document — "the current privacy" has exactly one answer  [0.0.0-test.2]
+
+-- 4. no unapproved draft is reachable from the publication root --
+
+  ok    no file under the publication root carries the unapproved-draft marker — a copy of a project-docs/legal/ draft placed here would be publishable  [none]
+  ok    the publication root and the draft directory are disjoint trees, so no sourceFile can name a draft  [backend/legal-documents vs project-docs/legal]
+  ok    every .md file under the publication root is enumerated in the registry — an unenumerated file is inert, and its presence means somebody expected a publication that will not happen  [none]
+
+-- 5. the framework does not hard-code the temporary product name --
+
+  ok    no executable line in the legal publication framework hard-codes the temporary product name — the name comes from the configurable authority, so a rename is configuration rather than a code change  [none]
+
+-- 6. INVENTORY: the temporary brand inside substantive draft legal text --
+
+  The product name is scheduled to change before external Beta. These occurrences are
+  inside substantive draft legal text and are COUNSEL'S to replace, not engineering's:
+
+      2  project-docs/legal/AI-PROVIDER-DISCLOSURE.md
+      2  project-docs/legal/BETA-PRIVACY-NOTICE.md
+      3  project-docs/legal/CLAIMS-GUARDRAILS.md
+      3  project-docs/legal/CONTROLLED-BETA-TERMS.md
+      2  project-docs/legal/COUNSEL-REVIEW-PACKET.md
+      2  project-docs/legal/FEEDBACK-AND-DATA-USE.md
+      1  project-docs/legal/PRODUCT-LIMITATIONS.md
+      1  project-docs/legal/README.md
+      1  project-docs/legal/SAFETY-RESPONSIBILITY.md
+
+     17  TOTAL across 9 draft document(s)
+
+================================================================================================
+§308 LEGAL PUBLICATION GATE: PASS — 23/23 checks passed
+  published documents in the PRODUCTION registry: 0
+  ACTIVE in production: 0
+  temporary-brand occurrences in draft legal text, for counsel: 17
+================================================================================================

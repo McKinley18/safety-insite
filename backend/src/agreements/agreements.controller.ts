@@ -17,10 +17,18 @@ export class AgreementsController {
   @Get('acceptances')
   async mine(@Req() req: any) {
     const user = requireAuthenticatedUser(req.user);
+    const status = await this.agreements.acceptanceStatusFor(String(user.userId));
     return {
       userId: String(user.userId),
       acceptances: await this.agreements.acceptancesFor(String(user.userId)),
-      outstanding: await this.agreements.outstandingFor(String(user.userId)),
+      outstanding: status.outstanding,
+      /**
+       * §308 (LG-3). The server's own determination, reported rather than left for a client to
+       * derive from the length of an array. It gates nothing — §308 is explicit that §308 does not
+       * invent a lockout UX — but the product can now ANSWER whether a user is bound to the
+       * documents currently in force, which it previously could not.
+       */
+      acceptanceStatus: status.status,
     };
   }
 

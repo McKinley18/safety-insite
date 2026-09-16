@@ -98,4 +98,26 @@ export function validateProductionEnvironment(): void {
   if (!Number.isInteger(trustProxyHops) || trustProxyHops < 0 || trustProxyHops > 2) {
     throw new Error('TRUST_PROXY_HOPS must be an integer from 0 to 2.');
   }
+
+  /*
+   * §308 (LG-3) — THE SECOND OF THREE INDEPENDENT REASONS A SYNTHETIC LEGAL FIXTURE CANNOT REACH
+   * PRODUCTION.
+   *
+   * `legalTestFixturesEnabled()` already returns false whenever NODE_ENV is production, before it
+   * consults any variable, so setting these changes nothing. That is precisely why they are refused
+   * HERE as well: a variable that is silently ignored is a variable somebody believes is working.
+   * An operator who sets one has a mistaken belief about what this service will serve, and the
+   * moment to correct that is at boot, loudly, rather than never.
+   *
+   * The fixture bodies begin "TEST TERMS — NOT A LEGAL DOCUMENT". Serving one as operative Terms is
+   * the single worst outcome this whole publication surface exists to prevent.
+   */
+  for (const flag of ['LEGAL_TEST_FIXTURES', 'LEGAL_HOSTILE_FIXTURE']) {
+    if (String(process.env[flag] ?? '').trim()) {
+      throw new Error(`${flag} must not be set in production. Synthetic legal fixtures carry bodies `
+        + 'that read "TEST TERMS — NOT A LEGAL DOCUMENT", and they are never publishable. The flag '
+        + 'is already inert in production; it is refused here so that setting it is an error rather '
+        + 'than a silently ignored belief.');
+    }
+  }
 }

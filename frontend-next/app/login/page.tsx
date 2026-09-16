@@ -227,6 +227,26 @@ export default function LoginPage() {
                 </AppTextLink>
               </div>
 
+              {/*
+                §308 (LG-3). The public account surface links to the legal publication routes.
+                §308 requires Terms and Privacy to be reachable WITHOUT authentication, and the sign-in
+                page is where a visitor who already has an account looks for them — the registration
+                page serves the visitor who does not.
+
+                Placed here and not in the inspection workflow, deliberately: §308 asks for the links
+                on the public account surfaces and asks not to clutter the working product with
+                repetitive legal links. An inspector mid-inspection does not need a Terms link on
+                every screen.
+              */}
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+                <AppTextLink href="/terms" tone="slate" className="inline-flex min-h-11 items-center justify-center rounded-xl px-2">
+                  Terms
+                </AppTextLink>
+                <AppTextLink href="/privacy" tone="slate" className="inline-flex min-h-11 items-center justify-center rounded-xl px-2">
+                  Privacy
+                </AppTextLink>
+              </div>
+
               {status && (
                 <p
                   className={`rounded-xl px-3 py-3 text-sm font-bold leading-5 ${

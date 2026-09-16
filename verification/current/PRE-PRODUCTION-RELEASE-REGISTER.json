@@ -6,7 +6,7 @@
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§307 — SE-3 CLOSED. A durable production dependency-vulnerability gate exists and was watched to fail on all four of its refusal paths; the individual-Beta attack surface was reviewed and exercised by a 334-assertion suite proven non-vacuous by mutation. Zero critical and zero high production dependency findings remain in either ecosystem. Four new defects found and repaired inside the section (SE-16, SE-17, SE-18, SE-19); SE-20 found, measured and deliberately left OPEN because its repair is customer-data reinterpretation. SC-2 measured for a security consequence and found to have none, so it stays OPEN unrepaired. BR-5, EM-2 and OPS-2 untouched. Zero provider calls, zero Expert executions, zero spend.",
+  "asOf": "§308 — LG-3 ENGINEERING COMPLETE, COUNSEL PUBLICATION REQUIRED, and still blocking Threshold C. /terms and /privacy exist and answer 200 unconditionally; a server-authoritative publication lifecycle with no directory scan stands behind them; a published version is immutable and that is watched to fail; and acceptance binds to the exact version and digest through the §291 evidence table with no migration. The whole A-T matrix passes, 58 assertions, 0 failed, mutation-proven. LG-4 found by running the product and closed. Legal content cannot become an injection surface: there is no HTML sink in the rendering path at all, proven in a live browser against a hostile document. LG-1, LG-2 and SU-2 are untouched and no counsel approval has occurred. Zero provider calls, zero Expert executions, zero spend.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events. §303: DEPLOYED both halves at 9242d157. Live proof through the real authenticated production HTTP product path — malformed identifiers return 400 on all 8 previously-affected routes, valid-absent still 404, a real site round-tripped 200, monitoring.serverErrorsInWindow stayed 0 before/during/after with no alert raised. One synthetic free account and one site created and both removed through the product path (DELETE /sites/:id, DELETE /auth/me; subsequent login 401). 0 provider calls, 0 Expert executions, 0 direct production DB writes, 0 charges, $0. §304: read-only production characterization; fresh backup (7,924,351 bytes, sha256 1b1a5f07…) restored into PostgreSQL 17.11 with 0 errors and verified by per-table content checksum (78/78 identical, 7,228 rows, aggregate d6baf25ddfe4c0f908187f16032c24cf); ONE authorised migration applied (1800000024000); both halves deployed at c28dd43c; live proof through supported product HTTP paths. One synthetic free account created and removed via DELETE /auth/me. monitoring.serverErrorsInWindow stayed 0 throughout, no alert, 0 unexpected 5xx. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305A: one read-only authenticated probe CONFIRMED a live cross-tenant disclosure (SE-13); the probe account was deleted immediately and the disclosed organization is redacted in all evidence. Containment deployed at 4063434b and RE-PROBED: GET /organization/me/settings now returns 401 for an individual with no organization. Individual product re-verified live (site create/read 201/200, SE-5 400 preserved), synthetic state removed through the product path. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305: read-only characterization; fresh backup (7,926,023 bytes, sha256 202eaba6...) restored into PostgreSQL 17.11 with 0 errors and content-verified; ONE authorised migration applied (1800000025000); deployed at dc9782e0; live proof through supported product HTTP paths including ACCOUNT DELETION. Two synthetic accounts created and both removed via DELETE /auth/me. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §306: deployed at a6da4206; bounded route proof through public endpoints only — anti-enumeration confirmed live for unknown and case-variant addresses, completion with a random token refused 400, malformed input bounded 4xx, frontend recovery pages 200. NO production reset token was created and NO email was sent. readiness reports passwordResetEmail NOT_CONFIGURED with the exact missing variables. serverErrorsInWindow 0. 0 direct DB writes, 0 charges, 0 Expert executions, 0 provider calls, $0.",
   "thresholds": {
@@ -15,18 +15,19 @@
     "C": "EXTERNAL CONTROLLED BETA — named external inspectors entering real workplace data."
   },
   "counts": {
-    "total": 115,
+    "total": 116,
     "P0": 9,
-    "P1": 12,
+    "P1": 13,
     "P2": 64,
     "P3": 30,
     "thresholdA": 0,
     "thresholdB": 0,
     "thresholdC": 16,
     "byStatus": {
-      "CLOSED": 68,
+      "CLOSED": 69,
       "OPEN": 33,
-      "BLOCKED": 4,
+      "BLOCKED": 3,
+      "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED": 1,
       "DEFERRED": 9,
       "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED": 1
     },
@@ -175,18 +176,19 @@
       "domain": "LEGAL / TERMS",
       "id": "LG-3",
       "description": "No /terms and no /privacy route exists. The drafted documents are unreachable from the running product.",
-      "currentState": "Only /legal exists, and it is a 120-line disclaimer page, not Terms and not a Privacy Notice.",
-      "evidence": "frontend-next/app/legal/page.tsx; no terms or privacy route under frontend-next/app",
+      "currentState": "ENGINEERING COMPLETE AT §308; COUNSEL PUBLICATION STILL REQUIRED. /terms and /privacy are real routes answering 200 UNCONDITIONALLY — §308 forbids a 404 caused by missing engineering, and a route created only at approval time would be exactly that. Behind them is a SERVER- AND BUILD-AUTHORITATIVE publication lifecycle (DRAFT, APPROVED_NOT_EFFECTIVE, ACTIVE, SUPERSEDED) with no directory scan anywhere: a file under backend/legal-documents/ is inert until a human enumerates it with an exact version, effective date, state, approval record and digest, and the publication root is a different tree from project-docs/legal/ so no sourceFile can even name a draft. CODE CANNOT PROMOTE A DRAFT: counselApproval is required and null for DRAFT, and an entry claiming a later state with no approver is refused at load, so the application does not start. A PUBLISHED VERSION IS IMMUTABLE and that is watched to fail — the suite appends a byte to a published body, records the registry refusal, restores the file and re-hashes it. THE ACCEPTANCE BINDING IS §291'S, REUSED: an ACTIVE document is projected into the agreement shape as legal:terms / legal:privacy and inherits server-resolved versions, server-computed digests, server-generated timestamps and insert-only evidence. No migration was needed. The requirement is DERIVED from publication state, so today's registration is unchanged and activation turns enforcement on by itself. Proven by the whole A-T matrix, 58 assertions, 0 failed, over three phases run as separate processes, each asserting its own precondition and aborting rather than reporting green; mutation-proven by disabling server-side version resolution, which failed requirements K and M.",
+      "evidence": "verification/current/legal-publication-308/SECTION-308-LEGAL-PUBLICATION.json, SECTION-308-ACCEPTANCE-MATRIX-RUN.txt, SECTION-308-MUTATION-PROBE-RUN.txt, SECTION-308-LEGAL-GATE-RUN.txt, SECTION-308-RENDERER-SANITISATION-RUN.txt, SECTION-308-HOSTILE-DOCUMENT-RENDERED.jpg",
       "severity": "P0",
       "releaseConsequence": "BLOCKS_EXTERNAL_BETA",
       "owner": "ENGINEERING",
-      "remediation": "Publish the approved documents at stable, versioned routes once LG-1 clears. Engineering work is small and is blocked on counsel, not on capacity.",
-      "retestRequirement": "Both routes reachable, versioned, and linked from signup.",
-      "status": "BLOCKED",
+      "remediation": "ENGINEERING DELIVERED. What remains is counsel's and the product owner's: resolve the five contracting placeholders (LG-1), draft the liability allocation (LG-2), approve the exact Terms and Privacy bodies, decide the temporary-brand replacement across the 17 inventoried occurrences in the draft text, and authorise effective dates. Then engineering places each approved body in backend/legal-documents/ and adds ONE registry entry. Nothing else changes — not the routes, not the renderer, not the acceptance binding, not the registration flow, not the frontend.",
+      "retestRequirement": "npm run check:legal-documents; npm run test:308-legal-publication:db; npm run test:legal-render; and load /terms and /privacy signed out.",
+      "status": "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
       "blocksThresholdC": true,
-      "note": null
+      "note": "STILL BLOCKS THRESHOLD C. §308 is explicit that the definition must not be manipulated to reduce Threshold C, and it has not been: the register defines LG-3 as the drafted documents being unreachable from the running product, and the counsel half of that has not happened. Reclassified accurately rather than claimed closed.",
+      "lastUpdatedBy": "§308"
     },
     {
       "domain": "SIGNUP / CONSENT",
@@ -2109,6 +2111,24 @@
       "blocksThresholdC": false,
       "note": "§305's own phrase for this shape was 'coincidences, not controls'. Registered rather than repaired precisely so the containment is not mistaken for a control.",
       "lastUpdatedBy": "§307"
+    },
+    {
+      "domain": "LEGAL / TERMS",
+      "id": "LG-4",
+      "description": "/terms and /privacy returned 200 and were still unreachable without authentication: the app shell redirects any path not in its public allow-list to /login, and the two new routes were not in it.",
+      "currentState": "FOUND AND REPAIRED AT §308, BY RUNNING THE PRODUCT RATHER THAN READING IT. Both routes returned HTTP 200, the backend served the correct publication state, the legal gate passed 23/23 and the acceptance suite passed 58/58 — and a browser navigating to /terms landed on /login. AppShell redirects any path not in its marketingRoutes allow-list, and the two new routes had not been added to it. A route that serves correctly and cannot be reached is not published, which is precisely the condition LG-3 was raised about. §308 requires both routes reachable WITHOUT authentication, and the registration page links to them before an account exists at all.",
+      "evidence": "frontend-next/components/layout/AppShell.tsx; re-driven in Chrome after the repair with both pages rendering their states and no redirect",
+      "severity": "P1",
+      "releaseConsequence": "DOES_NOT_BLOCK_EXTERNAL_BETA",
+      "owner": "ENGINEERING",
+      "remediation": "DELIVERED. /terms and /privacy added to the public route allow-list, with the reason recorded at the site so a future reader knows why they are there.",
+      "retestRequirement": "Load /terms and /privacy signed out and confirm no redirect to /login.",
+      "status": "CLOSED",
+      "blocksThresholdA": false,
+      "blocksThresholdB": false,
+      "blocksThresholdC": false,
+      "note": "The reason §308 drove a browser at all. Every automated signal was green and the feature did not work.",
+      "lastUpdatedBy": "§308"
     }
   ],
   "candidateHeadPredecessor": "f7fd45061e17b8c28ab30011babc57aee582804b",

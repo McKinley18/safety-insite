@@ -49,6 +49,17 @@ const authPublicRoutes = [
 const marketingRoutes = [
   "/about",
   "/legal",
+  /**
+   * §308 (LG-3). `/terms` and `/privacy` MUST be reachable without authentication — §308 requires
+   * it, and the registration page links to them before an account exists at all.
+   *
+   * FOUND BY RUNNING THE PRODUCT, not by reading it. The routes returned 200 and the suite passed,
+   * and a browser still landed on `/login`: this shell redirects any path not listed here, so the
+   * pages were unreachable to exactly the visitor they exist for. A route that serves correctly and
+   * cannot be reached is not published.
+   */
+  "/terms",
+  "/privacy",
   "/security",
   "/hazlenz",
   "/pricing",

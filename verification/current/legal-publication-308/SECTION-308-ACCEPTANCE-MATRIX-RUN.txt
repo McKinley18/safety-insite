@@ -1,0 +1,121 @@
+
+> safety-insite-backend@1.0.0 test:308-legal-publication:db
+> ts-node scripts/hazlenz/with-disposable-db.ts test:308-legal-publication
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789596217952_5034
+registered as run 98028a95-f58a-4937-b27d-358bbe057686
+
+> safety-insite-backend@1.0.0 test:308-legal-publication
+> ts-node scripts/test-308-legal-publication.ts
+
+resolved target host=127.0.0.1 database=test_insite_1789596217952_5034
+resolved target host=127.0.0.1 database=test_insite_1789596217952_5034
+
+======== PHASE 1 — NOTHING PUBLISHED. THE PRODUCTION SHAPE. ========
+
+◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+application listening on http://127.0.0.1:51023
+
+ok    P1-precondition NO legal document is ACTIVE — without this, requirements A and B would pass against a world where they could not fail  [[{"documentType":"terms","status":"NOT_YET_PUBLISHED","version":null,"effectiveDate":null,"documentDigest":null,"acceptanceAvailable":false,"requiredAtRegistration":false},{"documentType":"privacy","status":"NOT_YET_PUBLISHED","version":null,"effectiveDate":null,"documentDigest":null,"acceptanceAvailable":false,"requiredAtRegistration":false}]]
+ok    [R] GET /legal/documents/terms answers 200 UNAUTHENTICATED with nothing published — §308 forbids a 404 caused by missing engineering, and this is the route LG-3 was raised about  [200 NOT_YET_PUBLISHED]
+ok    [S] GET /legal/documents/privacy answers 200 UNAUTHENTICATED with nothing published  [200 NOT_YET_PUBLISHED]
+ok    P1-terms the non-operative state carries NO version, NO effective date and NO body — the ' + 'response shape has no field capable of carrying them  [["documentType","status","title","reason","acceptanceAvailable","awaiting"]]
+ok    P1-terms and states that acceptance is not available, rather than leaving it to be inferred
+ok    P1-terms and gives a professional reason rather than a bare failure
+ok    P1-privacy the non-operative state carries NO version, NO effective date and NO body — the ' + 'response shape has no field capable of carrying them  [["documentType","status","title","reason","acceptanceAvailable","awaiting"]]
+ok    P1-privacy and states that acceptance is not available, rather than leaving it to be inferred
+ok    P1-privacy and gives a professional reason rather than a bare failure
+ok    42 NO DRAFT LEGAL BODY REACHES THE PUBLIC ROUTE. Neither draft's text, nor its unapproved-draft marker, nor any of its five unresolved contracting placeholders appears in any response.  [none]
+ok    42b the public legal routes expose no filesystem or repository path  [clean]
+ok    42b the public legal routes expose no internal registry field  [clean]
+ok    42b the public legal routes expose no counsel communication  [clean]
+ok    42b the public legal routes expose no non-public publication state  [clean]
+ok    42b the public legal routes expose no server configuration  [clean]
+ok    P1 registration still succeeds on the acknowledgement alone — §308 forbids §308 from beginning to enforce acceptance of documents that do not exist, and the required set is DERIVED from publication state so today's behaviour is unchanged  [201]
+ok    [A][B] NO Terms or Privacy acceptance row exists — a registration completed while nothing is published records exactly one acceptance, the acknowledgement, and invents nothing  [["internal-pre-beta-acknowledgement"]]
+ok    [A] a caller cannot record an acceptance of legal:terms when no such document ' + 'is published — asserting one is refused, not silently written  [400]
+ok    [A] and no row was created for legal:terms  [0]
+ok    [B] a caller cannot record an acceptance of legal:privacy when no such document ' + 'is published — asserting one is refused, not silently written  [400]
+ok    [B] and no row was created for legal:privacy  [0]
+
+------------------------------------------------------------------------------------------------
+§308 PHASE 1: 21 passed, 0 failed.
+================================================================================================
+resolved target host=127.0.0.1 database=test_insite_1789596217952_5034
+
+======== PHASE 2 — TWO DOCUMENTS ACTIVE. THE ACTIVATED SHAPE. ========
+
+◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+application listening on http://127.0.0.1:51028
+
+ok    P2-precondition BOTH documents are ACTIVE — without this every requirement below would pass against a world where it could not fail  [ACTIVE/ACTIVE]
+ok    [C][21] /legal/documents/terms renders the EXACT active version: version, effective date, digest and body all match the file byte for byte  [0.0.0-test.1 08e633f1c6fc]
+ok    [C][22] /legal/documents/privacy renders the EXACT active version — 0.0.0-test.2, not the superseded 0.0.0-test.1  [0.0.0-test.2 4b0cbb4c40df]
+ok    19 the active documents are flagged SYNTHETIC, so a surface rendering one can say so
+ok    19b and their bodies are unmistakably synthetic on their first line
+ok    [M][32] the SUPERSEDED privacy version is not what the public route serves — the served version, digest and body are all the active 0.0.0-test.2, and the route exposes no way to ask for a superseded one at all  [0.0.0-test.2 digest=4b0cbb4c40df]
+ok    [D] registration carrying ONLY the acknowledgement is REFUSED once documents are published — the requirement turned itself on with activation, with no second switch to forget  [400]
+ok    [D] and the refusal names which document is missing, so the caller can act on it  [{"message":"Acceptance of \"TEST TERMS — NOT A LEGAL DOCUMENT\" (legal:terms v0.0.0-test.1) is required.","error":"Bad R]
+ok    [D] and it is a BOUNDED refusal that leaves no account behind  [0]
+ok    [K] a caller supplying a DIFFERENT Terms version is refused — the server resolves the authoritative version and will not accept one the caller picked  [400]
+ok    [M] a caller selecting the SUPERSEDED privacy version 0.0.0-test.1 is refused — a superseded document is not among the agreements in force, so the §291 staleness refusal answers without a special case  [400]
+ok    [L] a caller-supplied documentDigest is not an error path the server takes on trust  [201]
+ok    [L] THE CALLER-SUPPLIED DIGEST IS NOWHERE IN THE EVIDENCE. Every stored digest is the one the server computed from its own copy of the document.  [["legal:privacy=4b0cbb4c","legal:terms=08e633f1","internal-pre-beta-acknowledgement=a9aa4c01"]]
+ok    [E] registration WITH acceptance of both active documents succeeds  [201]
+ok    [E] three acceptance rows exist: the acknowledgement, the Terms and the Privacy Notice  [["internal-pre-beta-acknowledgement","legal:privacy","legal:terms"]]
+ok    [F] the server recorded the EXACT Terms version  [0.0.0-test.1]
+ok    [G] the server recorded the EXACT Terms digest, and it equals the sha256 of the file on disk  [08e633f1c6fcaf38 vs 08e633f1c6fcaf38]
+ok    [H] the server recorded the EXACT Privacy version  [0.0.0-test.2]
+ok    [I] the server recorded the EXACT Privacy digest  [4b0cbb4c40df79be vs 4b0cbb4c40df79be]
+ok    [J] the acceptance timestamp is SERVER-GENERATED — it falls inside the window in which the request was actually made, so it is not a value the client supplied  [2026-09-16T22:03:49.869Z]
+ok    [J] and the counsel status AT THE TIME OF ACCEPTANCE is recorded on the row, so a later change of status cannot rewrite what the person was told  [COUNSEL_APPROVED]
+ok    [J] and the channel is recorded  [registration]
+ok    36 the server determines this user is CURRENT against the documents in force  [CURRENT]
+ok    36-b and a user missing one in-force document is REACCEPTANCE_REQUIRED, naming the document and the version required — reported, and gating nothing, because §308 does not invent a lockout UX  [REACCEPTANCE_REQUIRED]
+ok    [P][Q] an acceptance of the SUPERSEDED privacy version survives unchanged while 0.0.0-test.2 is the one in force — supersession is an INSERT of a new version, never an update of an old acceptance, so the historical record stays attributable to the exact text accepted  [0.0.0-test.1 c58811b0d2d7]
+ok    [Q] and that digest still equals the sha256 of the superseded body, which the registry still carries — so "what did the document say when they accepted it" has an answer
+ok    [N] a substantive content change produces a DIFFERENT digest — the two privacy fixtures differ in body and therefore in sha256  [c58811b0d2d7 vs 4b0cbb4c40df]
+ok    [N] and even a one-character change to the Terms body changes it
+ok    [T] the accepting user is an INDIVIDUAL with no organization, and every acceptance bound correctly — the deferred Company/Team state is irrelevant to legal acceptance
+ok    [T] and the acceptance row carries organizationId NULL, the individual convention  [null]
+ok    [R][S] both public routes remain reachable WITHOUT authentication once documents are active
+ok    P2 an unknown document type is 400 and not 404 — reserving 404 for nothing on this controller means a 404 here is always a routing fault and never a publication state  [400]
+
+------------------------------------------------------------------------------------------------
+§308 PHASE 2: 32 passed, 0 failed.
+================================================================================================
+resolved target host=127.0.0.1 database=test_insite_1789596217952_5034
+
+======== PHASE 3 — THE HOSTILE DOCUMENT. SANITISATION. ========
+
+◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+application listening on http://127.0.0.1:51032
+
+ok    P3-precondition the hostile fixture is the ACTIVE terms document  [0.0.0-hostile.1]
+ok    P3 the API returns the document body VERBATIM, including the payload — the server delivers the exact approved bytes and does not edit legal text
+ok    41 NO HTML SINK EXISTS ANYWHERE IN THE LEGAL RENDERING PATH — no dangerouslySetInnerHTML, no innerHTML assignment, no document.write, no eval. The payload is not sanitised, it is never parsed as markup at all, which holds for payloads nobody has thought of yet.  [5 files clean]
+ok    [O] A SUBSTANTIVE CONTENT CHANGE UNDER THE SAME IMMUTABLE VERSION IS REFUSED. The body was actually edited and the registry actually refused — the application will not start against a published version whose text has moved, so an accepted version cannot be mutated underneath the people who accepted it.  [§308 REGISTRY REFUSED: privacy@0.0.0-test.2 has been edited without a new version. The registry declares 4b0cbb4c40df79beffc4ba10ef10d0981a18589b12d8f]
+ok    [O] and the fixture was restored byte for byte, verified by re-hashing  [4b0cbb4c40df79be]
+
+------------------------------------------------------------------------------------------------
+§308 PHASE 3: 5 passed, 0 failed.
+================================================================================================
+
+================================================================================================
+§308 LEGAL PUBLICATION: ALL 3 PHASES PASSED
+Expert executions: 0. Provider calls: 0. Spend: $0.00.
+================================================================================================
+dropped test_insite_1789596217952_5034

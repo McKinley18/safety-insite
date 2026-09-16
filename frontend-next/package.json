@@ -59,7 +59,8 @@
     "validate:287-action-lifecycle": "npx tsx scripts/validate-287-action-lifecycle.mts",
     "review:287-action-lifecycle-ux": "node scripts/review-287-action-lifecycle-ux.mjs",
     "test:299-posture-presentation": "npx tsx lib/expert/__tests__/posturePresentation299.test.ts",
-    "check:299-posture-vocabulary": "node scripts/check-299-posture-vocabulary-parity.mjs"
+    "check:299-posture-vocabulary": "node scripts/check-299-posture-vocabulary-parity.mjs",
+    "test:legal-render": "npx tsx lib/legal/__tests__/renderLegalBody.test.tsx"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

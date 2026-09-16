@@ -1,5 +1,48 @@
 # Safety InSite — current state
 
+> ### §308 — LG-3: THE PUBLICATION SURFACE IS BUILT, AND IT IS NOT CALLED CLOSED
+>
+> **`/terms` and `/privacy` exist and answer 200 unconditionally.** §308 forbids a 404 "due missing
+> engineering", and a route created only once counsel approves would be exactly that. Behind them is
+> a **server- and build-authoritative** lifecycle — `DRAFT`, `APPROVED_NOT_EFFECTIVE`, `ACTIVE`,
+> `SUPERSEDED`.
+>
+> **There is no directory scan, and that is the design.** A file under `backend/legal-documents/` is
+> inert until a human enumerates it with an exact version, effective date, state, approval record
+> and digest. Dropping a file in does nothing. The publication root is a *different tree* from
+> `project-docs/legal/`, so no source path can even name a draft.
+>
+> **Code cannot promote a DRAFT.** `counselApproval` is required and `null` for DRAFT; an entry
+> claiming any later state with no approver is **refused at load** and the application does not
+> start. The rule is a boot failure, not a convention.
+>
+> **A published version is immutable, watched to fail.** The suite *actually appends a byte* to a
+> published body, records the registry's refusal, restores the file and re-hashes it. An accepted
+> version cannot be edited underneath the people who accepted it.
+>
+> **Acceptance reuses §291 rather than rebuilding it.** An ACTIVE document is projected into the
+> agreement shape, inheriting server-resolved versions, server-computed digests, server-generated
+> timestamps and insert-only evidence. **No migration** — `documentDigest` is already `varchar(64)`,
+> exactly a sha256. The requirement is **derived from publication state**, so today's registration is
+> unchanged and activation turns enforcement on by itself.
+>
+> **The whole A–T matrix: 58 assertions, 0 failed**, across three phases run as separate processes
+> because A/B need an empty registry and C–Q need a populated one. Each phase asserts its own
+> precondition and aborts rather than reporting green. Mutation-proven.
+>
+> **`LG-4`, and it is why §308 ran a browser.** Both routes returned **200**, the gate passed 23/23,
+> the suite passed 58/58 — and a browser landed on `/login`. The app shell redirects any unlisted
+> path. **A route that serves correctly and cannot be reached is not published**, which is exactly
+> the condition LG-3 was raised about. Every automated signal was green and the feature did not work.
+>
+> **Legal content cannot become an injection surface, and not because of a sanitiser.** There is *no
+> HTML sink in the rendering path at all*. Proven in a live browser against a hostile document:
+> `window.__s308_xss` unset, no script, iframe, svg or img element, no inline handler, no unsafe
+> scheme — and every payload visible as text.
+>
+> **`LG-3` is NOT closed.** It is `ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED` and **still
+> blocks Threshold C**. `LG-1`, `LG-2` and `SU-2` are untouched; no counsel approval has occurred.
+
 > ### §307 — SE-3 CLOSED: A DEPENDENCY GATE THAT CAN SAY "UNKNOWN", AND A REVIEW PROVEN BY BREAKING IT
 >
 > **Dependencies: one CRITICAL, twelve HIGH and ten MODERATE across both production trees became

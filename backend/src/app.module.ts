@@ -20,6 +20,7 @@ import { OutcomesModule } from './outcomes/outcomes.module';
 import { AgreementsModule } from './agreements/agreements.module';
 import { TransparencyModule } from './transparency/transparency.module';
 import { PdfModule } from './pdf/pdf.module';
+import { LegalModule } from './legal/legal.module';
 import { BillingModule } from './billing/billing.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { AnalyticsModule } from './analytics/analytics.module';
@@ -104,6 +105,7 @@ function getDatabaseSslConfig() {
     AgreementsModule,
     TransparencyModule,
     PdfModule,
+    LegalModule,
     BillingModule,
     DashboardsModule,
     AnalyticsModule,

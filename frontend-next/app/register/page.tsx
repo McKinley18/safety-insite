@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_BASE_URL } from "@/lib/hazlenzClient";
 import { clearAuthSession } from "@/lib/auth";
@@ -40,9 +40,23 @@ export default function RegisterPage() {
    * server would then refuse every registration from a cached page. Fetching it means the client
    * always asserts the version the server is actually asking for.
    */
-  const [requiredAgreement, setRequiredAgreement] = useState<{
+  /**
+   * §308 (LG-3) — EVERY AGREEMENT THE SERVER REQUIRES, NOT ONE THE CLIENT WAS TOLD TO LOOK FOR.
+   *
+   * This used to search the list for `appliesTo === "INTERNAL_OWNER_USE"` and send that one. The
+   * moment a Terms or Privacy document is published, that client would have gone on sending the
+   * acknowledgement alone and every registration would have been refused for a missing acceptance
+   * the page did not know existed.
+   *
+   * So the filter is now `requiredAtRegistration`, which is the server's own answer to "what must
+   * be accepted", and the page sends an assertion for each. Publishing a document therefore needs
+   * no frontend change at all — which is the §308 property that activation must be content
+   * publication rather than another engineering project.
+   */
+  const [requiredAgreements, setRequiredAgreements] = useState<Array<{
     agreementId: string; version: string; title: string; counselStatus: string;
-  } | null>(null);
+    requiredAtRegistration: boolean;
+  }> | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -51,10 +65,10 @@ export default function RegisterPage() {
         const response = await apiFetch(`${API_BASE_URL}/agreements`, { method: "GET" });
         if (!response.ok) return;
         const data = await response.json();
-        const required = (data?.agreements || []).find(
-          (a: any) => a?.appliesTo === "INTERNAL_OWNER_USE",
+        const required = (data?.agreements || []).filter(
+          (a: any) => a?.requiredAtRegistration === true,
         );
-        if (!cancelled && required) setRequiredAgreement(required);
+        if (!cancelled) setRequiredAgreements(required);
       } catch {
         // Leave it null. The submit path below refuses rather than guessing a version, so a
         // failed fetch produces an honest "try again" instead of a registration the server will
@@ -63,6 +77,16 @@ export default function RegisterPage() {
     })();
     return () => { cancelled = true; };
   }, []);
+
+  /** The acknowledgement, for the checkbox label. Null until the fetch lands. */
+  const acknowledgement = (requiredAgreements || []).find(
+    (a) => a.agreementId === "internal-pre-beta-acknowledgement",
+  ) ?? null;
+
+  /** The published legal documents among the required set. Empty until counsel approves any. */
+  const requiredLegalDocuments = (requiredAgreements || []).filter(
+    (a) => a.agreementId.startsWith("legal:"),
+  );
 
   // /pricing sends visitors here as /register?plan=pro. The parameter used to be
   // ignored entirely, so "Choose Pro" landed on a form with Free preselected and the
@@ -111,11 +135,13 @@ export default function RegisterPage() {
       return;
     }
 
-    // §291 (SU-1). Without the server's current agreement there is nothing truthful to assert, so
-    // this refuses rather than sending an acceptance of a document it could not read.
-    if (!requiredAgreement) {
+    // §291 (SU-1) / §308 (LG-3). Without the server's current requirement list there is nothing
+    // truthful to assert, so this refuses rather than sending an acceptance of documents it could
+    // not read. `null` means the fetch failed; an EMPTY ARRAY is a legitimate server answer and is
+    // not an error — it is what "no legal document has been published yet" looks like.
+    if (requiredAgreements === null) {
       setStatusType("error");
-      setStatus("The current user agreement could not be loaded. Please try again.");
+      setStatus("The current agreements could not be loaded. Please try again.");
       return;
     }
 
@@ -141,10 +167,16 @@ export default function RegisterPage() {
            * with the page. The server validates this against its own registry and writes the
            * record itself.
            */
-          acceptedAgreements: [{
-            agreementId: requiredAgreement.agreementId,
-            agreementVersion: requiredAgreement.version,
-          }],
+          /*
+           * §308. One assertion per required agreement. The server validates each against its own
+           * registry and writes the row itself — the client cannot choose a version, cannot invent
+           * one, and cannot supply a digest. This list is an assertion of WHAT was accepted, never
+           * a record of it.
+           */
+          acceptedAgreements: requiredAgreements.map((agreement) => ({
+            agreementId: agreement.agreementId,
+            agreementVersion: agreement.version,
+          })),
         }),
       });
 
@@ -397,16 +429,59 @@ export default function RegisterPage() {
             />
             <span>
               I understand Safety InSite and HazLenz AI provide decision-support only. Final safety, compliance, and corrective action decisions remain the responsibility of qualified personnel and the user organization.
-              {requiredAgreement ? (
+              {acknowledgement ? (
                 <span className="mt-1 block text-xs opacity-80">
-                  {requiredAgreement.title} (version {requiredAgreement.version}).{" "}
-                  {requiredAgreement.counselStatus === "NOT_COUNSEL_REVIEWED"
+                  {acknowledgement.title} (version {acknowledgement.version}).{" "}
+                  {acknowledgement.counselStatus === "NOT_COUNSEL_REVIEWED"
                     ? "This is an internal pre-release acknowledgement and has not been reviewed by legal counsel. It is not the Terms of Service."
                     : null}
                 </span>
               ) : null}
+
+              {/*
+                §308 (LG-3). NAMED ONLY WHEN THEY EXIST. Today no legal document is published, so
+                this renders nothing and the control keeps saying exactly what it is — an internal
+                acknowledgement. §308 forbids implying that acceptance against an unapproved
+                document is possible, and the honest way to hold that line is for the sentence about
+                Terms and Privacy to be ABSENT rather than hedged.
+
+                When counsel approves and a version is activated, each appears here by name and
+                version with a link to its published text, and the acceptance the server records
+                binds to that exact version and digest.
+              */}
+              {requiredLegalDocuments.length ? (
+                <span className="mt-2 block text-xs opacity-90">
+                  By creating an account you accept{" "}
+                  {requiredLegalDocuments.map((document, index) => (
+                    <React.Fragment key={document.agreementId}>
+                      {index > 0 ? (index === requiredLegalDocuments.length - 1 ? " and " : ", ") : null}
+                      <a
+                        href={document.agreementId === "legal:terms" ? "/terms" : "/privacy"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-black text-[#1D72B8] underline underline-offset-2 dark:text-[#5DB7FF]"
+                      >
+                        {document.title}
+                      </a>{" "}
+                      (version {document.version})
+                    </React.Fragment>
+                  ))}
+                  .
+                </span>
+              ) : null}
             </span>
           </label>
+
+          {/*
+            §308 (LG-3). Reachable from registration whether or not anything is published — a
+            visitor deciding whether to create an account is exactly who needs to be able to read
+            them, and "there is nothing published yet" is itself information they are entitled to.
+          */}
+          <p className="text-center text-xs font-bold text-slate-500 dark:text-slate-400">
+            <a href="/terms" className="hover:text-[#1D72B8] dark:hover:text-[#5DB7FF]">Terms</a>
+            <span className="mx-2 opacity-60">·</span>
+            <a href="/privacy" className="hover:text-[#1D72B8] dark:hover:text-[#5DB7FF]">Privacy</a>
+          </p>
 
           <div className="flex justify-center pt-1">
             <AppButton type="submit" disabled={loading} size="md" className="min-h-11 bg-[#1D72B8] px-6 text-sm text-white shadow-sm shadow-blue-900/20 hover:bg-[#0B1320] active:scale-[0.98]">

@@ -1,0 +1,58 @@
+
+> frontend-next@1.0.0 test:legal-render
+> npx tsx lib/legal/__tests__/renderLegalBody.test.tsx
+
+
+---- the hostile document, rendered ----
+
+  fixture: backend/legal-documents/test-fixtures/terms-0.0.0-hostile.1.md
+  rendered HTML length: 2036
+
+ok    the fixture genuinely contains a <script> payload — without this the assertions below would pass against a harmless document
+ok    41-a NO <script> element in the rendered HTML — the payload arrived as a text node  [absent]
+ok    41-b NO <iframe> element in the rendered HTML
+ok    41-c NO img with an onerror handler
+ok    41-d NO <svg> element
+ok    41-e NO REAL ELEMENT carries an event-handler attribute (onclick, onerror, onload, …). The payloads that contain them are text inside a paragraph, not attributes on an element.  [14 tags, none with a handler]
+ok    41-f NO href carrying a javascript: scheme
+ok    41-g NO href carrying a data: scheme
+ok    41-h the payload is VISIBLE as escaped text — the reader sees exactly what the document said, which for a legal document matters as much as the safety
+ok    41-i and the renderer did not stop at the payload; the rest of the document rendered
+ok    41-j a markdown link with a javascript: scheme renders its LABEL as text
+ok    41-k and produces no anchor at all
+ok    41-l a markdown link with a data: scheme renders its label as text
+
+---- isSafeHref ----
+
+ok    41-scheme https -> permitted  ["https://example.invalid/x"]
+ok    41-scheme http -> permitted  ["http://example.invalid/x"]
+ok    41-scheme mailto -> permitted  ["mailto:privacy@example.invalid"]
+ok    41-scheme a relative path inherits the page scheme -> permitted  ["/terms"]
+ok    41-scheme javascript: -> refused  ["javascript:alert(1)"]
+ok    41-scheme javascript: with mixed case -> refused  ["JaVaScRiPt:alert(1)"]
+ok    41-scheme javascript: with surrounding whitespace -> refused  ["  javascript:alert(1)  "]
+ok    41-scheme javascript: split by a tab, which defeats a naive regex -> refused  ["java\tscript:alert(1)"]
+ok    41-scheme javascript: split by a newline -> refused  ["java\nscript:alert(1)"]
+ok    41-scheme data: -> refused  ["data:text/html;base64,PHNjcmlwdD4="]
+ok    41-scheme vbscript: -> refused  ["vbscript:msgbox(1)"]
+ok    41-scheme a scheme-relative URL pointing at another host -> refused  ["//evil.invalid/x"]
+ok    41-scheme an empty href -> refused  [""]
+
+---- an ordinary document ----
+
+ok    render-a a level-1 markdown heading becomes an h2, so the page keeps exactly one h1
+ok    render-b bold renders
+ok    render-c italic renders
+ok    render-d a safe link renders as an anchor carrying noopener and noreferrer
+ok    render-e an unordered list renders
+ok    render-f an ordered list renders
+ok    render-g a blockquote renders
+ok    render-h a horizontal rule renders
+
+---- the structural property ----
+
+ok    41-structural NO HTML SINK exists anywhere in the legal rendering path — the payloads above are not sanitised, they are never parsed as markup at all, and that holds for payloads nobody has thought of yet  [5 files clean]
+
+========================================================================================
+§308 LEGAL RENDERER: 35 passed, 0 failed.
+========================================================================================

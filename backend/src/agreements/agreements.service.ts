@@ -3,9 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AgreementAcceptance } from './agreement-acceptance.entity';
 import {
-  AGREEMENTS, AgreementDefinition, agreementsRequiredAtRegistration,
-  describeAgreement, documentDigest, findAgreement,
+  AgreementDefinition, agreementsRequiredAtRegistration,
+  allAgreements, describeAgreement, documentDigest, findAgreement, projectLegalDocument,
 } from './agreement-registry';
+import { LegalPublicationService } from '../legal/legal-publication.service';
 
 export interface AcceptanceInput {
   readonly agreementId: string;
@@ -30,10 +31,35 @@ export class AgreementsService {
   constructor(
     @InjectRepository(AgreementAcceptance)
     private readonly acceptances: Repository<AgreementAcceptance>,
+    /**
+     * §308 (LG-3). The published legal documents are the SECOND source of agreements, and the
+     * service asks for them per call rather than caching them, because the registry is the
+     * authority on what is in force and a cached copy here would be a second opinion.
+     */
+    private readonly legal: LegalPublicationService,
   ) {}
 
+  /**
+   * §308. Every ACTIVE legal document, projected into the agreement shape.
+   *
+   * ONLY ACTIVE ONES. A SUPERSEDED document is deliberately absent, which is what makes §308's
+   * requirement M — a caller cannot select a superseded version — fall out of `resolve()` without
+   * a special case: the version simply is not the one the registry requires, and the existing §291
+   * staleness refusal answers. A DRAFT is absent for the stronger reason that it is not a document
+   * anybody may accept at all.
+   */
+  private projectedLegalAgreements(): readonly AgreementDefinition[] {
+    return this.legal.activeDocuments().map((document) => projectLegalDocument({
+      documentType: document.documentType,
+      version: document.version,
+      title: document.title,
+      body: document.body,
+      requiredAtRegistration: document.requiredAtRegistration,
+    }));
+  }
+
   listAgreements() {
-    return AGREEMENTS.map(describeAgreement);
+    return allAgreements(this.projectedLegalAgreements()).map(describeAgreement);
   }
 
   /**
@@ -44,7 +70,7 @@ export class AgreementsService {
    * re-acceptance mechanism would quietly stop working.
    */
   private resolve(input: AcceptanceInput): AgreementDefinition {
-    const agreement = findAgreement(String(input?.agreementId || ''));
+    const agreement = findAgreement(String(input?.agreementId || ''), this.projectedLegalAgreements());
     if (!agreement) throw new BadRequestException('Unknown agreement.');
     if (String(input?.agreementVersion || '') !== agreement.version) {
       throw new BadRequestException(
@@ -94,7 +120,13 @@ export class AgreementsService {
 
   /** Validates every agreement required at registration, BEFORE any account is created. */
   validateRegistrationAcceptances(inputs: AcceptanceInput[] | undefined): AgreementDefinition[] {
-    const required = agreementsRequiredAtRegistration();
+    /*
+     * §308. The required set is DERIVED from publication state. With no ACTIVE legal document it is
+     * exactly what §291 made it — the internal acknowledgement alone — so today's registration is
+     * unchanged and §308 does not begin enforcing acceptance of documents that do not exist.
+     * Activating a document turns the requirement on by itself; there is no second switch.
+     */
+    const required = agreementsRequiredAtRegistration(this.projectedLegalAgreements());
     const supplied = Array.isArray(inputs) ? inputs : [];
     return required.map(agreement => {
       const match = supplied.find(i => i && i.agreementId === agreement.agreementId);
@@ -137,6 +169,32 @@ export class AgreementsService {
   }
 
   /**
+   * §308 (LG-3) — CURRENT versus REACCEPTANCE_REQUIRED, as a server-side determination.
+   *
+   * §308 asks for exactly this and asks for it to be PROVEN rather than asserted, and it also says
+   * not to invent an aggressive lockout UX. So this reports a state and does nothing else: it
+   * blocks nothing, revokes nothing and logs nobody out. What it gives the product is the ability
+   * to ANSWER the question — which is what was actually missing — and leaves what to do about a
+   * `REACCEPTANCE_REQUIRED` user to a later product decision rather than making that decision here
+   * by accident.
+   *
+   * The determination is the §291 comparison, unchanged: a user is CURRENT when they hold a row at
+   * the version each in-force agreement currently requires. Publishing a new Terms version makes
+   * every prior acceptance of the old one outstanding WITHOUT touching a stored row, so the
+   * historical acceptance stays true and attributable to the exact text that was accepted.
+   */
+  async acceptanceStatusFor(userId: string): Promise<{
+    status: 'CURRENT' | 'REACCEPTANCE_REQUIRED';
+    outstanding: Awaited<ReturnType<AgreementsService['outstandingFor']>>;
+  }> {
+    const outstanding = await this.outstandingFor(userId);
+    return {
+      status: outstanding.length === 0 ? 'CURRENT' : 'REACCEPTANCE_REQUIRED',
+      outstanding,
+    };
+  }
+
+  /**
    * §291 — RE-ACCEPTANCE, WITHOUT A POLICY ENGINE.
    *
    * The whole mechanism is one comparison: is there a row for this user at the version the
@@ -146,7 +204,7 @@ export class AgreementsService {
   async outstandingFor(userId: string) {
     const rows = await this.acceptances.find({ where: { userId } });
     const accepted = new Set(rows.map(r => `${r.agreementId}@${r.agreementVersion}`));
-    return AGREEMENTS
+    return allAgreements(this.projectedLegalAgreements())
       .filter(a => !accepted.has(`${a.agreementId}@${a.version}`))
       .map(a => ({
         agreementId: a.agreementId,
