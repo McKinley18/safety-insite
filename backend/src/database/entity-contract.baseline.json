@@ -1,0 +1,108 @@
+{
+  "schema": "insite.entity-contract-baseline.v1",
+  "establishedBy": "§309 (SC-2)",
+  "purpose": [
+    "Every ACCEPTED entity-versus-database difference, with a reason and the section that accepted it.",
+    "A difference NOT recorded here fails `npm run check:entity-contract`. A recorded entry whose",
+    "difference has gone is reported as STALE so the ledger stays honest.",
+    "This is a LEDGER, not a suppression list. Its purpose is that a difference nobody has decided",
+    "about cannot ship silently, and that SC-2's two contradiction classes cannot silently return:",
+    "there is deliberately NO entry here for a standards_master length or for a timestamp type, so",
+    "either one coming back fails the gate."
+  ],
+  "sc2ClosedAt309": {
+    "contradiction1": "standards_master — six columns whose entity declarations omitted the bounds migration 1800000004000 deliberately authored. REPAIRED in the entity. No ledger entry exists for them, so a regression fails the gate.",
+    "contradiction2": "site.createdAt, inspection.createdAt, user.deletedAt, user.nextBillingDate — entity declared timestamptz over a `timestamp without time zone` column. REPAIRED in the entity. No ledger entry exists for them either."
+  },
+  "entries": [
+    {
+      "kind": "TABLE_MISSING_IN_DB", "table": "report", "column": null,
+      "reason": "SC-3. The legacy `Report` entity maps to table `report`, which exists in neither the canonical manifest nor a fresh replay; the canonical successors are `reports` (retired compatibility), `inspection_reports` and `inspection_report_versions`. §309 MEASURED that every read through it fails with `relation \"report\" does not exist` — the §266 failure mode. Characterized and registered as SC-3 rather than repaired, because §309 forbids expanding into an unbounded cleanup sweep.",
+      "acceptedIn": "§309 (registered as SC-3, NOT resolved)"
+    },
+    {
+      "kind": "TABLE_MISSING_IN_DB", "table": "finding", "column": null,
+      "reason": "SC-3. The legacy `Finding` entity maps to table `finding`; the canonical successor `inspection_findings` is in the manifest. Reads fail. Registered as SC-3.",
+      "acceptedIn": "§309 (registered as SC-3, NOT resolved)"
+    },
+    {
+      "kind": "TABLE_MISSING_IN_DB", "table": "report_attachments", "column": null,
+      "reason": "SC-3. `ReportAttachment` maps to `report_attachments`, which no migration creates. Reads fail. Registered as SC-3.",
+      "acceptedIn": "§309 (registered as SC-3, NOT resolved)"
+    },
+    {
+      "kind": "TABLE_MISSING_IN_DB", "table": "hazard_taxonomy", "column": null,
+      "reason": "SC-3. `HazardTaxonomy` maps to `hazard_taxonomy`, which no migration creates. Reads fail. Registered as SC-3.",
+      "acceptedIn": "§309 (registered as SC-3, NOT resolved)"
+    },
+
+    {
+      "kind": "COLUMN_TYPE", "table": "corrective_actions", "column": "reportId",
+      "reason": "SC-4. The database holds `character varying`; the entity declares `uuid`. Postgres accepts a uuid-shaped string into varchar, so writes succeed and reads return the string — but the two types compare and sort differently, and a varchar column cannot reject a malformed identifier the way uuid does. Not repaired in §309: changing the column is a migration on customer data and changing the entity would weaken a declared type, so it is a decision rather than a transcription.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+
+    {
+      "kind": "COLUMN_NULLABILITY", "table": "site", "column": "createdByUserId",
+      "reason": "SC-4. The database permits NULL; the entity declares NOT NULL. The application always supplies it, so no NULL row exists on the Beta v1 path — but the entity is asserting a guarantee the column does not enforce, which is the same shape as the SC-2 timestamp claim §309 just removed. Tightening the column is a migration; loosening the entity weakens a true invariant. Registered rather than guessed.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_NULLABILITY", "table": "standards_master", "column": "allowed_use",
+      "reason": "SC-4. The database is NOT NULL with DEFAULT 'reference'; the entity declares nullable. A write omitting it receives the default rather than NULL, so the entity's nullability is unreachable in practice. HazLenz knowledge, not on the Beta v1 individual path.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+
+    {
+      "kind": "COLUMN_DEFAULT", "table": "user", "column": "subscriptionStatus",
+      "reason": "SC-4, and the most interesting of the defaults. The database default is 'active'; the entity declares 'none'. An INSERT that omitted the column would create an account asserting an ACTIVE subscription — precisely the EN-3 defect §302 repaired in code. CONTAINED, and measured: AuthService.register sets `subscriptionStatus: 'none'` explicitly on every path, so the default is never exercised by the application. That is containment by code rather than by schema, and it is registered so it is not mistaken for a control.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_DEFAULT", "table": "user", "column": "planCode",
+      "reason": "SC-4. The database default is 'basic'; the entity declares 'free'. `basic` is one of the legacy values the product normalizes to 'pro'. Same containment as subscriptionStatus: registration sets `planCode: 'free'` explicitly, so the default is never reached.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_DEFAULT", "table": "standards_master", "column": "authority_tier",
+      "reason": "SC-4. The database default is 3 (lowest authority); the entity declares 1 (highest). The directions are opposite, so a row created without an explicit tier would be trusted very differently depending on which contract answered. HazLenz knowledge ingestion always sets it, and it is not on the Beta v1 individual path — but the disagreement is semantic rather than cosmetic, which is why it is registered rather than silently aligned.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_DEFAULT", "table": "standards_master", "column": "allowed_use",
+      "reason": "SC-4. The database has DEFAULT 'reference'; the entity declares none. Pairs with the nullability entry above.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_DEFAULT", "table": "regulatory_release_record_reviews", "column": "decidedAt",
+      "reason": "SC-4. The database has DEFAULT now(); the entity declares none. The service always supplies the decision time, so the default is a safety net rather than a behaviour. Harmless, and recorded so the gate stays quiet about it without anybody having to remember why.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+
+    {
+      "kind": "COLUMN_EXTRA_IN_DB", "table": "safescope_knowledge_retrieval_logs", "column": "agencyMode",
+      "reason": "SC-4. A legacy column the current entity no longer declares. A DB-extra column is not a runtime failure — nothing reads it — it means a stored value is invisible to the application. Dropping it would be a destructive migration on a log table for no functional gain.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_EXTRA_IN_DB", "table": "safescope_knowledge_retrieval_logs", "column": "classification",
+      "reason": "SC-4. Legacy column; see agencyMode.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_EXTRA_IN_DB", "table": "safescope_knowledge_retrieval_logs", "column": "matchedChunkIds",
+      "reason": "SC-4. Legacy column superseded by `retrievedChunkIds` / `selectedChunkIds`, both of which the entity declares and the database has.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_EXTRA_IN_DB", "table": "safescope_knowledge_retrieval_logs", "column": "query",
+      "reason": "SC-4. Legacy column superseded by `queryText`, which the entity declares and the database has NOT NULL.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    },
+    {
+      "kind": "COLUMN_EXTRA_IN_DB", "table": "safescope_knowledge_retrieval_logs", "column": "topScore",
+      "reason": "SC-4. Legacy column; the entity no longer declares it.",
+      "acceptedIn": "§309 (registered as SC-4, NOT resolved)"
+    }
+  ]
+}

@@ -1,5 +1,39 @@
 # Safety InSite — current state
 
+> ### §309 — SC-2 CLOSED BY MEASURING, AND ONE HALF OF ITS OWN DESCRIPTION WAS WRONG
+>
+> **The instrument came first.** A new gate compares the entity contract against a fresh migration
+> replay using **TypeORM's own comparison** — the machinery that would actually run if `synchronize`
+> were ever enabled, rather than a second opinion about type equivalence. 27 material differences,
+> cleanly separated from 184 cosmetic name differences.
+>
+> **The `standards_master` half of SC-2 was STALE.** The register said the six columns did not exist
+> and that any query naming them would fail. **All six exist**, with the exact bounds migration
+> `1800000004000` authored. The contradiction was never absence — it was the entity failing to
+> declare bounds the database enforces.
+>
+> **The timestamp half was decided by measurement, not preference.** Under UTC the round trip is
+> exact whether the entity says `timestamp` or `timestamptz`. Under a non-UTC reader the instant
+> moves by the offset — **identically in both cases**. *The declaration is not the mechanism.* An
+> offset the column never stored cannot be recovered by claiming it is there, so `timestamptz` was a
+> claim the storage could not honour and removing it changes nothing at runtime.
+>
+> **Entity metadata only. No migration, no column altered, NO HISTORICAL ROW MODIFIED.** Canonical
+> schema still 68 tables, 0 material differences, same digest. 20 round-trip assertions including
+> NULL, DEFAULT, a value one character over a bound **refused by the database**, and instants
+> crossing a month boundary.
+>
+> **Watched to fail on exactly the two classes it exists to catch** — and there is deliberately no
+> ledger entry for either, so either one returning fails the gate.
+>
+> **`SC-3` is what the repair revealed.** Four entities map to tables that do not exist; every read
+> fails with `relation "…" does not exist`. Measured, not inferred. Nothing on the Beta v1 path
+> touches them. Characterized and registered — §309 forbade the sweep, and the sweep is a section.
+>
+> **`SC-4`'s one worth naming:** `user.subscriptionStatus` defaults to `'active'` in the database
+> while the entity says `'none'`. An INSERT omitting it would assert a subscription nobody bought —
+> the `EN-3` defect again, contained **by code rather than by schema**.
+
 > ### §308 — LG-3: THE PUBLICATION SURFACE IS BUILT, AND IT IS NOT CALLED CLOSED
 >
 > **`/terms` and `/privacy` exist and answer 200 unconditionally.** §308 forbids a 404 "due missing

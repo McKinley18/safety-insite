@@ -191,14 +191,18 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **90** | **4** | **9** | **53** | **24** |
+| Entries | **95** | **4** | **11** | **54** | **26** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 46 |
-| OPEN | 38 |
+| CLOSED | 48 |
+| OPEN | 41 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
+
+**§309 added SC-2 to this table and closed it, and added `SC-3`, `SC-4` and `SC-5` from what the
+repair revealed.** SC-2 had only ever existed in the machine register; §309 brought it into the
+narrative because closing it required correcting one half of its own description.
 
 **§307 added five entries and closed four of them in the same section** — `SE-16`, `SE-17`, `SE-18`
 and `SE-19` were found by the security review and repaired inside it; `SE-20` was found, measured,
@@ -305,7 +309,7 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (28 items, including all six P0)
+### Threshold C — external controlled beta  (27 items, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
@@ -1402,6 +1406,85 @@ Four observations registered rather than fixed: the service slug and public host
 | **DB-5** | Learned corrective-action fixes were selected across every tenant. | P2 | — | Mixed | **CLOSED (§292)** |
 | **DB-7** | Workspace-scoped learning from outcomes is not implemented and is not a v1 capability. | P3 | — | Product | DEFERRED (§292) |
 | **DB-6** | Closure intelligence failed for every hand-created corrective action. | P2 | — | Engineering | **CLOSED (§291)** |
+| **SC-2** | Pre-existing entity-versus-database contradictions that exist identically in production and in a fresh replay: `standards_master` column bounds, and four `timestamp` columns the entities declared `timestamptz`. | P2 | C | Engineering | **CLOSED (§309)** |
+| **SC-3** | Four entities map to tables that exist in neither the canonical manifest nor a fresh replay — `Report`, `Finding`, `ReportAttachment`, `HazardTaxonomy`. Every read through them fails. | P1 | — | Engineering | OPEN (§309) |
+| **SC-4** | Thirteen residual entity-versus-database differences, each recorded in the entity-contract ledger with a reason. | P3 | — | Engineering | OPEN (§309) |
+| **SC-5** | Four timestamp columns hold INSTANTS in timezone-naive storage; lossless only because the deployment runs UTC. | P3 | — | Engineering | OPEN (§309) |
+
+**SC-2 — CLOSED at §309, and the register text it closed was partly wrong.**
+
+**The instrument came first.** `npm run check:entity-contract:db` compares the ENTITY CONTRACT
+against a fresh migration replay using **TypeORM's own comparison** — `createSchemaBuilder().log()`,
+the machinery behind `typeorm schema:log` and the machinery that would actually run if `synchronize`
+were ever enabled. A hand-written comparator would be a second opinion about type equivalence, and
+the opinion that decides whether a read fails at runtime is TypeORM's. It found **27 material
+differences**, correctly separated from **184 cosmetic** constraint- and index-name differences.
+
+**Contradiction 1 — `standards_master`, six columns. The register text was STALE.** SC-2 recorded
+that *"neither production nor a fresh replay has them, so any query naming them fails — the §266
+failure mode"*. §309 **measured all six present**, with the exact types migration `1800000004000`
+authored: `varchar(120)`, `char(64)`, `char(64)`, `varchar(80)`, `varchar(24)`, `varchar(80)`. The
+contradiction was never *absence* — it was the entity failing to declare bounds the database
+enforces. The **database is authoritative** here, because those bounds are in a versioned migration
+and were chosen on purpose, so the **entity** was repaired.
+
+**Contradiction 2 — four timestamps, decided by measurement rather than by preference.**
+`site.createdAt`, `inspection.createdAt`, `user.deletedAt` and `user.nextBillingDate` declared
+`timestamptz` over `timestamp without time zone` columns. §309 measured what that actually does:
+
+- Under **UTC** the round trip is **exact either way** — 5/5 probe instants. This is production, and
+  it is why nothing has ever gone wrong.
+- Under a **non-UTC** reader the instant **moves by the offset — identically** whether the entity
+  says `timestamp` or `timestamptz`. 5/5 moved in both cases.
+
+**The declaration is not the mechanism.** An offset the column never stored cannot be recovered by
+claiming it is there. So `timestamptz` was a claim the storage could not honour, and removing it
+changes **no runtime behaviour at all**. Converting the columns is the only change that would make
+the instants portable, and it means rewriting stored customer timestamps against an assumed offset —
+which §305 refused and §309 forbids. Registered as `SC-5` rather than hidden.
+
+**Both repairs are ENTITY METADATA ONLY.** No migration. No column altered. No default changed.
+**No historical row modified.** The canonical-schema gate still reports 68 tables and 0 material
+differences with the same digest.
+
+*Proven by round trip:* **20 assertions, 0 failed**, including NULL behaviour, DEFAULT behaviour, a
+64-character digest through `char(64)`, values at the exact declared bounds, a value one character
+over the bound **refused by the database**, and instants crossing both a UTC-offset and a
+month boundary.
+
+*The gate is watched to fail on exactly the two classes it exists to catch:* reverting
+`user.deletedAt` to `timestamptz` and removing the `release_id` length each failed it, and both
+entities were restored with their sha256 re-verified. There is deliberately **no ledger entry** for
+a `standards_master` length or a timestamp type, so either one returning fails.
+
+*Evidence:* `verification/current/sc2-entity-contract-309/`  
+*Retest:* `npm run check:entity-contract:db` and `npm run test:309-sc2-reconciliation:db`.
+
+**SC-3 — OPEN, found by the new instrument and deliberately not repaired.** `Report` maps to
+`report`, `Finding` to `finding`, `ReportAttachment` to `report_attachments`, `HazardTaxonomy` to
+`hazard_taxonomy` — and **none of those four tables exists**, in the canonical manifest or in a fresh
+replay. Each was driven through its own repository and each fails with `relation "…" does not exist`:
+the §266 failure mode, **measured rather than inferred**. The canonical successors do exist —
+`reports`, `inspection_findings`, `inspection_reports`, `inspection_report_versions` — so the legacy
+entities were simply never retired alongside the routes that used them. They are injected into
+`AnalyticsService`, `ClassificationsService`, `ControlVerificationsService`, `ReviewsService` and two
+`IntelligenceService`s, all of which back deployed controllers, so any route that actually queries
+one returns a 500. **The Beta v1 individual path does not touch them** — §305A completes 62/62 and
+§307 passes 334/0. P1 because a deployed route failing on every call is a real defect, not because it
+blocks the Beta. §309 forbids the sweep, so it is characterized and registered.
+
+**SC-4 — OPEN, thirteen residuals in a ledger.** One column type, two nullabilities, five defaults,
+five legacy database-only columns. **The one worth naming:** `user.subscriptionStatus` has a database
+default of `'active'` while the entity declares `'none'`, so an INSERT omitting the column would
+create an account asserting an **ACTIVE subscription** — precisely the `EN-3` defect §302 repaired in
+code. Contained, and measured: `AuthService.register` sets it explicitly on every path, so the
+default is never exercised. That is containment **by code rather than by schema**, and it is
+registered so it is not mistaken for a control.
+
+**SC-5 — OPEN.** The residual of contradiction 2, above. Note the local development database server
+runs `America/New_York` while production runs UTC, so any future conversion must be done per
+environment against evidence of how each row was written rather than against one assumed offset.
+
 
 **DB-1 — CLOSED at §289.** The read §288 was forbidden to take. Production head `1800000018000`, **50 applied**, and — the fact that actually matters — **zero drift**: every applied row matches a migration file in the candidate, and the four pending ones are strictly newer than the head.
 

@@ -1,0 +1,95 @@
+
+> safety-insite-backend@1.0.0 check:entity-contract:db
+> ts-node scripts/hazlenz/with-disposable-db.ts check:entity-contract
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789597930875_2433
+registered as run b9b48b60-87f4-43ae-b3aa-cc6f21bcf17d
+
+> safety-insite-backend@1.0.0 check:entity-contract
+> ts-node scripts/check-entity-contract.ts
+
+================================================================================================
+§309 ENTITY-CONTRACT GATE — entity declarations versus the canonical database
+replayed database: test_insite_1789597930875_2433
+================================================================================================
+(node:50606) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+  entities compared            61
+  sync queries TypeORM emitted 222
+  material differences         27
+        5  COLUMN_DEFAULT
+        5  COLUMN_EXTRA_IN_DB
+        2  COLUMN_NULLABILITY
+       11  COLUMN_TYPE
+        4  TABLE_MISSING_IN_DB
+  cosmetic (names, indexes, FK) 184  — never fatal
+  accepted by the baseline     0
+  UNACCEPTED                   27
+
+-- every material difference --
+
+  [UNACCEPTED] COLUMN_DEFAULT       regulatory_release_record_reviews.decidedAt
+               ALTER TABLE "regulatory_release_record_reviews" ALTER COLUMN "decidedAt" DROP DEFAULT
+  [UNACCEPTED] COLUMN_DEFAULT       standards_master.allowed_use
+               ALTER TABLE "standards_master" ALTER COLUMN "allowed_use" DROP DEFAULT
+  [UNACCEPTED] COLUMN_DEFAULT       standards_master.authority_tier
+               ALTER TABLE "standards_master" ALTER COLUMN "authority_tier" SET DEFAULT '1'
+  [UNACCEPTED] COLUMN_DEFAULT       user.planCode
+               ALTER TABLE "user" ALTER COLUMN "planCode" SET DEFAULT 'free'
+  [UNACCEPTED] COLUMN_DEFAULT       user.subscriptionStatus
+               ALTER TABLE "user" ALTER COLUMN "subscriptionStatus" SET DEFAULT 'none'
+  [UNACCEPTED] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.agencyMode
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "agencyMode"
+  [UNACCEPTED] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.classification
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "classification"
+  [UNACCEPTED] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.matchedChunkIds
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "matchedChunkIds"
+  [UNACCEPTED] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.query
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "query"
+  [UNACCEPTED] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.topScore
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "topScore"
+  [UNACCEPTED] COLUMN_NULLABILITY   site.createdByUserId
+               ALTER TABLE "site" ALTER COLUMN "createdByUserId" SET NOT NULL
+  [UNACCEPTED] COLUMN_NULLABILITY   standards_master.allowed_use
+               ALTER TABLE "standards_master" ALTER COLUMN "allowed_use" DROP NOT NULL
+  [UNACCEPTED] COLUMN_TYPE          corrective_actions.reportId
+               ALTER TABLE "corrective_actions" ADD "reportId" uuid   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          inspection.createdAt
+               ALTER TABLE "inspection" ADD "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          site.createdAt
+               ALTER TABLE "site" ADD "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          standards_master.applicability_schema_version
+               ALTER TABLE "standards_master" ADD "applicability_schema_version" character varying   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          standards_master.deprecation_status
+               ALTER TABLE "standards_master" ADD "deprecation_status" character varying NOT NULL DEFAULT 'active'   (TypeORM would DROP and re-ADD to change the typ
+  [UNACCEPTED] COLUMN_TYPE          standards_master.normalized_record_checksum
+               ALTER TABLE "standards_master" ADD "normalized_record_checksum" character varying(64)   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          standards_master.release_id
+               ALTER TABLE "standards_master" ADD "release_id" character varying   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          standards_master.source_document_checksum
+               ALTER TABLE "standards_master" ADD "source_document_checksum" character varying(64)   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          standards_master.transformation_version
+               ALTER TABLE "standards_master" ADD "transformation_version" character varying   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          user.deletedAt
+               ALTER TABLE "user" ADD "deletedAt" TIMESTAMP WITH TIME ZONE   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] COLUMN_TYPE          user.nextBillingDate
+               ALTER TABLE "user" ADD "nextBillingDate" TIMESTAMP WITH TIME ZONE   (TypeORM would DROP and re-ADD to change the type)
+  [UNACCEPTED] TABLE_MISSING_IN_DB  finding.
+               CREATE TABLE "finding" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "hazardCategory" character varying, "hazard" character varying, "severity" inte
+  [UNACCEPTED] TABLE_MISSING_IN_DB  hazard_taxonomy.
+               CREATE TABLE "hazard_taxonomy" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "family" character varying NOT NULL, "condition" character varying NOT 
+  [UNACCEPTED] TABLE_MISSING_IN_DB  report_attachments.
+               CREATE TABLE "report_attachments" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "reportId" uuid NOT NULL, "imageUri" character varying NOT NULL, "mi
+  [UNACCEPTED] TABLE_MISSING_IN_DB  report.
+               CREATE TABLE "report" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "organizationId" character varying, "createdByUserId" character varying, "compan
+
+================================================================================================
+§309 ENTITY-CONTRACT GATE: FAIL
+
+  A material entity-versus-database difference is not recorded in
+  src/database/entity-contract.baseline.json. Either repair it, or record it there
+  with a reason — but a difference nobody has decided about must not ship silently.
+================================================================================================
+dropped test_insite_1789597930875_2433

@@ -65,7 +65,19 @@ export class Standard {
   @Column({ name: "approved_for_auto_ingestion", default: true })
   approvedForAutoIngestion: boolean;
 
-  @Column({ name: "release_id", nullable: true })
+  /**
+   * §309 (SC-2) — LENGTHS DECLARED, BECAUSE THE MIGRATION DELIBERATELY CHOSE THEM.
+   *
+   * Migration 1800000004000 authored these columns with explicit bounds — `varchar(120)`,
+   * `char(64)`, `varchar(80)`, `varchar(24)` — and the entity simply never said so, leaving
+   * TypeORM to assume unbounded `varchar`. That disagreement is one of SC-2's two halves.
+   *
+   * THE DATABASE IS THE AUTHORITY HERE and the annotation is what was wrong: the bounds are in a
+   * versioned migration, chosen on purpose, and §309 is explicit that an entity-only metadata
+   * correction must not be turned into a migration when the database already holds the intended
+   * canonical contract. Nothing about the stored data changes; the contract stops lying about it.
+   */
+  @Column({ name: "release_id", length: 120, nullable: true })
   releaseId?: string;
 
   @Column({ name: "source_url", type: "text", nullable: true })
@@ -83,13 +95,18 @@ export class Standard {
   @Column({ name: "retrieval_date", type: "date", nullable: true })
   retrievalDate?: string;
 
-  @Column({ name: "source_document_checksum", length: 64, nullable: true })
+  /**
+   * §309. `char(64)`, not `varchar(64)`. The column is a fixed-width sha256 hex digest and the
+   * migration declared it fixed-width; `bpchar` and `varchar` differ in padding and in comparison,
+   * so the distinction is semantic rather than cosmetic.
+   */
+  @Column({ name: "source_document_checksum", type: "char", length: 64, nullable: true })
   sourceDocumentChecksum?: string;
 
-  @Column({ name: "normalized_record_checksum", length: 64, nullable: true })
+  @Column({ name: "normalized_record_checksum", type: "char", length: 64, nullable: true })
   normalizedRecordChecksum?: string;
 
-  @Column({ name: "transformation_version", nullable: true })
+  @Column({ name: "transformation_version", length: 80, nullable: true })
   transformationVersion?: string;
 
   @Column({ name: "reviewer_approved", default: false })
@@ -98,13 +115,13 @@ export class Standard {
   @Column({ name: "approval_date", type: "timestamptz", nullable: true })
   approvalDate?: Date;
 
-  @Column({ name: "deprecation_status", default: "active" })
+  @Column({ name: "deprecation_status", length: 24, default: "active" })
   deprecationStatus: string;
 
   @Column({ name: "superseded_by_citation", nullable: true })
   supersededByCitation?: string;
 
-  @Column({ name: "applicability_schema_version", nullable: true })
+  @Column({ name: "applicability_schema_version", length: 80, nullable: true })
   applicabilitySchemaVersion?: string;
 
   // 🔥 Hazard-based matching

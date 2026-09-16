@@ -1,0 +1,145 @@
+{
+  "schema": "insite.section-evidence.v1",
+  "section": "309",
+  "title": "SC-2 — entity declaration versus canonical database contract, reconciled",
+  "capturedAt": "2026-09-16",
+  "providerCalls": 0,
+  "expertExecutions": 0,
+  "spendUsd": 0,
+  "charges": 0,
+  "databaseChanges": "NONE. No migration was written, no column was altered, no default was changed, no index was touched. Both repairs are ENTITY METADATA ONLY.",
+  "historicalRowsModified": "NO. Not one row in any database was read for modification. The suite's own fixtures are created and deleted inside a disposable test_insite_* database.",
+  "backfills": "NONE.",
+  "manualProductionDatabaseWrites": "NONE.",
+  "canonicalManifestChanges": "NONE. `canonical-schema.manifest.json` is byte-unchanged and the §305 gate still reports 68 tables and 0 material differences with the same digest.",
+
+  "howTheTwoWereIdentified": {
+    "instrument": "backend/scripts/check-entity-contract.ts, new at §309",
+    "method": "TypeORM's OWN comparison via `createSchemaBuilder().log()` — the machinery behind `typeorm schema:log` and the machinery that would actually run if `synchronize` were ever enabled. A hand-written comparator would be a second opinion about type equivalence, and the opinion that decides whether a read fails at runtime is TypeORM's.",
+    "scope": "Run against a FRESH MIGRATION REPLAY in a disposable database, never against production. §305 proved production and a fresh replay converge, so a statement about the replay is a statement about production.",
+    "baselineMeasurement": "27 material differences in 5 classes, from 222 emitted sync queries, with 184 cosmetic (constraint/index/FK name) differences correctly separated out.",
+    "oneImportantDetail": "TypeORM expresses a type change it cannot perform in place as DROP COLUMN + ADD COLUMN of the same name. The instrument recognises that pair and reports it as ONE COLUMN_TYPE difference. Reporting it as a drop would make the gate look like it is proposing to destroy customer data, which is how a gate gets ignored."
+  },
+
+  "contradiction1": {
+    "object": "standards_master — six columns",
+    "entity": "src/standards/entities/standard.entity.ts (class Standard)",
+    "properties": ["release_id", "source_document_checksum", "normalized_record_checksum", "transformation_version", "deprecation_status", "applicability_schema_version"],
+    "entityDeclarationBefore": {
+      "release_id": "@Column({ name: 'release_id', nullable: true })  -> unbounded varchar",
+      "transformation_version": "@Column({ nullable: true })  -> unbounded varchar",
+      "applicability_schema_version": "@Column({ nullable: true })  -> unbounded varchar",
+      "deprecation_status": "@Column({ default: 'active' })  -> unbounded varchar",
+      "source_document_checksum": "@Column({ length: 64, nullable: true })  -> varchar(64)",
+      "normalized_record_checksum": "@Column({ length: 64, nullable: true })  -> varchar(64)"
+    },
+    "canonicalDeclaration": {
+      "release_id": "character varying(120)",
+      "transformation_version": "character varying(80)",
+      "applicability_schema_version": "character varying(80)",
+      "deprecation_status": "character varying(24) NOT NULL DEFAULT 'active'",
+      "source_document_checksum": "character(64)",
+      "normalized_record_checksum": "character(64)"
+    },
+    "productionDeclaration": "Identical to the canonical declaration. §305 proved production and a fresh replay converge with 0 material differences, and these columns are created by a migration rather than by a historical synchronize.",
+    "migrationDeclaration": "src/database/migrations/1800000004000-RegulatoryReleaseGovernance.ts — `ADD COLUMN IF NOT EXISTS \"release_id\" varchar(120)`, `\"source_document_checksum\" char(64)`, `\"normalized_record_checksum\" char(64)`, `\"transformation_version\" varchar(80)`, `\"deprecation_status\" varchar(24) NOT NULL DEFAULT 'active'`, `\"applicability_schema_version\" varchar(80)`. Every bound is explicit and deliberate.",
+    "runtimeUse": "HazLenz regulatory knowledge governance — release binding, source provenance and deprecation of standards records. Read and written by the standards ingestion and release machinery. NOT on the Beta v1 individual inspection path, which is why §305A's 62/62 workflow completes without touching it.",
+    "rowCount": "2,390 standards rows in production per the §305 register text; the six governance columns are sparsely populated.",
+    "whyS305ExcludedIt": "§305's convergence migration deliberately carried only changes proven safe on BOTH sides, and this needed a decision about which side was authoritative rather than a transcription. §305 said so explicitly: the additive route 'should be done by someone who knows what they are for rather than transcribed'.",
+    "whyS307FoundNoSecurityConsequence": "§307 drove POST /standards/match and POST /applicable-standards/suggest — the two routes that read standards_master — with an authenticated individual and measured 201 and 400. No 500, no disclosure. The contradiction was not reachable as a security consequence.",
+    "THE_REGISTER_TEXT_WAS_STALE": "SC-2 recorded that 'neither production nor a fresh replay has them, so any query naming them fails — the §266 failure mode'. §309 MEASURED all six present in a fresh replay with the exact types above. The columns were added by migration 1800000004000; the register text describes a state that no longer exists. The real contradiction was never ABSENCE — it was the entity failing to declare bounds the database enforces.",
+    "intendedSemantics": "The DATABASE is authoritative. The bounds live in a versioned migration and were chosen on purpose; `char(64)` is correct for a fixed-width sha256 hex digest. The entity had simply never said any of it.",
+    "repair": "ENTITY ONLY. Declared length 120 / 80 / 80 / 24 and `type: 'char', length: 64` on the two checksums. §309 forbids creating a migration for an entity-only metadata correction when the database already holds the intended canonical contract, and no migration was created.",
+    "roundTripProof": {
+      "E-1": "All six columns present in the replay — the stale claim disproved by measurement rather than by argument.",
+      "E-2": "Both checksum columns are character(64).",
+      "E-3": "A 64-character digest written through the repaired entity reads back EXACTLY, at length 64 — a full-width value in a fixed-width column has no padding to strip.",
+      "E-4": "Values at the exact declared bounds (120, 80, 80) round-trip at full length.",
+      "E-5": "The defaulted column round-trips its value.",
+      "E-6": "A value ONE CHARACTER over the bound is REFUSED by the database — the bound is real, which is exactly why the entity had to declare it."
+    }
+  },
+
+  "contradiction2": {
+    "object": "Four timestamp columns",
+    "properties": ["site.createdAt", "inspection.createdAt", "user.deletedAt", "user.nextBillingDate"],
+    "entities": ["src/sites/entities/site.entity.ts", "src/inspection/inspection.entity.ts", "src/users/user.entity.ts"],
+    "entityDeclarationBefore": "@CreateDateColumn({ type: 'timestamptz' }) on the two createdAt columns; @Column({ type: 'timestamptz', nullable: true }) on deletedAt and nextBillingDate.",
+    "canonicalDeclaration": "timestamp without time zone — all four, measured from information_schema in a fresh replay.",
+    "productionDeclaration": "Identical, by the §305 convergence property.",
+    "runtimeUse": "site.createdAt and inspection.createdAt are record-creation moments shown in history and ordering. user.deletedAt is read as a TRUTHINESS check by JwtStrategy ('if (!user || user.deletedAt) throw') and is never compared as an instant. user.nextBillingDate is billing display.",
+    "intendedSemantics": "All four are INSTANTS, not wall-clock values. The ideal contract for an instant is timezone-aware — and §309 measured that the declaration is NOT the mechanism that delivers it.",
+    "theMeasurementThatDecidedIt": {
+      "A-1": "Naive column + naive declaration, UTC write and UTC read: 5/5 instants EXACT. This is production today.",
+      "A-2": "Naive column, UTC write and America/Denver read: 5/5 instants MOVED, by the offset. A naive column stores no offset, so the reader has to invent one — and it uses the Node process timezone.",
+      "B-1": "THE CURRENT MISMATCH IS LOSSLESS UNDER UTC. 5/5 exact. This is why nothing has ever gone wrong, and why SC-2 was a P2 annotation defect rather than a data-integrity one.",
+      "B-2": "AND THE DECLARATION DOES NOT CHANGE THAT. Under a Denver reader the mismatched declaration moves 5/5 instants — exactly as the naive declaration does. An offset the column never stored cannot be recovered by claiming it is there.",
+      "C-1": "A genuinely timestamptz COLUMN survives a UTC write and a Denver read 5/5 exact — the contrast that makes A-2 and B-2 meaningful.",
+      "probeValues": "Instants chosen to make an offset error unmistakable rather than subtle: 23:30Z on the last day of a month (a negative offset moves it into the previous month), 00:30Z on the first day of a month, and both US DST transition instants."
+    },
+    "repair": "ENTITY ONLY. All four now declare `timestamp`. Because B-1 and B-2 are identical to A-1 and A-2, this changes NO runtime behaviour at all — it removes a claim the storage could not honour.",
+    "whyNotConvertTheColumn": "Converting to timestamptz is the only change that would actually make these instants portable, and it means rewriting stored customer timestamps against an assumed offset. §305 refused it and §309 forbids timezone reinterpretation of historical customer data without evidence. The local development database's server TimeZone is America/New_York while production's is UTC, so an assumed offset would not even be constant across environments.",
+    "residualRegistered": "SC-5. These are INSTANTS held in naive columns. They are lossless because the deployment runs UTC — a property of the deployment, not of the schema. Registered so the coincidence is not mistaken for a control.",
+    "roundTripProof": {
+      "D-1": "All four columns confirmed `timestamp without time zone` in the canonical database.",
+      "D-3": "site.createdAt round-trips 2026-01-31T23:30:00.000Z exactly through the real table.",
+      "D-4": "inspection.createdAt round-trips the exact instant.",
+      "D-5": "user.deletedAt and user.nextBillingDate both round-trip the exact instant.",
+      "D-6": "NULL behaviour preserved — a NULL reads back as NULL rather than as an epoch.",
+      "D-7": "DEFAULT behaviour preserved — a row inserted without createdAt receives the server default."
+    }
+  },
+
+  "authorizationSensitiveTimestamps": {
+    "result": "§307's finding PRESERVED and re-measured at §309. user.passwordChangedAt, user.passwordResetExpiresAt and refresh_tokens.expiresAt are all `timestamp with time zone` in the canonical database and are UNTOUCHED by §309. Assertion D-2.",
+    "why": "These three are the timestamps that carry an authorization decision — session invalidation on password change, reset-credential expiry and refresh-token expiry. A shifted instant in any of them is a window in which a token that should be dead still works. They were already correct and §309 changed nothing about them."
+  },
+
+  "entityContractGate": {
+    "command": "npm run check:entity-contract:db",
+    "wiring": "hazlenz:precommit, after check:canonical-schema. It is deterministic and offline — a pure function of the repository and a replayed schema — so unlike security:deps it belongs in precommit.",
+    "materialClasses": ["COLUMN_MISSING_IN_DB", "COLUMN_EXTRA_IN_DB", "COLUMN_TYPE", "COLUMN_NULLABILITY", "COLUMN_DEFAULT", "TABLE_MISSING_IN_DB"],
+    "cosmeticClasses": "Constraint and index NAMES, and foreign keys TypeORM re-adds under a generated name. 184 of them in this repository. §309 is explicit that not every ORM metadata difference should become a release blocker, and a gate that failed on 184 name hashes would be ignored within a week.",
+    "documentedLimitation": "Foreign keys are treated as cosmetic here because TypeORM regenerates their names from a metadata hash and cannot be compared by name. A differing TARGET would still be caught, because it would also appear as a column type or presence difference on the referencing column — and the §305 canonical-schema gate is what compares foreign keys WITH their actions between the replay and the manifest. The two gates are complementary rather than overlapping.",
+    "ledger": "src/database/entity-contract.baseline.json — 17 accepted differences, each with a reason and the section that accepted it. A difference not in the ledger FAILS. A ledger entry whose difference has gone is reported as STALE. There is deliberately NO entry for a standards_master length or for a timestamp type, so either SC-2 class returning fails the gate.",
+    "watchedToFail": [
+      "user.deletedAt reverted to timestamptz -> FAIL, exit 1, naming COLUMN_TYPE user.deletedAt",
+      "standards_master.release_id length removed -> FAIL, exit 1, naming COLUMN_TYPE standards_master.release_id",
+      "Both entities restored afterwards and their sha256 re-verified."
+    ],
+    "beforeAndAfter": "27 material differences / 27 unaccepted -> 17 material differences / 0 unaccepted. The 10 that disappeared are exactly SC-2's two classes: six standards_master columns and four timestamps."
+  },
+
+  "whatTheRepairRevealed": {
+    "instruction": "§309: 'If an entity-only correction causes TypeORM metadata to reveal another material contradiction: characterize it. Do not expand §309 into an unbounded cleanup sweep.'",
+    "SC-3": {
+      "title": "Four entities are mapped to tables that exist in neither the canonical manifest nor a fresh replay",
+      "entities": ["Report -> report", "Finding -> finding", "ReportAttachment -> report_attachments", "HazardTaxonomy -> hazard_taxonomy"],
+      "measured": "Every one fails with `relation \"<table>\" does not exist` on a fresh replay — the §266 failure mode, measured rather than inferred (assertion F-1).",
+      "canonicalSuccessorsExist": "`reports` (retired compatibility), `inspection_findings`, `inspection_reports` and `inspection_report_versions` are all in the manifest. The legacy entities were never retired alongside the routes that used them.",
+      "reachability": "These repositories are injected into AnalyticsService, ClassificationsService, ControlVerificationsService, ReviewsService and two IntelligenceServices, all of which back deployed controllers. Any route that actually queries one returns a 500. The Beta v1 individual path does not — §305A completes 62/62 and §307 passes 334/0 without touching them.",
+      "severity": "P1",
+      "notRepairedHere": "Retiring four entities and the service methods that inject them is a bounded section of its own, not an in-§309 correction. §309 forbids the sweep."
+    },
+    "SC-4": {
+      "title": "Thirteen residual entity-versus-database differences, each recorded in the ledger with a reason",
+      "composition": "1 COLUMN_TYPE (corrective_actions.reportId: DB varchar, entity uuid), 2 COLUMN_NULLABILITY, 5 COLUMN_DEFAULT, 5 COLUMN_EXTRA_IN_DB (legacy columns on safescope_knowledge_retrieval_logs).",
+      "theOneWorthNaming": "user.subscriptionStatus has DB DEFAULT 'active' while the entity declares 'none'. An INSERT omitting the column would create an account asserting an ACTIVE subscription — precisely the EN-3 defect §302 repaired in code. CONTAINED and measured: AuthService.register sets it explicitly on every path, so the default is never exercised. That is containment by code rather than by schema, and it is registered so it is not mistaken for a control. user.planCode ('basic' vs 'free') and standards_master.authority_tier (3 vs 1, opposite ends of the trust scale) are the same shape.",
+      "severity": "P3",
+      "notRepairedHere": "Each needs a decision about which side is authoritative, and several would need a migration on customer data. Recorded rather than guessed."
+    }
+  },
+
+  "regressionsPreserved": {
+    "canonicalSchema": "PASS — 68 tables, 0 material differences, manifest digest unchanged. No migration written.",
+    "individualWorkflow": "§305A 62 passed, 0 failed.",
+    "passwordRecovery": "§306 51 passed, 0 failed.",
+    "security": "§307 334 passed, 0 failed — SE-13, SE-14 and SE-18 assertions all inside it.",
+    "legalPublication": "§308 all 3 phases passed; the §308 legal gate 23/23.",
+    "evidenceIntegrity": "PASS — 0 new drift.",
+    "dependencySecurity": "PASS — 0 blocking production findings; the @nestjs/core SSE exception re-proven by its executable predicate across 2,404 source files. NestJS was NOT upgraded.",
+    "expertFlagAndLimits": "EXPERT_EXECUTION_ENABLED=true and 1 analysis / USD 1.00 per workspace per 24h, untouched.",
+    "companyTeam": "No Company/Team workflow implemented.",
+    "branding": "No rename, no counsel-content change, no Terms/Privacy activation. EM-2 still pending brand and sending domain."
+  }
+}

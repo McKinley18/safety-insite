@@ -1,0 +1,111 @@
+
+> safety-insite-backend@1.0.0 test:309-sc2-reconciliation:db
+> ts-node scripts/hazlenz/with-disposable-db.ts test:309-sc2-reconciliation
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789598379901_7141
+registered as run 16cfc1f6-84cc-4fec-b6ca-0a002289dcba
+
+> safety-insite-backend@1.0.0 test:309-sc2-reconciliation
+> ts-node scripts/test-309-sc2-reconciliation.ts
+
+resolved target host=127.0.0.1 database=test_insite_1789598379901_7141
+
+================================================================================================
+§309 SC-2 RECONCILIATION — both contradictions, proven by round trip
+================================================================================================
+
+  database server TimeZone   America/New_York
+  node process TZ            (unset — the machine default)
+
+---- A. THE CANONICAL COLUMN IS `timestamp without time zone`. WHAT DOES IT DO? ----
+
+ok    A-1 naive column, entity declares naive, WRITE and READ both in UTC: every instant survives exactly. This is production today.  [5/5 exact]
+        exact  2026-06-15T12:00:00.000Z -> 2026-06-15T12:00:00.000Z   (ordinary midday)
+        exact  2026-01-31T23:30:00.000Z -> 2026-01-31T23:30:00.000Z   (30 min before midnight UTC on the last day of a month)
+        exact  2026-02-01T00:30:00.000Z -> 2026-02-01T00:30:00.000Z   (30 min after midnight UTC on the first day of a month)
+        exact  2026-03-08T07:30:00.000Z -> 2026-03-08T07:30:00.000Z   (a US DST spring-forward instant)
+        exact  2026-11-01T05:30:00.000Z -> 2026-11-01T05:30:00.000Z   (a US DST fall-back instant)
+
+        MOVED  2026-06-15T12:00:00.000Z -> 2026-06-15T18:00:00.000Z   (ordinary midday)
+        MOVED  2026-01-31T23:30:00.000Z -> 2026-02-01T06:30:00.000Z   (30 min before midnight UTC on the last day of a month)
+        MOVED  2026-02-01T00:30:00.000Z -> 2026-02-01T07:30:00.000Z   (30 min after midnight UTC on the first day of a month)
+        MOVED  2026-03-08T07:30:00.000Z -> 2026-03-08T13:30:00.000Z   (a US DST spring-forward instant)
+        MOVED  2026-11-01T05:30:00.000Z -> 2026-11-01T12:30:00.000Z   (a US DST fall-back instant)
+ok    A-2 naive column, WRITTEN in UTC and READ in America/Denver: 5 of 5 instants moved. THIS IS THE MEASUREMENT THAT DECIDES THE REPAIR — a naive column carries no offset, so the reader has to invent one.  [5 moved]
+
+---- B. WHAT THE CURRENT (MISMATCHED) DECLARATION DOES ----
+
+        exact  2026-06-15T12:00:00.000Z -> 2026-06-15T12:00:00.000Z   (ordinary midday)
+        exact  2026-01-31T23:30:00.000Z -> 2026-01-31T23:30:00.000Z   (30 min before midnight UTC on the last day of a month)
+        exact  2026-02-01T00:30:00.000Z -> 2026-02-01T00:30:00.000Z   (30 min after midnight UTC on the first day of a month)
+        exact  2026-03-08T07:30:00.000Z -> 2026-03-08T07:30:00.000Z   (a US DST spring-forward instant)
+        exact  2026-11-01T05:30:00.000Z -> 2026-11-01T05:30:00.000Z   (a US DST fall-back instant)
+ok    B-1 THE CURRENT MISMATCH IS LOSSLESS UNDER UTC. A naive column read through a `timestamptz` declaration returns the exact instant when the process runs UTC — which is why nothing has ever gone wrong, and why this was a P2 annotation defect rather than a data-integrity one.  [5/5 exact]
+
+        MOVED  2026-06-15T12:00:00.000Z -> 2026-06-15T18:00:00.000Z   (ordinary midday)
+        MOVED  2026-01-31T23:30:00.000Z -> 2026-02-01T06:30:00.000Z   (30 min before midnight UTC on the last day of a month)
+        MOVED  2026-02-01T00:30:00.000Z -> 2026-02-01T07:30:00.000Z   (30 min after midnight UTC on the first day of a month)
+        MOVED  2026-03-08T07:30:00.000Z -> 2026-03-08T13:30:00.000Z   (a US DST spring-forward instant)
+        MOVED  2026-11-01T05:30:00.000Z -> 2026-11-01T12:30:00.000Z   (a US DST fall-back instant)
+ok    B-2 and under a non-UTC reader it behaves the same way the naive declaration does: 5 of 5 moved. The DECLARATION does not change what the COLUMN can carry — an offset the column never stored cannot be recovered by claiming it is there.  [5 moved]
+
+---- C. A GENUINELY TIMEZONE-AWARE COLUMN, FOR CONTRAST ----
+
+        exact  2026-06-15T12:00:00.000Z -> 2026-06-15T12:00:00.000Z   (ordinary midday)
+        exact  2026-01-31T23:30:00.000Z -> 2026-01-31T23:30:00.000Z   (30 min before midnight UTC on the last day of a month)
+        exact  2026-02-01T00:30:00.000Z -> 2026-02-01T00:30:00.000Z   (30 min after midnight UTC on the first day of a month)
+        exact  2026-03-08T07:30:00.000Z -> 2026-03-08T07:30:00.000Z   (a US DST spring-forward instant)
+        exact  2026-11-01T05:30:00.000Z -> 2026-11-01T05:30:00.000Z   (a US DST fall-back instant)
+ok    C-1 a REAL timestamptz column survives a UTC write and a Denver read exactly — this is what the authorization-sensitive timestamps §307 checked already have, and it is the contrast that makes A-2 and B-2 meaningful rather than alarming in the abstract  [5/5 exact]
+
+---- D. THE PRODUCT COLUMNS THEMSELVES, THROUGH THE REAL ENTITIES ----
+
+  the canonical column contract for every timestamp §309 touches or preserves:
+
+        inspection       createdAt                timestamp without time zone
+        refresh_tokens   expiresAt                timestamp with time zone
+        site             createdAt                timestamp without time zone
+        user             deletedAt                timestamp without time zone
+        user             nextBillingDate          timestamp without time zone
+        user             passwordChangedAt        timestamp with time zone
+        user             passwordResetExpiresAt   timestamp with time zone
+ok    D-1 all four SC-2 timestamp columns are `timestamp without time zone` in the canonical database  [4 columns]
+ok    D-2 §307 PRESERVED: every timestamp that carries an authorization decision — passwordChangedAt, passwordResetExpiresAt and refresh_tokens.expiresAt — is still timestamptz and is untouched by §309  [3 columns, all timestamptz]
+ok    D-3 site.createdAt round-trips the exact instant through the real table under this process timezone — the repair changed the DECLARATION and left the behaviour identical  [2026-01-31T23:30:00.000Z -> 2026-01-31T23:30:00.000Z]
+ok    D-4 inspection.createdAt round-trips the exact instant  [2026-01-31T23:30:00.000Z]
+ok    D-5 user.deletedAt and user.nextBillingDate both round-trip the exact instant  [2026-01-31T23:30:00.000Z / 2026-01-31T23:30:00.000Z]
+ok    D-6 NULL behaviour is preserved on a repaired nullable column — a NULL reads back as NULL rather than as an epoch  [null]
+ok    D-7 DEFAULT behaviour is preserved — a row inserted without createdAt receives the server default and lands within minutes of now  [2026-09-16T22:39:45.040Z]
+
+---- E. CONTRADICTION #1: standards_master, PROVEN BY ROUND TRIP ----
+
+  the canonical contract migration 1800000004000 authored:
+
+        applicability_schema_version   character varying  80
+        deprecation_status             character varying  24
+        normalized_record_checksum     character          64
+        release_id                     character varying  120
+        source_document_checksum       character          64
+        transformation_version         character varying  80
+ok    E-1 ALL SIX COLUMNS EXIST. The SC-2 register text said neither production nor a fresh replay had them and that any query naming them would fail — that claim is STALE. Migration 1800000004000 authored all six with deliberate bounds, so the contradiction was never absence; it was the entity failing to declare the bounds.  [6/6 present]
+ok    E-2 both checksum columns are char(64) — fixed width, as a sha256 hex digest is  [normalized_record_checksum=character(64) source_document_checksum=character(64)]
+ok    E-3 a 64-character checksum written through the repaired entity reads back EXACTLY — char(64) stores a full-width digest with no padding to strip  [aaaaaaaaaaaa… len=64]
+ok    E-4 values at the exact declared bounds round-trip at full length — the entity now declares the bounds the database actually enforces  [release_id=120 transformation=80]
+ok    E-5 the defaulted column round-trips its value  [active]
+ok    E-6 and a value ONE CHARACTER over the bound is REFUSED by the database — the bound is real, which is why the entity had to declare it rather than assume unbounded varchar
+
+---- F. WHAT THE REPAIR REVEALED, CHARACTERIZED AND NOT REPAIRED ----
+
+        Report             -> "report"  FAILS: relation "report" does not exist
+        Finding            -> "finding"  FAILS: relation "finding" does not exist
+        ReportAttachment   -> "report_attachments"  FAILS: relation "report_attachments" does not exist
+        HazardTaxonomy     -> "hazard_taxonomy"  FAILS: relation "hazard_taxonomy" does not exist
+ok    F-1 SC-3 (new, NOT repaired here): four entities are mapped to tables that exist in neither the canonical manifest nor a fresh replay, and every read through them fails with "relation does not exist" — the §266 failure mode. Characterized and registered; repairing it is a bounded section of its own, not an in-§309 sweep.  [report, finding, report_attachments, hazard_taxonomy]
+ok    F-2 and the canonical successors DO exist: `reports` (retired compatibility), `inspection_findings`, `inspection_reports` and `inspection_report_versions` are all in the manifest. The legacy entities were never retired alongside the routes that used them.
+
+================================================================================================
+§309 SC-2 RECONCILIATION: 20 passed, 0 failed.
+Expert executions: 0. Provider calls: 0. Spend: $0.00.
+================================================================================================
+dropped test_insite_1789598379901_7141
