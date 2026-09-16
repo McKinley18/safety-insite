@@ -12,7 +12,6 @@
   "backfills": "NONE.",
   "manualProductionDatabaseWrites": "NONE.",
   "canonicalManifestChanges": "NONE. `canonical-schema.manifest.json` is byte-unchanged and the §305 gate still reports 68 tables and 0 material differences with the same digest.",
-
   "howTheTwoWereIdentified": {
     "instrument": "backend/scripts/check-entity-contract.ts, new at §309",
     "method": "TypeORM's OWN comparison via `createSchemaBuilder().log()` — the machinery behind `typeorm schema:log` and the machinery that would actually run if `synchronize` were ever enabled. A hand-written comparator would be a second opinion about type equivalence, and the opinion that decides whether a read fails at runtime is TypeORM's.",
@@ -20,11 +19,17 @@
     "baselineMeasurement": "27 material differences in 5 classes, from 222 emitted sync queries, with 184 cosmetic (constraint/index/FK name) differences correctly separated out.",
     "oneImportantDetail": "TypeORM expresses a type change it cannot perform in place as DROP COLUMN + ADD COLUMN of the same name. The instrument recognises that pair and reports it as ONE COLUMN_TYPE difference. Reporting it as a drop would make the gate look like it is proposing to destroy customer data, which is how a gate gets ignored."
   },
-
   "contradiction1": {
     "object": "standards_master — six columns",
     "entity": "src/standards/entities/standard.entity.ts (class Standard)",
-    "properties": ["release_id", "source_document_checksum", "normalized_record_checksum", "transformation_version", "deprecation_status", "applicability_schema_version"],
+    "properties": [
+      "release_id",
+      "source_document_checksum",
+      "normalized_record_checksum",
+      "transformation_version",
+      "deprecation_status",
+      "applicability_schema_version"
+    ],
     "entityDeclarationBefore": {
       "release_id": "@Column({ name: 'release_id', nullable: true })  -> unbounded varchar",
       "transformation_version": "@Column({ nullable: true })  -> unbounded varchar",
@@ -59,11 +64,19 @@
       "E-6": "A value ONE CHARACTER over the bound is REFUSED by the database — the bound is real, which is exactly why the entity had to declare it."
     }
   },
-
   "contradiction2": {
     "object": "Four timestamp columns",
-    "properties": ["site.createdAt", "inspection.createdAt", "user.deletedAt", "user.nextBillingDate"],
-    "entities": ["src/sites/entities/site.entity.ts", "src/inspection/inspection.entity.ts", "src/users/user.entity.ts"],
+    "properties": [
+      "site.createdAt",
+      "inspection.createdAt",
+      "user.deletedAt",
+      "user.nextBillingDate"
+    ],
+    "entities": [
+      "src/sites/entities/site.entity.ts",
+      "src/inspection/inspection.entity.ts",
+      "src/users/user.entity.ts"
+    ],
     "entityDeclarationBefore": "@CreateDateColumn({ type: 'timestamptz' }) on the two createdAt columns; @Column({ type: 'timestamptz', nullable: true }) on deletedAt and nextBillingDate.",
     "canonicalDeclaration": "timestamp without time zone — all four, measured from information_schema in a fresh replay.",
     "productionDeclaration": "Identical, by the §305 convergence property.",
@@ -89,16 +102,21 @@
       "D-7": "DEFAULT behaviour preserved — a row inserted without createdAt receives the server default."
     }
   },
-
   "authorizationSensitiveTimestamps": {
     "result": "§307's finding PRESERVED and re-measured at §309. user.passwordChangedAt, user.passwordResetExpiresAt and refresh_tokens.expiresAt are all `timestamp with time zone` in the canonical database and are UNTOUCHED by §309. Assertion D-2.",
     "why": "These three are the timestamps that carry an authorization decision — session invalidation on password change, reset-credential expiry and refresh-token expiry. A shifted instant in any of them is a window in which a token that should be dead still works. They were already correct and §309 changed nothing about them."
   },
-
   "entityContractGate": {
     "command": "npm run check:entity-contract:db",
     "wiring": "hazlenz:precommit, after check:canonical-schema. It is deterministic and offline — a pure function of the repository and a replayed schema — so unlike security:deps it belongs in precommit.",
-    "materialClasses": ["COLUMN_MISSING_IN_DB", "COLUMN_EXTRA_IN_DB", "COLUMN_TYPE", "COLUMN_NULLABILITY", "COLUMN_DEFAULT", "TABLE_MISSING_IN_DB"],
+    "materialClasses": [
+      "COLUMN_MISSING_IN_DB",
+      "COLUMN_EXTRA_IN_DB",
+      "COLUMN_TYPE",
+      "COLUMN_NULLABILITY",
+      "COLUMN_DEFAULT",
+      "TABLE_MISSING_IN_DB"
+    ],
     "cosmeticClasses": "Constraint and index NAMES, and foreign keys TypeORM re-adds under a generated name. 184 of them in this repository. §309 is explicit that not every ORM metadata difference should become a release blocker, and a gate that failed on 184 name hashes would be ignored within a week.",
     "documentedLimitation": "Foreign keys are treated as cosmetic here because TypeORM regenerates their names from a metadata hash and cannot be compared by name. A differing TARGET would still be caught, because it would also appear as a column type or presence difference on the referencing column — and the §305 canonical-schema gate is what compares foreign keys WITH their actions between the replay and the manifest. The two gates are complementary rather than overlapping.",
     "ledger": "src/database/entity-contract.baseline.json — 17 accepted differences, each with a reason and the section that accepted it. A difference not in the ledger FAILS. A ledger entry whose difference has gone is reported as STALE. There is deliberately NO entry for a standards_master length or for a timestamp type, so either SC-2 class returning fails the gate.",
@@ -109,12 +127,16 @@
     ],
     "beforeAndAfter": "27 material differences / 27 unaccepted -> 17 material differences / 0 unaccepted. The 10 that disappeared are exactly SC-2's two classes: six standards_master columns and four timestamps."
   },
-
   "whatTheRepairRevealed": {
     "instruction": "§309: 'If an entity-only correction causes TypeORM metadata to reveal another material contradiction: characterize it. Do not expand §309 into an unbounded cleanup sweep.'",
     "SC-3": {
       "title": "Four entities are mapped to tables that exist in neither the canonical manifest nor a fresh replay",
-      "entities": ["Report -> report", "Finding -> finding", "ReportAttachment -> report_attachments", "HazardTaxonomy -> hazard_taxonomy"],
+      "entities": [
+        "Report -> report",
+        "Finding -> finding",
+        "ReportAttachment -> report_attachments",
+        "HazardTaxonomy -> hazard_taxonomy"
+      ],
       "measured": "Every one fails with `relation \"<table>\" does not exist` on a fresh replay — the §266 failure mode, measured rather than inferred (assertion F-1).",
       "canonicalSuccessorsExist": "`reports` (retired compatibility), `inspection_findings`, `inspection_reports` and `inspection_report_versions` are all in the manifest. The legacy entities were never retired alongside the routes that used them.",
       "reachability": "These repositories are injected into AnalyticsService, ClassificationsService, ControlVerificationsService, ReviewsService and two IntelligenceServices, all of which back deployed controllers. Any route that actually queries one returns a 500. The Beta v1 individual path does not — §305A completes 62/62 and §307 passes 334/0 without touching them.",
@@ -129,7 +151,6 @@
       "notRepairedHere": "Each needs a decision about which side is authoritative, and several would need a migration on customer data. Recorded rather than guessed."
     }
   },
-
   "regressionsPreserved": {
     "canonicalSchema": "PASS — 68 tables, 0 material differences, manifest digest unchanged. No migration written.",
     "individualWorkflow": "§305A 62 passed, 0 failed.",
@@ -141,5 +162,24 @@
     "expertFlagAndLimits": "EXPERT_EXECUTION_ENABLED=true and 1 analysis / USD 1.00 per workspace per 24h, untouched.",
     "companyTeam": "No Company/Team workflow implemented.",
     "branding": "No rename, no counsel-content change, no Terms/Privacy activation. EM-2 still pending brand and sending domain."
+  },
+  "productionProof": {
+    "releaseSha": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
+    "previousReleaseSha": "7e297dce4895a36e07341312ecce9e2e39b2f4ca",
+    "applicationSourceDigest": "aa85802d… -> bacfdb7064ff9e58010b52cb4e0a36100114e17503b1b141ed92dfb70ef010a2",
+    "renderDeploy": "dep-dalhqcv40ujc73e39nm0, trigger api, status live",
+    "runningShaVerification": "RUNNING SHA OK, version source RENDER_GIT_COMMIT. Unlike §308, the first attempt succeeded — the OPS-2 window did not open this time, which is a property of the deploy rather than of the fix.",
+    "fiveStableReadBacks": "Five reads at 10-second intervals, all identical: 75b5a1494cd6, ready, schema 1800000025000 57/57, aheadOfBuild empty, serverErrorsInWindow 0.",
+    "scriptedProof": "20 assertions, 0 failed. SECTION-309-PRODUCTION-PROOF-RUN.txt",
+    "productionStructuralResult": "UNCHANGED, and that is the point. §309 wrote no migration, so the schema head, the applied count and aheadOfBuild are the numbers that prove it: 1800000025000, 57/57, []. /health/schema independently reports 0 missing and 0 ahead.",
+    "entityMetadataLoadedAtBoot": "The four routes that read the repaired entities — /inspections, /sites, /inspection-reports, /actions — all answer 401 rather than 500, which is the evidence that the application booted with the new entity metadata and mapped it successfully. A bad column type or a bad length would have failed at metadata build or on first query.",
+    "regressionsConfirmedLive": [
+      "§308: both legal routes still answer 200 with NOT_YET_PUBLISHED.",
+      "§307: readiness still withholds the alerting thresholds; CORS still exact-origin; the synchronize route still unreachable.",
+      "Frontend /terms, /privacy, /login, /register all 200."
+    ],
+    "unexpected5xx": "None. serverErrorsInWindow 0 after every probe.",
+    "directDatabaseWrites": "ZERO. The production proof is entirely read-only — no account was created and nothing was written. §309 wrote nothing to production at any point.",
+    "retainedSyntheticState": "NONE."
   }
 }

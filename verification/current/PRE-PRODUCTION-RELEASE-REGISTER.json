@@ -2,7 +2,7 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298, HZ-4/HZ-5 §299, HZ-9/HZ-6/HZ-7 §300, BI-4 §301, EN-3 §302, SE-5 §303",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "7e297dce4895a36e07341312ecce9e2e39b2f4ca",
+  "candidateHead": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -2188,12 +2188,17 @@
       "lastUpdatedBy": "§309"
     }
   ],
-  "candidateHeadPredecessor": "8dfa378c2b0d8071d189c7cdfd2e745f24fec5f7",
+  "candidateHeadPredecessor": "8fe867906568be4f12690eab51c25a61a3110b12",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
-  "candidateProductSourceCommit": "7e297dce4895a36e07341312ecce9e2e39b2f4ca",
-  "applicationSourceDigest": "aa85802d2ffe1a945133e40281a69640510ed36bec00c0155dcca4c3fa258a45",
+  "candidateProductSourceCommit": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
+  "applicationSourceDigest": "bacfdb7064ff9e58010b52cb4e0a36100114e17503b1b141ed92dfb70ef010a2",
   "applicationSourceDigestSuperseded": [
+    {
+      "digest": "aa85802d2ffe1a945133e40281a69640510ed36bec00c0155dcca4c3fa258a45",
+      "at": "7e297dce4895a36e07341312ecce9e2e39b2f4ca",
+      "section": "§308 LG-3"
+    },
     {
       "digest": "91eaa67cb91fe1bc956b16027bac2bdd65d2937eaca0071a7d37c3fe95739fe6",
       "at": "ea06f08373e2daf1090d94a6258c6bf7333023c5",
@@ -2242,10 +2247,10 @@
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "7e297dce4895a36e07341312ecce9e2e39b2f4ca",
-  "deployedAt": "2026-09-16T22:17:35Z (Render deploy dep-dalha53l550s73b95o90, trigger api)",
+  "deployedReleaseSha": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
+  "deployedAt": "2026-09-16T22:52:14Z (Render deploy dep-dalhqcv40ujc73e39nm0, trigger api)",
   "schemaHead": "1800000025000",
-  "applicationSourceDigestNote": "§308 (LG-3). Recomputed by the documented command over the build-determining paths; run at 8dfa378c it reproduced §307 91eaa67c exactly before being applied to the new release, so the method was checked against a known answer rather than assumed. DEPLOYED and read back: /health/version reports gitCommit 7e297dce4895a36e07341312ecce9e2e39b2f4ca over five consecutive stable reads. NOTE ON OPS-2: the FIRST release:verify-sha run after the deploy reported live still measured the previous commit ea06f083 — the exact failure mode OPS-2 describes. It was re-run after the cutover and reported RUNNING SHA OK, and five stable read-backs followed. Recorded rather than quietly retried.",
+  "applicationSourceDigestNote": "§309 (SC-2). Recomputed by the documented command over the build-determining paths; run at 8fe86790 it reproduced §308’s aa85802d exactly before being applied to the new release, so the method was checked against a known answer rather than assumed. DEPLOYED and read back: /health/version reports gitCommit 75b5a1494cd6df35785dd7a6831826f39a41b8c4 over five consecutive stable reads with buildTimestampSourceStatus BUILD_TIMESTAMP. The digest moved ONLY because entity metadata and two new scripts changed; no migration was written and the schema position is byte-identical at 1800000025000, 57/57, aheadOfBuild empty.",
   "artifactOnlyDigestDiagnostic": {
     "value": "fa0330d9d74e58299cb66996b3e86b1c70673a4e822b725db6d909a8dadc51c7",
     "previousValue": "5fb47c7f5ae5f9b93693dbae046a1a5e2cf3c87ccf3cf87cd30b4fcdadd263c6",

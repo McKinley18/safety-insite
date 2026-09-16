@@ -1,0 +1,27 @@
+§309 PRODUCTION PROOF — read-only
+
+ok    PP-0 the instance is serving the §309 release commit  [75b5a1494cd6]
+ok    PP-0b the build timestamp is stamped rather than a fallback  [BUILD_TIMESTAMP]
+ok    PP-1 the service is ready  [ready]
+ok    PP-2 STRUCTURAL: the schema position is UNCHANGED by §309 — same head, 57/57, nothing ahead of the build. §309 wrote no migration, so this is the number that proves it.  [1800000025000 57/57]
+ok    PP-3 and readiness reports the schema as current  [current]
+ok    PP-4 /health/schema reports every migration the build requires is applied, none missing, none ahead  [missing=0 ahead=0]
+ok    PP-5 inspections route is live and refuses unauthenticated (the entity metadata loaded at boot)  [401]
+ok    PP-5 sites route is live and refuses unauthenticated (the entity metadata loaded at boot)  [401]
+ok    PP-5 reports route is live and refuses unauthenticated (the entity metadata loaded at boot)  [401]
+ok    PP-5 actions route is live and refuses unauthenticated (the entity metadata loaded at boot)  [401]
+ok    PP-6 §308 PRESERVED: /legal/documents/terms still answers 200 with the pre-publication state  [NOT_YET_PUBLISHED]
+ok    PP-6 §308 PRESERVED: /legal/documents/privacy still answers 200 with the pre-publication state  [NOT_YET_PUBLISHED]
+ok    PP-7 §307 PRESERVED: readiness still does not publish the alerting thresholds
+ok    PP-8 §307 PRESERVED: CORS still returns the exact frontend origin and nothing for a foreign one
+ok    PP-9 §307 PRESERVED: the synchronize route is still unreachable  [401]
+ok    PP-10 frontend /terms answers 200  [200]
+ok    PP-10 frontend /privacy answers 200  [200]
+ok    PP-10 frontend /login answers 200  [200]
+ok    PP-10 frontend /register answers 200  [200]
+ok    PP-11 serverErrorsInWindow is 0 after every probe  [0]
+
+====================================================================================
+§309 PRODUCTION PROOF: 20 passed, 0 failed.
+Direct DB writes: 0. Accounts created: 0. Charges: 0. Expert calls: 0. Provider calls: 0. Spend: $0.00.
+====================================================================================
