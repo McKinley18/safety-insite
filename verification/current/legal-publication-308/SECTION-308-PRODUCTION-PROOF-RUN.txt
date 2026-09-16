@@ -1,0 +1,39 @@
+§308 PRODUCTION PROOF  —  https://safescope-backend.onrender.com / https://safety-insite.vercel.app
+
+ok    PP-0  every probe below runs against the §308 release commit  [7e297dce4895]
+ok    PP-terms GET /legal/documents/terms answers 200 UNAUTHENTICATED  [200]
+ok    PP-terms and reports the bounded pre-publication state, because no counsel-approved document exists  [NOT_YET_PUBLISHED]
+ok    PP-terms NO body, NO version, NO effective date — the response shape has no field capable of carrying them  [["documentType","status","title","reason","acceptanceAvailable","awaiting"]]
+ok    PP-terms and states acceptance is NOT available rather than leaving it to be inferred
+ok    PP-terms with a professional reason rather than a bare failure
+ok    PP-terms NO draft marker or contracting placeholder leaks  [none]
+ok    PP-terms NO filesystem path, registry field, approval note or configuration leaks  [none]
+ok    PP-privacy GET /legal/documents/privacy answers 200 UNAUTHENTICATED  [200]
+ok    PP-privacy and reports the bounded pre-publication state, because no counsel-approved document exists  [NOT_YET_PUBLISHED]
+ok    PP-privacy NO body, NO version, NO effective date — the response shape has no field capable of carrying them  [["documentType","status","title","reason","acceptanceAvailable","awaiting"]]
+ok    PP-privacy and states acceptance is NOT available rather than leaving it to be inferred
+ok    PP-privacy with a professional reason rather than a bare failure
+ok    PP-privacy NO draft marker or contracting placeholder leaks  [none]
+ok    PP-privacy NO filesystem path, registry field, approval note or configuration leaks  [none]
+ok    PP-summary the publication summary reports both types as NOT_YET_PUBLISHED  [["terms=NOT_YET_PUBLISHED","privacy=NOT_YET_PUBLISHED"]]
+ok    PP-summary and claims no version, no digest and no acceptance for either
+ok    20 NO synthetic test document is active in production — no fixture body, version or marker appears anywhere  [clean]
+ok    PP-badtype an unknown document type is 400, not 404  [400]
+ok    PP-agreements exactly one agreement is in force: the internal acknowledgement. No legal document is projected, because none is ACTIVE.  [["internal-pre-beta-acknowledgement"]]
+ok    PP-agreements the list exposes requiredAtRegistration, which is what lets the client send an assertion for every required agreement rather than one it was hard-coded to look for
+ok    PP-agreements and it is still NOT_COUNSEL_REVIEWED — §308 manufactured no approval  [NOT_COUNSEL_REVIEWED]
+ok    PP-agreements NO legal: agreement exists, so registration cannot bind to a document that has not been approved
+ok    PP-fe /terms answers 200  [200]
+ok    PP-fe /privacy answers 200  [200]
+ok    PP-fe /register answers 200  [200]
+ok    PP-fe /login answers 200  [200]
+ok    PP-fe /terms carries the §307 security headers  [all present]
+ok    PP-fe /privacy carries the §307 security headers  [all present]
+ok    47 the service is ready and serverErrorsInWindow is 0 after every probe above  [ready 5xx=0]
+ok    PP-schema the schema position is unchanged  [1800000025000 57/57]
+ok    PP-se17 SE-17 still holds: readiness does not publish the alerting thresholds
+
+========================================================================================
+§308 PRODUCTION PROOF: 32 passed, 0 failed.
+Direct DB writes: 0. Accounts created: 0. Charges: 0. Expert calls: 0. Provider calls: 0. Spend: $0.00.
+========================================================================================

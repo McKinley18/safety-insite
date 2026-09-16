@@ -8,59 +8,143 @@
   "spendUsd": 0,
   "charges": 0,
   "directDatabaseWrites": "NONE BY HAND. Every mutation ran against a disposable test_insite_* database created and dropped by scripts/hazlenz/with-disposable-db.ts. No migration was written and none was needed: the acceptance binding reuses the §291 `agreement_acceptances` table, whose agreementId (varchar 128), agreementVersion (varchar 64) and documentDigest (varchar 64 — exactly a sha256) already carry everything §308 requires.",
-
   "sevenDocumentInventory": {
     "source": "project-docs/legal/, authored at §269 by engineering",
     "classification": "EVERY ONE IS A DRAFT. Each carries the header `INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED`. No attorney has reviewed, approved or been engaged on any of them.",
     "notRewritten": "§308 forbids rewriting substantive legal language, silently merging documents or manufacturing counsel approval. None of the seven was edited, merged, moved or reclassified by §308.",
     "documents": [
-      { "n": 1, "name": "Controlled Beta Terms", "path": "project-docs/legal/CONTROLLED-BETA-TERMS.md", "lines": 141, "purpose": "Invitation-only nature, permitted use, allocation of responsibility, availability, termination.", "version": "none — a draft carries no version identity", "approvalState": "DRAFT / NOT COUNSEL REVIEWED", "customerFacingRelevance": "PRIMARY. This is the document /terms will publish once approved. Carries `[LEGAL ENTITY]`, `[ENTITY ADDRESS]`, `[BETA TERM]` and, per LG-2, liability allocation is DELIBERATELY UNDRAFTED." },
-      { "n": 2, "name": "Beta Privacy Notice", "path": "project-docs/legal/BETA-PRIVACY-NOTICE.md", "lines": 156, "purpose": "What is collected, why, who processes it, retention, choices.", "version": "none", "approvalState": "DRAFT / NOT COUNSEL REVIEWED", "customerFacingRelevance": "PRIMARY. The document /privacy will publish once approved. Its own header records that NO jurisdictional analysis has been performed." },
-      { "n": 3, "name": "AI / third-party provider disclosure", "path": "project-docs/legal/AI-PROVIDER-DISCLOSURE.md", "lines": 108, "purpose": "That a hosted third-party model performs semantic reasoning, and what it is and is not permitted to decide.", "version": "none", "approvalState": "DRAFT / NOT COUNSEL REVIEWED", "customerFacingRelevance": "CUSTOMER-FACING when published. NOT given a publication route by §308: the two routes §308 required are /terms and /privacy, and inventing routes for the other five would be engineering deciding the publication set. The framework supports adding a document type when the product owner decides to publish one." },
-      { "n": 4, "name": "Safety responsibility statement", "path": "project-docs/legal/SAFETY-RESPONSIBILITY.md", "lines": 80, "purpose": "The qualified-professional boundary the architecture actually enforces.", "version": "none", "approvalState": "DRAFT / NOT COUNSEL REVIEWED", "customerFacingRelevance": "PARTIALLY LIVE ALREADY, and not through this framework: its substance appears in the registration acknowledgement and in the report basis footer. Registered separately as SR-1 (placement consistency)." },
-      { "n": 5, "name": "Product limitations", "path": "project-docs/legal/PRODUCT-LIMITATIONS.md", "lines": 99, "purpose": "Measured, specific limitations rather than a generic disclaimer.", "version": "none", "approvalState": "DRAFT / NOT COUNSEL REVIEWED", "customerFacingRelevance": "CUSTOMER-FACING when published. Sourced from the CAPABILITY-REGISTER, which remains the authoritative claims inventory." },
-      { "n": 6, "name": "Feedback and improvement boundary", "path": "project-docs/legal/FEEDBACK-AND-DATA-USE.md", "lines": 103, "purpose": "What may and may not be done with beta content; the no-training commitment.", "version": "none", "approvalState": "DRAFT / NOT COUNSEL REVIEWED", "customerFacingRelevance": "Referenced BY the Terms and the Privacy Notice and intended to form part of them, so its publication path is most likely as part of those documents rather than as a route of its own. A counsel decision, not an engineering one." },
-      { "n": 7, "name": "Beta claims guardrails", "path": "project-docs/legal/CLAIMS-GUARDRAILS.md", "lines": 81, "purpose": "Language that may and may not be used while the beta runs.", "version": "none", "approvalState": "DRAFT / NOT COUNSEL REVIEWED", "customerFacingRelevance": "INTERNAL. This is an operating constraint on the product's own copy, not a document a customer is given. Enforcement against live copy is CM-1, which is open." }
+      {
+        "n": 1,
+        "name": "Controlled Beta Terms",
+        "path": "project-docs/legal/CONTROLLED-BETA-TERMS.md",
+        "lines": 141,
+        "purpose": "Invitation-only nature, permitted use, allocation of responsibility, availability, termination.",
+        "version": "none — a draft carries no version identity",
+        "approvalState": "DRAFT / NOT COUNSEL REVIEWED",
+        "customerFacingRelevance": "PRIMARY. This is the document /terms will publish once approved. Carries `[LEGAL ENTITY]`, `[ENTITY ADDRESS]`, `[BETA TERM]` and, per LG-2, liability allocation is DELIBERATELY UNDRAFTED."
+      },
+      {
+        "n": 2,
+        "name": "Beta Privacy Notice",
+        "path": "project-docs/legal/BETA-PRIVACY-NOTICE.md",
+        "lines": 156,
+        "purpose": "What is collected, why, who processes it, retention, choices.",
+        "version": "none",
+        "approvalState": "DRAFT / NOT COUNSEL REVIEWED",
+        "customerFacingRelevance": "PRIMARY. The document /privacy will publish once approved. Its own header records that NO jurisdictional analysis has been performed."
+      },
+      {
+        "n": 3,
+        "name": "AI / third-party provider disclosure",
+        "path": "project-docs/legal/AI-PROVIDER-DISCLOSURE.md",
+        "lines": 108,
+        "purpose": "That a hosted third-party model performs semantic reasoning, and what it is and is not permitted to decide.",
+        "version": "none",
+        "approvalState": "DRAFT / NOT COUNSEL REVIEWED",
+        "customerFacingRelevance": "CUSTOMER-FACING when published. NOT given a publication route by §308: the two routes §308 required are /terms and /privacy, and inventing routes for the other five would be engineering deciding the publication set. The framework supports adding a document type when the product owner decides to publish one."
+      },
+      {
+        "n": 4,
+        "name": "Safety responsibility statement",
+        "path": "project-docs/legal/SAFETY-RESPONSIBILITY.md",
+        "lines": 80,
+        "purpose": "The qualified-professional boundary the architecture actually enforces.",
+        "version": "none",
+        "approvalState": "DRAFT / NOT COUNSEL REVIEWED",
+        "customerFacingRelevance": "PARTIALLY LIVE ALREADY, and not through this framework: its substance appears in the registration acknowledgement and in the report basis footer. Registered separately as SR-1 (placement consistency)."
+      },
+      {
+        "n": 5,
+        "name": "Product limitations",
+        "path": "project-docs/legal/PRODUCT-LIMITATIONS.md",
+        "lines": 99,
+        "purpose": "Measured, specific limitations rather than a generic disclaimer.",
+        "version": "none",
+        "approvalState": "DRAFT / NOT COUNSEL REVIEWED",
+        "customerFacingRelevance": "CUSTOMER-FACING when published. Sourced from the CAPABILITY-REGISTER, which remains the authoritative claims inventory."
+      },
+      {
+        "n": 6,
+        "name": "Feedback and improvement boundary",
+        "path": "project-docs/legal/FEEDBACK-AND-DATA-USE.md",
+        "lines": 103,
+        "purpose": "What may and may not be done with beta content; the no-training commitment.",
+        "version": "none",
+        "approvalState": "DRAFT / NOT COUNSEL REVIEWED",
+        "customerFacingRelevance": "Referenced BY the Terms and the Privacy Notice and intended to form part of them, so its publication path is most likely as part of those documents rather than as a route of its own. A counsel decision, not an engineering one."
+      },
+      {
+        "n": 7,
+        "name": "Beta claims guardrails",
+        "path": "project-docs/legal/CLAIMS-GUARDRAILS.md",
+        "lines": 81,
+        "purpose": "Language that may and may not be used while the beta runs.",
+        "version": "none",
+        "approvalState": "DRAFT / NOT COUNSEL REVIEWED",
+        "customerFacingRelevance": "INTERNAL. This is an operating constraint on the product's own copy, not a document a customer is given. Enforcement against live copy is CM-1, which is open."
+      }
     ],
     "alsoPresent": [
-      { "name": "Counsel review packet", "path": "project-docs/legal/COUNSEL-REVIEW-PACKET.md", "lines": 207, "note": "A process artifact — the questions for counsel, not a customer document. NEVER publishable: the publication gate greps the publication root for the unapproved-draft marker, and this file is not in that tree at all." },
-      { "name": "Legal directory README", "path": "project-docs/legal/README.md", "lines": 200, "note": "The index, the geographic-scope decision (§270, US-only), the contracting-entity policy (§271) and the five unresolved placeholders." }
+      {
+        "name": "Counsel review packet",
+        "path": "project-docs/legal/COUNSEL-REVIEW-PACKET.md",
+        "lines": 207,
+        "note": "A process artifact — the questions for counsel, not a customer document. NEVER publishable: the publication gate greps the publication root for the unapproved-draft marker, and this file is not in that tree at all."
+      },
+      {
+        "name": "Legal directory README",
+        "path": "project-docs/legal/README.md",
+        "lines": 200,
+        "note": "The index, the geographic-scope decision (§270, US-only), the contracting-entity policy (§271) and the five unresolved placeholders."
+      }
     ],
     "unresolvedPlaceholders": {
       "count": 5,
-      "values": ["[LEGAL ENTITY]", "[ENTITY ADDRESS]", "[CONTACT EMAIL]", "[GOVERNING LAW]", "[BETA TERM]"],
+      "values": [
+        "[LEGAL ENTITY]",
+        "[ENTITY ADDRESS]",
+        "[CONTACT EMAIL]",
+        "[GOVERNING LAW]",
+        "[BETA TERM]"
+      ],
       "note": "Deliberately not invented by §269, §270 or §271, and not invented by §308 either. A document issued with an unresolved placeholder is not a defensible document."
     }
   },
-
   "publicationStateModel": {
-    "states": ["DRAFT", "APPROVED_NOT_EFFECTIVE", "ACTIVE", "SUPERSEDED"],
+    "states": [
+      "DRAFT",
+      "APPROVED_NOT_EFFECTIVE",
+      "ACTIVE",
+      "SUPERSEDED"
+    ],
     "why": "Each is a distinguishable real situation, and collapsing any two loses something a regulator would later ask about. APPROVED_NOT_EFFECTIVE in particular is not a formality: 'counsel approved this text' and 'this text is in force' are different facts, and a document with a future effective date is the ordinary shape rather than the exotic one.",
     "authority": "SERVER AND BUILD, not a frontend control. `backend/src/legal/legal-document-registry.ts` enumerates every publishable document by hand; the service resolves it once at application start; the public controller can only ever return what the service built.",
     "noDirectoryScan": "§308: 'no hidden fallback to latest file'. The registry never lists a directory. A file under backend/legal-documents/ is inert until a human writes an entry naming its exact version, effective date, state, approval record and digest. Dropping a file in does nothing.",
     "codeCannotPromoteADraft": "`counselApproval` is a REQUIRED property of every record and is null for DRAFT. A registry entry claiming any state past DRAFT with a null or empty approver is REFUSED AT LOAD — the application does not start. Engineering cannot convert DRAFT into APPROVED because a document exists."
   },
-
   "versionModel": {
-    "identity": ["documentType", "version", "documentDigest", "effectiveDate", "state"],
+    "identity": [
+      "documentType",
+      "version",
+      "documentDigest",
+      "effectiveDate",
+      "state"
+    ],
     "immutability": "A published version's body may never change. The registry recomputes the sha256 from the file at load and refuses if it differs from the declared `expectedDigest`, so the only way to change what a document says is to publish a NEW version.",
     "enforcement": "Refusal at application start, plus `npm run check:legal-documents` which reports it as a sentence rather than a stack trace. WATCHED TO FAIL: §308 phase 3 appends a byte to a published fixture body, asks the registry to resolve, records the refusal, restores the file and re-hashes it to prove the repository is unchanged.",
     "oneActivePerType": "Enforced by throwing. Also watched to fail: the gate enables two ACTIVE terms fixtures at once and asserts the registry refuses."
   },
-
   "digestModel": {
     "algorithm": "sha256 over the exact UTF-8 bytes of the substantive document body file",
     "whereItIsComputed": "Server-side, from the server's own copy, at registry load and again at acceptance time via the §291 `documentDigest(agreement)` path. A caller-supplied digest never reaches the evidence.",
     "whereItIsStored": "`agreement_acceptances.documentDigest`, varchar(64) — exactly a sha256 hex string.",
     "whereItIsShown": "On the published page, next to version and effective date. A person who accepted a document can compare it against their own acceptance record, which makes 'we did not change the text underneath you' checkable by the person it was promised to."
   },
-
   "effectiveDateModel": {
     "shape": "ISO date on the record. Required for every state past DRAFT.",
     "consistencyRule": "An ACTIVE document with an effective date in the FUTURE is refused at load, with a message saying to use APPROVED_NOT_EFFECTIVE until the date arrives. State and date cannot assert different things.",
     "rendering": "Formatted in UTC on the page so the same document shows the same effective date to every reader."
   },
-
   "routes": {
     "terms": {
       "path": "/terms",
@@ -76,14 +160,12 @@
     "apiSummary": "GET /legal/documents returns the publication status of every type with no bodies — safe for a footer or an index, and the shape the client uses to decide whether to offer an acceptance control at all.",
     "badTypeIsFourHundred": "/legal/documents/<unknown> answers 400, not 404. Reserving 404 for nothing on this controller means a 404 from this path is always a routing fault and never a publication state."
   },
-
   "noActiveBehaviour": {
     "terms": "200. Title from the CONFIGURABLE product name plus 'Terms of Service', a NOT YET PUBLISHED label, the true reason, what it is awaiting, and an explicit sentence that no version is in force, no effective date applies and the document cannot be accepted.",
     "privacy": "Identical contract.",
     "structurallyHonest": "The unavailable response TYPE has no `body`, no `version` and no `effectiveDate` field at all, and `acceptanceAvailable` is `false` as a stated fact rather than an inference. The four dishonesties §308 forbids are unrepresentable rather than merely avoided.",
     "fourthState": "A failed fetch renders 'this document could not be loaded' and says explicitly that it is NOT a statement about whether a document has been published. Collapsing that into NOT_YET_PUBLISHED would make the page assert a legal fact it does not know — the same class of mistake as a scanner reporting PASS when it could not run. This state was observed live during verification when a local port fell outside the CORS allow-list, and it behaved correctly."
   },
-
   "activationFixture": {
     "files": [
       "backend/legal-documents/test-fixtures/terms-0.0.0-test.1.md",
@@ -95,7 +177,6 @@
     "approverString": "`SYNTHETIC TEST FIXTURE — NO COUNSEL INVOLVED` — satisfies the structural requirement without pretending anybody approved anything.",
     "hostileHeldSeparately": "The XSS fixture is in its own array behind its own flag, because an attack payload sitting in the same array every activation test enables is one careless edit from being served by a test that did not mean to."
   },
-
   "productionFixtureExclusion": {
     "threeIndependentReasons": [
       "1. IN THE REGISTRY. `legalTestFixturesEnabled()` returns false whenever NODE_ENV is production, checked BEFORE any variable is read. This is not 'the flag defaults to off' — the flag is not reachable.",
@@ -104,14 +185,12 @@
     ],
     "proven": "The gate asserts reason 1 by calling `legalTestFixturesEnabled({NODE_ENV:'production', LEGAL_TEST_FIXTURES:'true'})` and requiring false, and resolves the registry under those flags requiring zero synthetic entries."
   },
-
   "acceptanceBinding": {
     "design": "An ACTIVE legal document is PROJECTED into the §291 agreement shape as `legal:terms` / `legal:privacy` rather than getting a parallel acceptance system. Every property §308 requires — server-resolved version, server-computed digest, server-generated timestamp, refusal of unknown and stale versions, insert-only evidence with a unique index per (user, agreement, version) — is one `AgreementsService` was already built to have at §291 and already proves. A second table would have duplicated all of it and given the two copies somewhere to drift.",
     "requirementIsDerived": "`agreementsRequiredAtRegistration()` is computed from publication state. With nothing ACTIVE the required set is exactly what §291 made it, so today's registration is unchanged and §308 does not begin enforcing acceptance of documents that do not exist. Activation turns enforcement on by itself — there is no second switch to forget.",
     "supersededFallsOut": "Only ACTIVE documents are projected, so a caller naming a SUPERSEDED version finds it is simply not the required version and the existing §291 staleness refusal answers. Requirement M needed no special case.",
     "clientChange": "The registration page now filters on `requiredAtRegistration` and sends one assertion per required agreement. It previously searched for `appliesTo === 'INTERNAL_OWNER_USE'` and sent that one — which would have gone on sending the acknowledgement alone the moment a document was published, refusing every registration for a missing acceptance the page did not know existed."
   },
-
   "acceptanceMatrix": {
     "suite": "backend/scripts/test-308-legal-publication.ts, run as `npm run test:308-legal-publication:db`, wired into hazlenz:integration:inner",
     "result": "58 assertions across three phases, 0 failed",
@@ -141,14 +220,12 @@
       "T": "PASS — the accepting user is an individual with organizationId NULL and every acceptance bound correctly; deferred Company/Team state is irrelevant."
     }
   },
-
   "reacceptance": {
     "preserved": "The §291 architecture is unchanged. Re-acceptance is one comparison — does the user hold a row at the version each in-force agreement currently requires — and raising a version makes every prior acceptance outstanding WITHOUT touching a stored row.",
     "added": "`acceptanceStatusFor()` and an `acceptanceStatus` field on GET /agreements/acceptances, reporting CURRENT or REACCEPTANCE_REQUIRED.",
     "gatesNothing": "§308 says not to invent an aggressive lockout UX, so this reports a state and does nothing else: it blocks nothing, revokes nothing and logs nobody out. What the product gained is the ability to ANSWER the question, which is what was actually missing.",
     "proven": "A user holding both in-force documents reports CURRENT. A user missing one reports REACCEPTANCE_REQUIRED and names the document and the version required."
   },
-
   "securityOfLegalContent": {
     "approach": "NO HTML SINK EXISTS. The usual answer — Markdown to an HTML string, then sanitise — keeps a sink in the code and stakes the property on a sanitiser being correct and staying correct. `renderLegalBody` emits React elements directly, so a <script> in a document body is never parsed as an element, never handed to a sanitiser, and never reaches innerHTML. It arrives at the DOM as a text node.",
     "subset": "Headings, paragraphs, ordered and unordered lists, blockquotes, horizontal rules, bold, italic, inline code and links. Images, tables, raw HTML, reference links and footnotes are omitted; their absence costs a legal document nothing.",
@@ -159,20 +236,33 @@
     },
     "oneAssertionWasWrong": "The first version of the event-handler check searched the whole HTML string for `on…=` and failed — on `&lt;img src=x onerror=&quot;…&quot;&gt;`, which is the payload rendered as ESCAPED TEXT inside a paragraph. That is the outcome the suite exists to prove, so the assertion was wrong and the renderer was right. It now extracts real tags first."
   },
-
   "publicRouteSecurity": {
-    "assertedAbsences": ["filesystem or repository path", "internal registry field (sourceFile, expectedDigest, counselApproval, approver, approvedAt)", "counsel communication", "non-public publication state (DRAFT, SUPERSEDED, APPROVED_NOT_EFFECTIVE)", "server configuration"],
+    "assertedAbsences": [
+      "filesystem or repository path",
+      "internal registry field (sourceFile, expectedDigest, counselApproval, approver, approvedAt)",
+      "counsel communication",
+      "non-public publication state (DRAFT, SUPERSEDED, APPROVED_NOT_EFFECTIVE)",
+      "server configuration"
+    ],
     "draftLeakage": "NONE. The suite reads both real drafts from disk and asserts that neither's text, nor its unapproved-draft marker, nor any of its five unresolved contracting placeholders appears in any public response.",
     "structural": "The public response TYPE is separate from the registry record, so sourceFile, expectedDigest, counselApproval and every DRAFT entry stay inside the service and are not fields the controller could return by accident."
   },
-
   "branding": {
     "framework": "The publication framework hard-codes nothing. Titles and pre-publication prose come from `productName(env)`, the configurable authority §306 established, imported rather than duplicated — two sources of truth for a brand is how a rename half-lands.",
     "gateAssertion": "`check:legal-documents` fails if any EXECUTABLE line under src/legal/, app/terms/, app/privacy/, lib/legal/ or components/legal/ contains the temporary product name. Comments are exempt: a check that forbids naming the thing makes the code less able to explain itself.",
     "draftText": "17 occurrences across 9 draft documents, INVENTORIED and NOT rewritten, because §308 says a temporary brand inside substantive draft legal text is counsel's to replace. The gate prints the per-file breakdown on every run.",
-    "perFile": { "AI-PROVIDER-DISCLOSURE.md": 2, "BETA-PRIVACY-NOTICE.md": 2, "CLAIMS-GUARDRAILS.md": 3, "CONTROLLED-BETA-TERMS.md": 3, "COUNSEL-REVIEW-PACKET.md": 2, "FEEDBACK-AND-DATA-USE.md": 2, "PRODUCT-LIMITATIONS.md": 1, "README.md": 1, "SAFETY-RESPONSIBILITY.md": 1 }
+    "perFile": {
+      "AI-PROVIDER-DISCLOSURE.md": 2,
+      "BETA-PRIVACY-NOTICE.md": 2,
+      "CLAIMS-GUARDRAILS.md": 3,
+      "CONTROLLED-BETA-TERMS.md": 3,
+      "COUNSEL-REVIEW-PACKET.md": 2,
+      "FEEDBACK-AND-DATA-USE.md": 2,
+      "PRODUCT-LIMITATIONS.md": 1,
+      "README.md": 1,
+      "SAFETY-RESPONSIBILITY.md": 1
+    }
   },
-
   "newDefects": [
     {
       "id": "LG-4",
@@ -184,7 +274,6 @@
       "status": "CLOSED in-section"
     }
   ],
-
   "preservedUnchanged": {
     "canonicalSchema": "PASS — 68 tables, 0 material differences, digest unchanged. No migration written and none needed.",
     "evidenceIntegrity": "PASS — 0 new drift.",
@@ -195,11 +284,12 @@
     "section306PasswordRecovery": "untouched; runs inside the same integration chain.",
     "expertFlag": "EXPERT_EXECUTION_ENABLED=true in production, untouched. Limits 1 analysis and USD 1.00 per workspace per 24h, untouched.",
     "workspaceData": "§308 reinterpreted and migrated NO existing workspace or customer data, as the product owner directed.",
-    "SC-2": "OPEN, untouched", "BR-5": "OPEN, untouched",
+    "SC-2": "OPEN, untouched",
+    "BR-5": "OPEN, untouched",
     "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED, untouched",
-    "OPS-2": "OPEN, untouched", "SE-20": "OPEN, untouched"
+    "OPS-2": "OPEN, untouched",
+    "SE-20": "OPEN, untouched"
   },
-
   "counselActionRemaining": {
     "statement": "§308 closes the ENGINEERING portion of LG-3 and closes none of LG-1, LG-2 or SU-2. No counsel approval has occurred.",
     "exactSteps": [
@@ -210,5 +300,23 @@
       "5. Authorise an effective date for each document.",
       "THEN, and this is the whole engineering deliverable: place each approved body in backend/legal-documents/ and add one registry entry naming its type, version, title, state, effective date, source file, sha256 and approval record. Nothing else changes — not the routes, not the renderer, not the acceptance binding, not the registration flow, not the frontend."
     ]
+  },
+  "productionProof": {
+    "releaseSha": "7e297dce4895a36e07341312ecce9e2e39b2f4ca",
+    "previousReleaseSha": "ea06f08373e2daf1090d94a6258c6bf7333023c5",
+    "applicationSourceDigest": "91eaa67c… -> aa85802d2ffe1a945133e40281a69640510ed36bec00c0155dcca4c3fa258a45",
+    "renderDeploy": "dep-dalha53l550s73b95o90, trigger api, status live",
+    "vercelDeploy": "dpl_CBGHRxMFFwJ4HhofCdFvejkzkkyr, production, explicit (git auto-deploy off since §269)",
+    "ops2Observed": "THE FIRST release:verify-sha AFTER THE DEPLOY REPORTED live STILL MEASURED THE PREVIOUS COMMIT ea06f083, and the first legal read-back failed to parse because the old instance has no /legal route. That is exactly the failure mode OPS-2 describes — a Render deploy reports live before the old instance stops serving. It was re-run after the cutover: RUNNING SHA OK, followed by five stable read-backs all reporting 7e297dce4895 and both document types NOT_YET_PUBLISHED. Recorded rather than quietly retried, because a verification that passes only on the second attempt is a fact about the deployment, not noise.",
+    "scriptedProof": "32 assertions, 0 failed. verification/current/legal-publication-308/SECTION-308-PRODUCTION-PROOF-RUN.txt",
+    "browserProof": [
+      "/terms and /privacy render the bounded pre-publication state in a real browser on the production domain.",
+      "UNAUTHENTICATED PROVEN BY CLEARING THE SESSION: localStorage was cleared (three auth keys removed) and /privacy was reloaded — it stayed on /privacy with NO redirect to /login, rendered its heading, the NOT YET PUBLISHED label and the explicit no-version sentence, and leaked zero draft markers and zero internal markers.",
+      "The registration page carries Terms and Privacy links, names the acknowledgement with its version, says it has not been reviewed by legal counsel and is not the Terms of Service, and does NOT render the \"By creating an account you accept …\" sentence — because nothing is published and §308 forbids implying acceptance against an unapproved document."
+    ],
+    "productionFixtureExclusionConfirmed": "The production environment carries NO LEGAL_* variable at all, read from the Render API. And no fixture body, version or marker appears anywhere in any production response.",
+    "unexpected5xx": "None. serverErrorsInWindow is 0 after every probe and nothing crossed an alert threshold.",
+    "directDatabaseWrites": "ZERO. The production proof is entirely read-only — no account was created, so unlike §307 this section wrote nothing to production at all.",
+    "retainedSyntheticState": "NONE. Nothing was created in production."
   }
 }

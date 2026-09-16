@@ -75,7 +75,7 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `91eaa67cb91fe1bc956b16027bac2bdd65d2937eaca0071a7d37c3fe95739fe6` — **§307 (SE-3), DEPLOYED and read back from the live product over five stable reads.** Recomputed by the documented command, which reproduced §306's `0eb8e0bd…` at `a6da4206` exactly before being applied to the new release, so the method was checked against a known answer rather than assumed. Identical at the deployed release `ea06f083` and at HEAD `08737c20`, because the evidence commit touches only `verification/`. |
+| **Release binding** | `applicationSourceDigest` = `aa85802d2ffe1a945133e40281a69640510ed36bec00c0155dcca4c3fa258a45` — **§308 (LG-3), DEPLOYED and read back over five stable reads.** Recomputed by the documented command, which reproduced §307's `91eaa67c…` at `8dfa378c` exactly before being applied to the new release. **OPS-2 was observed:** the first `release:verify-sha` after the deploy reported *live* still measured the previous commit; it was re-run after the cutover and reported `RUNNING SHA OK`. |
 | Superseded binding | `0f2edbaf…` at `e48a42f3…` — §303 SE-5 |
 | Superseded binding | `20b59cc2…` at `9242d157…` — §303's first deploy |
 | Superseded binding | `51db8f96…` at `61828222…` — §302 EN-3 |
