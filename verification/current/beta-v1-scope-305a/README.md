@@ -189,3 +189,38 @@ the plan data, or if any page starts calling the organization client functions.
 - **New:** SE-13 (P0, active), SE-12 raised to P0, OB-1, CS-1, SC-1.
 
 Nothing was deleted from the register. Deferred items remain visible so they are not forgotten.
+
+---
+
+## 6. Deployed and re-probed
+
+`4063434bce79572a615ed7b7ff7846a7a4981f1b` on both halves — Render `dep-dakuubad0e5s73fv2g3g`,
+Vercel `dpl_6JMghjaHzD6pWGWkvQ53LrS5VMiW`. `GET /health` read back five consecutive times. Schema
+`1800000024000` (56/56) unchanged, **0 migrations**.
+
+**SE-13 re-probed on the deployed release**, with the same shape of probe that found it:
+
+```
+401  /organization/me/settings  {"message":"Organization context is required."}
+```
+
+— where before the fix the identical request returned **200 and a real company-plan workspace**.
+
+The individual product was re-verified live on the same release: `POST /sites` 201,
+`GET /sites/<real uuid>` 200, `/files/not-a-uuid` still **400** (SE-5 preserved). Synthetic state
+removed through the product path; `serverErrorsInWindow` **0** throughout, no alert.
+
+### What the production verification does and does not cover
+
+`/organization/me/settings` was verified **directly in production**, and it is the one that mattered
+most: `JwtGuard` alone, reachable by any authenticated account.
+
+`/organization/me/members` and `/organization/me/invites` could **not** be exercised in production.
+They sit behind the `teamMembers` entitlement, no promotional code is configured in the production
+environment, and creating a paid account would have meant a commercial charge. They are verified by
+the §305A suite with a **pro individual and a planted foreign tenant** — both return 401 and disclose
+nothing — running the identical deployed code, and they are additionally unreachable in production
+today without a paid subscription.
+
+**CS-1 closed on the same deploy**: the live pricing, registration and upgrade surfaces no longer
+promise team members.
