@@ -2,13 +2,13 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298, HZ-4/HZ-5 §299, HZ-9/HZ-6/HZ-7 §300, BI-4 §301, EN-3 §302, SE-5 §303",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
+  "candidateHead": "a6da42061a473d6ced5964084aeeb68604fdd6d8",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
   "asOf": "§306 — PASSWORD RECOVERY ENGINEERING COMPLETE, proven end to end with zero emails sent (51 assertions). EM-2 is ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED and still blocks external Beta: activation awaits the brand decision and a sending domain. SE-15, OB-2 and CS-3 found and repaired. SC-2, BR-5, OPS-2 preserved open.",
   "providerCalls": 0,
-  "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events. §303: DEPLOYED both halves at 9242d157. Live proof through the real authenticated production HTTP product path — malformed identifiers return 400 on all 8 previously-affected routes, valid-absent still 404, a real site round-tripped 200, monitoring.serverErrorsInWindow stayed 0 before/during/after with no alert raised. One synthetic free account and one site created and both removed through the product path (DELETE /sites/:id, DELETE /auth/me; subsequent login 401). 0 provider calls, 0 Expert executions, 0 direct production DB writes, 0 charges, $0. §304: read-only production characterization; fresh backup (7,924,351 bytes, sha256 1b1a5f07…) restored into PostgreSQL 17.11 with 0 errors and verified by per-table content checksum (78/78 identical, 7,228 rows, aggregate d6baf25ddfe4c0f908187f16032c24cf); ONE authorised migration applied (1800000024000); both halves deployed at c28dd43c; live proof through supported product HTTP paths. One synthetic free account created and removed via DELETE /auth/me. monitoring.serverErrorsInWindow stayed 0 throughout, no alert, 0 unexpected 5xx. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305A: one read-only authenticated probe CONFIRMED a live cross-tenant disclosure (SE-13); the probe account was deleted immediately and the disclosed organization is redacted in all evidence. Containment deployed at 4063434b and RE-PROBED: GET /organization/me/settings now returns 401 for an individual with no organization. Individual product re-verified live (site create/read 201/200, SE-5 400 preserved), synthetic state removed through the product path. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305: read-only characterization; fresh backup (7,926,023 bytes, sha256 202eaba6...) restored into PostgreSQL 17.11 with 0 errors and content-verified; ONE authorised migration applied (1800000025000); deployed at dc9782e0; live proof through supported product HTTP paths including ACCOUNT DELETION. Two synthetic accounts created and both removed via DELETE /auth/me. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0.",
+  "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events. §303: DEPLOYED both halves at 9242d157. Live proof through the real authenticated production HTTP product path — malformed identifiers return 400 on all 8 previously-affected routes, valid-absent still 404, a real site round-tripped 200, monitoring.serverErrorsInWindow stayed 0 before/during/after with no alert raised. One synthetic free account and one site created and both removed through the product path (DELETE /sites/:id, DELETE /auth/me; subsequent login 401). 0 provider calls, 0 Expert executions, 0 direct production DB writes, 0 charges, $0. §304: read-only production characterization; fresh backup (7,924,351 bytes, sha256 1b1a5f07…) restored into PostgreSQL 17.11 with 0 errors and verified by per-table content checksum (78/78 identical, 7,228 rows, aggregate d6baf25ddfe4c0f908187f16032c24cf); ONE authorised migration applied (1800000024000); both halves deployed at c28dd43c; live proof through supported product HTTP paths. One synthetic free account created and removed via DELETE /auth/me. monitoring.serverErrorsInWindow stayed 0 throughout, no alert, 0 unexpected 5xx. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305A: one read-only authenticated probe CONFIRMED a live cross-tenant disclosure (SE-13); the probe account was deleted immediately and the disclosed organization is redacted in all evidence. Containment deployed at 4063434b and RE-PROBED: GET /organization/me/settings now returns 401 for an individual with no organization. Individual product re-verified live (site create/read 201/200, SE-5 400 preserved), synthetic state removed through the product path. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305: read-only characterization; fresh backup (7,926,023 bytes, sha256 202eaba6...) restored into PostgreSQL 17.11 with 0 errors and content-verified; ONE authorised migration applied (1800000025000); deployed at dc9782e0; live proof through supported product HTTP paths including ACCOUNT DELETION. Two synthetic accounts created and both removed via DELETE /auth/me. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §306: deployed at a6da4206; bounded route proof through public endpoints only — anti-enumeration confirmed live for unknown and case-variant addresses, completion with a random token refused 400, malformed input bounded 4xx, frontend recovery pages 200. NO production reset token was created and NO email was sent. readiness reports passwordResetEmail NOT_CONFIGURED with the exact missing variables. serverErrorsInWindow 0. 0 direct DB writes, 0 charges, 0 Expert executions, 0 provider calls, $0.",
   "thresholds": {
     "A": "CONTROLLED PRODUCTION DEPLOYMENT — the candidate running in a production environment, no users.",
     "B": "INTERNAL / OWNER PRODUCTION USE — owner-controlled accounts entering real data.",
@@ -2017,12 +2017,17 @@
       "lastUpdatedBy": "§304"
     }
   ],
-  "candidateHeadPredecessor": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
+  "candidateHeadPredecessor": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
-  "candidateProductSourceCommit": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
-  "applicationSourceDigest": "4bc279a5af67e136a9ff5f93850826ab9d520def3aee8c24fa8f3491e5545540",
+  "candidateProductSourceCommit": "a6da42061a473d6ced5964084aeeb68604fdd6d8",
+  "applicationSourceDigest": "0eb8e0bd8c6da99a7d9c0bbd0e9493b15965cd12ac509c73c0c6272284332daf",
   "applicationSourceDigestSuperseded": [
+    {
+      "digest": "4bc279a5af67e136a9ff5f93850826ab9d520def3aee8c24fa8f3491e5545540",
+      "at": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
+      "section": "§305 SE-12"
+    },
     {
       "digest": "52bde7ae445022159d5dba07f15b1b83e810bf5927c558e99bf97975191ff29d",
       "at": "4063434bce79572a615ed7b7ff7846a7a4981f1b",
@@ -2056,10 +2061,10 @@
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
     "05b1a2d8…(§292 — STILL DEPLOYED)"
   ],
-  "deployedReleaseSha": "96601e9004ee4bfda886f20c40b3ab93f7ae9110",
-  "deployedAt": "§305 — backend dep-dakvkhu7bikc73dretl0 (Render), frontend dpl_DGBTx8eGynYPhEjnCn5W2WUeypbo (Vercel). Schema 1800000025000 (57/57). The convergence migration was applied at the preceding deploy (dc9782e0); this redeploy carries a test-suite-only change and the artifact-only digest is d701f77f… at BOTH commits, so HEAD and production hold one binding.",
+  "deployedReleaseSha": "a6da42061a473d6ced5964084aeeb68604fdd6d8",
+  "deployedAt": "§306 — backend dep-dakvufn40ujc7392ctqg (Render), frontend dpl_6rmid1sngLBdsdB1MTQC8z7uN7Yk (Vercel). Schema 1800000025000 (57/57) UNCHANGED, 0 migrations.",
   "schemaHead": "1800000025000",
-  "applicationSourceDigestNote": "§305 (SE-12). DEPLOYED and read back: GET /health reports gitCommit 96601e9004ee4bfda886f20c40b3ab93f7ae9110, five consecutive stable reads, /health/ready expectedSchemaVersion 1800000025000 with 57/57 applied and aheadOfBuild empty.",
+  "applicationSourceDigestNote": "§306 (EM-2). DEPLOYED and read back: GET /health reports gitCommit a6da42061a473d6ced5964084aeeb68604fdd6d8, five consecutive stable reads, aheadOfBuild empty.",
   "artifactOnlyDigestDiagnostic": {
     "value": "fa0330d9d74e58299cb66996b3e86b1c70673a4e822b725db6d909a8dadc51c7",
     "previousValue": "5fb47c7f5ae5f9b93693dbae046a1a5e2cf3c87ccf3cf87cd30b4fcdadd263c6",
@@ -2107,5 +2112,30 @@
     },
     "gate": "npm run check:canonical-schema (in hazlenz:precommit)",
     "note": "Generated FROM a fresh migration replay, so it is by construction a statement about the migration history. Production matches it with 0 MATERIAL differences; production’s raw digest differs because it retains RETIRED_COMPATIBILITY tables and two tolerated legacy columns, which are deliberately not required of a rebuilt environment."
+  },
+  "passwordRecoveryActivation": {
+    "state": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED",
+    "productionReadiness": "/health/ready reports passwordResetEmail.state = NOT_CONFIGURED, provider \"resend\", missing RESEND_API_KEY and PASSWORD_RESET_FROM_EMAIL.",
+    "brandDependent": [
+      "the domain itself",
+      "the provider sending domain and its DNS records",
+      "the sender address",
+      "PRODUCT_NAME"
+    ],
+    "brandIndependent": [
+      "all application code",
+      "the reset token contract",
+      "the frontend pages",
+      "the delivery abstraction"
+    ],
+    "ownerActionAfterBrandLock": [
+      "Register the chosen domain (DOMAIN REQUIRED: yes — a sending domain cannot be a Vercel subdomain).",
+      "Create a sending domain in the email provider and publish the DNS records it issues (SPF/TXT, DKIM, and the provider’s return-path/MX or CNAME records). Exact records are issued by the provider at creation time and are not knowable in advance.",
+      "Choose a sender address on that domain, e.g. no-reply@<domain>.",
+      "Set in the Render production environment: RESEND_API_KEY, PASSWORD_RESET_FROM_EMAIL, PRODUCT_NAME, and PASSWORD_RESET_FRONTEND_URL / FRONTEND_URL if the public origin changes with the brand.",
+      "Redeploy is NOT required for the credential itself, but §297 applies: change, deploy, then read the value back from the running application."
+    ],
+    "noCodeChangeRequired": true,
+    "costNote": "PASSWORD_RESET_PROVIDER is already set to \"resend\" in production, so Resend is the currently selected provider. Whether an account exists, and on which plan, is the owner’s to state — no provider credential exists in this environment and §306 made no provider call, so no pricing was verified and none is asserted here."
   }
 }
