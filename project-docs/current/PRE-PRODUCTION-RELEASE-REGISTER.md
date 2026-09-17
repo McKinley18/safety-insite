@@ -6,6 +6,16 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§312A — `BR-5` IS CLOSED. Database and customer-evidence recovery are both operational.** The
+read-only source credential exists, scoped to `insite-production` alone and proven across 19
+assertions with every denial a genuine 403. Activation ran **through launchd**, not interactively:
+`last exit code = 0`, database **HEALTHY**, evidence **PROTECTED** (`LIVE_MATCHED = 5`), **AGGREGATE
+HEALTHY**. A new aggregate makes `NOT_ACTIVATED` **DEGRADED** rather than a pass — the exact false
+green the scheduled run had been showing since §311A. One real defect found by testing: the
+scan-incomplete branch exited without alerting, so the most important failure class was silent; fixed
+and proven at HTTP 200. Production unchanged at five objects / 166 708 bytes. **`ST-4` also CLOSES.**
+`BR-6`, `BR-7`, `BR-8`, `SE-21`, `OPS-2`, `SC-4`, `SC-5`, `EM-2`, `LG-3` preserved.
+
 **§312 — the EVIDENCE half is built and proven; `BR-5` is PARTIAL on activation, not on design.**
 Recovery objects are **content-addressed**, which is what makes an accidental *overwrite* recoverable
 rather than merely a delete. The erasure ledger lives in **recovery storage, not the database**, and
@@ -233,18 +243,16 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **100** | **4** | **11** | **56** | **29** |
+| Entries | **124** | **9** | **14** | **66** | **35** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 48 |
-| OPEN | 45 |
-| PARTIAL | 1 |
+| CLOSED | 73 |
+| OPEN | 37 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
 
-**§312 added two entries (`BR-7` P2 blocks C, `BR-8` P3) and closed none.** `BR-5` stays **PARTIAL**
-and `ST-4` moved to remediated-in-mechanism.
+**§312A closed `BR-5` and `ST-4`.** §312 had added `BR-7` (P2, blocks C) and `BR-8` (P3).
 
 **§311 added three entries and closed none.** `ST-4` (P2, blocks C), `BR-6` (P3) and `SE-21` (P3).
 `BR-5` moved from OPEN to **ENGINEERING_COMPLETE_OWNER_INFRASTRUCTURE_DECISION_REQUIRED** and is
@@ -262,6 +270,12 @@ security fix. `SE-3` closed on top of that.
 **A threshold's blocker count is the number of entries still flagged for it.** Closing an entry
 clears its threshold flags and records what it used to block in `wasBlockingThresholds`, so an
 entry is never deleted and a closed item is never counted.
+
+**§312A made the machine-readable counts DERIVED rather than hand-maintained.** The declared block had
+drifted from the actual entry statuses — it said 45 open against an actual 37 — which is exactly the
+failure mode a register exists to prevent. `counts` is now computed from the entry list, so the two
+cannot disagree again. The open Threshold-C blockers are `AC-1`, `BR-7`, `CM-1`, `CPF-2`, `CPF-3`,
+`EM-2`, `LG-1`, `LG-2`, `LG-3`, `PR-1`, `RR-1`, `SR-1`, `ST-3`, `SU-2`, `TM-1`.
 
 ---
 
@@ -359,12 +373,12 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (29 items, including all six P0)
+### Threshold C — external controlled beta  (**15 open blockers**, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `BR-5`, `BR-7`, `CPF-2`, `CPF-3`, `SE-5`, `ST-3`, `ST-4`, `TI-3` (P2) · `MO-2` **closed at §294** ·
+`AC-1`, `BR-7`, `CPF-2`, `CPF-3`, `SE-5`, `ST-3`, `TI-3` (P2) · `BR-5` and `ST-4` **closed at §312A** · `MO-2` **closed at §294** ·
 `SE-3` **closed at §307**
 
 **`ST-4` is new at §311 and, like `DB-4`, it is not legal work.** R2 versioning, lifecycle and
@@ -1301,7 +1315,7 @@ another **without** relying on the role gate.
 | **ST-1** | Report and artifact access is an authenticated streaming GET; there are no signed URLs to leak or expire. | P3 | — | Security | CLOSED |
 | **ST-2** | A generated report round-tripped through production storage with a checksum match, from the deployed candidate. | P2 | — | Infrastructure | **CLOSED (§290)** |
 | **ST-3** | Report and inspection-record retention policy is undefined. | P2 | C | Product | OPEN |
-| **ST-4** | R2 bucket protection — versioning, lifecycle, object lock — has never been read, so accidental-deletion recovery for evidence objects is UNKNOWN. | P2 | C | Infrastructure | **REMEDIATED IN MECHANISM (§312), NOT YET OPERATIONAL.** The §311A finding stands — R2 has no versioning and durability does not cover deletion — and §312 answers it with an independent content-addressed recovery copy, proven 22/22 including the database-rollback gate. The five live objects are protected. Ongoing protection needs one read-only credential. |
+| **ST-4** | R2 bucket protection — versioning, lifecycle, object lock — has never been read, so accidental-deletion recovery for evidence objects is UNKNOWN. | P2 | — | Infrastructure | **CLOSED (§312A).** The platform finding stands unchanged — R2 has no versioning and durability does not cover deletion — and the gap it described is now remediated and running: an independent content-addressed recovery copy, reconciled daily, with a rollback-proof erasure ledger. |
 
 **ST-2 — §289 update.** The premise "never been exercised end to end" was already false: §269 verified the live R2 bucket, and §289 re-verified it freshly and non-destructively. Bucket reachable and authorised, no public policy, ACL `AccessDenied`, upload, authorised download with sha256 match, unsigned GET and LIST both refused (HTTP 400), delete, `NoSuchKey` after delete, **0 residue**, no customer data. Tenant isolation is database-enforced rather than path-enforced: the object key is `<category>/<date>/<uuid>` and carries no tenant identifier, `objectKey` is `select: false`, a digest mismatch on read is refused, and `FilesController` is entirely behind `JwtGuard` — so an object identifier alone confers no access.
 
@@ -1804,7 +1818,7 @@ Properly scoping it is not available: `fix_feedback` has no owner column, and it
 |---|---|---|---|---|---|
 | **BR-1** | A backup of live production was taken and its restore verified by content checksum at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
 | **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | — | Infrastructure | **CLOSED (§295)** |
-| **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | **PARTIAL (§312)** — DATABASE half operational (§311A). EVIDENCE half **built and proven** (§312), five live objects protected, but **not yet running on a schedule**: it needs one read-only source credential. |
+| **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | **CLOSED (§312A)** — database AND customer-evidence recovery are both operational on the daily schedule, with aggregate health that is HEALTHY only when both halves are. All fourteen closure requirements proven. |
 | **BR-6** | Account anonymisation writes through the `User` entity, so it cannot clear the undeclared legacy `user.password` column. Latent: 8 live accounts hold a hash, 0 deleted accounts do. | P3 | — | Engineering | OPEN (§311) |
 | **BR-7** | Account deletion does not touch `storage_objects` or R2 at all, so a customer who deletes their **account** leaves every evidence photo and report PDF live in production. Latent: 0 of the 26 deleted accounts owned an object. | P2 | C | Engineering | OPEN (§312) |
 | **BR-8** | A `clientRequestId` replay can re-`put` to an **existing** object key with different bytes, leaving the database recording the first attempt's sha256 while R2 holds the second's. | P3 | — | Engineering | OPEN (§312) |
@@ -1918,6 +1932,64 @@ that is answered; whether it is enough is a different question with a different 
 `project-docs/operations/DISASTER-RECOVERY-RUNBOOK.md`
 *Retest:* A scheduled run landing an artifact in the durable bucket, `check-backup-freshness.js`
 reporting `FRESH` against it, and `ST-4` answered.
+
+**BR-5 — CLOSED at §312A. Both halves are operational on the same daily schedule.**
+
+The gap §312 left was one credential wide, and §312A closed it. `insite-evidence-recovery-reader`
+is an R2 **Object Read only** token scoped to `insite-production` alone — and the form defaulted to
+*"Apply to all buckets in this account"*, which would have violated the boundary outright, so the
+scope was changed and the **selected chip** verified as `insite-production` alone before submitting.
+
+**19 assertions on the new credential, 0 failed, every denial a genuine 403.** It reads all five
+objects and every digest matches the authoritative expectation. It cannot write a new object, cannot
+**overwrite an existing customer object**, cannot delete, cannot touch `insite-backups` in any way,
+cannot administer either bucket, cannot list or create buckets. Both reciprocal invariants re-checked:
+the backup credential is still refused on `insite-production`, and the **application credential is
+still refused on `insite-backups`**.
+
+**The activation ran through launchd, not interactively** — which is the distinction that matters,
+because a script that works when you type it proves nothing about the schedule. `launchctl kickstart`,
+`last exit code = 0`, agent loaded at 05:00:
+
+| half | state |
+|---|---|
+| database | **HEALTHY** (FRESH) |
+| evidence | **PROTECTED** — `LIVE_MATCHED = 5`, captured 0 (reconciled, no bytes duplicated) |
+| **aggregate** | **HEALTHY** |
+
+**A green light meaning "half your recovery posture is fine" is worse than no light**, so §312A added
+an explicit aggregate: `HEALTHY` only when the database half is HEALTHY *and* the evidence half is
+PROTECTED. `NOT_ACTIVATED` is **DEGRADED**, not a pass — which is precisely the state the scheduled
+run had been exiting 0 in every night between §311A and §312A. `UNKNOWN` never becomes PASS, and
+`FAILED` outranks `UNKNOWN`. Eight assertions on the truth table.
+
+**A real defect, found by testing rather than reading.** The reconciler's scan-incomplete branch
+exited 2 **without dispatching an alert** — and that branch covers source unavailable, destination
+unavailable, unreadable ledger and bad credential. The single most important failure class, *"I cannot
+see what I am supposed to be protecting"*, was the one that never reached anybody. A monitor that goes
+quiet exactly when it loses sight of its subject is worse than no monitor. Fixed, and proven at HTTP
+200.
+
+**Everything §312 proved still holds on the activated code**: the 22-assertion suite re-run twice,
+including the database-rollback gate. A *future* new production object was proven synthetically to go
+`LIVE_UNBACKED` → `LIVE_MATCHED` → `PROTECTED` — **no sixth real customer object was created**, and
+production remains at five objects / 166 708 bytes, unchanged.
+
+**Residuals carried forward rather than buried.** The laptop scheduler cannot run while the machine is
+off, and that would break the RPO *and* the monitor that would report it. Bucket Lock on
+`insite-backups` was considered and **declined**: it would block erasure propagation and make a
+customer's deletion impossible to honour — trading a privacy obligation for a durability gain. And a
+content divergence at *equal byte length* on a never-captured object reads as `LIVE_UNBACKED` until
+the first capture hashes it.
+
+*Evidence:* `verification/current/evidence-recovery-312/SECTION-312A-ACTIVATION-AND-BR5-CLOSURE.json`
+*Retest:* A scheduled run reporting `AGGREGATE HEALTHY`.
+
+**ST-4 — CLOSED at §312A.** The platform finding is unchanged and still true: R2 has no object
+versioning, and Cloudflare states that durability *"does not prevent intentional or accidental
+deletion of data."* What closed is the gap that finding described. Evidence is now independently
+recoverable, reconciled daily, with a rollback-proof erasure ledger — and `insite-production` itself
+was never modified to achieve it: no lock, no lifecycle change, no versioning, no access logs.
 
 **BR-5 / ST-4 — §312 BUILT THE EVIDENCE HALF AND PROVED IT. It runs on demand, not yet on a schedule.**
 

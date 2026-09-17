@@ -1,0 +1,52 @@
+[2026-09-17T21:48:21Z] scheduled backup starting; layout=runner jobs=/Users/mckinley/.safety-insite/runner
+[2026-09-17T21:48:21Z] node v24.14.1 from /Users/mckinley/.nvm/versions/node/v24.14.1/bin
+[2026-09-17T21:48:21Z] --- taking backup ---
+source host      ep-weathered-moon-a4egk93d.us-east-1.aws.neon.tech  (rewritten from the pooler endpoint)
+source database  neondb
+pg_dump          /opt/homebrew/opt/libpq/bin/pg_dump — pg_dump (PostgreSQL) 18.3
+server           PostgreSQL 17.11 (c4ba6b8), 78 tables, schema head 1800000026000 (58 migrations), 33439744 bytes
+dump             7898796 bytes in 9.6s, sha256 e9890bcdd87103796c3f79dbf8bde7b8e1e39421fa242f7a1cb80dec2a05ebab
+upload           1.6s; read-back verified in 3.1s, sha256 matches
+retention        5 kept, 0 expired and removed (daily 14d, weekly 8w, newest 3 always kept)
+local artifact   removed
+
+OK  postgres/neondb-2026-09-17T214821Z.dump  7898796 bytes  sha256 e9890bcdd87103796c3f79dbf8bde7b8e1e39421fa242f7a1cb80dec2a05ebab  total 15.8s
+[2026-09-17T21:48:37Z] --- confirming the destination reports a fresh backup ---
+{
+  "checkedAt": "2026-09-17T21:48:37.980Z",
+  "health": "HEALTHY",
+  "verdict": "FRESH",
+  "detail": "Last successful backup 0.0h ago.",
+  "ageHours": 0,
+  "thresholdHours": 1,
+  "lastSuccessAt": "2026-09-17T21:48:21.672Z",
+  "lastSuccessArtifactKey": "postgres/neondb-2026-09-17T214821Z.dump",
+  "lastSuccessSha256": "e9890bcdd87103796c3f79dbf8bde7b8e1e39421fa242f7a1cb80dec2a05ebab",
+  "lastSuccessSchemaHead": "1800000026000",
+  "retainedArtifactCount": 5,
+  "artifactPresent": true
+}
+[2026-09-17T21:48:37Z] --- evidence recovery reconciliation ---
+source bucket     insite-production  (read-only)
+recovery bucket   insite-backups/evidence/
+database rows                     5
+live objects                      5
+recovery objects                  11
+erasure tombstones                0
+
+LIVE_MATCHED                      5
+
+captured                          0
+erasure tombstones written        0
+generations expired               0
+recovery bytes expired            0
+
+PROTECTED
+[2026-09-17T21:48:39Z] --- aggregate backup health ---
+database half         HEALTHY (FRESH)
+                      Last successful backup 0.0h ago.
+evidence half         PROTECTED
+                      LIVE_MATCHED=5
+
+AGGREGATE             HEALTHY
+[2026-09-17T21:48:41Z] scheduled backup complete

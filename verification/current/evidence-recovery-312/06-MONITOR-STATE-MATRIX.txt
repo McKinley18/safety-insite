@@ -1,0 +1,23 @@
+=== PROTECTED ===
+PASS  all live objects captured  — exit=0 outcome=PROTECTED {'LIVE_MATCHED': 1}
+
+=== UNPROTECTED (a live object with no recovery copy) ===
+PASS  LIVE_UNBACKED surfaced  — exit=1 outcome=ATTENTION_REQUIRED {'LIVE_MATCHED': 1, 'LIVE_UNBACKED': 1}
+
+=== MISMATCH (live bytes disagree with the recorded digest) ===
+PASS  size divergence caught without a capture  — exit=1 outcome=ATTENTION_REQUIRED {'LIVE_MATCHED': 1, 'DIGEST_MISMATCH': 1}
+PASS  content divergence caught after capture hashes the bytes  — exit=1 outcome=ATTENTION_REQUIRED {'LIVE_MATCHED': 1, 'DIGEST_MISMATCH': 1}
+
+=== SOURCE_UNAVAILABLE ===
+PASS  unreachable source -> UNKNOWN, exit 2  — exit=2 outcome=UNKNOWN {}
+
+=== DESTINATION_UNAVAILABLE ===
+PASS  unreachable destination -> UNKNOWN, exit 2  — exit=2 outcome=UNKNOWN {}
+
+=== INCOMPLETE_SCAN (database unreachable) ===
+PASS  unreadable ledger -> UNKNOWN, exit 2  — exit=2 outcome=UNKNOWN {}
+
+=== BAD CREDENTIAL ===
+PASS  wrong source credential -> UNKNOWN, exit 2  — exit=2 outcome=UNKNOWN {}
+
+8 passed, 0 failed

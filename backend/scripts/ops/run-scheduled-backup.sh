@@ -142,5 +142,13 @@ else
   say "This is the §312 owner action — see project-docs/operations/DISASTER-RECOVERY-RUNBOOK.md."
 fi
 
+say "--- aggregate backup health ---"
+# §312A. The run is only HEALTHY when BOTH halves are. A green database backup beside unprotected
+# customer evidence used to exit 0, which is exactly the false assurance this composition removes.
+if ! node "$JOB_DIR/check-backup-health.js"; then
+  say "AGGREGATE HEALTH IS NOT HEALTHY (exit $?). The alert webhook has been notified."
+  exit 1
+fi
+
 say "scheduled backup complete"
 exit 0

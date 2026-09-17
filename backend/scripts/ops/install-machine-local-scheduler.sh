@@ -51,6 +51,7 @@ JOB_FILES=(
   check-backup-freshness.js
   verify-object-consistency.js
   reconcile-evidence-recovery.js
+  check-backup-health.js
 )
 
 say() { echo "  $*"; }

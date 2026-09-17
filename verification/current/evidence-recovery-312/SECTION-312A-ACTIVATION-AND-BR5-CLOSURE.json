@@ -1,0 +1,202 @@
+{
+  "artifact": "SECTION-312A-EVIDENCE-RECOVERY-ACTIVATION",
+  "section": "§312A",
+  "completedAt": "2026-09-17T21:50:00Z",
+  "objective": "Activate the §312 evidence-recovery mechanism operationally and prove the BR-5 closure gate.",
+  "outcome": "ACTIVATED. The scheduled path runs both halves and reports AGGREGATE HEALTHY. Every BR-5 closure requirement is now operational.",
+
+  "sourceCredential": {
+    "created": true,
+    "name": "insite-evidence-recovery-reader",
+    "permission": "Object Read only — console text: 'Allows the ability to read and list objects in specific buckets.'",
+    "bucketScope": "Apply to specific buckets only -> insite-production (verified from the selected chip, not from the option list)",
+    "ttl": "Forever",
+    "ipFiltering": "none",
+    "confirmationMatchedAuthorization": true,
+    "boundaryCheckBeforeCreation": "The form defaulted to 'Apply to all buckets in this account', which would have violated the boundary. It was changed to specific-buckets-only and the selected chip was verified as insite-production ALONE before submitting."
+  },
+
+  "secretHandling": {
+    "location": "~/.safety-insite/backup.env",
+    "mode": "600 (re-verified after modification)",
+    "variableNames": ["EVIDENCE_SOURCE_S3_ENDPOINT", "EVIDENCE_SOURCE_S3_BUCKET", "EVIDENCE_SOURCE_S3_REGION", "EVIDENCE_SOURCE_S3_ACCESS_KEY_ID", "EVIDENCE_SOURCE_S3_SECRET_ACCESS_KEY"],
+    "transitMethod": "Console copy control -> system clipboard -> shell read -> the 0600 file. Only lengths and shapes (32-hex, 64-hex) were ever observed; no value was rendered into a tool result, screenshot, log or message. The clipboard was cleared before and after each capture.",
+    "blockedApproachRecorded": "An automated route — reading the credential from the page with JavaScript and POSTing it to a local receiver — was attempted and BLOCKED by a safety classifier as a browser-exfiltration pattern. That refusal was correct: it is exactly the shape of a credential-exfiltration attack, and it was not worked around. The intended console copy control was used instead.",
+    "backupOfSecretFileRemoved": true
+  },
+
+  "sourceCredentialProof": {
+    "total": "19 passed, 0 failed. Every denial checked to be a genuine 403; an ambiguous failure was defined in advance as NOT a pass.",
+    "positive": {
+      "authenticatesAndLists": "PASS — 5 objects in insite-production",
+      "readsAllFive": "PASS — 5/5 byte-verified",
+      "digestResult": "PASS — every object's sha256 and byte length equal the authoritative expectation recorded at §311/§312"
+    },
+    "negative": {
+      "cannotWriteNewObjectToProduction": "PASS — AccessDenied 403",
+      "cannotOverwriteAnExistingCustomerObject": "PASS — AccessDenied 403",
+      "cannotDeleteFromProduction": "PASS — AccessDenied 403",
+      "cannotListInsiteBackups": "PASS — AccessDenied 403",
+      "cannotReadInsiteBackups": "PASS — 403",
+      "cannotWriteInsiteBackups": "PASS — AccessDenied 403",
+      "cannotDeleteFromInsiteBackups": "PASS — AccessDenied 403",
+      "cannotAdministerProduction": "PASS — AccessDenied 403 on GetBucketVersioning and PutBucketLifecycleConfiguration",
+      "cannotAdministerBackups": "PASS — AccessDenied 403",
+      "cannotListAccountBuckets": "PASS — AccessDenied 403",
+      "cannotCreateBucket": "PASS — AccessDenied 403",
+      "cannotDeleteBucket": "PASS — AccessDenied 403",
+      "noSyntheticObjectLeftBehind": "PASS — the write-refusal probe key does not exist in insite-production"
+    },
+    "overwriteProbeSafety": "The overwrite refusal was tested against an EXISTING customer object key deliberately — the point is that the credential cannot touch it — and the refusal was 403, so no customer object was written. Source integrity was re-measured afterwards: 5 objects, 166708 bytes, unchanged."
+  },
+
+  "reciprocalProofs": {
+    "destinationCredential": "UNCHANGED. insite-backups-operator still reaches insite-backups and is refused 403 on insite-production.",
+    "applicationCredential": "UNCHANGED. Still reaches insite-production (5 objects) and is refused AccessDenied 403 on insite-backups. The hard invariant holds.",
+    "credentialsBroadened": 0
+  },
+
+  "immediateReconciliation": {
+    "sourceObjects": 5,
+    "protected": 5,
+    "unprotected": 0,
+    "mismatched": 0,
+    "unknown": 0,
+    "erasureTombstones": 0,
+    "captured": 0,
+    "capturedZeroBecause": "The §312 recovery copies already exist and were reconciled rather than re-uploaded. No bytes were duplicated.",
+    "outcome": "PROTECTED",
+    "fiveObjectState": "LIVE_MATCHED x5"
+  },
+
+  "scheduledPathProof": {
+    "method": "launchctl kickstart of the real agent — not an interactive invocation of the script.",
+    "runnerHasSourceCredential": true,
+    "runnerHasDestinationCredential": true,
+    "credentialsExposed": "none — both are read from the 0600 secret file by the wrapper; the plist carries no secret and launchctl print would show none",
+    "evidenceState": "PROTECTED (was SKIPPED before activation)",
+    "databaseState": "HEALTHY (FRESH)",
+    "aggregate": "HEALTHY",
+    "launchdLastExitCode": 0,
+    "launchdSchedule": "Hour 5, Minute 0, agent loaded",
+    "installerVerify": "VERIFY PASS — all six job files hash-match the checkout",
+    "notClaimedFromInteractiveRun": "The AGGREGATE HEALTHY result above came from the launchd-executed run, whose exit code launchd itself reports as 0."
+  },
+
+  "aggregateHealthComposition": {
+    "script": "backend/scripts/ops/check-backup-health.js",
+    "rule": "HEALTHY only when the database half is HEALTHY and the evidence half is PROTECTED.",
+    "truthTable": {
+      "HEALTHY + PROTECTED": "HEALTHY (exit 0)",
+      "HEALTHY + NOT_ACTIVATED": "DEGRADED (exit 1)",
+      "HEALTHY + ATTENTION_REQUIRED": "DEGRADED (exit 1)",
+      "STALE + PROTECTED": "DEGRADED (exit 1)",
+      "FAILED + PROTECTED": "FAILED (exit 1)",
+      "HEALTHY + UNKNOWN": "UNKNOWN (exit 2)",
+      "UNKNOWN + PROTECTED": "UNKNOWN (exit 2)",
+      "FAILED + UNKNOWN": "FAILED (FAILED outranks UNKNOWN)"
+    },
+    "assertions": "8 passed, 0 failed",
+    "whyItExists": "Between §311A and §312A the scheduled run exited 0 every night while customer evidence was entirely unprotected, because the database backup had succeeded. A green light meaning 'half your recovery posture is fine' is worse than no light. NOT_ACTIVATED is explicitly not a passing state."
+  },
+
+  "freshObjectDetection": {
+    "method": "SYNTHETIC. No sixth real customer object was created; production remains at five.",
+    "beforeReconciliation": "LIVE_UNBACKED",
+    "afterReconciliation": "LIVE_MATCHED",
+    "overallOutcome": "PROTECTED",
+    "assertions": "3 passed, 0 failed"
+  },
+
+  "preservedBehaviourReproof": {
+    "note": "The complete §312 suite was re-run on the activated code, twice, to confirm the activation and the alert fix changed no behaviour.",
+    "total": "22 passed, 0 failed",
+    "accidentalDeleteRecovery": "PRESERVED — MISSING_LIVE_RECOVERABLE, a further reconciliation pass does not propagate the delete, governed restore returns byte-identical content",
+    "overwriteRecovery": "PRESERVED — generations A and B both retained at their own digests, current live state correctly identified",
+    "erasureRefusal": "PRESERVED — MISSING_LIVE_ERASURE_AUTHORIZED, restore refused, recovery bytes deleted after the grace period",
+    "databaseRollbackNoResurrection": "PRESERVED — with the database rolled back to believing the object was live and never erased, the state stayed MISSING_LIVE_ERASURE_AUTHORIZED and the restore was still refused"
+  },
+
+  "monitoring": {
+    "matrix": "8 passed, 0 failed, self-resetting and run twice with identical results",
+    "states": {
+      "PROTECTED": "exit 0 — all live objects captured",
+      "UNPROTECTED": "LIVE_UNBACKED surfaced, ATTENTION_REQUIRED, exit 1",
+      "MISMATCH_bySize": "DIGEST_MISMATCH caught immediately, without downloading anything",
+      "MISMATCH_byContent": "DIGEST_MISMATCH caught once capture has hashed the bytes — the reconciler deliberately does not re-download every live object on every run, and that limit is stated rather than hidden",
+      "SOURCE_UNAVAILABLE": "UNKNOWN, exit 2",
+      "DESTINATION_UNAVAILABLE": "UNKNOWN, exit 2",
+      "INCOMPLETE_SCAN": "UNKNOWN, exit 2, nothing changed",
+      "BAD_CREDENTIAL": "UNKNOWN, exit 2",
+      "ERASURE_PROPAGATION": "an authorized erasure without a tombstone stays out of MISSING_LIVE_ERASURE_AUTHORIZED and is surfaced",
+      "UNEXPECTED_RECOVERY_OBJECT": "RECOVERY_ONLY_SUSPECT"
+    },
+    "unknownNeverPasses": "CONFIRMED at both levels — the reconciler exits 2 and the aggregate reports UNKNOWN.",
+    "payloadPrivacy": "Alerts carry outcome and COUNTS BY STATE only — no object key, no source key, no download name, no customer or workspace identifier."
+  },
+
+  "defectFoundAndFixedInSection312A": {
+    "what": "The evidence reconciler's scan-incomplete branch exited 2 WITHOUT dispatching an alert.",
+    "why it mattered": "That branch covers source unavailable, destination unavailable, unreadable ledger and bad credential — the single most important failure class, 'I cannot see what I am supposed to be protecting'. A monitor that goes quiet exactly when it loses sight of its subject is worse than no monitor.",
+    "howFound": "By running the MO-1 failure test rather than by reading the code.",
+    "fix": "The branch now dispatches evidence.recovery_scan_incomplete carrying the failure KIND only, then exits 2.",
+    "proven": "alert dispatch {\"dispatched\":true,\"status\":200}; the full suite re-run afterwards, 22/22."
+  },
+
+  "mo1": {
+    "channel": "OPERATIONAL_ALERT_WEBHOOK_URL — the existing MO-1 webhook, unchanged",
+    "evidenceFailureDispatch": "{\"dispatched\":true,\"status\":200} on a synthetic scan-incomplete state driven entirely on the disposable rig",
+    "noRealFailureInduced": "No production state was degraded to produce an alert."
+  },
+
+  "br5ClosureGate": {
+    "durableDatabaseBackup": "OPERATIONAL (§311A) — scheduled, retention, read-back verified",
+    "remoteDatabaseRestore": "OPERATIONAL (§311A) — the remote copy was downloaded, checksum-matched and restored, 78/78 tables content-identical",
+    "databaseFreshnessMonitoring": "OPERATIONAL — HEALTHY/STALE/FAILED/UNKNOWN, all proven",
+    "evidenceRecovery": "OPERATIONAL (§312A) — 5/5 protected, running on the schedule",
+    "generationPreservation": "PROVEN — content-addressed, both overwrite generations retained",
+    "accidentalDeleteRecovery": "PROVEN — recovery copy survives, governed restore byte-identical",
+    "overwriteRecovery": "PROVEN",
+    "privacyAuthorizedErasure": "PROVEN — refusal plus byte deletion after the grace period",
+    "databaseRollbackNoResurrection": "PROVEN — the hard gate, run rather than argued",
+    "scheduledSourceAccess": "PROVEN — the launchd-executed run reconciled using the read-only source credential",
+    "scheduledDestinationAccess": "PROVEN — same run wrote the database backup and the freshness record",
+    "evidenceFreshnessMonitoring": "OPERATIONAL — evidence/latest.json plus the state matrix",
+    "aggregateBackupHealth": "OPERATIONAL — HEALTHY only when both halves are",
+    "drRunbook": "UPDATED at §311A and §312, with the evidence-recovery model, the classification states and the full-recovery ordering",
+    "verdict": "ALL FOURTEEN REQUIREMENTS OPERATIONAL. BR-5 CLOSES."
+  },
+
+  "residualRisksCarriedForward": {
+    "rpo": "The machine-local scheduler cannot run while the machine is shut down. Measured: 644 wakes over 8 days, longest gap 16.0h, no day without one. An extended powered-off period would violate the 24h RPO AND prevent the local monitor from reporting it. Registered, not an SLA.",
+    "operatorError": "The insite-backups-operator credential can delete recovery copies. Bucket Lock on insite-backups was considered and DECLINED because it would block erasure propagation and make a customer deletion impossible to honour within the recovery window — trading a privacy obligation for a durability gain.",
+    "contentMismatchDetection": "A content divergence at equal byte length on a never-captured object is reported LIVE_UNBACKED until the first capture hashes it. Stated rather than hidden.",
+    "dataAccessLogs": "Still off and still gated on this plan. Forensics, not recovery — BR-5 closure does not rest on them."
+  },
+
+  "preservedUnchanged": {
+    "BR-7": "OPEN, not repaired.",
+    "BR-8": "OPEN, not repaired.",
+    "BR-6": "OPEN, not repaired.",
+    "SE-21": "OPEN. The repository is still public; neither credential entered GitHub.",
+    "OPS-2": "OPEN.", "SC-4": "OPEN.", "SC-5": "OPEN.",
+    "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED.",
+    "LG-3": "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED. No brand or domain decision."
+  },
+
+  "productionSafety": {
+    "productionSourceReads": "5 objects listed and downloaded for digest verification; ledger read via psql; Render control-plane read.",
+    "productionSourceObjectsModified": 0,
+    "productionSourceObjectsDeleted": 0,
+    "productionRecoveryObjectsCreated": 0,
+    "productionRecoveryObjectsModified": "evidence/latest.json and postgres/* refreshed by the scheduled run; no evidence bytes re-uploaded",
+    "productionDatabaseWrites": 0,
+    "productionCustomerRowsModified": 0,
+    "productionConfigurationChanges": 0,
+    "applicationDeployments": 0,
+    "charges": "$0.00", "expertExecutions": 0, "providerCalls": 0, "spendUsd": 0,
+    "unexpectedProduction5xx": 0,
+    "credentialsCreated": 1,
+    "credentialsBroadened": 0
+  }
+}

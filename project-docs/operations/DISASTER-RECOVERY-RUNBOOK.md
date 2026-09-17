@@ -222,8 +222,8 @@ object's key, byte length and sha256 — and reconciles it against the bucket in
 > operator-side. It covers accidental **delete** and accidental **overwrite**, for a bounded window,
 > with digest verification — and it refuses to resurrect anything a customer has erased.
 >
-> **It is activated only when `EVIDENCE_SOURCE_S3_*` is configured.** Until then the scheduled run
-> says `SKIPPED: … customer evidence is NOT being protected` and the database half proceeds normally.
+> **ACTIVATED at §312A.** The read-only source credential `insite-evidence-recovery-reader` exists,
+> the daily run reconciles both halves, and the aggregate reports `HEALTHY`.
 
 ## 7A. Evidence recovery — the §312 model in six lines
 
@@ -235,6 +235,7 @@ object's key, byte length and sha256 — and reconciles it against the bucket in
 | Generation window | **30 days** for superseded/orphaned generations; the generation matching the current live object is kept while it is live |
 | Erasure grace | **24 hours** from the customer's deletion, then the recovery bytes are removed too |
 | Command | `node scripts/ops/reconcile-evidence-recovery.js [--apply] [--restore <id>]` |
+| Source access | `insite-evidence-recovery-reader` — R2 **Object Read only**, `insite-production` only. It cannot write, overwrite or delete anything, in either bucket. |
 
 **Why the erasure tombstone is not a database row.** A database row cannot answer the question that
 matters. Restore the database to a point *before* a customer's deletion and a database-only record of
@@ -262,6 +263,29 @@ intent; treating it as erasure would delete recovery copies during ordinary repo
 | `RECOVERY_ONLY_EXPECTED` | recovery generation whose live object is legitimately gone | none, expires on the window |
 | `RECOVERY_ONLY_SUSPECT` | recovery bytes with no database row and no explanation | investigate |
 | `UNKNOWN` | the scan could not complete | **never a pass** — exit 2, nothing is changed |
+
+## 7A-bis. Is the backup actually healthy?
+
+```
+cd backend && node scripts/ops/check-backup-health.js
+```
+
+**`HEALTHY` requires BOTH halves.** This composition exists because between §311A and §312A the
+scheduled run exited 0 every night while customer evidence was entirely unprotected — the database
+backup had succeeded, so the job was "green". A light that means *half* your recovery posture is fine
+is worse than no light.
+
+| database | evidence | aggregate | exit |
+|---|---|---|---|
+| HEALTHY | PROTECTED | **HEALTHY** | 0 |
+| HEALTHY | NOT_ACTIVATED | DEGRADED | 1 |
+| HEALTHY | ATTENTION_REQUIRED | DEGRADED | 1 |
+| STALE | PROTECTED | DEGRADED | 1 |
+| FAILED | anything | FAILED | 1 |
+| UNKNOWN | — or — | UNKNOWN | 2 |
+
+`NOT_ACTIVATED` is **not** a pass. `UNKNOWN` never becomes a pass, and `FAILED` outranks `UNKNOWN`
+because a known failure is more actionable than an indeterminate one.
 
 ## 7B. Restoring one evidence object
 

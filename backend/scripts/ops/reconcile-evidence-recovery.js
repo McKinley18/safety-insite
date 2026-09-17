@@ -286,6 +286,33 @@ async function main() {
     process.stderr.write(`SCAN INCOMPLETE: ${error && error.message}\n`);
     process.stderr.write('Reporting UNKNOWN. An incomplete scan is never a pass, and nothing was changed.\n');
     if (jsonPath) fs.writeFileSync(jsonPath, `${JSON.stringify({ schema: SCHEMA, outcome: 'UNKNOWN', scanComplete: false, detail: String(error && error.message).slice(0, 300) }, null, 2)}\n`);
+    /**
+     * ALERT ON THE WAY OUT. §312A found this by testing rather than by reading: this branch used to
+     * exit(2) without dispatching, which meant the single most important failure — "I cannot see the
+     * source bucket at all" — was the one failure that never reached anybody. A monitor that goes
+     * quiet exactly when it loses sight of what it is monitoring is worse than no monitor.
+     *
+     * The payload names the FAILURE KIND only, never a bucket key or a customer identifier.
+     */
+    if (process.env.OPERATIONAL_ALERT_WEBHOOK_URL) {
+      try {
+        const response = await fetch(process.env.OPERATIONAL_ALERT_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            schema: SCHEMA,
+            event: 'evidence.recovery_scan_incomplete',
+            severity: 'error',
+            occurredAt: new Date().toISOString(),
+            summary: { outcome: 'UNKNOWN', scanComplete: false, failureKind: (error && error.name) || 'Error' },
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+        process.stderr.write(`alert dispatch: ${JSON.stringify({ dispatched: response.ok, status: response.status })}\n`);
+      } catch (alertError) {
+        process.stderr.write(`alert dispatch: ${JSON.stringify({ dispatched: false, reason: String(alertError && alertError.message).slice(0, 120) })}\n`);
+      }
+    }
     process.exit(2);
   }
 

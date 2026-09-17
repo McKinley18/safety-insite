@@ -1,0 +1,6 @@
+a brand-new production object has just appeared (synthetically):
+PASS  before reconciliation -> LIVE_UNBACKED
+PASS  after reconciliation -> LIVE_MATCHED
+PASS  overall outcome -> PROTECTED
+
+3 passed, 0 failed
