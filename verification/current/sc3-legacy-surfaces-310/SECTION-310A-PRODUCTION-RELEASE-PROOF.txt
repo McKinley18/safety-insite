@@ -1,0 +1,110 @@
+§310A — PRODUCTION RELEASE PROOF
+
+Release: 22f54b5d -> b8a6fd9cfe34d362b7cd1a585a8fcfc9e246ebb1
+Deploy:  dep-dalju0qd0e5s73flk650 (api-triggered, pinned commit, autoDeploy off)
+Schema:  1800000025000 57/57 -> 1800000026000 58/58, aheadOfBuild []
+
+==========================================================================
+FIVE STABLE READS (after the rolling cutover settled)
+==========================================================================
+read 1  sha=b8a6fd9cfe34  buildTs=BUILD_TIMESTAMP  status=ready  head=1800000026000  58/58  ahead=[]  missing=[]  schema=current  5xx=0  alerting=CONFIGURED
+read 2  sha=b8a6fd9cfe34  buildTs=BUILD_TIMESTAMP  status=ready  head=1800000026000  58/58  ahead=[]  missing=[]  schema=current  5xx=0  alerting=CONFIGURED
+read 3  sha=b8a6fd9cfe34  buildTs=BUILD_TIMESTAMP  status=ready  head=1800000026000  58/58  ahead=[]  missing=[]  schema=current  5xx=0  alerting=CONFIGURED
+read 4  sha=b8a6fd9cfe34  buildTs=BUILD_TIMESTAMP  status=ready  head=1800000026000  58/58  ahead=[]  missing=[]  schema=current  5xx=0  alerting=CONFIGURED
+read 5  sha=b8a6fd9cfe34  buildTs=BUILD_TIMESTAMP  status=ready  head=1800000026000  58/58  ahead=[]  missing=[]  schema=current  5xx=0  alerting=CONFIGURED
+
+NOTE ON THE FIRST READ SET. The first of an earlier five-read series reported
+head 1800000025000 57/57 with aheadOfBuild [1800000026000] — the OLD instance
+still draining during Render's zero-downtime overlap. It is recorded rather than
+discarded: it is the expected shape of a rolling cutover, and it is also the live
+confirmation that READY_SCHEMA_AHEAD keeps an old build ready against a
+forward-migrated database, which is why MIGRATE-before-DEPLOY is safe here.
+
+==========================================================================
+AUTHENTICATED PRODUCTION PROBES
+==========================================================================
+login -> 201 {"planCode":"free","subscriptionStatus":"none"}
+
+---- AFFECTED ROUTES, AUTHENTICATED INDIVIDUAL (production) ----
+
+404  GET /analytics/safety-trends                             {"message":"Cannot GET /analytics/safety-trends","error":"Not Found","statusCode":404}
+410  GET /legacy/reports                                      {"message":"The legacy report model is retired. Generate an immutable report from a comple
+410  GET /legacy/reports/00000000-0000-4000-8000-000000000001 {"message":"The legacy report model is retired. Generate an immutable report from a comple
+410  GET /legacy/reports/00000000-0000-4000-8000-000000000001/recommendations {"message":"The legacy report model is retired. Generate an immutable report from a comple
+402  GET /legacy/reports/00000000-0000-4000-8000-000000000001/explain {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_R
+403  POST /legacy/reports                                     {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+402  PATCH /legacy/reports/00000000-0000-4000-8000-000000000001 {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_R
+402  PATCH /legacy/reports/00000000-0000-4000-8000-000000000001/archive {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_R
+402  POST /legacy/reports/00000000-0000-4000-8000-000000000001/attachments {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_R
+402  POST /legacy/reports/00000000-0000-4000-8000-000000000001/attachments/upload {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_R
+403  POST /legacy/reports/00000000-0000-4000-8000-000000000001/recommendations/feedback {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+402  POST /action-engine/generate/00000000-0000-4000-8000-000000000001 {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_R
+402  GET /legacy/pdf/00000000-0000-4000-8000-000000000001     {"message":"A paid subscription is required for this feature.","code":"PAID_SUBSCRIPTION_R
+404  GET /classifications/report/00000000-0000-4000-8000-000000000001 {"message":"Cannot GET /classifications/report/00000000-0000-4000-8000-000000000001","erro
+404  POST /control-verifications/00000000-0000-4000-8000-000000000001 {"message":"Cannot POST /control-verifications/00000000-0000-4000-8000-000000000001","erro
+404  GET /review-queue                                        {"message":"Cannot GET /review-queue","error":"Not Found","statusCode":404}
+
+MISSING-RELATION 5xx across all affected routes: 0
+
+---- ACTIVE BETA v1 ROUTES STILL AVAILABLE ----
+
+200  /inspections                 []
+200  /inspection-reports          []
+200  /sites                       {"data":[],"meta":{"page":1,"limit":25,"total":0}}
+200  /actions                     {"data":[],"meta":{"total":0,"page":1,"limit":20}}
+404  /standards                   {"message":"Cannot GET /standards","error":"Not Found","statusCode":40
+200  /auth/me                     {"id":"79879f1e-be7e-4f8d-bf03-aaceb78fc400","email":"s310a-production
+200  /agreements/acceptances      {"userId":"79879f1e-be7e-4f8d-bf03-aaceb78fc400","acceptances":[{"agre
+
+5xx across active routes: 0
+
+==========================================================================
+READING OF THESE RESULTS
+==========================================================================
+GET /analytics/safety-trends returned 401 before the deploy (route existed, guard
+refused) and returns 404 after it. That before/after flip is the route-removal
+proof, and it is the only change to the deployed route surface: 156 -> 155.
+
+The three legacy report READS returned the actual 410 body naming their successor,
+from production, as an authenticated individual.
+
+The remaining legacy routes returned 402 (paid subscription required) or 403 —
+their entitlement and role guards refuse a free individual before the handler
+runs. Those are bounded client statuses, not failures: the property SC-3 is about
+is that NO affected route reaches a missing relation, and none did.
+
+  MISSING-RELATION 5xx ACROSS ALL SIXTEEN AFFECTED ROUTES: 0
+
+LIMIT STATED PLAINLY. Proving the 410 body on the entitlement-gated routes in
+production would require granting a pro entitlement to a synthetic account, which
+means adding a live redeemable promo code to production configuration. That is
+outside what §310A authorised, so it was not done. Those routes' 410 bodies are
+proven in the rebuilt environment (test:310-missing-relation:db, 30/0, driven as a
+fully entitled individual AND as an organization principal) against the identical
+code, where the 410 is thrown unconditionally with no data dependency. Production
+proves the route surface change and the absence of 5xx; the rebuilt environment
+proves the response bodies.
+
+ACTIVE BETA v1 CAPABILITY: /inspections, /inspection-reports, /sites, /actions,
+/auth/me and /agreements/acceptances all answered 200. Nothing an individual needs
+was lost. (GET /standards 404 is not a regression — bare /standards exists in
+neither the before nor the after route table; only POST /standards/match does.)
+
+SYNTHETIC ACCOUNT. One account was created through normal product registration
+because the authenticated probes above required one. It registered free/none,
+which is the SC-4 and EN-3 proof taken through the real product path rather than
+by inspection. It was removed through the product route (DELETE /auth/me, 200) and
+re-login then refused 401. The product's deletion model anonymizes and tombstones
+rather than hard-deleting, so the row remains as "Deleted User" with a tombstoned
+email, exactly like the 25 pre-existing tombstones. No PII residue: zero rows match
+the synthetic email pattern.
+
+SUBSCRIPTION DISTRIBUTION.
+  before migration   9 active / 57 none   (66 users)
+  after migration    9 active / 57 none   (66 users)   <- zero rows moved
+  after the proof    9 active / 58 none   (67 users)   <- the +1 none is the
+                     soft-deleted synthetic account, created AFTER the migration
+                     by registration, not by the migration.
+
+PRODUCTION DEFAULT: 'none'::character varying — read by schema inspection, not by
+inserting a row.

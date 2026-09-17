@@ -1407,8 +1407,8 @@ Four observations registered rather than fixed: the service slug and public host
 | **DB-7** | Workspace-scoped learning from outcomes is not implemented and is not a v1 capability. | P3 | — | Product | DEFERRED (§292) |
 | **DB-6** | Closure intelligence failed for every hand-created corrective action. | P2 | — | Engineering | **CLOSED (§291)** |
 | **SC-2** | Pre-existing entity-versus-database contradictions that exist identically in production and in a fresh replay: `standards_master` column bounds, and four `timestamp` columns the entities declared `timestamptz`. | P2 | C | Engineering | **CLOSED (§309)** |
-| **SC-3** | Four entities map to tables that exist in neither the canonical manifest nor a fresh replay — `Report`, `Finding`, `ReportAttachment`, `HazardTaxonomy`. Every read through them fails on a migration-built database. | P1 | — | Engineering | **ENGINEERING COMPLETE (§310) — closure pending §310A production proof.** All four families classified LEGACY/SUPERSEDED and **retired**, not resurrected. |
-| **SC-4** | Residual entity-versus-database differences, each recorded in the entity-contract ledger with a reason. Thirteen at §309; **twelve** after §310 resolved `user.subscriptionStatus`. | P3 | — | Engineering | OPEN (§310) — the named unsafe-default member is repaired in the candidate; its closure is pending §310A production proof. Twelve residuals remain OPEN. |
+| **SC-3** | Four entities map to tables that exist in neither the canonical manifest nor a fresh replay — `Report`, `Finding`, `ReportAttachment`, `HazardTaxonomy`. Every read through them fails on a migration-built database. | P1 | — | Engineering | **CLOSED (§310A, DEPLOYED and proven in production).** All four families classified LEGACY/SUPERSEDED and **retired**, not resurrected. |
+| **SC-4** | Residual entity-versus-database differences, each recorded in the entity-contract ledger with a reason. Thirteen at §309; **twelve** after §310 resolved `user.subscriptionStatus`. | P3 | — | Engineering | OPEN (§310A) — the named unsafe-default member is **CLOSED in production**; **twelve** residuals remain OPEN. |
 | **SC-5** | Four timestamp columns hold INSTANTS in timezone-naive storage; lossless only because the deployment runs UTC. | P3 | — | Engineering | OPEN (§309) |
 
 **SC-2 — CLOSED at §309, and the register text it closed was partly wrong.**
@@ -1460,7 +1460,17 @@ a `standards_master` length or a timestamp type, so either one returning fails.
 *Evidence:* `verification/current/sc2-entity-contract-309/`  
 *Retest:* `npm run check:entity-contract:db` and `npm run test:309-sc2-reconciliation:db`.
 
-**SC-3 — ENGINEERING COMPLETE at §310 by RETIRING the architecture, not by creating the tables. §310A authorised release; closure is recorded only after the production proof succeeds.**
+**SC-3 — CLOSED at §310A by RETIRING the architecture, not by creating the tables.**
+
+**Released and proven in production.** `b8a6fd9c` serves over five stable reads at schema head
+`1800000026000`, 58/58, `aheadOfBuild: []`. `GET /analytics/safety-trends` answered 401 before the
+deploy and **404** after it — the route-removal proof, and the only change to the deployed route
+surface. The three legacy report reads return the real **410** naming their successor, from
+production, as an authenticated individual. **Zero missing-relation 5xx across all sixteen affected
+routes**, and `/inspections`, `/inspection-reports`, `/sites`, `/actions` and `/auth/me` all answer
+200, so no individual capability was lost. The entitlement-gated routes refuse a free individual
+with 402/403 before the handler runs, so their 410 bodies are proven in the rebuilt environment
+against identical code rather than in production — stated as a limit, not glossed.
 
 §310 was forbidden to begin by creating tables, and required to classify each family first. All four
 were classified **B — LEGACY / SUPERSEDED**, and the classification was decided on evidence rather
@@ -1523,7 +1533,12 @@ driving live routes against a real database, not on a gate going quiet.
 
 **SC-5 is untouched and remains OPEN**, as §310 required.
 
-**SC-4 — OPEN, twelve residuals in a ledger. The one §309 named as "worth naming" was resolved at §310.**
+**SC-4 — OPEN, twelve residuals in a ledger. The one §309 named as "worth naming" is CLOSED in production at §310A.**
+
+**Production now reads `subscriptionStatus DEFAULT 'none'`**, confirmed by schema inspection rather
+than by inserting a row. The migration moved **zero** customer rows: 9 `active` / 57 `none` before
+and after. A synthetic account registered through the real product path came out **free / none**,
+and was removed through `DELETE /auth/me`.
 
 `user.subscriptionStatus` had a database default of `'active'` while the entity declared `'none'`, so
 an INSERT omitting the column created an account asserting an **ACTIVE subscription** — the `EN-3`
