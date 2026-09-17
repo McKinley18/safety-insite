@@ -1,0 +1,215 @@
+{
+  "artifact": "SECTION-311A-DURABLE-BACKUP-ACTIVATION",
+  "section": "§311A",
+  "completedAt": "2026-09-17T21:00:00Z",
+  "objective": "Activate durable backup infrastructure and resolve ST-4.",
+  "outcome": "DATABASE RECOVERY OPERATIONAL. ST-4 CLOSED as an investigation with an adverse finding. BR-5 REMAINS PARTIAL/BLOCKING on customer-evidence recoverability.",
+
+  "infrastructure": {
+    "bucket": { "name": "insite-backups", "created": "2026-09-17", "location": "Eastern North America (ENAM)", "placement": "Cloudflare default Automatic", "storageClass": "Standard", "public": false, "customDomain": null, "publicDevelopmentUrl": "disabled", "cors": null, "lifecycleRules": "Default Multipart Abort Rule only (R2 default; aborts incomplete multipart uploads, never deletes a completed object)", "bucketLockRules": "none" },
+    "credential": { "name": "insite-backups-operator", "permission": "Object Read & Write", "scope": "specific buckets only -> insite-backups", "ttl": "Forever", "ipFiltering": "none", "createdAt": "2026-09-17" },
+    "billing": { "billableUsageCurrentPeriod": "$0.00", "paidPlanChanges": 0, "charges": "none" },
+    "insiteProductionUnchanged": true
+  },
+
+  "credentialIsolationProof": {
+    "method": "Live S3 API calls with the new credential. Every denial was checked to be a genuine 403/AccessDenied; an ambiguous failure was defined as NOT a pass.",
+    "positive": {
+      "1_authenticates": "PASS",
+      "2_accessesInsiteBackups": "PASS — ListObjectsV2 accepted",
+      "3_write": "PASS — synthetic object written",
+      "4_read": "PASS — 66 bytes, byte-identical",
+      "5_list": "PASS — object visible under the probe prefix",
+      "6_delete": "PASS — DeleteObject accepted",
+      "7_deletionSucceeded": "PASS — HeadObject 404 afterwards"
+    },
+    "negative": {
+      "8_cannotListInsiteProduction": "PASS — AccessDenied 403",
+      "8_cannotReadInsiteProduction": "PASS — AccessDenied 403",
+      "8_cannotWriteInsiteProduction": "PASS — AccessDenied 403",
+      "8_cannotDeleteInsiteProduction": "PASS — AccessDenied 403",
+      "9_cannotAdministerInsiteBackups_GetBucketVersioning": "PASS — AccessDenied 403",
+      "9_cannotAdministerInsiteBackups_PutBucketLifecycle": "PASS — AccessDenied 403",
+      "9_cannotDeleteTheBackupBucket": "PASS — AccessDenied 403",
+      "10_cannotAdministerInsiteProduction": "PASS — AccessDenied 403",
+      "11_cannotListAccountBuckets": "PASS — AccessDenied 403",
+      "11_cannotCreateBuckets": "PASS — AccessDenied 403"
+    },
+    "total": "16 passed, 0 failed"
+  },
+
+  "reciprocalIsolationProof": {
+    "methodUsed": "ACTIVE TEST. The application credential was read into memory from the Render control plane, never printed, never written to disk, and its Cloudflare configuration was not modified. Only read-only calls were made against the customer bucket; nothing was created, altered or deleted there.",
+    "results": {
+      "appRetainsInsiteProductionScope": "PASS — ListObjectsV2 returned 5 objects, unchanged",
+      "appCanStillReadACustomerObject": "PASS — HeadObject 200 (read-only)",
+      "appCannotListInsiteBackups": "PASS — AccessDenied 403",
+      "appCannotHeadObjectInInsiteBackups": "PASS — 403"
+    },
+    "total": "4 passed, 0 failed"
+  },
+
+  "secretHandling": {
+    "location": "~/.safety-insite/backup.env",
+    "mode": "600",
+    "insideRepository": false,
+    "tracked": false,
+    "transitMethod": "The Access Key ID and Secret Access Key were moved from the Cloudflare console into the file via the system clipboard — the console's own copy control, then a shell read. The values were never rendered into a tool result, a screenshot, a log or a chat message. Only their lengths and shapes (32-hex and 64-hex) were ever observed.",
+    "mode600EnforcementProven": "The wrapper was run against a deliberately chmod-644 file and REFUSED it: 'has mode 644; it must be 600. Refusing to read it.' Exit 78.",
+    "quotingDefectFound": "The first scheduled run failed with 'BACKUP_SOURCE_DATABASE_URL is not set' while the value sat plainly in the file. Cause: the file is SOURCED by bash and a connection string contains '&', which bash reads as background-the-command. All values are now single-quoted and backup.env.example documents the requirement."
+  },
+
+  "scheduler": {
+    "mechanism": "launchd user agent com.safety-insite.backup",
+    "hostCategory": "product owner's MacBook Pro (Apple Silicon), single logged-in user",
+    "schedule": "daily 05:00 local",
+    "scheduleBasis": "Chosen from measurement: the 02:00-07:00 band showed wake activity on 6-7 of 8 days, the most consistent coverage of any hour.",
+    "installer": "backend/scripts/ops/install-machine-local-scheduler.sh (install / --verify / --uninstall)",
+    "payloadLocation": "~/.safety-insite/runner/ — deliberately OUTSIDE the checkout",
+    "tccFinding": {
+      "what": "macOS TCC denies a launchd user agent access to ~/Desktop, ~/Documents and ~/Downloads.",
+      "howFound": "The first scheduled run exited 126 'Operation not permitted'. A diagnostic launchd agent then established it precisely: the repository script could be stat-ed but NOT read, and ~/Desktop could not be listed at all. File permissions are irrelevant.",
+      "rejectedAlternative": "Granting Full Disk Access to /bin/bash would hand every script the user ever runs the keys to the whole filesystem in order to fix one backup job.",
+      "consequence": "The installer copies the four job files plus one dependency into ~/.safety-insite/runner/, records per-file sha256 in INSTALLED.json, and --verify reports drift against the checkout."
+    },
+    "npmRootFinding": "The runner needs its own package.json: without one npm walks up, finds an unrelated package.json in the home directory, and fails on ITS peer dependencies (an Expo conflict, in a backup installer).",
+    "sourceBindingFinding": "The runner is not a git checkout, so the first durable artifact recorded applicationSourceDigest as unbound. The installer now computes the digest from the checkout at install time and writes SOURCE-BINDING.json; artifacts report status RECORDED_AT_INSTALL rather than COMPUTED, so the provenance is never overstated.",
+    "installationProof": "launchctl print reports the agent loaded with Hour=5 Minute=0; runs=3; last exit code = 0 after the successful run.",
+    "rpoResidualRisk": {
+      "measured": "644 wake events over the power log's full 8-day retention; longest continuous gap 16.0 hours; no day without a wake; 17 days uninterrupted uptime; reboots roughly monthly.",
+      "credible": "On that evidence a daily job runs daily — launchd executes a missed StartCalendarInterval job at the next wake.",
+      "residual": "An extended POWERED-OFF period violates the 24-hour RPO AND simultaneously prevents the local freshness monitor from reporting the violation, because both run on the same machine.",
+      "statedLimit": "This is a Beta-appropriate posture, NOT an unconditional 24-hour SLA. RPO is measured from LAST SUCCESSFUL BACKUP, not from the scheduled invocation."
+    }
+  },
+
+  "firstDurableBackup": {
+    "producedBy": "the launchd scheduler itself, not a hand-run command",
+    "takenAt": "2026-09-17T20:54:21.015Z",
+    "artifactKey": "postgres/neondb-2026-09-17T205421Z.dump",
+    "sizeBytes": 7898796,
+    "sha256": "a084be6244d3406ec0542dea0b0c23fd66c00df0bfbd1198f6404eda172c5a96",
+    "durationSeconds": { "dump": 9.2, "upload": 1.1, "readBackVerify": 0.5, "total": 12.0 },
+    "readConsistent": "pg_dump single snapshot, --serializable-deferrable accepted by Neon",
+    "encryptedInTransit": "sslmode=require + channel_binding=require to Neon; HTTPS to R2",
+    "productionMutations": 0,
+    "metadata": {
+      "productionSha": "b8a6fd9cfe34d362b7cd1a585a8fcfc9e246ebb1",
+      "applicationSourceDigest": "87bb6eaa63e60b7da3edfb8533f41d485688575a0de7d4bca282487acbf41597",
+      "applicationSourceDigestStatus": "RECORDED_AT_INSTALL",
+      "applicationSourceCommitAtInstall": "be5bb4c45d711364e301a3e04cd601d9489e0cfd",
+      "schemaHead": "1800000026000",
+      "migrationCount": 58,
+      "engine": "PostgreSQL 17.11 (c4ba6b8)",
+      "pgDump": "pg_dump (PostgreSQL) 18.3",
+      "node": "v24.14.1",
+      "format": "pg_dump custom (-Fc), compress 9",
+      "secretsInMetadata": 0
+    }
+  },
+
+  "remoteProof": {
+    "remoteExistence": "PASS — HeadObject on insite-backups returned the artifact",
+    "remoteSize": "PASS — 7898796 bytes remote == 7898796 recorded",
+    "remoteIntegrityMetadata": "PASS — object user-metadata carries the sha256 recorded at upload",
+    "download": "PASS — 7898796 bytes downloaded from R2 in 0.4s using the backup credential",
+    "downloadedChecksum": "PASS — computed on download == freshness record == metadata sidecar == a084be6244d3406ec0542dea0b0c23fd66c00df0bfbd1198f6404eda172c5a96",
+    "note": "The restore below used the DOWNLOADED REMOTE COPY, not the local pre-upload file. The local artifact had already been deleted by the backup script."
+  },
+
+  "restoreProof": {
+    "target": "freshly created PostgreSQL 17.11 container — exact production server-version match",
+    "restoreSeconds": 0.6,
+    "restoreErrors": 0,
+    "migrationHistory": "PASS — head 1800000026000, 58 rows, matching source",
+    "tableSet": "PASS — 78 source / 78 restored, identical",
+    "representativeData": "PASS — 78 tables, 7294 rows, 0 differing; aggregate content digest e093a62f81ac4d9e49011c43b5489f07 on both sides",
+    "canonicalSchemaOnRestore": "PASS — 68 canonical tables, 0 material differences",
+    "canonicalSchemaReplay": "PASS — 68 tables, 0 material differences",
+    "entityContractReplay": "PASS — 57 entities, 12 material differences, 12 accepted by the baseline, 0 UNACCEPTED",
+    "entityContractOnRestore": "NOT APPLICABLE BY DESIGN — check-entity-contract is a REPLAY gate and explicitly refuses production ('neondb is not a disposable database'). Pointing it at a production restore reports the two §305-tolerated legacy user columns as unaccepted, which describes the gate's baseline, not the restore. §311A did not weaken the gate to obtain a number."
+  },
+
+  "postRestoreApplicationProof": {
+    "boot": "PASS — NODE_ENV=production, booted against the restored REMOTE copy, /health/ready 200 in 1.1s, dependencies.schema 'current', schema 1800000026000 58/58, aheadOfBuild []",
+    "authentication": "PASS — restored synthetic internal-acceptance fixture; its password hash was set in the DISPOSABLE restored database only",
+    "routesRead": 14,
+    "routesAll200": true,
+    "unexpected5xx": 0,
+    "entitlementResolution": "planCode free, subscriptionStatus none — the §310 fail-safe default survived the round trip",
+    "storageScoping": "Object storage pointed at a disposable MinIO bucket so the locally booted application could not write to production R2."
+  },
+
+  "backupHealthMonitoring": {
+    "vocabulary": ["HEALTHY", "STALE", "FAILED", "UNKNOWN"],
+    "provenAgainst": "the REAL destination bucket, using a synthetic __s311a-monitor-proof/ prefix so no real artifact was touched. All synthetic objects deleted afterwards; 0 remaining.",
+    "states": {
+      "HEALTHY": "PASS — real postgres/ prefix, verdict FRESH, exit 0",
+      "STALE": "PASS — verdict STALE, 60.0h past a 36h threshold, exit 1",
+      "FAILED_MISSING": "PASS — no freshness record at the prefix, exit 1",
+      "FAILED_ARTIFACT_ABSENT": "PASS — record names an artifact not in the bucket, exit 1",
+      "FAILED_ARTIFACT_ALTERED": "PASS — artifact 77 bytes against a recorded 1000, exit 1 (this is the integrity/checksum failure proof)",
+      "UNKNOWN_badCredential": "PASS — HTTP 401, reported UNKNOWN not FAILED, exit 1",
+      "UNKNOWN_unreachableEndpoint": "PASS — reported UNKNOWN, exit 1"
+    },
+    "unknownNeverPasses": "CONFIRMED — only HEALTHY exits 0. 'There is no backup' and 'I could not find out' are kept as different facts.",
+    "mo1Integration": {
+      "channel": "OPERATIONAL_ALERT_WEBHOOK_URL — the existing MO-1 webhook, unchanged",
+      "dispatch1": "database.backup_failed on a REAL failure (the unquoted-env defect) — {\"dispatched\":true,\"status\":200}",
+      "dispatch2": "database.backup_stale, deliberately induced — {\"dispatched\":true,\"status\":200}",
+      "notOnHealthEndpoint": "Backup state remains absent from /health, per §307 SE-17."
+    }
+  },
+
+  "retentionProof": {
+    "method": "synthetic object metadata; no real artifact deleted",
+    "alwaysKeepNewest": 3,
+    "assertions": "9 passed, 0 failed",
+    "keyResults": {
+      "longOutageDoesNotEmptyDestination": "PASS — with all four artifacts older than the 14d window, 3 kept / 1 expired instead of 4 deleted",
+      "newestNeverExpired": "PASS",
+      "floorHoldsUnderA60DayBacklog": "PASS — 21 kept / 39 expired, newest 3 present, 6 weekly Sundays retained",
+      "incompleteListingFailsClosed": "PASS — listingComplete=false suppresses ALL deletion, every key reported LISTING_INCOMPLETE_DELETION_SUPPRESSED",
+      "ambiguityKeeps": "PASS — unrecognised filename and unparseable timestamp both KEPT, never deleted"
+    },
+    "defectFixed": "The §311 retention pass had a real hole: after an outage longer than the daily window, every artifact would be past the cutoff and the pass would delete the lot, emptying the destination at the moment its contents mattered most. ALWAYS_KEEP_NEWEST is an absolute floor the age rules cannot override."
+  },
+
+  "st4Disposition": {
+    "state": "CLOSED AS AN INVESTIGATION, with an adverse finding",
+    "finding": "Customer evidence in insite-production is NOT recoverable after accidental delete or overwrite. R2 has no object versioning at all; no bucket lock is configured; the only lifecycle rule aborts incomplete multipart uploads; Data Access Logs are disabled. Cloudflare's eleven-nines durability explicitly 'does not prevent intentional or accidental deletion of data'.",
+    "notRemediated": "By product-owner instruction: no bucket lock, no lifecycle change, no Data Access Logs, no change to the customer-evidence bucket, and no copying of evidence into insite-backups/evidence/.",
+    "whyBucketLockIsNotADropInFix": "The product hard-deletes R2 objects in normal operation — upload rollback (storage.service.ts:145), retireReportArtifact on report regeneration (:213, called twice from canonical-reports.service.ts), and customer tombstone (:224). A lock would break report regeneration and customer erasure."
+  },
+
+  "br5Disposition": {
+    "state": "PARTIAL / BLOCKING",
+    "databaseHalf": "OPERATIONAL — dedicated destination, isolated credential proven both ways, scheduled, retention implemented and watched to fail, failure detection with four states, remote-copy restore proven, application proven on the restored data, DR runbook updated.",
+    "objectHalf": "UNRESOLVED — a plausible single storage mistake can permanently destroy customer evidence with no recovery mechanism. BR-5's closure rule forbids closing over that.",
+    "mustNotBeReportedClosed": true
+  },
+
+  "preservedUnchanged": {
+    "BR-6": "OPEN. Not repaired. Measured boundary preserved: legacy user.password exists outside the current entity; 8 accounts hold bcrypt hashes; 0 of those 8 are deleted; 26 deleted accounts measured with password NULL; population frozen and cannot grow. No hash exposed.",
+    "SE-21": "OPEN. The repository remains public; §311A did not change it. The backup credential was deliberately NOT placed in GitHub — machine-local scheduling was chosen instead.",
+    "OPS-2": "OPEN, untouched.",
+    "SC-4": "OPEN — 12 residuals, visible as 'accepted by the baseline' in the entity-contract replay.",
+    "SC-5": "OPEN, untouched.",
+    "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED, untouched.",
+    "LG-3": "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED, untouched. No brand or domain decision."
+  },
+
+  "productionSafety": {
+    "productionSchemaMutations": 0,
+    "productionCustomerRowsModified": 0,
+    "productionEvidenceObjectsModified": 0,
+    "productionConfigurationChanges": 0,
+    "applicationDeployments": 0,
+    "charges": "$0.00",
+    "expertExecutions": 0,
+    "providerCalls": 0,
+    "spendUsd": 0,
+    "unexpectedProduction5xx": 0,
+    "productionReads": "pg_dump (read), /health/version, /health/ready, R2 object listing and HEAD via the application credential (read-only), Render control-plane reads."
+  }
+}

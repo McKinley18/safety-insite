@@ -1,0 +1,13 @@
+target           127.0.0.1/restoretarget  (gate: LOCAL_HOST_AND_DISPOSABLE_NAME)
+artifact         /private/tmp/claude-501/-Users-mckinley/3999473d-2617-42ee-8e24-6f8816b78c7f/scratchpad/s311a/remote-artifact.dump
+                 7898796 bytes, sha256 a084be6244d3406ec0542dea0b0c23fd66c00df0bfbd1198f6404eda172c5a96
+PASS  restore completes without error  — 0.6s, 0 errors
+PASS  restored schema has base tables  — 78 tables
+PASS  migration history is present and intact  — head 1800000026000, 58 rows
+PASS  table set is identical to the source  — source 78, restored 78
+PASS  migration head matches the source  — source 1800000026000:58, restored 1800000026000:58
+PASS  every table is content-identical to the source  — 78 tables, 7294 rows, 0 differing
+PASS  aggregate content digest matches  — e093a62f81ac4d9e49011c43b5489f07
+
+restore 0.6s, verification 5.0s
+ALL CHECKS PASSED

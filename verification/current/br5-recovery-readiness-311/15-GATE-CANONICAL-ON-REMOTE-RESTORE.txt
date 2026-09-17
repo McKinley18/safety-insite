@@ -1,0 +1,9 @@
+canonical schema gate: replayed database restoretarget
+  manifest digest  34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56
+  replay digest    dce774cea9d14d5a334103e61c44bb870eeaab47f9a8ffe19ec40badb733798e
+  manifest tables  68
+  replay tables    77
+  retired/compatibility objects present (not enforced): control_verifications, finding, hazard_taxonomy, outcomes, regulatory_profile, report, report_attachments, reports, standards, users
+
+ok    a fresh migration replay reproduces the canonical schema exactly (68 tables, 0 material differences)
+{"tables":68,"digest":"dce774cea9d14d5a334103e61c44bb870eeaab47f9a8ffe19ec40badb733798e","differences":0}

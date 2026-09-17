@@ -1,0 +1,97 @@
+{
+  "artifact": "SECTION-311A-ST4-R2-PROTECTION-READ",
+  "section": "§311A",
+  "readAt": "2026-09-17T20:30:00Z",
+  "method": "Cloudflare console, read from the product owner's authenticated session. READ ONLY — nothing was created, enabled, changed or deleted. Capability questions (supported vs not) were answered from Cloudflare's own documentation, because the console can only show what is configured, not what the product offers.",
+  "authority": {
+    "accountSpecificConfiguration": "Cloudflare console, account f2e58f298c5955ff2c54084209546d4a",
+    "productCapability": "developers.cloudflare.com R2 documentation"
+  },
+
+  "bucket": {
+    "name": "insite-production",
+    "created": "2026-08-17",
+    "location": "Western North America (WNAM)",
+    "s3Api": "https://f2e58f298c5955ff2c54084209546d4a.r2.cloudflarestorage.com/insite-production",
+    "defaultStorageClass": "Standard",
+    "objects": 5,
+    "bytes": 166708,
+    "accountTotalStorage": "167 kB",
+    "accountBuckets": 1,
+    "billableUsageCurrentPeriod": "$0.00 — no billable usage incurred yet",
+    "classAOperations": 7,
+    "classBOperations": 4
+  },
+
+  "st4Answers": {
+    "1_versioningSupported": {
+      "answer": "NO",
+      "basis": "R2 has no object-versioning feature. The bucket Settings navigation contains General, Custom Domains, Public Development URL, R2 Data Catalog, CORS Policy, Object Lifecycle Rules, Bucket Lock Rules, Event Notifications, Data Access Logs, On Demand Migration, Local Uploads, Default Storage Class, Empty Bucket, Delete Bucket — and no Versioning entry. Cloudflare's own bucket-features documentation lists nine bucket-level features and versioning is not among them.",
+      "note": "§311 could not distinguish 'unsupported' from 'denied to the application token', because the application credential returns 403 on GetBucketVersioning. It is unsupported."
+    },
+    "2_versioningEnabled": { "answer": "NO — not available to enable", "basis": "Follows from 1. This is a product limitation, not a configuration choice." },
+    "3_lifecycleSupported": { "answer": "YES", "basis": "Console section 'Object Lifecycle Rules — Specify rules to automatically manage objects after a specified time.'" },
+    "4_lifecycleEnabled": {
+      "answer": "YES — one rule, and it is not a data-expiry rule",
+      "rules": [{ "name": "Default Multipart Abort Rule", "prefix": "--", "action": "Abort uploads after 7 day(s)", "status": "Enabled" }],
+      "interpretation": "R2's default housekeeping rule. It discards INCOMPLETE MULTIPART UPLOADS after seven days. It never deletes a completed object, so it neither protects nor endangers stored evidence. No customer-data expiry rule exists."
+    },
+    "5_objectLockSupported": { "answer": "YES, as 'Bucket Lock Rules'", "basis": "Console: 'Set a retention policy to prevent object overwrites and deletions until the specified period ends.' Documentation: locks may run for a duration, until a date, or indefinitely; up to 1000 rules; prefix-scoped; take precedence over lifecycle rules; apply to new AND existing objects." },
+    "6_objectLockEnabled": { "answer": "NO", "basis": "Console: 'There are no bucket lock rules defined for this bucket.'" },
+    "7_afterAccidentalDeletion": {
+      "answer": "The object is permanently gone. There is no tombstone, no previous version, no recycle bin and no undelete.",
+      "cloudflareStatement": "\"Durability does not prevent intentional or accidental deletion of data.\""
+    },
+    "8_deletedObjectRecoverable": { "answer": "NO", "basis": "No versioning, no bucket lock configured, no backup of the object plane exists anywhere." },
+    "9_afterAccidentalOverwrite": { "answer": "The previous bytes are permanently gone. A PUT to an existing key replaces it in place." },
+    "10_overwrittenObjectRecoverable": { "answer": "NO", "basis": "Same as 8. Without versioning there is no prior version to return to." },
+    "11_bucketPrivate": {
+      "answer": "YES",
+      "basis": "No custom domain assigned; Public Development URL disabled; no CORS policy; R2 Data Catalog disabled. Consistent with §269/§289/§290, which probed unsigned GET and LIST live and both were refused."
+    },
+    "12_publicAccessDisabled": { "answer": "YES", "basis": "Both public exposure mechanisms R2 offers — custom domain and public development URL — are off." },
+    "13_durabilityExposed": {
+      "annualDurability": "99.999999999% (eleven 9s)",
+      "mechanism": "Replication, erasure coding and geographic redundancy across data centres.",
+      "availabilitySla": "99.9%",
+      "criticalQualification": "Cloudflare states plainly that durability covers hardware failure and physical disaster, and that it \"does not prevent intentional or accidental deletion of data\". Eleven nines describes the medium, not the operator.",
+      "dataAccessLogs": "DISABLED. Object-level read/write/list/delete operations are not being recorded, so after an unexplained disappearance there is currently no way to establish WHAT was deleted, WHEN, or BY WHICH credential. This is forensics rather than recovery, and it is absent."
+    },
+    "14_sufficientToRecoverEvidence": {
+      "answer": "NO",
+      "reasoning": "Every mechanism present is preventive or descriptive. Versioning does not exist in the product; bucket lock exists but is not configured; lifecycle is configured but only aborts incomplete uploads; durability protects the disk, not the decision. Nothing in the account can return a deleted or overwritten inspection photo or report PDF."
+    }
+  },
+
+  "productDeletePaths": {
+    "why": "Whether a bucket lock is even usable here depends on whether the product itself deletes objects in normal operation. It does, in three places — measured in source, not assumed.",
+    "paths": [
+      { "location": "storage.service.ts:145", "trigger": "rollback after a failed upload", "kind": "hard delete" },
+      { "location": "storage.service.ts:213 — retireReportArtifact", "trigger": "NORMAL REPORT REGENERATION. Called twice from canonical-reports.service.ts (390, 416) to retire a superseded PDF.", "kind": "hard delete" },
+      { "location": "storage.service.ts:224 — tombstone", "trigger": "a customer deleting their own file via DELETE /files/:id", "kind": "hard delete" }
+    ],
+    "consequence": "A bucket lock across insite-production would BREAK report regeneration and customer file deletion. Customer deletion is also an erasure obligation, so locking it is not merely inconvenient — it would put the product in conflict with its own privacy commitments. Bucket lock is therefore NOT a drop-in protection for this bucket, which is exactly why §311A forbade enabling it by assumption.",
+    "alsoNotable": "Customer-initiated evidence deletion is ALREADY irreversible, and that is correct behaviour rather than a defect. The gap is the accidental case, not the intentional one."
+  },
+
+  "exposureAssessment": {
+    "plausibleSingleMistakes": [
+      "A defect in retireReportArtifact selecting the wrong storage object id — it runs on the normal regeneration path and its call sites swallow errors with .catch(() => undefined), so a wrong-object deletion would be silent.",
+      "The 'Empty Bucket' console control, which is one click and deletes every object while leaving the bucket.",
+      "Misuse or compromise of the application R2 credential, which holds object write/delete on this bucket."
+    ],
+    "mitigationsThatDoExist": [
+      "No product route performs bulk deletion.",
+      "No route accepts a caller-supplied object key; every object is resolved through a storage_objects row by UUID primary key, and objectKey is select:false on the entity.",
+      "The application credential is object-scoped and cannot administer the bucket (measured at §311: 403 on every bucket-administration call).",
+      "Current blast radius is small in absolute terms: 5 objects, 167 kB, Beta."
+    ],
+    "severityNormalization": "Not inflated: nothing has been lost, the population is tiny, and the credential boundary holds. Not downgraded either: the absence is structural rather than circumstantial, it applies to every object the product will ever store, and it grows with every real customer. The controlling fact is that the consequence of the mistake is PERMANENT and the product's own evidence is what is lost."
+  },
+
+  "productionSafety": {
+    "created": 0, "enabled": 0, "modified": 0, "deleted": 0,
+    "secretsRead": 0, "secretsCopied": 0, "paidPlanChanges": 0,
+    "apiTokensCreated": 0, "bucketsCreated": 0
+  }
+}

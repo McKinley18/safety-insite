@@ -1,0 +1,65 @@
+{
+  "schema": "safety-insite.backup-restore-verification.v1",
+  "verifiedAt": "2026-09-17T20:55:27.737Z",
+  "artifact": {
+    "path": "/private/tmp/claude-501/-Users-mckinley/3999473d-2617-42ee-8e24-6f8816b78c7f/scratchpad/s311a/remote-artifact.dump",
+    "bytes": 7898796,
+    "sha256": "a084be6244d3406ec0542dea0b0c23fd66c00df0bfbd1198f6404eda172c5a96"
+  },
+  "target": {
+    "host": "127.0.0.1",
+    "database": "restoretarget",
+    "gate": "LOCAL_HOST_AND_DISPOSABLE_NAME"
+  },
+  "durationsMs": {
+    "restore": 574,
+    "verify": 5036
+  },
+  "tableCount": 78,
+  "migrationHead": "1800000026000:58",
+  "comparison": {
+    "sourceAggregate": "e093a62f81ac4d9e49011c43b5489f07",
+    "targetAggregate": "e093a62f81ac4d9e49011c43b5489f07",
+    "tables": 78,
+    "rows": 7294,
+    "differing": []
+  },
+  "checks": [
+    {
+      "name": "restore completes without error",
+      "passed": true,
+      "detail": "0.6s, 0 errors"
+    },
+    {
+      "name": "restored schema has base tables",
+      "passed": true,
+      "detail": "78 tables"
+    },
+    {
+      "name": "migration history is present and intact",
+      "passed": true,
+      "detail": "head 1800000026000, 58 rows"
+    },
+    {
+      "name": "table set is identical to the source",
+      "passed": true,
+      "detail": "source 78, restored 78"
+    },
+    {
+      "name": "migration head matches the source",
+      "passed": true,
+      "detail": "source 1800000026000:58, restored 1800000026000:58"
+    },
+    {
+      "name": "every table is content-identical to the source",
+      "passed": true,
+      "detail": "78 tables, 7294 rows, 0 differing"
+    },
+    {
+      "name": "aggregate content digest matches",
+      "passed": true,
+      "detail": "e093a62f81ac4d9e49011c43b5489f07"
+    }
+  ],
+  "outcome": "PASS"
+}

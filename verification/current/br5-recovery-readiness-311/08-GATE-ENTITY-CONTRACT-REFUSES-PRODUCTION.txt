@@ -1,0 +1,12 @@
+
+§309 ENTITY-CONTRACT GATE ERRORED: Error: §309 gate REFUSED: neondb is not a disposable database. This gate reads entity metadata against a REPLAYED schema and must never point at production.
+    at main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/check-entity-contract.ts:194:11)
+    at Object.<anonymous> (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/check-entity-contract.ts:267:1)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Module.m._compile (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1618:23)
+    at node:internal/modules/cjs/loader:1943:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)

@@ -1,0 +1,303 @@
+{
+  "artifact": "SECTION-311-BR5-RECOVERY-READINESS",
+  "section": "§311",
+  "objective": "Resolve or precisely bound BR-5 — durable backup, retention and disaster-recovery readiness — for external INDIVIDUAL Beta.",
+  "generated": "2026-09-17T19:35:00Z",
+  "providerCalls": 0,
+  "expertExecutions": 0,
+  "spendUsd": 0,
+  "productionSchemaMutations": 0,
+  "productionCustomerRowsModified": 0,
+  "productionConfigurationChanges": 0,
+  "identity": {
+    "startingHead": "be5bb4c45d711364e301a3e04cd601d9489e0cfd",
+    "endingHead": "be5bb4c45d711364e301a3e04cd601d9489e0cfd",
+    "endingHeadNote": "§311 did not commit. All changes are uncommitted in the worktree, per the repository's standing no-commit rule.",
+    "productionSha": "b8a6fd9cfe34d362b7cd1a585a8fcfc9e246ebb1",
+    "productionShaSource": "/health/version, versionSourceStatus RENDER_GIT_COMMIT",
+    "applicationSourceDigest": "87bb6eaa63e60b7da3edfb8533f41d485688575a0de7d4bca282487acbf41597",
+    "applicationSourceDigestNote": "Recomputed by the command recorded in release-manifest.json. IDENTICAL at HEAD (be5bb4c4) and at the deployed commit (b8a6fd9c), so §310A's commit changed evidence and documentation only, not application source. Supersedes the §309 value bacfdb70… recorded in the register header.",
+    "artifactOnlyDigestAtHead": "fbf69978296c61faa2075e6937423a818ff984d0b60bffa315107dd5d1c4ddd2",
+    "artifactOnlyDigestNote": "Same pattern minus backend/scripts/, which tsconfig does not compile into dist. §311 adds four files under backend/scripts/ops/, so the FULL-pattern digest will move when committed while the built artifact does not. This is the documented §295/§296 false positive.",
+    "schemaHead": "1800000026000",
+    "schemaCount": "58/58",
+    "aheadOfBuild": [],
+    "section274Identity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee"
+  },
+  "currentProtection": {
+    "verifiedNotAssumed": "Neon console re-read 2026-09-17 from the owner's already-authenticated browser session. Nothing was changed: no slider moved, no Save pressed, no snapshot created, no plan altered.",
+    "provider": "Neon",
+    "project": "Sentinel Safety (old-moon-90939488)",
+    "branch": "production (br-misty-union-a4uke5p1)",
+    "compute": "ep-weathered-moon-a4egk93d",
+    "computeMatchesProductionDatabaseUrl": true,
+    "region": "AWS us-east-1 (N. Virginia)",
+    "engine": "PostgreSQL 17.11 (c4ba6b8)",
+    "plan": "Free",
+    "pitrWindow": "6 hours — the Free maximum",
+    "pitrAvailable": true,
+    "snapshots": "none, and no schedule set",
+    "snapshotSchedulesRequireUpgrade": true,
+    "manualSnapshotButtonPresent": true,
+    "manualSnapshotNotProven": "The console offers a Create button for a manual snapshot on Free. §311 did NOT press it (creating a resource in the owner's console is an owner action) and therefore does NOT assert whether a Free-plan snapshot survives beyond the 6-hour history window. Unverified either way.",
+    "unchangedSince": "§295 (2026-09-14). The historical result was re-verified rather than carried forward.",
+    "databaseSizeBytes": 33439744,
+    "tableCount": 78,
+    "rowCount": 7294,
+    "collation": "C.UTF-8",
+    "assessment": "The platform covers an operator mistake noticed inside the working session and nothing else. There is no durable copy of production data outside Neon at all. For internal/owner use that is tolerable (BR-2, closed). For external Beta, data entered between releases has six hours of protection and then whatever dump somebody remembered to take — which is BR-5."
+  },
+  "proposedRecoveryContract": {
+    "rpo": {
+      "durablePath": "24 hours — the daily backup interval",
+      "instantPath": "near zero for damage discovered within 6 hours, via Neon Instant Restore",
+      "statedHonestly": "The two compose. Damage found inside 6 hours loses almost nothing; damage found later loses up to a day.",
+      "rationale": "An individual Beta user performs a small number of inspections a day and the database is 32 MB. A day of loss is a day of re-entered inspections, not a business-ending event, and a tighter RPO buys real cost and complexity for a risk this population does not carry. Twice-daily is a one-line change to the cron if the owner disagrees."
+    },
+    "rto": {
+      "proposed": "1 hour",
+      "measuredMachineFloor": "under 5 minutes",
+      "rationale": "The machine steps are measured and small. The dominant term is human: deciding to restore, identifying the correct restore point, and counting what a restore would discard. Promising faster than an hour would be promising that a person is at a keyboard, which is not a property of this system.",
+      "measurementLimit": "Every duration below was measured against a LOCAL PostgreSQL 17.11 container. A restore into Neon over the network has NOT been timed, and this document does not claim it would be as fast."
+    }
+  },
+  "recoveryDrill": {
+    "backupDurationSeconds": 6.0,
+    "backupUploadSeconds": 0.1,
+    "backupReadBackVerifySeconds": 0.0,
+    "backupTotalSeconds": 7.1,
+    "backupSizeBytes": 7898796,
+    "restoreSeconds": 0.5,
+    "postRestoreVerificationSeconds": 4.8,
+    "applicationBootToReadySeconds": 1.1,
+    "renderRedeployMinutes": "1.7–2.4, measured across the last 8 production deploys",
+    "practicalBetaRto": "Machine work under 5 minutes end to end, including a redeploy if the build must change. Proposed contract 1 hour to cover the human decision."
+  },
+  "freshBackup": {
+    "takenAt": "2026-09-17T19:23:45.000Z",
+    "artifactKey": "postgres/neondb-2026-09-17T192345Z.dump",
+    "bytes": 7898796,
+    "sha256": "368fa04724f4e891621a8d8d002f1cec398d469eb90552417b38ad07503f973e",
+    "format": "pg_dump custom (-Fc), compress 9, --serializable-deferrable accepted by Neon",
+    "pgDumpVersion": "pg_dump (PostgreSQL) 18.3",
+    "nodeVersion": "v24.14.1",
+    "schemaHead": "1800000026000",
+    "migrationCount": 58,
+    "tableCount": 78,
+    "boundToProductionSha": "b8a6fd9cfe34d362b7cd1a585a8fcfc9e246ebb1",
+    "boundToApplicationSourceDigest": "87bb6eaa63e60b7da3edfb8533f41d485688575a0de7d4bca282487acbf41597",
+    "destination": "A DISPOSABLE local S3-compatible endpoint (MinIO in Docker). The mechanism is proven; the durable destination does not exist yet and that is BR-5's remainder.",
+    "byteIdentityNote": "Two runs of pg_dump over identical data produce identical SIZE but different sha256, because the custom-format header carries a timestamp. The checksum identifies the ARTIFACT, not the data; the data comparison is the per-table content digest."
+  },
+  "restoreProof": {
+    "target": "freshly CREATED empty PostgreSQL 17.11 container — an exact production server-version match, not an overwrite of a previous restore",
+    "restoreErrors": 0,
+    "tableSet": "78 source / 78 restored, identical",
+    "migrationHead": "1800000026000:58 on both sides",
+    "contentComparison": "78 tables, 7294 rows, 0 differing",
+    "aggregateContentDigest": "e093a62f81ac4d9e49011c43b5489f07 on both sides",
+    "collationTrapHandled": "Ordering is by the per-row hash COLLATE \"C\" and the session is pinned to UTC / extra_float_digits=3 / ISO datestyle via PGOPTIONS, so neither server's locale nor its session settings can produce a false difference. §289 lost time to exactly this on the user table.",
+    "canonicalSchemaOnRestore": "PASS — 68 canonical tables, 0 material differences. Production's 9 retired/compatibility tables are present and excluded from enforcement, so the raw digest differs while the material comparison is clean. That is the §305 SE-12 closure limit, restated by measurement.",
+    "entityContractOnRestore": "NOT APPLICABLE, and this is a scope fact rather than a result. check-entity-contract is a REPLAY gate: it compares entity metadata against a schema built from migration history and it explicitly REFUSES production (\"neondb is not a disposable database\"). Pointed at a production restore it reports the two legacy user columns as unaccepted, which describes the gate's baseline, not the restore. Its real result is the replay one below."
+  },
+  "gateResults": {
+    "canonicalSchemaReplay": "PASS — 68 tables, 0 material differences, digest 34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56",
+    "entityContractReplay": "PASS — 57 entities, 12 material differences, 12 accepted by the baseline, 0 UNACCEPTED",
+    "harnessNote": "Both run under scripts/hazlenz/with-disposable-db.ts, which creates a throwaway database on the host named in DATABASE_URL. DATABASE_URL was pointed at the LOCAL container for both, never at production."
+  },
+  "postRestoreApplicationProof": {
+    "boot": "PASS — NODE_ENV=production, booted against the restored database, /health/ready 200 in 1.1s with dependencies.schema \"current\"",
+    "authentication": "PASS — authenticated a restored synthetic fixture (pa1-owner-…@internal-acceptance.invalid, an internal acceptance account, not a real customer). Its password hash was set to a known value IN THE DISPOSABLE RESTORED DATABASE ONLY; production was not touched.",
+    "reads": {
+      "/auth/me": 200,
+      "/sites": 200,
+      "/inspections": 200,
+      "/inspections/:id": 200,
+      "/inspection-reports": 200,
+      "/inspection-reports/:id": 200,
+      "/inspection-reports/:id/revisions": 200,
+      "/actions": 200,
+      "/actions/export": 200,
+      "/billing/me": 200,
+      "/billing/status": 200,
+      "/agreements/acceptances": 200,
+      "/calendar": 200,
+      "/tasks": 200
+    },
+    "entitlementResolution": "planCode free, subscriptionStatus none — the §310 fail-safe default survived the restore intact",
+    "unexpected5xx": 0,
+    "storageScoping": "Object storage was pointed at a DISPOSABLE MinIO bucket during this proof, so production R2 could not be written by the locally booted application. The DB↔object half is proven separately by verify-object-consistency against the real bucket, read-only."
+  },
+  "dataPlaneInventory": {
+    "stores": [
+      {
+        "store": "Neon PostgreSQL",
+        "content": "all structured customer data",
+        "protection": "6h PITR + the §311 logical backup mechanism",
+        "sizeBytes": 33439744
+      },
+      {
+        "store": "Cloudflare R2 bucket insite-production",
+        "content": "inspection evidence photos and report PDFs",
+        "protection": "SEE LIMIT BELOW",
+        "objects": 5,
+        "bytes": 166708
+      }
+    ],
+    "noOtherDurableCustomerStore": "Checked by column search across the whole production schema for storage/object/URL-shaped columns. Only storage_objects.objectKey addresses a durable customer artifact; the other matches are regulatory source URLs and two retired attachment tables that hold 0 rows."
+  },
+  "objectStorage": {
+    "bucket": "insite-production",
+    "objects": 5,
+    "bytes": 166708,
+    "prefixes": {
+      "evidence": 1,
+      "report": 4
+    },
+    "applicationCredentialScope": "OBJECT-SCOPED ONLY, measured: ListBuckets, GetBucketVersioning, GetBucketLifecycleConfiguration and GetBucketEncryption all return 403 AccessDenied. The application token cannot administer the bucket.",
+    "protectionSettingsUnread": "Versioning, lifecycle, object-lock and public-access settings COULD NOT BE READ and are NOT asserted. The application credential is denied every bucket-administration read, and the owner is not signed in to Cloudflare in this browser, so there was no authenticated console session to read (unlike Neon). §311 did not log in. This is the one materially unresolved read.",
+    "consistencyWithDatabase": "CONSISTENT — 5 live storage_objects rows, 5 bucket objects, 1:1, and every one verified by full sha256 download against the hash the database recorded at upload. 0 missing, 0 orphans, 0 checksum mismatches.",
+    "recoveryCapability": "UNKNOWN pending the console read above. If versioning is off and lifecycle is unset — the R2 default — then an object deleted by the application is gone, and no database backup can bring it back."
+  },
+  "dbObjectConsistencyModel": {
+    "coupling": "storage_objects is the SINGLE ledger of every stored object, carrying key, sizeBytes and sha256 per object. inspection_report_versions references it by foreign key ON DELETE RESTRICT. The correspondence a recovery must preserve is exactly one-to-one and mechanically checkable.",
+    "acceptableInconsistency": "Orphan objects after a restore-to-an-earlier-point are EXPECTED and INERT. Proven structurally rather than assumed: the only download route resolves an object through a storage_objects row by UUID primary key, and objectKey is select:false on the entity, so no route anywhere accepts a caller-supplied key. An unreferenced object is unreachable by every product path.",
+    "unacceptableInconsistency": "A missing object under a live row is a BROKEN EVIDENCE REFERENCE — the product offers a download it cannot serve.",
+    "orphanHandling": "Report and list; do not bulk-delete during an incident, because a reverted or partially re-applied restore makes them reachable again.",
+    "missingHandling": "Report per key, tell the affected customer plainly which evidence could not be recovered, and NEVER fabricate a replacement."
+  },
+  "backupMechanism": {
+    "script": "backend/scripts/ops/backup-production-database.js",
+    "properties": {
+      "schedulable": "yes — noninteractive, entirely environment-configured, non-zero exit on any failure",
+      "consistent": "yes — pg_dump single snapshot, --serializable-deferrable accepted by Neon (with a documented fallback if a server refuses it)",
+      "encryptedInTransit": "yes — sslmode=require and channel_binding=require to Neon, HTTPS to the destination",
+      "encryptedAtRest": "provider server-side encryption at the destination; see backupEncryption below",
+      "notCommittedToGit": "yes — the artifact is written to a temp dir and deleted after upload unless BACKUP_KEEP_LOCAL=true",
+      "notLeftOnALaptop": "yes — local deletion is the default, not an option the operator must remember",
+      "timestamped": "yes — neondb-YYYY-MM-DDTHHMMSSZ.dump, sortable and parseable back by the retention pass",
+      "checksummed": "yes — sha256, and the upload is READ BACK and RE-HASHED before the run is called successful",
+      "retentionGoverned": "yes — 14 daily, 8 weekly Sundays; anything it cannot positively identify as its own artifact is KEPT, never deleted",
+      "failureDetectable": "yes — non-zero exit, plus a push to OPERATIONAL_ALERT_WEBHOOK_URL, plus the independent freshness check",
+      "restorable": "PROVEN — see restoreProof"
+    },
+    "refusesToStartIf": "BACKUP_S3_BUCKET equals STORAGE_S3_BUCKET. A database dump is every customer at once and must not be readable by the credential that exists to serve one customer their own photo.",
+    "credentialHandling": "Database credentials are passed to pg_dump and psql through PGHOST/PGUSER/PGPASSWORD environment variables, never in argv — so the production password never reaches ps output, shell history, or the text of an error message. The first draft did put it in argv and a failing command echoed it; that is why the note exists in the source."
+  },
+  "automation": {
+    "chosen": "A launchd user agent on the product owner's machine, executing an installed runner outside the checkout. Activated at §311A.",
+    "primary": "SUPERSEDED AT §311A. The GitHub Actions workflow was prepared at §311 and REMOVED at §311A: the product owner chose machine-local scheduling, and the repository is public, so placing the production database credential in a public repository's CI would enlarge the production-secret trust boundary for no gain. See project-docs/operations/DISASTER-RECOVERY-RUNBOOK.md, 'Why not GitHub Actions'.",
+    "alternative": "The identical scripts on a launchd/cron schedule on a machine the owner controls. Only the scheduler differs.",
+    "publicRepositoryConsideration": "MEASURED AT §311 AND NEW: github.com/McKinley18/safety-insite is a PUBLIC repository. Fork PRs cannot read secrets and schedules only run on the default branch, so this is not an open door — but it does put the production database credential in the CI of a public repo. Every action is pinned to a verified commit SHA and the job installs only @aws-sdk/client-s3 for that reason. The owner should choose between this and the machine-local alternative consciously. Registered as ST-4.",
+    "rejected": {
+      "insideTheWebService": "The Render Node image is not established to carry a PostgreSQL 17 client, and running pg_dump plus gzip plus upload inside the single 512 MB instance that also serves customer traffic risks OOM-killing the API. It would also place the destination credential on the customer-facing service, widening its blast radius.",
+      "renderCronJob": "A separately billable Render service type. §311 has no purchase authorization.",
+      "neonScheduledSnapshots": "Requires a plan upgrade, and stays inside the same provider, so it does not survive account or provider loss."
+    },
+    "inertUntil": "The workflow does nothing until it is on the default branch AND the five BACKUP_* secrets exist. Without them its first step FAILS LOUDLY rather than skipping — a backup workflow that goes green without a destination manufactures confidence."
+  },
+  "backupDestination": {
+    "required": "A NEW Cloudflare R2 bucket, separate from insite-production, with its own scoped API token.",
+    "whyNotTheExistingBucket": "Three independent reasons. (1) The application credential can read every key in its bucket, so co-locating backups escalates a leaked application key from five evidence objects to the entire database. (2) §311 is forbidden from weakening existing storage isolation, and that isolation currently holds — the application token is denied all bucket administration. (3) It would mix a dump containing every customer with objects the product serves to customers.",
+    "whyNotProvisionedBySection311": "Creating a bucket and minting a scoped API token in the owner's Cloudflare account are owner actions. The application's own credential cannot do it — ListBuckets is denied — and §311 did not log in to the console.",
+    "isolationOnceProvisioned": "Separate bucket, separate token, operator-only, never referenced by the application, never reachable from any product route.",
+    "cost": "No recurring cost expected. One artifact is ~7.9 MB; the full 14-daily + 8-weekly retention is well under 1 GB against R2's free allowance. This is a credential-creation decision, not a purchase decision."
+  },
+  "backupEncryption": {
+    "database": "Neon encrypts at rest; the connection requires TLS with channel binding.",
+    "transport": "sslmode=require + channel_binding=require to the database; HTTPS to the destination.",
+    "objectStorage": "R2 encrypts objects at rest with provider-managed keys by default.",
+    "backupLevelEncryption": "NOT IMPLEMENTED, deliberately, and recorded as a decision rather than an omission.",
+    "rationale": "For an individual Beta, provider server-side encryption plus a token scoped to one operator-only bucket is the proportionate design. Adding a backup-level key creates a key-management problem whose failure mode — losing the key — makes every backup worthless, which is a worse disaster-recovery posture than the threat it mitigates. No bespoke cryptography was written.",
+    "conditionThatWouldChangeIt": "If backups ever leave the owner's own cloud accounts, or if the Beta takes on a customer with a contractual confidentiality requirement, then backup-level encryption with a standard established tool (age or gpg --symmetric) and an escrowed key becomes appropriate. That is a decision to revisit, not a defect today."
+  },
+  "retentionPolicy": {
+    "daily": "14 days",
+    "weekly": "8 weeks (Sunday artifacts, retained beyond the daily window)",
+    "neonInstantRestore": "6 hours",
+    "freshnessAlertThreshold": "36 hours — one missed daily run is tolerated, two consecutive ones are not",
+    "rationale": "Deliberately modest and balanced against data minimisation: every extra week of retention is an extra week during which a deleted customer's data still exists somewhere. Not an enterprise schedule and should not become one without a reason."
+  },
+  "accountDeletionBackupConsequence": {
+    "deletedUserDataRemainsInBackups": true,
+    "forHowLong": "Up to the age of the oldest retained artifact — a maximum of 8 weeks under the proposed policy.",
+    "restorationCanReintroduceDeletedPeople": true,
+    "reconciliationProcedure": "Runbook §11. security_audit_events records action='account_deleted' with the actor and a hash of the original email, and that row survives the deletion it describes, so it is the authoritative list of who must be re-deleted after a restore. Production currently holds 25 such records.",
+    "privacyCounselFollowUp": "The Privacy Notice must not claim deletion is immediate and complete across all copies. It is immediate in the live database and persists in backups for the retention period above. §311 deliberately did not edit any legal text.",
+    "newFindingBR6": {
+      "summary": "Anonymisation writes through the User entity, so it can only clear columns the entity declares. The legacy user.password column is not declared and is therefore not cleared on account deletion.",
+      "population": "8 of 67 accounts hold a non-null user.password.",
+      "realisedOccurrences": 0,
+      "measured": "All 26 deleted accounts had a NULL password, so no deletion request has actually been left incomplete. The gap is LATENT.",
+      "values": "All 8 are 60-character $2b$ bcrypt hashes — verified by pattern, not plaintext.",
+      "populationCanGrow": false,
+      "whyNot": "Migration 1793000000000 copied password into passwordHash and left the source populated for accounts that predated it. Nothing has written the column since and the User entity does not declare it, so an external Beta customer's row will always have it NULL.",
+      "notAnAuthenticationBypass": "Authentication reads passwordHash only (auth.service.ts:269). Deletion randomises passwordHash and sets deletedAt, and login rejects a deleted user.",
+      "severity": "P3 — latent, bounded, pre-emptible, and nothing has occurred.",
+      "remediation": "One statement — UPDATE \"user\" SET password = NULL — run before any of those 8 accounts is ever deleted. §311 did NOT run it: it is a production customer-data mutation and §311 has no such authorization.",
+      "relationshipToSection305": "The COLUMN is not a new discovery — §305 explicitly recorded user.password and user.legacy_id as tolerated legacy columns excluded from schema enforcement. What is new is that it HOLDS DATA for 8 accounts and that the deletion path cannot clear it."
+    }
+  },
+  "backupFailureDetection": {
+    "script": "backend/scripts/ops/check-backup-freshness.js",
+    "runsIndependently": "Deliberately NOT a step of the backup job. A backup that never starts produces no log, no exit code and no alert; it cannot stop an independent check from observing that nothing arrived.",
+    "lastSuccessTracking": "<prefix>/latest.json in the destination: lastSuccessAt, artifact key, sha256, bytes, schema head, retained count, per-phase durations.",
+    "claimIsVerifiedNotBelieved": "The check HEADs the artifact the record names and compares its size. A retention pass with a bad cutoff, or a destination that quietly dropped the object, both produce a confident latest.json pointing at nothing — and both are caught.",
+    "verdicts": [
+      "FRESH",
+      "STALE",
+      "MISSING",
+      "ARTIFACT_ALTERED",
+      "ARTIFACT_ABSENT"
+    ],
+    "allFiveProven": true,
+    "monitoringIntegration": "Non-FRESH pushes to OPERATIONAL_ALERT_WEBHOOK_URL — the EXISTING MO-1 channel, already CONFIGURED in production and already proven at §297B to reach the owner's phone. No new destination is introduced.",
+    "notOnHealth": "Backup state is deliberately absent from /health. §307 (SE-17) already found /health/ready publishing the alerting policy to unauthenticated callers; backup timing and sizes are the same class of operational reconnaissance and help no customer."
+  },
+  "ops2": {
+    "state": "OPEN — unchanged by §311.",
+    "why": "§311 created no durable check that measures a Render configuration read-back against a rolling cutover, which is what OPS-2's acceptance criteria require. The runbook RECORDS the OPS-2 behaviour in §9 so a recovering operator reads /health/version repeatedly rather than trusting the first read, but documenting a hazard is not the registered criterion and §311 does not claim it."
+  },
+  "preservedUnchanged": {
+    "SC-4": "OPEN — 12 residuals. Not touched. The 12 appear as 'accepted by the baseline' in the entity-contract replay result above.",
+    "SC-5": "OPEN. Not touched.",
+    "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED. Re-confirmed live and unchanged: /health/ready reports passwordResetEmail NOT_CONFIGURED, missing RESEND_API_KEY and PASSWORD_RESET_FROM_EMAIL.",
+    "LG-3": "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED. Not touched. No brand or domain decision was taken."
+  },
+  "expert": {
+    "flag": "EXPERT_EXECUTION_ENABLED=true (unchanged, read live from the Render environment)",
+    "limits": "1 analysis/workspace/24h, USD 1.00/workspace/24h (unchanged)",
+    "executions": 0,
+    "providerCalls": 0,
+    "spendUsd": 0
+  },
+  "productionSafety": {
+    "schemaMutations": 0,
+    "customerRowsModified": 0,
+    "configurationChanges": 0,
+    "objectsCreatedAlteredOrDeleted": 0,
+    "consolesChanged": "none — Neon was READ only; Cloudflare was not logged in to",
+    "writesPerformed": "Reads against production PostgreSQL and R2. One pg_dump (a read). All mutations were confined to disposable local containers.",
+    "renderApiUse": "Read-only: service detail, environment variable names and values, deploy history."
+  },
+  "br5Disposition": {
+    "state": "ENGINEERING_COMPLETE_OWNER_INFRASTRUCTURE_DECISION_REQUIRED",
+    "engineeringComplete": [
+      "backup mechanism, with upload read-back verification",
+      "restore verification, watched to fail and to recover",
+      "DB↔object consistency reconciliation, watched to fail in both directions",
+      "independent failure detection with all five verdicts proven",
+      "retention policy, implemented and unit-exercised",
+      "source/schema binding metadata on every artifact",
+      "scheduler definition, pinned and inert until configured",
+      "disaster-recovery runbook",
+      "a fresh backup, restored and content-verified, with the application proven on top of it"
+    ],
+    "remaining": [
+      "An isolated R2 bucket and a scoped API token — an owner credential action, no recurring cost.",
+      "Those values placed in the chosen scheduler's secret store, after deciding between the public-repo CI and a machine-local schedule.",
+      "The unread R2 bucket protection settings (versioning / lifecycle / object lock). Until read, object-storage recovery capability is UNKNOWN, and BR-5 cannot close on the object half."
+    ],
+    "whyNotClosed": "BR-5's closure rule requires a durable, operationally credible recovery path covering database AND material object evidence. The database half is proven end to end against a disposable destination but has no durable destination. The object half cannot even be assessed until the bucket's protection settings are read. Closing BR-5 on a mechanism with no destination would be exactly the 'a manual dump restored once' failure the rule forbids."
+  }
+}

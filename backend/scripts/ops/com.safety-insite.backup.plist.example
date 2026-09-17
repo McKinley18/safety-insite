@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  §311A / BR-5 — machine-local daily backup, as a launchd USER AGENT.
+
+  ===================================================================================================
+  INSTALL
+
+    cp backend/scripts/ops/com.safety-insite.backup.plist.example \
+       ~/Library/LaunchAgents/com.safety-insite.backup.plist
+    # edit the two absolute paths below to match this checkout
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.safety-insite.backup.plist
+    launchctl enable gui/$(id -u)/com.safety-insite.backup
+
+  VERIFY SCHEDULER HEALTH
+
+    launchctl print gui/$(id -u)/com.safety-insite.backup | grep -E 'state|last exit|runs'
+    tail -40 ~/.safety-insite/logs/backup.log
+
+  RUN ONCE, NOW (does a real backup)
+
+    launchctl kickstart -p gui/$(id -u)/com.safety-insite.backup
+
+  REMOVE
+
+    launchctl bootout gui/$(id -u)/com.safety-insite.backup
+
+  ===================================================================================================
+  WHY A USER AGENT AND NOT A SYSTEM DAEMON.
+
+  A LaunchDaemon runs as root at boot whether or not anyone is logged in, which sounds stronger. It
+  would also mean the production database credential had to be readable by root in a root-owned file,
+  and installing it needs sudo. This machine has 17 days of uninterrupted uptime with a single logged-in
+  user, so the agent runs whenever the job could usefully run, and the secret stays in the user's own
+  0600 file. The weaker-looking choice is the smaller trust boundary.
+
+  ===================================================================================================
+  WHY 05:00 LOCAL.
+
+  Chosen from measurement, not habit. §311A read this machine's power log across its full 8-day
+  retention and counted wake events by hour: the 02:00–07:00 band has wake activity on 6–7 of 8 days,
+  the highest and most consistent coverage of any hour, and 05:00 sits inside it while being well
+  clear of working hours. launchd runs a missed StartCalendarInterval job at the next wake anyway, so
+  this choice reduces LATENCY rather than providing the guarantee.
+
+  ===================================================================================================
+  NO SECRET APPEARS IN THIS FILE, and that is deliberate — `launchctl print` will happily show a
+  plist's EnvironmentVariables to anyone who asks. Every secret lives in ~/.safety-insite/backup.env
+  at mode 600, which the wrapper refuses to read if the permissions are looser.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.safety-insite.backup</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <!-- EDIT: absolute path to this checkout's wrapper script -->
+    <string>/Users/CHANGE_ME/Desktop/Safety_InSite/backend/scripts/ops/run-scheduled-backup.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>5</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <!-- Missed runs execute at the next wake rather than being skipped. -->
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <!-- EDIT: absolute path. The log directory is created 0700 by the wrapper. -->
+  <string>/Users/CHANGE_ME/.safety-insite/logs/backup.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/CHANGE_ME/.safety-insite/logs/backup.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+
+  <!-- A backup of a 32 MB database takes seconds. If it is still running after 30 minutes it is
+       stuck, and a stuck job holding a database connection is worse than a failed one. -->
+  <key>ExitTimeOut</key>
+  <integer>1800</integer>
+
+  <!-- Deliberately absent: EnvironmentVariables. See the note above. -->
+</dict>
+</plist>

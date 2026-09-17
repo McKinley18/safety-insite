@@ -1,0 +1,65 @@
+{
+  "schema": "safety-insite.backup-restore-verification.v1",
+  "verifiedAt": "2026-09-17T19:24:04.587Z",
+  "artifact": {
+    "path": "/tmp/insite-backup-0asjdZ/neondb-2026-09-17T192345Z.dump",
+    "bytes": 7898796,
+    "sha256": "368fa04724f4e891621a8d8d002f1cec398d469eb90552417b38ad07503f973e"
+  },
+  "target": {
+    "host": "127.0.0.1",
+    "database": "restoretarget",
+    "gate": "LOCAL_HOST_AND_DISPOSABLE_NAME"
+  },
+  "durationsMs": {
+    "restore": 538,
+    "verify": 4798
+  },
+  "tableCount": 78,
+  "migrationHead": "1800000026000:58",
+  "comparison": {
+    "sourceAggregate": "e093a62f81ac4d9e49011c43b5489f07",
+    "targetAggregate": "e093a62f81ac4d9e49011c43b5489f07",
+    "tables": 78,
+    "rows": 7294,
+    "differing": []
+  },
+  "checks": [
+    {
+      "name": "restore completes without error",
+      "passed": true,
+      "detail": "0.5s, 0 errors"
+    },
+    {
+      "name": "restored schema has base tables",
+      "passed": true,
+      "detail": "78 tables"
+    },
+    {
+      "name": "migration history is present and intact",
+      "passed": true,
+      "detail": "head 1800000026000, 58 rows"
+    },
+    {
+      "name": "table set is identical to the source",
+      "passed": true,
+      "detail": "source 78, restored 78"
+    },
+    {
+      "name": "migration head matches the source",
+      "passed": true,
+      "detail": "source 1800000026000:58, restored 1800000026000:58"
+    },
+    {
+      "name": "every table is content-identical to the source",
+      "passed": true,
+      "detail": "78 tables, 7294 rows, 0 differing"
+    },
+    {
+      "name": "aggregate content digest matches",
+      "passed": true,
+      "detail": "e093a62f81ac4d9e49011c43b5489f07"
+    }
+  ],
+  "outcome": "PASS"
+}

@@ -1,0 +1,21 @@
+
+> safety-insite-backend@1.0.0 check:canonical-schema
+> ts-node scripts/hazlenz/with-disposable-db.ts check:canonical-schema:inner
+
+inherited DATABASE_URL names database "postgres" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=15432 database=test_insite_1789673346063_5132
+registered as run 52070343-be0a-4e11-98aa-18522108e748
+
+> safety-insite-backend@1.0.0 check:canonical-schema:inner
+> ts-node scripts/check-canonical-schema.ts
+
+canonical schema gate: replayed database test_insite_1789673346063_5132
+  manifest digest  34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56
+  replay digest    34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56
+  manifest tables  68
+  replay tables    68
+  retired/compatibility objects present (not enforced): reports
+
+ok    a fresh migration replay reproduces the canonical schema exactly (68 tables, 0 material differences)
+{"tables":68,"digest":"34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56","differences":0}
+dropped test_insite_1789673346063_5132

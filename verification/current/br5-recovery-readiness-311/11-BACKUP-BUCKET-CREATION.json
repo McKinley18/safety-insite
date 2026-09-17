@@ -1,0 +1,119 @@
+{
+  "artifact": "SECTION-311A-BACKUP-BUCKET-CREATION",
+  "section": "§311A",
+  "performedAt": "2026-09-17T20:45:00Z",
+  "authorization": "Product owner authorized creation of one dedicated private R2 bucket named insite-backups, and explicitly withheld authorization for API-token creation until the bucket exists and has been inspected.",
+  "method": "Cloudflare console, product owner's authenticated session. One bucket created. Nothing else created, enabled, modified or deleted.",
+
+  "bucketCreation": {
+    "result": "CREATED",
+    "name": "insite-backups",
+    "created": "2026-09-17",
+    "location": "Eastern North America (ENAM)",
+    "locationChoice": "Cloudflare's DEFAULT 'Automatic' placement was accepted unchanged. The creation screen stated: 'We have chosen to place your bucket in Eastern North America.' No location hint was provided and no jurisdiction restriction was set.",
+    "locationNote": "This happens to differ from insite-production (WNAM), which is incidentally useful but is NOT claimed as an independent disaster-recovery guarantee — §311A forbade that inference and it would be unfounded. Both buckets are in the same Cloudflare account, and account-level loss is common-mode to both regardless of placement.",
+    "defaultStorageClass": "Standard",
+    "storageClassReasoning": "Standard was the default and is also the correct choice. Infrequent Access carries a minimum storage duration and retrieval charges; with 14-day daily retention, artifacts would routinely be deleted before that minimum and incur early-deletion charges. The cheaper-sounding class would have cost money.",
+    "s3Api": "https://f2e58f298c5955ff2c54084209546d4a.r2.cloudflarestorage.com/insite-backups",
+    "objects": 0,
+    "bytes": 0
+  },
+
+  "tenPointVerification": {
+    "1_bucketExists": "YES — listed in R2 Object Storage, settings page loads, Objects tab reports 'Your bucket is ready.'",
+    "2_bucketPrivate": "YES — bucket Objects view reports 'Public Access: Disabled'. The creation screen also stated 'By default buckets are not publicly accessible.'",
+    "3_publicDevelopmentUrlDisabled": "YES — 'The public development URL is disabled for this bucket.'",
+    "4_noCustomDomain": "YES — 'There is no custom domain assigned to this bucket.'",
+    "5_noCorsOrPublicExposure": "YES — 'There is no CORS Policy defined for this bucket.' R2 Data Catalog disabled. On Demand Migration not enabled. Local Uploads disabled.",
+    "6_noUnexpectedLifecycleDeletion": {
+      "verdict": "YES — none",
+      "rulesPresent": [{ "name": "Default Multipart Abort Rule", "prefix": "--", "action": "Abort uploads after 7 day(s)", "status": "Enabled" }],
+      "interpretation": "R2 applies this default housekeeping rule to every new bucket automatically; it was not configured by §311A. It discards INCOMPLETE MULTIPART UPLOADS after seven days and never deletes a completed object. insite-production carries the identical rule. No object-expiry rule exists on either bucket."
+    },
+    "7_noUnexpectedLockRule": "YES — 'There are no bucket lock rules defined for this bucket.' None was created; §311A forbade it.",
+    "8_locationPlacement": "Eastern North America (ENAM), via Cloudflare's Automatic placement. Recorded above.",
+    "9_noPaidPlanChange": {
+      "verdict": "CONFIRMED — no paid-plan change, no charge",
+      "billableUsageCurrentPeriod": "$0.00 — 'No billable usage incurred yet', period September 17 – October 17",
+      "accountTotalStorage": "167 kB (unchanged; the new bucket is empty)",
+      "operations": "Class A 7 -> 16, Class B 4 -> 9 across the whole §311A console session, all inside the free allowance",
+      "paidPromptsDeclined": "The only paid surface encountered was Event Notifications, which states 'Workers Paid Plan required'. It was not purchased, enabled or opened."
+    },
+    "10_insiteProductionUnchanged": {
+      "verdict": "CONFIRMED UNCHANGED",
+      "method": "Its settings page was re-read in full AFTER the new bucket was created and compared field by field against the read taken before.",
+      "fields": {
+        "name": "insite-production", "created": "Aug 17, 2026", "location": "Western North America (WNAM)",
+        "customDomain": "none", "publicDevelopmentUrl": "disabled", "r2DataCatalog": "disabled",
+        "corsPolicy": "none", "lifecycleRules": "Default Multipart Abort Rule only",
+        "bucketLockRules": "none", "dataAccessLogs": "Disabled", "onDemandMigration": "not enabled",
+        "localUploads": "Disabled", "defaultStorageClass": "Standard", "objects": 5, "bytes": 166708
+      },
+      "note": "Identical in every field to the pre-creation read. Data Access Logs remain DISABLED, preserved as the separate hardening decision the product owner reserved."
+    }
+  },
+
+  "tokenScopingSurvey": {
+    "note": "READ ONLY. The creation form was opened to enumerate its options and then navigated away from WITHOUT submitting. The token list was re-read afterwards and still contains exactly one token.",
+    "permissionTypesOffered": [
+      { "name": "Admin Read & Write", "grants": "create, list and delete buckets; edit bucket configuration; read, write and list objects; read and write data catalog tables and metadata" },
+      { "name": "Admin Read only", "grants": "list buckets and view bucket configuration; read and list objects; read data catalog" },
+      { "name": "Object Read & Write", "grants": "read, write and list objects in specific buckets" },
+      { "name": "Object Read only", "grants": "read and list objects in specific buckets" }
+    ],
+    "bucketScopingOffered": [
+      "Apply to all buckets in this account (including newly created buckets)",
+      "Apply to specific buckets only"
+    ],
+    "canRestrictToOneBucket": {
+      "answer": "YES — and it is already proven in this account rather than merely offered",
+      "evidence": "The existing application token 'insite-production-backend' is listed with Applied to = 'insite-production' and Permission = 'Object Read & Write'. A bucket-scoped R2 token is therefore a working configuration here, not a theoretical one."
+    },
+    "otherControls": {
+      "ttl": "Configurable; default 'Forever'",
+      "clientIpFiltering": "Include / Exclude lists available; default applies to all addresses"
+    },
+    "existingTokensUnchanged": {
+      "count": 1,
+      "token": { "name": "insite-production-backend", "appliedTo": "insite-production", "permission": "Object Read & Write", "issued": "Aug 17, 2026", "status": "Active" },
+      "significance": "This confirms §311's inference from the 403 responses and sharpens it: the application credential is an OBJECT-level token scoped to a SINGLE bucket, which is why every bucket-administration call was denied. It also means the application credential has NO access whatsoever to insite-backups — the isolation §311 asked for exists by construction the moment the new bucket was created, before any new token is minted.",
+      "secretsExposed": 0,
+      "secretsCopied": 0
+    }
+  },
+
+  "recommendedMinimumPermissions": {
+    "permissionType": "Object Read & Write",
+    "appliedTo": "Apply to specific buckets only -> insite-backups",
+    "why": {
+      "writeNeeded": "PutObject for the dump, its metadata sidecar and latest.json",
+      "readNeeded": "GetObject for the mandatory post-upload read-back-and-re-hash, and for downloading the artifact during a restore",
+      "listNeeded": "ListObjectsV2 for the retention pass",
+      "deleteNeeded": "DeleteObject for retention expiry",
+      "deleteIsIncludedEvidence": "Object Read & Write covers delete. Established empirically rather than assumed: the application token is Object Read & Write and its tombstone and retireReportArtifact paths successfully delete objects in production today."
+    },
+    "whyNotAdmin": "Admin Read & Write would let this credential DELETE THE BACKUP BUCKET ITSELF and edit bucket configuration. A backup credential that can destroy the backup destination inverts the control it exists to provide. Nothing in the mechanism needs bucket-level operations.",
+    "whyNotObjectReadOnly": "Retention must delete expired artifacts and the backup must write; read-only cannot do either.",
+    "ttlRecommendation": {
+      "value": "Forever",
+      "reasoning": "A finite TTL is better hygiene, but an expiring credential makes backups start failing silently on a date nobody remembers. The mitigation exists — the freshness monitor returns UNKNOWN and alerts when it cannot authenticate — so the failure would be caught rather than silent. For Beta the simpler option is chosen deliberately, and credential rotation is recorded as future hardening rather than pretended away."
+    },
+    "ipFilteringRecommendation": {
+      "value": "none",
+      "reasoning": "It sounds like free defence and is not. The backup runs from the owner's laptop on a residential and therefore dynamic address, and from different networks when travelling. An IP filter would convert an ordinary network change into a silent backup outage. The credential's real containment is that it is object-scoped to one operator-only bucket."
+    }
+  },
+
+  "productionSafety": {
+    "bucketsCreated": 1,
+    "apiTokensCreated": 0,
+    "existingBucketsModified": 0,
+    "customerEvidenceObjectsTouched": 0,
+    "lifecycleRulesCreated": 0,
+    "lockRulesCreated": 0,
+    "dataAccessLogsChanged": 0,
+    "paidPlanChanges": 0,
+    "charges": "$0.00",
+    "secretsExposedOrCopied": 0
+  }
+}

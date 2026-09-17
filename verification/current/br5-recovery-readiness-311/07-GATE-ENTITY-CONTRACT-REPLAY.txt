@@ -1,0 +1,72 @@
+
+> safety-insite-backend@1.0.0 check:entity-contract:db
+> ts-node scripts/hazlenz/with-disposable-db.ts check:entity-contract
+
+inherited DATABASE_URL names database "postgres" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=15432 database=test_insite_1789673353924_7164
+registered as run fd3d3a37-bf89-4c13-b06f-985858922cde
+
+> safety-insite-backend@1.0.0 check:entity-contract
+> ts-node scripts/check-entity-contract.ts
+
+================================================================================================
+§309 ENTITY-CONTRACT GATE — entity declarations versus the canonical database
+replayed database: test_insite_1789673353924_7164
+================================================================================================
+(node:37841) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+  entities compared            57
+  sync queries TypeORM emitted 195
+  material differences         12
+        4  COLUMN_DEFAULT
+        5  COLUMN_EXTRA_IN_DB
+        2  COLUMN_NULLABILITY
+        1  COLUMN_TYPE
+  cosmetic (names, indexes, FK) 182  — never fatal
+  accepted by the baseline     12
+  UNACCEPTED                   0
+
+-- every material difference --
+
+  [accepted ] COLUMN_DEFAULT       regulatory_release_record_reviews.decidedAt
+               ALTER TABLE "regulatory_release_record_reviews" ALTER COLUMN "decidedAt" DROP DEFAULT
+               §309 (registered as SC-4, NOT resolved): SC-4. The database has DEFAULT now(); the entity declares none. The service always supplies the decision time, so the default is a safety net rather than a behaviour. Harmless, and recorded so the gate stays quiet about it without anybody having to remember why.
+  [accepted ] COLUMN_DEFAULT       standards_master.allowed_use
+               ALTER TABLE "standards_master" ALTER COLUMN "allowed_use" DROP DEFAULT
+               §309 (registered as SC-4, NOT resolved): SC-4. The database has DEFAULT 'reference'; the entity declares none. Pairs with the nullability entry above.
+  [accepted ] COLUMN_DEFAULT       standards_master.authority_tier
+               ALTER TABLE "standards_master" ALTER COLUMN "authority_tier" SET DEFAULT '1'
+               §309 (registered as SC-4, NOT resolved): SC-4. The database default is 3 (lowest authority); the entity declares 1 (highest). The directions are opposite, so a row created without an explicit tier would be trusted very differently depending on which contract answered. HazLenz knowledge ingestion always sets it, and it is not on the Beta v1 individual path — but the disagreement is semantic rather than cosmetic, which is why it is registered rather than silently aligned.
+  [accepted ] COLUMN_DEFAULT       user.planCode
+               ALTER TABLE "user" ALTER COLUMN "planCode" SET DEFAULT 'free'
+               §309 (registered as SC-4, NOT resolved): SC-4. The database default is 'basic'; the entity declares 'free'. `basic` is one of the legacy values the product normalizes to 'pro'. Same containment as subscriptionStatus: registration sets `planCode: 'free'` explicitly, so the default is never reached.
+  [accepted ] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.agencyMode
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "agencyMode"
+               §309 (registered as SC-4, NOT resolved): SC-4. A legacy column the current entity no longer declares. A DB-extra column is not a runtime failure — nothing reads it — it means a stored value is invisible to the application. Dropping it would be a destructive migration on a log table for no functional gain.
+  [accepted ] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.classification
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "classification"
+               §309 (registered as SC-4, NOT resolved): SC-4. Legacy column; see agencyMode.
+  [accepted ] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.matchedChunkIds
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "matchedChunkIds"
+               §309 (registered as SC-4, NOT resolved): SC-4. Legacy column superseded by `retrievedChunkIds` / `selectedChunkIds`, both of which the entity declares and the database has.
+  [accepted ] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.query
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "query"
+               §309 (registered as SC-4, NOT resolved): SC-4. Legacy column superseded by `queryText`, which the entity declares and the database has NOT NULL.
+  [accepted ] COLUMN_EXTRA_IN_DB   safescope_knowledge_retrieval_logs.topScore
+               ALTER TABLE "safescope_knowledge_retrieval_logs" DROP COLUMN "topScore"
+               §309 (registered as SC-4, NOT resolved): SC-4. Legacy column; the entity no longer declares it.
+  [accepted ] COLUMN_NULLABILITY   site.createdByUserId
+               ALTER TABLE "site" ALTER COLUMN "createdByUserId" SET NOT NULL
+               §309 (registered as SC-4, NOT resolved): SC-4. The database permits NULL; the entity declares NOT NULL. The application always supplies it, so no NULL row exists on the Beta v1 path — but the entity is asserting a guarantee the column does not enforce, which is the same shape as the SC-2 timestamp claim §309 just removed. Tightening the column is a migration; loosening the entity weakens a true invariant. Registered rather than guessed.
+  [accepted ] COLUMN_NULLABILITY   standards_master.allowed_use
+               ALTER TABLE "standards_master" ALTER COLUMN "allowed_use" DROP NOT NULL
+               §309 (registered as SC-4, NOT resolved): SC-4. The database is NOT NULL with DEFAULT 'reference'; the entity declares nullable. A write omitting it receives the default rather than NULL, so the entity's nullability is unreachable in practice. HazLenz knowledge, not on the Beta v1 individual path.
+  [accepted ] COLUMN_TYPE          corrective_actions.reportId
+               ALTER TABLE "corrective_actions" ADD "reportId" uuid   (TypeORM would DROP and re-ADD to change the type)
+               §309 (registered as SC-4, NOT resolved): SC-4. The database holds `character varying`; the entity declares `uuid`. Postgres accepts a uuid-shaped string into varchar, so writes succeed and reads return the string — but the two types compare and sort differently, and a varchar column cannot reject a malformed identifier the way uuid does. Not repaired in §309: changing the column is a migration on customer data and changing the entity would weaken a declared type, so it is a decision rather than a transcription.
+
+================================================================================================
+§309 ENTITY-CONTRACT GATE: PASS
+================================================================================================
+dropped test_insite_1789673353924_7164

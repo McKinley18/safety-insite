@@ -1,0 +1,54 @@
+FAIL  aggregate content digest matches  — source e093a62f81ac4d9e49011c43b5489f07, restored 354ede5c679fe6bfc0ad28dce1b6983a
+
+§311 — INSTRUMENT MUTATION CONTROLS
+A verifier that has never been seen to fail proves nothing. Both §311 instruments were
+watched to go red on a real defect and green again once it was removed.
+
+------------------------------------------------------------------------------------
+CONTROL 1 — verify-backup-restore.js  (content comparison)
+------------------------------------------------------------------------------------
+Injected: UPDATE "user" SET "firstName" = "firstName" || 'X'  on ONE row of the
+          DISPOSABLE restore target. One character, one row, one table, 7 294 rows total.
+
+  FAIL  every table is content-identical to the source  — 78 tables, 7294 rows, 1 differing: user
+  FAIL  aggregate content digest matches  — source e093a62f81ac4d9e49011c43b5489f07,
+                                             restored 354ede5c679fe6bfc0ad28dce1b6983a
+
+Removed by restoring the artifact again:
+
+  PASS  every table is content-identical to the source  — 78 tables, 7294 rows, 0 differing
+  PASS  aggregate content digest matches  — e093a62f81ac4d9e49011c43b5489f07
+
+Also observed: an empty/invalid artifact fails the restore check outright
+  FAIL  restore completes without error — pg_restore: error: input file is too short
+
+------------------------------------------------------------------------------------
+CONTROL 2 — verify-object-consistency.js  (both directions)
+------------------------------------------------------------------------------------
+Injected into the DISPOSABLE restored database only, against the REAL production
+bucket read-only:
+  (a) a storage_objects row naming an object that does not exist
+  (b) a deletedAt tombstone on a row whose object does exist
+
+  MISSING objects           1
+  orphan objects            1
+    MISSING   evidence/2026-09-17/deadbeef-0000-4000-8000-000000000001  (evidence/inspection, 4242 bytes expected)
+    orphan    report/2026-08-19/df7c5ae0-f9b6-47e4-9752-bfde0a12c97d    (8340 bytes, 2026-08-19T11:42:37.801Z)
+  BROKEN_EVIDENCE_REFERENCES          exit code 1
+
+Both injections reverted:
+  CONSISTENT                          exit code 0
+
+No production object was created, altered or deleted at any point.
+
+------------------------------------------------------------------------------------
+CONTROL 3 — check-backup-freshness.js  (all five verdicts reachable)
+------------------------------------------------------------------------------------
+  FRESH            last success 0.1h ago, threshold 36h                     exit 0
+  STALE            same record, threshold lowered                           exit 1
+  MISSING          no freshness record at the configured prefix             exit 1
+  ARTIFACT_ALTERED artifact truncated to 99 bytes under a confident record  exit 1
+  ARTIFACT_ABSENT  artifact deleted, freshness record left intact           exit 1
+
+The last two are the ones that matter: they prove the check VERIFIES the record's
+claim rather than believing it.

@@ -1,0 +1,15 @@
+{
+  "schema": "safety-insite.object-consistency.v1",
+  "checkedAt": "2026-09-17T19:21:58.496Z",
+  "mode": "DEEP_SHA256",
+  "database": "ep-weathered-moon-a4egk93d.us-east-1.aws.neon.tech",
+  "bucket": "insite-production",
+  "ledgerLiveObjects": 5,
+  "bucketObjects": 5,
+  "verified": 5,
+  "missing": [],
+  "sizeMismatch": [],
+  "checksumMismatch": [],
+  "orphans": [],
+  "outcome": "CONSISTENT"
+}

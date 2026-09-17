@@ -1,0 +1,21 @@
+§311A RETENTION PROOF (synthetic object metadata — no real artifact touched)
+ALWAYS_KEEP_NEWEST = 3
+
+--- Z. ALWAYS_KEEP_NEWEST: a long outage must not empty the destination ---
+PASS  every artifact is older than the 14d window, yet the destination is NOT emptied  — 3 kept / 1 expired
+PASS  exactly 3 artifacts kept by the floor  — 16T010000Z.dump 17T010000Z.dump 18T010000Z.dump
+PASS  the single newest artifact is never expired
+
+--- Z2. the floor cannot be defeated by a huge backlog ---
+PASS  newest 3 present in kept set  — 21 kept / 39 expired
+PASS  Sunday artifacts retained beyond the daily window  — 6 weekly
+PASS  no kept artifact is also expired
+
+--- AA. incomplete listing must FAIL CLOSED ---
+PASS  listingComplete=false suppresses ALL deletion  — 4 kept / 0 expired
+PASS  every key is reported as deliberately suppressed
+
+--- AA2. ambiguity keeps, never deletes ---
+PASS  unrecognised filename is KEPT  — UNRECOGNISED_NAME,UNPARSEABLE_TIMESTAMP,ALWAYS_KEEP_NEWEST
+
+9 passed, 0 failed

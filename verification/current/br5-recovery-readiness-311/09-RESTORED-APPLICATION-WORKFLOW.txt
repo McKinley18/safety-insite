@@ -1,0 +1,16 @@
+/auth/me                     200  {"id":"e632cebf-c797-46b3-9a8c-f45c4ea14b6c","email":"pa1-owner-1789409698042@internal-acceptance.invalid","name":"PA1 Owner","firstName":"PA1","lastN
+/sites                       200  {"data":[{"id":"0615ad87-26b8-4fdc-9465-2c1f171e4615","name":"PA-1 Internal Acceptance Site 1789409733701","organizationId":null,"ownerUserId":"e632ce
+/inspections                 200  [{"id":"2f8a169d-ec0e-459f-b442-348aa72b0269","organizationId":null,"ownerUserId":"e632cebf-c797-46b3-9a8c-f45c4ea14b6c","createdByUserId":"e632cebf-c
+/inspection-reports          200  [{"id":"17d3d8dd-4b71-42cc-ac1c-714f479963ba","inspectionId":"2f8a169d-ec0e-459f-b442-348aa72b0269","createdAt":"2026-09-14T18:15:44.696Z","reportUpda
+/actions                     200  {"data":[{"id":"2c0607e8-0592-47a9-a8d0-fb632101e603","displayId":"ACT-71187A2E","reportId":null,"inspectionId":null,"findingId":null,"tenantId":"user
+/billing/subscription        404  {"message":"Cannot GET /billing/subscription","error":"Not Found","statusCode":404}
+/entitlements                404  {"message":"Cannot GET /entitlements","error":"Not Found","statusCode":404}
+/agreements/acceptances      200  {"userId":"e632cebf-c797-46b3-9a8c-f45c4ea14b6c","acceptances":[{"agreementId":"internal-pre-beta-acknowledgement","agreementVersion":"2026-09-14.1","
+/calendar                    200  [{"kind":"corrective_action","sourceId":"2c0607e8-0592-47a9-a8d0-fb632101e603","date":"2026-10-15","title":"PA-1 scheduled action","description":"Quar
+/tasks                       200  []
+/billing/me                                    200  {"tier":"free","planCode":"free","plan":"free","tierSource":"none","label":"Free","monthlyPrice":0,"status":"none","subscriptionSt
+/billing/status                                200  {"tier":"free","planCode":"free","plan":"free","tierSource":"none","label":"Free","monthlyPrice":0,"status":"none","subscriptionSt
+/inspection-reports/17d3d8dd-4b71-42cc-ac1c-714f479963ba 200  {"id":"17d3d8dd-4b71-42cc-ac1c-714f479963ba","inspectionId":"2f8a169d-ec0e-459f-b442-348aa72b0269","createdAt":"2026-09-14T18:15:4
+/inspection-reports/17d3d8dd-4b71-42cc-ac1c-714f479963ba/revisions 200  {"reportId":"17d3d8dd-4b71-42cc-ac1c-714f479963ba","inspectionId":"2f8a169d-ec0e-459f-b442-348aa72b0269","inspectionNumber":1,"cur
+/inspections/2f8a169d-ec0e-459f-b442-348aa72b0269 200  {"id":"2f8a169d-ec0e-459f-b442-348aa72b0269","organizationId":null,"ownerUserId":"e632cebf-c797-46b3-9a8c-f45c4ea14b6c","createdBy
+/actions/export                                200  [{"id":"2c0607e8-0592-47a9-a8d0-fb632101e603","displayId":"ACT-71187A2E","reportId":null,"inspectionId":null,"findingId":null,"ten

@@ -9,14 +9,35 @@ instance at all (`GET /v1/postgres` returns an empty list). This document and
 operator looking for something that does not exist at the one step that is the only way back from a
 bad migration.
 
-Neon's own backups are taken by the platform, and **what that platform retains has not been read**:
-there is no `NEON_*` credential in this repository or environment, so the history-retention window
-and the point-in-time-recovery setting are unknown. That is register entry `BR-2`, and it is one
-console read away.
+**What the platform retains was read at §295 and re-read at §311**, both times from the owner's
+already-authenticated console rather than from a credential this repository holds. It has not moved:
 
-What does **not** depend on the Neon console is an operator-controlled logical backup, and that path
-is proven. §268 could not provision backups and did not pretend it had; §269 and §289 both took real
-ones.
+| | as at 2026-09-17 |
+|---|---|
+| Plan | **Free** |
+| History / Instant Restore window | **6 hours** — the Free maximum |
+| Snapshots | **none, and no schedule set**; schedules require an upgrade |
+| Region / version | AWS `us-east-1`, PostgreSQL **17.11** |
+
+Six hours covers the mistake an operator notices inside the working session. It does **not** cover
+damage discovered the next morning, which is why the operator-controlled logical backup below is the
+load-bearing half for anything beyond that window.
+
+**§311 turned that backup from a thing somebody remembers into a thing that runs.** See
+[`DISASTER-RECOVERY-RUNBOOK.md`](DISASTER-RECOVERY-RUNBOOK.md) for recovery itself; the mechanism is:
+
+| script | what it does |
+|---|---|
+| `scripts/ops/backup-production-database.js` | dumps, uploads, **reads back and re-hashes**, writes metadata, applies retention, records freshness |
+| `scripts/ops/verify-backup-restore.js` | restores an artifact into a disposable PostgreSQL and compares every table by content |
+| `scripts/ops/verify-object-consistency.js` | reconciles `storage_objects` against R2 in both directions |
+| `scripts/ops/check-backup-freshness.js` | answers "did the backup actually run?" from the destination, independently of the backup job |
+
+**It has no durable destination yet.** Creating an isolated R2 bucket and a scoped token is a
+product-owner action; until it exists, `.github/workflows/database-backup.yml` fails loudly rather
+than going green. That gap is register entry `BR-5`.
+
+§268 could not provision backups and did not pretend it had; §269, §289 and §311 all took real ones.
 
 **Before any migration**, step 3 of the
 [§289 controlled-production deployment sequence](SECTION-289-CONTROLLED-PRODUCTION-DEPLOYMENT.md)
@@ -41,9 +62,24 @@ checksum**, not by row count: all 76 tables content-identical, aggregate digest
 > on identical data. Order by the per-row hash `COLLATE "C"`. §289 hit this exactly once, on the
 > `user` table, and it looked like corruption until the per-row hashes came back identical.
 
-That establishes the backup is restorable and the dump is complete, which is a stronger claim than
-"backups are enabled" and a weaker one than "we can restore production in place under time
-pressure". The latter has not been exercised.
+**§311 did it a third time, through the scheduled mechanism rather than by hand**, and added the two
+things the earlier rehearsals did not have: an instrument that was *watched to fail*, and an
+application proof on top of the restored data.
+
+| | |
+|---|---|
+| Backup | 6.0 s, 7 898 796 bytes, 78 tables, 7 294 rows, sha256 `368fa047…`, schema head `1800000026000` |
+| Restore target | a **freshly created empty** PostgreSQL **17.11** container — not an overwrite of a previous restore |
+| Restore | 0.5 s, `pg_restore` exit 0, **0 errors** |
+| Integrity | all **78/78** tables content-identical, aggregate digest `e093a62f81ac4d9e49011c43b5489f07` on both sides |
+| Mutation control | changing **one character in one row** of the restored copy turned the comparison red and named the `user` table; restoring again turned it green |
+| Application | booted against the restored database in **1.1 s**, authenticated, and served sites, inspections, reports, revisions, corrective actions and billing state — all 200, zero 5xx |
+
+That establishes the backup is restorable, the dump is complete, the verifier can tell the difference,
+and the product works on the result — which is a stronger claim than "backups are enabled" and still
+a weaker one than "we can restore production in place under time pressure". The latter has not been
+exercised, and the measured numbers above are all from a **local** container: a restore into Neon
+over the network has not been timed.
 
 **The client matters.** Production is PostgreSQL 17.11 and a PostgreSQL 16 client refuses it. Use
 `/opt/homebrew/opt/libpq/bin/pg_dump` (18.3), not the Homebrew `postgresql@16` binary, and use the

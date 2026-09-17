@@ -4,7 +4,37 @@
 the current candidate from being released* — and it answers that question three separate times,
 because there are three separate thresholds and they do not have the same blockers.
 
-Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**.
+Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
+
+**§311A — the durable backup is LIVE, and `BR-5` still does not close.** The destination
+(`insite-backups`), the scoped credential (`insite-backups-operator`, Object Read & Write, one bucket)
+and the daily 05:00 launchd schedule all exist and are proven. Isolation holds **both ways** — 16
+assertions on the backup credential, 4 on the application credential, every denial a genuine 403. The
+first durable backup was taken **by the scheduler**, its **remote copy** downloaded, checksum-matched
+and restored into a fresh PostgreSQL 17.11 at **78/78 tables content-identical**, with the application
+booting on it in 1.1 s and serving 14/14 routes, **zero 5xx**, **$0.00**. Doing it for real surfaced
+three defects, all fixed: retention could have **emptied the destination** after a long outage; macOS
+**TCC** made launchd unable to read a checkout under `~/Desktop` (exit 126); and an unquoted `&` in the
+sourced env file silently blanked the database URL. **`ST-4` is closed as an investigation with an
+adverse finding: R2 has no object versioning at all, and customer evidence is NOT recoverable after
+accidental delete or overwrite.** So **`BR-5` is PARTIAL / BLOCKING** — the database half is
+operational, the object half is not, and the evidence-recovery mechanism is deliberately unbuilt
+pending separate authorization.
+
+**§311 — `BR-5` is ENGINEERING COMPLETE and the remaining gap is one credential wide.** The backup
+mechanism, its restore verification, its DB↔object reconciliation and its independent failure
+detection are all built, all committed and all **watched to fail** before being believed. A fresh
+production backup was taken (7 898 796 bytes, sha256 `368fa047…`), restored into a *freshly created*
+PostgreSQL 17.11, and proven **78/78 tables content-identical**, after which the application booted
+against it in **1.1 s** and served sites, inspections, reports, corrective actions and billing state
+with **zero 5xx**. What is missing is not code: an isolated R2 bucket and a token scoped to it are a
+**product-owner credential action at no recurring cost**. Neon was re-read and has not moved — Free
+plan, **6-hour** window, no snapshots, no schedule. §311 opened three entries: **`ST-4`** (R2
+versioning/lifecycle/object-lock has never been read, so evidence-object recovery is UNKNOWN — this
+is the second reason `BR-5` cannot close), **`BR-6`** (account anonymisation cannot clear the
+undeclared legacy `user.password`; **latent — 8 live accounts hold one, 0 deleted accounts do**), and
+**`SE-21`** (the repository is public; nothing is exposed, but it constrains where a backup credential
+may live). **0 provider calls, 0 Expert executions, $0, 0 production changes of any kind.**
 **EXPERT HAZLENZ IS ACTIVE IN PRODUCTION as of §298**, bounded to 1 analysis and USD 1.00 per
 workspace per 24 hours, after exactly one controlled live analysis executed through the complete
 production path with every governance and containment control holding. Whether it stays enabled is
@@ -75,7 +105,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `bacfdb7064ff9e58010b52cb4e0a36100114e17503b1b141ed92dfb70ef010a2` — **§309 (SC-2), DEPLOYED and read back over five stable reads.** Recomputed by the documented command, which reproduced §308's `aa85802d…` at `8fe86790` exactly before being applied. The digest moved only because entity metadata and two new scripts changed: **no migration was written**, and the schema position is byte-identical at `1800000025000`, 57/57, `aheadOfBuild: []`. |
+| **Release binding** | `applicationSourceDigest` = `87bb6eaa63e60b7da3edfb8533f41d485688575a0de7d4bca282487acbf41597` — **§310A, DEPLOYED. Recorded at §311**, which recomputed it by the documented command and found it **identical at HEAD `be5bb4c4` and at the deployed commit `b8a6fd9c`** — so §310A's own commit changed evidence and documentation only, not application source. Schema `1800000026000`, 58/58, `aheadOfBuild: []`. *This row had been left at §309's value while §310's own narrative recorded the deployment correctly; §311 reconciled the header to the body rather than restating either.* |
+| Superseded binding | `bacfdb70…` at `8fe86790…` — §309 (SC-2), read back over five stable reads at schema `1800000025000`, 57/57 |
 | Superseded binding | `0f2edbaf…` at `e48a42f3…` — §303 SE-5 |
 | Superseded binding | `20b59cc2…` at `9242d157…` — §303's first deploy |
 | Superseded binding | `51db8f96…` at `61828222…` — §302 EN-3 |
@@ -86,7 +117,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | Superseded binding | `7fc9d47e…` at `87491ed9…` — the §294 repair, what production ran from §295 until §299 |
 | Superseded binding | `05b1a2d8…` at `4749aba1…` — what production ran until §295, containing the MO-2 false-green path |
 | Superseded binding | `2ce8a1d7…` at `94e29634` — §290's two bounded source closures (BR-3, indexing) changed the application source, so the digest changed with it |
-| **Deployed release SHA** | `c28dd43c1c54453029848a03422489073ffc2277` — live on **both halves** since §304 (backend `dep-dakub8tg1s2s73djek60`, frontend `dpl_6xqLaM26BQax1oNaM5S1uZRZ2w2E`), schema **`1800000024000` (56/56) — ONE migration applied at §304** |
+| **Deployed release SHA** | `b8a6fd9cfe34d362b7cd1a585a8fcfc9e246ebb1` — live since **§310A** (backend `dep-dalju0qd0e5s73flk650`, api-triggered at a pinned commit with autoDeploy off), schema **`1800000026000` (58/58)**, `aheadOfBuild: []`. **Re-read live at §311** from `/health/version` with `versionSourceStatus: RENDER_GIT_COMMIT`, and `/health/ready` reporting `status: ready`, `dependencies.schema: current`, `monitoring.alerting: CONFIGURED`. |
+| Predecessor deployed SHA | `c28dd43c1c54453029848a03422489073ffc2277` — §304, schema `1800000024000` (56/56) |
 | Predecessor deployed SHA | `e48a42f3e58b18db4324fbf053622353251833b7` — §303, schema `1800000023000` (55/55) |
 | Predecessor deployed SHA | `9242d157043cfab328c4d23cd3a7dcaf2804c635` — §303's first deploy |
 | Predecessor deployed SHA | `61828222ceef5f1ebcdce424e64ae3a4291032a8` — §302 |
@@ -191,14 +223,18 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **95** | **4** | **11** | **54** | **26** |
+| Entries | **98** | **4** | **11** | **55** | **28** |
 
 | Status | Count |
 |---|---|
 | CLOSED | 48 |
-| OPEN | 41 |
+| OPEN | 44 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
+
+**§311 added three entries and closed none.** `ST-4` (P2, blocks C), `BR-6` (P3) and `SE-21` (P3).
+`BR-5` moved from OPEN to **ENGINEERING_COMPLETE_OWNER_INFRASTRUCTURE_DECISION_REQUIRED** and is
+still counted as open, because a mechanism without a destination does not protect anything.
 
 **§309 added SC-2 to this table and closed it, and added `SC-3`, `SC-4` and `SC-5` from what the
 repair revealed.** SC-2 had only ever existed in the machine register; §309 brought it into the
@@ -309,13 +345,18 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (27 items, including all six P0)
+### Threshold C — external controlled beta  (28 items, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-5`, `ST-3`, `TI-3` (P2) · `MO-2` **closed at §294** ·
+`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-5`, `ST-3`, `ST-4`, `TI-3` (P2) · `MO-2` **closed at §294** ·
 `SE-3` **closed at §307**
+
+**`ST-4` is new at §311 and, like `DB-4`, it is not legal work.** R2 versioning, lifecycle and
+object-lock have never been read, so whether a deleted inspection photo can be recovered is unknown.
+It is one Cloudflare console read, and it is the second of the two reasons `BR-5` cannot close — the
+first being that the proven backup mechanism has no durable destination yet.
 
 **`DB-4` is new at §289 and it is not legal work.** The cross-tenant recurrence path that `TI-2`
 describes is **reachable in production**, because the `outcomes` table exists there although no
@@ -1043,6 +1084,36 @@ Every stored field comes from the server: agreement id, version, a **sha256 of t
 | **SE-18** | `POST /hazlenz/classify` read `body.workspaceId \|\| context.workspaceId`, so a caller-named workspace outranked the one derived from the authenticated principal. | P2 | — | Security | **CLOSED (§307)** |
 | **SE-19** | The deployed frontend returned no `frame-ancestors`, `X-Frame-Options`, `X-Content-Type-Options` or `Referrer-Policy`, so the application holding the session token in `localStorage` could be framed and click-driven by any origin. | P2 | — | Security | **CLOSED (§307)** |
 | **SE-20** | Every individual Beta principal resolves to one shared literal governance workspace, `'default'`. Nothing is disclosed today, and the reason is a role gate rather than a scope gate. | P2 | — | Engineering | OPEN (§307) |
+| **SE-21** | The GitHub repository is **public**. No credential is exposed today, but it constrains where production secrets may be placed. | P3 | — | Product | OPEN (§311) |
+
+**SE-21 — new at §311, found while choosing where a backup credential could live.**
+
+`github.com/McKinley18/safety-insite` is a **PUBLIC** repository. Nothing in this register had said so,
+and §311 needed to know because the obvious scheduler for a nightly backup is GitHub Actions, which
+would mean the production database credential living in a public repository's CI.
+
+**Nothing is currently exposed, and that was checked rather than asserted.** `.env` and `.env.*` are
+gitignored with an `!.env.example` exception; no environment file is tracked; and a scan of tracked
+content at HEAD for live-shaped credentials — Anthropic keys, Neon `npg_`, Stripe `sk_live_`/`rk_live_`,
+AWS `AKIA`, Resend `re_` — returns **zero** matches other than two evidence documents that *describe*
+the patterns being scanned for. §307 separately scanned the deployed frontend bundle and found none.
+
+**What it actually constrains.** GitHub does not expose secrets to workflows triggered by forked pull
+requests, and `schedule` only runs on the default branch, so Actions is not an open door. But the
+blast radius of a production database credential placed there includes anyone who ever gains write
+access and any third-party action that runs in the job. §311 therefore pinned every action in
+`.github/workflows/database-backup.yml` to a **verified commit SHA** rather than a movable tag, and
+made the job install only `@aws-sdk/client-s3`. The equally valid alternative — the identical scripts
+on a `launchd`/`cron` schedule on a machine the owner controls — is recorded beside it.
+
+**This is a product-owner decision, not an engineering defect**, which is why it is P3 and owned by
+Product: whether the repository should be public at all is a separate question from where a secret
+goes, and §311 takes neither decision.
+
+*Evidence:* `verification/current/br5-recovery-readiness-311/SECTION-311-BR5-RECOVERY-READINESS.json`
+→ `automation.publicRepositoryConsideration`
+*Retest:* A recorded owner decision on repository visibility, and on which scheduler holds the backup
+credential.
 
 **SE-2 — remediation / decision.** Accept for controlled beta with a short token life, or move to httpOnly cookies with CSRF protection in v1.1. Record the decision.
 
@@ -1216,6 +1287,7 @@ another **without** relying on the role gate.
 | **ST-1** | Report and artifact access is an authenticated streaming GET; there are no signed URLs to leak or expire. | P3 | — | Security | CLOSED |
 | **ST-2** | A generated report round-tripped through production storage with a checksum match, from the deployed candidate. | P2 | — | Infrastructure | **CLOSED (§290)** |
 | **ST-3** | Report and inspection-record retention policy is undefined. | P2 | C | Product | OPEN |
+| **ST-4** | R2 bucket protection — versioning, lifecycle, object lock — has never been read, so accidental-deletion recovery for evidence objects is UNKNOWN. | P2 | C | Infrastructure | **INVESTIGATION CLOSED (§311A), ADVERSE.** Read from the console: R2 has **no versioning at all**, no bucket lock is set, the only lifecycle rule aborts incomplete uploads, and access logs are off. **Customer evidence is NOT recoverable after accidental delete or overwrite.** The remediation is unauthorized and unbuilt, so the entry stays OPEN as a Threshold-C blocker. |
 
 **ST-2 — §289 update.** The premise "never been exercised end to end" was already false: §269 verified the live R2 bucket, and §289 re-verified it freshly and non-destructively. Bucket reachable and authorised, no public policy, ACL `AccessDenied`, upload, authorised download with sha256 match, unsigned GET and LIST both refused (HTTP 400), delete, `NoSuchKey` after delete, **0 residue**, no customer data. Tenant isolation is database-enforced rather than path-enforced: the object key is `<category>/<date>/<uuid>` and carries no tenant identifier, `objectKey` is `select: false`, a digest mismatch on read is refused, and `FilesController` is entirely behind `JwtGuard` — so an object identifier alone confers no access.
 
@@ -1233,6 +1305,38 @@ another **without** relying on the role gate.
 *Retest:* A generated report round-tripped through production storage with a checksum match on any change to the storage path.
 
 > Retention policy is a different question and remains open as **ST-3**. What closed here is the storage **path**.
+
+**ST-4 — new at §311. The bucket's *contents* are proven; its *protection* has never been read.**
+
+ST-1 and ST-2 establish that the storage path works and that access to it is correctly refused.
+Neither asks the recovery question: **if an evidence photo is deleted, can it be brought back?**
+
+§311 tried to answer it and could not, for a reason worth recording because it is also good news.
+The application's R2 credential is **object-scoped**: `ListBuckets`, `GetBucketVersioning`,
+`GetBucketLifecycleConfiguration` and `GetBucketEncryption` all return **403 AccessDenied**. The
+token that serves customer files cannot administer the bucket — a real isolation property, measured
+rather than assumed, and one §311 was careful not to weaken. The consequence is that the protection
+settings are readable only from the Cloudflare console, and unlike Neon the owner is **not** signed
+in to Cloudflare in this browser, so there was no already-authorised session to read. §311 did not
+log in.
+
+**So this is a one-console-read finding, exactly as `BR-2` was before §295.** What must be read:
+**versioning** (on or off), **lifecycle rules** (any expiry), **object lock**, and whether any public
+access is configured.
+
+**Why it blocks BR-5 rather than standing alone.** A database restore moves evidence *references*,
+not evidence *objects*. If versioning is off — the R2 default — then an object the application
+deleted is gone, and no database backup can bring it back. Until that is known, the recovery strategy
+has a hole in a material customer-data store, and `BR-5`'s closure rule forbids closing over one.
+
+**What *is* established.** The database and the bucket are currently **consistent**: 5 live
+`storage_objects` rows, 5 objects, one-to-one, every one verified by full sha256 download against the
+hash the database recorded at upload — 0 missing, 0 orphans, 0 mismatches. And the reconciliation is
+now a command (`verify-object-consistency.js --deep`) rather than an exercise.
+
+*Evidence:* `verification/current/br5-recovery-readiness-311/03-OBJECT-CONSISTENCY-PRODUCTION.json`
+and `SECTION-311-BR5-RECOVERY-READINESS.json` → `objectStorage`
+*Retest:* The four settings above, read from the Cloudflare console and dated.
 
 **ST-3 — remediation / decision.** State a retention and export position for the beta, especially interacting with RR-1.
 
@@ -1686,7 +1790,8 @@ Properly scoping it is not available: `fix_feedback` has no owner column, and it
 |---|---|---|---|---|---|
 | **BR-1** | A backup of live production was taken and its restore verified by content checksum at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
 | **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | — | Infrastructure | **CLOSED (§295)** |
-| **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | OPEN (§295) |
+| **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | **PARTIAL (§311A)** — the DATABASE half is fully operational: dedicated bucket, isolated credential proven both ways, scheduled, retention, four-state monitoring, remote-copy restore. The OBJECT half is unresolved — see `ST-4`. |
+| **BR-6** | Account anonymisation writes through the `User` entity, so it cannot clear the undeclared legacy `user.password` column. Latent: 8 live accounts hold a hash, 0 deleted accounts do. | P3 | — | Engineering | OPEN (§311) |
 | **BR-3** | check:launch-pricing conflated the retired Expert pricing tier with Expert HazLenz the capability. | P2 | — | Engineering | **CLOSED (§290)** |
 | **BR-4** | Four browser verification instruments remain stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§290) |
 
@@ -1733,15 +1838,167 @@ damage discovered the next day — and at Threshold B the only party who can cau
 the owner, entering their own data, with nobody else relying on it. At Threshold C it is a different
 answer, and that is `BR-5` rather than a footnote here.
 
-**BR-5 — new at §295, and deliberately not folded into BR-2.** The console confirms there are no
-snapshots and no schedule, and the operator backup has only ever been taken **at release time**. So
-for data entered between releases the posture is six hours from the platform and, before that,
-whatever dump someone remembered to take. Closing it needs either a Neon plan with a longer window
-and a schedule, or a scheduled operator backup with a stated retention and a rehearsed restore —
-both product-owner decisions with a cost, and §295 is authorised to take neither. *Separated from
-BR-2 on purpose: BR-2 asked what the platform gives us and that is answered; whether it is enough is
-a different question with a different answer per threshold, and merging them would make a closed
-fact look open or an open risk look closed.*
+**BR-5 — §311 built the whole thing and could not finish it, and the gap is one credential wide.**
+
+§295 said closing this needs "a scheduled operator backup with a stated retention and a rehearsed
+restore". §311 built exactly that, proved every part of it, and stopped at the one step that is not
+engineering: **the durable destination does not exist, because creating it means making a credential
+in the owner's Cloudflare account.**
+
+**The provider position was re-read, not carried forward.** Neon console, 2026-09-17, from the
+owner's already-authenticated session: **Free plan, 6-hour history window, Instant Restore available
+across it, no snapshots and no schedule set.** Identical to §295. Nothing was changed — no slider
+moved, no Save pressed, no snapshot created. It was the right database: project `old-moon-90939488`,
+branch `br-misty-union-a4uke5p1`, compute `ep-weathered-moon-a4egk93d`, the same endpoint as the host
+in the production `DATABASE_URL`. *One thing §311 deliberately did not settle: the console offers a
+**Create** button for a manual snapshot on Free, and §311 did not press it, so whether a Free-plan
+snapshot outlives the 6-hour window is **unverified in both directions** rather than assumed either way.*
+
+**What was built, and what each part refuses to pretend.**
+
+| script | the claim it makes |
+|---|---|
+| `backup-production-database.js` | dumps, uploads, then **reads the artifact back and re-hashes it**. An upload that returned 200 is not a backup; a run is successful only when the bytes come back matching |
+| `verify-backup-restore.js` | restores into a disposable PostgreSQL and compares **every table by content**, not by row count |
+| `verify-object-consistency.js` | reconciles `storage_objects` against R2 in **both** directions, because the two failures need different answers |
+| `check-backup-freshness.js` | answers "did it actually run?" **from the destination**, on its own schedule, so a backup job that dies entirely cannot suppress the signal |
+
+**The proof, taken fresh rather than cited.**
+
+| | |
+|---|---|
+| Backup | 6.0 s, **7 898 796 bytes**, 78 tables, 7 294 rows, sha256 `368fa047…`, schema head `1800000026000` |
+| Restore target | a **freshly created empty** PostgreSQL **17.11** container — not an overwrite of a previous restore |
+| Restore | 0.5 s, `pg_restore` exit 0, **0 errors** |
+| Integrity | **78/78** tables content-identical, aggregate digest `e093a62f81ac4d9e49011c43b5489f07` both sides |
+| Canonical schema on the restore | **PASS**, 68 tables, 0 material differences |
+| Application on the restore | booted in **1.1 s**, authenticated, and served sites, inspections, reports, revisions, corrective actions and billing state — **all 200, zero 5xx** |
+
+**Every instrument was watched to fail.** Changing **one character in one row** of the restored copy
+turned the comparison red and named the `user` table; restoring again turned it green. The
+consistency checker was made to report a missing object and an orphan, and then cleared. All five
+freshness verdicts were reached, including the two that matter most — `ARTIFACT_ABSENT` and
+`ARTIFACT_ALTERED` — which exist because a `latest.json` written by the backup job is a *claim*, and
+the check verifies it rather than believing it.
+
+**Why it is not closed, stated as the closure rule requires.** BR-5 closes only on a durable path
+covering database **and** material object evidence. Two things are missing and neither is code:
+
+1. **No durable destination.** An isolated R2 bucket plus a token scoped to it — **no recurring
+   cost** (one artifact is ~7.9 MB; the whole 14-daily/8-weekly retention fits inside R2's free
+   allowance). It must not be `insite-production`: the application credential can read every key in
+   its own bucket, so co-locating backups would escalate a leaked application key from five evidence
+   objects to the entire database. The backup script **refuses to start** if the two buckets match.
+2. **The object half is unassessed** — `ST-4`. R2 versioning, lifecycle and object-lock could not be
+   read: the application credential is denied every bucket-administration call, and unlike Neon the
+   owner is *not* signed in to Cloudflare here, so there was no session to read and §311 did not log
+   in. Until that read happens, "can we recover a deleted evidence photo?" has no answer.
+
+**Closing it on what exists today would be precisely the failure the rule names** — a manual dump
+that restored once. *Still separated from BR-2 on purpose: BR-2 asked what the platform gives us and
+that is answered; whether it is enough is a different question with a different answer per threshold.*
+
+*Evidence:* `verification/current/br5-recovery-readiness-311/`; runbook at
+`project-docs/operations/DISASTER-RECOVERY-RUNBOOK.md`
+*Retest:* A scheduled run landing an artifact in the durable bucket, `check-backup-freshness.js`
+reporting `FRESH` against it, and `ST-4` answered.
+
+**BR-5 — §311A ACTIVATED THE DATABASE HALF. It still does not close, and the reason is `ST-4`.**
+
+Everything §311 built now runs against real infrastructure. **`insite-backups`** exists — private,
+ENAM, no public URL, no custom domain — and **`insite-backups-operator`** is an R2 *Object Read &
+Write* token scoped to that bucket alone. **$0.00 billable.**
+
+**The isolation was proven in both directions rather than asserted.** The backup credential writes,
+reads, lists and deletes in `insite-backups`, and is refused **403 AccessDenied** on every attempt to
+touch `insite-production`, to administer either bucket, to delete the backup bucket, to list the
+account's buckets, or to create one — 16 assertions, 0 failures. Reciprocally the application
+credential keeps its 5-object `insite-production` scope and is refused on `insite-backups`. *Every
+refusal was checked to be a genuine 403; an ambiguous failure was defined in advance as not a pass.*
+
+**The first durable backup was produced BY THE SCHEDULER**, not by a hand-run command: 7 898 796
+bytes, sha256 `a084be62…`, 12.0 s end to end, bound to production SHA `b8a6fd9c` and
+`applicationSourceDigest` `87bb6eaa…`. The **remote copy** was then downloaded and its checksum
+matched the freshness record and the metadata sidecar; that downloaded copy — not the local
+pre-upload file, which the script had already deleted — restored into a fresh PostgreSQL 17.11 with
+**78/78 tables content-identical**, after which the application booted in **1.1 s** and served
+**14/14** individual-Beta routes with **zero 5xx**.
+
+**Three defects surfaced by doing it for real, each fixed rather than worked around.**
+
+| | |
+|---|---|
+| **Retention could empty the destination** | After an outage longer than the daily window every artifact is past the cutoff, and the pass would have deleted *all* of them — at the moment the contents mattered most. `ALWAYS_KEEP_NEWEST = 3` is now an absolute floor, and an incomplete listing suppresses deletion entirely. 9 assertions. |
+| **launchd cannot read the checkout** | The first scheduled run exited **126, "Operation not permitted"**. macOS **TCC** denies a launchd agent access to `~/Desktop`: a diagnostic agent could `stat` the script but not read it, and could not list the directory at all. Permissions are irrelevant. The job is now installed to `~/.safety-insite/runner/`, with per-file hashes and a `--verify` drift check. Granting Full Disk Access to `/bin/bash` was rejected as a far worse trade. |
+| **The env file silently lost a value** | The first run reported `BACKUP_SOURCE_DATABASE_URL is not set` while the value sat plainly in the file. It is **sourced by bash**, and a connection string contains `&`. Every value is now single-quoted and the template says why. |
+
+**Monitoring distinguishes four states and `UNKNOWN` never passes.** HEALTHY / STALE / FAILED /
+UNKNOWN, all proven against the real destination using a synthetic prefix that was deleted afterwards.
+A bad credential or an unreachable endpoint reports **UNKNOWN**, not MISSING — "there is no backup"
+and "I could not find out" are different facts, and only HEALTHY exits 0. **MO-1 carried two real
+dispatches at HTTP 200**, one of them on the genuine env-quoting failure above.
+
+**Why it is still PARTIAL.** BR-5 closes only on database **and** material object evidence. `ST-4`
+established that a deleted or overwritten inspection photo **cannot be recovered at all**. Closing
+BR-5 now would mean calling the product recoverable while a single mistaken `DELETE` permanently
+destroys safety evidence.
+
+*Evidence:* `verification/current/br5-recovery-readiness-311/12-SECTION-311A-ACTIVATION.json`
+*Retest:* `check-backup-freshness.js` reporting HEALTHY on a schedule, and `ST-4` remediated.
+
+**ST-4 — CLOSED AS AN INVESTIGATION at §311A, and the answer is the bad one.**
+
+Read from the Cloudflare console. **Cloudflare R2 has no object versioning** — not disabled,
+*absent*: the bucket settings offer fourteen sections and versioning is not among them, and Cloudflare's
+own bucket-feature documentation does not list it. `insite-production` has **no bucket lock**, its only
+lifecycle rule **aborts incomplete multipart uploads** (R2's default on every bucket, which never
+deletes a completed object), and **Data Access Logs are disabled** — so there is not even a record of
+what was deleted, when, or by which credential. The bucket *is* private: no custom domain, public
+development URL disabled, no CORS.
+
+Durability is **99.999999999%**, and Cloudflare states plainly that it **"does not prevent intentional
+or accidental deletion of data."** Eleven nines describes the medium, not the operator.
+
+**Bucket lock is not the fix, and that was measured in source rather than assumed.** The product
+*hard-deletes* R2 objects in normal operation: upload rollback, `retireReportArtifact` on ordinary
+report regeneration, and customer `tombstone`. A lock would break report regeneration **and** customer
+erasure — putting the product in conflict with its own privacy commitments.
+
+**So the entry stays OPEN as a Threshold-C blocker.** The investigation is finished; the remediation —
+copying evidence objects into `insite-backups/evidence/` — is deliberately **unauthorized and unbuilt**,
+and §311A was explicitly forbidden from silently broadening the backup system to do it.
+
+*Evidence:* `verification/current/br5-recovery-readiness-311/10-ST4-R2-PROTECTION-READ.json`
+*Retest:* An evidence-recovery mechanism, authorized and proven — or a recorded owner decision to
+accept permanent loss of accidentally-deleted evidence during Beta.
+
+**BR-6 — new at §311, latent, and the numbers are why it is P3 rather than P1.**
+
+Account deletion anonymises through the `User` entity, so it can only clear columns the entity
+**declares**. The legacy `user.password` column — which §305 explicitly recorded as a tolerated
+legacy column and excluded from schema enforcement — is not declared. Deleting an account therefore
+does not clear it, and it would survive in production and in every backup for its retention.
+
+**It has not happened.** Of the **8 of 67** accounts holding a non-null `user.password`, **0 are
+deleted**; all **26** accounts deleted to date had it NULL. So no deletion request has actually been
+left incomplete.
+
+**It also cannot spread.** Migration `1793000000000` copied `password` into `passwordHash` and left
+the source populated for the accounts that predated it; nothing has written the column since and the
+entity does not declare it, so **the population is frozen at 8** and an external Beta customer's row
+will always have it NULL. The values were checked rather than assumed: all 8 are 60-character `$2b$`
+**bcrypt hashes, not plaintext**. Authentication reads `passwordHash` only, deletion randomises that
+and sets `deletedAt`, and login rejects a deleted user — so this is **not** an authentication bypass.
+
+What it is, is personal data that would survive an erasure request, and the Privacy Notice will make
+a deletion claim that should be true for all 67 accounts rather than 59. **Remediation is one
+statement** — `UPDATE "user" SET password = NULL` — run before any of those 8 is ever deleted, which
+removes the possibility entirely. §311 did **not** run it: that is a production customer-data
+mutation and §311 carries no such authorization.
+
+*Evidence:* `verification/current/br5-recovery-readiness-311/SECTION-311-BR5-RECOVERY-READINESS.json`
+→ `accountDeletionBackupConsequence.newFindingBR6`
+*Retest:* `select count(*) from "user" where password is not null` returning 0, or the column dropped.
 
 **BR-2 — the original §289 finding.** What the **platform** retains was unknown. Neon's control plane was unreachable from §269 and again from §289: there is no `NEON_*` credential in the repository or the environment. This is **not** a "we have no backups" finding — the operator-controlled path above is proven twice and does not depend on the console. It is a "we do not know what the platform would give us" finding, and it is one console read away.
 
