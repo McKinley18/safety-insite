@@ -1,0 +1,171 @@
+{
+  "artifact": "SECTION-313A-BR7-PRODUCTION-DEPLOYMENT-AND-CLOSURE",
+  "section": "§313A",
+  "completedAt": "2026-09-17T23:15:00Z",
+  "objective": "Deploy 32653cac and prove BR-7 closure in production.",
+  "outcome": "DEPLOYED AND PROVEN END TO END IN PRODUCTION, on a fully synthetic disposable account. BR-7 CLOSES on route (A): a real production account deletion erased real production evidence, and the recovery system refuses to resurrect it.",
+
+  "deployment": {
+    "candidate": "32653cac2f04cab79269ad5bfeea8f4629eaf8c0",
+    "preDeployProductionSha": "b8a6fd9cfe34d362b7cd1a585a8fcfc9e246ebb1",
+    "postDeployProductionSha": "32653cac2f04cab79269ad5bfeea8f4629eaf8c0",
+    "deploymentId": "dep-dam72itbedkc73aagjsg",
+    "status": "live",
+    "trigger": "api, pinned commitId — autoDeploy remains off",
+    "liveIdentityProof": "FIVE STABLE READS of /health/ready all reporting gitCommit 32653cac2f04 with versionSourceStatus RENDER_GIT_COMMIT. The running service was re-read rather than the deploy job's success being taken as proof — the §310A/OPS-2 rolling-cutover lesson.",
+    "codeOnly": true,
+    "migrationExecuted": false,
+    "synchronizeUsed": false,
+    "environmentChanged": false,
+    "environmentVariableCount": "43 before and 43 after",
+    "credentialsChanged": false,
+    "expertConfigurationChanged": false,
+    "expertFlagsAfter": { "EXPERT_EXECUTION_ENABLED": "true", "dailyAnalysisLimitPerWorkspace": 1, "dailyCostLimitUsdPerWorkspace": 1, "spendWindowHours": 24 },
+    "frontendDeployed": false,
+    "frontendNote": "The backend service was deployed alone by pinned commit. No frontend deployment was triggered and none was needed: §313 changed backend source only."
+  },
+
+  "preDeployGates": {
+    "localHead": "32653cac — PASS",
+    "remoteCandidate": "32653cac, identical to local — PASS",
+    "productionBefore": "b8a6fd9c, ready, schema current — PASS",
+    "unexpected5xxBefore": 0,
+    "schemaHead": "1800000026000",
+    "migrationCount": "58/58",
+    "migrationsAhead": 0,
+    "canonicalSchema": "PASS — 68 tables, 0 material differences",
+    "entityContract": "PASS — 0 UNACCEPTED",
+    "section274Identity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+    "secretScan": "PASS",
+    "section313ErasureSuite": "PASS — 32/32, re-run on the exact candidate before deploying",
+    "section313RollbackGate": "PASS — 4/4",
+    "section307SecurityBoundary": "PASS — 334 passed, 0 failed",
+    "worktree": "clean apart from pre-existing untracked noise; 4 pre-existing stashes untouched"
+  },
+
+  "recoveryPrecondition": {
+    "databaseRecovery": "HEALTHY (FRESH)",
+    "evidenceRecovery": "PROTECTED — LIVE_MATCHED 5",
+    "aggregate": "HEALTHY",
+    "newObjectManufactured": false,
+    "note": "Checked read-only before deployment, exactly as §313A required. Deployment would have been refused on STALE, FAILED, UNKNOWN, UNPROTECTED or MISMATCHED."
+  },
+
+  "postDeployIdentity": {
+    "sha": "32653cac2f04cab79269ad5bfeea8f4629eaf8c0",
+    "ready": "ready, dependencies.schema current",
+    "applicationSourceDigest": "e0349820b1e6f3e48a6326f670c2598f0f0b1692e559e8422f6538c1a2d7c65f",
+    "schemaHead": "1800000026000",
+    "migrationCount": "58/58, read directly from the production database",
+    "migrationsAhead": 0,
+    "schemaUnchanged": true,
+    "alerting": "CONFIGURED",
+    "unexpected5xxAfter": 0
+  },
+
+  "productionProof": {
+    "route": "A — safe synthetic production end-to-end erasure SUCCEEDED.",
+    "realCustomerAccountDeleted": false,
+    "realCustomerEvidenceModified": false,
+    "syntheticAccount": {
+      "email": "s313a-erasure-proof-<epoch>@internal-acceptance.invalid",
+      "domain": ".invalid — never deliverable, no relationship to any real customer",
+      "userId": "e2e55116-5832-4c31-9333-eb275b09e4e7",
+      "createdVia": "the normal public POST /auth/register route, no control bypassed",
+      "agreementAcceptance": "SATISFIED NORMALLY — the mandatory §291 agreement was fetched from /agreements and accepted at the server's required version; 1 acceptance recorded and read back"
+    },
+    "syntheticEvidence": {
+      "site": "c64112df-7c77-4fcc-88e3-1f3204cf967b",
+      "inspection": "53c8547c-7ab0-4f97-9740-a0746f3acd57",
+      "storageObjectId": "064a3cdb-ce12-47d5-b885-f8dc9fbcea58",
+      "objectKey": "evidence/2026-09-17/90c4d85b-1345-47a8-b3f6-3fcf841d9fb2",
+      "sha256": "ac33087c12b929cc41b51ee6e3d5438e27d64787dbdac81a0168c0e54e23416c",
+      "bytes": 69,
+      "content": "a synthetic 1x1 PNG — no customer content of any kind",
+      "createdVia": "POST /inspections/:id/evidence, the normal authorized product path"
+    },
+    "steps": {
+      "4_storageOwnership": "PASS — ownerUserId = the synthetic user, organizationId NULL (owner-scoped, so in scope for individual erasure)",
+      "5_liveR2Existence": "PASS — present, 69 bytes, sha256 equal to the database record, read through the READ-ONLY recovery credential",
+      "6_recoveryProtection": "PASS — the reconciler classified it LIVE_UNBACKED, captured it, and then reported LIVE_MATCHED with overall PROTECTED",
+      "7_deleteAuthMe": "HTTP 200, {\"message\":\"Account deleted successfully\"} — the real production route, not a rate-limited 429",
+      "8_erasureStateMachine": "PASS — audit trail in order: account_deleted (evidenceObjectsMarkedForErasure 1) -> account_evidence_erased -> account_evidence_erasure_complete (evidenceObjectsErased 1)",
+      "9_liveEvidenceErased": "PASS — the object is NotFound in production R2",
+      "10_storageObjectsTombstoned": "PASS — status 'deleted', deletedAt set, deletedByUserId set",
+      "11_metadataScrubbed": "PASS — downloadName is 'erased'; sha256 retained deliberately so the recovery ledger can key off it",
+      "12_recoveryErasureAuthority": "PASS — 1 erasure tombstone written at evidence/erasure/<id>.json, basis recorded as storage_objects.deletedAt plus security_audit_events.action='account_evidence_erased'",
+      "13_resurrectionRefused": "PASS — --restore exits 1 with the explicit refusal, and on the following pass the state is MISSING_LIVE_ERASURE_AUTHORIZED",
+      "14_recoveryByteDisposition": "PASS — bytes eligible for deletion after 2026-09-18T23:06:28Z, the governed 24-hour erasure grace; generations retained until then",
+      "15_deletedAccountCannotAuthenticate": "PASS — the old token returns 401 and login with the original credentials returns 401"
+    },
+    "classificationTimingNote": "On the pass that WRITES the tombstone the object still classifies as RECOVERY_ONLY_EXPECTED, because classification runs before the apply step. The next pass reports MISSING_LIVE_ERASURE_AUTHORIZED. Recorded rather than presented as the immediate state."
+  },
+
+  "nonContamination": {
+    "fiveRealObjects": "UNCHANGED — verify-object-consistency --deep: 5 verified by full sha256 download, 0 missing, 0 size mismatches, 0 checksum mismatches, 0 orphans, CONSISTENT",
+    "orgScopedObjects": "1 before, 1 after — untouched",
+    "orgScopedSites": "7 before, 7 after — untouched",
+    "orgScopedInspections": "6 before, 6 after — untouched",
+    "liveStorageObjects": "5 before, 5 after",
+    "erasurePendingRows": 0,
+    "sharedOwnershipExclusion": "The synthetic account was owner-scoped, so the organisation-scoped object was never a candidate. The exclusion was verified by counting org-scoped rows before and after rather than by reasoning about the predicate alone.",
+    "residueLeftInProduction": "One soft-deleted anonymised user row, one site and one inspection, all synthetic and named here. This follows the product's own documented retention policy — inspections and sites are retained as the compliance record — and matches the §300 precedent of naming a synthetic account rather than tidying it away. The evidence itself is gone."
+  },
+
+  "rateLimiting": {
+    "preserved": true,
+    "value": "@Throttle({ default: { limit: 5, ttl: 60000 } }) on DELETE /auth/me — re-derived from the deployed source, unchanged",
+    "notWeakened": "Nothing was disabled or raised for testing. The single production deletion returned HTTP 200, not 429, so it is a deletion result rather than a rate-limited one."
+  },
+
+  "monitoring": {
+    "readyAfterDeploy": "ready across eight reads",
+    "unexpected5xxAttributableToDeployment": 0,
+    "databaseRecoveryAfter": "HEALTHY (FRESH)",
+    "evidenceRecoveryAfter": "PROTECTED",
+    "aggregateAfter": "HEALTHY",
+    "mo1": "CONFIGURED throughout; one alert dispatched at HTTP 200 during the interim ATTENTION_REQUIRED window when the synthetic object was briefly LIVE_UNBACKED — the monitor behaving exactly as designed",
+    "erasureStuck": 0,
+    "erasurePartial": 0,
+    "erasureFailed": 0,
+    "recoveryErasureNotPropagated": 0,
+    "unknown": 0,
+    "expectedNonZero": "MISSING_LIVE_ERASURE_AUTHORIZED = 1, which is the synthetic object and is the correct terminal state for an erased object."
+  },
+
+  "br7ClosureRule": {
+    "candidateProvenLive": "YES — five stable reads of 32653cac",
+    "realRouteWiredToErasure": "YES — the production DELETE /auth/me executed the §313 state machine and wrote all three audit actions",
+    "schemaStable": "YES — 1800000026000, 58/58, 0 ahead, no migration",
+    "recoveryHealthy": "YES — aggregate HEALTHY before and after",
+    "ownershipContainmentIntact": "YES — org-scoped counts unchanged, five real objects byte-identical",
+    "noRegression": "YES — 0 unexpected 5xx, all gates green",
+    "closureRoute": "A — safe synthetic production end-to-end erasure succeeded. This is a REAL production execution against REAL production storage; only the account and its evidence were synthetic.",
+    "verdict": "BR-7 CLOSES."
+  },
+
+  "preservedUnchanged": {
+    "BR-8": "OPEN — not repaired. Recommended next target.",
+    "BR-6": "OPEN — not repaired.",
+    "BR-5": "CLOSED (§312A).", "ST-4": "CLOSED (§312A).",
+    "SE-21": "OPEN.", "OPS-2": "OPEN.", "SC-4": "OPEN.", "SC-5": "OPEN.",
+    "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED.",
+    "LG-3": "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED. No brand or domain decision.",
+    "IT-4": "OPEN — the stale cross-user instrument registered at §313."
+  },
+
+  "productionSafety": {
+    "realCustomerAccountsDeleted": 0,
+    "realCustomerEvidenceModified": 0,
+    "realCustomerRowsModified": 0,
+    "productionDatabaseWritesCausedByDeploymentItself": 0,
+    "syntheticOnlyDatabaseWrites": "one user, one site, one inspection, one storage_object and four audit rows — all synthetic, all named above",
+    "productionConfigurationChanges": 0,
+    "charges": "$0.00",
+    "expertExecutions": 0,
+    "providerCalls": 0,
+    "spendUsd": 0,
+    "unexpected5xx": 0,
+    "destructiveFailureInjection": "NONE. No production R2 outage was induced and no destructive production failure was injected. Partial-failure, R2-unavailable, DB-failure, retry, already-missing-object and repeated-deletion behaviour rest on the §313 disposable proof, exactly as §313A directed."
+  }
+}

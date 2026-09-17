@@ -6,6 +6,15 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§313A — `BR-7` IS CLOSED.** `32653cac` is live (five stable reads, code only, no migration, 43 env
+vars unchanged, Expert untouched), and the erasure was proven **in production**: a synthetic `.invalid`
+account created through normal governed signup, given one synthetic PNG, then deleted through the real
+`DELETE /auth/me` at HTTP 200 — evidence erased from R2, row tombstoned and scrubbed, erasure tombstone
+written to recovery storage, **resurrection refused**. The five real objects are byte-identical and
+org-scoped state is unchanged at 1 object / 7 sites / 6 inspections. No destructive production failure
+was injected; the failure modes rest on the §313 disposable proof. **`BR-8` is the recommended next
+target.**
+
 **§313 — `BR-7` IS REPAIRED AND PROVEN, and does not close because it is not deployed.** Account
 deletion now erases the evidence that belonged to the account: intent recorded inside the transaction,
 bytes deleted after the commit, ownership asserted relationally (`ownerUserId` AND `organizationId IS
@@ -258,15 +267,16 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | Status | Count |
 |---|---|
-| CLOSED | 73 |
+| CLOSED | 74 |
 | OPEN | 37 |
-| ENGINEERING_COMPLETE_PRODUCTION_DEPLOYMENT_REQUIRED | 1 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
 
-**§313 added `IT-4` (P3, stale instrument) and moved `BR-7` to
-ENGINEERING_COMPLETE_PRODUCTION_DEPLOYMENT_REQUIRED.** It still blocks Threshold C, because the repair
-is not in production. **§312A closed `BR-5` and `ST-4`.** §312 had added `BR-7` (P2, blocks C) and
+**§313A closed `BR-7`.** §313 added `IT-4` (P3, stale instrument). Of the fourteen Threshold-C
+blockers that remain, **three are still engineering-owned** — `AC-1` and `CPF-3` (both P2, OPEN) and
+`LG-3` (P0, engineering complete and waiting on counsel publication). The other eleven are counsel,
+product, claims, privacy and infrastructure-configuration items. `EM-2` is engineering-complete and
+waiting on one owner configuration step. **§312A closed `BR-5` and `ST-4`.** §312 had added `BR-7` (P2, blocks C) and
 `BR-8` (P3).
 
 **§311 added three entries and closed none.** `ST-4` (P2, blocks C), `BR-6` (P3) and `SE-21` (P3).
@@ -388,7 +398,7 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (**15 open blockers**, including all six P0)
+### Threshold C — external controlled beta  (**14 open blockers**, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
@@ -1835,7 +1845,7 @@ Properly scoping it is not available: `fix_feedback` has no owner column, and it
 | **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | — | Infrastructure | **CLOSED (§295)** |
 | **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | **CLOSED (§312A)** — database AND customer-evidence recovery are both operational on the daily schedule, with aggregate health that is HEALTHY only when both halves are. All fourteen closure requirements proven. |
 | **BR-6** | Account anonymisation writes through the `User` entity, so it cannot clear the undeclared legacy `user.password` column. Latent: 8 live accounts hold a hash, 0 deleted accounts do. | P3 | — | Engineering | OPEN (§311) |
-| **BR-7** | Account deletion does not touch `storage_objects` or R2 at all, so a customer who deletes their **account** leaves every evidence photo and report PDF live in production. Latent: 0 of the 26 deleted accounts owned an object. | P2 | C | Engineering | **ENGINEERING_COMPLETE_PRODUCTION_DEPLOYMENT_REQUIRED (§313)** — repaired and proven 32/32 against the real application, with the rollback gate and two load-bearing mutation controls. **Not deployed**, so production still has the defect. |
+| **BR-7** | Account deletion does not touch `storage_objects` or R2 at all, so a customer who deletes their **account** leaves every evidence photo and report PDF live in production. Latent: 0 of the 26 deleted accounts owned an object. | P2 | — | Engineering | **CLOSED (§313A)** — deployed as `32653cac` and proven end to end **in production** on a fully synthetic account: real route, real R2, evidence erased, tombstoned, and resurrection refused. |
 | **BR-8** | A `clientRequestId` replay can re-`put` to an **existing** object key with different bytes, leaving the database recording the first attempt's sha256 while R2 holds the second's. | P3 | — | Engineering | OPEN (§312) |
 | **BR-3** | check:launch-pricing conflated the retired Expert pricing tier with Expert HazLenz the capability. | P2 | — | Engineering | **CLOSED (§290)** |
 | **BR-4** | Four browser verification instruments remain stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§290) |
@@ -2134,6 +2144,50 @@ and §311A was explicitly forbidden from silently broadening the backup system t
 *Evidence:* `verification/current/br5-recovery-readiness-311/10-ST4-R2-PROTECTION-READ.json`
 *Retest:* An evidence-recovery mechanism, authorized and proven — or a recorded owner decision to
 accept permanent loss of accidentally-deleted evidence during Beta.
+
+**BR-7 — CLOSED at §313A. Deployed, and proven in production rather than only in a rig.**
+
+`32653cac` is live (`dep-dam72itbedkc73aagjsg`), confirmed by **five stable reads** of the running
+service rather than by the deploy job reporting success — the OPS-2 lesson applied. **Code only**: no
+migration ran, schema stayed `1800000026000` 58/58 with 0 ahead, the environment stayed at **43
+variables**, and the Expert flags and limits are byte-identical.
+
+**The production proof is route (A): a real deletion, of real production storage, on a synthetic
+account.** A throwaway `.invalid` account was created through the normal public signup — accepting
+the mandatory §291 agreement at the server's required version, no control bypassed — given one
+synthetic 1×1 PNG through the ordinary evidence route, and then deleted through the real
+`DELETE /auth/me`, which returned **HTTP 200** (a deletion result, not a rate-limited 429).
+
+| step | result |
+|---|---|
+| storage ownership | owner-scoped, `organizationId` NULL — in scope |
+| live object in R2 | present, 69 bytes, digest equal to the database record |
+| recovery protection | `LIVE_UNBACKED` → captured → `LIVE_MATCHED`, overall `PROTECTED` |
+| erasure state machine | `account_deleted` (marked 1) → `account_evidence_erased` → `account_evidence_erasure_complete` (erased 1) |
+| live evidence | **NotFound** in production R2 |
+| `storage_objects` | `status='deleted'`, `deletedAt`/`deletedByUserId` set, `downloadName` scrubbed to `erased` |
+| erasure authority | tombstone written in **recovery storage** |
+| resurrection | **refused**, exit 1; next pass reports `MISSING_LIVE_ERASURE_AUTHORIZED` |
+| recovery bytes | eligible for deletion after the governed **24-hour** grace |
+| deleted account | old token 401, login 401 |
+
+**Nothing real was touched, and that was measured rather than asserted.** The five production objects
+are **byte-identical** — `verify-object-consistency --deep`: 5 verified by full sha256 download, 0
+missing, 0 mismatches, 0 orphans, `CONSISTENT`. Org-scoped state is unchanged at **1 object, 7 sites,
+6 inspections**, so the shared-ownership exclusion was proven by counting, not by reasoning about the
+predicate. `erasure_pending` is 0.
+
+**What it does not claim.** No destructive production failure was injected and no production R2 outage
+was induced. Partial failure, R2 unavailability, database failure, retry, already-missing objects and
+repeated deletion all rest on the §313 **disposable** proof, exactly as §313A directed. The rate
+limiter stays at **5 / 60 s** and was never weakened for testing.
+
+*One honest residue, named rather than tidied away* — in the §300 tradition: the synthetic account
+leaves a soft-deleted anonymised user, one site and one inspection in production. That is the
+product's own documented retention policy for compliance records. **The evidence itself is gone.**
+
+*Evidence:* `verification/current/account-evidence-erasure-313/SECTION-313A-PRODUCTION-PROOF.json`
+*Retest:* Aggregate recovery `HEALTHY` with `ERASURE_PENDING` at 0.
 
 **BR-7 — REPAIRED AND PROVEN at §313. It does not close, because it is not deployed.**
 
