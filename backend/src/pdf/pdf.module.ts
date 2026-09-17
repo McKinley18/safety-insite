@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { PdfController } from './pdf.controller';
 
-import { ReportsModule } from '../reports/reports.module';
-
 /**
  * §307 — THE RETIRED LEGACY PDF ROUTE, AND NOTHING BEHIND IT.
  *
@@ -24,7 +22,6 @@ import { ReportsModule } from '../reports/reports.module';
  * and still answers 410 with the same sentence.
  */
 @Module({
-  imports: [ReportsModule],
   controllers: [PdfController],
 })
 export class PdfModule {}

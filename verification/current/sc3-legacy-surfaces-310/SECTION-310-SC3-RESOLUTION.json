@@ -1,0 +1,184 @@
+{
+  "artifact": "SECTION_310_SC3_MISSING_RELATION_RESOLUTION",
+  "section": "\u00a7310",
+  "scope": [
+    "SC-3 (four entity/table families whose relations do not exist)",
+    "SC-4 narrow member: the unsafe user.subscriptionStatus database default"
+  ],
+  "outcome": {
+    "SC-3": "CLOSED",
+    "SC-4": "OPEN \u2014 one member resolved, twelve residuals remain",
+    "SC-5": "OPEN \u2014 untouched, as \u00a7310 required"
+  },
+  "spend": {
+    "expertExecutions": 0,
+    "providerCalls": 0,
+    "usd": 0.0,
+    "productionWrites": 0,
+    "manualProductionDatabaseWrites": 0
+  },
+  "classification": {
+    "instruction": "Classify each family BEFORE creating anything. A TypeORM entity existing in source is NOT evidence that its table should exist.",
+    "result": "All four families: B \u2014 LEGACY / SUPERSEDED ARCHITECTURE.",
+    "families": [
+      {
+        "entity": "Report",
+        "table": "report",
+        "class": "B",
+        "successor": "inspection_reports + inspection_report_versions (immutable snapshot of a completed inspection)",
+        "productionRows": 0
+      },
+      {
+        "entity": "Finding",
+        "table": "finding",
+        "class": "B",
+        "successor": "inspection_findings",
+        "productionRows": 0
+      },
+      {
+        "entity": "ReportAttachment",
+        "table": "report_attachments",
+        "class": "B",
+        "successor": "inspection evidence storage",
+        "productionRows": 0
+      },
+      {
+        "entity": "HazardTaxonomy",
+        "table": "hazard_taxonomy",
+        "class": "B",
+        "successor": "the shipped taxonomy JSON map read by HazardTaxonomyCoverageService via fs.readFileSync \u2014 this family never used a database table",
+        "productionRows": 0,
+        "note": "Was not registered in the application DataSource at all, and TWO conflicting entity definitions existed for the same table name (intelligence-library and intelligence-framework). No deployed route could reach it."
+      }
+    ],
+    "whyNotCreateTheTables": "\u00a7310 forbids resurrecting retired architecture merely to eliminate a 500. Creating `report` and `finding` would re-establish the mutable report model that the immutable inspection report deliberately replaced, producing a second divergent source of report truth."
+  },
+  "reachabilityBeforeRepair": {
+    "method": "The AUTHORITATIVE DEPLOYED ROUTE TABLE (every route Nest registers) plus live probes against a migration-built database, driven as a real entitled individual and as an organization principal.",
+    "routeTableTotalBefore": 156,
+    "routesThatReachedTheMissingRelation": 5,
+    "detail": [
+      {
+        "route": "GET /analytics/safety-trends",
+        "principal": "any entitled caller",
+        "before": 500
+      },
+      {
+        "route": "GET /legacy/reports",
+        "principal": "organization",
+        "before": 500,
+        "individual": "401 Organization context is required (guard, not absence of the defect)"
+      },
+      {
+        "route": "GET /legacy/reports/:id",
+        "principal": "organization",
+        "before": 500
+      },
+      {
+        "route": "GET /legacy/reports/:id/recommendations",
+        "principal": "organization",
+        "before": 500
+      },
+      {
+        "route": "POST /action-engine/generate/:reportId",
+        "principal": "organization",
+        "before": 500,
+        "foundBy": "the deployed route table, NOT by reading controllers \u2014 it is not namespaced legacy/, is not named after a report, and injects ReportsService through a forwardRef",
+        "evidenceHandling": "Added to the instrument AFTER the initial BEFORE capture. Its pre-repair behaviour was measured separately by running the instrument against the pre-\u00a7310 source in a temporary git worktree, and is recorded as such rather than folded into the original capture."
+      }
+    ],
+    "routesThatDidNotExist": "The /classifications, /control-verifications and /review-queue paths answer 404 because their modules were never registered in AppModule. A controller in source is not a deployed route."
+  },
+  "repair": {
+    "routeSurface": {
+      "before": 156,
+      "after": 155,
+      "diff": "GET /analytics/safety-trends removed \u2014 that single route is the entire deployed-surface diff"
+    },
+    "retirementStatus": "410 Gone, not 404",
+    "why410": "The surviving routes are namespaced `legacy/` and six siblings already answered 410, which an earlier section established as a deliberate compatibility signal. Turning three of nine into 404 would destroy that signal for no gain. Documented in the controller.",
+    "why404ForAnalytics": "AnalyticsModule backed exactly one route with no compatibility history and no consumer: the frontend references none of the retired paths. Actual removal was preferred over a 410 stub.",
+    "everyRetiredRouteNamesItsSuccessor": true,
+    "deletedBecauseUnreachable": [
+      "ReportsService",
+      "TransparencyService.getDecisionBreakdown (behind GET /legacy/reports/:id/explain, which has answered 410 since the mutable report model was retired)",
+      "the ReportsService injection in PdfController (its route has thrown 410 since \u00a7307)"
+    ],
+    "unusedRegistrationsRemoved": [
+      "Report/Finding/ReportAttachment from ReportsModule forFeature and from the application DataSource",
+      "AnalyticsModule from AppModule",
+      "StandardsModule and RecommendationsModule from ReportsModule (ReportsService was their only consumer there)",
+      "the hazard_taxonomy row count from the HazLenz completeness audit, which could only ever throw and measured the wrong thing"
+    ]
+  },
+  "sc4": {
+    "defect": "user.subscriptionStatus database DEFAULT 'active' against an entity declaring 'none'. An INSERT omitting the column produced an account asserting an ACTIVE subscription \u2014 the value the entitlement layer reads as a paying customer.",
+    "repair": "migration 1800000026000-UserSubscriptionStatusDefault: ALTER TABLE \"user\" ALTER COLUMN \"subscriptionStatus\" SET DEFAULT 'none'. The entity was already correct; the database was wrong.",
+    "deliberatelyNotDone": "No existing row read or rewritten. Existing 'active' rows are legitimate customer subscription state and a migration cannot distinguish those from rows that inherited the bad default.",
+    "measuredRestraint": "A fresh production backup restored and upgraded in a disposable database: the distribution of existing subscriptionStatus values is byte-identical across the migration (9 active / 57 none, before and after).",
+    "preserved": [
+      "EN-3: registration still produces free/none and capability still comes from a bounded grant",
+      "BI-4: a caller-supplied subscriptionStatus is still refused 400"
+    ]
+  },
+  "productionUpgradeRehearsal": {
+    "backupTakenForThisSection": true,
+    "backupSha256": "2d6f7625e12ee6bd74946072c5bed2f1cfd155945beec800fefbb6689f63062b",
+    "productionMigrationHeadAtBackup": "1800000025000 (57 applied)",
+    "migrationsPendingOnProduction": 1,
+    "structuralConvergence": "0 material differences between the upgraded restored-production schema and the committed canonical manifest",
+    "residualDigestDifferenceAccountedFor": "Production carries 9 tables a fresh replay deliberately does not build (control_verifications, finding, hazard_taxonomy, outcomes, regulatory_profile, report, report_attachments, standards, users) plus the user.password / user.legacy_id columns \u00a7305 preserved without replicating.",
+    "sc3TablesInProduction": {
+      "report": 0,
+      "finding": 0,
+      "report_attachments": 0,
+      "hazard_taxonomy": 0,
+      "significance": "All four are synchronize-era residue and ALL ARE EMPTY. Retirement loses no customer data. \u00a7305 forbids dropping production-only tables, so they remain in place and are now inert."
+    },
+    "severityCorrection": "On a migration-built database the affected routes returned 500. In today's production the tables happen to exist, so they would have returned an empty result. SC-3 is a REBUILT-ENVIRONMENT failure \u2014 disaster recovery, any new environment, and every disposable verification database take the replay path \u2014 not a live 500 a beta customer was hitting."
+  },
+  "gateHonesty": {
+    "risk": "\u00a7310 resolved SC-3 by REMOVING entities, so the entity-contract gate stops comparing them. A shrinking entity set could make a gate green with nothing repaired.",
+    "controls": [
+      "\u00a7309's F-1 was rewritten from 'these four entities fail to read' into the GENERAL property \u2014 no entity in the DataSource maps to a table absent from the database \u2014 asserted over all 57 registered entities, so it cannot go green by looking at fewer.",
+      "F-1 was WATCHED TO FAIL: a probe entity mapped to a non-existent table was registered, F-1 failed, and the probe was removed (tsc clean, no git residue).",
+      "The four retired entities are ENUMERATED in entity-contract.baseline.json under sc3ClosedAt310 rather than merely deleted.",
+      "SC-3's closure rests on the ROUTE PROOF driving live routes against a real database, not on a gate going quiet.",
+      "The canonical schema gate is unaffected by entity removal: it compares a replayed database against the manifest and would still fail if a described table went missing. Table count is unchanged at 68."
+    ]
+  },
+  "toolingKept": {
+    "scripts/print-deployed-routes.ts": "npm run routes:deployed:db \u2014 the authoritative deployed route table. Kept because reading controllers gave the WRONG answer and this gave the right one; it also makes route-surface change reviewable by diff.",
+    "scripts/test-310-production-upgrade-convergence.ts": "npm run test:310-upgrade-convergence \u2014 restores a production backup, upgrades it, and asserts both structural convergence and that no customer row moved.",
+    "scripts/test-310-missing-relation-surfaces.ts": "npm run test:310-missing-relation:db \u2014 now part of hazlenz:integration:inner."
+  },
+  "knownResidue": {
+    "staleDevelopmentScripts": [
+      "backend/scripts/system-diagnostic.ts",
+      "backend/scripts/chaos-diagnostic.ts",
+      "backend/scripts/validate-report-package-persistence.ts",
+      "backend/scripts/test-intelligence-framework-v4.ts",
+      "backend/scripts/generate-*-scenarios*.ts and run-*-regression*.ts (intelligence-library data paths)"
+    ],
+    "why": "These import modules \u00a7310 deleted. They are NOT compiled (tsconfig includes only src/**/*), are referenced by no npm script, and back no deployed route. They were left in place DELIBERATELY: their paths are digested members of frozen manifests (verification/expert-hazlenz-checkpoint-consolidation-2026-09-07/POST-CONSOLIDATION-MANIFEST.sha256) and of verification/current/MUTATING-SCRIPTS.json, so deleting them would be a manifest fault. Recorded here rather than silently swept.",
+    "notScopeCreep": "\u00a7310 forbids expanding into an unbounded cleanup sweep."
+  },
+  "verificationExecuted": {
+    "npx tsc --noEmit (backend)": "PASS",
+    "npm run check:canonical-schema": "PASS \u2014 68 tables, 0 material differences, replay digest == manifest digest",
+    "npm run check:entity-contract:db": "PASS \u2014 12 material differences, 12 accepted, 0 UNACCEPTED, 0 STALE",
+    "npm run security:deps": "PASS \u2014 0 blocking production findings, 1 excepted and re-proven",
+    "npm run hazlenz:precommit": "PASS (full chain, including \u00a7310 now registered in hazlenz:integration:inner)",
+    "npm run beta:readiness": "PASS \u2014 58 checks",
+    "npm run test:310-missing-relation:db": "30 passed, 0 failed \u2014 0 of 18 routes return a missing-relation 5xx; 0 of 5 for an organization principal",
+    "npm run test:309-sc2-reconciliation:db": "21 passed, 0 failed (F rewritten for the \u00a7310 outcome)",
+    "npm run test:310-upgrade-convergence": "10 passed, 0 failed",
+    "frontend-next build": "PASS",
+    "frontend-next lint": "246 pre-existing problems, UNCHANGED \u2014 \u00a7310 modified zero frontend files"
+  },
+  "notDone": {
+    "SC-5": "Untouched and OPEN, as required.",
+    "productionDeployment": "NOT PERFORMED. The SC-3 repair and the SC-4 migration are both unshipped. Production still serves the \u00a7309 commit at migration head 1800000025000, and 1800000026000 is pending. Deployment requires a commit and push, which the repository's operating instructions reserve for explicit user authorization.",
+    "otherSC4residuals": "Twelve remain in the ledger with their \u00a7309 reasons."
+  }
+}

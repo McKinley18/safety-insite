@@ -1,5 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { ReportsService } from '../reports/reports.service';
+import { Injectable } from '@nestjs/common';
 import { CorrectiveActionsService } from '../corrective-actions/corrective-actions.service';
 import { OutcomeService } from '../outcomes/outcome.service';
 import { HazardFixService } from '../intelligence/hazard-fix.service';
@@ -7,40 +6,22 @@ import { HazardFixService } from '../intelligence/hazard-fix.service';
 @Injectable()
 export class TransparencyService {
   constructor(
-    private readonly reportsService: ReportsService,
     private readonly correctiveActionsService: CorrectiveActionsService,
     private readonly outcomeService: OutcomeService,
     private readonly hazardFixService: HazardFixService,
   ) {}
 
-  async getDecisionBreakdown(reportId: string, user?: any) {
-    const report = await this.reportsService.findOne(reportId, user);
-    if (!report) throw new NotFoundException('Report not found');
-
-    const finding = report.findings?.[0];
-    const category = finding?.hazardCategory || 'unknown';
-    const confidence = 0.92;
-
-    return {
-      input: finding?.hazard || 'N/A',
-      category: category.toUpperCase(),
-      confidence,
-      confidenceLevel: confidence > 0.75 ? 'HIGH' : confidence > 0.5 ? 'MEDIUM' : 'LOW',
-      signals: {
-        keywordMatches: ['exposed', 'wiring'],
-        contextSignals: ['production area'],
-        fuzzyMatches: ['exposed live wire'],
-      },
-      scoring: {
-        keywordScore: 4.5,
-        contextScore: 6.0,
-        fuzzyScore: 5.5,
-        totalScore: 16.0,
-      },
-      reasoning:
-        "Classification prioritized due to high-saliency token 'exposed wiring' and category alignment with production area standards.",
-    };
-  }
+  /**
+   * §310 (SC-3) — `getDecisionBreakdown` REMOVED.
+   *
+   * It was the last caller of `ReportsService.findOne`, and therefore the last code path in the
+   * application that read the retired `report`/`finding` tables. It was already unreachable: its
+   * only entry point, `GET /legacy/reports/:id/explain`, has answered 410 since the mutable report
+   * model was retired, so the method could not be invoked by any deployed route.
+   *
+   * Deleting it is what lets `ReportsService` go, and what lets `TransparencyModule` stop importing
+   * `ReportsModule`. Nothing observable changes: the route answered 410 before and answers 410 now.
+   */
 
   async getActionJustification(actionId: string) {
     return {

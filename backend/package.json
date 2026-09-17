@@ -63,7 +63,7 @@
     "hazlenz:check": "npm run hazlenz:verify && npm run hazlenz:test && npm run build",
     "hazlenz:evidence": "ts-node scripts/hazlenz/evidence-integrity.ts",
     "hazlenz:generate-shard-candidates": "ts-node src/hazlenz/coverage/generate-hazlenz-warm-shard-candidates.ts",
-    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner && npm run test:301-entitlement-integration && npm run test:302-promotional-grant-integration && npm run test:303-malformed-identifier && npm run test:304-invitation-relationship && npm run test:305a-individual-beta-scope && npm run test:306-password-recovery && npm run test:307-security-boundary && npm run test:308-legal-publication && npm run test:309-sc2-reconciliation",
+    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner && npm run test:301-entitlement-integration && npm run test:302-promotional-grant-integration && npm run test:303-malformed-identifier && npm run test:304-invitation-relationship && npm run test:305a-individual-beta-scope && npm run test:306-password-recovery && npm run test:307-security-boundary && npm run test:308-legal-publication && npm run test:309-sc2-reconciliation && npm run test:310-missing-relation",
     "hazlenz:integration:test": "ts-node scripts/hazlenz/with-disposable-db.ts hazlenz:integration:inner",
     "hazlenz:precommit": "npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence && npm run check:legal-documents && npm run check:canonical-schema && npm run check:entity-contract:db",
     "hazlenz:qa-shard-candidates": "ts-node src/hazlenz/coverage/qa-hazlenz-generated-candidates.ts",
@@ -443,7 +443,15 @@
     "check:entity-contract": "ts-node scripts/check-entity-contract.ts",
     "check:entity-contract:db": "ts-node scripts/hazlenz/with-disposable-db.ts check:entity-contract",
     "test:309-sc2-reconciliation": "ts-node scripts/test-309-sc2-reconciliation.ts",
-    "test:309-sc2-reconciliation:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:309-sc2-reconciliation"
+    "test:309-sc2-reconciliation:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:309-sc2-reconciliation",
+    "test:310-missing-relation": "ts-node scripts/test-310-missing-relation-surfaces.ts",
+    "test:310-missing-relation:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:310-missing-relation",
+    "test:310-missing-relation:before": "ts-node scripts/test-310-missing-relation-surfaces.ts --mode=before",
+    "test:310-missing-relation:before:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:310-missing-relation:before",
+    "s305:manifest:db": "ts-node scripts/hazlenz/with-disposable-db.ts s305:manifest",
+    "routes:deployed": "ts-node scripts/print-deployed-routes.ts",
+    "routes:deployed:db": "ts-node scripts/hazlenz/with-disposable-db.ts routes:deployed",
+    "test:310-upgrade-convergence": "ts-node scripts/test-310-production-upgrade-convergence.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

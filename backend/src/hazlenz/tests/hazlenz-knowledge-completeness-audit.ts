@@ -8,7 +8,6 @@ import { standards as standardsSeed } from "../../standards/seed/standards.seed"
 import { dataSource } from "../../database/data-source";
 import { Standard } from "../../standards/standard.entity";
 import { HazLenzKnowledgeChunk } from "../../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity";
-import { HazardTaxonomy } from "../../intelligence-framework/entities/hazard-taxonomy.entity";
 import { HazardStandardMapping } from "../../standards/entities/hazard-standard-mapping.entity";
 import * as fs from "fs";
 import * as path from "path";
@@ -90,10 +89,19 @@ async function tryDbBackedCounts() {
       await dataSource.initialize();
     }
 
-    const [standardsCount, chunkCount, taxonomyCount, mappingCount] = await Promise.all([
+    /*
+     * §310 (SC-3). The `hazard_taxonomy` row count was removed from this audit.
+     *
+     * The table was never created by any migration and is absent from the canonical manifest, and
+     * the `HazardTaxonomy` entity was not registered in the application DataSource, so this count
+     * could only ever throw and drop the audit into its `connected: false` branch. More to the
+     * point, it measured the wrong thing: HazLenz taxonomy coverage is read from a shipped JSON
+     * map by `HazardTaxonomyCoverageService` via `fs.readFileSync`, never from a database table,
+     * so a row count in this database was not evidence about taxonomy completeness at all.
+     */
+    const [standardsCount, chunkCount, mappingCount] = await Promise.all([
       dataSource.getRepository(Standard).count(),
       dataSource.getRepository(HazLenzKnowledgeChunk).count(),
-      dataSource.getRepository(HazardTaxonomy).count(),
       dataSource.getRepository(HazardStandardMapping).count(),
     ]);
 
@@ -101,7 +109,6 @@ async function tryDbBackedCounts() {
       connected: true,
       standardsCount,
       chunkCount,
-      taxonomyCount,
       mappingCount,
     };
   } catch (error) {
@@ -233,7 +240,6 @@ async function run() {
   if (dbCounts?.connected) {
     console.log(`- db standards rows: ${dbCounts.standardsCount}`);
     console.log(`- db knowledge chunk rows: ${dbCounts.chunkCount}`);
-    console.log(`- db hazard taxonomy rows: ${dbCounts.taxonomyCount}`);
     console.log(`- db hazard-standard mapping rows: ${dbCounts.mappingCount}`);
   } else {
     console.log("- db-backed completeness mode: unavailable in this environment");

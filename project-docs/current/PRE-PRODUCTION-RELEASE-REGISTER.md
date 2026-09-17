@@ -1407,8 +1407,8 @@ Four observations registered rather than fixed: the service slug and public host
 | **DB-7** | Workspace-scoped learning from outcomes is not implemented and is not a v1 capability. | P3 | — | Product | DEFERRED (§292) |
 | **DB-6** | Closure intelligence failed for every hand-created corrective action. | P2 | — | Engineering | **CLOSED (§291)** |
 | **SC-2** | Pre-existing entity-versus-database contradictions that exist identically in production and in a fresh replay: `standards_master` column bounds, and four `timestamp` columns the entities declared `timestamptz`. | P2 | C | Engineering | **CLOSED (§309)** |
-| **SC-3** | Four entities map to tables that exist in neither the canonical manifest nor a fresh replay — `Report`, `Finding`, `ReportAttachment`, `HazardTaxonomy`. Every read through them fails. | P1 | — | Engineering | OPEN (§309) |
-| **SC-4** | Thirteen residual entity-versus-database differences, each recorded in the entity-contract ledger with a reason. | P3 | — | Engineering | OPEN (§309) |
+| **SC-3** | Four entities map to tables that exist in neither the canonical manifest nor a fresh replay — `Report`, `Finding`, `ReportAttachment`, `HazardTaxonomy`. Every read through them fails on a migration-built database. | P1 | — | Engineering | **ENGINEERING COMPLETE (§310) — closure pending §310A production proof.** All four families classified LEGACY/SUPERSEDED and **retired**, not resurrected. |
+| **SC-4** | Residual entity-versus-database differences, each recorded in the entity-contract ledger with a reason. Thirteen at §309; **twelve** after §310 resolved `user.subscriptionStatus`. | P3 | — | Engineering | OPEN (§310) — the named unsafe-default member is repaired in the candidate; its closure is pending §310A production proof. Twelve residuals remain OPEN. |
 | **SC-5** | Four timestamp columns hold INSTANTS in timezone-naive storage; lossless only because the deployment runs UTC. | P3 | — | Engineering | OPEN (§309) |
 
 **SC-2 — CLOSED at §309, and the register text it closed was partly wrong.**
@@ -1460,26 +1460,97 @@ a `standards_master` length or a timestamp type, so either one returning fails.
 *Evidence:* `verification/current/sc2-entity-contract-309/`  
 *Retest:* `npm run check:entity-contract:db` and `npm run test:309-sc2-reconciliation:db`.
 
-**SC-3 — OPEN, found by the new instrument and deliberately not repaired.** `Report` maps to
-`report`, `Finding` to `finding`, `ReportAttachment` to `report_attachments`, `HazardTaxonomy` to
-`hazard_taxonomy` — and **none of those four tables exists**, in the canonical manifest or in a fresh
-replay. Each was driven through its own repository and each fails with `relation "…" does not exist`:
-the §266 failure mode, **measured rather than inferred**. The canonical successors do exist —
-`reports`, `inspection_findings`, `inspection_reports`, `inspection_report_versions` — so the legacy
-entities were simply never retired alongside the routes that used them. They are injected into
-`AnalyticsService`, `ClassificationsService`, `ControlVerificationsService`, `ReviewsService` and two
-`IntelligenceService`s, all of which back deployed controllers, so any route that actually queries
-one returns a 500. **The Beta v1 individual path does not touch them** — §305A completes 62/62 and
-§307 passes 334/0. P1 because a deployed route failing on every call is a real defect, not because it
-blocks the Beta. §309 forbids the sweep, so it is characterized and registered.
+**SC-3 — ENGINEERING COMPLETE at §310 by RETIRING the architecture, not by creating the tables. §310A authorised release; closure is recorded only after the production proof succeeds.**
 
-**SC-4 — OPEN, thirteen residuals in a ledger.** One column type, two nullabilities, five defaults,
-five legacy database-only columns. **The one worth naming:** `user.subscriptionStatus` has a database
-default of `'active'` while the entity declares `'none'`, so an INSERT omitting the column would
-create an account asserting an **ACTIVE subscription** — precisely the `EN-3` defect §302 repaired in
-code. Contained, and measured: `AuthService.register` sets it explicitly on every path, so the
-default is never exercised. That is containment **by code rather than by schema**, and it is
-registered so it is not mistaken for a control.
+§310 was forbidden to begin by creating tables, and required to classify each family first. All four
+were classified **B — LEGACY / SUPERSEDED**, and the classification was decided on evidence rather
+than on the existence of a TypeORM entity in source:
+
+| family | table | successor that actually ships | production rows |
+|---|---|---|---|
+| `Report` | `report` | `inspection_reports` + `inspection_report_versions` (immutable snapshot) | **0** |
+| `Finding` | `finding` | `inspection_findings` | **0** |
+| `ReportAttachment` | `report_attachments` | inspection evidence storage | **0** |
+| `HazardTaxonomy` | `hazard_taxonomy` | the shipped taxonomy JSON map, read by `HazardTaxonomyCoverageService` via `fs.readFileSync` — this family never used a database table at all | **0** |
+
+**The register text §309 wrote was partly wrong about the blast radius, and the correction matters.**
+§309 said the entities are injected into five services backing deployed controllers "so any route
+that actually queries one returns a 500". Measured against the **authoritative deployed route table**
+— all 156 routes Nest actually registers — `ClassificationsModule`, `ControlVerificationsModule` and
+the two `IntelligenceModule`s **were never registered in `AppModule`**. Their paths return 404
+because the route does not exist. A controller in source is not a deployed route.
+
+**What did reach the missing relation, measured before any repair:** exactly five routes.
+`GET /analytics/safety-trends` (500 for any entitled caller) and — for an **organization** principal;
+an individual is refused 401 by the organization guard before the repository is touched —
+`GET /legacy/reports`, `/legacy/reports/:id`, `/legacy/reports/:id/recommendations`, and
+`POST /action-engine/generate/:reportId`. **That fifth route is why the route table is evidence and
+not a convenience:** it is not namespaced `legacy/`, is not named after a report, and injects
+`ReportsService` through a `forwardRef`, so reading controllers missed it. It was added to the
+instrument after the BEFORE capture and measured separately, which the evidence states rather than
+folding it in.
+
+**One more correction, and it narrows the severity honestly.** The production-upgrade rehearsal
+revealed that **production still carries all four tables** as synchronize-era residue — created
+before migrations were baselined over production, present in no migration and in no manifest. So on
+a migration-built database the routes return 500, which is what the BEFORE proof measured, but in
+**today's** production they would have returned an empty result. SC-3 is a rebuilt-environment
+failure — disaster recovery, any new environment, and every disposable verification database take
+the replay path — rather than a live 500 a beta customer was hitting. **All four tables are empty in
+production**, so retirement loses no customer data, and §305 forbids dropping them, so they remain
+in place and are now inert.
+
+**The repair.** `GET /analytics/safety-trends` was **removed** — the deployed route surface went 156
+→ 155, and that one route is the entire diff. The remaining routes answer **410 Gone**, not 404:
+they are namespaced `legacy/`, six siblings already answered 410, and turning some of them into 404
+would destroy a compatibility signal an earlier section deliberately established. The choice is
+documented in the controller. Every retired route names its successor in the response body. The
+entities, their modules and their services were deleted, and `ReportsService` went with them once
+its last unreachable caller — `TransparencyService.getDecisionBreakdown`, behind a route that has
+answered 410 since the mutable report model was retired — was removed.
+
+**The gate could have gone green for the wrong reason, and that was measured too.** §310 resolved
+SC-3 by removing entities, so the entity-contract comparison stops looking at them. So §309's `F-1`
+was rewritten from "these four entities fail to read" into the general property — **no entity in the
+DataSource maps to a table absent from the database**, asserted over all 57 registered entities —
+and **watched to fail**: a probe entity mapped to a non-existent table made it fail, and was removed.
+The four retired entity names are enumerated in the ledger under `sc3ClosedAt310` rather than merely
+deleted, so the shrinkage is recorded rather than silent. SC-3's closure rests on the route proof
+driving live routes against a real database, not on a gate going quiet.
+
+*Evidence:* `verification/current/sc3-legacy-surfaces-310/`  
+*Retest:* `npm run test:310-missing-relation:db` and `npm run routes:deployed:db`.
+
+**SC-5 is untouched and remains OPEN**, as §310 required.
+
+**SC-4 — OPEN, twelve residuals in a ledger. The one §309 named as "worth naming" was resolved at §310.**
+
+`user.subscriptionStatus` had a database default of `'active'` while the entity declared `'none'`, so
+an INSERT omitting the column created an account asserting an **ACTIVE subscription** — the `EN-3`
+defect §302 repaired in code, still present in the schema. §309 registered it as contained **by code
+rather than by schema**, and §310 removed the need for that containment: migration
+`1800000026000-UserSubscriptionStatusDefault` sets the default to `'none'`. A default is the value
+you get when nobody decided, and the value you get when nobody decided must be the safe one.
+
+**The migration changes the DEFAULT and reads no row.** Existing `'active'` rows are legitimate
+customer subscription state, and a migration cannot distinguish one written by `AuthService` or the
+Stripe webhook from one that merely inherited the bad default. Guessing would either revoke a paying
+customer's entitlement or fabricate a billing state. The objective was default correction, not
+customer-state normalization — and that restraint is **measured**, not asserted: a fresh production
+backup was restored into a disposable database and upgraded, and the distribution of existing
+`subscriptionStatus` values is byte-identical across the migration (**9 `active` / 57 `none` before
+and after**). The same rehearsal proved the upgraded production schema carries **zero material
+differences** from the schema a fresh replay produces, so the migration converges from both sides.
+
+`AuthService.register` still sets both fields explicitly (§302 / EN-3) and a caller-supplied
+`subscriptionStatus` is still refused 400 (BI-4). §310 changed a database default, not the authority
+model.
+
+*Evidence:* `verification/current/sc3-legacy-surfaces-310/SECTION-310-PRODUCTION-UPGRADE-CONVERGENCE.txt`  
+*Retest:* `PROD_BACKUP_SQL=… npm run test:310-upgrade-convergence`.
+
+**The other twelve residuals are unchanged** and still carry their §309 reasons in the ledger: one
+column type, two nullabilities, four defaults, five legacy database-only columns.
 
 **SC-5 — OPEN.** The residual of contradiction 2, above. Note the local development database server
 runs `America/New_York` while production runs UTC, so any future conversion must be done per

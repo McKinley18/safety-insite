@@ -2,7 +2,7 @@
  "artifact": "SAFETY_INSITE_CANONICAL_SCHEMA_MANIFEST",
  "establishedBy": "§305 (SE-12)",
  "generatedFrom": "a fresh database built by replaying the full migration history",
- "digest": "3a51b1a21294f40649a57ab0f0857fb2816e5e695a7cabe35c05043b9185bf60",
+ "digest": "34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56",
  "tableCount": 68,
  "schema": {
   "tables": [
@@ -7261,7 +7261,7 @@
       "name": "subscriptionStatus",
       "type": "character varying",
       "nullable": false,
-      "default": "'active'"
+      "default": "'none'"
      },
      {
       "name": "type",

@@ -438,42 +438,77 @@ async function main(): Promise<void> {
   await stdRepo.delete({ id: saved.id } as any);
 
   // ===========================================================================================
-  console.log('\n---- F. WHAT THE REPAIR REVEALED, CHARACTERIZED AND NOT REPAIRED ----\n');
+  console.log('\n---- F. WHAT THE REPAIR REVEALED — CHARACTERIZED IN §309, RESOLVED IN §310 ----\n');
   // ===========================================================================================
 
   /*
-   * §309: "If an entity-only correction causes TypeORM metadata to reveal another material
-   * contradiction: characterize it. Do not expand §309 into an unbounded cleanup sweep."
+   * WHAT THIS SECTION USED TO ASSERT, AND WHY IT NOW ASSERTS THE OPPOSITE.
    *
-   * Four entities are mapped to tables that exist in NEITHER the canonical manifest NOR a fresh
-   * replay. Every read through them fails — the §266 failure mode. This section MEASURES that
-   * rather than inferring it, so the register entry rests on a fact.
+   * §309 said: "If an entity-only correction causes TypeORM metadata to reveal another material
+   * contradiction: characterize it. Do not expand §309 into an unbounded cleanup sweep." It found
+   * four entities mapped to tables that exist in NEITHER the canonical manifest NOR a fresh replay,
+   * and F-1 asserted exactly that — four entities present, all four failing to read. Registered as
+   * SC-3 and left open.
+   *
+   * §310 resolved SC-3, and F-1 began to FAIL. That failure was correct and is the reason this
+   * section was rewritten rather than deleted: an assertion that a defect EXISTS is spent evidence
+   * once the defect is repaired, and leaving it in place would have meant either a permanently red
+   * suite or a suite quietly edited to stop looking.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * THE REPLACEMENT IS DELIBERATELY STRONGER THAN "THE FOUR ENTITIES ARE GONE".
+   *
+   * §310 resolved SC-3 by RETIRING the entities, not by creating the tables. A suite that only
+   * checked those four names would therefore go green for the worst possible reason: it stopped
+   * looking. So F-1 no longer names them. It asserts the GENERAL property they violated — that NO
+   * entity registered in the DataSource maps to a table absent from the database — which is a
+   * claim about every entity the product has, including ones added after this was written.
+   *
+   * F-1b then records the specific §310 outcome underneath it, and F-2 keeps the successors visible.
    */
-  const orphaned: Array<{ entity: string; table: string; reads: boolean; error: string }> = [];
-  for (const name of ['Report', 'Finding', 'ReportAttachment', 'HazardTaxonomy']) {
-    const md = ds.entityMetadatas.find((m) => m.name === name);
-    if (!md) continue;
-    try {
-      await ds.getRepository(md.target).count();
-      orphaned.push({ entity: name, table: md.tableName, reads: true, error: '' });
-    } catch (error: any) {
-      orphaned.push({ entity: name, table: md.tableName, reads: false, error: String(error.message).split('\n')[0] });
+  const orphaned: Array<{ entity: string; table: string; error: string }> = [];
+  for (const md of ds.entityMetadatas) {
+    if (md.tableType === 'view') continue;
+    const present = await ds.query(
+      `SELECT to_regclass($1) IS NOT NULL AS present`, [`"${md.tableName}"`],
+    );
+    if (!present[0]?.present) {
+      orphaned.push({ entity: md.name, table: md.tableName, error: 'relation does not exist' });
     }
   }
   for (const o of orphaned) {
-    console.log(`        ${o.entity.padEnd(18)} -> "${o.table}"  ${o.reads ? 'READS' : 'FAILS: ' + o.error.slice(0, 60)}`);
+    console.log(`        ORPHANED  ${o.entity.padEnd(24)} -> "${o.table}"  ${o.error}`);
   }
-  check(orphaned.length === 4 && orphaned.every((o) => !o.reads),
-    'F-1 SC-3 (new, NOT repaired here): four entities are mapped to tables that exist in neither the '
-    + 'canonical manifest nor a fresh replay, and every read through them fails with "relation does '
-    + 'not exist" — the §266 failure mode. Characterized and registered; repairing it is a bounded '
-    + 'section of its own, not an in-§309 sweep.',
-    orphaned.map((o) => o.table).join(', '));
+  console.log(`        entities checked against the canonical database: ${ds.entityMetadatas.length}`);
 
-  check(true,
-    'F-2 and the canonical successors DO exist: `reports` (retired compatibility), '
-    + '`inspection_findings`, `inspection_reports` and `inspection_report_versions` are all in the '
-    + 'manifest. The legacy entities were never retired alongside the routes that used them.');
+  check(orphaned.length === 0,
+    'F-1 NO ENTITY IN THE DATASOURCE MAPS TO A MISSING TABLE. This is the general form of the '
+    + 'defect §309 registered as SC-3 and §310 resolved, asserted over EVERY registered entity '
+    + 'rather than over the four names that happened to be wrong — so it cannot go green by the '
+    + 'suite looking at fewer entities.',
+    orphaned.length ? orphaned.map((o) => `${o.entity}->${o.table}`).join(', ')
+      : `${ds.entityMetadatas.length} entities, 0 orphaned`);
+
+  const retired = ['Report', 'Finding', 'ReportAttachment', 'HazardTaxonomy']
+    .filter((name) => ds.entityMetadatas.some((m) => m.name === name));
+  check(retired.length === 0,
+    'F-1b and the specific §310 outcome: the four SC-3 entities are RETIRED rather than resurrected. '
+    + 'All four families were classified LEGACY / SUPERSEDED, so their tables were deliberately NOT '
+    + 'created — creating them would have re-established the mutable report model the immutable '
+    + 'inspection report replaced.',
+    retired.length ? `still registered: ${retired.join(', ')}` : 'none registered');
+
+  const successors = await ds.query(
+    `SELECT table_name FROM information_schema.tables
+      WHERE table_schema = current_schema()
+        AND table_name IN ('inspection_findings','inspection_reports','inspection_report_versions')
+      ORDER BY table_name`,
+  );
+  check(successors.length === 3,
+    'F-2 and the canonical successors DO exist — `inspection_findings`, `inspection_reports` and '
+    + '`inspection_report_versions`. The capability was never lost; only the retired implementation '
+    + 'of it was, which is what made retirement the correct repair rather than resurrection.',
+    successors.map((r: any) => r.table_name).join(', '));
 
   await ds.query(`DELETE FROM "site" WHERE "id" = $1`, [siteId]);
   await ds.query(`DELETE FROM "user" WHERE "id" = $1`, [userId]);

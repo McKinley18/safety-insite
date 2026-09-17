@@ -4,9 +4,6 @@ import { User } from '../users/user.entity';
 import { Organization } from '../organizations/entities/organization.entity';
 import { Site } from '../sites/entities/site.entity';
 import { Invitation } from '../organizations/entities/invitation.entity';
-import { Report } from '../reports/entities/report.entity';
-import { Finding } from '../reports/entities/finding.entity';
-import { ReportAttachment } from '../reports/entities/attachment.entity';
 import { Classification } from '../classifications/entities/classification.entity';
 import { ClassificationRule } from '../taxonomy/entities/rule.entity';
 import { AuditLog } from '../audit/entities/audit-log.entity';
@@ -29,7 +26,6 @@ import { RegulatoryPart } from '../regulatory/entities/regulatory-part.entity';
 import { RegulatorySubpart } from '../regulatory/entities/regulatory-subpart.entity';
 import { RegulatorySection } from '../regulatory/entities/regulatory-section.entity';
 import { RegulatoryParagraph } from '../regulatory/entities/regulatory-paragraph.entity';
-import { HazardTaxonomy } from '../intelligence-framework/entities/hazard-taxonomy.entity';
 import { Notification } from '../notifications/notification.entity';
 import { HazLenzReasoningSnapshot } from '../hazlenz/snapshots/reasoning-snapshot.entity';
 import { HazLenzSupervisorValidation } from '../hazlenz/validation/supervisor-validation.entity';
@@ -98,9 +94,6 @@ export const dataSource = new DataSource({
     Organization,
     Site,
     Invitation,
-    Report,
-    Finding,
-    ReportAttachment,
     Classification,
     ClassificationRule,
     AuditLog,
@@ -123,7 +116,6 @@ export const dataSource = new DataSource({
     RegulatorySubpart,
     RegulatorySection,
     RegulatoryParagraph,
-    HazardTaxonomy,
     Notification,
     HazLenzReasoningSnapshot,
     HazLenzSupervisorValidation,

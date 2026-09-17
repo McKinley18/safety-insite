@@ -1,5 +1,4 @@
 import { Controller, Get, GoneException, Param, Req, Res, UseGuards } from '@nestjs/common';
-import { ReportsService } from '../reports/reports.service';
 import { Response, Request } from 'express';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
@@ -8,7 +7,12 @@ import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entit
 @RequireEntitlement('cloudReports')
 @Controller('legacy/pdf')
 export class PdfController {
-  constructor(private readonly reportsService: ReportsService) {}
+  /**
+   * §310 (SC-3). The injected `ReportsService` was removed: this route has thrown 410
+   * unconditionally since §307 and never reached it, and the service itself is gone with the
+   * legacy report tables.
+   */
+  constructor() {}
 
   @Get(':id')
   async generate(

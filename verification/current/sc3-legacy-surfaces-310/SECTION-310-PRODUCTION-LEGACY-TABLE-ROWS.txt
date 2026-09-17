@@ -1,0 +1,41 @@
+§310 (SC-3) — WHAT THE RETIRED TABLES ACTUALLY HOLD IN PRODUCTION.
+
+Counted from the fresh logical backup taken for this section
+(sha256 2d6f7625e12ee6bd74946072c5bed2f1cfd155945beec800fefbb6689f63062b),
+by counting rows between the COPY and its terminator for each table.
+
+WHY THIS WAS MEASURED.
+
+The upgrade-convergence run revealed something the replay-only evidence could not: PRODUCTION STILL
+CARRIES THESE TABLES. They are synchronize-era residue — created before migrations were baselined
+over production, absent from every migration and from the canonical manifest, and therefore absent
+from any environment rebuilt from the migration history.
+
+That distinction matters for how SC-3 is stated. On a migration-built database the affected routes
+return 500 "relation does not exist", which is what the BEFORE proof measured. In TODAY'S
+production the tables happen to exist, so the same routes would have returned an empty result
+instead. The defect is real either way — the canonical contract is what the product is rebuilt
+from, and disaster recovery, a new environment and every disposable verification database all take
+the replay path — but the honest statement is that this was a rebuilt-environment failure, not a
+live 500 a beta customer was hitting.
+
+It also settles whether retiring the entities could lose anything:
+
+  table                     rows in production
+  ------------------------  ------------------
+  report                    0
+  finding                   0
+  report_attachments        0
+  hazard_taxonomy           0
+  control_verifications     0
+
+ALL FOUR SC-3 TABLES ARE EMPTY, and so is control_verifications. There is no customer data behind
+the retired model, nothing to migrate to the canonical successors, and nothing lost by retiring the
+entities. §305 forbids DROPPING production-only tables and §310 does not drop them: they remain in
+production, now inert, referenced by no entity and no route.
+
+For contrast, the other production-only tables are NOT empty and are NOT touched by §310:
+
+  outcomes                  1     (the unexplained DB-4 table, retired/compatibility)
+  standards                 31    (superseded by standards_master)
+  users                     1     (superseded by "user")

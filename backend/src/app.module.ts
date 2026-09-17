@@ -23,7 +23,6 @@ import { PdfModule } from './pdf/pdf.module';
 import { LegalModule } from './legal/legal.module';
 import { BillingModule } from './billing/billing.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
-import { AnalyticsModule } from './analytics/analytics.module';
 import { HazLenzKnowledgeModule } from './hazlenz-knowledge/hazlenz-knowledge.module';
 import { UploadModule } from './upload/upload.module';
 import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
@@ -108,7 +107,6 @@ function getDatabaseSslConfig() {
     LegalModule,
     BillingModule,
     DashboardsModule,
-    AnalyticsModule,
     UploadModule,
     InspectionModule,
     ExpertHazLenzProductModule,

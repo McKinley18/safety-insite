@@ -1,0 +1,27 @@
+§310 — MUTATION PROBE: F-1 ('no entity maps to a missing table') WATCHED TO FAIL.
+
+A temporary entity S310Probe mapped to 's310_probe_table_that_does_not_exist' was registered in
+the DataSource, the §309 suite was run, and F-1 failed. The probe entity and its registration
+were then removed; tsc --noEmit passes and git shows no residue.
+
+This matters because §310 resolved SC-3 by RETIRING entities rather than creating tables, so a
+check that merely stopped finding the four bad names would go green for the wrong reason.
+
+================================================================================================
+
+---- F. WHAT THE REPAIR REVEALED — CHARACTERIZED IN §309, RESOLVED IN §310 ----
+
+        ORPHANED  S310Probe                -> "s310_probe_table_that_does_not_exist"  relation does not exist
+        entities checked against the canonical database: 58
+FAIL  F-1 NO ENTITY IN THE DATASOURCE MAPS TO A MISSING TABLE. This is the general form of the defect §309 registered as SC-3 and §310 resolved, asserted over EVERY registered entity rather than over the four names that happened to be wrong — so it cannot go green by the suite looking at fewer entities.  [S310Probe->s310_probe_table_that_does_not_exist]
+ok    F-1b and the specific §310 outcome: the four SC-3 entities are RETIRED rather than resurrected. All four families were classified LEGACY / SUPERSEDED, so their tables were deliberately NOT created — creating them would have re-established the mutable report model the immutable inspection report replaced.  [none registered]
+ok    F-2 and the canonical successors DO exist — `inspection_findings`, `inspection_reports` and `inspection_report_versions`. The capability was never lost; only the retired implementation of it was, which is what made retirement the correct repair rather than resurrection.  [inspection_findings, inspection_report_versions, inspection_reports]
+
+================================================================================================
+§309 SC-2 RECONCILIATION: 20 passed, 1 failed.
+Expert executions: 0. Provider calls: 0. Spend: $0.00.
+
+FAILED:
+  - F-1 NO ENTITY IN THE DATASOURCE MAPS TO A MISSING TABLE. This is the general form of the defect §309 registered as SC-3 and §310 resolved, asserted over EVERY registered entity rather than over the four names that happened to be wrong — so it cannot go green by the suite looking at fewer entities.
+================================================================================================
+dropped test_insite_1789604169312_1592

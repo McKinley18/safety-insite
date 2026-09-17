@@ -1,0 +1,46 @@
+
+> safety-insite-backend@1.0.0 test:310-upgrade-convergence
+> ts-node scripts/test-310-production-upgrade-convergence.ts
+
+§310 PRODUCTION-UPGRADE CONVERGENCE
+
+  backup      /private/tmp/claude-501/-Users-mckinley/45f5b21e-61a3-4d47-b452-e0a6e7a1e7ff/scratchpad/prod-backup-310.sql
+  backup sha  2d6f7625e12ee6bd74946072c5bed2f1cfd155945beec800fefbb6689f63062b
+  target      host=127.0.0.1 database=test_insite_310upgrade_1789604579464  (created and dropped here)
+
+ok    U-1 the production backup RESTORED — the disposable database carries production's tables, so everything below is measured against real structure and real rows rather than an empty shell that would pass every assertion vacuously  [78 tables]
+
+        restored migration head: 1800000025000  (57 applied)
+
+        subscriptionStatus default BEFORE: 'active'::character varying
+        subscription rows BEFORE:          [{"s":"active","n":9},{"s":"none","n":57}]
+
+ok    U-2 production carries REAL customer subscription rows, so the "no row was rewritten" assertion below has something to be wrong about  [66 rows]
+ok    U-3 and production's default really is the unsafe one before the upgrade — the defect being repaired is measured in production's own schema, not assumed from the register  ['active'::character varying]
+        migrations applied by the upgrade: 1
+          Migration UserSubscriptionStatusDefault1800000026000
+
+ok    U-4 THE UPGRADE PATH ACTUALLY RAN. Production was at the §305 convergence head, so §310's migration is the pending one — this is the exact transition production will make.  [1 applied]
+        manifest digest (fresh replay):     34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56
+        upgraded digest (restored prod):    dce774cea9d14d5a334103e61c44bb870eeaab47f9a8ffe19ec40badb733798e
+        material differences:               0
+        manifest tables / upgraded tables:  68 / 77
+        production-only objects:            control_verifications, finding, hazard_taxonomy, outcomes, regulatory_profile, report, report_attachments, standards, users
+
+ok    U-5 CONVERGENCE FROM BOTH SIDES: a RESTORED PRODUCTION database upgraded by the migration history carries NO MATERIAL DIFFERENCE from the schema a FRESH REPLAY produces. The §310 migration therefore does not create a third schema that neither the manifest nor production describes.  [0 material differences]
+ok    U-5b and the residual digest difference is ACCOUNTED FOR, not unexplained: the upgraded production database contains objects a fresh replay deliberately does not build — the production-only columns §305 preserved without replicating, and the retired compatibility tables. Every object the manifest DOES describe matches, which is what U-5 measures.  [9 production-only tables: control_verifications, finding, hazard_taxonomy, outcomes, regulatory_profile, report, report_attachments, standards, users]
+
+        subscriptionStatus default AFTER: 'none'::character varying
+        subscription rows AFTER:          [{"s":"active","n":9},{"s":"none","n":57}]
+
+ok    U-6 the DEFAULT is repaired on the upgraded database — omission now fails safe  ['none'::character varying]
+ok    U-7 AND NOT ONE CUSTOMER SUBSCRIPTION ROW MOVED. The distribution of existing `subscriptionStatus` values is byte-identical before and after. §310 was forbidden to normalize customer state, and this is the measurement that would catch it if it had: a migration that "tidied" inherited `active` rows would revoke a paying customer's entitlement, which is worse than the defect it repaired.  [[{"s":"active","n":9},{"s":"none","n":57}] == [{"s":"active","n":9},{"s":"none","n":57}]]
+ok    U-8 and an INSERT that omits subscriptionStatus on the UPGRADED PRODUCTION DATA receives `none` — the repair is live on the real schema, not only on a freshly built one  [none]
+ok    U-9 and the probe left no residue — the user count is what it was before this suite ran  [66 == 66]
+
+dropped test_insite_310upgrade_1789604579464
+
+================================================================================================
+§310 PRODUCTION-UPGRADE CONVERGENCE: 10 passed, 0 failed.
+Production writes: 0. Expert executions: 0. Provider calls: 0. Spend: $0.00.
+================================================================================================

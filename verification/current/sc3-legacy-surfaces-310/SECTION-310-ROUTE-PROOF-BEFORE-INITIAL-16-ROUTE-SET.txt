@@ -1,0 +1,90 @@
+
+> safety-insite-backend@1.0.0 test:310-missing-relation:before:db
+> ts-node scripts/hazlenz/with-disposable-db.ts test:310-missing-relation:before
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789603332201_5408
+registered as run 0e54f972-a8a5-4d69-8d24-3d6423ce1ba8
+
+> safety-insite-backend@1.0.0 test:310-missing-relation:before
+> ts-node scripts/test-310-missing-relation-surfaces.ts --mode=before
+
+resolved target host=127.0.0.1 database=test_insite_1789603332201_5408
+◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+application listening on http://127.0.0.1:52224   MODE=before
+
+---- SETUP. AN ENTITLED INDIVIDUAL, THE WAY A REAL PILOT USER BECOMES ONE ----
+
+ok    S-1 an individual registers and redeems a server-authorised pilot code — nothing here weakens a guard, and §310 forbids manufacturing access around one  [201]
+ok    S-2 and holds every entitlement the affected controllers require — so a refusal below is about the RELATION, not about the guard  [{"cloudReports":true,"analytics":true,"fullSafeScope":true,"supervisorValidation":true}]
+
+---- A. THE AFFECTED ROUTES, DRIVEN (BEFORE) ----
+
+        401  ok                   GET /legacy/reports
+             body: {"message":"Organization context is required.","error":"Unauthorized","statusCode":401}
+        401  ok                   GET /legacy/reports/:id
+             body: {"message":"Organization context is required.","error":"Unauthorized","statusCode":401}
+        401  ok                   GET /legacy/reports/:id/recommendations
+             body: {"message":"Organization context is required.","error":"Unauthorized","statusCode":401}
+        403  ok                   POST /legacy/reports
+             body: {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+        410  ok                   POST /legacy/reports/:id/attachments
+             body: {"message":"Legacy report attachments are retired.","error":"Gone","statusCode":410}
+        410  ok                   PATCH /legacy/reports/:id
+             body: {"message":"Legacy report mutation is retired.","error":"Gone","statusCode":410}
+        410  ok                   PATCH /legacy/reports/:id/archive
+             body: {"message":"Legacy report mutation is retired.","error":"Gone","statusCode":410}
+        500  MISSING-RELATION 5xx GET /analytics/safety-trends
+             body: {"statusCode":500,"message":"Internal server error"}
+        404  ok                   GET /classifications/report/:reportId
+             body: {"message":"Cannot GET /classifications/report/ddd168b4-09df-47a4-b315-1b189834ca11","error":"Not Found","statusCode":404}
+        404  ok                   POST /classifications/report/:reportId/classify
+             body: {"message":"Cannot POST /classifications/report/ddd168b4-09df-47a4-b315-1b189834ca11/classify","error":"Not Found","statusCode":404}
+        404  ok                   POST /control-verifications/:reportId
+             body: {"message":"Cannot POST /control-verifications/ddd168b4-09df-47a4-b315-1b189834ca11","error":"Not Found","statusCode":404}
+        404  ok                   GET /control-verifications/:reportId
+             body: {"message":"Cannot GET /control-verifications/ddd168b4-09df-47a4-b315-1b189834ca11","error":"Not Found","statusCode":404}
+        404  ok                   GET /review-queue
+             body: {"message":"Cannot GET /review-queue","error":"Not Found","statusCode":404}
+        410  ok                   GET /legacy/reports/:id/explain
+             body: {"message":"Legacy report explanations are retired with the mutable report model.","error":"Gone","statusCode":410}
+        410  ok                   POST /legacy/reports/:id/attachments/upload
+             body: {"message":"Legacy report attachments are retired. Upload evidence to the canonical inspection route.","error":"Gone","statusCode":410}
+        403  ok                   POST /legacy/reports/:id/recommendations/feedback
+             body: {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+ok    A-before AT LEAST ONE DEPLOYED ROUTE ACTUALLY REACHES THE MISSING RELATION. §309 measured that the repositories fail; this measures that a ROUTE gets there, which is the fact SC-3 rests on and the thing §310 must not assume.  [1 of 16 routes return 5xx]
+          -> GET /analytics/safety-trends  500  {"statusCode":500,"message":"Internal server error"}
+
+---- A2. THE SAME ROUTES, AS AN ORGANIZATION PRINCIPAL ----
+
+ok    A2-0 an ORGANIZATION principal exists, so the organization-gated legacy reads can be driven  [eb265e2f-ac96-4948-a5d0-3ab31526c3bb]
+        500  MISSING-RELATION 5xx GET /legacy/reports  (org principal)
+        500  MISSING-RELATION 5xx GET /legacy/reports/:id  (org principal)
+        500  MISSING-RELATION 5xx GET /legacy/reports/:id/recommendations  (org principal)
+        410  ok                   GET /legacy/reports/:id/explain  (org principal)
+ok    A2-before THE LEGACY REPORT READS DO REACH THE MISSING RELATION for an organization principal. For an individual they answer 401 before the repository is touched; that is a guard, not an absence of the defect, and the difference is measured rather than assumed.  [3 of 4]
+
+---- B. HAZARD TAXONOMY: IS THERE A ROUTE AT ALL? ----
+
+ok    B-1 the REGISTERED /intelligence module answers without a server error — it is a different module from intelligence-library and intelligence-framework, and it does not touch HazardTaxonomy  [404]
+        HazardTaxonomy in the DataSource metadata: false
+
+---- C. SC-4: THE SUBSCRIPTION DEFAULT ----
+
+        database default for user.subscriptionStatus: 'active'::character varying
+        an INSERT omitting subscriptionStatus produced: active
+ok    C-before AN INSERT OMITTING subscriptionStatus PRODUCES active. The database independently creates an apparently paid subscription when a caller says nothing — measured, not inferred.  [active]
+ok    C-1 a user created through NORMAL REGISTRATION is free/none — unchanged in both modes, because AuthService.register has always set both explicitly (§302 / EN-3)  [{"planCode":"free","subscriptionStatus":"none"}]
+ok    C-2 EN-3 PRESERVED: the pilot user's capability comes from a BOUNDED GRANT while the account row still says free/none — nothing was purchased and the record does not claim otherwise  [{"tier":"pro","source":"grant"}]
+ok    C-3 BI-4 PRESERVED: a caller-supplied subscriptionStatus is still refused 400 by the global forbidNonWhitelisted pipe — §310 changed a database default, not the authority model  [400]
+ok    C-4 and the account row is still none afterwards  [none]
+
+================================================================================================
+§310 MISSING-RELATION SURFACES (before): 11 passed, 0 failed.
+Expert executions: 0. Provider calls: 0. Spend: $0.00.
+================================================================================================
+dropped test_insite_1789603332201_5408
