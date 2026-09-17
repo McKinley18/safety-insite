@@ -6,6 +6,16 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§312 — the EVIDENCE half is built and proven; `BR-5` is PARTIAL on activation, not on design.**
+Recovery objects are **content-addressed**, which is what makes an accidental *overwrite* recoverable
+rather than merely a delete. The erasure ledger lives in **recovery storage, not the database**, and
+the hard gate was run rather than argued: the database was rolled back until it believed the object
+was live and had never been erased, and resurrection was **still refused**. 22/22 synthetic assertions,
+twice. The five production objects are protected and byte-verified; the source is untouched. What
+remains is one **read-only** source credential — cost is not the obstacle at 0.16 GiB of a 10 GiB free
+allowance, $0.00. New: **`BR-7`** (account deletion never touches evidence objects) and **`BR-8`**
+(a `clientRequestId` replay can overwrite a live key, desynchronising the recorded digest).
+
 **§311A — the durable backup is LIVE, and `BR-5` still does not close.** The destination
 (`insite-backups`), the scoped credential (`insite-backups-operator`, Object Read & Write, one bucket)
 and the daily 05:00 launchd schedule all exist and are proven. Isolation holds **both ways** — 16
@@ -223,14 +233,18 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **98** | **4** | **11** | **55** | **28** |
+| Entries | **100** | **4** | **11** | **56** | **29** |
 
 | Status | Count |
 |---|---|
 | CLOSED | 48 |
-| OPEN | 44 |
+| OPEN | 45 |
+| PARTIAL | 1 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
+
+**§312 added two entries (`BR-7` P2 blocks C, `BR-8` P3) and closed none.** `BR-5` stays **PARTIAL**
+and `ST-4` moved to remediated-in-mechanism.
 
 **§311 added three entries and closed none.** `ST-4` (P2, blocks C), `BR-6` (P3) and `SE-21` (P3).
 `BR-5` moved from OPEN to **ENGINEERING_COMPLETE_OWNER_INFRASTRUCTURE_DECISION_REQUIRED** and is
@@ -345,12 +359,12 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (28 items, including all six P0)
+### Threshold C — external controlled beta  (29 items, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
 `LG-1`, `LG-2`, `LG-3`, `SU-2` (P0) · `CM-1`, `DB-4`, `PR-1`, `RR-1`, `SR-1`, `TM-1` (P1) ·
-`AC-1`, `BR-5`, `CPF-2`, `CPF-3`, `SE-5`, `ST-3`, `ST-4`, `TI-3` (P2) · `MO-2` **closed at §294** ·
+`AC-1`, `BR-5`, `BR-7`, `CPF-2`, `CPF-3`, `SE-5`, `ST-3`, `ST-4`, `TI-3` (P2) · `MO-2` **closed at §294** ·
 `SE-3` **closed at §307**
 
 **`ST-4` is new at §311 and, like `DB-4`, it is not legal work.** R2 versioning, lifecycle and
@@ -1287,7 +1301,7 @@ another **without** relying on the role gate.
 | **ST-1** | Report and artifact access is an authenticated streaming GET; there are no signed URLs to leak or expire. | P3 | — | Security | CLOSED |
 | **ST-2** | A generated report round-tripped through production storage with a checksum match, from the deployed candidate. | P2 | — | Infrastructure | **CLOSED (§290)** |
 | **ST-3** | Report and inspection-record retention policy is undefined. | P2 | C | Product | OPEN |
-| **ST-4** | R2 bucket protection — versioning, lifecycle, object lock — has never been read, so accidental-deletion recovery for evidence objects is UNKNOWN. | P2 | C | Infrastructure | **INVESTIGATION CLOSED (§311A), ADVERSE.** Read from the console: R2 has **no versioning at all**, no bucket lock is set, the only lifecycle rule aborts incomplete uploads, and access logs are off. **Customer evidence is NOT recoverable after accidental delete or overwrite.** The remediation is unauthorized and unbuilt, so the entry stays OPEN as a Threshold-C blocker. |
+| **ST-4** | R2 bucket protection — versioning, lifecycle, object lock — has never been read, so accidental-deletion recovery for evidence objects is UNKNOWN. | P2 | C | Infrastructure | **REMEDIATED IN MECHANISM (§312), NOT YET OPERATIONAL.** The §311A finding stands — R2 has no versioning and durability does not cover deletion — and §312 answers it with an independent content-addressed recovery copy, proven 22/22 including the database-rollback gate. The five live objects are protected. Ongoing protection needs one read-only credential. |
 
 **ST-2 — §289 update.** The premise "never been exercised end to end" was already false: §269 verified the live R2 bucket, and §289 re-verified it freshly and non-destructively. Bucket reachable and authorised, no public policy, ACL `AccessDenied`, upload, authorised download with sha256 match, unsigned GET and LIST both refused (HTTP 400), delete, `NoSuchKey` after delete, **0 residue**, no customer data. Tenant isolation is database-enforced rather than path-enforced: the object key is `<category>/<date>/<uuid>` and carries no tenant identifier, `objectKey` is `select: false`, a digest mismatch on read is refused, and `FilesController` is entirely behind `JwtGuard` — so an object identifier alone confers no access.
 
@@ -1790,8 +1804,10 @@ Properly scoping it is not available: `fix_feedback` has no owner column, and it
 |---|---|---|---|---|---|
 | **BR-1** | A backup of live production was taken and its restore verified by content checksum at §289. | P2 | — | Infrastructure | **CLOSED (§289)** |
 | **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | — | Infrastructure | **CLOSED (§295)** |
-| **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | **PARTIAL (§311A)** — the DATABASE half is fully operational: dedicated bucket, isolated credential proven both ways, scheduled, retention, four-state monitoring, remote-copy restore. The OBJECT half is unresolved — see `ST-4`. |
+| **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | **PARTIAL (§312)** — DATABASE half operational (§311A). EVIDENCE half **built and proven** (§312), five live objects protected, but **not yet running on a schedule**: it needs one read-only source credential. |
 | **BR-6** | Account anonymisation writes through the `User` entity, so it cannot clear the undeclared legacy `user.password` column. Latent: 8 live accounts hold a hash, 0 deleted accounts do. | P3 | — | Engineering | OPEN (§311) |
+| **BR-7** | Account deletion does not touch `storage_objects` or R2 at all, so a customer who deletes their **account** leaves every evidence photo and report PDF live in production. Latent: 0 of the 26 deleted accounts owned an object. | P2 | C | Engineering | OPEN (§312) |
+| **BR-8** | A `clientRequestId` replay can re-`put` to an **existing** object key with different bytes, leaving the database recording the first attempt's sha256 while R2 holds the second's. | P3 | — | Engineering | OPEN (§312) |
 | **BR-3** | check:launch-pricing conflated the retired Expert pricing tier with Expert HazLenz the capability. | P2 | — | Engineering | **CLOSED (§290)** |
 | **BR-4** | Four browser verification instruments remain stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§290) |
 
@@ -1902,6 +1918,66 @@ that is answered; whether it is enough is a different question with a different 
 `project-docs/operations/DISASTER-RECOVERY-RUNBOOK.md`
 *Retest:* A scheduled run landing an artifact in the durable bucket, `check-backup-freshness.js`
 reporting `FRESH` against it, and `ST-4` answered.
+
+**BR-5 / ST-4 — §312 BUILT THE EVIDENCE HALF AND PROVED IT. It runs on demand, not yet on a schedule.**
+
+`ST-4` said a deleted or overwritten inspection photo is gone forever. §312 answers it with an
+independent recovery copy in `insite-backups/evidence/`, and the design turns on one decision:
+**recovery objects are content-addressed** — `evidence/objects/<sha256>`, the digest *is* the key.
+
+That is what makes **overwrite** recoverable at all. A naive mirror (live key → same backup key) would
+let generation B destroy generation A and leave overwrite exactly as unrecoverable as before. Content
+addressing cannot do that: A and B are different keys by construction. It also dedupes, and it puts no
+customer-derived text in any key.
+
+**The erasure ledger is not in the database, and that is the whole point.** §312 set a hard gate:
+after the database is rolled back to *before* a customer's deletion, the system must still refuse to
+resurrect their evidence. `security_audit_events` cannot do that — it is a table in the database being
+rolled back, so restoring to T0 destroys the T1 erasure record and the object becomes restorable
+again. An erasure ledger that lives only inside the restorable state is not an erasure ledger. So the
+tombstone is written into **recovery storage**, where a restore cannot reach it.
+
+**The gate was run, not argued.** The database was rolled back — `deletedAt` cleared, status returned
+to `ready`, the audit row **deleted** — until it believed the object was live and had never been
+erased. The state stayed `MISSING_LIVE_ERASURE_AUTHORIZED` and the restore was **still refused**.
+
+**Erasure is never inferred from absence.** A missing object is a candidate for *recovery*, not for
+erasure; a tombstone needs a positive signal. And `report_artifact_retired` is explicitly **not**
+erasure — it is the product superseding its own PDF, and treating it as erasure would delete recovery
+copies during ordinary report regeneration. Proven: a retired report yields `RECOVERY_ONLY_EXPECTED`
+and **no tombstone**.
+
+**22 of 22 synthetic assertions, run twice with identical results**, on disposable containers: capture,
+accidental delete, *a bad delete not propagating into the backup*, governed restore with digest
+equality, both overwrite generations surviving independently, retirement-is-not-erasure, authorized
+erasure with refusal and byte deletion, the rollback gate, digest mismatch, orphan detection, and
+`UNKNOWN` exiting non-zero.
+
+**The five production objects are protected.** `LIVE_UNBACKED 5` → `LIVE_MATCHED 5`, `PROTECTED`, all
+five byte-identical by full download and re-hash on both sides — and the source is untouched at 5
+objects / 166 708 bytes, re-verified `CONSISTENT` afterwards.
+
+**Why BR-5 is still PARTIAL.** Ongoing protection needs a **read-only** R2 token on
+`insite-production`, and §312 created no credential. A single token spanning both buckets could read
+every customer's evidence *and* destroy its only backup, which is the combination this design exists
+to prevent — so the source credential must be separate and read-only. The scheduled run already calls
+the reconciler and currently logs `SKIPPED: … customer evidence is NOT being protected`, which is
+reported differently from a failure. **Cost is not the obstacle: the whole steady state is 0.16 GiB
+against a 10 GiB free allowance, $0.00.**
+
+**Two new entries, both found by reading every path rather than trusting the earlier list.** `BR-7` —
+account deletion never touches `storage_objects` or R2, so deleting an *account* leaves the evidence
+live (latent: none of the 26 deleted accounts owned an object). `BR-8` — a `clientRequestId` replay
+can re-`put` to an existing key, so the database can record one digest while R2 holds another. Neither
+is repaired here: §312 is an evidence-recovery section and was forbidden from broadening.
+
+**Data Access Logs remain OFF.** The bucket settings section has **no control at all** — no toggle, no
+Enable — so it is gated on this plan. It would capture `DeleteObject` with the `accessKeyId` that did
+it, which is genuinely useful forensics, but **logs are not recovery** and BR-5 closure must never rest
+on them.
+
+*Evidence:* `verification/current/evidence-recovery-312/`
+*Retest:* One scheduled run reporting `PROTECTED` with `EVIDENCE_SOURCE_S3_*` configured.
 
 **BR-5 — §311A ACTIVATED THE DATABASE HALF. It still does not close, and the reason is `ST-4`.**
 

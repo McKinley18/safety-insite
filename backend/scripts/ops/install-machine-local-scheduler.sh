@@ -50,6 +50,7 @@ JOB_FILES=(
   backup-production-database.js
   check-backup-freshness.js
   verify-object-consistency.js
+  reconcile-evidence-recovery.js
 )
 
 say() { echo "  $*"; }

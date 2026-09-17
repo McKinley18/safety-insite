@@ -1,0 +1,68 @@
+==================== SETUP (rig reset — the suite must be repeatable) ====================
+rig reset
+buckets ready
+object id e15cde99-baee-4bf1-a727-3b93c36da241
+
+==================== 1. LIVE_UNBACKED (nothing captured yet) ====================
+PASS  live object with no recovery copy  — LIVE_UNBACKED
+
+==================== 2. CAPTURE -> LIVE_MATCHED ====================
+PASS  after capture  — LIVE_MATCHED
+
+==================== 3. ACCIDENTAL DELETE ====================
+PASS  live gone, recovery copy survives  — MISSING_LIVE_RECOVERABLE
+--- a bad DELETE must NOT propagate: re-run --apply and confirm the copy is still there ---
+PASS  recovery copy survives a reconciliation pass  — MISSING_LIVE_RECOVERABLE
+
+--- governed restore ---
+    RESTORED to /private/tmp/claude-501/-Users-mckinley/3999473d-2617-42ee-8e24-6f8816b78c7f/scratchpad/s312/e15cde99-baee-4bf1-a727-3b93c36da241-4b70aa9bb35c.bin
+      sourceKey evidence/2026-09-17/aaaaaaaa-0000-4000-8000-000000000001
+      sha256    4b70aa9bb35c5e7911ed79a6514150f69ffc38f06bce4dce4f3837b444449893
+      bytes     51
+      capturedAt 2026-09-17T21:21:43.384Z
+    
+    This writes a LOCAL FILE. Putting it back into s312-live is a separate,
+    deliberate act with the application credential — this tool holds only read access to the source.
+PASS  restored bytes sha256 equals original  — 4b70aa9bb35c5e7911ed79a6514150f69ffc38f06bce4dce4f3837b444449893
+
+==================== 4. OVERWRITE: A and B must both survive ====================
+PASS  current live state identified  — LIVE_MATCHED
+PASS  two independent generations retained  — 2
+PASS  generation A bytes still present  — yes
+PASS  generation B bytes independently present  — yes
+PASS  digests do not collide  — different
+
+==================== 5. RETIRED REPORT IS NOT ERASURE ====================
+PASS  operational retirement is NOT treated as erasure  — RECOVERY_ONLY_EXPECTED
+PASS  no erasure tombstone written for a retirement  — no
+
+==================== 6. AUTHORIZED ERASURE ====================
+PASS  erasure fixture captured  — LIVE_MATCHED
+PASS  authorized erasure recognised  — MISSING_LIVE_ERASURE_AUTHORIZED
+--- recovery must REFUSE resurrection ---
+    REFUSED. 63793804-8351-4f90-b889-c0035ec6cd6f carries an authorized-erasure tombstone written 2026-09-17T21:21:45Z.
+    A customer exercised a deletion right over this object. It is not restorable, and that remains
+    true after any database restore — the tombstone lives in recovery storage, not in the database.
+PASS  restore refused after erasure  — refused
+PASS  recovery bytes deleted after grace period  — deleted
+
+==================== 7. HARD GATE — DATABASE ROLLBACK MUST NOT RESURRECT ====================
+    rolling the database back to BEFORE the erasure (delete the row's deletion + the audit event)
+    database now believes the object is LIVE and was never erased:
+      deletedAt=NULL status=ready
+PASS  erasure still authoritative after DB rollback  — MISSING_LIVE_ERASURE_AUTHORIZED
+PASS  restore STILL refused after DB rollback  — refused
+
+==================== 8. DIGEST MISMATCH ====================
+PASS  live bytes disagree with the database record  — DIGEST_MISMATCH
+
+==================== 9. RECOVERY_ONLY_SUSPECT ====================
+planted orphan
+PASS  unexplained recovery bytes flagged  — 1
+
+==================== 10. UNKNOWN NEVER PASSES ====================
+PASS  unreachable source reports UNKNOWN  — UNKNOWN
+PASS  UNKNOWN exits non-zero  — nonzero
+
+==================== RESULT ====================
+22 passed, 0 failed

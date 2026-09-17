@@ -1,0 +1,60 @@
+{
+  "schema": "safety-insite.evidence-recovery.v1",
+  "checkedAt": "2026-09-17T21:22:35.570Z",
+  "mode": "REPORT",
+  "scanComplete": true,
+  "sourceBucket": "insite-production",
+  "recoveryBucket": "insite-backups",
+  "prefix": "evidence",
+  "generationWindowDays": 30,
+  "erasureGraceHours": 24,
+  "counts": {
+    "LIVE_MATCHED": 5,
+    "LIVE_UNBACKED": 0,
+    "DIGEST_MISMATCH": 0,
+    "MISSING_LIVE_RECOVERABLE": 0,
+    "MISSING_LIVE_UNRECOVERABLE": 0,
+    "MISSING_LIVE_ERASURE_AUTHORIZED": 0,
+    "RECOVERY_ONLY_EXPECTED": 0,
+    "RECOVERY_ONLY_SUSPECT": 0,
+    "UNKNOWN": 0
+  },
+  "findings": [
+    {
+      "id": "bcf59cc6-b46c-4c2d-9e85-d632f9c0e4b9",
+      "category": "evidence",
+      "state": "LIVE_MATCHED",
+      "generations": 1,
+      "sourceObjectKey": "evidence/2026-08-27/d49c4c82-e09a-45e7-90d0-170ba2345937"
+    },
+    {
+      "id": "006819e4-4e6a-4043-b6b0-35bd9deb654e",
+      "category": "report",
+      "state": "LIVE_MATCHED",
+      "generations": 1,
+      "sourceObjectKey": "report/2026-08-19/df7c5ae0-f9b6-47e4-9752-bfde0a12c97d"
+    },
+    {
+      "id": "5515c867-e19f-4996-807f-d460dab479c9",
+      "category": "report",
+      "state": "LIVE_MATCHED",
+      "generations": 1,
+      "sourceObjectKey": "report/2026-09-14/1997e3c3-5d6c-4393-b512-ce585e76bbdc"
+    },
+    {
+      "id": "5cfff1da-a830-4d74-a7f1-cfa5c935c524",
+      "category": "report",
+      "state": "LIVE_MATCHED",
+      "generations": 1,
+      "sourceObjectKey": "report/2026-09-14/ee740ba5-0f68-4216-a254-e894dac1f9d9"
+    },
+    {
+      "id": "7d3bb632-b776-470b-ab04-d427f38bce34",
+      "category": "report",
+      "state": "LIVE_MATCHED",
+      "generations": 1,
+      "sourceObjectKey": "report/2026-09-15/45656b4c-34b6-4f5b-bc28-832d8fef5224"
+    }
+  ],
+  "outcome": "PROTECTED"
+}

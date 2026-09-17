@@ -1,0 +1,214 @@
+{
+  "artifact": "SECTION-312-CUSTOMER-EVIDENCE-RECOVERY",
+  "section": "§312",
+  "completedAt": "2026-09-17T21:30:00Z",
+  "objective": "Build and prove a bounded evidence-recovery architecture in insite-backups/evidence/ that makes accidental deletion and overwrite recoverable without becoming an indefinite shadow copy of customer information.",
+  "outcome": "MECHANISM BUILT AND PROVEN, 22/22 assertions including the database-rollback hard gate. The five production objects are protected. ONGOING protection is NOT yet activated: it needs one read-only Cloudflare credential, which is a product-owner decision.",
+
+  "objectPathInventory": {
+    "method": "Exhaustive rather than assumed. Every S3 client construction and every provider call site across the whole of backend/src was enumerated; the plane is bounded by exactly one client and six call sites.",
+    "s3ClientConstructions": 1,
+    "s3ClientLocation": "src/storage/storage-provider.ts — the only place an S3 client exists in the application",
+    "createPaths": [
+      { "site": "storage.service.ts:126 (putAndFinalize, from store)", "key": "`${category}/${YYYY-MM-DD}/${randomUUID()}` — a NEW key every time", "callers": ["files.controller.ts:28 evidence upload", "upload.controller.ts:73 branding logo", "canonical-reports.service.ts:322 report generation"] }
+    ],
+    "overwritePaths": [
+      {
+        "site": "storage.service.ts:126 via the clientRequestId replay branch (store -> putAndFinalize on an existing non-ready row)",
+        "newFinding": true,
+        "why": "§311A and earlier sections identified three DELETE paths and treated the write path as create-only. It is not. When a clientRequestId replay finds an existing row whose bytes never landed, putAndFinalize writes to the EXISTING objectKey. If the replayed body differs from the first attempt's, the live object goes from digest A to digest B at the same key.",
+        "secondaryConsequence": "The row's sha256 was computed from the FIRST body and is not recomputed on re-drive, so the database would record sha256(A) while R2 holds B. The §312 classifier reports that as DIGEST_MISMATCH, and the §311 consistency checker already detects it.",
+        "notRepaired": "Registered as an observation, not fixed. §312 is an evidence-recovery section and was explicitly forbidden from broadening into application remediation."
+      }
+    ],
+    "deletePaths": [
+      { "site": "storage.service.ts:145 (putAndFinalize rollback)", "kind": "OPERATIONAL", "transactional": false, "errorsSwallowed": true, "detail": ".catch(() => undefined) — a failed cleanup of a failed upload is deliberately non-fatal, and leaves an orphan object if it fails" },
+      { "site": "storage.service.ts:213 (retireReportArtifact)", "kind": "OPERATIONAL", "transactional": false, "errorsSwallowed": true, "detail": "Both call sites in canonical-reports.service.ts (390, 416) wrap it in .catch(() => undefined), so a wrong-object retirement would be silent. This runs on the ORDINARY report-regeneration path." },
+      { "site": "storage.service.ts:224 (tombstone)", "kind": "PRIVACY-AUTHORITATIVE", "transactional": false, "errorsSwallowed": false, "detail": "A customer deleting their own file via DELETE /files/:id. Requires the caller to be the object's creator." }
+    ],
+    "readPaths": [{ "site": "storage.service.ts:174 (read)", "detail": "Verifies the stored sha256 against the fetched bytes and refuses on mismatch." }],
+    "swallowedErrorPaths": ["storage.service.ts:145", "canonical-reports.service.ts:390", "canonical-reports.service.ts:416"],
+    "transactionality": "NONE. There is no transaction anywhere in storage.service.ts. Both delete paths write the database tombstone (status, deletedAt, deletedByUserId) FIRST and then delete the object, so a failed object delete leaves the database saying deleted while the object remains.",
+    "authoritativeOwnershipSource": "storage_objects — the single ledger. Every object carries organizationId XOR ownerUserId (enforced by chk_storage_object_exactly_one_scope), plus sha256, sizeBytes and parentType/parentId. inspection_report_versions references it with ON DELETE RESTRICT.",
+    "accountDeletionFinding": {
+      "newFinding": true,
+      "what": "AuthService.deleteAccount does NOT touch storage_objects or R2 at all. It anonymises the user row, revokes grants and refresh tokens, and deletes Notification rows. A customer who deletes their ACCOUNT leaves every evidence photo and report PDF live in insite-production.",
+      "measured": "0 live objects are currently owned by any of the 26 deleted users, so the gap is LATENT rather than realised — the same shape as BR-6.",
+      "consequenceForThisDesign": "The only privacy-authoritative object erasure that exists today is the per-file tombstone. The erasure ledger is therefore driven by storage_objects.deletedAt + the file_deleted audit action, and NOT by account deletion — because account deletion currently produces no object-erasure signal whatsoever.",
+      "notRepaired": "Registered as a new entry. Fixing it is account-deletion remediation, which §312 forbids and which is adjacent to BR-6."
+    }
+  },
+
+  "recoveryArchitecture": {
+    "principle": "insite-production remains the sole authoritative operational store. insite-backups/evidence/ is operator-only recovery storage: not application-served, not customer-downloadable, not route-visible, not a second authority, not indefinite.",
+    "independence": "The reconciler is operator-side and shares no code path with the application. It reads the database directly with psql and talks to R2 directly. If the defect being protected against is a bug in retireReportArtifact, a backup that ran through retireReportArtifact would inherit it.",
+    "namespace": {
+      "bytes": "evidence/objects/<sha256>",
+      "generationManifest": "evidence/generations/<storageObjectId>/<capturedAt>-<sha12>.json",
+      "erasureTombstone": "evidence/erasure/<storageObjectId>.json",
+      "freshness": "evidence/latest.json"
+    },
+    "recoveryObjectIdentity": "CONTENT-ADDRESSED — the sha256 IS the key. Mutable facts (source key, database row, capture time, owner scope) live in the manifest, never in the key.",
+    "whyContentAddressed": "It is what makes OVERWRITE recoverable. A naive mirror (live key -> same backup key) would let generation B destroy generation A, leaving overwrite exactly as unrecoverable as before. Content addressing cannot do that: A and B are different keys by construction. It also dedupes identical bytes and puts no customer-derived text in a key.",
+    "generationIdentity": "storageObjectId + capturedAt + sha256. Multiple generations of the same live key coexist independently for the recovery window.",
+    "piiInKeys": "NONE. Keys carry a content digest and a database UUID. No download name, no email, no customer-supplied text.",
+    "copyMechanism": "SCHEDULED RECONCILIATION, not copy-on-write and not copy-before-delete. Copy-before-delete would run inside the application's own delete path and would therefore inherit the very defect it is meant to survive. Reconciliation is independent of it."
+  },
+
+  "retention": {
+    "generationWindowDays": 30,
+    "erasureGraceHours": 24,
+    "currentLiveGeneration": "Kept for as long as the live object exists, whatever its capture age — it IS the protection.",
+    "supersededOrOrphaned": "Expire 30 days after capture.",
+    "rationale": "Not the database's 14-daily/8-weekly rotation, which is periodic and inappropriate for event-driven object generations. 30 days is long enough that an accidental deletion is noticed — a Beta operator does not look every day — and short enough to respect data minimisation. There is NO indefinite customer-evidence retention.",
+    "erasureGraceRationale": "24 hours honours a deletion right promptly while leaving a bounded window in which a mistakenly classified erasure could be caught. Shorter favours privacy, longer favours mistake-recovery; 24h is the Beta balance and the trade is stated rather than hidden."
+  },
+
+  "deleteRecoverySemantics": {
+    "rule": "An object disappearing from insite-production NEVER causes its recovery copy to be deleted. Absence starts a recovery window; it is not evidence of intent.",
+    "proven": "After deleting the live object, a further --apply pass was run and the recovery copy was still present and still classified MISSING_LIVE_RECOVERABLE."
+  },
+
+  "privacyErasureAuthority": {
+    "source": "storage_objects.deletedAt (set by the customer-initiated tombstone path) CORROBORATED by security_audit_events.action = 'file_deleted'.",
+    "explicitlyNotErasure": "security_audit_events.action = 'report_artifact_retired' is the product superseding its own PDF. Treating it as erasure would delete recovery copies during ordinary report regeneration. Proven: a retired report produced RECOVERY_ONLY_EXPECTED and NO tombstone.",
+    "neverInferredFromAbsence": "A missing object is a candidate for recovery, not for erasure. Erasure requires a positive authoritative signal."
+  },
+
+  "erasureLedger": {
+    "decision": "security_audit_events ALONE IS INSUFFICIENT, and this is the decisive design finding.",
+    "why": "It is a table in the database being rolled back. Restoring to a point before the customer's deletion destroys the erasure record, the object becomes restorable, and the erasure is silently undone. An erasure ledger that lives only inside the restorable state is not an erasure ledger.",
+    "design": "An append-only tombstone written INTO RECOVERY STORAGE at evidence/erasure/<storageObjectId>.json, where a database restore cannot reach it. It records the storageObjectId, the erasedAt, the observedAt, the basis, and the byte-deletion eligibility time. It contains NO secrets, no download name, no email, no customer-supplied text — only a UUID and timestamps.",
+    "authority": "Once a tombstone exists it outranks the database. No recovery procedure will resurrect that object whatever the database later says."
+  },
+
+  "credentialArchitecture": {
+    "sourceCredentialDesign": "A NEW, SEPARATE, READ-ONLY R2 token on insite-production (EVIDENCE_SOURCE_S3_*). NOT YET CREATED — this is the §312 owner decision.",
+    "destinationCredentialDesign": "The existing §311A insite-backups-operator token, unchanged: Object Read & Write, scoped to insite-backups only.",
+    "whyTwoAndNotOne": "A single token spanning both buckets could read every customer's evidence AND destroy its only backup — precisely the combination this design exists to prevent. Two tokens mean a compromise of the copier can read but not erase the thing that makes erasure survivable.",
+    "credentialsCreatedOrBroadenedInSection312": 0,
+    "applicationCrossBucketAccess": "NONE, and re-verified at §311A: the application credential is refused 403 on insite-backups in both directions of test. The hard invariant holds — a defective or compromised application credential cannot reach the recovery copy.",
+    "oneTimeSeedMethod": "The five production objects were copied using the application credential for READ-ONLY source access, held in memory only for the duration of one operator-run process, together with the existing operator credential for the destination. Nothing was persisted, nothing was broadened, no credential was written to disk. This is a ONE-TIME seed; the ONGOING mechanism requires the dedicated read-only token.",
+    "ongoingActivation": "run-scheduled-backup.sh runs the reconciler only when EVIDENCE_SOURCE_S3_ACCESS_KEY_ID is set. Until then it logs 'SKIPPED: … customer evidence is NOT being protected' and the database half proceeds normally — not activated is reported differently from failed."
+  },
+
+  "syntheticProofs": {
+    "suite": "verification/current/evidence-recovery-312/00-PROOF-SUITE.sh — disposable PostgreSQL 17.11 and MinIO containers, synthetic objects only, self-resetting and run twice with identical results.",
+    "total": "22 passed, 0 failed",
+    "accidentalDelete": {
+      "liveCreated": "PASS", "captured": "PASS (LIVE_UNBACKED -> LIVE_MATCHED)",
+      "afterDelete": "PASS — MISSING_LIVE_RECOVERABLE",
+      "badDeleteDoesNotPropagate": "PASS — a further --apply left the recovery copy intact",
+      "governedRestore": "PASS", "restoredDigestEqualsOriginal": "PASS — sha256 4b70aa9bb35c5e7911ed79a6514150f69ffc38f06bce4dce4f3837b444449893"
+    },
+    "overwrite": {
+      "generationA": "PASS — captured", "generationB": "PASS — captured independently",
+      "bothRetained": "PASS — 2 generations, both byte sets present at their own digests",
+      "digestsDoNotCollide": "PASS", "currentLiveStateIdentified": "PASS — LIVE_MATCHED against generation B"
+    },
+    "retirementIsNotErasure": { "state": "PASS — RECOVERY_ONLY_EXPECTED", "noTombstoneWritten": "PASS" },
+    "authorizedErasure": {
+      "recognised": "PASS — MISSING_LIVE_ERASURE_AUTHORIZED",
+      "restoreRefused": "PASS", "recoveryBytesDeleted": "PASS — removed after the grace period"
+    },
+    "databaseRollbackHardGate": {
+      "method": "The database was rolled back to before the erasure: deletedAt cleared, status returned to 'ready', and the audit row DELETED. The database then believed the object was live and had never been erased.",
+      "stateStillCorrect": "PASS — MISSING_LIVE_ERASURE_AUTHORIZED",
+      "restoreStillRefused": "PASS",
+      "significance": "This is the gate §312 set as hard. The erasure survived the loss of every database record of it, because the tombstone is not in the database."
+    },
+    "digestMismatch": "PASS — live bytes disagreeing with the database record are classified DIGEST_MISMATCH",
+    "recoveryOnlySuspect": "PASS — planted orphan recovery bytes with no database row are flagged",
+    "unknownNeverPasses": "PASS — an unreachable source reports UNKNOWN, exits 2, and changes nothing"
+  },
+
+  "productionSeed": {
+    "objectsCopied": 5,
+    "before": "5 database rows, 5 live objects, 0 recovery objects — LIVE_UNBACKED 5, outcome ATTENTION_REQUIRED",
+    "after": "LIVE_MATCHED 5, outcome PROTECTED",
+    "digestVerification": "All five byte-identical between source and recovery copy, verified by full download and re-hash on both sides.",
+    "sourceUnchanged": "5 objects, 166708 bytes — identical to the §311 measurement. verify-object-consistency --deep re-run afterwards: 5 verified, 0 missing, 0 mismatches, 0 orphans, CONSISTENT.",
+    "sourceObjectsDeletedOrModified": 0,
+    "destinationPrivate": "insite-backups — no public development URL, no custom domain, no CORS (verified §311A)"
+  },
+
+  "monitoring": {
+    "command": "reconcile-evidence-recovery.js (report mode changes nothing)",
+    "outcomes": ["PROTECTED (exit 0)", "ATTENTION_REQUIRED (exit 1)", "UNKNOWN (exit 2)"],
+    "detects": {
+      "liveObjectNotProtected": "LIVE_UNBACKED",
+      "digestMismatch": "DIGEST_MISMATCH",
+      "recoveryDestinationUnavailable": "UNKNOWN — scan aborts, nothing is changed",
+      "incompleteScan": "UNKNOWN — exit 2, never a pass",
+      "erasureNotPropagated": "an authorized erasure with no tombstone stays out of MISSING_LIVE_ERASURE_AUTHORIZED and is surfaced",
+      "unexpectedRecoveryObject": "RECOVERY_ONLY_SUSPECT"
+    },
+    "mo1Integration": "Non-PROTECTED outcomes push to OPERATIONAL_ALERT_WEBHOOK_URL, the existing MO-1 channel. Two real dispatches at HTTP 200 during the production seed.",
+    "payloadPrivacy": "The alert carries COUNTS BY STATE only — no object key, no source key, no download name, no customer or workspace identifier.",
+    "notOnHealthEndpoint": "Nothing about evidence recovery is exposed through /health, per §307 SE-17."
+  },
+
+  "dataAccessLogs": {
+    "assessment": "Captures PutObject, DeleteObject, DeleteObjects and DeleteObjectsByPrefix, with actor.type, actor.id, actor.email and actor.accessKeyId — so it identifies WHICH credential performed a deletion. Records successful requests only (HTTP < 400). Delivery is asynchronous and best-effort; events may be delayed or omitted. Logs are viewed in Workers Observability.",
+    "consoleState": "DISABLED, and the section on the bucket settings page has NO interactive control at all — no Enable button, no toggle, unlike On Demand Migration and Local Uploads which both offer one. It is effectively gated on this account's plan.",
+    "cost": "Not determinable without a plan change; the adjacent Event Notifications feature states 'Workers Paid Plan required' outright.",
+    "enabled": "NO — not enabled. §312 forbids enabling anything that incurs a paid plan without authorization, and there is no control to enable it in any case.",
+    "loadBearingLimit": "Logs are FORENSICS, NOT RECOVERY. They could tell an operator which credential deleted an object; they cannot return the bytes. BR-5 closure does not and must not depend on them."
+  },
+
+  "cost": {
+    "measuredNow": { "databaseBackupBytes": 15800214, "evidenceRecoveryBytes": 170988, "totalBytes": 15971202 },
+    "projectedSteadyStateBytes": 174300036,
+    "projectedSteadyStateGiB": 0.1623,
+    "freeAllowanceGiB": 10,
+    "percentOfFreeStorage": 1.62,
+    "projectedClassAPerMonth": 1240,
+    "projectedClassBPerMonth": 1240,
+    "freeClassA": 1000000,
+    "recurringCost": "USD 0.00 — inside the R2 free allowance by roughly two orders of magnitude on storage and four on operations. No owner purchase decision is required.",
+    "billableUsageObserved": "$0.00"
+  },
+
+  "operatorErrorResidualRisk": {
+    "whatProtectsRecoveryStorage": [
+      "The application credential cannot reach insite-backups at all (403, proven both ways at §311A).",
+      "The reconciler holds READ-ONLY access to the source, so it cannot damage live customer evidence even if defective.",
+      "Retention refuses to delete anything it cannot positively identify, and an incomplete listing suppresses deletion entirely (§311A ALWAYS_KEEP_NEWEST and fail-closed listing).",
+      "Content addressing means a capture can never overwrite a different generation."
+    ],
+    "residual": "The insite-backups-operator credential CAN delete objects in insite-backups, including recovery copies. A single mistaken operator command, or compromise of that one credential, could destroy recovery storage. There is no second copy of the recovery copy.",
+    "bucketLockConsidered": "Bucket Lock on insite-backups would block that — and would also block the retention pass and, more importantly, would block ERASURE PROPAGATION, making it impossible to honour a customer's deletion within the recovery window. Locking recovery storage would trade a privacy obligation for a durability gain. NOT enabled, and the interaction is the reason rather than an oversight.",
+    "characterisedNotSolved": "This is a stated residual, not a solved problem. Closing it needs a second independent destination or a lock design that exempts the erasure path, and neither is authorized here."
+  },
+
+  "br5Assessment": {
+    "databaseRecovery": "OPERATIONAL (§311A)",
+    "evidenceRecoveryMechanism": "BUILT AND PROVEN — accidental delete, accidental overwrite, bounded historical generations, digest verification, privacy-authorized erasure, database rollback without resurrection, monitoring, and an operator recovery procedure are all demonstrated.",
+    "evidenceRecoveryOperational": "NO — ongoing protection requires the read-only source credential, which is a product-owner decision. The five current objects are protected; a sixth object uploaded tomorrow would not be until the credential exists.",
+    "verdict": "BR-5 REMAINS PARTIAL. Every hard requirement is met in mechanism, but 'operationally credible' means running on a schedule, and it is not yet.",
+    "whatWouldCloseIt": "Create the read-only token, add EVIDENCE_SOURCE_S3_* to ~/.safety-insite/backup.env, and observe one scheduled run reporting PROTECTED."
+  },
+
+  "preservedUnchanged": {
+    "BR-6": "OPEN, untouched. The erasure implementation reads storage_objects and security_audit_events and never enters the account-deletion transaction, so the BR-6 dependency §312 warned about did not arise.",
+    "ST-4": "The investigation remains closed with its adverse finding; §312 is its remediation and does not reopen it.",
+    "SE-21": "OPEN. The repository is still public; no credential entered GitHub.",
+    "OPS-2": "OPEN, untouched.", "SC-4": "OPEN, untouched.", "SC-5": "OPEN, untouched.",
+    "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED, untouched.",
+    "LG-3": "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED, untouched. No brand or domain decision."
+  },
+
+  "productionSafety": {
+    "productionSourceReads": "5 objects listed and downloaded read-only for digest verification; storage_objects and security_audit_events read via psql; Render control-plane env read.",
+    "productionSourceObjectsModified": 0,
+    "productionRecoveryObjectsCreated": 11,
+    "productionRecoveryObjectsDeleted": 0,
+    "productionDatabaseWrites": 0,
+    "productionCustomerRowsModified": 0,
+    "productionConfigurationChanges": 0,
+    "applicationDeployments": 0,
+    "charges": "$0.00", "expertExecutions": 0, "providerCalls": 0, "spendUsd": 0,
+    "unexpectedProduction5xx": 0,
+    "credentialsCreated": 0, "credentialsBroadened": 0
+  }
+}

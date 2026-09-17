@@ -210,23 +210,88 @@ cd backend && node scripts/ops/verify-object-consistency.js --deep
 It reads `storage_objects` — the single ledger of every object the product has stored, carrying each
 object's key, byte length and sha256 — and reconciles it against the bucket in both directions.
 
-> ### ST-4 — READ THIS BEFORE YOU RELY ON RECOVERING AN OBJECT
+> ### ST-4 / §312 — WHAT EVIDENCE RECOVERY DOES AND DOES NOT COVER
 >
-> **Cloudflare R2 has no object versioning**, `insite-production` has **no bucket lock**, and its only
-> lifecycle rule aborts incomplete multipart uploads. R2's eleven-nines durability covers hardware
-> failure and physical disaster; Cloudflare states plainly that it **"does not prevent intentional or
-> accidental deletion of data."** Data Access Logs are **disabled**, so there is not even a record of
-> what was deleted, when, or by which credential.
+> **Cloudflare R2 has no object versioning**, `insite-production` has **no bucket lock**, and R2's
+> eleven-nines durability explicitly **"does not prevent intentional or accidental deletion of data."**
+> Bucket lock is not a fix here: the product hard-deletes objects during normal operation (upload
+> rollback, `retireReportArtifact` on report regeneration, customer `tombstone`), so locking the bucket
+> would break report regeneration and customer erasure.
 >
-> **A deleted or overwritten evidence object cannot be recovered.** There is no backup of the object
-> plane — §311A was authorized to create the bucket and the database backup only, and explicitly
-> **not** to copy customer evidence into `insite-backups/evidence/`. That work is separately
-> authorized and unbuilt, and it is why **`BR-5` remains PARTIAL / BLOCKING** even though database
-> recovery is fully operational.
+> **§312 answers this with an independent recovery copy** in `insite-backups/evidence/`, reconciled
+> operator-side. It covers accidental **delete** and accidental **overwrite**, for a bounded window,
+> with digest verification — and it refuses to resurrect anything a customer has erased.
 >
-> Bucket lock is **not** a drop-in fix: the product hard-deletes R2 objects during normal operation —
-> upload rollback, `retireReportArtifact` on report regeneration, and customer `tombstone`. Locking
-> the bucket would break report regeneration and customer erasure.
+> **It is activated only when `EVIDENCE_SOURCE_S3_*` is configured.** Until then the scheduled run
+> says `SKIPPED: … customer evidence is NOT being protected` and the database half proceeds normally.
+
+## 7A. Evidence recovery — the §312 model in six lines
+
+| | |
+|---|---|
+| Recovery bytes | `evidence/objects/<sha256>` — **content-addressed**, so an overwrite cannot destroy the previous generation and identical bytes dedupe |
+| Per-generation manifest | `evidence/generations/<storageObjectId>/<capturedAt>-<sha12>.json` — source key, digests, size, owner scope |
+| Erasure tombstone | `evidence/erasure/<storageObjectId>.json` — **authoritative, and deliberately NOT in the database** |
+| Generation window | **30 days** for superseded/orphaned generations; the generation matching the current live object is kept while it is live |
+| Erasure grace | **24 hours** from the customer's deletion, then the recovery bytes are removed too |
+| Command | `node scripts/ops/reconcile-evidence-recovery.js [--apply] [--restore <id>]` |
+
+**Why the erasure tombstone is not a database row.** A database row cannot answer the question that
+matters. Restore the database to a point *before* a customer's deletion and a database-only record of
+that deletion vanishes with it — the object becomes restorable again and the erasure is quietly
+undone. The tombstone lives in recovery storage, where a database restore cannot reach it, so the
+refusal survives the rollback. §312 proves this directly: the database was rolled back to a state in
+which it believes the object is live and was never erased, and the restore was **still refused**.
+
+**Erasure is never inferred from absence.** A missing object is a candidate for *recovery*, not for
+erasure. A tombstone is written only on a positive signal — `storage_objects.deletedAt` set by the
+customer-initiated delete path, corroborated by a `file_deleted` audit row. A
+`report_artifact_retired` row is the product superseding its own PDF and carries **no** erasure
+intent; treating it as erasure would delete recovery copies during ordinary report regeneration.
+
+### Classification states
+
+| state | meaning | action |
+|---|---|---|
+| `LIVE_MATCHED` | live object present and captured, digests agree | none |
+| `LIVE_UNBACKED` | live object present, not yet captured | run `--apply` |
+| `DIGEST_MISMATCH` | live bytes disagree with the database record | investigate before capturing |
+| `MISSING_LIVE_RECOVERABLE` | database says live, object gone, recovery copy exists | **§7B** |
+| `MISSING_LIVE_UNRECOVERABLE` | object gone, no recovery copy — already lost | do not fabricate a replacement |
+| `MISSING_LIVE_ERASURE_AUTHORIZED` | gone because the customer erased it | **never restore** |
+| `RECOVERY_ONLY_EXPECTED` | recovery generation whose live object is legitimately gone | none, expires on the window |
+| `RECOVERY_ONLY_SUSPECT` | recovery bytes with no database row and no explanation | investigate |
+| `UNKNOWN` | the scan could not complete | **never a pass** — exit 2, nothing is changed |
+
+## 7B. Restoring one evidence object
+
+```
+cd backend
+node scripts/ops/reconcile-evidence-recovery.js --restore <storageObjectId>
+```
+
+It refuses if an erasure tombstone exists, verifies the recovery bytes against the manifest digest
+before writing anything, and writes a **local file**. Putting that file back into `insite-production`
+is a separate, deliberate act using the application credential — the reconciler holds only read
+access to the source, by design, so it *cannot* write to the customer bucket even if told to.
+
+### Ordering for a full disaster recovery
+
+The ordering is the safety property. Do not reorder it.
+
+1. **Restore PostgreSQL** (§4 or §5) and complete §6 migration compatibility.
+2. **Reconcile, report-only:** `node scripts/ops/reconcile-evidence-recovery.js --json /tmp/dr.json`.
+   This changes nothing and gives you the state of every object.
+3. **Read the erasure tombstones before restoring anything.** If the database was rolled back past a
+   customer's deletion, the database is now wrong and the tombstones are right. Any object with a
+   tombstone is `MISSING_LIVE_ERASURE_AUTHORIZED` and must not be resurrected — the tool enforces
+   this, but an operator copying bytes by hand can defeat it, so read the list first.
+4. **Restore only `MISSING_LIVE_RECOVERABLE` objects**, one at a time, verifying each digest.
+5. **Do not run `--apply` until steps 3 and 4 are settled.** `--apply` is safe — it never deletes a
+   recovery copy because a live object is absent — but running it first makes the report noisier.
+6. **Re-run** `verify-object-consistency.js --deep` and the reconciler, and confirm `PROTECTED`.
+7. **Re-run the §11 deletion reconciliation.** A restore can reinstate a deleted *account*; the
+   evidence tombstones cover objects, not accounts.
 
 ### Missing object — a live row whose object is not in the bucket
 

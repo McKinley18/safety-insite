@@ -124,5 +124,23 @@ if ! BACKUP_MAX_AGE_HOURS=1 node "$JOB_DIR/check-backup-freshness.js"; then
   exit 1
 fi
 
+say "--- evidence recovery reconciliation ---"
+# §312. DELIBERATELY CONDITIONAL, and it fails loudly rather than skipping quietly once configured.
+#
+# Evidence reconciliation needs READ access to the customer-evidence bucket, which is a SECOND
+# credential (EVIDENCE_SOURCE_S3_*) that must be read-only and separate from both the application's
+# credential and this job's destination credential. Until the product owner provisions it, the
+# database backup above is complete and correct and the evidence half simply has not been activated —
+# which is a different thing from having failed, and is reported as such.
+if [ -n "${EVIDENCE_SOURCE_S3_ACCESS_KEY_ID:-}" ]; then
+  if ! node "$JOB_DIR/reconcile-evidence-recovery.js" --apply; then
+    say "EVIDENCE RECONCILIATION REPORTED A PROBLEM (exit $?). The alert webhook has been notified."
+    exit 1
+  fi
+else
+  say "SKIPPED: EVIDENCE_SOURCE_S3_* is not configured, so customer evidence is NOT being protected."
+  say "This is the §312 owner action — see project-docs/operations/DISASTER-RECOVERY-RUNBOOK.md."
+fi
+
 say "scheduled backup complete"
 exit 0

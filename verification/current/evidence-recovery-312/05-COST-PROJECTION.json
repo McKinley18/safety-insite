@@ -1,0 +1,25 @@
+{
+  "measuredNow": {
+    "databaseBackupBytes": 15800214,
+    "databaseBackupObjects": 5,
+    "evidenceRecoveryBytes": 170988,
+    "evidenceRecoveryObjects": 11,
+    "totalBytes": 15971202
+  },
+  "projectedSteadyState": {
+    "databaseBackupsBytes": 173799912,
+    "evidenceRecoveryBytes": 500124,
+    "totalBytes": 174300036,
+    "totalGiB": 0.1623,
+    "freeAllowanceGiB": 10,
+    "percentOfFreeStorage": 1.62
+  },
+  "projectedOperationsPerMonth": {
+    "classA": 1240,
+    "classB": 1240,
+    "freeClassA": 1000000,
+    "freeClassB": 10000000,
+    "percentOfFreeClassA": 0.124
+  },
+  "projectedRecurringCost": "USD 0.00 — inside the R2 free allowance by roughly two orders of magnitude on storage and four on operations"
+}
