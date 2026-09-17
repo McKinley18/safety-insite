@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createHash, randomUUID } from 'crypto';
-import { Repository } from 'typeorm';
+import { EntityManager, In, Repository } from 'typeorm';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { AuthenticatedUser, requireAuthenticatedUser } from '../common/authenticated-user';
 import { isUniqueViolation } from '../common/unique-violation';
@@ -223,6 +223,115 @@ export class StorageService {
     await this.objects.save(object);
     await this.provider().delete(object.objectKey);
     await this.audit(user, 'file_deleted', object);
+  }
+
+  /**
+   * §313 / BR-7 — PHASE 1 OF ACCOUNT-DELETION EVIDENCE ERASURE. Runs INSIDE the account-deletion
+   * transaction and touches the database only.
+   *
+   * ===================================================================================================
+   * WHY THE INTENT IS RECORDED BEFORE ANY BYTE IS TOUCHED.
+   *
+   * R2 cannot join a PostgreSQL transaction, so the two systems are reconciled by ORDER rather than by
+   * atomicity. Recording the intent first means a crash at any point afterwards leaves a precise,
+   * queryable work item — `status = 'erasure_pending'` — rather than an object nobody knows should
+   * have been erased. The opposite order (delete the bytes, then record it) loses the work list
+   * exactly when it is needed.
+   *
+   * It is also why account deletion does NOT destroy ownership. Anonymisation rewrites the `user` row;
+   * it never touches `storage_objects.ownerUserId`, so the deleted account's objects remain findable
+   * by their owner id indefinitely and a retry can always re-derive the same set.
+   *
+   * ===================================================================================================
+   * THE OWNERSHIP PREDICATE IS RELATIONAL AND NARROW, deliberately.
+   *
+   * `ownerUserId = :userId AND organizationId IS NULL`. Never a key, never a prefix, never a filename,
+   * never a digest — BR-8 means a stored digest can be stale, so digests may not be an ownership
+   * authority. The `organizationId IS NULL` clause is redundant against the table's exactly-one-scope
+   * check constraint and is written anyway: organisation-scoped evidence belongs to an organisation
+   * that may have other members, and one member closing their account must never erase it. Production
+   * holds such objects today, so this is a live case rather than a hypothetical one.
+   *
+   * `downloadName` is scrubbed here because a filename is customer-supplied text that can itself carry
+   * personal information, and there is no reason to retain it past the erasure request.
+   */
+  async markOwnedEvidenceForErasure(manager: EntityManager, userId: string, now: Date) {
+    const owned = await manager
+      .createQueryBuilder(StorageObject, 'object')
+      .where('object.ownerUserId = :userId', { userId })
+      .andWhere('object.organizationId IS NULL')
+      .andWhere('object.deletedAt IS NULL')
+      .getMany();
+
+    if (!owned.length) return { marked: 0, ids: [] as string[] };
+
+    await manager.update(
+      StorageObject,
+      { id: In(owned.map((o) => o.id)) },
+      { status: 'erasure_pending', deletedAt: now, deletedByUserId: userId, downloadName: 'erased' },
+    );
+    return { marked: owned.length, ids: owned.map((o) => o.id) };
+  }
+
+  /**
+   * §313 / BR-7 — PHASE 2. Runs AFTER the transaction has committed, and is idempotent by construction.
+   *
+   * It re-derives its work from the database every time — every row still at `erasure_pending` for this
+   * owner — so calling it once, twice, or after a crash produces the same end state. An object already
+   * absent from the bucket is a SUCCESS, not an error: both storage providers treat a missing key as a
+   * no-op, which is what makes a retry safe after a partial run.
+   *
+   * A row moves to `deleted` only after its bytes are confirmed gone. Anything that throws is left at
+   * `erasure_pending` and reported, so the caller can tell the customer the truth rather than claiming
+   * a completion it did not achieve.
+   */
+  async eraseMarkedEvidence(userId: string) {
+    const pending = await this.objects
+      .createQueryBuilder('object')
+      .addSelect('object.objectKey')
+      .where('object.ownerUserId = :userId', { userId })
+      .andWhere('object.organizationId IS NULL')
+      .andWhere('object.status = :status', { status: 'erasure_pending' })
+      .getMany();
+
+    const provider = this.provider();
+    let erased = 0;
+    const failed: string[] = [];
+
+    for (const object of pending) {
+      try {
+        await provider.delete(object.objectKey);
+        await this.objects.update(object.id, { status: 'deleted' });
+        await this.audits.save(this.audits.create({
+          actorUserId: userId,
+          organizationId: null,
+          // The action the §312 recovery reconciler treats as erasure-authoritative. It is distinct
+          // from `file_deleted` so the audit trail says WHY the object went, and distinct from
+          // `report_artifact_retired`, which is operational housekeeping and carries no erasure intent.
+          action: 'account_evidence_erased',
+          resourceType: 'storage_object',
+          resourceId: object.id,
+          metadata: { category: object.category, parentType: object.parentType },
+        }));
+        erased += 1;
+      } catch (error) {
+        failed.push(object.id);
+        // The object identifier and the failure KIND only. A key or a download name can carry
+        // customer content, and an operational event is not the place for it.
+        emitOperationalEvent('storage.operation_failed', {
+          storageObjectId: object.id,
+          parentType: object.parentType,
+          failureKind: error instanceof Error ? error.name : 'UnknownError',
+        });
+      }
+    }
+
+    return { attempted: pending.length, erased, failed: failed.length, remaining: failed.length, complete: failed.length === 0 };
+  }
+
+  /** How much evidence is still awaiting erasure for this owner. The retry and monitoring signal. */
+  async pendingErasureCount(userId: string) {
+    return this.objects.count({ where: { ownerUserId: userId, status: 'erasure_pending' } });
   }
 
   private async audit(user: AuthenticatedUser, action: string, object: StorageObject) {

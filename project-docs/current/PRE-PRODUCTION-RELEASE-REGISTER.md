@@ -6,6 +6,17 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§313 — `BR-7` IS REPAIRED AND PROVEN, and does not close because it is not deployed.** Account
+deletion now erases the evidence that belonged to the account: intent recorded inside the transaction,
+bytes deleted after the commit, ownership asserted relationally (`ownerUserId` AND `organizationId IS
+NULL` — never a key, prefix or digest), organisation-scoped evidence untouched. **32/32 against the
+real application** including a genuine partial failure with the object store stopped mid-flight, plus a
+**4/4 database-rollback no-resurrection gate** and two mutation controls that were each watched to
+break the suite. **No migration was required and none was created.** Production still runs `b8a6fd9c`,
+so the defect remains live there: **PRODUCTION_DEPLOYMENT_AUTHORIZATION_REQUIRED**. `BR-6` and `BR-8`
+untouched. Also registered: `test-cross-user-isolation.ts` is a **stale** BR-4-family instrument that
+§313 did not break.
+
 **§312A — `BR-5` IS CLOSED. Database and customer-evidence recovery are both operational.** The
 read-only source credential exists, scoped to `insite-production` alone and proven across 19
 assertions with every denial a genuine 403. Activation ran **through launchd**, not interactively:
@@ -243,16 +254,20 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **124** | **9** | **14** | **66** | **35** |
+| Entries | **125** | **9** | **14** | **66** | **36** |
 
 | Status | Count |
 |---|---|
 | CLOSED | 73 |
 | OPEN | 37 |
+| ENGINEERING_COMPLETE_PRODUCTION_DEPLOYMENT_REQUIRED | 1 |
 | BLOCKED (waiting on a decision or another item) | 4 |
 | DEFERRED (deliberately not v1) | 2 |
 
-**§312A closed `BR-5` and `ST-4`.** §312 had added `BR-7` (P2, blocks C) and `BR-8` (P3).
+**§313 added `IT-4` (P3, stale instrument) and moved `BR-7` to
+ENGINEERING_COMPLETE_PRODUCTION_DEPLOYMENT_REQUIRED.** It still blocks Threshold C, because the repair
+is not in production. **§312A closed `BR-5` and `ST-4`.** §312 had added `BR-7` (P2, blocks C) and
+`BR-8` (P3).
 
 **§311 added three entries and closed none.** `ST-4` (P2, blocks C), `BR-6` (P3) and `SE-21` (P3).
 `BR-5` moved from OPEN to **ENGINEERING_COMPLETE_OWNER_INFRASTRUCTURE_DECISION_REQUIRED** and is
@@ -1820,7 +1835,7 @@ Properly scoping it is not available: `fix_feedback` has no owner column, and it
 | **BR-2** | Neon's platform backup retention window and point-in-time-recovery setting are unread. | P2 | — | Infrastructure | **CLOSED (§295)** |
 | **BR-5** | Recovery beyond six hours depends on a manual dump nobody is scheduled to take. | P2 | C | Infrastructure | **CLOSED (§312A)** — database AND customer-evidence recovery are both operational on the daily schedule, with aggregate health that is HEALTHY only when both halves are. All fourteen closure requirements proven. |
 | **BR-6** | Account anonymisation writes through the `User` entity, so it cannot clear the undeclared legacy `user.password` column. Latent: 8 live accounts hold a hash, 0 deleted accounts do. | P3 | — | Engineering | OPEN (§311) |
-| **BR-7** | Account deletion does not touch `storage_objects` or R2 at all, so a customer who deletes their **account** leaves every evidence photo and report PDF live in production. Latent: 0 of the 26 deleted accounts owned an object. | P2 | C | Engineering | OPEN (§312) |
+| **BR-7** | Account deletion does not touch `storage_objects` or R2 at all, so a customer who deletes their **account** leaves every evidence photo and report PDF live in production. Latent: 0 of the 26 deleted accounts owned an object. | P2 | C | Engineering | **ENGINEERING_COMPLETE_PRODUCTION_DEPLOYMENT_REQUIRED (§313)** — repaired and proven 32/32 against the real application, with the rollback gate and two load-bearing mutation controls. **Not deployed**, so production still has the defect. |
 | **BR-8** | A `clientRequestId` replay can re-`put` to an **existing** object key with different bytes, leaving the database recording the first attempt's sha256 while R2 holds the second's. | P3 | — | Engineering | OPEN (§312) |
 | **BR-3** | check:launch-pricing conflated the retired Expert pricing tier with Expert HazLenz the capability. | P2 | — | Engineering | **CLOSED (§290)** |
 | **BR-4** | Four browser verification instruments remain stale against the §285–§288 successor. | P2 | — | Engineering | OPEN (§290) |
@@ -2119,6 +2134,73 @@ and §311A was explicitly forbidden from silently broadening the backup system t
 *Evidence:* `verification/current/br5-recovery-readiness-311/10-ST4-R2-PROTECTION-READ.json`
 *Retest:* An evidence-recovery mechanism, authorized and proven — or a recorded owner decision to
 accept permanent loss of accidentally-deleted evidence during Beta.
+
+**BR-7 — REPAIRED AND PROVEN at §313. It does not close, because it is not deployed.**
+
+Account deletion now governs the evidence that belonged to the account. The contract was re-derived
+from source rather than from §312's description — controller, service, transaction, tables, storage
+metadata, R2, audit, recovery ledger — and every user-owning column in the schema was inventoried and
+classified: **29 columns across 24 tables**, with no `UNKNOWN` remaining.
+
+**The ordering is the design.** R2 cannot join a PostgreSQL transaction, so the two systems are
+reconciled by order rather than by pretending atomicity. The erasure **intent** is recorded inside the
+account-deletion transaction — `status = 'erasure_pending'`, `deletedAt`, `deletedByUserId`,
+`downloadName` scrubbed — and only after the commit are the bytes deleted and each row moved to
+`deleted`. A crash anywhere leaves a precise, queryable work item instead of an object nobody knows
+should have been erased. And **anonymisation never touches `ownerUserId`**, so the work list survives
+the deletion that created it, which is what makes the retry deterministic.
+
+**No migration was needed and none was created.** `status` is an unconstrained `varchar(24)` with no
+check constraint, so the new state cost nothing; the intent rides on columns that already existed.
+
+**Ownership is relational and narrow**: `ownerUserId = :userId AND organizationId IS NULL`. Never a
+key, never a prefix, never a filename, and **never a digest** — BR-8 means a stored digest can be
+stale, so a digest may not be an ownership authority. **Organisation-scoped evidence is never erased**,
+and that is a live case rather than a hypothetical: production holds 1 organisation-scoped object
+alongside 6 organisation-scoped inspections and 7 sites.
+
+**32 of 32 assertions against the real application**, not a unit harness: a NestJS server on a
+migration-built PostgreSQL 17.11 and a real object store, driven through the actual `DELETE /auth/me`.
+Wrong-ownership isolation, zero/one/multiple objects, an already-missing object, repeated deletion,
+and a **genuine partial failure** — the object store was stopped mid-flight — where the response
+refused to claim completion, all three rows stayed `erasure_pending`, no completion audit was written,
+and the deterministic retry then finished the job and recorded completion exactly once.
+
+**The response tells the truth.** A complete erasure returns the existing message, preserving API
+compatibility. An incomplete one says so and names the remaining count, at HTTP 200 because the
+*account* deletion did succeed. Claiming "deleted successfully" while a customer's photos are still in
+a bucket would be a false completion claim about a deletion right.
+
+**The rollback gate holds, 4/4.** With the database rolled back to before the deletion — `deletedAt`
+cleared, status back to `ready`, the audit row **deleted** — the state stayed
+`MISSING_LIVE_ERASURE_AUTHORIZED` and restoration was still refused, because the §312 tombstone lives
+in recovery storage where a database restore cannot reach it.
+
+**Both controls were watched to fail.** Removing the ownership predicate broke five assertions,
+including *"B can still read its own evidence"* — deleting user A destroyed user B's access. Removing
+`account_evidence_erased` from the erasure-authoritative set broke the rollback gate, turning an erased
+object back into a recovery candidate. Both files were then restored byte-identical and the suite
+returned to 32/32. *One honest limit: in the second mutation the restore was still refused, but for an
+unrelated reason — the decisive signal is the state, and the state failed.*
+
+**Why it stays open.** Production runs `b8a6fd9c`, which predates all of this. A real account deletion
+there would **still** leave evidence live. The defect is fixed in code and proven; it is not fixed in
+production, and §313 does not authorise a deployment.
+
+**BR-6 and BR-8 were not touched, and the reason is structural rather than restraint.** The erasure
+works through `storage_objects` and never re-specifies the user-anonymisation field list, so it never
+enters BR-6's territory; and it uses relational ownership rather than digest equality, so BR-8's stale
+digests cannot mis-route it.
+
+*Evidence:* `verification/current/account-evidence-erasure-313/`
+*Retest:* The §313 suite at 32/32 plus the rollback gate, run against the deployed build.
+
+**A stale instrument, classified rather than counted as a failure.** `test-cross-user-isolation.ts`
+errors before its first assertion: it registers users without `acceptedAgreements`, which §291 made
+mandatory. It is a **BR-4-family stale instrument that §313 did not break**, its own
+disposable-database refusal was respected rather than bypassed, and it was not modified to pass.
+Cross-user isolation for this change is covered by the §313 wrong-ownership gate, its mutation control,
+and 334 passing §307 security assertions.
 
 **BR-6 — new at §311, latent, and the numbers are why it is P3 rather than P1.**
 

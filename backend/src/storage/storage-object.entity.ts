@@ -1,7 +1,20 @@
 import { Check, Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 export type StorageCategory = 'report' | 'evidence' | 'branding' | 'temporary';
-export type StorageStatus = 'uploading' | 'ready' | 'quarantined' | 'deleted' | 'failed';
+/**
+ * §313 / BR-7 adds `erasure_pending`, and it is the difference between a detectable partial failure
+ * and a silent one.
+ *
+ * Account deletion records the INTENT to erase an object inside the account-deletion transaction, and
+ * only moves the row to `deleted` once the object is confirmed gone from R2. A row left at
+ * `erasure_pending` is therefore a precise, retryable work item: the database says "this should not
+ * exist" while the bytes may still. The alternative — writing `deleted` before the object is actually
+ * gone — is what makes a partial erasure indistinguishable from a complete one.
+ *
+ * Nothing serves an `erasure_pending` object: `findAuthorized` admits only `ready`, so the row 404s
+ * from the moment the intent is recorded.
+ */
+export type StorageStatus = 'uploading' | 'ready' | 'quarantined' | 'erasure_pending' | 'deleted' | 'failed';
 
 @Entity('storage_objects')
 @Check('chk_storage_object_exactly_one_scope', '(("ownerUserId" IS NOT NULL AND "organizationId" IS NULL) OR ("ownerUserId" IS NULL AND "organizationId" IS NOT NULL))')

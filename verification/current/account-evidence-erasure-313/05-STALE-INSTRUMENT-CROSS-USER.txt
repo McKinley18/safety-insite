@@ -1,0 +1,8 @@
+
+> safety-insite-backend@1.0.0 test:cross-user-isolation
+> ts-node scripts/test-cross-user-isolation.ts
+
+Cross-user isolation test errored: Error: register a failed: 400
+    at makeUser (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-cross-user-isolation.ts:71:33)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-cross-user-isolation.ts:99:13)

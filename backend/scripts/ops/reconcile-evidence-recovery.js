@@ -200,7 +200,7 @@ const LEDGER_SQL = `
          coalesce(s."organizationId"::text,'') as org, coalesce(s."ownerUserId"::text,'') as owner,
          coalesce((select a.action from security_audit_events a
                     where a."resourceType"='storage_object' and a."resourceId"=s.id
-                      and a.action in ('file_deleted','report_artifact_retired')
+                      and a.action in ('file_deleted','account_evidence_erased','report_artifact_retired')
                     order by a."createdAt" desc limit 1), '') as delete_action
   from storage_objects s
   order by s."objectKey"
@@ -223,7 +223,25 @@ async function readLedger(psql, url) {
        * product replacing its own artifact and carries no erasure intent whatsoever; treating it as
        * erasure would delete recovery copies during ordinary report regeneration.
        */
-      erasureAuthorized: Boolean(deletedAt) && deleteAction === 'file_deleted',
+      /**
+       * §313 widened this from one action to two, and the distinction it preserves is the point.
+       *
+       *   file_deleted            — a customer deleted one of their own files.
+       *   account_evidence_erased — a customer deleted their ACCOUNT, and §313 erased the evidence
+       *                             that belonged to it.
+       *
+       * Both are the customer exercising a deletion right, so both are erasure-authoritative and
+       * both must produce a rollback-proof tombstone. `report_artifact_retired` is deliberately NOT
+       * in this set: it is the product superseding its own PDF during ordinary report regeneration,
+       * and treating it as erasure would delete recovery copies as a side effect of normal use.
+       */
+      erasureAuthorized: Boolean(deletedAt) && (deleteAction === 'file_deleted' || deleteAction === 'account_evidence_erased'),
+      /**
+       * §313 / BR-7. The database has recorded an erasure intent whose bytes may still exist. This is
+       * a partial account erasure — a precise, retryable work item — and it is surfaced rather than
+       * quietly folded into the ordinary deleted state.
+       */
+      erasurePending: status === 'erasure_pending',
     });
   }
   return rows;
@@ -241,11 +259,18 @@ const STATES = [
   'MISSING_LIVE_ERASURE_AUTHORIZED', // gone because the customer erased it; must never be resurrected
   'RECOVERY_ONLY_EXPECTED',          // recovery generation whose live object is legitimately gone
   'RECOVERY_ONLY_SUSPECT',           // recovery bytes with no database row and no explanation
+  'ERASURE_PENDING',                 // §313: erasure requested, bytes not yet confirmed gone
   'UNKNOWN',                         // could not determine — never a pass
 ];
 
 function classify({ row, liveObject, generations, erased }) {
   if (erased) return 'MISSING_LIVE_ERASURE_AUTHORIZED';
+  /**
+   * §313. An erasure that was requested but not completed outranks every other reading of the row:
+   * the database says these bytes must not exist, and if the object is still present that is a
+   * STUCK ERASURE needing operator action, not an ordinary state.
+   */
+  if (row && row.erasurePending) return 'ERASURE_PENDING';
   if (row && row.live) {
     if (!liveObject) return generations.length ? 'MISSING_LIVE_RECOVERABLE' : 'MISSING_LIVE_UNRECOVERABLE';
     if (liveObject.size !== row.sizeBytes) return 'DIGEST_MISMATCH';
@@ -476,7 +501,9 @@ async function main() {
   // ---- freshness record ---------------------------------------------------------------------------
   const attention =
     counts.LIVE_UNBACKED + counts.DIGEST_MISMATCH + counts.MISSING_LIVE_RECOVERABLE +
-    counts.MISSING_LIVE_UNRECOVERABLE + counts.RECOVERY_ONLY_SUSPECT + counts.UNKNOWN;
+    counts.MISSING_LIVE_UNRECOVERABLE + counts.RECOVERY_ONLY_SUSPECT + counts.UNKNOWN +
+    // §313: an erasure the product started and did not finish is an outstanding deletion obligation.
+    counts.ERASURE_PENDING;
   const outcome = counts.UNKNOWN ? 'UNKNOWN' : attention === 0 ? 'PROTECTED' : 'ATTENTION_REQUIRED';
 
   if (apply) {
@@ -522,6 +549,12 @@ async function main() {
   }
 
   process.stdout.write(`\n${outcome}\n`);
+  if (counts.ERASURE_PENDING) {
+    process.stdout.write(
+      'ERASURE_PENDING means an account deletion requested erasure that has not completed. The rows are\n' +
+      'already unservable, but bytes may remain. Retry is deterministic — see the disaster-recovery runbook.\n',
+    );
+  }
   if (counts.MISSING_LIVE_UNRECOVERABLE) {
     process.stdout.write('MISSING_LIVE_UNRECOVERABLE means evidence is already gone with no recovery copy. Do not fabricate a replacement.\n');
   }

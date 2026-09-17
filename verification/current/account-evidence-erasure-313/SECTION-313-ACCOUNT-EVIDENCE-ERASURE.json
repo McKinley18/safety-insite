@@ -1,0 +1,178 @@
+{
+  "artifact": "SECTION-313-ACCOUNT-EVIDENCE-ERASURE",
+  "section": "§313",
+  "completedAt": "2026-09-17T23:10:00Z",
+  "objective": "Close BR-7 — make account deletion govern customer-owned evidence erasure end to end.",
+  "outcome": "ENGINEERING COMPLETE AND PROVEN against the real application, 32/32 plus a 4/4 rollback gate and two load-bearing mutation controls. NOT DEPLOYED — production still runs the pre-§313 build, so BR-7 cannot close until the change is deployed.",
+
+  "deletionContractAsFound": {
+    "method": "Traced from source rather than from §312's description: controller -> service -> transaction -> tables -> storage metadata -> R2 -> audit -> recovery ledger.",
+    "route": "@Delete('me') on AuthController, JwtAuthGuard, @Throttle 5 per 60s, password required in the body",
+    "verification": "Re-reads the user with passwordHash, refuses if already deleted, bcrypt-compares the supplied password",
+    "transactionBefore313": [
+      "organization_memberships active -> ended",
+      "entitlement_grants active -> revoked",
+      "inspection_assignments open -> endedAt",
+      "notifications DELETED",
+      "refresh_tokens active -> revoked",
+      "user ANONYMISED (name, email, passwordHash randomised, deletedAt set)",
+      "security_audit_events += account_deleted with a sha256 of the original email"
+    ],
+    "theDefect": "storage_objects and R2 appear NOWHERE in the path. A customer could delete their account and leave every uploaded photo and report PDF live in the bucket."
+  },
+
+  "customerDataFamilyInventory": {
+    "method": "Enumerated every column in the production schema matching a user-ownership name. 29 columns across 24 tables.",
+    "DELETE": ["notifications"],
+    "ERASE_NEW_AT_313": ["storage_objects owned by the user (metadata tombstoned, R2 bytes deleted)"],
+    "ANONYMIZE": ["user (name, email, passwordHash, reset state)"],
+    "TRANSITIONED_NOT_DELETED": ["organization_memberships", "entitlement_grants", "inspection_assignments", "refresh_tokens"],
+    "RETAINED_FOR_COMPLIANCE": [
+      "inspection", "observations", "inspection_findings", "hazlenz_analyses", "human_reviews",
+      "inspection_reports", "inspection_report_versions", "corrective_actions", "tasks", "site",
+      "classification_feedback", "safescope_feedback", "reviews", "agreement_acceptances", "user_subscription"
+    ],
+    "RETAINED_FOR_SECURITY": ["security_audit_events", "audit_logs"],
+    "RETIRED_NOT_USER_OWNED": ["report", "reports (legacy families retired at §310)"],
+    "UNKNOWN": [],
+    "unknownResolution": "None remained. Every family was classified against the existing documented retention policy in the deleteAccount docblock, which §313 extended rather than reinterpreted.",
+    "notAResolvedTension": "The product's standing policy RETAINS inspections, findings and reports as the compliance record the product exists to produce. §313 does NOT change that: the report ROW and its version history are retained; what is erased is the customer-owned stored object. The product owner directed evidence erasure explicitly in the §313 objective, so this is a recorded decision rather than an engineering inference."
+  },
+
+  "ownershipAuthority": {
+    "predicate": "storage_objects.ownerUserId = :userId AND organizationId IS NULL AND deletedAt IS NULL",
+    "neverUsed": ["caller-supplied object key", "filename or prefix pattern", "sha256 digest"],
+    "whyNotDigest": "BR-8 means a stored digest can be stale, so a digest is not an ownership authority.",
+    "sharedOwnership": {
+      "representable": true,
+      "measuredInProduction": "1 of 5 storage_objects is organisation-scoped, alongside 6 organisation-scoped inspections, 7 sites and 1 report. This is a live case, not a hypothetical.",
+      "handling": "Organisation-scoped objects are NEVER erased by an individual account deletion — they belong to an organisation that may have other members. Enforced by the predicate and by the table's exactly-one-scope check constraint, and asserted in the suite.",
+      "stopNotRequired": "Ownership was determinable for every object: the check constraint makes ownerUserId XOR organizationId total, so there is no ambiguous third case to guess at."
+    },
+    "nullSafety": "A null or undefined userId binds to `ownerUserId = NULL`, which matches zero rows under SQL three-valued logic. Measured: 0 rows matched."
+  },
+
+  "erasureArchitecture": {
+    "states": ["ready", "erasure_pending", "deleted"],
+    "schemaChange": "NONE. status is an unconstrained varchar(24) in the database with no check constraint, so `erasure_pending` needed no migration; the intent is carried by existing columns (status, deletedAt, deletedByUserId). §313 was explicit that an unnecessary migration must not be created, and none was.",
+    "phase1": "INSIDE the account-deletion transaction: mark owned objects erasure_pending, set deletedAt/deletedByUserId, scrub downloadName (a filename is customer-supplied text), record the count in the account_deleted audit metadata.",
+    "phase2": "AFTER the transaction commits: delete each object's bytes, then move that row to deleted and write an account_evidence_erased audit row. Completion writes account_evidence_erasure_complete.",
+    "whyThisOrder": "R2 cannot join a PostgreSQL transaction, so the systems are reconciled by ORDER rather than atomicity. Recording intent first means a crash leaves a precise, queryable work item instead of an object nobody knows should have been erased. The opposite order loses the work list exactly when it is needed.",
+    "ownershipNeverDestroyedFirst": "Anonymisation rewrites the user row and never touches storage_objects.ownerUserId, so the deleted account's objects stay findable by owner id indefinitely and a retry always re-derives the same set.",
+    "successResponse": "Complete -> the existing 'Account deleted successfully' message, preserving API compatibility. Incomplete -> an accurate message naming the incompleteness and the remaining count, at HTTP 200 because the ACCOUNT deletion itself did succeed. A false completion claim about a deletion right was judged unacceptable.",
+    "retry": "AuthService.retryAccountEvidenceErasure(userId) — deterministic, idempotent, re-derives its work from the database. It exists because the customer cannot retry: once deleted, DELETE /auth/me answers 401, so completion is an operator responsibility.",
+    "idempotency": "Both storage providers treat a missing key as a no-op, so re-erasing an already-absent object succeeds. A second retry erases nothing further and writes no duplicate completion audit — both asserted."
+  },
+
+  "storageObjectsTreatment": {
+    "decision": "TOMBSTONE, not row delete.",
+    "why": "inspection_report_versions.storageObjectId references storage_objects with ON DELETE RESTRICT, so a row delete would fail for any object a report version points at. Tombstoning is also consistent with the product's existing customer-file deletion semantics.",
+    "metadataMinimised": "downloadName is scrubbed to 'erased' at the moment intent is recorded. Retained: category, parentType, sizeBytes, sha256, timestamps and the ownership ids — the minimum needed for the erasure to be auditable and for the recovery ledger to key off.",
+    "servability": "findAuthorized admits only status 'ready', so the object 404s from the instant intent is recorded — before any byte is touched. Asserted."
+  },
+
+  "auditRecords": {
+    "written": ["account_deleted (with evidenceObjectsMarkedForErasure count)", "account_evidence_erased (one per object)", "account_evidence_erasure_complete"],
+    "identityMinimisation": "Audit metadata carries category and parentType only. No object key, no download name, no email, no file content. The account_deleted row carries a sha256 of the original email, which predates §313.",
+    "retention": "security_audit_events and audit_logs are RETAINED. The product intentionally keeps them for security and erasure proof, and §313 did not change that. Exactly what remains and why is recorded here for counsel; no legal text was rewritten."
+  },
+
+  "recoveryIntegration": {
+    "change": "The §312 reconciler's erasure-authoritative set widened from one action to two: file_deleted (customer deleted one file) and account_evidence_erased (customer deleted their account). report_artifact_retired remains deliberately excluded — it is the product superseding its own PDF during ordinary regeneration, and treating it as erasure would delete recovery copies as a side effect of normal use.",
+    "newState": "ERASURE_PENDING — an erasure the product started and did not finish. It counts toward ATTENTION_REQUIRED, so a stuck erasure is an outstanding deletion obligation rather than a quiet anomaly.",
+    "erasureAuthorityLocation": "insite-backups/evidence/erasure/<storageObjectId>.json — recovery storage, NOT the database.",
+    "rollbackPersistence": "PROVEN. See hardGates.databaseRollback."
+  },
+
+  "hardGates": {
+    "wrongOwnership": {
+      "setup": "User A with two objects, user B with one, all synthetic.",
+      "result": "PASS — A's two objects erased from R2 and tombstoned; B's object byte-identical, still status ready, still readable at HTTP 200; A's evidence 404s.",
+      "assertions": 11
+    },
+    "zeroObject": "PASS — clean success, no spurious work.",
+    "oneObject": "PASS — success reported, object gone.",
+    "multipleObject": "PASS — three objects, all erased on retry.",
+    "partialR2Failure": {
+      "method": "The object store was STOPPED mid-flight to force a genuine partial failure.",
+      "result": "PASS — the response did NOT claim completion; all three rows remained erasure_pending; no premature completion audit; the account itself was still deleted. After restarting the store, the deterministic retry erased all three and recorded completion exactly once."
+    },
+    "r2Unavailable": "Covered by the same case — the store was fully stopped, so every object failed.",
+    "alreadyMissingObject": "PASS — an object deleted out from under the erasure still completes, and its row reaches deleted.",
+    "repeatedDelete": "PASS — a second DELETE /auth/me on a deleted account is refused 401, and no unrelated data is touched.",
+    "retryIdempotent": "PASS — a second retry erases nothing further and adds no duplicate completion audit.",
+    "databaseRollback": {
+      "sequence": "T0 account + evidence exist -> T1 DELETE /auth/me -> T2 live evidence erased -> T3 reconciler records authoritative erasure -> database rolled back to before T1 (deletedAt cleared, status returned to ready, audit row DELETED).",
+      "result": "PASS 4/4 — the state stayed MISSING_LIVE_ERASURE_AUTHORIZED and restoration was still refused, because the tombstone lives in recovery storage where the rollback cannot reach it.",
+      "noResurrection": true
+    }
+  },
+
+  "mutationControls": {
+    "ownershipPredicate": {
+      "mutation": "Removed `ownerUserId = :userId AND organizationId IS NULL` from markOwnedEvidenceForErasure.",
+      "result": "SUITE FAILED, 5 assertions — including 'B metadata still ready' (became erasure_pending) and 'B can still read its own evidence' (became 404). Deleting user A destroyed user B's access.",
+      "conclusion": "The ownership predicate is load-bearing, not decorative.",
+      "restored": "byte-identical, verified by diff, and the suite returned to 32/32 on a rebuilt dist"
+    },
+    "erasureAuthority": {
+      "mutation": "Removed account_evidence_erased from the reconciler's erasure-authoritative set.",
+      "result": "THE ROLLBACK GATE FAILED — after the database rollback the state became MISSING_LIVE_UNRECOVERABLE instead of MISSING_LIVE_ERASURE_AUTHORIZED, i.e. the object became a recovery candidate again.",
+      "honestLimit": "In that mutated run the restore was still refused, but for an unrelated reason (no recovery generation existed in the cleared bucket). The decisive signal is the STATE, which failed. Recorded rather than overclaimed.",
+      "restored": "byte-identical, verified by diff"
+    }
+  },
+
+  "security": {
+    "callerSuppliedKeys": "NONE. Every objectKey in the erasure path is read from the database; none is accepted from a request.",
+    "idorCrossUserDeletion": "Prevented by the relational predicate and proven by the wrong-ownership gate and its mutation control.",
+    "nullAuthority": "A null userId matches zero rows (SQL three-valued logic), measured.",
+    "massAssignment": "DELETE /auth/me accepts only a password. No request field steers which objects are erased.",
+    "logAndPiiLeakage": "Operational events carry storageObjectId, parentType and failureKind. Audit metadata carries category and parentType. No key, filename, email or content in either.",
+    "section307Reassertion": "test:307-security-boundary:db — 334 passed, 0 failed, on the §313 code.",
+    "staleInstrument": {
+      "instrument": "scripts/test-cross-user-isolation.ts",
+      "status": "STALE, and NOT broken by §313",
+      "cause": "It registers users without acceptedAgreements, which §291 (SU-1) made mandatory, so registration answers 400 before any isolation assertion runs. It also targets a fixed port and requires NODE_ENV=test with a disposable database name.",
+      "notWeakened": "The instrument's own disposable-database refusal was respected rather than bypassed; a disposable database was created for it instead. It was not modified to pass.",
+      "coverageElsewhere": "Cross-user isolation for this change is proven directly by the §313 wrong-ownership gate and its mutation control, and by the 334 §307 assertions. Registered as a BR-4-family stale instrument."
+    }
+  },
+
+  "deployment": {
+    "deployed": false,
+    "productionShaUnchanged": "b8a6fd9cfe34d362b7cd1a585a8fcfc9e246ebb1",
+    "consequence": "Production still runs the pre-§313 build, so a real account deletion there would STILL leave evidence live. The defect BR-7 describes is fixed in code and proven, and is not yet fixed in production.",
+    "authorizationRequired": "PRODUCTION_DEPLOYMENT_AUTHORIZATION_REQUIRED — §313 authorises implementation, tests, evidence, registers, commit and push, and explicitly does not authorise deployment."
+  },
+
+  "preservedUnchanged": {
+    "BR-6": "OPEN, untouched. §313 never entered the legacy user.password column: the erasure works through storage_objects and never re-specifies the user anonymisation field list, so the overlap §313 warned about did not arise.",
+    "BR-8": "OPEN, untouched. §313's ownership authority is relational and deliberately does NOT use digest equality, so a stale digest cannot mis-route an erasure.",
+    "BR-5": "CLOSED (§312A).", "ST-4": "CLOSED (§312A).",
+    "SE-21": "OPEN.", "OPS-2": "OPEN.", "SC-4": "OPEN.", "SC-5": "OPEN.",
+    "EM-2": "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED.",
+    "LG-3": "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED. No brand or domain decision."
+  },
+
+  "credentials": {
+    "applicationCredential": "insite-production operational access only — unchanged.",
+    "evidenceRecoveryReader": "insite-production READ ONLY — unchanged.",
+    "backupOperator": "insite-backups only — unchanged.",
+    "crossBucketInvariant": "The application still has no access to insite-backups. §313 created, broadened and touched no credential.",
+    "credentialsChanged": 0
+  },
+
+  "productionSafety": {
+    "productionSourceObjectsModified": 0,
+    "productionRecoveryObjectsModified": 0,
+    "productionDatabaseWrites": 0,
+    "productionCustomerRowsModified": 0,
+    "productionConfigurationChanges": 0,
+    "applicationDeployments": 0,
+    "realAccountsDeleted": 0,
+    "charges": "$0.00", "expertExecutions": 0, "providerCalls": 0, "spendUsd": 0,
+    "unexpectedProduction5xx": 0,
+    "allTestingLocation": "Disposable PostgreSQL 17.11 and MinIO containers, migration-built from the full 58-migration history. Synthetic users on an .invalid domain and synthetic PNG evidence only."
+  }
+}

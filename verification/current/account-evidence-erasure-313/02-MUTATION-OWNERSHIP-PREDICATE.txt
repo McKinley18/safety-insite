@@ -1,0 +1,74 @@
+  (clearing the DELETE /auth/me rate-limit window before starting)
+==================== SETUP (rig reset — the suite must be repeatable) ====================
+  rig reset
+  user A token len 749 | user B token len 749
+  A objects: 9e9ce9c7-c934-4f55-8347-1ada889a4ee9 33145324-90a1-4135-919a-3249e7c07de7 | B object: 8e62a10f-c347-456d-974e-cf56a35fc8ca
+PASS  three synthetic objects exist in the live bucket  — 3
+
+==================== 1. WRONG-OWNERSHIP ISOLATION ====================
+  DELETE /auth/me (A) -> {"message":"Account deleted successfully"}
+PASS  A object 1 erased from R2  — no
+PASS  A object 2 erased from R2  — no
+PASS  B object UNTOUCHED in R2  — yes
+PASS  B object byte-identical  — 1574138303d772b7a5bd68383faf9bd37a535f674d297ff135a3ca491f8e5084
+PASS  A metadata marked deleted  — deleted
+FAIL  B metadata still ready  — expected 'ready', got 'erasure_pending'
+FAIL  B can still read its own evidence  — expected '200', got '404'
+PASS  A's evidence is unservable  — 404
+PASS  audit records account_evidence_erased x2  — 2
+PASS  erasure completion recorded  — 1
+
+==================== 2. ZERO-OBJECT ACCOUNT ====================
+PASS  zero-object deletion succeeds cleanly  — Account deleted successfully
+
+==================== 3. ONE-OBJECT ACCOUNT ====================
+PASS  one-object deletion reports success  — Account deleted successfully
+PASS  its object is gone  — no
+
+==================== 4. REPEATED / IDEMPOTENT DELETE ====================
+PASS  repeat DELETE on a deleted account is refused  — 401
+PASS  B object STILL untouched after all deletions  — yes
+PASS  live bucket holds only B's object  — 1
+
+  (rate-limit window)
+==================== 5. ALREADY-MISSING OBJECT (idempotent erase) ====================
+pre-deleted
+PASS  deletion completes despite the object already being absent  — Account deleted successfully
+PASS  its row is marked deleted  — deleted
+
+
+  (waiting out the DELETE /auth/me rate-limit window before the partial-failure case)
+==================== 6. PARTIAL R2 FAILURE ====================
+  stopping the object store mid-flight to force a partial failure
+  response: {"message":"Account deleted. Erasure of stored evidence is incomplete and will be retried.","evidenceErasure":{"complete":false,"erased":0,"remaining":3}}
+PASS  response does NOT falsely claim complete  — accurate
+FAIL  all three rows remain erasure_pending  — expected '3', got '4'
+PASS  no premature completion audit for the partial account  — 4
+PASS  account itself IS deleted  — 5
+  restoring the object store and retrying deterministically
+◇ injected env (14) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+  retry -> {"complete":true,"erased":3,"remaining":0}
+FAIL  retry erases all three  — expected '0', got '1'
+PASS  object 1 gone  — no
+PASS  object 2 gone  — no
+PASS  object 3 gone  — no
+PASS  completion recorded exactly once by the retry  — 5
+PASS  B object STILL untouched  — yes
+
+==================== 7. RETRY IS IDEMPOTENT ====================
+◇ injected env (14) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+  second retry -> {"complete":true,"erased":0,"remaining":0}
+PASS  second retry adds NO further completion audit  — 5
+FAIL  second retry erases nothing further  — expected '0', got '1'
+PASS  B object STILL untouched  — yes
+
+==================== RESULT ====================
+27 passed, 5 failed

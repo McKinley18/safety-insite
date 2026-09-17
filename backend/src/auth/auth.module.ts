@@ -1,3 +1,4 @@
+import { StorageModule } from '../storage/storage.module';
 import { Global, Module } from '@nestjs/common';
 import { AgreementsModule } from '../agreements/agreements.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -25,6 +26,8 @@ import { RefreshToken } from './entities/refresh-token.entity';
 @Global()
 @Module({
   imports: [
+    // §313 / BR-7. Account deletion must erase the account's stored evidence.
+    StorageModule,
     AgreementsModule,
     TypeOrmModule.forFeature([
       User,

@@ -1,5 +1,6 @@
 import { Injectable, BadRequestException, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { emitOperationalEvent } from '../observability/operational-events';
+import { StorageService } from '../storage/storage.service';
 import { AgreementsService } from '../agreements/agreements.service';
 import { createHash, randomBytes } from 'crypto';
 import { RegisterDto } from './dto/register.dto';
@@ -85,6 +86,9 @@ export class AuthService {
     private notificationRepo: Repository<Notification>,
     @InjectRepository(RefreshToken)
     private refreshTokenRepo: Repository<RefreshToken>,
+    // §313 / BR-7. Account deletion governs stored evidence, so it needs the one service that owns
+    // both the storage_objects ledger and the object provider.
+    private storage: StorageService,
     private dataSource: DataSource,
   ) {}
 
@@ -540,6 +544,12 @@ export class AuthService {
    *   to produce, so they are preserved under the deleted (anonymized) user id.
    * - notifications: DELETED. Purely personal, ephemeral UX reminders with no FK
    *   constraint and no compliance value.
+   * - storage_objects OWNED BY THIS USER + their R2 bytes: ERASED (§313 / BR-7). Until §313 this
+   *   path did not consider stored evidence at all, so a customer could delete their account and
+   *   leave every uploaded photo and report PDF live in the bucket. ORGANISATION-SCOPED objects are
+   *   NOT erased: they belong to an organisation that may have other members, and production holds
+   *   such objects today. The erasure is two-phase because R2 cannot join this transaction — see
+   *   StorageService.markOwnedEvidenceForErasure.
    */
   async deleteAccount(userId: string, password: string) {
     const user = await this.userRepo
@@ -560,6 +570,7 @@ export class AuthService {
     const now = new Date();
     const anonymizedEmail = `deleted-${user.id}@deleted.safety-insite.local`;
     const originalEmail = user.email;
+    let evidenceMarked = 0;
 
     try {
       await this.dataSource.transaction(async (manager) => {
@@ -589,6 +600,15 @@ export class AuthService {
           { revokedAt: now },
         );
 
+        /*
+         * §313 / BR-7. Record the erasure INTENT while still inside the transaction, and before the
+         * user row is anonymised. Anonymisation never touches storage_objects.ownerUserId, so the
+         * work list survives both the anonymisation and any later crash — which is precisely what
+         * makes phase 2 retryable.
+         */
+        const marked = await this.storage.markOwnedEvidenceForErasure(manager, user.id, now);
+        evidenceMarked = marked.marked;
+
         await manager.update(User, { id: user.id }, {
           name: 'Deleted User',
           email: anonymizedEmail,
@@ -605,7 +625,12 @@ export class AuthService {
           action: 'account_deleted',
           resourceType: 'User',
           resourceId: user.id,
-          metadata: { originalEmailHash: createHash('sha256').update(originalEmail).digest('hex') },
+          metadata: {
+            originalEmailHash: createHash('sha256').update(originalEmail).digest('hex'),
+            // A COUNT, not a list. The audit trail should record that evidence erasure was requested
+            // and how much of it, without restating object keys or download names.
+            evidenceObjectsMarkedForErasure: evidenceMarked,
+          },
         }));
       });
     } catch (error) {
@@ -631,7 +656,74 @@ export class AuthService {
       throw new InternalServerErrorException('Unable to delete account. Please try again.');
     }
 
-    return { message: 'Account deleted successfully' };
+    /*
+     * §313 / BR-7 — PHASE 2, deliberately OUTSIDE the transaction.
+     *
+     * R2 deletion cannot be rolled back, so it must not run inside a transaction that might still
+     * abort: doing so would destroy customer bytes and then un-record the deletion that destroyed
+     * them. The account is now authoritatively deleted; what remains is to make the bytes match.
+     *
+     * A failure here does NOT undo the account deletion — the account is gone, and reversing that
+     * because a bucket was briefly unreachable would be worse. It changes what the customer is TOLD.
+     */
+    let evidence = { attempted: 0, erased: 0, failed: 0, remaining: 0, complete: true };
+    if (evidenceMarked > 0) {
+      try {
+        evidence = await this.storage.eraseMarkedEvidence(user.id);
+      } catch (error) {
+        evidence = { attempted: evidenceMarked, erased: 0, failed: evidenceMarked, remaining: evidenceMarked, complete: false };
+        emitOperationalEvent('auth.account_deletion_failed', {
+          failureKind: error instanceof Error ? error.name : 'UnknownError',
+          accountPreserved: false,
+        });
+      }
+    }
+
+    if (evidence.complete) {
+      await this.securityAuditRepo.save(this.securityAuditRepo.create({
+        actorUserId: user.id, organizationId: user.organizationId || null,
+        action: 'account_evidence_erasure_complete', resourceType: 'User', resourceId: user.id,
+        metadata: { evidenceObjectsErased: evidence.erased },
+      }));
+      return { message: 'Account deleted successfully' };
+    }
+
+    /*
+     * THE RESPONSE MUST NOT CLAIM WHAT DID NOT HAPPEN. The account is deleted and its evidence is
+     * already unreachable — every affected row is `erasure_pending`, which no route will serve — but
+     * some bytes are still in the bucket. Saying "Account deleted successfully" here would be a
+     * false completion claim about a deletion right, so the message states the real position and the
+     * retryable count. The HTTP status stays 200 because the account deletion itself succeeded.
+     */
+    emitOperationalEvent('auth.account_deletion_failed', {
+      failureKind: 'EvidenceErasureIncomplete',
+      accountPreserved: false,
+    });
+    return {
+      message: 'Account deleted. Erasure of stored evidence is incomplete and will be retried.',
+      evidenceErasure: { complete: false, erased: evidence.erased, remaining: evidence.remaining },
+    };
+  }
+
+  /**
+   * §313 / BR-7 — the deterministic retry. Idempotent, safe to call repeatedly, and it re-derives its
+   * work from the database rather than from anything the caller supplies.
+   *
+   * It exists because the customer cannot retry: once the account is deleted, DELETE /auth/me answers
+   * 401. Completion is therefore an operator responsibility, and this is the operator's entry point.
+   */
+  async retryAccountEvidenceErasure(userId: string) {
+    const remainingBefore = await this.storage.pendingErasureCount(userId);
+    if (remainingBefore === 0) return { complete: true, erased: 0, remaining: 0 };
+    const result = await this.storage.eraseMarkedEvidence(userId);
+    if (result.complete) {
+      await this.securityAuditRepo.save(this.securityAuditRepo.create({
+        actorUserId: userId, organizationId: null,
+        action: 'account_evidence_erasure_complete', resourceType: 'User', resourceId: userId,
+        metadata: { evidenceObjectsErased: result.erased, viaRetry: true },
+      }));
+    }
+    return { complete: result.complete, erased: result.erased, remaining: result.remaining };
   }
 
   async requestPasswordReset(rawEmail: string) {
