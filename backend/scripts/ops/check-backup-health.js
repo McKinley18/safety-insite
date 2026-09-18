@@ -13,11 +13,30 @@
  * A green light that means "half of your recovery posture is fine" is worse than no light. So the
  * aggregate is defined explicitly:
  *
- *   database HEALTHY  +  evidence PROTECTED            -> HEALTHY      (exit 0)
- *   database HEALTHY  +  evidence NOT_ACTIVATED        -> DEGRADED     (exit 1)
- *   database HEALTHY  +  evidence ATTENTION_REQUIRED   -> DEGRADED     (exit 1)
- *   either half FAILED                                 -> FAILED       (exit 1)
- *   either half UNKNOWN (and neither FAILED)            -> UNKNOWN      (exit 2)
+ *   database HEALTHY + evidence PROTECTED + integrity INTEGRITY_HOLDS -> HEALTHY   (exit 0)
+ *   database HEALTHY + evidence NOT_ACTIVATED                         -> DEGRADED  (exit 1)
+ *   database HEALTHY + evidence ATTENTION_REQUIRED                    -> DEGRADED  (exit 1)
+ *   integrity anything but INTEGRITY_HOLDS                            -> DEGRADED  (exit 1)
+ *   any half FAILED                                                   -> FAILED    (exit 1)
+ *   any half UNKNOWN (and none FAILED)                                -> UNKNOWN   (exit 2)
+ *
+ * =====================================================================================================
+ * §315 / BR-9 — THE THIRD HALF, AND WHY TWO WERE NOT ENOUGH.
+ *
+ * BR-9 was the finding that neither of the first two halves independently hashes live bytes. The
+ * database half asks whether a dump exists and is fresh. The evidence half asks whether the bucket and
+ * the ledger agree about WHICH objects exist, comparing listed SIZES and recovery-generation digests —
+ * so two payloads of equal length and different content look identical to it. Both could be green
+ * while a live evidence object silently held the wrong bytes.
+ *
+ * The integrity half closes that by COMPOSING the already-proven §314 gate rather than reimplementing
+ * hashing here: verify-evidence-digest-integrity.js reads and SHA-256 hashes every live authoritative
+ * object and has no shallow mode. It is run as a child process for the same reason the other two are —
+ * it keeps its own exit semantics and cannot silently change this one's verdict by throwing.
+ *
+ * INTEGRITY FAILURE CANNOT BE OFFSET. There is no branch in which a healthy backup or an available
+ * recovery copy converts an integrity failure into success. Recovery being available is a reason the
+ * damage is survivable; it is not a reason the damage did not happen.
  *
  * NOT_ACTIVATED IS NOT HEALTHY. An evidence half that was never configured is not a passing state; it
  * is an unprotected one, and it is reported as DEGRADED rather than skipped.
@@ -81,10 +100,69 @@ async function evidenceHalf(tmp) {
   return { half: 'evidence', state, counts: report.counts, detail: report.outcome };
 }
 
-function aggregate(dbState, evState) {
-  if (dbState === 'FAILED' || evState === 'FAILED') return 'FAILED';
-  if (dbState === 'UNKNOWN' || evState === 'UNKNOWN') return 'UNKNOWN';
-  if (dbState === 'HEALTHY' && evState === 'PROTECTED') return 'HEALTHY';
+/**
+ * §315 / BR-9. The live-byte integrity half.
+ *
+ * `--integrity-report <path>` lets the SCHEDULED runner hand over a report the gate already produced
+ * earlier in the same run, so the population is hashed ONCE per run rather than twice. The report is
+ * not trusted blindly: it must parse, carry the expected schema, and be NEWER than the timestamp the
+ * caller vouches for with `--integrity-not-before`. A missing, stale, malformed or foreign report is
+ * INTEGRITY_UNKNOWN, never a pass — the one reading that makes handing over a file safe.
+ *
+ * With no report handed over (a direct operator invocation), the gate is simply run here.
+ */
+async function integrityHalf(tmp, reportPath, notBefore) {
+  if (!process.env.EVIDENCE_SOURCE_S3_ACCESS_KEY_ID) {
+    return { half: 'integrity', state: 'NOT_ACTIVATED', detail: 'EVIDENCE_SOURCE_S3_* is not configured, so live bytes are not being verified.' };
+  }
+
+  const readReport = (file) => {
+    const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+    if (report.schema !== 'safety-insite.evidence-digest-integrity.v1') throw new Error('foreign schema');
+    return report;
+  };
+
+  let report = null;
+  if (reportPath) {
+    try {
+      const candidate = readReport(reportPath);
+      const checkedAt = Date.parse(candidate.checkedAt);
+      if (!Number.isFinite(checkedAt)) throw new Error('unparseable checkedAt');
+      if (notBefore && checkedAt < notBefore) throw new Error('report predates this run');
+      report = candidate;
+    } catch (error) {
+      return {
+        half: 'integrity',
+        state: 'INTEGRITY_UNKNOWN',
+        detail: `The handed-over integrity report could not be used (${String(error && error.message).slice(0, 80)}).`,
+      };
+    }
+  } else {
+    const jsonPath = path.join(tmp, `evidence-integrity-${process.pid}.json`);
+    await run('verify-evidence-digest-integrity.js', ['--json', jsonPath]);
+    try { report = readReport(jsonPath); } catch { /* fall through to UNKNOWN */ }
+    fs.rmSync(jsonPath, { force: true });
+    if (!report) return { half: 'integrity', state: 'INTEGRITY_UNKNOWN', detail: 'The integrity gate produced no parseable report.' };
+  }
+
+  // The gate names its own state. Anything unrecognised is UNKNOWN rather than assumed benign.
+  const state = typeof report.integrityState === 'string' && report.integrityState.length
+    ? report.integrityState
+    : 'INTEGRITY_UNKNOWN';
+  // A report that says it did not finish cannot hold, whatever else it says.
+  const effective = report.scanComplete === false && state === 'INTEGRITY_HOLDS' ? 'INTEGRITY_UNKNOWN' : state;
+  return { half: 'integrity', state: effective, counts: report.counts, metrics: report.metrics, detail: report.outcome };
+}
+
+function aggregate(dbState, evState, integrityState) {
+  if (dbState === 'FAILED' || evState === 'FAILED' || integrityState === 'FAILED') return 'FAILED';
+  // §315. An indeterminate integrity result is UNKNOWN, exactly like an indeterminate half elsewhere.
+  if (dbState === 'UNKNOWN' || evState === 'UNKNOWN'
+      || integrityState === 'UNKNOWN' || integrityState === 'INTEGRITY_UNKNOWN'
+      || integrityState === 'SOURCE_UNAVAILABLE' || integrityState === 'INCOMPLETE_SCAN') return 'UNKNOWN';
+  // §315. HEALTHY requires all THREE. There is deliberately no clause by which a healthy backup or an
+  // available recovery generation can offset live bytes that do not match their recorded digest.
+  if (dbState === 'HEALTHY' && evState === 'PROTECTED' && integrityState === 'INTEGRITY_HOLDS') return 'HEALTHY';
   return 'DEGRADED';
 }
 
@@ -93,8 +171,16 @@ async function main() {
   const jsonPath = argv.includes('--json') ? argv[argv.indexOf('--json') + 1] : null;
   const tmp = process.env.TMPDIR || '/tmp';
 
-  const [db, ev] = await Promise.all([databaseHalf(tmp), evidenceHalf(tmp)]);
-  const overall = aggregate(db.state, ev.state);
+  const reportPath = argv.includes('--integrity-report') ? argv[argv.indexOf('--integrity-report') + 1] : null;
+  const notBeforeRaw = argv.includes('--integrity-not-before') ? argv[argv.indexOf('--integrity-not-before') + 1] : null;
+  const notBefore = notBeforeRaw ? Date.parse(notBeforeRaw) : null;
+
+  const [db, ev, integrity] = await Promise.all([
+    databaseHalf(tmp),
+    evidenceHalf(tmp),
+    integrityHalf(tmp, reportPath, Number.isFinite(notBefore) ? notBefore : null),
+  ]);
+  const overall = aggregate(db.state, ev.state, integrity.state);
 
   const pad = (l, v) => process.stdout.write(`${l.padEnd(22)}${v}\n`);
   pad('database half', `${db.state}${db.verdict && db.verdict !== db.state ? ` (${db.verdict})` : ''}`);
@@ -104,10 +190,19 @@ async function main() {
     const interesting = Object.entries(ev.counts).filter(([, n]) => n > 0).map(([k, n]) => `${k}=${n}`);
     if (interesting.length) process.stdout.write(`                      ${interesting.join(' ')}\n`);
   } else if (ev.detail) process.stdout.write(`                      ${ev.detail}\n`);
+  pad('integrity half', integrity.state);
+  if (integrity.counts) {
+    const interesting = Object.entries(integrity.counts).filter(([, n]) => n > 0).map(([k, n]) => `${k}=${n}`);
+    if (interesting.length) process.stdout.write(`                      ${interesting.join(' ')}\n`);
+  }
+  if (integrity.metrics) {
+    const m = integrity.metrics;
+    process.stdout.write(`                      hashed ${m.objectsHashed} objects, ${m.bytesRead} bytes, ${m.runtimeMs} ms\n`);
+  } else if (integrity.detail) process.stdout.write(`                      ${integrity.detail}\n`);
   process.stdout.write('\n');
   pad('AGGREGATE', overall);
 
-  const report = { schema: SCHEMA, checkedAt: new Date().toISOString(), overall, database: db, evidence: ev };
+  const report = { schema: SCHEMA, checkedAt: new Date().toISOString(), overall, database: db, evidence: ev, integrity };
   if (jsonPath) fs.writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
 
   if (overall !== 'HEALTHY' && process.env.OPERATIONAL_ALERT_WEBHOOK_URL) {
@@ -119,9 +214,24 @@ async function main() {
         body: JSON.stringify({
           schema: SCHEMA,
           event: overall === 'UNKNOWN' ? 'backup.health_indeterminate' : 'backup.health_degraded',
+          failureCategory: integrity.state && integrity.state !== 'INTEGRITY_HOLDS' && integrity.state !== 'NOT_ACTIVATED'
+            ? `EVIDENCE_${integrity.state}` : (db.state !== 'HEALTHY' ? `DATABASE_${db.state}` : `RECOVERY_${ev.state}`),
           severity: 'error',
           occurredAt: new Date().toISOString(),
-          summary: { overall, database: db.state, evidence: ev.state, evidenceCounts: ev.counts },
+          /**
+           * §315. STATES AND COUNTS ONLY. An operator needs to know WHICH failure class fired and how
+           * many objects are in it; nothing here carries an object key, a digest, a download name, a
+           * signed URL or a customer identifier, and the integrity counts are class totals rather than
+           * a list of affected objects.
+           */
+          summary: {
+            overall,
+            database: db.state,
+            evidence: ev.state,
+            evidenceCounts: ev.counts,
+            integrity: integrity.state,
+            integrityCounts: integrity.counts,
+          },
         }),
         signal: AbortSignal.timeout(15000),
       });

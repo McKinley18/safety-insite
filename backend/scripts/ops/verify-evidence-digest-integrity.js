@@ -106,6 +106,35 @@ function connectionEnv(urlText) {
   };
 }
 
+/**
+ * §315 / BR-9. THE GOVERNED INTEGRITY STATES. Deliberately small, and every one of them except the
+ * first is a FAILURE — there is no state that means "mostly fine".
+ *
+ * INTEGRITY_HOLDS       every active object's bytes hash to the digest the database recorded.
+ * DIGEST_MISMATCH       an object's live bytes disagree with its recorded digest.
+ * ACTIVE_OBJECT_MISSING an active object's bytes are absent without an authorized erasure.
+ * RESURRECTED           a retired object's bytes are present again.
+ * HASH_FAILURE          an object could not be read or hashed. Never skipped.
+ * INCOMPLETE_SCAN       enumeration did not return the whole population.
+ * SOURCE_UNAVAILABLE    the bucket could not be reached at all.
+ * INTEGRITY_UNKNOWN     the scan could not establish a state. Never a pass.
+ */
+const INTEGRITY_STATES = [
+  'INTEGRITY_HOLDS', 'DIGEST_MISMATCH', 'ACTIVE_OBJECT_MISSING', 'RESURRECTED',
+  'HASH_FAILURE', 'INCOMPLETE_SCAN', 'SOURCE_UNAVAILABLE', 'INTEGRITY_UNKNOWN',
+];
+
+/**
+ * §315. The population is counted SEPARATELY from the rows that are listed, and the two must agree.
+ * A truncated, partial or malformed enumeration is otherwise indistinguishable from a small healthy
+ * population — "every object I managed to list matched" is exactly the sentence this prevents.
+ */
+const ROW_COUNT_SQL = 'select count(*)::text from storage_objects';
+
+/** At most this many findings are printed and carried in the report, so a mass failure cannot
+ *  produce an unbounded log line or an unbounded JSON document. The COUNTS remain exact. */
+const MAX_REPORTED_FINDINGS = 50;
+
 /** EVERY row. The classification, not the query, decides what a retired object means. */
 const ALL_ROWS_SQL = `
   select id, "objectKey", sha256, "sizeBytes"::text, status,
@@ -113,16 +142,38 @@ const ALL_ROWS_SQL = `
   from storage_objects
   order by "objectKey"`;
 
+/** The population, counted independently of the listing it is used to check. */
+function readRowCount(psql, databaseUrl) {
+  const out = execFileSync(psql, ['-At', '-v', 'ON_ERROR_STOP=1', '-c', ROW_COUNT_SQL], {
+    encoding: 'utf8',
+    env: { ...process.env, ...connectionEnv(databaseUrl) },
+  });
+  const n = Number(String(out).trim());
+  if (!Number.isInteger(n) || n < 0) throw new Error('The population count query did not return an integer.');
+  return n;
+}
+
+/**
+ * Every row, parsed strictly. A line that does not carry the expected field count, or whose id or
+ * objectKey is empty, is a MALFORMED line rather than a row to guess at — it is surfaced so the
+ * caller can fail the scan closed instead of quietly scanning fewer objects than exist.
+ */
 function readRows(psql, databaseUrl) {
   const out = execFileSync(psql, ['-At', '-F', SEP, '-v', 'ON_ERROR_STOP=1', '-c', ALL_ROWS_SQL], {
     encoding: 'utf8',
     maxBuffer: 256 * 1024 * 1024,
     env: { ...process.env, ...connectionEnv(databaseUrl) },
   });
-  return out.split('\n').filter(Boolean).map((line) => {
-    const [id, objectKey, sha256, sizeBytes, status, retired, category, parentType] = line.split(SEP);
-    return { id, objectKey, sha256, sizeBytes, status, retired: retired === 't', category, parentType };
-  });
+  const lines = out.split('\n').filter((l) => l.length > 0);
+  const rows = [];
+  let malformed = 0;
+  for (const line of lines) {
+    const parts = line.split(SEP);
+    if (parts.length !== 8 || !parts[0] || !parts[1]) { malformed += 1; continue; }
+    const [id, objectKey, sha256, sizeBytes, status, retired, category, parentType] = parts;
+    rows.push({ id, objectKey, sha256, sizeBytes, status, retired: retired === 't', category, parentType });
+  }
+  return { rows, malformed, linesSeen: lines.length };
 }
 
 function storageConfig() {
@@ -184,8 +235,29 @@ async function main() {
     credentials: { accessKeyId: storage.accessKeyId, secretAccessKey: storage.secretAccessKey },
   });
 
+  const startedAt = Date.now();
   const psql = resolvePsql();
-  const rows = readRows(psql, databaseUrl);
+
+  /**
+   * §315. SOURCE VISIBILITY IS ESTABLISHED FIRST, and separately.
+   *
+   * If the bucket cannot be reached at all, every object read would fail and the scan would report a
+   * pile of per-object failures — technically correct and operationally useless. Probing once, up
+   * front, turns "I cannot see anything" into its own named state, which is the difference between
+   * "your evidence is broken" and "I could not look".
+   *
+   * A 404 on a key that does not exist is a SUCCESSFUL probe: it proves the credential reached the
+   * bucket and was answered. Only an auth/network/bucket error means the source is unavailable.
+   */
+  const { HeadObjectCommand } = require('@aws-sdk/client-s3');
+  let sourceProbe = 'OK';
+  try {
+    await client.send(new HeadObjectCommand({ Bucket: storage.bucket, Key: `__integrity_probe__/${process.pid}` }));
+  } catch (error) {
+    const status = error && error.$metadata && error.$metadata.httpStatusCode;
+    const notFound = error && (error.name === 'NotFound' || error.name === 'NoSuchKey' || status === 404);
+    if (!notFound) sourceProbe = `${error && error.name ? error.name : 'UnknownError'}`;
+  }
 
   process.stdout.write(`database   ${new URL(databaseUrl).hostname}\n`);
   process.stdout.write(`bucket     ${storage.bucket}\n`);
@@ -193,12 +265,71 @@ async function main() {
 
   const counts = { MATCHED: 0, MISMATCHED: 0, MISSING: 0, ERASURE_AUTHORIZED: 0, RESURRECTED: 0, UNKNOWN: 0 };
   const findings = [];
+  const metrics = { objectsHashed: 0, bytesRead: 0, runtimeMs: 0, populationExpected: null, rowsListed: null, malformedRows: 0 };
 
+  const emit = (report, integrityState, exitCode) => {
+    metrics.runtimeMs = Date.now() - startedAt;
+    const full = {
+      schema: 'safety-insite.evidence-digest-integrity.v1',
+      checkedAt: new Date().toISOString(),
+      mode: 'READ_ONLY_FULL_REHASH',
+      database: new URL(databaseUrl).hostname,
+      bucket: storage.bucket,
+      integrityState,
+      scanComplete: integrityState !== 'INCOMPLETE_SCAN' && integrityState !== 'SOURCE_UNAVAILABLE',
+      metrics,
+      ...report,
+    };
+    if (jsonPath) fs.writeFileSync(jsonPath, `${JSON.stringify(full, null, 2)}\n`);
+    process.stdout.write(`\n  INTEGRITY STATE  ${integrityState}\n`);
+    if (integrityState !== 'INTEGRITY_HOLDS') {
+      process.stdout.write(
+        'Do NOT rewrite a digest to match the bytes that are present. That makes the metadata agree '
+        + 'with an overwrite rather than repairing one. See the evidence-integrity step of the '
+        + 'disaster-recovery runbook.\n',
+      );
+    }
+    process.exit(exitCode);
+  };
+
+  if (sourceProbe !== 'OK') {
+    process.stdout.write(`  SOURCE PROBE FAILED: ${sourceProbe}\n`);
+    process.stdout.write('  An inability to READ is never a report of zero mismatches.\n');
+    return emit({ counts, findings: [], totalRows: null, outcome: 'INVARIANT_NOT_ESTABLISHED', failureDetail: sourceProbe }, 'SOURCE_UNAVAILABLE', 2);
+  }
+
+  // §315. The population is counted before it is listed, so a short listing is detectable.
+  const populationExpected = readRowCount(psql, databaseUrl);
+  const { rows, malformed, linesSeen } = readRows(psql, databaseUrl);
+  metrics.populationExpected = populationExpected;
+  metrics.rowsListed = rows.length;
+  metrics.malformedRows = malformed;
+
+  if (malformed > 0 || rows.length !== populationExpected) {
+    process.stdout.write(`  INCOMPLETE ENUMERATION: expected ${populationExpected} rows, parsed ${rows.length}`
+      + ` (${linesSeen} lines seen, ${malformed} malformed)\n`);
+    process.stdout.write('  "every object I managed to list matched" is not a pass.\n');
+    return emit({ counts, findings: [], totalRows: rows.length, outcome: 'INVARIANT_NOT_ESTABLISHED' }, 'INCOMPLETE_SCAN', 2);
+  }
+
+  /**
+   * §315. SEQUENTIAL AND STREAMING, deliberately.
+   *
+   * One object at a time, and each one hashed as it arrives rather than buffered — so memory is
+   * bounded by the chunk size, not by the object size or the population size, and the number of
+   * concurrent reads against the bucket is exactly one however large the evidence population grows.
+   * This is the governed-concurrency requirement met by not introducing concurrency at all; a beta
+   * population does not need a scheduler, and building one now would be infrastructure nobody asked
+   * for.
+   */
+  let hashFailures = 0;
   for (const row of rows) {
     const live = await liveDigest(client, GetObjectCommand, storage.bucket, row.objectKey);
+    if (live === undefined) hashFailures += 1;
+    if (live && typeof live.bytes === 'number') { metrics.objectsHashed += 1; metrics.bytesRead += live.bytes; }
     const state = classify(row, live);
     counts[state] += 1;
-    if (state !== 'MATCHED' && state !== 'ERASURE_AUTHORIZED') {
+    if (state !== 'MATCHED' && state !== 'ERASURE_AUTHORIZED' && findings.length < MAX_REPORTED_FINDINGS) {
       findings.push({
         id: row.id,
         state,
@@ -221,42 +352,59 @@ async function main() {
   for (const finding of findings) {
     process.stdout.write(`\n  ${finding.state}  ${finding.id}  ${finding.category}/${finding.parentType}  status=${finding.status}\n`);
   }
-
-  // UNKNOWN is counted as a failure, deliberately. See the header.
-  const failing = counts.MISMATCHED + counts.MISSING + counts.UNKNOWN + counts.RESURRECTED;
-  const outcome = failing === 0 ? 'INVARIANT_HOLDS' : 'INVARIANT_VIOLATED';
-
-  if (jsonPath) {
-    fs.writeFileSync(jsonPath, `${JSON.stringify({
-      schema: 'safety-insite.evidence-digest-integrity.v1',
-      checkedAt: new Date().toISOString(),
-      mode: 'READ_ONLY_FULL_REHASH',
-      database: new URL(databaseUrl).hostname,
-      bucket: storage.bucket,
-      totalRows: rows.length,
-      counts,
-      findings,
-      outcome,
-    }, null, 2)}\n`);
+  if (counts.MISMATCHED + counts.MISSING + counts.UNKNOWN + counts.RESURRECTED > findings.length) {
+    process.stdout.write(`\n  (findings list truncated at ${MAX_REPORTED_FINDINGS}; the counts above are exact)\n`);
   }
 
-  process.stdout.write(`\n  OUTCOME  ${outcome}\n`);
-  if (failing > 0) {
-    process.stdout.write(
-      'Do NOT rewrite a digest to match the bytes that are present. That makes the metadata agree '
-      + 'with an overwrite rather than repairing one. See the evidence-integrity step of the '
-      + 'disaster-recovery runbook.\n',
-    );
-  }
-  process.exit(failing === 0 ? 0 : 1);
+  /**
+   * §315. ONE STATE, CHOSEN BY SEVERITY, and every non-holding state exits non-zero. The order
+   * matters: a scan that could not read an object must not be reported as a clean scan that happened
+   * to find a mismatch, so HASH_FAILURE outranks the classified failures.
+   */
+  const integrityState =
+    hashFailures > 0 ? 'HASH_FAILURE'
+      : counts.UNKNOWN > 0 ? 'INTEGRITY_UNKNOWN'
+        : counts.MISMATCHED > 0 ? 'DIGEST_MISMATCH'
+          : counts.RESURRECTED > 0 ? 'RESURRECTED'
+            : counts.MISSING > 0 ? 'ACTIVE_OBJECT_MISSING'
+              : 'INTEGRITY_HOLDS';
+
+  const failing = counts.MISMATCHED + counts.MISSING + counts.UNKNOWN + counts.RESURRECTED + hashFailures;
+  return emit(
+    { counts, findings, totalRows: rows.length, hashFailures, outcome: failing === 0 ? 'INVARIANT_HOLDS' : 'INVARIANT_VIOLATED' },
+    integrityState,
+    failing === 0 ? 0 : 1,
+  );
 }
 
 if (require.main === module) {
   main().catch((error) => {
     process.stderr.write(`\nEVIDENCE DIGEST INTEGRITY CHECK ABORTED: ${error && error.message}\n`);
-    process.stderr.write('An incomplete scan is UNKNOWN, and UNKNOWN is never a pass.\n');
+    process.stderr.write('An inability to complete the scan is never a pass.\n');
+    /**
+     * §315. AN ABORT STILL WRITES A REPORT when one was asked for. A composed caller that finds no
+     * file cannot tell "the check never ran" from "the file was lost", and the safest reading of a
+     * missing file is the one this avoids having to rely on: the state is written down explicitly.
+     */
+    const argv = process.argv.slice(2);
+    const jsonPath = argv.includes('--json') ? argv[argv.indexOf('--json') + 1] : null;
+    if (jsonPath) {
+      try {
+        fs.writeFileSync(jsonPath, `${JSON.stringify({
+          schema: 'safety-insite.evidence-digest-integrity.v1',
+          checkedAt: new Date().toISOString(),
+          mode: 'READ_ONLY_FULL_REHASH',
+          integrityState: 'INTEGRITY_UNKNOWN',
+          scanComplete: false,
+          outcome: 'INVARIANT_NOT_ESTABLISHED',
+          failureDetail: String(error && error.message).slice(0, 300),
+          counts: null,
+          findings: [],
+        }, null, 2)}\n`);
+      } catch { /* the exit code still carries the failure */ }
+    }
     process.exit(2);
   });
 }
 
-module.exports = { ALL_ROWS_SQL, classify };
+module.exports = { ALL_ROWS_SQL, ROW_COUNT_SQL, classify, INTEGRITY_STATES };

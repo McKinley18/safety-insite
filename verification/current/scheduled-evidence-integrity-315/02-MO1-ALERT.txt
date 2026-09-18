@@ -1,0 +1,18 @@
+  dispatcher said: alert dispatch: {"dispatched":true,"status":200}
+PASS  at least one alert was captured  — '3' != '0'
+PASS  the AGGREGATE dispatched its own  — 1
+PASS  integrity state is in it  — DIGEST_MISMATCH
+PASS  failure category is in it  — EVIDENCE_DIGEST_MISMATCH
+PASS  counts are in it  — 1
+PASS  severity is error  — error
+
+  --- redaction of the captured payload ---
+REDACTION: CLEAN — states, counts and a failure category only
+PAYLOAD  : {"schema":"safety-insite.database-backup.v1","event":"database.backup_stale","severity":"error","occurredAt":"2026-09-18T01:22:15.836Z","summary":{"health":"FAILED","verdict":"MISSING","detail":"No freshness record at postgres/latest.json.","ageHours":null,"thresholdHours":36}}
+{"schema":"safety-insite.evidence-recovery.v1","event":"evidence.recovery_scan_incomplete","severity":"error","occurredAt
+
+  --- and a HEALTHY run must dispatch nothing ---
+PASS  integrity holds again  — INTEGRITY_HOLDS
+PASS  no alert on a holding gate  — 0
+
+8 passed, 0 failed

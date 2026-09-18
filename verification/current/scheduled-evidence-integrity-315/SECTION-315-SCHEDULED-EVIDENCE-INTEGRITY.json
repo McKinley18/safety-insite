@@ -1,0 +1,157 @@
+{
+  "artifact": "SECTION-315-SCHEDULED-EVIDENCE-INTEGRITY",
+  "role": "BR-9 closure. Authoritative live-byte digest verification wired into the scheduled recovery path, fail-closed, and proven through the installed launchd runner.",
+  "section": "§315",
+  "startingHead": "6d90b9746221d3a2d6573f107973c548e431faaa",
+  "productionSha": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+  "applicationDeployment": "NONE, and none is required. Only four files changed and all four are under backend/scripts/ops/ — operator tooling. backend/tsconfig.json is include: [\"src/**/*\"] with rootDir ./src, so nothing under backend/scripts/ is compiled into dist. The BUILT ARTIFACT is unchanged; the artifact-only digest (the §295 diagnostic: the same file set minus backend/scripts/) is identical before and after this section.",
+
+  "providerCalls": 0,
+  "expertCalls": 0,
+  "spendUsd": 0,
+
+  "whatWasBuilt": {
+    "principle": "COMPOSITION, NOT A SECOND IMPLEMENTATION. No hashing code was written for §315. The already-proven §314 gate verify-evidence-digest-integrity.js is run as a child process by check-backup-health.js, exactly as the other two halves already were, so it keeps its own exit semantics and cannot silently change the aggregate verdict by throwing.",
+    "gateExtendedWith": [
+      "A governed state vocabulary: INTEGRITY_HOLDS, DIGEST_MISMATCH, ACTIVE_OBJECT_MISSING, RESURRECTED, HASH_FAILURE, INCOMPLETE_SCAN, SOURCE_UNAVAILABLE, INTEGRITY_UNKNOWN. Every state but the first is a failure; there is no state meaning 'mostly fine'.",
+      "A source-visibility probe run BEFORE the scan, so 'I could not look' is its own named state rather than a pile of per-object failures. A 404 on a probe key is a SUCCESSFUL probe — it proves the credential reached the bucket.",
+      "Independent population counting: select count(*) is compared against the rows actually parsed, and strict per-line parsing rejects malformed rows. 'Every object I managed to list matched' is the sentence this prevents.",
+      "Metrics: objectsHashed, bytesRead, runtimeMs, populationExpected, rowsListed, malformedRows.",
+      "Bounded output: at most 50 findings are printed or carried in the report; the COUNTS remain exact.",
+      "An abort still writes a report when one was requested, so a composed caller never has to infer state from a missing file."
+    ],
+    "healthExtendedWith": "A third half. aggregate(db, evidence, integrity) returns HEALTHY only when all three hold. INCOMPLETE_SCAN, SOURCE_UNAVAILABLE and INTEGRITY_UNKNOWN map to UNKNOWN; DIGEST_MISMATCH, ACTIVE_OBJECT_MISSING, RESURRECTED and HASH_FAILURE map to DEGRADED. There is deliberately no branch in which a healthy backup or an available recovery generation offsets an integrity failure.",
+    "handover": "--integrity-report / --integrity-not-before let the scheduled runner hand over the report the gate already produced, so the population is hashed ONCE per run rather than twice. The report is not trusted blindly: it must parse, carry the expected schema, and be newer than the timestamp the caller vouches for. Missing, stale, malformed or foreign is INTEGRITY_UNKNOWN.",
+    "runnerOrdering": "backup -> freshness -> LIVE-BYTE INTEGRITY -> reconciliation -> aggregate.",
+    "orderingJustification": "Integrity runs BEFORE reconciliation because reconciliation CAPTURES live bytes into recovery storage; running it first would faithfully copy corruption into the recovery store as a new generation. On integrity failure the capture is SKIPPED — but the run does NOT exit there, because exiting would skip the aggregate step and the aggregate step is what dispatches MO-1. A monitor that goes quiet exactly when it finds something is the failure mode §312A already had to fix once. The run records the outcome, skips the capture, lets the aggregate alert, then exits non-zero."
+  },
+
+  "authoritativePopulation": {
+    "selection": "EVERY storage_objects row is listed and classified. Nothing is filtered by recovery state, by manifest presence, or by age.",
+    "neverCapturedIncluded": "PROVEN, not asserted: 01-HARD-GATES §3 creates an ACTIVE object with ZERO recovery generations, corrupts its live bytes at equal length, and the scan detects it. Integrity verification is independent of recovery capture.",
+    "nonActiveClassification": "Retired rows (deleted / erasure_pending / deletedAt set) whose bytes are absent are ERASURE_AUTHORIZED — correct, and counted so it is visible. The same row with bytes PRESENT is RESURRECTED, which is a failure. 'uploading' and 'failed' are in flight: absent bytes are expected, but bytes that disagree with the published digest never are."
+  },
+
+  "hardGates": {
+    "suite": "01-HARD-GATES.txt — 69 passed, 0 failed",
+    "equalLengthCorruption": "DIGEST_MISMATCH, gate exit 1, aggregate not HEALTHY, and the two payloads are byte-length identical so a size comparison would have passed. Restored afterwards, back to INTEGRITY_HOLDS.",
+    "neverCaptured": "DIGEST_MISMATCH with zero recovery generations present.",
+    "activeObjectMissing": "ACTIVE_OBJECT_MISSING, 1 MISSING, 0 ERASURE_AUTHORIZED — not misclassified as an authorized erasure.",
+    "erasureAuthorized": "INTEGRITY_HOLDS, 1 ERASURE_AUTHORIZED, 0 MISSING, 0 MISMATCHED. Intentional absence is not damage. A resurrected erased object is still RESURRECTED and still fails.",
+    "sourceUnavailable": "SOURCE_UNAVAILABLE, exit 2, scanComplete false, 0 MATCHED. An inability to read is never a report of zero mismatches.",
+    "incompleteScan": "REAL truncation, not simulated: an object key containing a newline makes psql emit one row across two lines, so the parser sees two malformed lines where one row exists. Result INCOMPLETE_SCAN, exit 2, 0 MATCHED — a partial scan reports NOTHING as verified.",
+    "hashFailure": "One object made unreadable with an over-long key (HTTP 400, explicitly not a 404). Result HASH_FAILURE, hashFailures 1, and the one readable object that DID match was not allowed to carry the verdict.",
+    "unknownNeverPasses": "UNKNOWN maps to INTEGRITY_UNKNOWN and to aggregate UNKNOWN in every path.",
+    "handoverRefusal": "Fresh handover accepted; STALE, MISSING and FOREIGN reports each refused as INTEGRITY_UNKNOWN.",
+    "aggregateFormulaAssertedDirectly": "The rig cannot make the DATABASE half HEALTHY, so an aggregate read from a rig run can never isolate integrity as the sole cause. The formula is asserted as the pure function it is: (HEALTHY, PROTECTED, INTEGRITY_HOLDS) -> HEALTHY, and each failure state with a HEALTHY database and PROTECTED recovery is proven NOT to yield HEALTHY."
+  },
+
+  "mo1": {
+    "suite": "02-MO1-ALERT.txt — 8 passed, 0 failed",
+    "method": "A local capture endpoint stands in for the production webhook. The real channel was NOT used: §315 forbids configuration change, and pointing a test at it would page whoever is on it.",
+    "dispatched": "alert dispatch {\"dispatched\":true,\"status\":200}",
+    "payloadCarries": "overall state, database state, evidence state, integrity state (DIGEST_MISMATCH), integrity counts (MISMATCHED=1), a failureCategory of EVIDENCE_DIGEST_MISMATCH, and severity error.",
+    "payloadDoesNotCarry": "Checked and found absent: any 64-hex digest, object key, download name, signed URL, email address, credential or object identifier.",
+    "silentWhenHealthy": "A holding gate dispatches nothing.",
+    "note": "Each child check also dispatches its own alert when IT fails, which is correct; the aggregate's alert is selected by schema rather than by position."
+  },
+
+  "mutations": {
+    "suite": "03-MUTATIONS.txt — 8 of 8 DETECTED, sources restored byte-identically",
+    "harnessCorrection": "THE FIRST RUN OF THIS HARNESS WAS WRONG AND IS RECORDED AS SUCH. Its verdict line was taken by position (tail -2 | head -1), which selected the '==== RESULT ====' separator, so every mutation matched the not-all-zero test and every mutation reported DETECTED. Reading the actual tallies showed TWO were not detected at all: incomplete-scan and aggregate-propagation. The harness now selects the tally line by SHAPE, and the two genuine coverage gaps were closed by adding a real newline-in-key truncation case and direct assertions on the aggregate formula.",
+    "results": [
+      { "mutation": "full-hash", "removed": "hashing the bytes at all", "gateFailures": 10, "mo1Failures": 1 },
+      { "mutation": "size-only", "removed": "digest comparison, replaced by size comparison", "gateFailures": 6, "mo1Failures": 3 },
+      { "mutation": "never-captured-exclusion", "removed": "coverage of recently created objects", "gateFailures": 22, "mo1Failures": 4 },
+      { "mutation": "unknown-passes", "removed": "UNKNOWN failing", "gateFailures": 1, "mo1Failures": 0 },
+      { "mutation": "incomplete-scan", "removed": "the population cross-check", "gateFailures": 5, "mo1Failures": 0 },
+      { "mutation": "hash-failure", "removed": "hash/read failure failing the gate", "gateFailures": 1, "mo1Failures": 0 },
+      { "mutation": "aggregate-propagation", "removed": "integrity from the aggregate formula", "gateFailures": 4, "mo1Failures": 0 },
+      { "mutation": "mo1-dispatch", "removed": "the alert dispatch", "gateFailures": 0, "mo1Failures": 5 }
+    ]
+  },
+
+  "newDefect": {
+    "id": "§315-NEW-1",
+    "state": "FOUND AND REPAIRED IN §315",
+    "statement": "The INSTALLED launchd runner had been carrying the §312A copy of reconcile-evidence-recovery.js since §312A, while the checkout moved to the §313 copy. The scheduled path was running code the repository had already superseded, and nothing said so.",
+    "consequence": "MEASURED, not inferred. The §313 change taught the reconciler that account_evidence_erased — the action BR-7 account deletion writes — is an AUTHORIZED ERASURE; the stale copy's SQL does not even select that action. Put in front of the same synthetic account-erased object, the STALE runner wrote ZERO erasure tombstones and still reported PROTECTED, silently leaving the recovery copy of account-erased evidence in place with no tombstone to refuse a restore. The CURRENT runner writes the tombstone, classifies the object MISSING_LIVE_ERASURE_AUTHORIZED at steady state, and REFUSES a restore.",
+    "scope": "Production was never affected in a way that mattered: §313A's and §314A's erasure propagation were both performed from the CHECKOUT, so the tombstones exist. What was at risk was any FUTURE account erasure propagated by the scheduled run.",
+    "repair": "The installer now ships verify-evidence-digest-integrity.js AND re-copies every job file, so the drift is resolved by the same act §315 required anyway. install-machine-local-scheduler.sh --verify now reports VERIFY PASS on all seven files.",
+    "recurrencePrevention": "The runner prints its SOURCE-BINDING.json sourceCommit on every run, so the next drift is visible in the log of the run that suffers from it rather than only to whoever remembers to run --verify. The residual — that runner/checkout parity is still only ENFORCED by running --verify from the checkout — is stated rather than hidden; the runner cannot compare itself to the checkout because macOS TCC denies a launchd agent read access to ~/Desktop.",
+    "evidence": "04-INSTALLED-RUNNER-DRIFT.txt — 10 passed, 0 failed"
+  },
+
+  "scheduledExecution": {
+    "directInvocation": "05-DIRECT-RUNNER-PRODUCTION.txt — exit 0, 16 s. Ordering observed: backup -> freshness -> live-byte integrity -> reconciliation -> aggregate. database HEALTHY (FRESH), evidence PROTECTED, integrity INTEGRITY_HOLDS, AGGREGATE HEALTHY.",
+    "launchdInvocation": "06-LAUNCHD-RUNNER-PRODUCTION.txt — launchctl kickstart through the installed agent. runs = 1, last exit code = 0, integrity half ran inside the launchd environment and hashed 5 objects.",
+    "agentLoaded": true,
+    "cadence": "05:00 local, daily — UNCHANGED. StartCalendarInterval Hour 5 Minute 0.",
+    "installerVerify": "VERIFY PASS on all seven job files (11-INSTALLER-VERIFY.txt).",
+    "laptopLimitation": "PRESERVED AND NOT WEAKENED. launchd runs a missed StartCalendarInterval job at the next wake, but cannot run while the machine is SHUT DOWN. No unconditional 24-hour RPO or monitoring SLA is claimed, and §315 did not move to cloud scheduling."
+  },
+
+  "production": {
+    "mode": "READ-ONLY for the integrity scan; the scheduled runner was executed as authorized.",
+    "reDerivedNotAssumed": "§315 stated the expected population as 5 MATCHED / 1 ERASURE_AUTHORIZED. The measured population is 7 rows: 5 MATCHED, 2 ERASURE_AUTHORIZED, 0 MISMATCHED, 0 MISSING, 0 RESURRECTED, 0 UNKNOWN. CLASSIFIED BEFORE PROCEEDING: both erasure-authorized rows carry account_evidence_erased — one is §313A's production erasure proof (2026-09-17) and the other is §314A's synthetic object erased during its own cleanup (2026-09-18). §314A reported that second row at the time. Neither is a defect and the difference is fully accounted for.",
+    "integrityState": "INTEGRITY_HOLDS",
+    "customerObjectsModified": 0,
+    "customerDbRowsModified": 0,
+    "recoveryObjectsModified": 0,
+    "recoveryDetail": "The authorized scheduled runs reported captured 0, erasure tombstones written 0, generations expired 0 — production recovery storage is unchanged.",
+    "configChanges": 0,
+    "credentialChanges": 0
+  },
+
+  "costAndPerformance": {
+    "measuredRuns": 6,
+    "objectsHashedPerRun": 5,
+    "bytesReadPerRun": 166708,
+    "runtimeMeanMs": 2093,
+    "runtimeRangeMs": "1790–2445",
+    "requestsPerRun": "6 (5 GetObject + 1 HeadObject source probe)",
+    "perRequestLatencyMs": 349,
+    "classBOpsPerMonth": 180,
+    "bytesReadPerMonth": 5001240,
+    "recurringCostPerMonth": "$0.000065 at R2 Class B pricing ($0.36 per million); R2 charges no egress. Effectively $0.",
+    "ownerDecisionOnCost": "NOT REQUIRED. Cost is not material at Beta scale and does not become material: even 50,000 objects is about $0.54 per month.",
+    "theRealConstraint": "RUNTIME, which grows linearly because the scan is sequential: roughly 6 min at 1,000 objects, 29 min at 5,000, 70 min at 12,000, 291 min at 50,000. Acceptable for Beta and NOT a reason to build concurrency now, but it is the number to watch. Recorded as a stated residual rather than inflated into a blocker.",
+    "resourceBounds": "Sequential and STREAMING. Each object is hashed as it arrives rather than buffered, so memory is bounded by the chunk size — not by the object size and not by the population size — and exactly one read is in flight at a time however large the population grows. Findings are capped at 50 for bounded logs while the counts stay exact. No distributed infrastructure was built."
+  },
+
+  "regressions": {
+    "br8": "07-BR8-REGRESSION.txt — 61 passed, 0 failed. Exact replay non-mutating, PAYLOAD_MISMATCH preserves first evidence, live digest invariant holds.",
+    "br7": "08-BR7-REGRESSION.txt — 26 passed, 0 failed. Account erasure remains authoritative; no-resurrection holds.",
+    "recovery": "09-RECOVERY-REGRESSION.txt — 24 passed, 0 failed.",
+    "br5DbRecovery": "HEALTHY (FRESH) in both the direct and launchd runs.",
+    "br5EvidenceRecovery": "PROTECTED in both runs.",
+    "br5Aggregate": "HEALTHY in both runs.",
+    "br5ErasurePropagation": "Proven on the rig in 04-INSTALLED-RUNNER-DRIFT.txt, including that a restore of erased evidence is REFUSED by the tombstone.",
+    "canonicalSchema": "PASS — 68 tables, 0 material differences",
+    "entityContract": "PASS",
+    "section274Identity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee — UNCHANGED"
+  },
+
+  "credentials": {
+    "sourceCredential": "insite-evidence-recovery-reader -> insite-production, READ ONLY. UNCHANGED. Neither created nor broadened.",
+    "destinationCredential": "insite-backups-operator -> insite-backups only. UNCHANGED.",
+    "applicationCrossBucketInvariant": "PRESERVED. The application credential still cannot see the backup or recovery buckets, and the integrity gate holds only read access to the source — it has no write path at all."
+  },
+
+  "br9Closure": {
+    "scheduledRunnerAlwaysHashes": true,
+    "allActiveLiveObjectsCovered": true,
+    "neverCapturedCovered": true,
+    "equalLengthCorruptionDetected": true,
+    "missingActiveObjectsFail": true,
+    "unknownFails": true,
+    "incompleteScansFail": true,
+    "hashReadFailuresFail": true,
+    "aggregateBecomesNonHealthy": true,
+    "mo1ReceivesFailure": true,
+    "normalProductionRunPasses": true,
+    "launchdPathPasses": true,
+    "costAcceptable": true,
+    "verdict": "ALL THIRTEEN CLOSURE CONDITIONS MET — BR-9 CLOSES."
+  }
+}

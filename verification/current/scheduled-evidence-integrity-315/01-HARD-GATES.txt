@@ -1,0 +1,97 @@
+payload A sha=d53eda7a637c99cc7fb566d96e9fa109bf15c478410a3f5eb4d4c4e26cd081f6 len=64
+payload B sha=c422e7070cb1cb455b5de9afee0d975e303d0239c72030cd7414ab5c382d3ae8 len=64
+PASS  A and B differ in content  — different
+PASS  A and B are EQUAL byte length  — 64
+
+==================== 1. NORMAL: every active object matches ====================
+PASS  gate exit 0  — 0
+PASS  state INTEGRITY_HOLDS  — INTEGRITY_HOLDS
+PASS  2 MATCHED  — 2
+PASS  health integrity half HOLDS  — INTEGRITY_HOLDS
+
+==================== 2. EQUAL-LENGTH CORRUPTION (the BR-9 case) ====================
+PASS  gate exit is not 0  — '1' != '0'
+PASS  state DIGEST_MISMATCH  — DIGEST_MISMATCH
+PASS  1 MISMATCHED  — 1
+PASS  sizes are equal, so size alone would have passed  — 64
+PASS  health integrity half DIGEST_MISMATCH  — DIGEST_MISMATCH
+PASS  AGGREGATE is not HEALTHY  — 'FAILED' != 'HEALTHY'
+PASS  health exit is not 0  — '1' != '0'
+PASS  restored: back to INTEGRITY_HOLDS  — INTEGRITY_HOLDS
+
+==================== 3. NEVER-CAPTURED OBJECT (no recovery generation) ====================
+PASS  recovery bucket is empty for it  — 0
+PASS  never-captured corruption DETECTED  — DIGEST_MISMATCH
+PASS  gate exit is not 0  — '1' != '0'
+PASS  AGGREGATE is not HEALTHY  — 'FAILED' != 'HEALTHY'
+
+==================== 4. ACTIVE OBJECT MISSING (no authorized erasure) ====================
+PASS  state ACTIVE_OBJECT_MISSING  — ACTIVE_OBJECT_MISSING
+PASS  1 MISSING  — 1
+PASS  0 ERASURE_AUTHORIZED — not misclassified as an authorized erasure  — 0
+PASS  gate exit is not 0  — '1' != '0'
+PASS  AGGREGATE is not HEALTHY  — 'FAILED' != 'HEALTHY'
+
+==================== 5. ERASURE-AUTHORIZED ABSENCE IS NOT CORRUPTION ====================
+PASS  gate exit 0  — 0
+PASS  state INTEGRITY_HOLDS  — INTEGRITY_HOLDS
+PASS  1 ERASURE_AUTHORIZED  — 1
+PASS  0 MISSING — intentional absence is not damage  — 0
+PASS  0 MISMATCHED  — 0
+  — and a RESURRECTED erased object is still a failure:
+PASS  resurrection detected  — RESURRECTED
+PASS  gate exit is not 0  — '1' != '0'
+
+==================== 6. SOURCE UNAVAILABLE ====================
+PASS  state SOURCE_UNAVAILABLE  — SOURCE_UNAVAILABLE
+PASS  exit 2 (indeterminate)  — 2
+PASS  scanComplete is false  — False
+PASS  0 MATCHED — inability to read is NEVER zero mismatches  — 0
+PASS  health integrity half SOURCE_UNAVAILABLE  — SOURCE_UNAVAILABLE
+PASS  AGGREGATE is not HEALTHY  — 'FAILED' != 'HEALTHY'
+PASS  aggregate over the integrity half alone would be UNKNOWN  — UNKNOWN
+PASS  health exit is not 0  — '1' != '0'
+
+==================== 7. HASH / READ FAILURE ON ONE OBJECT ====================
+  state: HASH_FAILURE  exit: 1
+PASS  gate exit is not 0  — '1' != '0'
+PASS  state is not INTEGRITY_HOLDS  — 'HASH_FAILURE' != 'INTEGRITY_HOLDS'
+PASS  state HASH_FAILURE  — HASH_FAILURE
+PASS  the failure was counted, not skipped  — 1
+PASS  the one readable object still matched, and did NOT carry the verdict  — 1
+PASS  AGGREGATE is not HEALTHY  — 'FAILED' != 'HEALTHY'
+
+==================== 8. INCOMPLETE / PARTIAL ENUMERATION ====================
+PASS  baseline holds with 2 rows  — INTEGRITY_HOLDS
+PASS  baseline counted 2 of 2  — 2/2
+  state: INCOMPLETE_SCAN  exit: 2
+PASS  state INCOMPLETE_SCAN  — INCOMPLETE_SCAN
+PASS  exit 2 (indeterminate)  — 2
+PASS  scanComplete is false  — False
+PASS  0 MATCHED — a partial scan reports NOTHING as verified  — 0
+PASS  health integrity half INCOMPLETE_SCAN  — INCOMPLETE_SCAN
+PASS  AGGREGATE is not HEALTHY  — 'FAILED' != 'HEALTHY'
+
+==================== 8b. AGGREGATE PROPAGATION, asserted directly ====================
+PASS  all three healthy -> HEALTHY  — HEALTHY
+PASS  DIGEST_MISMATCH cannot be offset  — 'DEGRADED' != 'HEALTHY'
+PASS  ACTIVE_OBJECT_MISSING cannot be offset  — 'DEGRADED' != 'HEALTHY'
+PASS  RESURRECTED cannot be offset  — 'DEGRADED' != 'HEALTHY'
+PASS  HASH_FAILURE cannot be offset  — 'DEGRADED' != 'HEALTHY'
+PASS  INCOMPLETE_SCAN -> UNKNOWN  — UNKNOWN
+PASS  SOURCE_UNAVAILABLE -> UNKNOWN  — UNKNOWN
+PASS  INTEGRITY_UNKNOWN -> UNKNOWN  — UNKNOWN
+PASS  a failed database still fails even with integrity holding  — FAILED
+PASS  unprotected recovery still degrades  — DEGRADED
+
+==================== 9. STALE / MISSING HANDED-OVER REPORT ====================
+PASS  the handed-over report holds  — INTEGRITY_HOLDS
+PASS  a fresh handover is accepted  — INTEGRITY_HOLDS
+PASS  a STALE handover is refused  — INTEGRITY_UNKNOWN
+PASS  and the aggregate is not HEALTHY  — 'FAILED' != 'HEALTHY'
+PASS  aggregate over the integrity half alone would be UNKNOWN  — UNKNOWN
+PASS  a MISSING handover is refused  — INTEGRITY_UNKNOWN
+PASS  a FOREIGN report is refused  — INTEGRITY_UNKNOWN
+
+==================== RESULT ====================
+69 passed, 0 failed

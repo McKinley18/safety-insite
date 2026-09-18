@@ -1,0 +1,11 @@
+§311A scheduler verification
+  match   run-scheduled-backup.sh
+  match   backup-production-database.js
+  match   check-backup-freshness.js
+  match   verify-object-consistency.js
+  match   verify-evidence-digest-integrity.js
+  match   reconcile-evidence-recovery.js
+  match   check-backup-health.js
+
+launchd: agent is loaded
+VERIFY PASS

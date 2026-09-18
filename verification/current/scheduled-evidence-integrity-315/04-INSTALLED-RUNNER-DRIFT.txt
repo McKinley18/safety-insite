@@ -1,0 +1,31 @@
+  stale copy  (what launchd was running): 6bdc15da590ff8f9…
+  current     (what the checkout has)   : f360c4fdcd06559f…
+
+==================== THE STALE RUNNER (pre-§313, what launchd was executing) ====================
+  outcome: PROTECTED  exit=0
+RECOVERY_ONLY_EXPECTED            1
+erasure tombstones written        0
+  erasure tombstones in recovery storage: 0
+PASS  the STALE runner wrote NO erasure tombstone  — 0
+PASS  and it still reported PROTECTED — silently  — PROTECTED
+
+==================== THE CURRENT RUNNER (what §315 installed) ====================
+  outcome: PROTECTED  exit=0
+erasure tombstones written        1
+  erasure tombstones in recovery storage: 1
+PASS  the CURRENT runner wrote the erasure tombstone  — 1
+  second pass (steady state): PROTECTED {'MISSING_LIVE_ERASURE_AUTHORIZED': 1}
+PASS  steady state classifies it MISSING_LIVE_ERASURE_AUTHORIZED  — 1
+PASS  and the run is PROTECTED  — PROTECTED
+
+==================== AND THE TOMBSTONE REFUSES A RESTORE ====================
+  REFUSED. cccccccc-cccc-cccc-cccc-cccccccccccc carries an authorized-erasure tombstone written 2026-09-18T01:31:02Z.
+PASS  restore of erased evidence is REFUSED  — 1
+PASS  and it exits non-zero  — '1' != '0'
+
+==================== THE INSTALLED RUNNER IS NOW THE CURRENT ONE ====================
+PASS  installed reconcile matches the checkout  — f360c4fdcd06559f23b080024e914268eea722f80337955284df57cdaf0a5621
+PASS  installed integrity gate matches the checkout  — be0793668cb9a76cfe96b10ad85327801a7f3fcd4d85de351b52aae6cefc557d
+PASS  installed health check matches the checkout  — da73ff0a3abc5fee16022fa0e5a0c5831cd670e26aca718379d33012945106ab
+
+10 passed, 0 failed

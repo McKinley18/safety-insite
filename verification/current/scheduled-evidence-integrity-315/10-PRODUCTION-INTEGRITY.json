@@ -1,0 +1,29 @@
+{
+  "schema": "safety-insite.evidence-digest-integrity.v1",
+  "checkedAt": "2026-09-18T01:16:28.351Z",
+  "mode": "READ_ONLY_FULL_REHASH",
+  "database": "REDACTED \u2014 production PostgreSQL (Neon); the bucket is named, the host is not.",
+  "bucket": "insite-production",
+  "integrityState": "INTEGRITY_HOLDS",
+  "scanComplete": true,
+  "metrics": {
+    "objectsHashed": 5,
+    "bytesRead": 166708,
+    "runtimeMs": 2256,
+    "populationExpected": 7,
+    "rowsListed": 7,
+    "malformedRows": 0
+  },
+  "counts": {
+    "MATCHED": 5,
+    "MISMATCHED": 0,
+    "MISSING": 0,
+    "ERASURE_AUTHORIZED": 2,
+    "RESURRECTED": 0,
+    "UNKNOWN": 0
+  },
+  "findings": [],
+  "totalRows": 7,
+  "hashFailures": 0,
+  "outcome": "INVARIANT_HOLDS"
+}

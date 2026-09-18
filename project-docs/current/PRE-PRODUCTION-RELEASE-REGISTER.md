@@ -6,6 +6,45 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§315 — `BR-9` IS CLOSED. The nightly job now hashes the bytes.** Authoritative live-byte SHA-256
+verification is part of the **scheduled** path, and `AGGREGATE HEALTHY` is now impossible while any
+active evidence object is mismatched, missing, unknown, resurrected, unreadable, or incompletely
+scanned. It was built by **composition, not a second implementation** — no hashing code was written;
+the proven §314 gate runs as a child process of `check-backup-health.js`, exactly as the other two
+halves already did.
+
+**The ordering is justified rather than assumed.** Integrity runs **before** reconciliation, because
+reconciliation *captures* live bytes into recovery storage — verifying afterwards would faithfully copy
+corruption into the recovery store as a new generation. On failure the capture is skipped, but the run
+does **not** exit there: exiting would skip the step that dispatches `MO-1`, and a monitor that goes
+quiet exactly when it finds something is the failure mode §312A already had to fix once.
+
+**69 hard gates, 8 `MO-1` assertions, 8 of 8 mutations detected**, sources restored byte-identically.
+The gates are real rather than nominal: equal-length corruption, a **never-captured** object with zero
+recovery generations, a missing active object, an authorized erasure that must *not* read as damage, an
+unreachable source, a genuine one-object read failure, and a **real** truncated enumeration induced by a
+newline inside an object key. Proven through the **actual installed runner**, both directly and through
+**launchd** (`runs = 1`, `last exit code = 0`), at the **unchanged 05:00 daily cadence**.
+
+**§315 also found and repaired a live defect.** The installed launchd runner had been executing the
+**pre-§313 reconciler since §312A** — a copy whose SQL does not even select `account_evidence_erased`,
+the action `BR-7` account deletion writes. Measured against the same synthetic account-erased object,
+the stale copy wrote **zero** erasure tombstones and still reported `PROTECTED`, silently leaving the
+recovery copy of erased evidence in place with nothing to refuse a restore; the current copy writes the
+tombstone and **refuses** the restore. Production was never affected — §313A and §314A both propagated
+their erasures from the checkout — but every *future* scheduled erasure was. The runner now prints its
+source binding on every run, so the next drift shows up in the log of the run that suffers from it.
+
+**Production is unchanged and clean:** 5 `MATCHED`, 2 `ERASURE_AUTHORIZED`, 0 `MISMATCHED`, 0 `MISSING`,
+0 `UNKNOWN`, `INTEGRITY_HOLDS`. 0 customer objects, rows, recovery objects or configuration touched.
+**No application deployment**, and none required — only four operator-tooling files under
+`backend/scripts/ops/` changed, and `backend/tsconfig.json` compiles only `src/**/*`, so the built
+artifact is byte-identical. **Cost is not the constraint**: 180 Class B operations a month, well under a
+cent, and R2 charges no egress. The honest limit is **runtime** — the scan is deliberately sequential
+and streaming, so it grows linearly at ~349 ms/object: ~6 min at 1,000 objects, ~29 min at 5,000, ~70
+min at 12,000. Recorded as the number to watch, not inflated into a blocker. **Threshold C is unchanged
+at 14.**
+
 **§314A — `BR-8` IS CLOSED IN PRODUCTION.** `ed37e34b` is live, chosen only after establishing it is
 **code-identical** to the code-bearing repair `4dab23d8`: just two register/documentation paths differ,
 the `backend/src` tree is object-for-object identical (`d8808c8c…` — and that is the *actual* compiled
@@ -346,8 +385,8 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | Status | Count |
 |---|---|
-| CLOSED | 75 |
-| OPEN | 37 |
+| CLOSED | 76 |
+| OPEN | 36 |
 | BLOCKED (waiting on a decision or another item) | 3 |
 | DEFERRED (deliberately not v1) | 9 |
 | ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED | 1 |
@@ -358,7 +397,7 @@ The `BLOCKED` and `DEFERRED` rows had drifted (they read 4 and 2 against actual 
 the two engineering-complete statuses were missing entirely; §314 reconciled the table to the derived
 values rather than restating either side, exactly as §312A did for the threshold block.*
 
-**§314 closed `BR-8` and added `BR-9`** (P3, OPEN, blocks nothing — the §312A scheduled recovery
+**§315 closed `BR-9`** — the scheduled job now hashes live bytes and fails closed. **§314 closed `BR-8` and added `BR-9`** (P3, OPEN, blocks nothing — the §312A scheduled recovery
 monitor cannot see equal-length live-byte divergence). **Threshold C is unchanged at 14:** `BR-8` was
 never one of its blockers and `BR-9` is not one either. **§313A closed `BR-7`.** §313 added `IT-4` (P3, stale instrument). Of the fourteen Threshold-C
 blockers that remain, **three are still engineering-owned** — `AC-1` and `CPF-3` (both P2, OPEN) and

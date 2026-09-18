@@ -1,0 +1,45 @@
+  rig reset — bucket emptied (2 removed)
+  recovery bucket emptied (0)
+  object 1649869e-210f-418b-a477-1033ab3e7579
+
+==================== 1. CAPTURE A GENERATION ====================
+PASS  first pass sees the object as LIVE_UNBACKED  — 1
+PASS  steady-state run is PROTECTED  — PROTECTED
+PASS  exit code 0  — 0
+  LIVE_MATCHED=1  DIGEST_MISMATCH=0  LIVE_UNBACKED=0
+  recovery generations after first capture: 3
+
+==================== 2. A COMPLETED REPLAY, THEN RE-RECONCILE ====================
+PASS  replay returned the same object  — 1649869e-210f-418b-a477-1033ab3e7579
+  recovery generations after the replay: 3
+PASS  run is still PROTECTED  — PROTECTED
+PASS  exit code 0  — 0
+PASS  NO new recovery generation  — 3
+PASS  DIGEST_MISMATCH count is 0  — 0
+PASS  LIVE_UNBACKED count is 0  — 0
+PASS  RECOVERY_ONLY_SUSPECT count is 0  — 0
+PASS  UNKNOWN count is 0  — 0
+PASS  object is still LIVE_MATCHED  — 1
+
+==================== 3. A REFUSED DIVERGENT REPLAY MUST ALSO LEAVE RECOVERY ALONE ==========
+PASS  divergent replay refused  — 409
+PASS  still PROTECTED  — PROTECTED
+PASS  exit code 0  — 0
+PASS  still NO new generation  — 3
+PASS  DIGEST_MISMATCH still 0  — 0
+PASS  live bytes are still A  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+
+==================== 4. DETECTION MATRIX FOR EQUAL-LENGTH DIVERGENCE ====================
+  live bytes replaced out-of-band, SAME LENGTH, different digest
+PASS  the divergence is real (live bytes are now B)  — 35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe
+PASS  the database still records A  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+  verify-object-consistency (presence+size)  exit=0
+  verify-object-consistency --deep           exit=1
+  reconcile-evidence-recovery (the SCHEDULED monitor) exit=0 outcome=PROTECTED
+  §314 active-object invariant gate          exit=1
+PASS  --deep object consistency DETECTS it  — 1
+PASS  §314 invariant gate DETECTS it  — 1
+PASS  presence+size consistency MISSES it (measured)  — 0
+PASS  the scheduled recovery monitor MISSES it (measured)  — 0
+==================== RESULT ====================
+24 passed, 0 failed

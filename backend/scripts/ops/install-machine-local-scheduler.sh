@@ -44,12 +44,18 @@ LABEL="com.safety-insite.backup"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 NODE_BIN="${SAFETY_INSITE_NODE_BIN:-$HOME/.nvm/versions/node/v24.14.1/bin}"
 
-# The scheduled path needs these four; the other ops scripts are operator-run from the checkout.
+# The scheduled path needs these; the other ops scripts are operator-run from the checkout.
+#
+# §315 ADDED verify-evidence-digest-integrity.js, and the reason it MUST be here is the defect §315
+# found: the installed runner had been carrying a pre-§313 reconcile-evidence-recovery.js since §312A,
+# so the SCHEDULED path was running code the checkout had already moved past. `--verify` reports that
+# drift, but only when somebody runs it. Anything the scheduled path executes belongs in this list.
 JOB_FILES=(
   run-scheduled-backup.sh
   backup-production-database.js
   check-backup-freshness.js
   verify-object-consistency.js
+  verify-evidence-digest-integrity.js
   reconcile-evidence-recovery.js
   check-backup-health.js
 )

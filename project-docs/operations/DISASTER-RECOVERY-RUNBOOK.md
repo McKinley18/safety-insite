@@ -270,22 +270,74 @@ intent; treating it as erasure would delete recovery copies during ordinary repo
 cd backend && node scripts/ops/check-backup-health.js
 ```
 
-**`HEALTHY` requires BOTH halves.** This composition exists because between §311A and §312A the
-scheduled run exited 0 every night while customer evidence was entirely unprotected — the database
-backup had succeeded, so the job was "green". A light that means *half* your recovery posture is fine
-is worse than no light.
+**`HEALTHY` requires ALL THREE halves.** This composition exists because it has twice been possible
+for the nightly job to exit 0 while something real was wrong. Between §311A and §312A it exited 0
+every night while customer evidence was entirely unprotected — the database backup had succeeded, so
+the job was "green". And until §315 it exited 0 while the *live bytes* of an evidence object could
+silently disagree with the digest the database recorded, because nothing in the scheduled path
+re-hashed them. A light that means *part* of your recovery posture is fine is worse than no light.
 
-| database | evidence | aggregate | exit |
-|---|---|---|---|
-| HEALTHY | PROTECTED | **HEALTHY** | 0 |
-| HEALTHY | NOT_ACTIVATED | DEGRADED | 1 |
-| HEALTHY | ATTENTION_REQUIRED | DEGRADED | 1 |
-| STALE | PROTECTED | DEGRADED | 1 |
-| FAILED | anything | FAILED | 1 |
-| UNKNOWN | — or — | UNKNOWN | 2 |
+| database | evidence | integrity | aggregate | exit |
+|---|---|---|---|---|
+| HEALTHY | PROTECTED | INTEGRITY_HOLDS | **HEALTHY** | 0 |
+| HEALTHY | PROTECTED | DIGEST_MISMATCH | DEGRADED | 1 |
+| HEALTHY | PROTECTED | ACTIVE_OBJECT_MISSING | DEGRADED | 1 |
+| HEALTHY | PROTECTED | RESURRECTED | DEGRADED | 1 |
+| HEALTHY | PROTECTED | HASH_FAILURE | DEGRADED | 1 |
+| HEALTHY | PROTECTED | INCOMPLETE_SCAN | UNKNOWN | 2 |
+| HEALTHY | PROTECTED | SOURCE_UNAVAILABLE | UNKNOWN | 2 |
+| HEALTHY | PROTECTED | INTEGRITY_UNKNOWN | UNKNOWN | 2 |
+| HEALTHY | NOT_ACTIVATED | — | DEGRADED | 1 |
+| HEALTHY | ATTENTION_REQUIRED | — | DEGRADED | 1 |
+| STALE | PROTECTED | — | DEGRADED | 1 |
+| FAILED | anything | anything | FAILED | 1 |
 
 `NOT_ACTIVATED` is **not** a pass. `UNKNOWN` never becomes a pass, and `FAILED` outranks `UNKNOWN`
-because a known failure is more actionable than an indeterminate one.
+because a known failure is more actionable than an indeterminate one. **There is no branch in which a
+healthy backup or an available recovery generation converts an integrity failure into success** —
+recovery being available is why the damage is survivable, not a reason it did not happen.
+
+## 7A-ter. Live-byte evidence integrity (§315 / BR-9)
+
+```
+cd backend && node scripts/ops/verify-evidence-digest-integrity.js [--json <path>]
+```
+
+This is the authoritative answer to *do the bytes in the bucket still hash to what the database says*.
+It reads and SHA-256 hashes **every** live authoritative object, and **there is no shallow mode** —
+BR-8's own case is two payloads of equal length and different content, so any check that compares
+sizes reports it as healthy. That is precisely why the §312 reconciler, which compares listed sizes
+and recovery-generation digests, cannot see it, and why this exists alongside rather than inside it.
+
+| state | meaning | exit |
+|---|---|---|
+| `INTEGRITY_HOLDS` | every active object hashes to its recorded digest | 0 |
+| `DIGEST_MISMATCH` | live bytes disagree with the recorded digest | 1 |
+| `ACTIVE_OBJECT_MISSING` | an active object's bytes are absent, with no authorized erasure | 1 |
+| `RESURRECTED` | a retired object's bytes are present again | 1 |
+| `HASH_FAILURE` | an object could not be read or hashed — never skipped | 1 |
+| `INCOMPLETE_SCAN` | enumeration did not account for the whole population | 2 |
+| `SOURCE_UNAVAILABLE` | the bucket could not be reached at all | 2 |
+| `INTEGRITY_UNKNOWN` | the state could not be established | 2 |
+
+**It never repairs anything.** If it reports `DIGEST_MISMATCH`, do **not** rewrite `sha256` to match
+the bytes that are present: that makes the metadata agree with an overwrite rather than repairing one,
+and destroys the only record of what the object was supposed to be. Restore the object from recovery
+(§7B) or escalate.
+
+**Ordering in the scheduled run is deliberate.** Integrity runs **before** reconciliation, because
+reconciliation *captures* live bytes into recovery storage — running it first would faithfully copy
+corruption into the recovery store as a new generation. If integrity does not hold, the capture is
+skipped, the aggregate still runs so the alert is dispatched, and the run then exits non-zero.
+
+**Cost is not the constraint; runtime is.** Measured against production (5 objects, 166,708 bytes):
+~2.0 s per run, ~349 ms per request, 180 Class B operations per month, well under one cent per month
+at R2 pricing — and R2 charges no egress. The scan is deliberately **sequential and streaming**, so
+memory is bounded by the chunk size rather than the object or population size and exactly one read is
+in flight at a time. The consequence is that runtime grows linearly: roughly **6 min at 1,000 objects,
+29 min at 5,000, 70 min at 12,000**. That is acceptable for Beta and is *not* a reason to build
+concurrency now, but it is the number to watch — past a few thousand objects the daily scan wants
+governed concurrency or a rotating partial schedule, and that is a decision, not a refactor.
 
 ## 7B. Restoring one evidence object
 

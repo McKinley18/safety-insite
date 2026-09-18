@@ -76,6 +76,16 @@ say() { echo "[$(stamp)] $*"; }
 
 say "scheduled backup starting; layout=$LAYOUT jobs=$JOB_DIR"
 
+# §315. SAY WHICH CODE THIS IS. The installed runner is a COPY of the checkout, and §315 found it had
+# been a stale copy since §312A without anything saying so in the log. Printing the binding on every
+# run means the next drift is visible in the run that suffers from it, rather than only to whoever
+# remembers to run `install-machine-local-scheduler.sh --verify`.
+if [ -r "$JOB_DIR/SOURCE-BINDING.json" ]; then
+  say "runner source binding: $(sed -n 's/.*"sourceCommit"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$JOB_DIR/SOURCE-BINDING.json" | head -1)"
+else
+  say "runner source binding: UNKNOWN (no SOURCE-BINDING.json beside the jobs)"
+fi
+
 if [ ! -r "$SECRET_FILE" ]; then
   say "FATAL: secret file not readable at $SECRET_FILE"
   say "Create it from backend/scripts/ops/backup.env.example and chmod 600 it."
@@ -124,6 +134,36 @@ if ! BACKUP_MAX_AGE_HOURS=1 node "$JOB_DIR/check-backup-freshness.js"; then
   exit 1
 fi
 
+# =====================================================================================================
+# §315 / BR-9 — LIVE-BYTE INTEGRITY, AND WHY IT RUNS BEFORE THE CAPTURE RATHER THAN AFTER IT.
+#
+# Reconciliation below CAPTURES live bytes into recovery storage. If those bytes are corrupt, running
+# it first would faithfully copy the corruption into the recovery store as a new generation — spending
+# operations to preserve the wrong thing, and doing it in the one run that was supposed to notice.
+# Verifying first and skipping the capture on failure means a bad day cannot propagate.
+#
+# THE RUN DOES NOT EXIT HERE, and that is deliberate. Exiting on integrity failure would skip the
+# aggregate step, and the aggregate step is what dispatches MO-1. A monitor that goes quiet exactly
+# when it finds something is the failure mode §312A already had to fix once. The outcome is recorded,
+# the capture is skipped, the aggregate reports it, the alert goes out, and THEN the run exits non-zero.
+say "--- live-byte evidence integrity ---"
+INTEGRITY_OK=skipped
+INTEGRITY_REPORT="$LOG_DIR/last-integrity.json"
+# The aggregate will refuse a report older than this, so a stale file from a previous run cannot be
+# mistaken for this run's result.
+INTEGRITY_NOT_BEFORE="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+rm -f "$INTEGRITY_REPORT"
+if [ -n "${EVIDENCE_SOURCE_S3_ACCESS_KEY_ID:-}" ]; then
+  if node "$JOB_DIR/verify-evidence-digest-integrity.js" --json "$INTEGRITY_REPORT"; then
+    INTEGRITY_OK=yes
+  else
+    INTEGRITY_OK=no
+    say "LIVE-BYTE INTEGRITY DID NOT HOLD (exit $?). Continuing to the aggregate so MO-1 is dispatched."
+  fi
+else
+  say "SKIPPED: EVIDENCE_SOURCE_S3_* is not configured, so live bytes are NOT being verified."
+fi
+
 say "--- evidence recovery reconciliation ---"
 # §312. DELIBERATELY CONDITIONAL, and it fails loudly rather than skipping quietly once configured.
 #
@@ -132,10 +172,15 @@ say "--- evidence recovery reconciliation ---"
 # credential and this job's destination credential. Until the product owner provisions it, the
 # database backup above is complete and correct and the evidence half simply has not been activated —
 # which is a different thing from having failed, and is reported as such.
+RECONCILE_FAILED=no
 if [ -n "${EVIDENCE_SOURCE_S3_ACCESS_KEY_ID:-}" ]; then
-  if ! node "$JOB_DIR/reconcile-evidence-recovery.js" --apply; then
+  if [ "$INTEGRITY_OK" = "no" ]; then
+    # §315. Do not capture bytes that have just been shown not to match their recorded digest.
+    say "SKIPPING CAPTURE: integrity did not hold, so live bytes are not copied into recovery storage."
+    RECONCILE_FAILED=yes
+  elif ! node "$JOB_DIR/reconcile-evidence-recovery.js" --apply; then
     say "EVIDENCE RECONCILIATION REPORTED A PROBLEM (exit $?). The alert webhook has been notified."
-    exit 1
+    RECONCILE_FAILED=yes
   fi
 else
   say "SKIPPED: EVIDENCE_SOURCE_S3_* is not configured, so customer evidence is NOT being protected."
@@ -143,10 +188,25 @@ else
 fi
 
 say "--- aggregate backup health ---"
-# §312A. The run is only HEALTHY when BOTH halves are. A green database backup beside unprotected
-# customer evidence used to exit 0, which is exactly the false assurance this composition removes.
-if ! node "$JOB_DIR/check-backup-health.js"; then
+# §312A, extended by §315. The run is only HEALTHY when ALL THREE halves are: a fresh database backup,
+# protected evidence, AND live bytes that hash to the digests the database recorded. A green database
+# backup beside unprotected evidence used to exit 0; so did a green backup beside evidence whose bytes
+# had silently changed. Both false assurances are removed by this composition.
+#
+# The integrity report produced above is handed over rather than recomputed, so the population is
+# hashed once per run. The aggregate refuses it if it is missing, stale, malformed or foreign.
+HEALTH_ARGS=()
+if [ "$INTEGRITY_OK" != "skipped" ] && [ -f "$INTEGRITY_REPORT" ]; then
+  HEALTH_ARGS=(--integrity-report "$INTEGRITY_REPORT" --integrity-not-before "$INTEGRITY_NOT_BEFORE")
+fi
+if ! node "$JOB_DIR/check-backup-health.js" "${HEALTH_ARGS[@]+"${HEALTH_ARGS[@]}"}"; then
   say "AGGREGATE HEALTH IS NOT HEALTHY (exit $?). The alert webhook has been notified."
+  exit 1
+fi
+
+# The aggregate is the authority on health, but a reconciliation that failed must still fail the RUN.
+if [ "$RECONCILE_FAILED" = "yes" ]; then
+  say "RUN FAILED: evidence reconciliation did not complete."
   exit 1
 fi
 

@@ -1,0 +1,121 @@
+pristine gate   be0793668cb9a76cfe96b10ad85327801a7f3fcd4d85de351b52aae6cefc557d
+pristine health da73ff0a3abc5fee16022fa0e5a0c5831cd670e26aca718379d33012945106ab
+
+==============================================================================
+MUTATION: full-hash
+==============================================================================
+mutation applied: full-hash  (scripts/ops/verify-evidence-digest-integrity.js)
+  gates suite: 59 passed, 10 failed
+  MO-1  suite: 7 passed, 1 failed
+    FAIL  gate exit 0  — expected '0', got '1'
+    FAIL  state INTEGRITY_HOLDS  — expected 'INTEGRITY_HOLDS', got 'DIGEST_MISMATCH'
+    FAIL  2 MATCHED  — expected '2', got '0'
+    FAIL  health integrity half HOLDS  — expected 'INTEGRITY_HOLDS', got 'DIGEST_MISMATCH'
+    FAIL  1 MISMATCHED  — expected '1', got '2'
+    FAIL  restored: back to INTEGRITY_HOLDS  — expected 'INTEGRITY_HOLDS', got 'DIGEST_MISMATCH'
+    FAIL  integrity holds again  — expected 'INTEGRITY_HOLDS', got 'DIGEST_MISMATCH'
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+MUTATION: size-only
+==============================================================================
+mutation applied: size-only  (scripts/ops/verify-evidence-digest-integrity.js)
+  gates suite: 63 passed, 6 failed
+  MO-1  suite: 5 passed, 3 failed
+    FAIL  gate exit is not 0  — expected NOT '0'
+    FAIL  state DIGEST_MISMATCH  — expected 'DIGEST_MISMATCH', got 'INTEGRITY_HOLDS'
+    FAIL  1 MISMATCHED  — expected '1', got '0'
+    FAIL  health integrity half DIGEST_MISMATCH  — expected 'DIGEST_MISMATCH', got 'INTEGRITY_HOLDS'
+    FAIL  never-captured corruption DETECTED  — expected 'DIGEST_MISMATCH', got 'INTEGRITY_HOLDS'
+    FAIL  gate exit is not 0  — expected NOT '0'
+    FAIL  integrity state is in it  — expected 'DIGEST_MISMATCH', got 'INTEGRITY_HOLDS'
+    FAIL  failure category is in it  — expected 'EVIDENCE_DIGEST_MISMATCH', got 'DATABASE_FAILED'
+    FAIL  counts are in it  — expected '1', got '0'
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+MUTATION: never-captured-exclusion
+==============================================================================
+mutation applied: never-captured-exclusion  (scripts/ops/verify-evidence-digest-integrity.js)
+  gates suite: 47 passed, 22 failed
+  MO-1  suite: 4 passed, 4 failed
+    FAIL  gate exit 0  — expected '0', got '2'
+    FAIL  state INTEGRITY_HOLDS  — expected 'INTEGRITY_HOLDS', got 'INCOMPLETE_SCAN'
+    FAIL  2 MATCHED  — expected '2', got '0'
+    FAIL  health integrity half HOLDS  — expected 'INTEGRITY_HOLDS', got 'INCOMPLETE_SCAN'
+    FAIL  state DIGEST_MISMATCH  — expected 'DIGEST_MISMATCH', got 'INCOMPLETE_SCAN'
+    FAIL  1 MISMATCHED  — expected '1', got '0'
+    FAIL  integrity state is in it  — expected 'DIGEST_MISMATCH', got 'INCOMPLETE_SCAN'
+    FAIL  failure category is in it  — expected 'EVIDENCE_DIGEST_MISMATCH', got 'EVIDENCE_INCOMPLETE_SCAN'
+    FAIL  counts are in it  — expected '1', got '0'
+    FAIL  integrity holds again  — expected 'INTEGRITY_HOLDS', got 'INCOMPLETE_SCAN'
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+MUTATION: unknown-passes
+==============================================================================
+mutation applied: unknown-passes  (scripts/ops/verify-evidence-digest-integrity.js)
+  gates suite: 68 passed, 1 failed
+  MO-1  suite: 8 passed, 0 failed
+    FAIL  the one readable object still matched, and did NOT carry the verdict  — expected '1', got '2'
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+MUTATION: incomplete-scan
+==============================================================================
+mutation applied: incomplete-scan  (scripts/ops/verify-evidence-digest-integrity.js)
+  gates suite: 64 passed, 5 failed
+  MO-1  suite: 8 passed, 0 failed
+    FAIL  state INCOMPLETE_SCAN  — expected 'INCOMPLETE_SCAN', got 'INTEGRITY_HOLDS'
+    FAIL  exit 2 (indeterminate)  — expected '2', got '0'
+    FAIL  scanComplete is false  — expected 'False', got 'True'
+    FAIL  0 MATCHED — a partial scan reports NOTHING as verified  — expected '0', got '1'
+    FAIL  health integrity half INCOMPLETE_SCAN  — expected 'INCOMPLETE_SCAN', got 'INTEGRITY_HOLDS'
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+MUTATION: hash-failure
+==============================================================================
+mutation applied: hash-failure  (scripts/ops/verify-evidence-digest-integrity.js)
+  gates suite: 68 passed, 1 failed
+  MO-1  suite: 8 passed, 0 failed
+    FAIL  state HASH_FAILURE  — expected 'HASH_FAILURE', got 'INTEGRITY_UNKNOWN'
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+MUTATION: aggregate-propagation
+==============================================================================
+mutation applied: aggregate-propagation  (scripts/ops/check-backup-health.js)
+  gates suite: 65 passed, 4 failed
+  MO-1  suite: 8 passed, 0 failed
+    FAIL  DIGEST_MISMATCH cannot be offset  — expected NOT 'HEALTHY'
+    FAIL  ACTIVE_OBJECT_MISSING cannot be offset  — expected NOT 'HEALTHY'
+    FAIL  RESURRECTED cannot be offset  — expected NOT 'HEALTHY'
+    FAIL  HASH_FAILURE cannot be offset  — expected NOT 'HEALTHY'
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+MUTATION: mo1-dispatch
+==============================================================================
+mutation applied: mo1-dispatch  (scripts/ops/check-backup-health.js)
+  gates suite: 69 passed, 0 failed
+  MO-1  suite: 3 passed, 5 failed
+    FAIL  the AGGREGATE dispatched its own  — expected '1', got '0'
+    FAIL  integrity state is in it  — expected 'DIGEST_MISMATCH', got ''
+    FAIL  failure category is in it  — expected 'EVIDENCE_DIGEST_MISMATCH', got ''
+    FAIL  counts are in it  — expected '1', got ''
+  >>> DETECTED
+  restored byte-identically
+
+==============================================================================
+final gate   be0793668cb9a76cfe96b10ad85327801a7f3fcd4d85de351b52aae6cefc557d
+final health da73ff0a3abc5fee16022fa0e5a0c5831cd670e26aca718379d33012945106ab
+SOURCES RESTORED BYTE-IDENTICALLY
+ALL MUTATIONS DETECTED

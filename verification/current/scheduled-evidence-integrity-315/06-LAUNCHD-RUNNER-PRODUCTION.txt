@@ -1,0 +1,71 @@
+[2026-09-18T01:28:04Z] scheduled backup starting; layout=runner jobs=/Users/mckinley/.safety-insite/runner
+[2026-09-18T01:28:04Z] runner source binding: 6d90b9746221d3a2d6573f107973c548e431faaa
+[2026-09-18T01:28:04Z] node v24.14.1 from /Users/mckinley/.nvm/versions/node/v24.14.1/bin
+[2026-09-18T01:28:04Z] --- taking backup ---
+source host      REDACTED-production-db-host  (rewritten from the pooler endpoint)
+source database  neondb
+pg_dump          /opt/homebrew/opt/libpq/bin/pg_dump — pg_dump (PostgreSQL) 18.3
+server           PostgreSQL 17.11 (c4ba6b8), 78 tables, schema head 1800000026000 (58 migrations), 33464320 bytes
+dump             7901094 bytes in 10.1s, sha256 f9a4361c3334b3719114290a9ef5bc7cd85f50e46db44a0af215aa23b47f65ac
+upload           1.6s; read-back verified in 1.3s, sha256 matches
+retention        7 kept, 0 expired and removed (daily 14d, weekly 8w, newest 3 always kept)
+local artifact   removed
+
+OK  postgres/neondb-2026-09-18T012804Z.dump  7901094 bytes  sha256 f9a4361c3334b3719114290a9ef5bc7cd85f50e46db44a0af215aa23b47f65ac  total 14.4s
+[2026-09-18T01:28:19Z] --- confirming the destination reports a fresh backup ---
+{
+  "checkedAt": "2026-09-18T01:28:20.021Z",
+  "health": "HEALTHY",
+  "verdict": "FRESH",
+  "detail": "Last successful backup 0.0h ago.",
+  "ageHours": 0,
+  "thresholdHours": 1,
+  "lastSuccessAt": "2026-09-18T01:28:04.899Z",
+  "lastSuccessArtifactKey": "postgres/neondb-2026-09-18T012804Z.dump",
+  "lastSuccessSha256": "f9a4361c3334b3719114290a9ef5bc7cd85f50e46db44a0af215aa23b47f65ac",
+  "lastSuccessSchemaHead": "1800000026000",
+  "retainedArtifactCount": 7,
+  "artifactPresent": true
+}
+[2026-09-18T01:28:20Z] --- live-byte evidence integrity ---
+database   REDACTED-production-db-host
+bucket     insite-production
+mode       READ-ONLY, FULL RE-HASH (length is not integrity)
+
+  MATCHED             5
+  MISMATCHED          0
+  MISSING             0
+  ERASURE_AUTHORIZED  2
+  RESURRECTED         0
+  UNKNOWN             0
+  TOTAL ROWS          7
+
+  INTEGRITY STATE  INTEGRITY_HOLDS
+[2026-09-18T01:28:22Z] --- evidence recovery reconciliation ---
+source bucket     insite-production  (read-only)
+recovery bucket   insite-backups/evidence/
+database rows                     7
+live objects                      5
+recovery objects                  17
+erasure tombstones                2
+
+LIVE_MATCHED                      5
+MISSING_LIVE_ERASURE_AUTHORIZED   2
+
+captured                          0
+erasure tombstones written        0
+generations expired               0
+recovery bytes expired            0
+
+PROTECTED
+[2026-09-18T01:28:25Z] --- aggregate backup health ---
+database half         HEALTHY (FRESH)
+                      Last successful backup 0.0h ago.
+evidence half         PROTECTED
+                      LIVE_MATCHED=5 MISSING_LIVE_ERASURE_AUTHORIZED=2
+integrity half        INTEGRITY_HOLDS
+                      MATCHED=5 ERASURE_AUTHORIZED=2
+                      hashed 5 objects, 166708 bytes, 2445 ms
+
+AGGREGATE             HEALTHY
+[2026-09-18T01:28:27Z] scheduled backup complete
