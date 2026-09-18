@@ -1,0 +1,55 @@
+  rig reset — bucket emptied (7 removed)
+payload A sha=b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9 len=69
+payload B sha=35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe len=69
+PASS  A and B are DIFFERENT bytes  — different
+PASS  A and B are the SAME byte length  — 69
+  actor token len 1591 | inspection 03fe38b3-f34c-47fc-83e1-8aeb60a33f04
+
+==================== 1. COMPLETED REPLAY (same id, same payload) ====================
+PASS  replay returns the SAME storage object  — 679c9e49-10e3-4d36-8843-fcd2ade94008
+PASS  exactly one storage_object row for the id  — 1
+PASS  live bytes still equal the stored digest  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  stored digest is sha256(A)  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+
+==================== 2. SAME ID / DIFFERENT PAYLOAD, first attempt READY ====================
+  replay-with-B HTTP 201
+PASS  A's bytes were NOT replaced by B  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  stored digest still describes A  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+
+==================== 3. THE BR-8 DEFECT — interrupted first attempt, replay carries B ====================
+  stopping the object store to fail the first PUT
+  first attempt (bytes A, store down) -> HTTP 500
+PASS  row exists after the failed first attempt  — yes
+PASS  row records sha256(A)  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  row status is failed  — failed
+  restarting the object store
+  replay of the SAME clientRequestId carrying bytes B -> HTTP 201
+  DB digest   b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+  live digest 35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe
+PASS  row is now 'ready' (the product believes this object is servable)  — ready
+
+  >>> BR-8: does the database digest describe the live bytes?
+FAIL  DB DIGEST EQUALS LIVE BYTES (the invariant)  — expected 'AGREE', got 'DIVERGED'
+FAIL  live bytes are A (evidence A preserved)  — expected 'b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9', got '35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe'
+
+==================== 4. NO-RESURRECTION — replay after the customer deleted the file ====================
+PASS  file is tombstoned  — deleted
+PASS  bytes are gone from the object store  — no
+  replay of the deleted file's clientRequestId -> HTTP 201
+FAIL  the erased object was NOT resurrected in the store  — expected 'no', got 'yes'
+FAIL  the tombstone still stands  — expected 'deleted', got 'ready'
+PASS  the deleted file is still unservable  — 404
+
+==================== 5. CROSS-USER SAME IDENTIFIER ====================
+PASS  B did not receive A's object  — '5f2e2264-0dab-474b-ae96-0a21493a2bb9' != 'e62c79b4-d399-4395-8a67-595b25267103'
+PASS  A's bytes untouched by B's upload  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  two distinct rows share the identifier across users  — 2
+
+==================== 6. CROSS-OPERATION SAME IDENTIFIER (same user, other inspection) ====================
+  second inspection: cce49e6a-13d5-4bc4-8b1b-c7e683f68352
+  first upload parent  03fe38b3-f34c-47fc-83e1-8aeb60a33f04 (inspection 03fe38b3-f34c-47fc-83e1-8aeb60a33f04)
+  replayed-id response c5584daf-5460-4b46-aa71-3192a6821371 -> parent 03fe38b3-f34c-47fc-83e1-8aeb60a33f04 (requested inspection cce49e6a-13d5-4bc4-8b1b-c7e683f68352)
+FAIL  the second upload is bound to the inspection it was sent to  — expected 'cce49e6a-13d5-4bc4-8b1b-c7e683f68352', got '03fe38b3-f34c-47fc-83e1-8aeb60a33f04'
+
+==================== RESULT ====================
+18 passed, 5 failed

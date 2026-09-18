@@ -65,6 +65,25 @@ export const OPERATIONAL_EVENTS = [
   'expert.confirmation.settled',
   // ---- platform
   'storage.operation_failed',
+  /**
+   * §314 / BR-8. AN UPLOAD IDENTIFIER WAS REPLAYED and resolved to the object it already named,
+   * either by returning the committed result or by resuming an attempt whose bytes never landed.
+   * The `outcome` distinguishes the two, because a rising RESUMED rate means uploads are failing
+   * part-way and a rising RETURNED_COMMITTED rate means responses are being lost — different
+   * problems that were previously indistinguishable and, before §314, entirely invisible.
+   */
+  'storage.idempotent_replay',
+  /**
+   * §314 / BR-8. AN UPLOAD IDENTIFIER WAS REPLAYED WITH SOMETHING THAT DID NOT MATCH THE OBJECT IT
+   * ALREADY NAMES, and the request was refused rather than allowed to overwrite evidence.
+   *
+   * WARNING rather than info: every reason is a client contract violation worth an operator's eye.
+   * PAYLOAD_MISMATCH in particular is the exact shape of both a client defect and an attempt to
+   * substitute one piece of safety evidence for another, and the refusal is what keeps the stored
+   * digest true. It carries the reason and the object id, never the digests — a digest identifies
+   * specific customer evidence, and this line is not the place for it.
+   */
+  'storage.idempotency_conflict',
   'report.generation_failed',
   'schema.readiness_failed',
   'migration.failed',
@@ -141,6 +160,8 @@ const SEVERITY: Record<OperationalEvent, OperationalSeverity> = {
   'expert.confirmation.required': 'info',
   'expert.confirmation.settled': 'info',
   'storage.operation_failed': 'error',
+  'storage.idempotent_replay': 'info',
+  'storage.idempotency_conflict': 'warning',
   'auth.account_deletion_failed': 'error',
   'auth.password_reset_delivery_failed': 'error',
   'report.generation_failed': 'error',

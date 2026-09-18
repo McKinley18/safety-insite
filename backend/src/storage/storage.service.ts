@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createHash, randomUUID } from 'crypto';
 import { EntityManager, In, Repository } from 'typeorm';
@@ -6,7 +6,7 @@ import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entit
 import { AuthenticatedUser, requireAuthenticatedUser } from '../common/authenticated-user';
 import { isUniqueViolation } from '../common/unique-violation';
 import { InspectionService } from '../inspection/inspection.service';
-import { StorageCategory, StorageObject } from './storage-object.entity';
+import { StorageCategory, StorageObject, StorageStatus } from './storage-object.entity';
 import { LocalTestStorageProvider, PrivateStorageProvider, S3PrivateStorageProvider } from './storage-provider';
 import { emitOperationalEvent } from '../observability/operational-events';
 
@@ -20,6 +20,25 @@ const LIMITS: Record<StorageCategory, number> = {
   report: 25 * 1024 * 1024, evidence: 10 * 1024 * 1024,
   branding: 2 * 1024 * 1024, temporary: 10 * 1024 * 1024,
 };
+
+/**
+ * §314 / BR-8. Statuses from which an idempotency replay may NEVER proceed, because the object they
+ * name has been retired. Written as a set over the status union rather than as a negated list of the
+ * resumable ones, so that adding a status to `StorageStatus` is a decision someone has to make here
+ * rather than a resumable default nobody noticed.
+ *
+ * `quarantined` is included on the same principle as the two erasure states: whatever quarantined an
+ * object, an upload replay is not the authority that releases it.
+ */
+const TERMINAL_REPLAY_STATUSES: ReadonlySet<StorageStatus> = new Set<StorageStatus>([
+  'deleted', 'erasure_pending', 'quarantined',
+]);
+
+/**
+ * §314 / BR-8. The machine-readable half of an idempotency conflict, so a client can tell a spent
+ * identifier from a changed payload from a reused one without parsing prose.
+ */
+export type IdempotencyConflictReason = 'EVIDENCE_RETIRED' | 'OPERATION_MISMATCH' | 'PAYLOAD_MISMATCH';
 
 @Injectable()
 export class StorageService {
@@ -46,15 +65,131 @@ export class StorageService {
   }
 
   /**
-   * Resolves a client-minted idempotency identifier to the object it already stored, for THIS user.
+   * Resolves a client-minted idempotency identifier to the row it already names, for THIS user.
    *
-   * Only a `ready` object counts as already-stored. An `uploading` or `failed` row is an attempt
-   * whose bytes may never have reached the provider, so returning it would report a file as stored
-   * that cannot be downloaded. Those are re-attempted instead, which is safe because the row is
-   * reused rather than duplicated.
+   * The scope is `(createdByUserId, clientRequestId)` and it is the same scope the partial unique
+   * index `uq_storage_object_client_request` enforces (migration 1800000015000). Application lookup
+   * and database constraint agreeing is what makes the concurrency argument below hold: the loser of
+   * a race re-reads by exactly the predicate the index rejected it on.
+   *
+   * It deliberately does NOT filter by status. Every status is classified explicitly in
+   * `resolveReplay`, because a lookup that quietly skipped a row would create a SECOND row for an
+   * identifier the database has already bound — which is the one thing this mechanism exists to
+   * prevent.
    */
   private async findStoredByClientRequestId(user: AuthenticatedUser, clientRequestId: string) {
     return this.objects.findOne({ where: { createdByUserId: user.userId, clientRequestId } });
+  }
+
+  /**
+   * §314 / BR-8 — THE REPLAY CONTRACT.
+   *
+   * =================================================================================================
+   * THE RULE, AND WHY IT IS ONE RULE RATHER THAN FOUR.
+   *
+   * A REPLAY MAY DRIVE A PUT ONLY IF THE REPLAYED BYTES ARE THE BYTES THE ROW'S DIGEST ALREADY
+   * DESCRIBES. `sha256` is written once, when the row is created, and is never rewritten; so making
+   * it the WRITE AUTHORIZATION rather than a passive record closes four separate hazards at once:
+   *
+   *   SAME ID / DIFFERENT PAYLOAD. Refused, so evidence A can never be replaced by B. BR-8's defect
+   *   was precisely that this replay reached `putAndFinalize` and wrote B under sha256(A).
+   *
+   *   CONCURRENT DUPLICATES. The loser of the unique-index race re-reads the winner and comes back
+   *   through here. If its bytes match, the only PUT it can issue is byte-identical to the winner's,
+   *   so "last writer wins" cannot change what is stored. If they differ it is refused. Either way
+   *   one identifier means one object with a true digest, and no lease or lock is needed to get it.
+   *
+   *   STALE DIGEST. The digest can never go stale, because no write is permitted that would make it
+   *   stale. This is stronger than recomputing the digest after an overwrite: recomputation would
+   *   make the metadata agree with an overwrite that should never have happened.
+   *
+   *   INTERRUPTED FIRST ATTEMPT. A genuine resume — the bytes did not land, or the response was lost
+   *   — replays the SAME bytes by definition, so it is admitted and completes normally.
+   *
+   * =================================================================================================
+   * WHY A TERMINAL ROW IS REFUSED BEFORE ANYTHING ELSE IS EVEN CONSIDERED.
+   *
+   * §314 found that a replayed identifier could reach `putAndFinalize` on a row the customer had
+   * already DELETED, writing the bytes back to the erased object's key and flipping the row to
+   * `ready`. That is a resurrection of erased evidence through the ordinary upload route, and BR-7 is
+   * closed on the guarantee that erasure is final. `deleted`, `erasure_pending` and `quarantined` are
+   * therefore terminal here: an identifier that named retired evidence is spent, and no request can
+   * un-retire it. `deletedAt` is checked as well as `status` because the two are set together and a
+   * row carrying either one has been retired.
+   *
+   * =================================================================================================
+   * WHY THE OPERATION IS CHECKED, AND WHY THAT IS NOT A SCHEMA CHANGE.
+   *
+   * The index binds an identifier to one row per user; it does not bind it to one OPERATION. §314
+   * measured the consequence: replaying an identifier while uploading to a DIFFERENT inspection
+   * returned the first inspection's object, so the second photo was never stored and the caller was
+   * handed evidence belonging to somewhere else. Refusing the mismatch restores the contract the
+   * migration describes without widening the index — a wider index would instead let one identifier
+   * legitimately name several rows, which is the opposite of what it is for.
+   *
+   * =================================================================================================
+   * A CONFLICT CANNOT DISCLOSE ANYTHING. The row was found by a predicate that includes
+   * `createdByUserId = this caller`, so the only object a caller can ever be told about here is one
+   * they created themselves. Another user presenting the same identifier does not reach this method
+   * at all; they miss the lookup and create their own row.
+   */
+  private async resolveReplay(
+    user: AuthenticatedUser,
+    existing: StorageObject,
+    input: { category: StorageCategory; parentType: StorageObject['parentType']; parentId: string; body: Buffer },
+    digest: string,
+  ) {
+    const refuse = (reason: IdempotencyConflictReason, message: string): never => {
+      emitOperationalEvent('storage.idempotency_conflict', {
+        storageObjectId: existing.id,
+        category: existing.category,
+        parentType: existing.parentType,
+        reason,
+      });
+      throw new ConflictException({
+        statusCode: 409,
+        error: 'Conflict',
+        message,
+        reason,
+      });
+    };
+
+    if (existing.deletedAt || TERMINAL_REPLAY_STATUSES.has(existing.status)) {
+      refuse('EVIDENCE_RETIRED', 'This upload identifier refers to a file that has been deleted and cannot be restored.');
+    }
+    if (
+      existing.category !== input.category
+      || existing.parentType !== input.parentType
+      || existing.parentId !== input.parentId
+    ) {
+      refuse('OPERATION_MISMATCH', 'This upload identifier was already used for a different upload.');
+    }
+    if (existing.sha256 !== digest) {
+      refuse('PAYLOAD_MISMATCH', 'This upload identifier was already used for different file contents.');
+    }
+
+    if (existing.status === 'ready') {
+      // The completed replay. Observationally idempotent: no PUT, no new row, no digest change, no
+      // second audit row, and nothing for the §312 reconciler to see as a new generation.
+      emitOperationalEvent('storage.idempotent_replay', {
+        storageObjectId: existing.id,
+        category: existing.category,
+        parentType: existing.parentType,
+        outcome: 'RETURNED_COMMITTED',
+      });
+      return existing;
+    }
+
+    // `uploading` and `failed`: the bytes are proven identical to the ones this row already
+    // describes, so completing the row cannot make its digest untrue. The row's OWN contentType is
+    // used rather than the request's, so the object's stored metadata always matches the ledger.
+    emitOperationalEvent('storage.idempotent_replay', {
+      storageObjectId: existing.id,
+      category: existing.category,
+      parentType: existing.parentType,
+      outcome: 'RESUMED',
+    });
+    return this.putAndFinalize(user, existing, input.body, existing.contentType, false);
   }
 
   async store(input: {
@@ -68,14 +203,25 @@ export class StorageService {
 
     const clientRequestId = input.clientRequestId || null;
 
+    /**
+     * THE DIGEST IS COMPUTED ONCE, HERE, FROM `input.body` — and `input.body` is the same Buffer
+     * object that is handed to `provider.put`. Nothing between this line and the PUT re-encodes,
+     * re-reads, streams or transforms it, so "the bytes that were hashed" and "the bytes that were
+     * stored" are not two things that have to be kept in agreement; they are one value.
+     *
+     * It is never taken from the caller. A caller-supplied digest would make the integrity claim a
+     * restatement of the client's assertion, and `read()` verifies downloads against this column.
+     */
+    const digest = createHash('sha256').update(input.body).digest('hex');
+
     // An upload whose response was lost must not store the bytes twice. Replaying the identifier
-    // returns the object the earlier attempt produced.
+    // resolves to the row it already named; see `resolveReplay` for what each state means.
     if (clientRequestId) {
       const existing = await this.findStoredByClientRequestId(user, clientRequestId);
-      if (existing && existing.status === 'ready') return existing;
       if (existing) {
-        // A row exists but its bytes never landed. Re-drive THAT row rather than creating another.
-        return this.putAndFinalize(user, existing, input.body, input.contentType);
+        return this.resolveReplay(user, existing, {
+          category: input.category, parentType: input.parentType, parentId: input.parentId, body: input.body,
+        }, digest);
       }
     }
 
@@ -89,28 +235,41 @@ export class StorageService {
         organizationId: input.organizationId, ownerUserId: input.ownerUserId,
         parentType: input.parentType, parentId: input.parentId, contentType: input.contentType,
         downloadName: this.downloadName(input.downloadName, input.contentType),
-        sizeBytes: String(input.body.length), sha256: createHash('sha256').update(input.body).digest('hex'),
+        sizeBytes: String(input.body.length), sha256: digest,
         status: 'uploading', createdByUserId: user.userId, clientRequestId,
         expiresAt: input.expiresAt || null, deletedAt: null, deletedByUserId: null,
       }));
     } catch (error) {
       // Concurrent replay: the partial unique index rejected this insert, so another attempt won.
+      // The loser resolves through exactly the same contract as a sequential replay, which is why
+      // a race cannot produce an outcome a sequential replay could not.
       if (clientRequestId && isUniqueViolation(error)) {
         const winner = await this.findStoredByClientRequestId(user, clientRequestId);
-        if (winner && winner.status === 'ready') return winner;
-        if (winner) return this.putAndFinalize(user, winner, input.body, input.contentType);
+        if (winner) {
+          return this.resolveReplay(user, winner, {
+            category: input.category, parentType: input.parentType, parentId: input.parentId, body: input.body,
+          }, digest);
+        }
       }
       throw error;
     }
 
-    return this.putAndFinalize(user, record, input.body, input.contentType);
+    return this.putAndFinalize(user, record, input.body, input.contentType, true);
   }
 
+  /**
+   * @param createdHere whether THIS call created the row, which decides whether a failure may delete
+   *   the object. A first attempt owns the key and cleans up after itself. A RESUME does not: the key
+   *   may already hold bytes a previous attempt committed, and since a resume can only ever write
+   *   bytes matching the row's digest, those bytes are correct. Deleting them to compensate for a
+   *   failure in this request would destroy good evidence — which is what the pre-§314 code did.
+   */
   private async putAndFinalize(
     user: AuthenticatedUser,
     record: StorageObject,
     body: Buffer,
     contentType: string,
+    createdHere: boolean,
   ) {
     const provider = this.provider();
     // `objectKey` is `select: false`, so a record re-read by identifier does not carry it. Reload
@@ -122,11 +281,18 @@ export class StorageService {
       .getOne())?.objectKey;
     if (!objectKey) throw new BadRequestException('The stored object could not be located.');
 
+    // Which half failed changes what an operator should do, and before §314 both looked the same.
+    let stage: 'PUT' | 'FINALIZE' = 'PUT';
     try {
       await provider.put(objectKey, body, contentType);
+      stage = 'FINALIZE';
       // update() by id, not save(). A record re-read by client identifier was loaded without the
       // `select: false` objectKey column, and save() round-trips the entity it was handed; a
       // targeted column update cannot disturb a column this code never loaded.
+      //
+      // `sha256` is deliberately absent from this update and from every other write in this class.
+      // The digest is written once at row creation and is never revised, so it cannot be quietly
+      // moved to describe bytes that replaced the ones it was computed from.
       await this.objects.update(record.id, { status: 'ready' });
       record.status = 'ready';
       await this.audit(user, 'file_upload_completed', record);
@@ -141,8 +307,10 @@ export class StorageService {
         storageObjectId: record.id,
         parentType: record.parentType,
         failureKind: error instanceof Error ? error.name : 'UnknownError',
+        stage,
+        resumable: !createdHere,
       });
-      await provider.delete(objectKey).catch(() => undefined);
+      if (createdHere) await provider.delete(objectKey).catch(() => undefined);
       throw error;
     }
   }

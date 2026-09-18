@@ -1,0 +1,150 @@
+{
+  "artifact": "SECTION-314-EVIDENCE-IDEMPOTENCY-INTEGRITY",
+  "role": "BR-8 engineering closure. Idempotent upload and evidence-digest integrity, repaired and proven against the real product. NOT a deployment record.",
+  "section": "§314",
+  "startingHead": "3fe77419cfa911a72f91fd21c9e84120ca489795",
+  "productionSha": "32653cac2f04cab79269ad5bfeea8f4629eaf8c0",
+  "productionShaReadBack": "GET /health/version, three consecutive stable reads, gitCommit 32653cac2f04cab79269ad5bfeea8f4629eaf8c0, buildTimestampSourceStatus BUILD_TIMESTAMP.",
+  "deployment": "NONE. §314 authorises engineering, tests, evidence, register, commit and push, and explicitly does not authorise production deployment.",
+
+  "providerCalls": 0,
+  "expertCalls": 0,
+  "spendUsd": 0,
+  "productionWrites": 0,
+  "productionMigrations": 0,
+  "productionObjectsModified": 0,
+  "productionRecoveryObjectsModified": 0,
+  "productionCustomerRowsModified": 0,
+  "productionConfigChanges": 0,
+
+  "defectsFound": [
+    {
+      "id": "BR-8",
+      "state": "PRE-EXISTING, REGISTERED, NOW REPAIRED",
+      "statement": "A clientRequestId replay whose first attempt had not completed drove putAndFinalize on the EXISTING row, writing the replayed bytes to the already-allocated object key while the row's sha256 continued to describe the first attempt's bytes.",
+      "demonstration": "01-BEFORE-DEFECT-DEMONSTRATED.txt §3. The object store was stopped so the first PUT genuinely failed, leaving the row at status 'failed' with sha256(A). Replaying the same identifier with bytes B returned HTTP 201 and left DB digest = sha256(A), live digest = sha256(B). DIVERGED.",
+      "materiality": "The database's integrity claim about a piece of safety evidence was false. read() verifies downloads against this column, so the object became unservable — contained, but the evidence was gone."
+    },
+    {
+      "id": "§314-NEW-1",
+      "state": "NEW AT §314, REPAIRED",
+      "statement": "The idempotency lookup did not exclude retired rows, so a replayed clientRequestId naming a file the customer had DELETED wrote the bytes back to the erased object's key and flipped the row from 'deleted' to 'ready'.",
+      "demonstration": "01-BEFORE-DEFECT-DEMONSTRATED.txt §4. After DELETE /files/:id removed the bytes, a replay returned HTTP 201, the bytes were present in the store again, and the tombstone read 'ready'.",
+      "materiality": "Erased customer evidence was restored to production storage through the ordinary upload route. BR-7 is CLOSED on the guarantee that erasure is final. The download route still refused the object because deletedAt remained set, so the bytes were unreachable by a customer — but they existed again, and the §312 ledger query excludes the row, so they would have become an unexplained orphan."
+    },
+    {
+      "id": "§314-NEW-2",
+      "state": "NEW AT §314, REPAIRED",
+      "statement": "The idempotency identity did not include the governed operation, so replaying an identifier while uploading to a DIFFERENT inspection returned the FIRST inspection's object.",
+      "demonstration": "01-BEFORE-DEFECT-DEMONSTRATED.txt §6. The second upload was answered with an object whose parentId was the first inspection.",
+      "materiality": "The photo the caller actually sent was never stored, and the caller was handed evidence belonging to a different inspection. Contained by ownership — the row is always the caller's own — so it is a correctness defect and not a disclosure one."
+    },
+    {
+      "id": "§314-NEW-3",
+      "state": "NEW AT §314, REPAIRED",
+      "statement": "The compensating delete in putAndFinalize ran on every failure, including a failure while RESUMING a row whose bytes a previous attempt had already committed.",
+      "materiality": "A failed replay could delete good evidence. Repaired by making the compensating delete conditional on this call having created the row."
+    },
+    {
+      "id": "§314-NEW-4",
+      "state": "NEW AT §314, REPORTED, NOT REPAIRED — PRODUCT-OWNER DECISION",
+      "statement": "The §312 recovery reconciler — the SCHEDULED monitor activated at §312A — cannot detect live-byte divergence at equal length. It compares the live object's LENGTH from a bucket listing, then compares recovery-generation digests against the ROW digest; it never re-hashes the live bytes.",
+      "demonstration": "05-RECOVERY-INTEGRATION.txt §4, measured. With an ACTIVE object's live bytes replaced out-of-band by a payload of identical length and a different digest: reconcile-evidence-recovery reports PROTECTED and exits 0; verify-object-consistency without --deep reports CONSISTENT and exits 0; verify-object-consistency --deep exits 1; the new §314 gate exits 1.",
+      "correctsTheRegister": "The BR-8 entry stated that verify-object-consistency.js --deep and the §312 classifier BOTH report this as DIGEST_MISMATCH. The first half is true; the second is not, for the equal-length case that BR-8 itself names.",
+      "residualRisk": "After the §314 repair the application can no longer create this state. The residual exposure is divergence from a NON-application cause — operator error, a direct bucket write, or storage corruption — which the scheduled monitor would not raise.",
+      "whyNotRepairedHere": "reconcile-evidence-recovery.js is §312 / BR-5 surface and BR-5 is CLOSED. Rewriting a closed blocker's monitor inside a BR-8 section would be scope expansion. It is reported with measured evidence for a product-owner decision."
+    }
+  ],
+
+  "theRepair": {
+    "rule": "A REPLAY MAY DRIVE A PUT ONLY IF THE REPLAYED BYTES ARE THE BYTES THE ROW'S DIGEST ALREADY DESCRIBES.",
+    "why": "storage_objects.sha256 is written once at row creation and never revised. Making it the WRITE AUTHORIZATION rather than a passive record closes four hazards with one rule: same-id/different-payload is refused; the loser of a concurrent race can only ever write byte-identical bytes, so last-writer-wins cannot change what is stored; the digest cannot go stale because no write that would make it stale is permitted; and a genuine resume replays the same bytes by definition and is admitted.",
+    "orderOfChecks": [
+      "TERMINAL first — deleted / erasure_pending / quarantined, or any row carrying deletedAt, is refused before anything else. An identifier that named retired evidence is spent.",
+      "OPERATION — category, parentType and parentId must match the row the identifier already names.",
+      "PAYLOAD — sha256 of the replayed bytes must equal the row's recorded digest.",
+      "COMPLETED — a 'ready' row returns the committed result: no PUT, no new row, no digest change, no second audit row.",
+      "RESUME — 'uploading' or 'failed' completes using the row's OWN contentType, with bytes proven identical to the digest."
+    ],
+    "conflictSemantics": {
+      "status": 409,
+      "body": "{ statusCode: 409, error: 'Conflict', message, reason }",
+      "reasons": ["EVIDENCE_RETIRED", "OPERATION_MISMATCH", "PAYLOAD_MISMATCH"],
+      "disclosure": "None possible. The row is found by a predicate including createdByUserId = the caller, so a caller can only ever be told about an object they created. Another user presenting the same identifier misses the lookup entirely and creates their own row."
+    },
+    "digestAuthority": "Computed once in store(), from the same Buffer that is handed to provider.put. Nothing between the hash and the PUT re-encodes, re-reads, streams or transforms it, so bytes-hashed and bytes-PUT are one value rather than two that must be kept in agreement. Never taken from the caller: the DTO whitelist rejects sha256, objectKey and status outright (forbidNonWhitelisted), proven in 02-AFTER-GATES.txt §10.",
+    "schemaChange": "NONE. No migration. The existing partial unique index uq_storage_object_client_request (createdByUserId, clientRequestId) already provides the concurrency containment, which is PROVEN rather than assumed in 02-AFTER-GATES.txt §7-§8. Widening it would let one identifier legitimately name several rows, which is the opposite of its purpose; the operation check is an application-layer refusal instead."
+  },
+
+  "filesChanged": {
+    "backend/src/storage/storage.service.ts": "ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd",
+    "backend/src/observability/operational-events.ts": "3a254b05849d6841683fc9cc06491a06d2c3edad01b442dc5b9a2abb58e61c64",
+    "backend/scripts/ops/verify-evidence-digest-integrity.js": "e1342ff7dd10bef4f9afb0f9169b199cdcced9b7c18f54b4902856172f8f1a88"
+  },
+
+  "results": {
+    "beforeSuite": "18 passed, 5 failed — the five failures ARE the three defects, reproduced against unmodified code.",
+    "afterSuite": "61 passed, 0 failed.",
+    "br7Regression": "26 passed, 0 failed.",
+    "recoveryIntegration": "24 passed, 0 failed.",
+    "mutations": "5 of 5 DETECTED; source restored byte-identically to ec5bf31e after every one.",
+    "canonicalSchema": "PASS — fresh migration replay reproduces the canonical schema exactly, 68 tables, 0 material differences.",
+    "entityContract": "PASS (§309 gate).",
+    "securityBoundary307": "334 passed, 0 failed.",
+    "integrationRegression": "18 suite summaries, every one 0 failed.",
+    "secretScan": "PASS — no credential shape in the candidate tracked content.",
+    "unexpected5xx": "0. The only 5xx were the two deliberately induced by stopping the object store.",
+    "schemaHead": "1800000026000",
+    "migrationCount": 58,
+    "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee — UNCHANGED, Expert untouched."
+  },
+
+  "mutationProgram": [
+    { "mutation": "replay-put", "removed": "the early return on a completed replay", "detectedBy": "duplicate file_upload_completed audit row" },
+    { "mutation": "ownership", "removed": "createdByUserId from the idempotency lookup", "detectedBy": "user B's own bytes not stored; B's digest DIVERGED" },
+    { "mutation": "different-payload", "removed": "the payload identity check", "detectedBy": "11 assertions including the active-object invariant" },
+    { "mutation": "concurrency", "removed": "resolveReplay from the unique-violation path, restoring last-writer-wins", "detectedBy": "DB digest vs live bytes DIVERGED under a concurrent divergent race" },
+    { "mutation": "stale-digest", "removed": "the refusal, replacing it with a digest REWRITE so the metadata agrees with the overwrite", "detectedBy": "12 assertions. This is the §314-forbidden repair, and the suite catches it because it asserts that evidence A survives, not merely that the row is self-consistent." }
+  ],
+  "gateIsNotVacuous": "Proven in both directions. Corrupting an ACTIVE object's bytes out-of-band moves the gate to INVARIANT_VIOLATED and names the object; mutating the gate to treat MISMATCHED as passing makes it report INVARIANT_HOLDS with three divergent objects present. The gate was restored byte-identically to 8b029c7921ea9ce50d66d94886dcf64511d7dd4ceef59795d2ebca10fc865a09.",
+
+  "productionScan": {
+    "authorisation": "§314 authorises a READ-ONLY scan. SELECT and GetObject only; the script has no write path.",
+    "mode": "READ_ONLY_FULL_REHASH — every object downloaded and re-hashed. Length is not integrity.",
+    "bucket": "insite-production",
+    "totalRows": 6,
+    "MATCHED": 5,
+    "MISMATCHED": 0,
+    "MISSING": 0,
+    "ERASURE_AUTHORIZED": 1,
+    "RESURRECTED": 0,
+    "UNKNOWN": 0,
+    "outcome": "INVARIANT_HOLDS",
+    "meaning": "The five real customer evidence objects verify byte-for-byte against the digests the database recorded at upload. The sixth row is the §313A production erasure proof: retired, bytes correctly absent. NO production divergence exists, so no product-owner remediation decision is required and the five customer objects were not modified.",
+    "evidence": "06-PRODUCTION-DIVERGENCE-SCAN.json"
+  },
+
+  "observability": {
+    "added": ["storage.idempotent_replay (info)", "storage.idempotency_conflict (warning)"],
+    "extended": "storage.operation_failed now carries stage (PUT | FINALIZE) and resumable, so an upload whose bytes landed but whose finalization failed is distinguishable from one whose bytes never landed.",
+    "verified": "10 replay events (7 RETURNED_COMMITTED, 3 RESUMED) and 13 conflict events covering all three reasons were emitted during the suites. Checked and found absent from every line: digests, object keys, download names, tokens. Identifiers, category, parentType and the reason code only.",
+    "note": "This is the §268 EMISSION layer. §268 forbids calling it monitoring, and OPS-2 remains OPEN."
+  },
+
+  "apiCompatibility": {
+    "unchanged": "A first upload, and a replay of a completed upload with the same bytes, behave exactly as before — same 201, same body, same object.",
+    "changed": "A replay that does not match the object its identifier already names now returns 409 with a reason code instead of silently returning the first object (or, worse, overwriting it). The three reasons are EVIDENCE_RETIRED, OPERATION_MISMATCH and PAYLOAD_MISMATCH.",
+    "clientImpact": "The offline client mints one identifier per queued photo and replays it unchanged, which is the admitted path. A 409 means the client is asserting something different under an identifier it has already spent, which is a client defect or an attempt to substitute evidence — and in both cases surfacing it beats masking it."
+  },
+
+  "notRepaired": [
+    "BR-6, SC-4, SC-5, SE-21, OPS-2, AC-1, CPF-3, LG-3, branding and Company/Team features — all untouched, per the §314 scope boundary.",
+    "§314-NEW-4, the §312 reconciler's blindness to equal-length divergence — reported above for a product-owner decision rather than repaired inside a BR-8 section."
+  ],
+
+  "registerCorrections": [
+    "deployedReleaseSha and candidateProductSourceCommit read 75b5a149 while §313A's own narrative said 32653cac is live. Production was read directly (three stable /health/version reads) and both fields are corrected to 32653cac.",
+    "applicationSourceDigest read bacfdb70, which is the value AT 75b5a149. The method was validated by recomputing it at 75b5a149 and reproducing bacfdb70 exactly before being applied to the new commit.",
+    "The BR-8 entry's claim that the §312 classifier reports this condition as DIGEST_MISMATCH is corrected; see §314-NEW-4."
+  ]
+}

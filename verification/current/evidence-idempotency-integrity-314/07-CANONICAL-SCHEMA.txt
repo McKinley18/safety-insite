@@ -1,0 +1,20 @@
+> safety-insite-backend@1.0.0 check:canonical-schema
+> ts-node scripts/hazlenz/with-disposable-db.ts check:canonical-schema:inner
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789691567986_6440
+registered as run c016225d-a2ea-490e-8c7b-2ef3bd59e839
+
+> safety-insite-backend@1.0.0 check:canonical-schema:inner
+> ts-node scripts/check-canonical-schema.ts
+
+canonical schema gate: replayed database test_insite_1789691567986_6440
+  manifest digest  34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56
+  replay digest    34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56
+  manifest tables  68
+  replay tables    68
+  retired/compatibility objects present (not enforced): reports
+
+ok    a fresh migration replay reproduces the canonical schema exactly (68 tables, 0 material differences)
+{"tables":68,"digest":"34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56","differences":0}
+dropped test_insite_1789691567986_6440

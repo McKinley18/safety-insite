@@ -1,0 +1,40 @@
+ok    K-run a regulatory sync: the MUTATION is refused outright  [403]
+ok    K-mint an entitlement grant: no server error  [403]
+ok    K-mint an entitlement grant: discloses nothing belonging to the foreign tenant  [{"message":"Platform administrator access is required.","err]
+ok    K-mint an entitlement grant: the MUTATION is refused outright  [403]
+ok    K-effect-1 no membership was created by any of it  [1 -> 1]
+ok    K-effect-2 and no invitation was created  [1 -> 1]
+ok    K-effect-3 and A gained neither a role nor an organization  [{"role":"individual","organizationId":null}]
+ok    K-invite verify-invite answers a bounded 404 with no disclosure (SE-6 preserved)  [404]
+ok    K-synchronize the only route that calls dataSource.synchronize() refuses production FIRST, ahead of the feature flag — so the flag is no longer the only thing between production and a runtime schema synchronize (§305 canonical-schema contract preserved)  [productionRefusal@6827 flag@6919 synchronize@7895]
+ok    K-synchronize-sweep and no OTHER module in src/ calls synchronize() at all  [none]
+
+---- L. HTTP SECURITY SURFACE ON THE APPLICATION ITSELF ----
+
+ok    L-source helmet() is applied globally
+ok    L-source x-powered-by is disabled
+ok    L-source the validation pipe forbids non-whitelisted properties
+ok    L-source the validation pipe whitelists
+ok    L-source CORS uses an origin CALLBACK rather than a wildcard
+ok    L-source a disallowed origin is refused
+ok    L-source the JSON body limit is bounded
+ok    L-source the urlencoded body limit is bounded
+ok    L-source production configuration is validated before the app is created
+ok    L-source CORS is never a wildcard or unconditional `true`
+ok    L-source production refuses DEV_AUTH_BYPASS
+ok    L-source production refuses TYPEORM_SYNCHRONIZE
+ok    L-source production requires a non-development JWT secret of at least 32 characters
+ok    L-source production requires exact HTTPS CORS origins
+ok    L-source production bounds TRUST_PROXY_HOPS
+
+---- CLEANUP ----
+
+ok    Z-cleanup user A deletes their own account through the product route  [200]
+ok    Z-cleanup user B deletes their own account through the product route  [200]
+ok    Z-cleanup user free deletes their own account through the product route  [200]
+
+================================================================================================
+§307 SECURITY BOUNDARY: 334 passed, 0 failed.
+Expert executions: 0. Provider calls: 0. Spend: $0.00.
+================================================================================================
+dropped test_insite_1789691584755_5712

@@ -1,0 +1,75 @@
+
+==============================================================================
+MUTATION: replay-put
+==============================================================================
+mutation applied: replay-put
+  suite result: ==================== RESULT ====================
+    FAIL  NO duplicate upload audit side effect  — expected '1', got '2'
+  >>> DETECTED
+  restored byte-identically (ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd)
+
+==============================================================================
+MUTATION: ownership
+==============================================================================
+mutation applied: ownership
+  suite result: ==================== RESULT ====================
+    FAIL  B's own bytes stored correctly  — expected '35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe', got '39ceaeee97aa2e913238e59a0e6169278959cd1ba6310e5dbab37f2563058b9d'
+    FAIL  B's digest still true  — expected 'AGREE', got 'DIVERGED'
+  >>> DETECTED
+  restored byte-identically (ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd)
+
+==============================================================================
+MUTATION: different-payload
+==============================================================================
+mutation applied: different-payload
+  suite result: ==================== RESULT ====================
+    FAIL  refused deterministically with 409  — expected '409', got '201'
+    FAIL  reason is PAYLOAD_MISMATCH  — expected 'PAYLOAD_MISMATCH', got ''
+    FAIL  divergent replay REFUSED  — expected '409', got '201'
+    FAIL  reason is PAYLOAD_MISMATCH  — expected 'PAYLOAD_MISMATCH', got ''
+    FAIL  B's bytes were NOT written  — expected 'no', got 'yes'
+    FAIL  row was not falsely completed  — expected 'failed', got 'ready'
+    FAIL  live bytes are A  — expected 'b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9', got '35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe'
+    FAIL  DB DIGEST EQUALS LIVE BYTES (the invariant)  — expected 'AGREE', got 'DIVERGED'
+    FAIL  DB DIGEST EQUALS LIVE BYTES  — expected 'AGREE', got 'DIVERGED'
+    FAIL  exactly one of the two was refused  — expected '1', got '0'
+    FAIL  active-object invariant holds for every ACTIVE object  — expected '0', got '1'
+  >>> DETECTED
+  restored byte-identically (ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd)
+
+==============================================================================
+MUTATION: concurrency
+==============================================================================
+mutation applied: concurrency
+  suite result: ==================== RESULT ====================
+    FAIL  DB DIGEST EQUALS LIVE BYTES  — expected 'AGREE', got 'DIVERGED'
+    FAIL  exactly one of the two was refused  — expected '1', got '0'
+    FAIL  active-object invariant holds for every ACTIVE object  — expected '0', got '1'
+  >>> DETECTED
+  restored byte-identically (ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd)
+
+==============================================================================
+MUTATION: stale-digest
+==============================================================================
+mutation applied: stale-digest
+  suite result: ==================== RESULT ====================
+    FAIL  refused deterministically with 409  — expected '409', got '201'
+    FAIL  reason is PAYLOAD_MISMATCH  — expected 'PAYLOAD_MISMATCH', got ''
+    FAIL  stored digest still describes A  — expected 'b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9', got '35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe'
+    FAIL  DB digest EQUALS live bytes  — expected 'AGREE', got 'DIVERGED'
+    FAIL  divergent replay REFUSED  — expected '409', got '201'
+    FAIL  reason is PAYLOAD_MISMATCH  — expected 'PAYLOAD_MISMATCH', got ''
+    FAIL  B's bytes were NOT written  — expected 'no', got 'yes'
+    FAIL  row was not falsely completed  — expected 'failed', got 'ready'
+    FAIL  live bytes are A  — expected 'b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9', got '35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe'
+    FAIL  DB DIGEST EQUALS LIVE BYTES (the invariant)  — expected 'AGREE', got 'DIVERGED'
+    FAIL  exactly one of the two was refused  — expected '1', got '0'
+    FAIL  active-object invariant holds for every ACTIVE object  — expected '0', got '1'
+  >>> DETECTED
+  restored byte-identically (ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd)
+
+==============================================================================
+final source digest  ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd
+pristine digest      ec5bf31ee35f0afa3a7c0e063311ebf5166e1e3f3094a6a54d58b5fe38f0d9dd
+SOURCE RESTORED BYTE-IDENTICALLY
+ALL MUTATIONS DETECTED

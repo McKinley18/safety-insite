@@ -1,0 +1,55 @@
+  rig reset — bucket emptied (10 removed)
+==================== SETUP ====================
+PASS  three synthetic objects in the store  — 3
+
+==================== 1. OWNERSHIP — A's deletion must not touch B ====================
+  DELETE /auth/me (A) -> {"message":"Account deleted successfully"}
+PASS  A object 1 erased  — no
+PASS  A object 2 erased  — no
+PASS  B object UNTOUCHED  — yes
+PASS  B object byte-identical  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  A rows marked deleted  — deleted
+PASS  B row still ready  — ready
+PASS  B can still read its own evidence  — 200
+PASS  erasure audit written x2  — 2
+PASS  erasure completion recorded  — 1
+PASS  B's digest still true  — AGREE
+
+==================== 2. TOMBSTONE SEMANTICS — per-file erasure by the creator ====================
+PASS  object is servable before deletion  — 200
+PASS  row tombstoned  — deleted
+PASS  deletedAt recorded  — t
+PASS  bytes gone  — no
+PASS  unservable to its own creator  — 404
+
+==================== 3. NO-RESURRECTION — through the §314 replay path ====================
+PASS  tombstoned  — deleted
+PASS  bytes gone  — no
+PASS  replay REFUSED  — 409
+PASS  bytes NOT restored  — no
+PASS  tombstone still stands  — deleted
+PASS  no second row created  — 1
+
+==================== 4. ERASURE AUTHORITY — another user cannot erase, nor resurrect ====================
+PASS  a non-creator DELETE is refused  — 404
+PASS  the object survives that attempt  — yes
+PASS  its digest is still true  — AGREE
+
+==================== 5. ACTIVE-OBJECT INVARIANT AFTER ALL BR-7 ACTIVITY ====================
+database   127.0.0.1
+bucket     s314-live
+mode       READ-ONLY, FULL RE-HASH (length is not integrity)
+
+  MATCHED             2
+  MISMATCHED          0
+  MISSING             0
+  ERASURE_AUTHORIZED  4
+  RESURRECTED         0
+  UNKNOWN             0
+  TOTAL ROWS          6
+
+  OUTCOME  INVARIANT_HOLDS
+PASS  invariant holds (erased objects classified, not counted as failures)  — 0
+
+==================== RESULT ====================
+26 passed, 0 failed

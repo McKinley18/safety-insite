@@ -1,12 +1,12 @@
 {
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
-  "establishedBy": "§288, live evidence §289, deployed §290, Threshold-B engineering §291, configuration closure §292, owner-input gate §293, monitoring-channel repair §294, owner-configuration handoff §295, webhook architecture §296, live receiver proof §297A, MO-1 live closure §297B, Expert production activation §298, HZ-4/HZ-5 §299, HZ-9/HZ-6/HZ-7 §300, BI-4 §301, EN-3 §302, SE-5 §303",
+  "establishedBy": "§314",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
+  "candidateHead": "BOUND BY DIGEST, NOT BY SHA — applicationSourceDigest 5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3. A commit cannot contain its own hash (see the §289 note in the markdown register), so the §314 SHA is written by the immediately following commit into candidateHeadSha.",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
-  "asOf": "§313A — BR-7 IS CLOSED. 32653cac is live (five stable reads, code only, no migration, schema 1800000026000 58/58 unchanged, 43 env variables unchanged, Expert untouched) and the erasure was proven IN PRODUCTION: a synthetic .invalid account created through normal governed signup, given one synthetic PNG, then deleted through the real DELETE /auth/me at HTTP 200 — evidence erased from R2, row tombstoned and downloadName scrubbed, erasure tombstone written to recovery storage, resurrection REFUSED, deleted account unable to authenticate. The five real production objects are byte-identical and org-scoped state is unchanged at 1 object / 7 sites / 6 inspections, measured rather than asserted. No destructive production failure was injected; partial failure, R2 unavailability, DB failure and retry rest on the §313 disposable proof. The DELETE /auth/me rate limiter remains 5/60s. BR-8 is the recommended next target. BR-6, BR-8, SE-21, OPS-2, SC-4, SC-5, EM-2, LG-3 and IT-4 preserved. 0 real customer accounts deleted, 0 real customer evidence modified, 0 production config changes, $0, 0 Expert/provider calls, 0 unexpected 5xx.",
+  "asOf": "§314 — BR-8 IS CLOSED IN ENGINEERING AND IS NOT DEPLOYED. The defect was REPRODUCED first, against unmodified code driven over real HTTP with a real S3-semantics object store: a clientRequestId replay following an interrupted first attempt wrote bytes B to the existing key while the database went on recording sha256(A). The repair is one rule — a replay may drive a PUT only if the replayed bytes are the bytes the row's digest already describes — and because sha256 is written once and never revised, that one rule closes same-id/different-payload, concurrent last-writer-wins, digest staleness and legitimate resume together, with NO migration and NO schema change. Three further defects in the same path were found and repaired: a replayed identifier could RESURRECT a file the customer had deleted (a BR-7 guarantee, reachable through the ordinary upload route), could rebind to a different inspection so the photo actually sent was never stored, and a failed resume could delete bytes a previous attempt had committed. 61 gates pass, 26 BR-7 regression gates pass, 24 recovery-integration gates pass, all 5 mutations are detected with the source restored byte-identically, §307 is 334/334, the canonical schema and entity contract gates pass, and the integration regression is 18 suites at 0 failed. PRODUCTION WAS SCANNED READ-ONLY with a full re-hash: 5 MATCHED, 1 ERASURE_AUTHORIZED, 0 MISMATCHED, 0 MISSING, 0 RESURRECTED, 0 UNKNOWN — no legacy divergence, nothing modified, 0 production writes. ONE NEW BLOCKER IS OPENED BY MEASUREMENT: BR-9 — the §312A scheduled recovery monitor cannot see equal-length live-byte divergence, which also corrects a claim BR-8's own entry made. Threshold C is UNCHANGED at 14: BR-8 never blocked it and BR-9 does not either. DEPLOYMENT AUTHORIZATION IS REQUIRED and has not been given.",
   "providerCalls": 0,
   "productionContact": "§288: none. §289: read-only. §290: DEPLOYED — 4 approved migrations applied, backend and frontend deployed at 990a26b70dc625514bc081bfb7b2bb2ce4a19569, bounded synthetic production acceptance executed. 0 provider calls, 0 Expert calls, 0 configuration changes, 0 rollback events. §303: DEPLOYED both halves at 9242d157. Live proof through the real authenticated production HTTP product path — malformed identifiers return 400 on all 8 previously-affected routes, valid-absent still 404, a real site round-tripped 200, monitoring.serverErrorsInWindow stayed 0 before/during/after with no alert raised. One synthetic free account and one site created and both removed through the product path (DELETE /sites/:id, DELETE /auth/me; subsequent login 401). 0 provider calls, 0 Expert executions, 0 direct production DB writes, 0 charges, $0. §304: read-only production characterization; fresh backup (7,924,351 bytes, sha256 1b1a5f07…) restored into PostgreSQL 17.11 with 0 errors and verified by per-table content checksum (78/78 identical, 7,228 rows, aggregate d6baf25ddfe4c0f908187f16032c24cf); ONE authorised migration applied (1800000024000); both halves deployed at c28dd43c; live proof through supported product HTTP paths. One synthetic free account created and removed via DELETE /auth/me. monitoring.serverErrorsInWindow stayed 0 throughout, no alert, 0 unexpected 5xx. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305A: one read-only authenticated probe CONFIRMED a live cross-tenant disclosure (SE-13); the probe account was deleted immediately and the disclosed organization is redacted in all evidence. Containment deployed at 4063434b and RE-PROBED: GET /organization/me/settings now returns 401 for an individual with no organization. Individual product re-verified live (site create/read 201/200, SE-5 400 preserved), synthetic state removed through the product path. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §305: read-only characterization; fresh backup (7,926,023 bytes, sha256 202eaba6...) restored into PostgreSQL 17.11 with 0 errors and content-verified; ONE authorised migration applied (1800000025000); deployed at dc9782e0; live proof through supported product HTTP paths including ACCOUNT DELETION. Two synthetic accounts created and both removed via DELETE /auth/me. monitoring.serverErrorsInWindow 0 throughout. 0 charges, 0 platform-admin operations, 0 Expert executions, 0 provider calls, $0. §306: deployed at a6da4206; bounded route proof through public endpoints only — anti-enumeration confirmed live for unknown and case-variant addresses, completion with a random token refused 400, malformed input bounded 4xx, frontend recovery pages 200. NO production reset token was created and NO email was sent. readiness reports passwordResetEmail NOT_CONFIGURED with the exact missing variables. serverErrorsInWindow 0. 0 direct DB writes, 0 charges, 0 Expert executions, 0 provider calls, $0.",
   "thresholds": {
@@ -15,24 +15,24 @@
     "C": "EXTERNAL CONTROLLED BETA — named external inspectors entering real workplace data."
   },
   "counts": {
-    "total": 125,
+    "total": 126,
     "P0": 9,
     "P1": 14,
     "P2": 66,
-    "P3": 36,
+    "P3": 37,
     "thresholdA": 0,
     "thresholdB": 0,
     "thresholdC": 14,
     "byStatus": {
       "BLOCKED": 3,
-      "CLOSED": 74,
+      "CLOSED": 75,
       "DEFERRED": 9,
       "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED": 1,
       "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED": 1,
       "OPEN": 37
     },
     "thresholdCScope": "EXTERNAL INDIVIDUAL BETA ONLY (§305A). Deferred Company/Team feature incompleteness is preserved in this register but does not count as an external-Beta blocker.",
-    "countsDerivation": "DERIVED from the entry list at §312A rather than hand-maintained. The declared block had drifted from the actual statuses; deriving it means the two cannot disagree again."
+    "countsDerivation": "DERIVED from the entry list at §314, as at §312A. A threshold count is the number of entries whose blocksThresholdX flag is set AND whose status is not closed/deferred, so the declared block and the actual statuses cannot drift apart."
   },
   "entries": [
     {
@@ -2274,19 +2274,38 @@
       "domain": "STORAGE / PHOTOS / REPORTS",
       "id": "BR-8",
       "description": "A clientRequestId replay can re-put to an existing object key with different bytes, leaving the database recording the first attempt's sha256 while R2 holds the second's.",
-      "currentState": "NEW AT §312. Earlier sections treated the write path as create-only — every store() mints a fresh key of the form category/date/uuid. It is not create-only. When a clientRequestId replay finds an existing row whose bytes never landed (status not 'ready'), store() calls putAndFinalize on THAT row, which writes to the EXISTING objectKey. If the replayed body differs from the first attempt's, the live object goes from digest A to digest B at the same key. The row's sha256 was computed from the first body and is not recomputed, so the database would record sha256(A) while R2 holds B. DETECTABLE: verify-object-consistency.js --deep and the §312 classifier both report this as DIGEST_MISMATCH. Requires a client to replay the same clientRequestId with different bytes, so it is a latent correctness gap rather than an observed defect; no occurrence has been seen.",
-      "evidence": "verification/current/evidence-recovery-312/SECTION-312-EVIDENCE-RECOVERY.json -> objectPathInventory.overwritePaths; src/storage/storage.service.ts store/putAndFinalize",
+      "currentState": "NEW AT §312. CLOSED AT §314, engineering complete and NOT deployed. REPRODUCED FIRST, against unmodified code and against a real S3-semantics object store: the object store was stopped so the first PUT genuinely failed, leaving the row at status 'failed' carrying sha256(A); replaying the same clientRequestId with bytes B returned HTTP 201 and left the database recording sha256(A) while the bucket held B. The local test storage provider writes with flag 'wx' and so FAILS a second PUT — the defect is invisible under it, which is why the rig uses MinIO. THE REPAIR IS ONE RULE: a replay may drive a PUT only if the replayed bytes are the bytes the row's digest already describes. sha256 is written once at row creation and never revised, so making it the WRITE AUTHORIZATION rather than a passive record closes four hazards together — same-id/different-payload is refused; the loser of a concurrent race can only ever write byte-identical bytes, so last-writer-wins cannot change what is stored; the digest cannot go stale because no write that would make it stale is permitted; and a genuine resume replays the same bytes by definition and is admitted. The register's alternative remediation — recompute and persist the digest — was deliberately NOT taken: it makes the metadata agree with an overwrite that should never have happened, and the mutation program proves the suite catches exactly that. NO SCHEMA CHANGE AND NO MIGRATION: the existing partial unique index uq_storage_object_client_request (createdByUserId, clientRequestId) already supplies the concurrency containment, and §314 PROVED it rather than assuming it (five simultaneous identical uploads produce one row, one object, a true digest; a divergent race refuses exactly one side). THREE FURTHER DEFECTS WERE FOUND IN THE SAME PATH AND REPAIRED: a replayed identifier could RESURRECT a file the customer had deleted, writing the bytes back to the erased key and flipping the tombstone to 'ready'; a replayed identifier could rebind to a DIFFERENT inspection, so the photo actually sent was never stored and the caller received evidence belonging elsewhere; and the compensating delete ran on resume failures, so a failed replay could destroy bytes a previous attempt had committed. A non-matching replay is now a deterministic 409 carrying EVIDENCE_RETIRED, OPERATION_MISMATCH or PAYLOAD_MISMATCH, and can disclose nothing because the row is always the caller's own. PRODUCTION WAS SCANNED READ-ONLY with a full re-hash of every object: 6 rows, 5 MATCHED, 1 ERASURE_AUTHORIZED, 0 MISMATCHED, 0 MISSING, 0 RESURRECTED, 0 UNKNOWN — no legacy divergence exists and nothing in production was modified.",
+      "evidence": "verification/current/evidence-idempotency-integrity-314/ — 01-BEFORE-DEFECT-DEMONSTRATED.txt (18 passed, 5 failed: the failures ARE the defects), 02-AFTER-GATES.txt (61/61), 03-MUTATIONS.txt (5 of 5 detected, source restored by digest), 04-BR7-REGRESSION.txt (26/26), 05-RECOVERY-INTEGRATION.txt (24/24), 06-PRODUCTION-DIVERGENCE-SCAN.json, SECTION-314-EVIDENCE-IDEMPOTENCY-INTEGRITY.json",
       "severity": "P3",
       "releaseConsequence": "None observed. A stored-object integrity check would fail on the affected object, and read() already refuses a digest mismatch, so the customer sees an error rather than wrong bytes.",
       "owner": "Engineering",
-      "remediation": "Recompute and persist sha256/sizeBytes in putAndFinalize when re-driving an existing row, or refuse a replay whose body digest differs from the recorded one.",
-      "retestRequirement": "A clientRequestId replay with different bytes either updates the recorded digest or is refused.",
+      "remediation": "DONE at §314 by refusal, not by digest rewrite. See currentState. Gate: backend/scripts/ops/verify-evidence-digest-integrity.js.",
+      "retestRequirement": "Re-run verification/current/evidence-idempotency-integrity-314/suite/02-AFTER.sh on any change to StorageService.store, resolveReplay or putAndFinalize, and backend/scripts/ops/verify-evidence-digest-integrity.js against production after any deployment that touches the storage path.",
+      "status": "CLOSED",
+      "blocksThresholdA": false,
+      "blocksThresholdB": false,
+      "blocksThresholdC": false,
+      "note": "Engineering complete and PROVEN, NOT DEPLOYED. §314 does not authorise production deployment. The repair is code only: no migration, no schema change, no configuration change.",
+      "lastUpdatedBy": "§314",
+      "wasBlockingThresholds": []
+    },
+    {
+      "domain": "BACKUP / RESTORE",
+      "id": "BR-9",
+      "description": "The scheduled evidence-recovery monitor cannot detect live-byte divergence at equal length: it compares the listed object SIZE and then compares recovery-generation digests against the row digest, and never re-hashes the live bytes.",
+      "currentState": "NEW AT §314, and MEASURED rather than inferred. §314 re-ran the §312/§312A recovery behaviour after the BR-8 repair. The behaviour §314 required is intact: a completed idempotent replay produces no new generation, no DIGEST_MISMATCH, no LIVE_UNBACKED and no recovery-only object, and the run stays PROTECTED. The POSITIVE CONTROL is what found this. With an ACTIVE object's live bytes replaced out-of-band by a payload of IDENTICAL LENGTH and a different digest — the exact case BR-8 names when it says content length is not integrity — the detectors disagree: reconcile-evidence-recovery.js reports PROTECTED and exits 0; verify-object-consistency.js without --deep reports CONSISTENT and exits 0; verify-object-consistency.js --deep exits 1; and the new §314 gate verify-evidence-digest-integrity.js exits 1. reconcile-evidence-recovery.js is the one activated at §312A as the SCHEDULED monitor, so the scheduled signal is the blind one. THIS ALSO CORRECTS THE REGISTER: BR-8's entry stated that --deep object consistency and the §312 classifier BOTH report this as DIGEST_MISMATCH. The first half is true; the second is not, for the equal-length case. WHAT IS AND IS NOT AT RISK: after the §314 repair the application can no longer create this state at all, so the residual exposure is divergence from a NON-application cause — operator error, a direct bucket write, or storage corruption — which the scheduled monitor would not raise. Two tools DO detect it and both are available today.",
+      "evidence": "verification/current/evidence-idempotency-integrity-314/05-RECOVERY-INTEGRATION.txt §4 (the measured detection matrix); backend/scripts/ops/reconcile-evidence-recovery.js classify()",
+      "severity": "P3",
+      "releaseConsequence": "DOES_NOT_BLOCK. No occurrence has been seen, the application can no longer produce the state, and detection exists in two tools — one of them, verify-object-consistency.js --deep, is already part of the disaster-recovery runbook. It is a gap in the SCHEDULED signal, not an absence of the capability.",
+      "owner": "PRODUCT OWNER",
+      "remediation": "Decide whether the scheduled monitor should re-hash live bytes. The cheapest sufficient change is to have the scheduled run also invoke verify-evidence-digest-integrity.js, which already does exactly this and is read-only; re-hashing inside reconcile-evidence-recovery.js itself would duplicate the work it does for generation capture. §314 did not make this change: reconcile-evidence-recovery.js is §312 / BR-5 surface, BR-5 is CLOSED, and rewriting a closed blocker's monitor inside a BR-8 section would be scope expansion.",
+      "retestRequirement": "Replace an ACTIVE object's bytes out-of-band with a payload of identical length and a different digest; the scheduled monitor must report it.",
       "status": "OPEN",
       "blocksThresholdA": false,
       "blocksThresholdB": false,
       "blocksThresholdC": false,
-      "note": "Found while inventorying overwrite paths for §312. Not repaired: §312 is an evidence-recovery section and was forbidden from broadening into application remediation. §312 protects against it regardless — content-addressed capture preserves both generations.",
-      "lastUpdatedBy": "§312"
+      "note": "Found by a positive control rather than by reading the code — the §314 suite asserted that the reconciler WOULD detect injected divergence, and it did not.",
+      "lastUpdatedBy": "§314"
     },
     {
       "domain": "BUILD / GATES",
@@ -2307,11 +2326,11 @@
       "lastUpdatedBy": "§313"
     }
   ],
-  "candidateHeadPredecessor": "8fe867906568be4f12690eab51c25a61a3110b12",
+  "candidateHeadPredecessor": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
   "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
-  "candidateProductSourceCommit": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
-  "applicationSourceDigest": "bacfdb7064ff9e58010b52cb4e0a36100114e17503b1b141ed92dfb70ef010a2",
+  "candidateProductSourceCommit": "BOUND BY DIGEST, NOT BY SHA — applicationSourceDigest 5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3. A commit cannot contain its own hash (see the §289 note in the markdown register), so the §314 SHA is written by the immediately following commit into candidateHeadSha.",
+  "applicationSourceDigest": "5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3",
   "applicationSourceDigestSuperseded": [
     {
       "digest": "aa85802d2ffe1a945133e40281a69640510ed36bec00c0155dcca4c3fa258a45",
@@ -2364,12 +2383,13 @@
     "95c9e3431d4e4a5c93152cb25ad817f5890b2925e7a77989d30932849b2d2613",
     "7fc9d47ec1f8bc40bef8149a980f6c448628f04ad1f5f68859f76c3317bee4fb",
     "2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618",
-    "05b1a2d8…(§292 — STILL DEPLOYED)"
+    "05b1a2d8…(§292 — STILL DEPLOYED)",
+    "bacfdb7064ff9e58010b52cb4e0a36100114e17503b1b141ed92dfb70ef010a2 (§309-§313A; recomputed at 75b5a149 and reproduced exactly at §314 before being superseded)"
   ],
-  "deployedReleaseSha": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
+  "deployedReleaseSha": "32653cac2f04cab79269ad5bfeea8f4629eaf8c0",
   "deployedAt": "2026-09-16T22:52:14Z (Render deploy dep-dalhqcv40ujc73e39nm0, trigger api)",
-  "schemaHead": "1800000025000",
-  "applicationSourceDigestNote": "§309 (SC-2). Recomputed by the documented command over the build-determining paths; run at 8fe86790 it reproduced §308’s aa85802d exactly before being applied to the new release, so the method was checked against a known answer rather than assumed. DEPLOYED and read back: /health/version reports gitCommit 75b5a1494cd6df35785dd7a6831826f39a41b8c4 over five consecutive stable reads with buildTimestampSourceStatus BUILD_TIMESTAMP. The digest moved ONLY because entity metadata and two new scripts changed; no migration was written and the schema position is byte-identical at 1800000025000, 57/57, aheadOfBuild empty.",
+  "schemaHead": "1800000026000",
+  "applicationSourceDigestNote": "§314. Recomputed by the documented command over the build-determining paths. The method was CHECKED AGAINST A KNOWN ANSWER first: run at 75b5a149 it reproduced the recorded bacfdb70 exactly. The digest moved because three files changed and nothing else — storage.service.ts, operational-events.ts and the new scripts/ops/verify-evidence-digest-integrity.js. NO migration was written; the schema position is byte-identical at 1800000026000, 58 migrations. NOT DEPLOYED: production remains 32653cac, whose digest is e0349820b1e6f3e48a6326f670c2598f0f0b1692e559e8422f6538c1a2d7c65f.",
   "artifactOnlyDigestDiagnostic": {
     "value": "fa0330d9d74e58299cb66996b3e86b1c70673a4e822b725db6d909a8dadc51c7",
     "previousValue": "5fb47c7f5ae5f9b93693dbae046a1a5e2cf3c87ccf3cf87cd30b4fcdadd263c6",
@@ -2442,5 +2462,8 @@
     ],
     "noCodeChangeRequired": true,
     "costNote": "PASSWORD_RESET_PROVIDER is already set to \"resend\" in production, so Resend is the currently selected provider. Whether an account exists, and on which plan, is the owner’s to state — no provider credential exists in this environment and §306 made no provider call, so no pricing was verified and none is asserted here."
-  }
+  },
+  "deployedReleaseShaNote": "CORRECTED AT §314. The field read 75b5a149 while §313A's own narrative said 32653cac was live; the narrative was right and the field had not been moved. Production was read directly rather than reasoned about: GET /health/version returned gitCommit 32653cac2f04cab79269ad5bfeea8f4629eaf8c0 on three consecutive stable reads with buildTimestampSourceStatus BUILD_TIMESTAMP.",
+  "schemaHeadNote": "CORRECTED AT §314. The field read 1800000025000; the migration head is 1800000026000 (UserSubscriptionStatusDefault) and §313A's own narrative already said so. 58 migrations. §314 wrote none.",
+  "candidateHeadSha": "RECORDED_BY_THE_FOLLOWING_COMMIT"
 }

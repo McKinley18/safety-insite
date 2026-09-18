@@ -6,6 +6,45 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§314 — `BR-8` IS CLOSED IN ENGINEERING, AND IS NOT DEPLOYED.** The defect was **reproduced first**,
+against unmodified code, over real HTTP, on a real S3-semantics object store: the object store was
+stopped so the first `PUT` genuinely failed, and replaying the same `clientRequestId` with different
+bytes returned HTTP 201 leaving the database recording `sha256(A)` while the bucket held `B`. *The local
+test provider writes with `flag: 'wx'`, so a second `PUT` fails under it and the defect is invisible —
+which is why the rig uses MinIO.* **The repair is one rule:** a replay may drive a `PUT` only if the
+replayed bytes are the bytes the row's digest already describes. Because `sha256` is written once and
+never revised, that single rule closes same-id/different-payload, concurrent last-writer-wins, digest
+staleness and legitimate resume **together** — with **no migration and no schema change**. The
+register's alternative remediation, *recompute and persist the digest*, was deliberately **not** taken:
+it makes the metadata agree with an overwrite that should never have happened, and the mutation
+program proves the suite catches exactly that.
+
+**Three further defects in the same path were found and repaired.** A replayed identifier could
+**resurrect a file the customer had deleted** — writing the bytes back to the erased key and flipping
+the tombstone to `ready`, a `BR-7` guarantee reachable through the ordinary upload route. A replayed
+identifier could **rebind to a different inspection**, so the photo actually sent was never stored and
+the caller was handed evidence belonging elsewhere. And the compensating delete ran on **resume**
+failures, so a failed replay could destroy bytes a previous attempt had committed. A non-matching
+replay is now a deterministic **409** carrying `EVIDENCE_RETIRED`, `OPERATION_MISMATCH` or
+`PAYLOAD_MISMATCH`, and can disclose nothing: the row is always the caller's own.
+
+**61 gates pass**, plus **26** `BR-7` regression gates, **24** recovery-integration gates, **5 of 5**
+mutations detected with the source restored byte-identically, §307 at **334/334**, canonical schema and
+entity contract **PASS**, and the integration regression at **18 suites, 0 failed**. **Production was
+scanned read-only** with a full re-hash of every object — **5 `MATCHED`, 1 `ERASURE_AUTHORIZED`, 0
+`MISMATCHED`, 0 `MISSING`, 0 `RESURRECTED`, 0 `UNKNOWN`** — so **no legacy divergence exists**, nothing
+in production was modified, and no product-owner remediation decision is required.
+
+**One new blocker is opened by measurement: `BR-9`.** The positive control found that the **§312A
+scheduled recovery monitor cannot see equal-length live-byte divergence** — it compares the listed
+object *size*, then compares recovery-generation digests against the *row* digest, and never re-hashes
+the live bytes. `verify-object-consistency.js --deep` and the new
+`scripts/ops/verify-evidence-digest-integrity.js` both detect it; the scheduled one does not. **This
+also corrects a claim `BR-8`'s own entry made.** Not repaired here: that is §312 / `BR-5` surface,
+`BR-5` is closed, and rewriting a closed blocker's monitor inside a `BR-8` section would be scope
+expansion. **Threshold C is unchanged at 14** — `BR-8` never blocked it and `BR-9` does not either.
+**`PRODUCTION_DEPLOYMENT_AUTHORIZATION_REQUIRED`.**
+
 **§313A — `BR-7` IS CLOSED.** `32653cac` is live (five stable reads, code only, no migration, 43 env
 vars unchanged, Expert untouched), and the erasure was proven **in production**: a synthetic `.invalid`
 account created through normal governed signup, given one synthetic PNG, then deleted through the real
@@ -145,7 +184,10 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Release binding** | `applicationSourceDigest` = `87bb6eaa63e60b7da3edfb8533f41d485688575a0de7d4bca282487acbf41597` — **§310A, DEPLOYED. Recorded at §311**, which recomputed it by the documented command and found it **identical at HEAD `be5bb4c4` and at the deployed commit `b8a6fd9c`** — so §310A's own commit changed evidence and documentation only, not application source. Schema `1800000026000`, 58/58, `aheadOfBuild: []`. *This row had been left at §309's value while §310's own narrative recorded the deployment correctly; §311 reconciled the header to the body rather than restating either.* |
+| **Release binding — CANDIDATE, NOT DEPLOYED** | `applicationSourceDigest` = `5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3` — **§314**. Three files changed and nothing else: `storage.service.ts`, `operational-events.ts`, and the new `scripts/ops/verify-evidence-digest-integrity.js`. **No migration**; schema `1800000026000`, 58/58. The method was checked against a known answer before use — recomputed at `75b5a149` it reproduced `bacfdb70…` exactly. |
+| **Release binding — DEPLOYED** | `applicationSourceDigest` = `e0349820b1e6f3e48a6326f670c2598f0f0b1692e559e8422f6538c1a2d7c65f` at `32653cac`, read back from production (`/health/version`, three stable reads). *This row had been left at §310A's `87bb6eaa…` while production moved through §311, §312 and §313; §314 reconciled it to the measured value rather than restating either. `87bb6eaa…` was correct for `b8a6fd9c`/`be5bb4c4` and is recorded below.* |
+| Superseded binding | `bacfdb70…` at `75b5a149…` — the §309 candidate; never the deployed value after §313 |
+| Superseded binding | `87bb6eaa…` at `b8a6fd9c…` — §310A, what production ran until §313 |
 | Superseded binding | `bacfdb70…` at `8fe86790…` — §309 (SC-2), read back over five stable reads at schema `1800000025000`, 57/57 |
 | Superseded binding | `0f2edbaf…` at `e48a42f3…` — §303 SE-5 |
 | Superseded binding | `20b59cc2…` at `9242d157…` — §303's first deploy |
@@ -263,16 +305,25 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **125** | **9** | **14** | **66** | **36** |
+| Entries | **126** | **9** | **14** | **66** | **37** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 74 |
+| CLOSED | 75 |
 | OPEN | 37 |
-| BLOCKED (waiting on a decision or another item) | 4 |
-| DEFERRED (deliberately not v1) | 2 |
+| BLOCKED (waiting on a decision or another item) | 3 |
+| DEFERRED (deliberately not v1) | 9 |
+| ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED | 1 |
+| ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED | 1 |
 
-**§313A closed `BR-7`.** §313 added `IT-4` (P3, stale instrument). Of the fourteen Threshold-C
+*Every number above is **derived** from the entry list in the JSON register, not maintained by hand.
+The `BLOCKED` and `DEFERRED` rows had drifted (they read 4 and 2 against actual values of 3 and 9) and
+the two engineering-complete statuses were missing entirely; §314 reconciled the table to the derived
+values rather than restating either side, exactly as §312A did for the threshold block.*
+
+**§314 closed `BR-8` and added `BR-9`** (P3, OPEN, blocks nothing — the §312A scheduled recovery
+monitor cannot see equal-length live-byte divergence). **Threshold C is unchanged at 14:** `BR-8` was
+never one of its blockers and `BR-9` is not one either. **§313A closed `BR-7`.** §313 added `IT-4` (P3, stale instrument). Of the fourteen Threshold-C
 blockers that remain, **three are still engineering-owned** — `AC-1` and `CPF-3` (both P2, OPEN) and
 `LG-3` (P0, engineering complete and waiting on counsel publication). The other eleven are counsel,
 product, claims, privacy and infrastructure-configuration items. `EM-2` is engineering-complete and

@@ -1,0 +1,18 @@
+{
+  "schema": "safety-insite.evidence-digest-integrity.v1",
+  "checkedAt": "2026-09-18T00:37:52.232Z",
+  "mode": "READ_ONLY_FULL_REHASH",
+  "database": "REDACTED \u2014 production PostgreSQL (Neon). The bucket is named because the committed evidence already names it; the database host is not, and is not introduced here.",
+  "bucket": "insite-production",
+  "totalRows": 6,
+  "counts": {
+    "MATCHED": 5,
+    "MISMATCHED": 0,
+    "MISSING": 0,
+    "ERASURE_AUTHORIZED": 1,
+    "RESURRECTED": 0,
+    "UNKNOWN": 0
+  },
+  "findings": [],
+  "outcome": "INVARIANT_HOLDS"
+}
