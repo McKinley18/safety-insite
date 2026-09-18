@@ -1,0 +1,150 @@
+{
+ "rows": [
+  {
+   "route": "/command-center",
+   "mode": "direct",
+   "landed": "/command-center",
+   "len": 776,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SAFETY INSITE HOME | Home | Start "
+  },
+  {
+   "route": "/command-center",
+   "mode": "refresh",
+   "landed": "/command-center",
+   "len": 776,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SAFETY INSITE HOME | Home | Start "
+  },
+  {
+   "route": "/inspections",
+   "mode": "direct",
+   "landed": "/inspections",
+   "len": 1713,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | INSPECTIONS | Start field work. | "
+  },
+  {
+   "route": "/inspections",
+   "mode": "refresh",
+   "landed": "/inspections",
+   "len": 1713,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | INSPECTIONS | Start field work. | "
+  },
+  {
+   "route": "/settings",
+   "mode": "direct",
+   "landed": "/settings",
+   "len": 2003,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SETTINGS | Settings. | Set your re"
+  },
+  {
+   "route": "/settings",
+   "mode": "refresh",
+   "landed": "/settings",
+   "len": 2003,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SETTINGS | Settings. | Set your re"
+  },
+  {
+   "route": "/profile",
+   "mode": "direct",
+   "landed": "/profile",
+   "len": 826,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | USER PROFILE | Personal account. | "
+  },
+  {
+   "route": "/profile",
+   "mode": "refresh",
+   "landed": "/profile",
+   "len": 826,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | USER PROFILE | Personal account. | "
+  },
+  {
+   "route": "/reports",
+   "mode": "direct",
+   "landed": "/reports",
+   "len": 367,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SERVER-BACKED RECORDS | Inspectio"
+  },
+  {
+   "route": "/reports",
+   "mode": "refresh",
+   "landed": "/reports",
+   "len": 367,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SERVER-BACKED RECORDS | Inspectio"
+  },
+  {
+   "route": "/safety-calendar",
+   "mode": "direct",
+   "landed": "/safety-calendar",
+   "len": 920,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SAFETY CALENDAR | Organize inspec"
+  },
+  {
+   "route": "/safety-calendar",
+   "mode": "refresh",
+   "landed": "/safety-calendar",
+   "len": 920,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | SAFETY CALENDAR | Organize inspec"
+  },
+  {
+   "route": "/upgrade",
+   "mode": "direct",
+   "landed": "/upgrade",
+   "len": 1274,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | CURRENT PLAN | FREE | Upgrade to Safe"
+  },
+  {
+   "route": "/upgrade",
+   "mode": "refresh",
+   "landed": "/upgrade",
+   "len": 1274,
+   "stuck": false,
+   "raw": [],
+   "head": "Home | Inspect | Reports | Calendar | Settings | Live | SS | CURRENT PLAN | FREE | Upgrade to Safe"
+  },
+  {
+   "route": "/unlock",
+   "mode": "direct",
+   "landed": "/unlock",
+   "len": 247,
+   "stuck": false,
+   "raw": [],
+   "head": "PROTECTED MODE | Create Local PIN | Create a PIN to protect encrypted local inspec"
+  },
+  {
+   "route": "/unlock",
+   "mode": "refresh",
+   "landed": "/unlock",
+   "len": 247,
+   "stuck": false,
+   "raw": [],
+   "head": "PROTECTED MODE | Create Local PIN | Create a PIN to protect encrypted local inspec"
+  }
+ ],
+ "serverErrors": [],
+ "pageErrors": []
+}

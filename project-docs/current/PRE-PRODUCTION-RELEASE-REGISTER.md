@@ -6,6 +6,54 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§317A — THE §317 RUNTIME IS IN PRODUCTION, AND THE PROOF IS THE SERVED BYTES.** Frontend
+`dpl_EoZwh4xHZwxm38oYGLfpDJJNZf7D`, target production, git sha `5c84f1d0`, aliased to
+`safety-insite.vercel.app`. The production HTML names the deployment in its own asset query strings
+and the bundle inlines that sha, so the running frontend is the authorised candidate rather than
+merely the one the deploy job reported.
+
+**Runtime equivalence was established before anything was deployed.** A tree digest over every
+tracked path except documentation and evidence is identical at `f55aed39` and `5c84f1d0`, so the
+release identity is the register-bearing commit and the runtime is the code-bearing one.
+
+**The scope was proven rather than assumed, and the check mattered.** The live production frontend
+was **18 commits behind**, at `7e297dce` (§308). The frontend-runtime subtree digest is **identical
+at `7e297dce` and `450b8fcb`** — §309 through §316 changed no frontend runtime file at all — so the
+deployment carries exactly the §317 changes and no unauthorised runtime content.
+
+**Two deployment methods were rejected, for reasons worth recording.** A CLI upload would have sent
+the *working tree*, which carries the unexplained Next.js tooling delta, and would have stamped the
+build `unknown` for lack of `.git`. Promoting the git-built preview as-is would have been worse:
+`NEXT_PUBLIC_API_URL` exists for the **production target only** and is inlined at build time, so the
+preview build had no API origin and **the production frontend would have pointed at
+`localhost:4000`**. The redeploy rebuilt the same git source under the production environment, and
+the served bundle inlines `https://safescope-backend.onrender.com` with no localhost anywhere.
+
+**The unexplained file is preserved and provably absent from the candidate.**
+`frontend-next/AGENTS.md` carries blob `8bd0e390…` in every commit from `450b8fcb` through
+`5c84f1d0`, and `643577df…` in the working tree only.
+
+**Every pre-§317 string is gone from the deployed bundle** — *"until the Stripe environment is set"*
+0, *"Checkout is not available on this environment yet"* 0, *"persisted inspection"* 0 — and every
+§317 marker is present. The Expert two-channel repair is proven **structurally in the deployed
+minified code**: the reconciling read clears only the read channel and can no longer wipe a refused
+run.
+
+**Live:** the recovery surface makes no claim that an email was sent and exposes no token; a Free
+account is refused at **402 on both the deterministic and the Expert route**, so no provider call was
+reachable; a grant-derived Pro account renders *"Included — nothing is billed to this account"* and
+its grant end date instead of a price it does not pay; **60 direct-entry and refresh probes** gave 0
+blank pages, 0 stuck loads, 0 raw errors, 0 privileged-content flashes and 0 5xx. The `/settings`
+hydration mismatch was **not reproduced in 16 production loads** and is **not closed**.
+
+**No Expert analysis was executed and no provider was called.** Driving the deployed panel to a 503
+would need a Pro entitlement §317A cannot create without a forbidden change, so that drive is
+recorded as NOT EXERCISED rather than claimed as a pass. **0 real customer rows or evidence
+modified, 0 real charges, $0.00, 0 migrations, 0 environment or credential changes, 0 Render calls.**
+`HZ-12` and `CS-2` are returned as decision input, not decided.
+
+**Evidence:** [`verification/current/external-activation-317a/`](../../verification/current/external-activation-317a/).
+
 **§317 — EXTERNAL-USER ACTIVATION. `CPF-2` AND `CPF-3` ARE CLOSED, AND THE FRESH-USER PATH IS PROVEN
 FROM ZERO.** A participant who has never existed in the database was created **twice, on databases
 built by migrations alone**, and driven through the product in a real browser with every development

@@ -1,0 +1,222 @@
+{
+ "artifact": "SAFETY_INSITE_SECTION_317A_EXTERNAL_ACTIVATION_PRODUCTION_DEPLOYMENT",
+ "section": "§317A",
+ "preDeployRepoHead": "5c84f1d053e6bf83fcf0fc3fc4a6256a2976f277",
+ "codeBearingSha": "f55aed39",
+ "selectedDeploymentSha": "5c84f1d053e6bf83fcf0fc3fc4a6256a2976f277",
+ "runtimeEquivalence": {
+  "result": "EQUIVALENT",
+  "method": "Tree digest over every tracked path EXCEPT project-docs/, verification/, docs/, research/ and the root markdown files, computed at both commits.",
+  "digestAtF55aed39": "eaebee52b7b250d287111983a1bc2abe6ba67ac9ec62b5feb4295bdc2118c080",
+  "digestAt5c84f1d0": "eaebee52b7b250d287111983a1bc2abe6ba67ac9ec62b5feb4295bdc2118c080",
+  "changedPathsOutsideDocsAndEvidence": 0,
+  "frontendRuntimeSubtreeDigest": {
+   "f55aed39": "a1468be3a3c4b9c1a09282516ea23039530bffe2e1d27abdb27da9c6f73ee20a",
+   "5c84f1d0": "a1468be3a3c4b9c1a09282516ea23039530bffe2e1d27abdb27da9c6f73ee20a"
+  },
+  "conclusion": "5c84f1d0 carries byte-identical runtime to f55aed39; the delta is documentation and evidence only. 5c84f1d0 used as the release identity."
+ },
+ "deploymentScopeProof": {
+  "liveProductionFrontendBeforeDeploy": "7e297dce4895a36e07341312ecce9e2e39b2f4ca (§308)",
+  "commitsBetween": 18,
+  "frontendRuntimeSubtreeAt7e297dce": "4f093355dd0ca3442fa58a0d8285137c64f61b0e00d8f836e4c904e985158b2f",
+  "frontendRuntimeSubtreeAt450b8fcb": "4f093355dd0ca3442fa58a0d8285137c64f61b0e00d8f836e4c904e985158b2f",
+  "meaning": "§309 through §316 changed NO frontend runtime file. The frontend delta between the live production frontend and the candidate is exactly and only the §317 changes, so the deployment carries no runtime content §317 did not authorise.",
+  "backendSubtree": {
+   "450b8fcb": "9cf73cb489807fc65c78aa61ee0fbab74cd615414ca0b140682888af00c7329d",
+   "f55aed39": "9cf73cb489807fc65c78aa61ee0fbab74cd615414ca0b140682888af00c7329d",
+   "5c84f1d0": "9cf73cb489807fc65c78aa61ee0fbab74cd615414ca0b140682888af00c7329d"
+  },
+  "backendConclusion": "§317 changed no backend file. No backend deployment was performed or required."
+ },
+ "unexplainedFrontendFile": {
+  "path": "frontend-next/AGENTS.md",
+  "origin": "rewritten by `next dev` during §317 diagnostics; the block is self-documenting and names node_modules/next/dist/server/lib/generate-agent-files.js as its writer",
+  "preserved": true,
+  "staged": false,
+  "committed": false,
+  "deleted": false,
+  "regenerated": false,
+  "attributedToSection317": false,
+  "committedBlobAt450b8fcb": "8bd0e39085d5260e7f8faffcad2fdc45e10aef33",
+  "committedBlobAtF55aed39": "8bd0e39085d5260e7f8faffcad2fdc45e10aef33",
+  "committedBlobAt5c84f1d0": "8bd0e39085d5260e7f8faffcad2fdc45e10aef33",
+  "workingTreeBlob": "643577dfaef36ee8032915ef80a0f0638f7beda0",
+  "exclusionProof": "The candidate tree extracted from 5c84f1d0 carries blob 8bd0e390… — byte-identical to the pre-§317 original and diffing clean against 450b8fcb's copy. The delta exists ONLY in the working tree and is in no commit. The deployment was built by Vercel FROM GITHUB at sha 5c84f1d0, so the working tree was never uploaded."
+ },
+ "preDeployGates": {
+  "candidateSha": "5c84f1d0 — confirmed as the deployment's gitSource.sha via the Vercel API",
+  "candidateRuntimeSource": "github, ref beta/expert-hazlenz-validated-candidate-2026-09-12, sha 5c84f1d053e6bf83fcf0fc3fc4a6256a2976f277",
+  "productionBackendSha": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+  "productionReadyPre": "ready, database available, schema current",
+  "unexpectedFivexx": 0,
+  "schema": "1800000026000, applied 58 of 58 expected, aheadOfBuild []",
+  "canonical": "PASS — manifest digest 34712ba8… == fresh migration replay digest, 68 tables, 0 material differences",
+  "entityContract": "PASS — §309 gate",
+  "section274": "VERIFIED unchanged — 8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+  "section274TarballCaveat": "The same script run inside the extracted candidate TARBALL reports 2 failures, solely because the tarball has no .git and the script shells out to git to explain the two authorised path-renamed elements. The substantive result there is identical: recomputed successor == compiled-in successor, contractVersion/systemPrompt/wireSchema/contractIdentities259 all UNCHANGED. The authoritative run is the in-repo one at 5c84f1d0, which passes with 0 failures.",
+  "secretScan": "PASS — no live/test provider key, private key or token pattern anywhere in the candidate frontend tree",
+  "candidateTests": "7 frontend unit suites pass against the exact extracted candidate; typecheck clean; `next build` of the exact candidate exits 0 with all 22 routes prerendered",
+  "backendApiCompatibilityAtDeployedSha": "All four backend capabilities the §317 frontend consumes are present at ed37e34b: billing tierSource/accessSource/entitlementExpiresAt, riskPolicy persisted on the human review, reviewedConclusion served on the inspection read, and /health/ready passwordResetEmail."
+ },
+ "deploymentMethod": {
+  "command": "vercel redeploy dpl_g9saEfXCiJj4Ub9jeRy25VudArf4 --target production",
+  "whyNotACliUpload": "A `vercel --prod` upload sends the WORKING DIRECTORY, which carries the unexplained AGENTS.md delta, and has no .git — so next.config.ts's resolveGitSha() would have stamped the build 'unknown' and destroyed the identity proof.",
+  "whyNotPromotingThePreviewAsIs": "NEXT_PUBLIC_API_URL and NEXT_PUBLIC_API_BASE_URL exist for the PRODUCTION target only and are inlined at build time. The preview build therefore had no API origin and would have fallen back to http://localhost:4000. Promoting it unchanged would have pointed the production frontend at localhost. Redeploying with --target production rebuilds the same git source under the production environment.",
+  "rollbackTarget": "dpl_CBGHRxMFFwJ4HhofCdFvejkzkkyr (7e297dce, §308) — still present and promotable"
+ },
+ "deployment": {
+  "platform": "Vercel",
+  "deploymentId": "dpl_EoZwh4xHZwxm38oYGLfpDJJNZf7D",
+  "target": "production",
+  "status": "READY",
+  "buildSeconds": 60,
+  "githubCommitSha": "5c84f1d053e6bf83fcf0fc3fc4a6256a2976f277",
+  "gitSource": {
+   "type": "github",
+   "ref": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+   "sha": "5c84f1d053e6bf83fcf0fc3fc4a6256a2976f277"
+  },
+  "aliases": [
+   "safety-insite.vercel.app",
+   "sentinelsafety.vercel.app",
+   "safety-insite-mckinley18s-projects.vercel.app"
+  ]
+ },
+ "runtimeIdentityProofFromServedBytes": {
+  "productionHtmlNamesDeployment": "dpl_EoZwh4xHZwxm38oYGLfpDJJNZf7D",
+  "inlinedGitShaInTheBundle": "5c84f1d053e6bf83fcf0fc3fc4a6256a2976f277",
+  "inlinedApiOrigin": "https://safescope-backend.onrender.com",
+  "localhostInBundle": false,
+  "xRobotsTag": "noindex, nofollow (preserved)",
+  "repairMarkersPresent": [
+   "expert-run-error",
+   "expert-read-error",
+   "recovery-unavailable",
+   "No reset email can be sent right now",
+   "Included — nothing is billed to this account",
+   "Granted access, ends",
+   "No subscription",
+   "Payment is not available yet",
+   "on your account",
+   "Payment overdue",
+   "This inspection is saved as"
+  ],
+  "preSectionStringsAbsent": {
+   "until the Stripe environment is set": 0,
+   "Checkout is not available on this environment yet": 0,
+   "persisted inspection": 0
+  },
+  "expertTwoChannelStructuralProof": "In the deployed minified code the read channel is [u,h] and the run channel is [p,f]. refresh (W) clears ONLY h(null) on success and never calls f. runAnalysis's catch calls f(e.message). So the reconciling read provably cannot clear a refused run — the §317 defect is repaired in the running artifact, proven from the served bytes rather than from the deployment job."
+ },
+ "liveProofs": {
+  "recoverySurface": {
+   "noticeShown": true,
+   "submitDisabled": true,
+   "claimsEmailSent": false,
+   "tokenExposed": false,
+   "supportPath": "contact the person who invited you to Safety InSite; do not send anyone your password",
+   "apiGenericResponsePreserved": "POST /auth/password-reset/request with a NONEXISTENT address returns 201 \"If the account exists, password reset instructions will be sent.\" with no token-shaped content. The API wording is deliberately unchanged — changing it would leak account existence. The PAGE no longer submits, so no customer is told an email is coming.",
+   "widthsChecked": [
+    390,
+    1280
+   ],
+   "httpErrors": 0
+  },
+  "directEntry": {
+   "probes": 44,
+   "offenders": 0,
+   "serverErrors": 0,
+   "pageErrors": 0,
+   "signedOutAuthenticatedRoutes": "10 of 11 redirect to /login; /unlock renders its own device-local PIN surface, which is correct for a device-local vault",
+   "privilegedContentFlash": false
+  },
+  "signedInDirectAndRefresh": {
+   "probes": 16,
+   "offenders": 0,
+   "serverErrors": 0,
+   "pageErrors": 0
+  },
+  "entitlementBoundaryLive": {
+   "hazlenzClassifyOnFree": "402 PAID_SUBSCRIPTION_REQUIRED",
+   "expertRouteOnFree": "402 PAID_SUBSCRIPTION_REQUIRED — refused by the entitlement guard BEFORE the operational gate, so no Expert execution and no provider call was reachable at all",
+   "uiRendersPlanBoundary": "\"Observation saved. HazLenz AI analysis is a Pro feature.\" then \"HazLenz AI analysis is available on the Pro plan.\" with the reassurance that the observation, evidence and site details are saved and unchanged",
+   "rawServerErrorShown": false
+  },
+  "compedAccountPresentation": {
+   "method": "The DEPLOYED production UI was driven with /billing/status intercepted IN THE BROWSER ONLY, returning the exact shape production's own backend emits for a grant-derived Pro account (§302). No production state was read or written differently; the account's real server-side tier remained free/none throughout.",
+   "showsMonthlyPriceAsThoughBilled": false,
+   "showsRawNone": false,
+   "showsGrantEndDate": true,
+   "rendered": "CURRENT PLAN Pro | Included — nothing is billed to this account || SUBSCRIPTION STATUS Included access | Granted access, ends September 25, 2026. No payment method is on this account.",
+   "interceptionArtifactNotADefect": "On /profile the panel TITLE still read \"Free plan\", because that title comes from the CACHED JWT claim rather than from the billing response, and the interception changed only the latter. A genuinely comped account carries pro in its token (§302), so this is an artifact of the method and is NOT reported as a defect."
+  },
+  "expertRefusalVisibility": {
+   "expertExecuted": false,
+   "providerCalls": 0,
+   "provenBy": [
+    "the two-channel structural proof in the deployed minified bundle (above)",
+    "the data-testid=\"expert-run-error\" alert region present in the deployed bundle",
+    "§317's dynamic watched-to-fail run on the byte-identical build, in which EXP-2 fails on the pre-repair code and passes on the repaired code"
+   ],
+   "notExercisedEndToEndOnProduction": "Driving the deployed panel to a 503 would require a Pro entitlement this section cannot create — the promo variable is an environment change and a grant needs the platform administrator EN-4 records as uncreatable — and any real Expert request would spend. This is stated as a limit rather than claimed as a pass."
+  },
+  "settingsHydrationResidual": {
+   "loads": 16,
+   "themes": [
+    "light",
+    "dark"
+   ],
+   "widths": [
+    390,
+    1440
+   ],
+   "runsPerCombination": 4,
+   "mismatches": 0,
+   "functionalStateLost": 0,
+   "usabilitySample": {
+    "hasPlan": true,
+    "hasSites": true,
+    "hasVersion": true,
+    "controls": 19
+   },
+   "verdict": "NOT REPRODUCED in production in a bounded 16-load observation. NOT CLOSED, and no repair attempted.",
+   "escalated": false
+  }
+ },
+ "productionRegressionHealth": {
+  "signupAgreement": "PASS — live registration refused nothing and wrote an agreement acceptance against internal-pre-beta-acknowledgement v2026-09-14.1",
+  "authentication": "PASS — sign-in, session, and post-deletion 401 on both /auth/me and /auth/login",
+  "entitlementBoundary": "PASS — 402 on both the deterministic and the Expert route for a Free account",
+  "inspectionPath": "PASS — site, inspection and observation created live; the workspace rendered and reached the HazLenz step",
+  "br7Erasure": "PASS — DELETE /auth/me removed the synthetic account; its token died and it cannot sign in",
+  "br8Idempotency": "PASS — the scheduled production run at 2026-09-18T09:00:20Z reports MATCHED 5, MISMATCHED 0, MISSING 0, ERASURE_AUTHORIZED 2, RESURRECTED 0, UNKNOWN 0, malformedRows 0, scanComplete true",
+  "br9IntegrityMonitoring": "PASS — integrityState INTEGRITY_HOLDS, READ_ONLY_FULL_REHASH over 5 objects / 166,708 bytes, AGGREGATE HEALTHY, database half HEALTHY (FRESH)",
+  "recovery": "PASS — live, see liveProofs.recoverySurface",
+  "reportActionWorkflow": "NOT EXERCISED LIVE — it requires Pro entitlement, which this section cannot create without a forbidden change. Exercised end to end at §317 on a migration-built database, including completion, the report and the corrective action."
+ },
+ "productionSafety": {
+  "realCustomerRowsModified": 0,
+  "realCustomerEvidenceModified": 0,
+  "syntheticOnlyMutations": [
+   "1 synthetic account created and then deleted via the product's own DELETE /auth/me",
+   "1 synthetic site, 1 synthetic inspection, 1 synthetic observation, all belonging to that account and removed with it",
+   "1 password-reset request against a NONEXISTENT address, which by construction writes nothing"
+  ],
+  "realCharges": 0,
+  "expertCalls": 0,
+  "providerCalls": 0,
+  "spendUsd": 0.0,
+  "migrationExecuted": false,
+  "synchronize": false,
+  "environmentChanged": false,
+  "credentialsChanged": false,
+  "stripeConfigChanged": false,
+  "expertCeilingsChanged": false,
+  "renderApiCallsMade": 0,
+  "note": "No Render call of any kind was made in §317A, so the Expert ceilings and every backend environment variable are untouched by construction rather than by inspection."
+ },
+ "observationsNotRegistered": [
+  "/forgot-password's hero panel still reads \"Enter your email to start a secure password reset.\" above the notice saying sending is not switched on. The form column states the true position twice, so the page is not misleading, but the hero lead is now stale against it. Recorded for the next copy pass rather than repaired, because a repair would require a second deployment outside §317A's authorised scope."
+ ]
+}

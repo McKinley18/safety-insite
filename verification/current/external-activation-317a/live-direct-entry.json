@@ -1,0 +1,446 @@
+{
+ "rows": [
+  {
+   "route": "/command-center",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/command-center",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/inspections",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/inspections",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/settings",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/settings",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/profile",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/profile",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/reports",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/reports",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/safety-calendar",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/safety-calendar",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/inspection-workspace",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/inspection-workspace",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/inspection-complete",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/inspection-complete",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/upgrade",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/upgrade",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/unlock",
+   "mode": "direct",
+   "landed": "/unlock",
+   "len": 247,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "PROTECTED MODE | Create Local PIN | Create a PIN to protect encrypted local inspection repor"
+  },
+  {
+   "route": "/unlock",
+   "mode": "refresh",
+   "landed": "/unlock",
+   "len": 247,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "PROTECTED MODE | Create Local PIN | Create a PIN to protect encrypted local inspection repor"
+  },
+  {
+   "route": "/field-capture",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/field-capture",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/login",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/login",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/register",
+   "mode": "direct",
+   "landed": "/register",
+   "len": 1359,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "CHOOSE YOUR ACCESS | Select a plan. | Two plans. Pick the one that matches the work. | Free ke"
+  },
+  {
+   "route": "/register",
+   "mode": "refresh",
+   "landed": "/register",
+   "len": 1359,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "CHOOSE YOUR ACCESS | Select a plan. | Two plans. Pick the one that matches the work. | Free ke"
+  },
+  {
+   "route": "/forgot-password",
+   "mode": "direct",
+   "landed": "/forgot-password",
+   "len": 628,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "ACCOUNT RECOVERY | Reset access. | Enter your email to start a secure password reset. | Reset "
+  },
+  {
+   "route": "/forgot-password",
+   "mode": "refresh",
+   "landed": "/forgot-password",
+   "len": 628,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "ACCOUNT RECOVERY | Reset access. | Enter your email to start a secure password reset. | Reset "
+  },
+  {
+   "route": "/reset-password",
+   "mode": "direct",
+   "landed": "/reset-password",
+   "len": 231,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Choose a new password | Use at least eight characters with upper and lower case, a number, "
+  },
+  {
+   "route": "/reset-password",
+   "mode": "refresh",
+   "landed": "/reset-password",
+   "len": 231,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Choose a new password | Use at least eight characters with upper and lower case, a number, "
+  },
+  {
+   "route": "/reset-password?token=bad-317a",
+   "mode": "direct",
+   "landed": "/reset-password",
+   "len": 231,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Choose a new password | Use at least eight characters with upper and lower case, a number, "
+  },
+  {
+   "route": "/reset-password?token=bad-317a",
+   "mode": "refresh",
+   "landed": "/reset-password",
+   "len": 231,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Choose a new password | Use at least eight characters with upper and lower case, a number, "
+  },
+  {
+   "route": "/pricing",
+   "mode": "direct",
+   "landed": "/pricing",
+   "len": 2990,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "SAFETY INSITE PRICING | Two plans. One does the paperwork, one does the thinking. | Safety I"
+  },
+  {
+   "route": "/pricing",
+   "mode": "refresh",
+   "landed": "/pricing",
+   "len": 2990,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "SAFETY INSITE PRICING | Two plans. One does the paperwork, one does the thinking. | Safety I"
+  },
+  {
+   "route": "/about",
+   "mode": "direct",
+   "landed": "/about",
+   "len": 2575,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Safety inspections, built for action. | Safety InSite helps safety professionals turn field"
+  },
+  {
+   "route": "/about",
+   "mode": "refresh",
+   "landed": "/about",
+   "len": 2575,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Safety inspections, built for action. | Safety InSite helps safety professionals turn field"
+  },
+  {
+   "route": "/hazlenz",
+   "mode": "direct",
+   "landed": "/hazlenz",
+   "len": 2870,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "SAFETY INTELLIGENCE REIMAGINED | HazLenz AI. | A governed hazard intelligence engine that in"
+  },
+  {
+   "route": "/hazlenz",
+   "mode": "refresh",
+   "landed": "/hazlenz",
+   "len": 2870,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "SAFETY INTELLIGENCE REIMAGINED | HazLenz AI. | A governed hazard intelligence engine that in"
+  },
+  {
+   "route": "/legal",
+   "mode": "direct",
+   "landed": "/legal",
+   "len": 2291,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Legal disclaimer. | Safety InSite is a proprietary field safety inspection and corrective a"
+  },
+  {
+   "route": "/legal",
+   "mode": "refresh",
+   "landed": "/legal",
+   "len": 2291,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Legal disclaimer. | Safety InSite is a proprietary field safety inspection and corrective a"
+  },
+  {
+   "route": "/",
+   "mode": "direct",
+   "landed": "/",
+   "len": 1076,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "SAFETY INSITE + HAZLENZ AI | The inspection app that helps you finish the paperwork. | Safet"
+  },
+  {
+   "route": "/",
+   "mode": "refresh",
+   "landed": "/",
+   "len": 1076,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "SAFETY INSITE + HAZLENZ AI | The inspection app that helps you finish the paperwork. | Safet"
+  },
+  {
+   "route": "/this-route-does-not-exist-317a",
+   "mode": "direct",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  },
+  {
+   "route": "/this-route-does-not-exist-317a",
+   "mode": "refresh",
+   "landed": "/login",
+   "len": 468,
+   "stuck": false,
+   "raw": [],
+   "privileged": false,
+   "head": "Welcome back. | Capture field observations, identify hazard patterns, track corrective acti"
+  }
+ ],
+ "serverErrors": [],
+ "pageErrors": []
+}
