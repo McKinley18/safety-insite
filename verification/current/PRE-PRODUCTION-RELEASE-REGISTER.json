@@ -2,7 +2,7 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§315",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+  "candidateHead": "7fe2d2bc",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -2329,7 +2329,7 @@
   ],
   "candidateHeadPredecessor": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
-  "candidateHeadNote": "§314A. Candidate and production are the same commit. ed37e34b was established CODE-IDENTICAL to the code-bearing repair 4dab23d8 before deployment: only two register/documentation paths differ, the backend/src tree is object-for-object identical (d8808c8c…), the frontend tree is identical (bc8d9b63…), and both commits produce 5c939e74… .",
+  "candidateHeadNote": "§315. The candidate HEAD has moved past the DEPLOYED commit, and it is a FALSE POSITIVE for deployment — the §295 case exactly. §315 changed four files, all under backend/scripts/ops/, which is inside the applicationSourceDigest file pattern but is NOT compiled: backend/tsconfig.json is include: [\"src/**/*\"] with rootDir ./src, so nothing under backend/scripts/ enters dist. Measured both ways: the full digest moved to 0735cf0a…, while the ARTIFACT-ONLY digest (the same set minus backend/scripts/) is 4312701c… before and after the §315 commit. The built artifact did not move, and §315 explicitly forbids deploying application runtime because repository scripts changed.",
   "candidateProductSourceCommit": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
   "applicationSourceDigest": "5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3",
   "applicationSourceDigestSuperseded": [
@@ -2390,21 +2390,8 @@
   "deployedReleaseSha": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
   "deployedAt": "2026-09-16T22:52:14Z (Render deploy dep-dalhqcv40ujc73e39nm0, trigger api)",
   "schemaHead": "1800000026000",
-  "applicationSourceDigestNote": "§314A. THIS DIGEST IS NOW LIVE. The candidate and the deployed release are the same commit, so candidate and deployed bindings have converged on 5c939e74… . Proven by recomputing the documented digest at the gitCommit the running service reports. No migration; schema 1800000026000, 58/58, aheadOfBuild empty.",
-  "artifactOnlyDigestDiagnostic": {
-    "value": "fa0330d9d74e58299cb66996b3e86b1c70673a4e822b725db6d909a8dadc51c7",
-    "previousValue": "5fb47c7f5ae5f9b93693dbae046a1a5e2cf3c87ccf3cf87cd30b4fcdadd263c6",
-    "equalAtDeployedAndHead": false,
-    "whyItMoved": "backend/package.json gained one scripts entry. It is a real build input, so the diagnostic correctly reports a movement; what it cannot tell you is whether the movement matters, which is why the build-relevant fields were compared field by field instead.",
-    "buildRelevantFieldsIdenticalToDeployed": [
-      "dependencies",
-      "devDependencies",
-      "engines",
-      "scripts.build:render",
-      "scripts.start:render"
-    ],
-    "status": "DIAGNOSTIC ONLY — not a release binding, not a successor to applicationSourceDigest"
-  },
+  "applicationSourceDigestNote": "§315. THIS REMAINS THE DEPLOYED AND LIVE BINDING at ed37e34b — production was not redeployed and did not need to be. HEAD now reads 0735cf0a… because §315 changed operator scripts inside the digest's file pattern; the artifact-only diagnostic 4312701c… is identical across the change, which is what says the deployable product is unchanged. Do NOT spend a deployment reconciling the movement.",
+  "artifactOnlyDigestDiagnostic": "4312701c1b7e7fff17a31d116a8f52894998e23964daebfc266fcf4e8b62f9b7 — the applicationSourceDigest file set MINUS backend/scripts/, recomputed at §315. Unchanged by the §315 commit, which is the evidence that only non-compiled operator tooling moved.",
   "thresholdBStatus": "CLOSED at §297B",
   "internalProductionAuthorization": "AUTHORIZED FOR CONTROLLED INTERNAL / PRODUCT-OWNER PRODUCTION USE",
   "externalBetaAuthorization": "NOT AUTHORIZED",
@@ -2466,5 +2453,5 @@
   },
   "deployedReleaseShaNote": "§314A. DEPLOYED and read back from the running service over five stable GET /health/version reads: gitCommit ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee, versionSourceStatus RENDER_GIT_COMMIT. Render deploy dep-dam8no2jnfac73e7oamg, status live. Backend only — the frontend tree is byte-identical to the previously deployed 32653cac, so nothing was deployed to Vercel.",
   "schemaHeadNote": "CORRECTED AT §314. The field read 1800000025000; the migration head is 1800000026000 (UserSubscriptionStatusDefault) and §313A's own narrative already said so. 58 migrations. §314 wrote none.",
-  "candidateHeadSha": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee"
+  "candidateHeadSha": "RECORDED_BY_THE_FOLLOWING_COMMIT"
 }

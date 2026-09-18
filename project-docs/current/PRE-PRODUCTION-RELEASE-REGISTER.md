@@ -260,7 +260,8 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Candidate commit** | `ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee` — code-identical to the code-bearing repair `4dab23d8`; now also the DEPLOYED commit. |
+| **Candidate commit** | `7fe2d2bc` (§315) — operator tooling only. HEAD's `applicationSourceDigest` reads `0735cf0a…`, and that is a **false positive for deployment**: `backend/scripts/` is inside the digest's file pattern but is not compiled (`tsconfig` is `include: ["src/**/*"]`), and the **artifact-only** digest `4312701c…` is identical across the change. |
+| **Deployed commit** | `ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee` (§314A) — code-identical to the code-bearing repair `4dab23d8`. Still live; §315 required no deployment. |
 | **Release binding — DEPLOYED (§314A)** | `applicationSourceDigest` = `5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3` — **LIVE since §314A**, proven by recomputing the digest at the `gitCommit` the running service reports over five stable reads. Three files changed and nothing else: `storage.service.ts`, `operational-events.ts`, and the new `scripts/ops/verify-evidence-digest-integrity.js`. **No migration**; schema `1800000026000`, 58/58, `aheadOfBuild: []`. The method was checked against a known answer before use — recomputed at `75b5a149` it reproduced `bacfdb70…` exactly. |
 | Superseded binding | `e0349820…` at `32653cac` — §313A, what production ran until §314A. |
 | Superseded binding | `87bb6eaa…` at `b8a6fd9c…` — §310A, what production ran until §313 |
