@@ -6,6 +6,36 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§316 — EXTERNAL BETA READINESS RE-BASELINED.** No code, configuration, deployment or production
+state changed. The register was re-derived **entry by entry** rather than read from its own counts, and
+the counts matched exactly. What was wrong was the *content* of two entries and the *absence* of one.
+
+**Two entries were stale against the code and are now CLOSED.** `PR-2` claimed no self-serve deletion
+exists — `DELETE /auth/me` was built at §313 and exercised in production at §313A and §314A, erasing
+the account's evidence from R2. `TI-2` claimed the outcome recurrence check counts across every tenant
+— §287 repaired it by making a workspace scope a **required** argument with no unscoped variant.
+Neither was a Threshold-C blocker, so the Beta count is unaffected.
+
+**One new blocker is opened by measurement: `HZ-11`.** Production Expert ceilings are **1 analysis and
+$1.00 per user per 24 hours** — an internal-activation setting an inspector would exhaust on the first
+observation. §316 checked the worse possibility first, whether `SE-20`'s collapse of every individual
+into the literal workspace `'default'` made that ceiling **shared**: it does not. The ceiling is keyed
+on `requestedByUserId`. Nothing in the register had tracked Expert's production ceilings at all.
+
+**The Threshold-C set is re-derived rather than inherited.** Of 15 flags, **14 still genuinely block**.
+`AC-1` is **recommended down** to SHOULD for an invitation-only Beta — the reviewed core journey passes
+every objective check and only the unreviewed surfaces are unknown — and remains a **MUST before public
+availability**; its flag is left in place because clearing it is the owner's call. `TM-1` is **reframed**:
+the *name* does not block a recoverable controlled Beta, but **brand lock does**, because `EM-2`'s
+sending domain and 17 brand occurrences in the legal text both depend on it.
+
+**Engineering is not the constraint.** Of the twelve MUST-COMPLETE items, **three are engineering** and
+all three are bounded; the rest is counsel, owner configuration and product decision. The v1
+preservation package is still bound to the §292-era baseline and would not reconstruct the current
+product; a full reconstruction document does not exist and **v1 is NOT frozen**.
+
+**The critical path:** [`EXTERNAL-BETA-CRITICAL-PATH.md`](EXTERNAL-BETA-CRITICAL-PATH.md).
+
 **§315 — `BR-9` IS CLOSED. The nightly job now hashes the bytes.** Authoritative live-byte SHA-256
 verification is part of the **scheduled** path, and `AGGREGATE HEALTHY` is now impossible while any
 active evidence object is mismatched, missing, unknown, resurrected, unreadable, or incompletely
@@ -382,13 +412,13 @@ Severity is **not** a synonym for importance. Several P3 items are load-bearing 
 
 | | Total | P0 | P1 | P2 | P3 |
 |---|---|---|---|---|---|
-| Entries | **126** | **9** | **14** | **66** | **37** |
+| Entries | **127** | **9** | **15** | **66** | **37** |
 
 | Status | Count |
 |---|---|
-| CLOSED | 76 |
+| CLOSED | 78 |
 | OPEN | 36 |
-| BLOCKED (waiting on a decision or another item) | 3 |
+| BLOCKED (waiting on a decision or another item) | 2 |
 | DEFERRED (deliberately not v1) | 9 |
 | ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED | 1 |
 | ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED | 1 |
