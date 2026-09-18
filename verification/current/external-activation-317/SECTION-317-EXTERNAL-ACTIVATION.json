@@ -1,0 +1,261 @@
+{
+ "artifact": "SAFETY_INSITE_SECTION_317_EXTERNAL_USER_ACTIVATION",
+ "section": "§317",
+ "startingHead": "450b8fcb7f5b6a1c663f62ce34f20525899eea32",
+ "productionSha": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+ "productionReadLiveReadOnly": {
+  "endpoint": "https://safescope-backend.onrender.com/health/ready",
+  "status": "ready",
+  "passwordResetEmail": {
+   "state": "NOT_CONFIGURED",
+   "provider": "resend",
+   "missing": [
+    "RESEND_API_KEY",
+    "PASSWORD_RESET_FROM_EMAIL"
+   ]
+  },
+  "monitoring": {
+   "alerting": "CONFIGURED",
+   "channel": "webhook"
+  },
+  "schema": {
+   "expectedSchemaVersion": "1800000026000",
+   "expectedCount": 58,
+   "appliedCount": 58,
+   "aheadOfBuild": []
+  },
+  "note": "Read-only GET. No production state was written, no configuration changed, no deployment performed."
+ },
+ "providerCalls": 0,
+ "expertAnalyses": 0,
+ "spendUsd": 0.0,
+ "realChargesUsd": 0.0,
+ "productionCustomerMutations": 0,
+ "productionConfigurationChanges": 0,
+ "deployments": 0,
+ "freshUserEnvironment": {
+  "database": "insite_317_gate_20260918 (and insite_317_freshuser_20260918 for the first pass)",
+  "builtBy": "migration:run only — 58 migrations, 68 canonical tables",
+  "manualSql": "none beyond CREATE DATABASE",
+  "manualDbGrants": 0,
+  "seededCustomerIdentity": false,
+  "standardsCorpusSeeded": false,
+  "backend": {
+   "NODE_ENV": "development",
+   "DEV_AUTH_BYPASS": "false",
+   "TYPEORM_SYNCHRONIZE": "false",
+   "STORAGE_PROVIDER": "local_test",
+   "EXPERT_EXECUTION_ENABLED": "false",
+   "ANTHROPIC_API_KEY": "unset"
+  },
+  "frontend": {
+   "build": "production (next build + next start)",
+   "NEXT_PUBLIC_DISABLE_AUTH": "false",
+   "NEXT_PUBLIC_DEV_FORCE_PRO": "false"
+  }
+ },
+ "gate": {
+  "script": "frontend-next/scripts/validate-317-external-activation.mjs",
+  "total": 33,
+  "passed": 33,
+  "failed": 0,
+  "terseSystemStates": [
+   {
+    "route": "/inspection-complete",
+    "length": 74,
+    "text": "Home | Inspect | Reports | Calendar | Settings | Live | GP | No inspection is selected."
+   }
+  ],
+  "watchedToFail": {
+   "total": 31,
+   "passed": 29,
+   "failed": 2,
+   "failingCases": [
+    "EXP-2",
+    "RP-1"
+   ],
+   "meaning": "Run against a build in which ONLY the two behavioural repairs were reverted. Exactly the two targeted cases moved; nothing else did."
+  }
+ },
+ "pageReview": {
+  "script": "frontend-next/scripts/review-317-external-activation.mjs",
+  "widths": [
+   390,
+   768,
+   1280,
+   1440
+  ],
+  "themes": [
+   "light",
+   "dark"
+  ],
+  "free": {
+   "visits": 128,
+   "observations": 173,
+   "objective": 57
+  },
+  "proCompedGrant": {
+   "visits": 128,
+   "observations": 173,
+   "objective": 57,
+   "entitlementState": {
+    "tierDeclaredByRunner": "pro-comped-grant",
+    "jwtPlanClaim": "pro",
+    "effectivePlanClaim": "pro",
+    "correctiveActionAssignments": true,
+    "calendarReadStatus": 200,
+    "note": "The JWT claim is a CACHED value; EntitlementService treats a live subscription row or an active grant as authoritative over it. Both are recorded so a later reader can tell which tier this evidence describes."
+   }
+  },
+  "instrumentDefectsCorrectedAtThisSection": [
+   "I-22 a disabled control is exempt from WCAG 1.4.3 and is counted separately — 40 of 48 contrast observations were exactly that",
+   "I-23 the tap target of a label-wrapped checkbox is the label, not the 20x20 input",
+   "I-24 a control's colour is about its action, not a data status — /profile's red Delete Account button",
+   "I-25 'not available' is a status word — /upgrade's amber notice states its status in its first six words"
+  ]
+ },
+ "regressions": {
+  "backend": {
+   "268-operational-controls": "64 passed, 0 failed",
+   "305a-individual-beta-scope": "62 passed, 0 failed",
+   "306-password-recovery": "51 passed, 0 failed, 0 emails sent",
+   "301-entitlement-integration": "37 passed, 0 failed",
+   "302-promotional-grant": "41 passed, 0 failed",
+   "307-security-boundary": "334 passed, 0 failed",
+   "308-legal-publication": "all 3 phases passed, 0 published, 0 ACTIVE, 0 provider calls"
+  },
+  "frontendUnit": {
+   "expert-api-failure-mapping": "pass",
+   "expert-entitlement-presentation": "pass",
+   "expert-presentation": "pass",
+   "299-posture-presentation": "89 passed, 0 failed",
+   "calendar-reconciliation": "34/34",
+   "legal-render": "35 passed, 0 failed",
+   "279-release-version-check": "31 passed, 0 failed"
+  },
+  "frontendBrowser": {
+   "check:hydration": "3 passed, 0 failed — 0 hydration mismatches across 16 routes x 2 themes @390 on a DEV server",
+   "validate:284-expert-entitlement-ux": "NOT EXERCISED — blocked by IT-5",
+   "validate:285-completion-and-report": "PARTIAL — the four cases independent of the stale seeder pass (C1..C4); every seeded-state case reports undefined. IT-5."
+  },
+  "contracts": {
+   "check:legal-documents": "23/23 pass, 0 published, 0 ACTIVE, 17 temporary-brand occurrences in draft text",
+   "check:canonical-schema": "pass — manifest digest == fresh migration replay digest, 68 tables, 0 material differences",
+   "check:entity-contract:db": "pass — §309 gate, remaining differences are the registered SC-4 set",
+   "verify-274-successor-identity": "VERIFIED — 8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee, delta is the authorised path rename only"
+  }
+ },
+ "schema": {
+  "expectedSchemaVersion": "1800000026000",
+  "migrations": 58,
+  "canonicalTables": 68,
+  "manifestInternalDigest": "34712ba8f0851c0375e8bd39a2cccca86d7e4b8a5fd1d2f1455cdae961b3cc56",
+  "manifestFileDigest": "d8c26f60fcdc6a492b2a16e41e5a9a9cfcd88c99433b702e8a0b7db26e0e0a68",
+  "registerValueBeforeCorrection": "3a51b1a21294f40649a57ab0f0857fb2816e5e695a7cabe35c05043b9185bf60",
+  "correction": "The register carried the manifest's §305 value. §310 changed the manifest and the register was never updated, including at §316. Corrected at §317."
+ },
+ "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+ "registerAfter": {
+  "total": 132,
+  "P0": 9,
+  "P1": 16,
+  "P2": 69,
+  "P3": 38,
+  "thresholdC": 14,
+  "byStatus": {
+   "BLOCKED": 2,
+   "CLOSED": 80,
+   "DEFERRED": 9,
+   "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED": 1,
+   "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED": 1,
+   "OPEN": 39
+  },
+  "thresholdCTrail": "15 at §316 -> 14 (AC-1 removed by the product owner) -> 12 (CPF-2, CPF-3 closed) -> 14 (HZ-12, CS-2 opened)"
+ },
+ "entriesChanged": {
+  "closed": [
+   "CPF-2",
+   "CPF-3"
+  ],
+  "reclassified": [
+   "AC-1 — removed from Threshold C by product-owner decision, remains SHOULD"
+  ],
+  "updated": [
+   "HZ-11",
+   "EM-2"
+  ],
+  "opened": [
+   "HZ-12",
+   "CS-2",
+   "EN-4",
+   "AC-2",
+   "IT-5"
+  ]
+ },
+ "repairs": [
+  {
+   "id": "EA-1",
+   "file": "frontend-next/components/inspection/expert/ExpertAnalysisPanel.tsx",
+   "defect": "a refused Expert execution was set and then cleared by the reconciling read, so the customer saw nothing",
+   "gate": "EXP-2",
+   "failsOnPreRepairBuild": true
+  },
+  {
+   "id": "EA-2",
+   "file": "frontend-next/app/inspection-workspace/page.tsx",
+   "defect": "the governed risk urgency policy was held only in session memory, so a saved inspection could never be finished in a later session",
+   "gate": "RP-1",
+   "failsOnPreRepairBuild": true
+  },
+  {
+   "id": "EA-3",
+   "file": "frontend-next/app/forgot-password/page.tsx",
+   "defect": "the recovery surface promised an email the service cannot send",
+   "gate": "RC-1 + RC-2",
+   "failsOnPreRepairBuild": false
+  },
+  {
+   "id": "O-14",
+   "file": "frontend-next/app/login/page.tsx",
+   "defect": "the email field was not type=email",
+   "gate": "CPF3-1"
+  },
+  {
+   "id": "O-4/O-5/O-6/O-7",
+   "file": "frontend-next/app/inspections/page.tsx",
+   "defect": "two left margins in one card; both workflow descriptions clipped at every width; a duplicated and centred footnote; engineering vocabulary",
+   "gate": "CPF3-2a..d"
+  },
+  {
+   "id": "O-10/O-11",
+   "file": "frontend-next/lib/billing.ts, components/billing/BillingSettingsPanel.tsx, components/billing/UpgradeContent.tsx, app/profile/page.tsx",
+   "defect": "raw status and plan codes on the customer surface; an internal vendor and a deployment concept named to the customer; a comped account shown a price it does not pay and never shown its end date",
+   "gate": "CPF3-3a, CPF3-3b"
+  },
+  {
+   "id": "REG-1",
+   "file": "frontend-next/app/register/page.tsx",
+   "defect": "all six form fields had no programmatic label; the email field was not type=email; the legal links had no usable tap target",
+   "gate": "page-review UNLABELLED_FORM_FIELD 8 -> 0 and BELOW_PROJECT_TOUCH_FLOOR_36 on /register -> 0"
+  },
+  {
+   "id": "VER-1",
+   "file": "frontend-next/components/system/ApplicationVersionPanel.tsx",
+   "defect": "the support-details disclosure measured 87x16, under the product's own 36px floor, and support is the only recovery route during Beta"
+  }
+ ],
+ "openAfterSection": {
+  "unrepairedByDesign": [
+   "AC-2 /unlock 3.59:1 — a brand colour-token decision, and §317's authority excludes branding",
+   "HZ-12 silent degraded analysis — a claim about what the engine did, which belongs to CM-1",
+   "CS-2 Pro capabilities with no surface — a product decision and a claim",
+   "two inline prose links under the 36px floor, which §281 already decided is the treatment inline links get",
+   "the signed-out 404 redirecting to /login, which §280 recorded and left as a product decision",
+   "/inspection-complete rendering one honest sentence with no route out — recorded, not failed, because it meets all four §317 direct-navigation criteria"
+  ],
+  "unexplained": [
+   "an intermittent React hydration text mismatch (#418) on /settings: 1 of 128 visits in each of the two final sweeps, 3 of 128 in an earlier one. The project's own check:hydration gate passes 0/16 routes on a dev server. Not reproducible in eleven targeted attempts; the one candidate cause inside §317's own change was removed and it still occurred. CAUSE NOT ESTABLISHED."
+  ]
+ },
+ "codeCommit": "f55aed39"
+}

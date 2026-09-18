@@ -94,11 +94,16 @@ not §316's.
 | **PR-1** P1 | External inspectors will photograph **real workplaces containing real workers**. The product has no stated position, no consent posture and no retention statement for images of people. | Counsel-reviewed statement in the Privacy Notice plus in-product guidance | Counsel + product | guidance copy | yes |
 | **RR-1** P1 | An inspector may treat the output as their **statutory examination record**. MSHA 30 CFR 56.18002 requires a competent person's record retained one year; OSHA 29 CFR 1904 imposes separate duties. The product neither performs the examination nor guarantees the record — and does not say so. | State plainly in Terms and product copy that it does not perform the examination and does not satisfy any recordkeeping obligation | Counsel + product | copy | yes |
 | **SR-1** P1 | The aid-not-replacement position exists on `/legal`, the signup checkbox and the report footer — but **not in the HazLenz UI**, which is exactly where a person decides whether to trust an analysis. | Decide the canonical placement set and apply it | Product decides, engineering applies | yes | yes |
-| **CPF-2** P2 | Eleven surfaces never reviewed, including the **public claim-bearing pages** (CM-1's surface) and `/forgot-password`, `/reset-password`, `/upgrade`, `/unlock` — the recovery and payment paths. | Bounded Batch 6/7 review, public claim pages first | Engineering | likely | yes |
-| **CPF-3** P2 | Unclosed `ADJUSTMENTS_REQUIRED`. **The register names three surfaces; the inventory carries six** — `/login`, `/command-center`, the shell, `/inspections`, `/inspection-cover`, `/settings`. `/login` is the front door of the core journey. | Each adjustment recorded as closed or deliberately deferred | Engineering | likely | yes |
+| ~~**CPF-2** P2~~ | **CLOSED §317.** Every named surface reviewed at 390/768/1280/1440 in both themes on a production build. `/forgot-password` stopped promising an undeliverable email, `/profile` and `/upgrade` stopped naming a vendor and stopped showing a comped account a price it does not pay. `CS-2` and `AC-2` opened from the review. | — | — | done | done |
+| ~~**CPF-3** P2~~ | **CLOSED §317.** Each registered adjustment re-measured before being changed, and none had fixed itself: O-14, O-4, O-5, O-6, O-7, O-10 and O-11 are closed; the subjective items are deferred unchanged. One intermittent hydration mismatch on `/settings` is carried as explicitly outstanding. | — | — | done | done |
 | **ST-3** P2 | Retention is **undefined**. Reports and revisions are retained indefinitely by construction; nothing states a period, an export guarantee, or what happens when the Beta ends. External users are handing over real workplace records. | State a retention and export position for the Beta | Product, with counsel on the wording | maybe export | maybe |
 
 `HZ-11` is the fourteenth and is set out in §6.
+
+> **§317 UPDATE.** `CPF-2` and `CPF-3` are **closed**, `AC-1` is **removed from Threshold C by the
+> product owner**, and **`HZ-12` and `CS-2` are opened by measurement**. The count returns to **14**,
+> and the composition has changed: **not one of the fourteen is a pure engineering build item.**
+> `HZ-11`'s UX half is also closed — the refusal the ceiling produces was invisible, and is not.
 
 ### Re-derived — 2
 
@@ -133,8 +138,8 @@ Neither flag is removed from the register. `AC-1` is a **recommendation** to the
 | Disposition | Count | Items |
 |---|---|---|
 | `BETA_BLOCKER_COUNSEL` | 5 | LG-1, LG-2, LG-3, PR-1, RR-1 |
-| `BETA_BLOCKER_ENGINEERING` | 3 | SU-2, CPF-2, CPF-3 |
-| `BETA_BLOCKER_PRODUCT_DECISION` | 5 | CM-1, SR-1, ST-3, **brand lock (TM-1)**, **`HZ-11` Expert ceilings** |
+| `BETA_BLOCKER_ENGINEERING` | **0** after §317 | ~~SU-2~~ is gated on LG-1/LG-3 and is counsel-bound; `CPF-2` and `CPF-3` are **closed**. |
+| `BETA_BLOCKER_PRODUCT_DECISION` | 7 after §317 | CM-1, SR-1, ST-3, **brand lock (TM-1)**, **`HZ-11` Expert ceilings**, **`HZ-12` degraded-analysis disclosure**, **`CS-2` Pro capabilities with no surface** |
 | `BETA_BLOCKER_OWNER_CONFIG` | 2 | EM-2, **live payment enablement (§7)** |
 | `BETA_BLOCKER_EXTERNAL_VALIDATION` | 0 | none blocks a *controlled* Beta; trademark clearance is `SHOULD` and a **MUST before public availability** |
 

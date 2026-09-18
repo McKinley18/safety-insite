@@ -6,6 +6,75 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§317 — EXTERNAL-USER ACTIVATION. `CPF-2` AND `CPF-3` ARE CLOSED, AND THE FRESH-USER PATH IS PROVEN
+FROM ZERO.** A participant who has never existed in the database was created **twice, on databases
+built by migrations alone**, and driven through the product in a real browser with every development
+bypass off against a production build. **Free reached a stored inspection record with photo evidence
+and a saved history with no operator involvement at all. Comped — one server environment variable,
+no database write — reached a finished report.** No manual SQL, no manual grant, no allowlist entry,
+no pre-created site, no pre-created inspection.
+
+**Two defects were found that no page review could have found, because every page review walked the
+workflow without leaving the page.**
+
+**The report was stranded by a browser refresh.** Save a finding, refresh or come back later, reopen
+the inspection from `Saved history`, press **Finish inspection** — and the inspection could never be
+finished. No report, no corrective action, no calendar task, and the customer was told *"The governed
+risk urgency policy was not returned by the server"*, which was untrue: the server returns it on
+every read of the inspection. `riskPolicy` was held only in the memory of the session that saved the
+review. It is now read back off the durable record. **This stranded the product's own deliverable on
+a browser refresh.**
+
+**A refused Expert run was invisible.** The server answered `503` with a sentence written for the
+inspector and `providerCallsMade: 0`, and the page showed **nothing at all** — same panel, same
+enabled button, measured at 0.5s, 1s, 2s, 4s and 7s. The panel set the message and then cleared it
+with the reconciling read that followed. At production's ceiling of **1 analysis per user per 24
+hours**, every Beta participant meets that path on their second observation of the day, so raising
+the ceiling would have moved the silence rather than removed it. Both repairs are covered by
+regression cases that **fail on the pre-repair build**, recorded in a watched-to-fail run.
+
+**Password recovery stopped pretending.** Production reports `passwordResetEmail NOT_CONFIGURED`;
+a reset request mints a token, fails delivery and correctly rolls the token back, so nothing is
+written and nothing is sent — and the page said *"instructions will be sent."* It now reads the
+service's own published capability and says plainly that no reset email can be sent. The API's
+byte-identical generic response is untouched and re-asserted on every run, because what is disclosed
+is a property of the **service**, identical for every caller and already public at `/health/ready`.
+`EM-2` is **not** closed: nothing has still ever reached a real mailbox.
+
+**`CPF-3`'s six registered adjustments were re-measured before being changed, and none had fixed
+itself.** `/login`'s email field still rendered as `text`; `/inspections` still had two left margins
+in one card (105px against 256px at 1280) and still clipped both workflow descriptions at every
+width; `/settings` still showed a raw `none` and still named Stripe to the customer.
+
+**`CPF-2`'s review found the worst defect on a surface the entry does not name.** `/register` — batch
+7, absent from `CPF-2`'s text and present in its batch table — had **no programmatic label on any of
+its six form fields**, on the one surface standing between an invited participant and an account.
+Repaired, and reported **outside** the `CPF-2` closure claim rather than absorbed into it.
+
+**Three new blockers are opened by measurement, and two of them are claims rather than code.**
+`HZ-12`: HazLenz silently degrades to a reduced advisory path when a **420 MB** heap guard trips in
+production, and the three fields in which the server says so are read nowhere in the frontend.
+`CS-2`: the Pro plan advertises *"Inspection planning and assignment tools"* and *"Dashboards,
+analytics, and audit trail"* with **no customer-reachable surface for either** — `CS-1`'s shape on
+words `§305A`'s team-vocabulary sweep did not cover. `AC-2`: `/unlock` fails AA at 3.59:1, and it is
+a brand-token decision. `EN-4` is opened and does **not** block: comped access can be granted by
+configuration and expires on its own, but it cannot be **withdrawn early** without the platform
+administrator that only a direct database write can create.
+
+**One register defect was found in the register itself.** `canonicalSchemaManifest.digest` has been
+wrong since **§310**: it carried the manifest's §305 value, §310 changed the manifest, and §316's
+entry-by-entry re-derivation did not reach this top-level block. The schema was never wrong — the
+gate compares the manifest to a fresh migration replay, and it passes with 68 tables and 0 material
+differences — but the register stated an identity no artifact has held for seven sections.
+
+**Threshold C: 15 → 14.** `AC-1` removed by product-owner decision (15 → 14), `CPF-2` and `CPF-3`
+closed (14 → 12), `HZ-12` and `CS-2` opened (12 → 14). **Not one of the fourteen is a pure
+engineering build item.** They are counsel, brand, claims, privacy, retention, product decision and
+owner configuration. §316 said engineering was not the constraint; §317 finished the engineering it
+named.
+
+**Evidence:** [`verification/current/external-activation-317/`](../../verification/current/external-activation-317/).
+
 **§316 — EXTERNAL BETA READINESS RE-BASELINED.** No code, configuration, deployment or production
 state changed. The register was re-derived **entry by entry** rather than read from its own counts, and
 the counts matched exactly. What was wrong was the *content* of two entries and the *absence* of one.
@@ -556,7 +625,7 @@ recording *that* someone accepted *version X at time T* is independent of what t
 **MO-1** — someone must find out when it breaks. **PA-1** — a post-deploy acceptance defining what
 must be true before a human uses it.
 
-### Threshold C — external controlled beta  (**14 open blockers**, including all six P0)
+### Threshold C — external controlled beta  (**14 open blockers** after §317, including all six P0)
 
 All of B, plus the legal, claims, privacy, review and clearance work:
 
@@ -597,8 +666,8 @@ are retained so a later section does not rediscover them as new.
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
 | **CPF-1** | Core v1 workflow (inspection spine, HazLenz presentation, completion, reports, actions, calendar) reviewed and closed. | P3 | — | Engineering | CLOSED |
-| **CPF-2** | Batch 6/7 surfaces never page-reviewed: /profile, /upgrade, /unlock, /pricing, /about, /hazlenz, /legal, /forgot-password, /reset-password, 404 / error / loading states. | P2 | C | Mixed | OPEN |
-| **CPF-3** | /settings, /inspections and /login carry ADJUSTMENTS_REQUIRED from earlier batches; the adjustments were never closed. | P2 | C | Engineering | OPEN |
+| **CPF-2** | Batch 6/7 surfaces never page-reviewed: /profile, /upgrade, /unlock, /pricing, /about, /hazlenz, /legal, /forgot-password, /reset-password, 404 / error / loading states. | P2 | — | Mixed | **CLOSED §317** |
+| **CPF-3** | /settings, /inspections and /login carry ADJUSTMENTS_REQUIRED from earlier batches; the adjustments were never closed. | P2 | — | Engineering | **CLOSED §317** |
 
 **CPF-2 — remediation / decision.** Bounded Batch 6/7 review. Public claim-bearing pages first (/about, /hazlenz, /pricing, /legal) because they interact with CM-1.
 
@@ -1641,7 +1710,7 @@ Closure side effects now fire on the **transition**, not the request. `close()` 
 
 | ID | Description | Sev | Blocks | Owner | Status |
 |---|---|---|---|---|---|
-| **AC-1** | Reviewed surfaces pass objective accessibility checks; unreviewed surfaces are unknown. | P2 | C | Engineering | OPEN |
+| **AC-1** | Reviewed surfaces pass objective accessibility checks; unreviewed surfaces are unknown. | P2 | — | Engineering | OPEN — **SHOULD**, removed from Threshold C by the product owner at §317 |
 
 **AC-1 — remediation / decision.** Extend the §286/§287 instrument to the Batch 6/7 surfaces. No new standard is being invented; the checks are the ones already in use.
 

@@ -1,0 +1,308 @@
+{
+  "gate": "§317 — external-user activation",
+  "measuredAt": "2026-09-18T13:13:21.365Z",
+  "appUrl": "http://localhost:3317",
+  "apiUrl": "http://localhost:4317",
+  "participants": {
+    "free": "s317.gate.free.1789736953798@example.invalid",
+    "comped": "s317.gate.pro.1789736953798@example.invalid"
+  },
+  "total": 31,
+  "passed": 29,
+  "failed": 2,
+  "terseSystemStates": [
+    {
+      "route": "/inspection-complete",
+      "length": 74,
+      "text": "Home | Inspect | Reports | Calendar | Settings | Live | GP | No inspection is selected."
+    }
+  ],
+  "cases": [
+    {
+      "id": "FU-1",
+      "title": "registration is refused without agreement acceptance, and the refusal names the agreement",
+      "passed": true,
+      "evidence": {
+        "status": 400,
+        "message": "Acceptance of \"Safety InSite — Internal / Pre-Beta Use Acknowledgement\" (internal-pre-beta-acknowledgement v2026-09-14.1) is required."
+      }
+    },
+    {
+      "id": "FU-2",
+      "title": "a participant who has never existed registers with no operator involvement",
+      "passed": true,
+      "evidence": {
+        "status": 201,
+        "body": {
+          "message": "User created successfully",
+          "userId": "65b1ba62-d76a-4a69-b5de-ec4329d98952",
+          "organizationId": null,
+          "planCode": "free",
+          "promoApplied": false,
+          "promotionalEntitlement": null,
+          "metadata": {
+            "ipAddress": "127.0.0.1",
+            "userAgent": "node",
+            "origin": "unknown",
+            "referer": "unknown",
+            "timestamp": "2026-09-18T13:09:13.822Z"
+          }
+        }
+      }
+    },
+    {
+      "id": "FU-3",
+      "title": "the new participant can sign in immediately, with no activation step",
+      "passed": true,
+      "evidence": {
+        "status": 201
+      }
+    },
+    {
+      "id": "FU-4",
+      "title": "a new account starts with NO entitlement and NO subscription, and says so",
+      "passed": true,
+      "evidence": {
+        "tier": "free",
+        "status": "none",
+        "tierSource": "none",
+        "accessSource": "free",
+        "hasProAccess": false,
+        "quickCapture": true,
+        "fullSafeScope": false
+      }
+    },
+    {
+      "id": "FU-5",
+      "title": "the participant creates their own first site; no site is pre-created for them",
+      "passed": true,
+      "evidence": {
+        "status": 201,
+        "body": {
+          "name": "S317 Gate Site 1789736953798",
+          "organizationId": null,
+          "ownerUserId": "65b1ba62-d76a-4a69-b5de-ec4329d98952",
+          "createdByUserId": "65b1ba62-d76a-4a69-b5de-ec4329d98952",
+          "archivedAt": null,
+          "archivedByUserId": null,
+          "id": "a9ee642e-1db8-4f27-8453-6571fe856e95",
+          "createdAt": "2026-09-18T13:09:14.222Z",
+          "updatedAt": "2026-09-18T13:09:14.222Z"
+        }
+      }
+    },
+    {
+      "id": "FU-6",
+      "title": "the participant creates their own first inspection",
+      "passed": true,
+      "evidence": {
+        "status": 201,
+        "id": "d3efed97-012d-44c2-a8d5-238c2aa90e11"
+      }
+    },
+    {
+      "id": "FU-7",
+      "title": "the participant records an observation against that inspection",
+      "passed": true,
+      "evidence": {
+        "status": 201,
+        "id": "5fe95004-8b42-4587-8907-c702e149ba39"
+      }
+    },
+    {
+      "id": "EN-1",
+      "title": "an ordinary participant cannot grant themselves an entitlement",
+      "passed": true,
+      "evidence": {
+        "status": 403,
+        "message": "Platform administrator access is required."
+      }
+    },
+    {
+      "id": "EN-2",
+      "title": "an ordinary participant cannot revoke an entitlement either",
+      "passed": true,
+      "evidence": {
+        "status": 403,
+        "message": "Platform administrator access is required."
+      }
+    },
+    {
+      "id": "EN-3",
+      "title": "a configured promo code confers Pro through a BOUNDED grant, with no database change",
+      "passed": true,
+      "evidence": {
+        "registration": 201,
+        "tier": "pro",
+        "tierSource": "grant",
+        "accessSource": "pilot",
+        "entitlementExpiresAt": "2026-09-25T13:09:14.427Z",
+        "days": 7
+      }
+    },
+    {
+      "id": "EN-4",
+      "title": "the comped account carries NO subscription, so nothing may present it as a purchase",
+      "passed": true,
+      "evidence": {
+        "status": "none",
+        "stripeSubscriptionId": null
+      }
+    },
+    {
+      "id": "CPF3-1",
+      "title": "/login — the email field is type=email (O-14)",
+      "passed": true,
+      "evidence": {
+        "type": "email"
+      }
+    },
+    {
+      "id": "DN-1",
+      "title": "signed out, every authenticated route renders something honest — no blank page, no stuck loading state, no raw server error, no privileged content",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "id": "DN-1b",
+      "title": "and every one of them offers a way out",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "id": "DN-2",
+      "title": "signed in, every critical route survives direct navigation and a browser refresh",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "id": "DN-3",
+      "title": "and none of it produced a 5xx",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "id": "SE-1",
+      "title": "an expired session never renders an unqualified zero — every stale figure says what kind of figure it is",
+      "passed": true,
+      "evidence": {
+        "uncaptioned": [],
+        "raw": [],
+        "tokenCleared": true
+      }
+    },
+    {
+      "id": "SE-2",
+      "title": "and the dead session is cleared rather than kept",
+      "passed": true,
+      "evidence": {
+        "tokenCleared": true
+      }
+    },
+    {
+      "id": "SE-3",
+      "title": "so the next navigation lands on sign-in",
+      "passed": true,
+      "evidence": {
+        "landed": "/login"
+      }
+    },
+    {
+      "id": "CPF3-2a",
+      "title": "/inspections — the START card's heading and its controls share one left edge (O-4)",
+      "passed": true,
+      "evidence": {
+        "headingLeft": 256,
+        "controlLeft": 256
+      }
+    },
+    {
+      "id": "CPF3-2b",
+      "title": "/inspections — no workflow description is clipped mid-sentence (O-5)",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "id": "CPF3-2c",
+      "title": "/inspections — no engineering vocabulary on the customer surface (O-7)",
+      "passed": true,
+      "evidence": {
+        "persistedVocabulary": false
+      }
+    },
+    {
+      "id": "CPF3-2d",
+      "title": "/inspections — the regulatory footnote states one context once (O-6)",
+      "passed": true,
+      "evidence": {
+        "occurrences": 1
+      }
+    },
+    {
+      "id": "CPF3-3a",
+      "title": "/settings — no raw subscription status code on the customer surface (O-10)",
+      "passed": true,
+      "evidence": {
+        "bodyHasRawNone": false
+      }
+    },
+    {
+      "id": "CPF3-3b",
+      "title": "/settings — no internal vendor named to the customer (O-11)",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "id": "EXP-1",
+      "title": "an Expert request that cannot run is refused BEFORE any provider is reached",
+      "passed": true,
+      "evidence": {
+        "status": 503,
+        "code": "EXPERT_EXECUTION_DISABLED",
+        "providerCallsMade": 0
+      }
+    },
+    {
+      "id": "EXP-1b",
+      "title": "and the refusal is worded for the inspector, not for a log",
+      "passed": true,
+      "evidence": {
+        "message": "Expert analysis is temporarily unavailable. Your deterministic HazLenz analysis is unaffected and this observation can still be reviewed, finalized and reported. No analysis was run and nothing was charged."
+      }
+    },
+    {
+      "id": "RP-0",
+      "title": "a comped Pro participant is offered the Pro workflow rather than an upgrade wall",
+      "passed": true,
+      "evidence": {
+        "startControls": 1
+      }
+    },
+    {
+      "id": "EXP-2",
+      "title": "a refused Expert run is VISIBLE to the inspector, and survives the reconciling read that follows it",
+      "passed": false,
+      "evidence": {
+        "shown": ""
+      }
+    },
+    {
+      "id": "RP-1a",
+      "title": "the reviewer can save a finding",
+      "passed": true,
+      "evidence": {
+        "saveControlPresent": true
+      }
+    },
+    {
+      "id": "RP-1",
+      "title": "an inspection saved in one session can be FINISHED in another, and produces its report",
+      "passed": false,
+      "evidence": {
+        "completedInspections": 0,
+        "showsPolicyRefusal": true,
+        "head": "Home | Inspect | Reports | Calendar | Settings | Live | CP | SAFETY INSITE | Full Inspection | HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify eve"
+      }
+    }
+  ]
+}
