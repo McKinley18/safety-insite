@@ -2,7 +2,7 @@
   "artifact": "SAFETY_INSITE_PREPRODUCTION_RELEASE_REGISTER",
   "establishedBy": "§314",
   "role": "THE single authoritative statement of what prevents the Safety InSite v1 candidate from reaching each of three distinct release thresholds. Supersedes BETA-BLOCKERS.json as the release authority; that file remains as the historical §263-§285 record.",
-  "candidateHead": "BOUND BY DIGEST, NOT BY SHA — applicationSourceDigest 5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3. A commit cannot contain its own hash (see the §289 note in the markdown register), so the §314 SHA is written by the immediately following commit into candidateHeadSha.",
+  "candidateHead": "4dab23d8ab61a98253eaa075865547c6781d62ac",
   "frozenValidatedProductBaseline": "709ee151b932095020ea69d25daa04a337ccba16",
   "section274SuccessorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "retiredDigestMustNotBeUsed": "3c2c59747dbeda061eff493e4f0cc2eefb20d201fd30ba64180c83986a05fa81",
@@ -2328,8 +2328,8 @@
   ],
   "candidateHeadPredecessor": "75b5a1494cd6df35785dd7a6831826f39a41b8c4",
   "thresholdCountRule": "A threshold's blocker count is the number of entries whose blocksThresholdX flag is set. Closing an entry clears its flags and records what it used to block in wasBlockingThresholds, so the entry is never deleted and the count never counts a closed item.",
-  "candidateHeadNote": "The release SHA is the branch tip at push time and CANNOT be recorded inside the commit that would record it — each such commit changes the value. So the release is bound by a digest instead of by a SHA, which is the stronger binding in any case: the SHA to deploy is whatever origin/beta/expert-hazlenz-validated-candidate-2026-09-12 points at after step 1, PROVIDED its applicationSourceDigest equals 2ce8a1d7b045818cb9708af9414fe8d189523e334dad955b617268cc932f2618. Verify that before deploying; it is one command.",
-  "candidateProductSourceCommit": "BOUND BY DIGEST, NOT BY SHA — applicationSourceDigest 5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3. A commit cannot contain its own hash (see the §289 note in the markdown register), so the §314 SHA is written by the immediately following commit into candidateHeadSha.",
+  "candidateHeadNote": "§314. The repair, its gates and its evidence are all in 4dab23d8. The release BINDING is the applicationSourceDigest 5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3, which was confirmed AT that commit; this SHA is recorded by the following commit because a commit cannot contain its own hash. This commit changes the register only, and the register is outside the digest file pattern, so the binding is unchanged by it.",
+  "candidateProductSourceCommit": "4dab23d8ab61a98253eaa075865547c6781d62ac",
   "applicationSourceDigest": "5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3",
   "applicationSourceDigestSuperseded": [
     {
@@ -2465,5 +2465,5 @@
   },
   "deployedReleaseShaNote": "CORRECTED AT §314. The field read 75b5a149 while §313A's own narrative said 32653cac was live; the narrative was right and the field had not been moved. Production was read directly rather than reasoned about: GET /health/version returned gitCommit 32653cac2f04cab79269ad5bfeea8f4629eaf8c0 on three consecutive stable reads with buildTimestampSourceStatus BUILD_TIMESTAMP.",
   "schemaHeadNote": "CORRECTED AT §314. The field read 1800000025000; the migration head is 1800000026000 (UserSubscriptionStatusDefault) and §313A's own narrative already said so. 58 migrations. §314 wrote none.",
-  "candidateHeadSha": "RECORDED_BY_THE_FOLLOWING_COMMIT"
+  "candidateHeadSha": "4dab23d8ab61a98253eaa075865547c6781d62ac"
 }

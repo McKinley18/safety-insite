@@ -184,6 +184,7 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
+| **Candidate commit** | `4dab23d8ab61a98253eaa075865547c6781d62ac` — the §314 repair, gates and evidence. Recorded by the following commit; a commit cannot contain its own hash. |
 | **Release binding — CANDIDATE, NOT DEPLOYED** | `applicationSourceDigest` = `5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3` — **§314**. Three files changed and nothing else: `storage.service.ts`, `operational-events.ts`, and the new `scripts/ops/verify-evidence-digest-integrity.js`. **No migration**; schema `1800000026000`, 58/58. The method was checked against a known answer before use — recomputed at `75b5a149` it reproduced `bacfdb70…` exactly. |
 | **Release binding — DEPLOYED** | `applicationSourceDigest` = `e0349820b1e6f3e48a6326f670c2598f0f0b1692e559e8422f6538c1a2d7c65f` at `32653cac`, read back from production (`/health/version`, three stable reads). *This row had been left at §310A's `87bb6eaa…` while production moved through §311, §312 and §313; §314 reconciled it to the measured value rather than restating either. `87bb6eaa…` was correct for `b8a6fd9c`/`be5bb4c4` and is recorded below.* |
 | Superseded binding | `bacfdb70…` at `75b5a149…` — the §309 candidate; never the deployed value after §313 |
