@@ -1,0 +1,196 @@
+{
+ "artifact": "SAFETY_INSITE_SECTION_319A_CLAIMS_PRODUCTION_DEPLOYMENT",
+ "section": "§319A",
+ "preDeployRepoHead": "29ab6c4676e0d13f6148d9b65ae04039018af6f0",
+ "authorizedSha": "29ab6c4676e0d13f6148d9b65ae04039018af6f0",
+ "deployedSha": "29ab6c4676e0d13f6148d9b65ae04039018af6f0",
+ "deploymentId": "dpl_GfywhX6PxYnW49JGDLw8t7zhFUKw",
+ "preProductionFrontend": "5c84f1d0 (dpl_EoZwh4xHZwxm38oYGLfpDJJNZf7D) — retained as the rollback target",
+ "postProductionFrontend": "29ab6c46 (dpl_GfywhX6PxYnW49JGDLw8t7zhFUKw), target production, READY in 51s",
+ "backendSha": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee — unchanged; readiness byte-identical before and after",
+ "method": {
+  "command": "vercel redeploy dpl_5BCWRc6qkivN8bKWakyBdnUAR3DY --target production",
+  "gitBacked": true,
+  "productionEnvironmentRebuild": true,
+  "target": "production",
+  "cliUploadOfWorkingTree": false,
+  "promotedWithoutProductionEnvironment": false,
+  "why": "NEXT_PUBLIC_API_URL and NEXT_PUBLIC_API_BASE_URL remain PRODUCTION-ONLY and are inlined at build time, so the git preview could not be promoted as-is; and a CLI upload would have sent the working tree and stamped the build 'unknown' for lack of .git."
+ },
+ "servedByteIdentity": {
+  "htmlNamesDeployment": "dpl_GfywhX6PxYnW49JGDLw8t7zhFUKw",
+  "inlinedGitSha": "29ab6c4676e0d13f6148d9b65ae04039018af6f0",
+  "productionApiOrigin": "https://safescope-backend.onrender.com",
+  "localhost4000Occurrences": 0,
+  "xRobotsTag": "noindex, nofollow (preserved)",
+  "bundleBytesScanned": 959231,
+  "chunksScanned": 24
+ },
+ "agentsMdExclusion": {
+  "path": "frontend-next/AGENTS.md",
+  "committedBlobAt29ab6c46": "8bd0e39085d5260e7f8faffcad2fdc45e10aef33",
+  "committedBlobAt450b8fcb": "8bd0e39085d5260e7f8faffcad2fdc45e10aef33",
+  "workingTreeBlob": "643577dfaef36ee8032915ef80a0f0638f7beda0",
+  "proof": "The candidate tree extracted from 29ab6c46 carries the ORIGINAL blob and diffs clean against 450b8fcb's copy. The delta exists only in the working tree, is in no commit, and the build was made by Vercel FROM GITHUB at 29ab6c46.",
+  "staged": false,
+  "committed": false,
+  "regenerated": false,
+  "deleted": false,
+  "deployed": false
+ },
+ "preDeployGates": {
+  "secretScan": "PASS",
+  "migration": false,
+  "backendDeployment": false,
+  "environmentConfigChanged": false,
+  "credentialsChanged": false,
+  "stripeChanged": false,
+  "expertCeilingsChanged": false,
+  "schema": "1800000026000, 58/58, aheadOfBuild []",
+  "candidatePreviewSha": "29ab6c46, gitSource github"
+ },
+ "liveClaimProof": {
+  "oldWordingsChecked": 11,
+  "oldWordingsPresentOnAnyLiveSurface": 0,
+  "replacementStringsChecked": 40,
+  "replacementStringsPresent": 40,
+  "surfacesRead": [
+   "/hazlenz",
+   "/pricing",
+   "/forgot-password",
+   "/legal",
+   "/unlock",
+   "/upgrade",
+   "/reports",
+   "/inspection-workspace (real open inspection)"
+  ],
+  "widths": [
+   1280,
+   390
+  ],
+  "pageOr5xxErrors": 0,
+  "fiveOldClaimsAbsent": {
+   "full visual and step-by-step AI Reasoning Trace": 0,
+   "Autonomously identifies": 0,
+   "repeatable validation and reasoning consistency": 0,
+   "protect encrypted local inspection reports": 0,
+   "against approved MSHA and OSHA": 0
+  },
+  "fiveReplacementsPresent": {
+   "Each finding records the facts HazLenz used": 1,
+   "raises them as questions to settle": 1,
+   "not a measured product accuracy rate": 1,
+   "lock screen for this device": 1,
+   "Applies governed applicability rules": 1
+  }
+ },
+ "hazlenzDisclosure": {
+  "reachableFromCustomerSurface": true,
+  "entryPoint": "the inspection workspace advisory banner, from inside a real open inspection on production",
+  "verified": "link present and reaching /hazlenz at 1280 and 390",
+  "hiddenUrlOnly": false,
+  "distinguishes": {
+   "hazlenzOverall": true,
+   "deterministicGovernedEngine": "'Governed analysis, without the AI'",
+   "expertLayer": "'HazLenz Expert, and the third-party model behind it'",
+   "thirdPartyModel": "named: a hosted third-party AI model operated by Anthropic",
+   "humanAuthority": "'A person decides, every time'",
+   "knownLimitations": "'What HazLenz does not do' — does not find every hazard, does not decide which standard legally applies, publishes no accuracy rate"
+  }
+ },
+ "regulatoryPresentation": {
+  "applicableStandardOldWordingLive": 0,
+  "suggestedStandardInDeployedBundle": true,
+  "appliesBadgeOldWordingLive": 0,
+  "supportedByTheEvidenceInDeployedBundle": true,
+  "complianceImplication": "none — '/hazlenz' states 'It does not decide which standard legally applies' and the citation block states 'not a determination that the standard legally applies'",
+  "liveRenderLimit": "Those two strings render only once a HazLenz analysis exists, which requires Pro. §319A could not create a Pro entitlement on production without a change it is not authorised to make, so they are proven PRESENT IN THE DEPLOYED BUNDLE and proven RENDERING on the byte-identical build at §319, and were NOT driven live. Stated as a limit rather than claimed as a pass — the same limit §317A recorded for the Expert refusal."
+ },
+ "securityAndRecovery": {
+  "encryptedPinClaimLive": 0,
+  "deviceLockBoundaryLive": "'This PIN is a lock screen for this device. Local reports are stored encrypted on the device, and the key is held on the device too — so the PIN keeps a passer-by out of the app, and it is not protection against someone who has the device itself.'",
+  "recoveryHeroOldLive": 0,
+  "recoveryHeroNewLive": "'Password reset by email is not switched on yet, so this form cannot reach you. If you cannot sign in, contact the person who invited you.'",
+  "em2": "OPEN — production still reports passwordResetEmail NOT_CONFIGURED; no email was activated"
+ },
+ "claimsRegression": {
+  "NEEDS_SUBSTANTIATION": 0,
+  "MISLEADING_OR_OVERSTATED": 0,
+  "SUPPORTED_AS_WRITTEN": 29,
+  "SUPPORTED_WITH_QUALIFICATION": 9,
+  "COUNSEL_REVIEW_REQUIRED": 3,
+  "counselItemsClosed": 0,
+  "note": "No counsel-dependent item was closed. CM-1, CM-2 and SR-1 moved to ENGINEERING_COMPLETE_COUNSEL_APPROVAL_REQUIRED and still block Threshold C."
+ },
+ "postDeploy": {
+  "readyBeforeAndAfter": "byte-identical apart from the error counter",
+  "unexpectedFivexx": 0,
+  "navigationProbes": 84,
+  "routes": 21,
+  "themes": [
+   "light",
+   "dark"
+  ],
+  "widths": [
+   390,
+   1280
+  ],
+  "offenders": 0,
+  "hydrationDefects": 0
+ },
+ "productionSafety": {
+  "realCustomerRowsModified": 0,
+  "realCustomerEvidenceModified": 0,
+  "syntheticOnlyMutations": [
+   "1 synthetic account with 1 site and 1 inspection, created to reach the workspace disclosure entry live and then deleted via the product's own DELETE /auth/me; the token died and re-login was refused"
+  ],
+  "realCharges": 0,
+  "expertCalls": 0,
+  "providerCalls": 0,
+  "spendUsd": 0.0,
+  "environmentChanges": "none beyond the normal build-time consumption of existing production configuration",
+  "credentialChanges": 0,
+  "stripeChanges": 0,
+  "expertCeilingChanges": 0,
+  "migrations": 0,
+  "renderCalls": 0
+ },
+ "registerAfter": {
+  "total": 135,
+  "thresholdA": 0,
+  "thresholdB": 0,
+  "thresholdC": 14,
+  "P0": 9,
+  "P1": 16,
+  "P2": 71,
+  "P3": 39,
+  "byStatus": {
+   "BLOCKED": 2,
+   "CLOSED": 82,
+   "DEFERRED": 9,
+   "ENGINEERING_COMPLETE_COUNSEL_APPROVAL_REQUIRED": 3,
+   "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED": 1,
+   "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED": 1,
+   "OPEN": 37
+  },
+  "thresholdCTrail": "16 after §318/§319 -> 14 after §319A (CM-3 and CS-2 closed on owner decisions)"
+ },
+ "entriesChanged": {
+  "closed": [
+   "CM-3 — copy correction only, by owner decision",
+   "CS-2 — reword/remove treatment accepted"
+  ],
+  "reclassified": [
+   "CM-1, CM-2, SR-1 -> ENGINEERING_COMPLETE_COUNSEL_APPROVAL_REQUIRED, still blocking"
+  ],
+  "opened": [
+   "CS-3 — P3, non-blocking: three Pro entitlement flags with no reachable implementation"
+  ],
+  "updated": [
+   "EM-2"
+  ]
+ },
+ "observations": [
+  "/forgot-password now states the unavailability three times — the hero, the form lead and the notice. All three are true and consistent; the repetition is recorded for the later copy pass rather than repaired, since §319A's authority is deployment of the §319 candidate."
+ ]
+}

@@ -6,6 +6,44 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§319A — THE CORRECTED CLAIMS ARE IN PRODUCTION, AND THE DISCLOSURE IS REACHABLE.** Frontend
+`dpl_GfywhX6PxYnW49JGDLw8t7zhFUKw`, target production, git sha `29ab6c46`, by the §317A method —
+git-backed candidate, production-environment rebuild, production target. Both unsafe methods were
+refused again for the same reasons: `NEXT_PUBLIC_API_URL` is **production-only and inlined at build
+time**, so the git preview could not be promoted as-is, and a CLI upload would have sent the working
+tree.
+
+**The proof is the served bytes.** The production HTML names the deployment, the bundle inlines
+`29ab6c46` and the production API origin, and `localhost:4000` appears **0 times** in 959,231 bytes
+across 24 chunks. **All eleven old wordings are absent from every live surface** and **all 40
+replacement strings render** at 1280 and 390.
+
+**A customer can reach the AI provider disclosure for the first time** — verified live from inside a
+real open inspection on production, the workspace banner's link reaches `/hazlenz` at both widths,
+and the page separates the deterministic engine, the Expert layer, the named third-party model,
+human authority and the known limitations.
+
+**84 production navigation probes** across 21 routes, two themes and two widths: **0 offenders, 0
+5xx, 0 hydration defects.** The unexplained `AGENTS.md` delta is again **provably absent** from the
+candidate.
+
+**Two entries close on owner decisions.** `CM-3` on copy correction only — the mechanism is
+deliberately unchanged, and that *is* the decision. `CS-2` on the reword/remove treatment, with the
+entitlement-flag hygiene registered separately as **`CS-3`** at P3, because it has no
+product-behaviour consequence today.
+
+**No counsel-dependent item was closed.** `CM-1`, `CM-2` and `SR-1` move to
+`ENGINEERING_COMPLETE_COUNSEL_APPROVAL_REQUIRED` and **still block**. One honest limit is recorded
+rather than papered over: `CM-2`'s and `SR-1`'s workflow strings render only once a HazLenz analysis
+exists, which needs Pro — an entitlement §319A cannot create on production — so they are proven in
+the deployed bundle and on the byte-identical build, and were not driven live.
+
+**Threshold C: 16 → 14.** 0 real customer mutations, 0 charges, $0.00, 0 migrations, 0 environment,
+credential, Stripe or Expert-ceiling changes. The one synthetic account created to prove the
+disclosure entry was deleted through the product's own self-serve deletion.
+
+**Evidence:** [`verification/current/claims-remediation-319a/`](../../verification/current/claims-remediation-319a/).
+
 **§319 — THE FIVE ARE CORRECTED, AND THE AI DISCLOSURE IS REACHABLE FOR THE FIRST TIME.** One
 bounded copy and disclosure pass over `CM-1`, `CM-2`, `CM-3`, `CS-2` and `SR-1`, because they
 overlap the same surfaces. Every replacement comes from the §318 approved vocabulary; **no claim was
