@@ -1,0 +1,282 @@
+{
+ "artifact": "SAFETY_INSITE_SECTION_320_EXTERNAL_BETA_DECISION_PACKET",
+ "section": "§320",
+ "head": "24d6ea54f2d2f7013a28d85fb9a7803b05295797",
+ "productionFrontend": "29ab6c46 (dpl_GfywhX6PxYnW49JGDLw8t7zhFUKw)",
+ "productionBackend": "ed37e34b",
+ "runtimeChanged": false,
+ "deployment": "NONE",
+ "productionMutations": 0,
+ "expertCalls": 0,
+ "providerCalls": 0,
+ "spendUsd": 0.0,
+ "realChargesUsd": 0.0,
+ "implementationPerformed": "none — evidence retrieval, analysis and documentation only",
+ "hz11": {
+  "ceilingVerifiedFromEvidence": {
+   "analysesPerUserPer24h": 1,
+   "usdPerUserPer24h": 1.0,
+   "source": "register expertHazlenzProductionActivation.ceilingsStillInForce, set at §298",
+   "codeDefaultsIfUnset": {
+    "analyses": 50,
+    "usd": 25
+   },
+   "providerLegsPerAnalysis": 2,
+   "scopeForIndividual": "per user (requestedByUserId)"
+  },
+  "costModel": {
+   "inputUsdPerMTok": 2,
+   "outputUsdPerMTok": 10,
+   "model": "claude-sonnet-5",
+   "source": "EXPERT_HOSTED_INFERENCE_CONFIG in expert-request-envelope.ts",
+   "caveat": "These are the rates the product's own accounting uses. Whether they match the provider's actual billed rates is an owner check §320 cannot perform without a provider-account read, and it is not asserted."
+  },
+  "productionObservation": {
+   "n": 1,
+   "section": "§298",
+   "firstPassInputTokens": 45442,
+   "firstPassOutputTokens": 4715,
+   "verifierInputTokens": 14603,
+   "verifierOutputTokens": 2359,
+   "totalInput": 60045,
+   "totalOutput": 7074,
+   "costUsd": 0.19083,
+   "reproduced": "(60045/1e6*2)+(7074/1e6*10) = 0.19083 exactly"
+  },
+  "developmentObservationsNotUsedForProjection": {
+   "n": 1334,
+   "medianCostUsd": 0.03815,
+   "medianInputTokens": 2412,
+   "productionInputTokens": 45442,
+   "reason": "Development requests are ~19x smaller because production assembles the full inspection context. Projecting from them would understate spend by about 5x."
+  },
+  "scenarios": [
+   {
+    "analysesPerDay": 1,
+    "uncappedUsdPerDay": 0.19083,
+    "effectiveUsdPerDay": 0.19083,
+    "usdPer7Days": 1.34,
+    "usdPer30Days": 5.72,
+    "bindingLimit": "analysis count"
+   },
+   {
+    "analysesPerDay": 3,
+    "uncappedUsdPerDay": 0.57249,
+    "effectiveUsdPerDay": 0.57249,
+    "usdPer7Days": 4.01,
+    "usdPer30Days": 17.17,
+    "bindingLimit": "analysis count"
+   },
+   {
+    "analysesPerDay": 5,
+    "uncappedUsdPerDay": 0.95415,
+    "effectiveUsdPerDay": 0.95415,
+    "usdPer7Days": 6.68,
+    "usdPer30Days": 28.62,
+    "bindingLimit": "both, near-simultaneously"
+   },
+   {
+    "analysesPerDay": 10,
+    "uncappedUsdPerDay": 1.9083,
+    "effectiveUsdPerDay": 1.0,
+    "usdPer7Days": 7.0,
+    "usdPer30Days": 30.0,
+    "bindingLimit": "USD cap"
+   }
+  ],
+  "analysesTheExistingUsdCapAlreadyPermits": 5,
+  "keyFinding": "Moving the analysis count from 1 to 5 requires NO change to the USD cap — one environment variable, not two. The USD cap is a hard spend bound in every scenario.",
+  "evaluationSplit": "The deterministic path is unlimited and customer-authoritative, so a Beta at any of these ceilings evaluates the core product. At 1/day Expert itself cannot be evaluated at all.",
+  "recommendation": "Raise the analysis count to 5, leave the USD cap at $1.00. If spend dominates, DISABLE Expert rather than leaving it at 1 — one per day pays for Expert and learns nothing about it."
+ },
+ "cohortSpend30Days": {
+  "3users": {
+   "1/day": 17.17,
+   "3/day": 51.52,
+   "5/day": 85.87,
+   "10/day": 90.0
+  },
+  "5users": {
+   "1/day": 28.62,
+   "3/day": 85.87,
+   "5/day": 143.12,
+   "10/day": 150.0
+  },
+  "10users": {
+   "1/day": 57.25,
+   "3/day": 171.75,
+   "5/day": 286.25,
+   "10/day": 300.0
+  },
+  "20users": {
+   "1/day": 114.5,
+   "3/day": 343.49,
+   "5/day": 572.49,
+   "10/day": 600.0
+  }
+ },
+ "cohortSpend7Days": {
+  "3users": {
+   "1/day": 4.01,
+   "3/day": 12.02,
+   "5/day": 20.04,
+   "10/day": 21.0
+  },
+  "5users": {
+   "1/day": 6.68,
+   "3/day": 20.04,
+   "5/day": 33.4,
+   "10/day": 35.0
+  },
+  "10users": {
+   "1/day": 13.36,
+   "3/day": 40.07,
+   "5/day": 66.79,
+   "10/day": 70.0
+  },
+  "20users": {
+   "1/day": 26.72,
+   "3/day": 80.15,
+   "5/day": 133.58,
+   "10/day": 140.0
+  }
+ },
+ "retentionFacts": {
+  "activeProductData": "indefinite by construction; no period, no export guarantee, no Beta-end statement — this absence IS ST-3",
+  "databaseBackupsDaily": 14,
+  "databaseBackupsWeekly": 8,
+  "databaseBackupOuterBound": "~70 days for a Sunday artifact",
+  "backupFreshnessAlarmHours": 36,
+  "platformInstantRestoreHours": 6,
+  "evidenceRecoveryGenerationWindowDays": 30,
+  "evidenceErasure": "tombstone -> erasure_pending -> erased from R2; nothing serves erasure_pending; the nightly reconciler propagates erasures into the recovery store",
+  "accountDeletion": "access removed, user row anonymised, evidence erased from R2 end to end (§313, exercised in production at §313A, §314A, §317A)",
+  "auditRecords": "security_audit_events and audit_logs are NOT erased by account deletion, deliberately",
+  "knownLatentGap": "BR-6 — user.password is a tolerated legacy column the entity does not declare, so anonymisation does not clear it and it would survive in backups. Not realised in production.",
+  "recommendation": "Option A — describe what the system already does. Costs nothing and is true today."
+ },
+ "brand": {
+  "occurrences": {
+   "frontendApp": 62,
+   "frontendComponents": 20,
+   "frontendLib": 23,
+   "backendSrc": 23,
+   "legalDrafts": 17
+  },
+  "singleSourceOfTruth": "frontend-next/lib/brand.ts (APP_NAME, AI_ENGINE_NAME, APP_TAGLINE) and backend PRODUCT_NAME",
+  "mustChangeBeforeBeta": [
+   "domain registration",
+   "email sending domain + DNS",
+   "sender identity",
+   "PRODUCT_NAME in production",
+   "the 17 legal-draft occurrences",
+   "customer-facing product name, titles, footer, report header/footer",
+   "support contact"
+  ],
+  "canChangeAfter": [
+   "logo assets",
+   "the vercel.app frontend URL",
+   "Stripe descriptors (no charges in a comped Beta)",
+   "documentation",
+   "monitoring naming",
+   "repository name"
+  ],
+  "shouldNotRenameForBranding": [
+   "41 database tables/columns (hazlenz_*, safescope_*)",
+   "278 backend identifiers",
+   "4 API route prefixes",
+   "service hostname and bucket name",
+   "frozen verification paths — §274 established that paths participate in evidence identity"
+  ],
+  "rule": "Rename what a customer reads; leave what a machine reads."
+ },
+ "hazlenzName": {
+  "customerVisibleFrontendStrings": 186,
+  "frontendFiles": 48,
+  "backendSourceFiles": 406,
+  "backendIdentifiers": 278,
+  "databaseTablesAndColumns": 41,
+  "apiRoutePrefixes": 4,
+  "hazlenzAiRenderedOccurrences": 84,
+  "timing": {
+   "stays": "no technical impact; TM-1 stays open; §318/§319 already mitigated the CLAIM risk",
+   "beforeBeta": "186 customer-visible strings plus AI_ENGINE_NAME; bundled with the product rename it is one copy pass",
+   "afterBeta": "the same strings PLUS every report participants already hold, which §286's revision model deliberately preserves exactly as issued and therefore cannot rewrite"
+  },
+  "recommendation": "Decide it with the product name, before Beta. The timing is the cheap part and stays cheap only until the first participant receives a report."
+ },
+ "em2": {
+  "engineeringComplete": true,
+  "noCodeChangeRequired": true,
+  "remaining": {
+   "brand": "product decision",
+   "domain": "owner action, gated on brand — cannot be a vercel.app subdomain",
+   "dnsProvider": "owner action; exact records issued at creation and not knowable in advance",
+   "productionSecrets": [
+    "RESEND_API_KEY",
+    "PASSWORD_RESET_FROM_EMAIL",
+    "PRODUCT_NAME",
+    "PASSWORD_RESET_FRONTEND_URL/FRONTEND_URL if the origin changes"
+   ],
+   "deliveryVerification": "/health/ready must report passwordResetEmail CONFIGURED",
+   "endToEndProof": "one real reset message reaching a real mailbox"
+  },
+  "anyEngineeringBlockerRemaining": false,
+  "consequenceWhileOpen": "a participant who forgets their password is permanently locked out of that account; the designed support procedure is deletion and re-invitation"
+ },
+ "cohortRecommendation": {
+  "size": 5,
+  "reason": "matches the cohort size the project's own claims guardrails assume; keeps 30-day provider spend at $28.62-$143.12; keeps support and recovery inside what one operator can carry with no support surface and no self-serve recovery",
+  "bindingConstraint": "not money — EM-2 open, no support surface, and the nightly integrity job runs on a laptop, all of which scale with participants while the operator does not",
+  "expandTo10": "once EM-2 closes and a support path exists"
+ },
+ "counselPackage": {
+  "readyNow": true,
+  "documents": 13,
+  "questions": 8,
+  "coverDocument": "verification/current/claims-remediation-319/COUNSEL-HANDOFF-319.md",
+  "recommendation": "Wait for the brand decision so the 17 brand occurrences in the legal text are reviewed once rather than twice. Brand lock is the critical path either way."
+ },
+ "pageReviewEntryCriteria": {
+  "requiredBefore": [
+   "brand",
+   "HazLenz naming",
+   "counsel-approved legal language",
+   "Beta mode",
+   "HZ-12",
+   "support contact"
+  ],
+  "canRemainOpenDuring": [
+   "HZ-11",
+   "EM-2",
+   "ST-3",
+   "CS-3"
+  ],
+  "mustCompleteBeforeBetaButNotBeforeReview": [
+   "EM-2 activation and proof",
+   "HZ-11 value set and read back",
+   "ST-3 wording once counsel returns",
+   "cohort decision",
+   "TM-1 trademark clearance"
+  ]
+ },
+ "registerChanged": false,
+ "thresholds": {
+  "A": 0,
+  "B": 0,
+  "C": 14,
+  "registerTotal": 135
+ },
+ "recommendedDecisionOrder": [
+  "1. Brand (product name + HazLenz) — unblocks EM-2, TM-1 and the legal review",
+  "2. Beta mode — comped recommended; decides the plan surfaces",
+  "3. HZ-11 — 5/day at the existing USD cap, or disable Expert",
+  "4. HZ-12 — set the threshold, and decide the disclosure",
+  "5. ST-3 — Option A, wording into the legal batch",
+  "6. Support contact — needed before the page review",
+  "7. Send the counsel package",
+  "8. Cohort size and spend ceiling",
+  "9. EM-2 activation once brand and domain exist",
+  "10. Final page-by-page review"
+ ]
+}
