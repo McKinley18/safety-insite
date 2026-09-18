@@ -40,7 +40,9 @@ const workflowSteps = [
   {
     step: "3",
     title: "Connect it to a standard",
-    detail: "Applicable MSHA and OSHA standards are suggested for the hazard so the finding has support.",
+    // §319 (CM-2 consistency). Same correction as planData.ts: "suggested for your review" is what
+    // the engine does; "applicable" without a qualifier is the legal conclusion it does not reach.
+    detail: "Potentially applicable MSHA and OSHA standards are suggested for the hazard, for your review, so the finding has support.",
   },
   {
     step: "4",

@@ -6,6 +6,52 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§319 — THE FIVE ARE CORRECTED, AND THE AI DISCLOSURE IS REACHABLE FOR THE FIRST TIME.** One
+bounded copy and disclosure pass over `CM-1`, `CM-2`, `CM-3`, `CS-2` and `SR-1`, because they
+overlap the same surfaces. Every replacement comes from the §318 approved vocabulary; **no claim was
+made stronger and none was made artificially weak.**
+
+**`/hazlenz` was restructured rather than patched**, because all four claims on it traded on the same
+ambiguity — a flat feature list cannot tell a reader which part of the system a sentence is about.
+It now separates **the deterministic engine that runs every time**, **the optional Expert layer and
+the third-party model behind it** (Anthropic, named), **where the decision sits**, and **what HazLenz
+does not do**. The last of those is new and says plainly that it does not find every hazard, does not
+decide which standard legally applies, and publishes no accuracy rate.
+
+**The AI provider disclosure is in the product for the first time.** §318 found it reachable from
+**no** customer surface while "HazLenz AI" appeared 84 times. Its substance is now on `/hazlenz`, and
+the inspection workspace's advisory banner links to it in context — verified reaching the page in
+**all four theme/width combinations**. **"AI" was not stripped**: §319 made the qualification
+reachable and the deterministic/Expert split explicit instead.
+
+**`CM-2`:** `Applicable standard(s)` → **`Suggested standard(s)`**, with *"Suggested for your review,
+not a determination that the standard legally applies"*; the badge `Applies` → **`Supported by the
+evidence`**. The two-state distinction and its colour are preserved — the useful signal was never
+the word.
+
+**`CS-2` had six instances, not three.** Re-deriving rather than working from the list is what found
+them: the plan comparison table carried three more. Three were **reworded to what exists** — report
+revision history, human review recorded against each finding — and three were **removed** because
+nothing true remained.
+
+**`SR-1`** is placed at the decision surfaces and nowhere else: the review step immediately above the
+save control, the citation presentation, `/reports` at the point of distribution, and `/hazlenz`.
+`/about` and `/pricing` **already carried it** — a correction to §318's placement table — and
+`/safety-calendar` and the action surfaces were deliberately left alone, because §319 asks for
+decision-relevant placement rather than a disclaimer wall.
+
+**Regressions.** Claims: **23 of 23 prohibited terms absent** from rendered copy, **14 of 14**
+required replacement strings present. Functional: **56 measurements across 13 surfaces at 390 and
+1280 in both themes** — 0 overflow, 0 unnamed controls, 0 unlabelled fields, 0 raw errors, **0
+hydration defects attributable to §319**; the one page error is the known intermittent `/settings`
+mismatch, on a page §319 did not touch.
+
+**Nothing is deployed.** The corrected statements are in the candidate; **the overstated ones are
+still live in production.** Threshold C unchanged at **16** — all five entries stay open, on
+deployment and on counsel. 0 provider calls, 0 Expert calls, $0.00, 0 production mutations.
+
+**Evidence:** [`verification/current/claims-remediation-319/`](../../verification/current/claims-remediation-319/).
+
 **§318 — CM-1 AUDITED. THE LIMITATION COPY IS STRONG; FIVE CLAIMS ARE NOT.** 38 customer-facing
 surfaces were captured as **rendered text** on a production build of the deployed code, in both
 entitlement states, with every disclosure opened — not read from source, and not limited to the four

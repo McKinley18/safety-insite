@@ -242,6 +242,18 @@ export default function ReportsPage() {
           new revision and keeps the one it replaced, so a report you have already filed stays
           available exactly as it was issued.
         </p>
+        {/*
+          * §319 (SR-1). A report is where a HazLenz conclusion leaves the product and is shown to
+          * someone else, so it is a decision-relevant surface by SR-1's own test. The generated PDF
+          * already carries the boundary in its "Basis and Limitations" block; the LIBRARY that
+          * hands those reports out did not say it anywhere. One sentence, at the point of
+          * distribution.
+          */}
+        <p className="mx-auto mt-2 max-w-2xl text-xs font-semibold leading-5 text-slate-400">
+          Reports record what this inspection captured and what a qualified person reviewed. HazLenz
+          assists the analysis; it does not assess conditions that were not recorded, and it does not
+          determine compliance.
+        </p>
       </HeroPanel>
 
       {message && (

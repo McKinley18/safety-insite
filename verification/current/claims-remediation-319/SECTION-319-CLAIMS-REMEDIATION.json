@@ -1,0 +1,254 @@
+{
+ "artifact": "SAFETY_INSITE_SECTION_319_CLAIMS_REMEDIATION",
+ "section": "§319",
+ "startingHead": "199d6eebeae4062a3df83de0eb47e2dcf9ad03b5",
+ "runtimeChanged": true,
+ "deployment": "NONE — bounded deployment authorization required",
+ "productionFrontend": "5c84f1d0 (dpl_EoZwh4xHZwxm38oYGLfpDJJNZf7D) — unchanged",
+ "productionBackend": "ed37e34b — unchanged",
+ "expertCalls": 0,
+ "providerCalls": 0,
+ "realChargesUsd": 0.0,
+ "spendUsd": 0.0,
+ "productionCustomerMutations": 0,
+ "filesChanged": [
+  "frontend-next/app/hazlenz/page.tsx",
+  "frontend-next/app/unlock/page.tsx",
+  "frontend-next/app/forgot-password/page.tsx",
+  "frontend-next/app/reports/page.tsx",
+  "frontend-next/app/inspection-workspace/page.tsx",
+  "frontend-next/components/pricing/planData.ts",
+  "frontend-next/components/pricing/PricingContent.tsx"
+ ],
+ "backendChanged": false,
+ "fiveClaims": [
+  {
+   "n": 1,
+   "surface": "/hazlenz",
+   "category": "traceability",
+   "old": "Every finding includes a full visual and step-by-step AI Reasoning Trace. This allows safety managers to inspect the exact reasoning sequence, inputs used, and matched logic that led to the recommendations.",
+   "whyExceeded": "The string 'Reasoning Trace' appeared in the entire frontend exactly once — in that sentence. No such surface exists. The nearest real thing is Expert-only, Pro-only and capped at 1/day.",
+   "replacement": "Each finding records the facts HazLenz used and where each one came from — your observation text, your confirmation, or the inspection's regulatory context — the passage it flagged from, why a standard was or was not supported, and what the conclusion does not cover. The generated report carries the same basis, so a reviewer can evaluate the finding rather than take it on trust.",
+   "evidence": "Every element named is rendered today and was captured in the §318 corpus: per-fact provenance, the quoted span, the decision explanation, 'What limits this conclusion', 'What this assessment does not cover', and the report's Basis and Limitations block.",
+   "disposition": "COPY CORRECTED; SURFACE NOT BUILT"
+  },
+  {
+   "n": 2,
+   "surface": "/hazlenz",
+   "category": "AI / autonomy",
+   "old": "Autonomously identifies missing or ambiguous parameters—such as worker proximity, equipment operational state, or control status—and flags them as critical questions to resolve before finalizing findings.",
+   "whyExceeded": "CLAIMS-GUARDRAILS.md prohibits 'autonomous'. This was its only live use, on the one feature whose purpose is to stop and ask a person.",
+   "replacement": "Identifies missing or ambiguous facts — worker proximity, equipment operational state, control status — and raises them as questions to settle before a finding is finalised. When a fact it depends on is unresolved, it says so and lowers its own confidence rather than assuming an answer.",
+   "evidence": "§318 measured the behaviour live: the unresolved fact was named, the settling question offered, and the standard stayed Candidate/Low until a person answered."
+  },
+  {
+   "n": 3,
+   "surface": "/hazlenz",
+   "category": "accuracy / reliability",
+   "old": "To support repeatable validation and reasoning consistency, the engine's observation understanding is supported by an automated multi-scenario benchmark covering core industrial hazard scenarios.",
+   "whyExceeded": "§158 measured two executions of byte-identical verifier input, provider-attested at identical token counts, returning DIFFERENT verdicts. 'repeatable' and 'consistency' are prohibited.",
+   "replacement": "An automated multi-scenario benchmark exercises the deterministic engine's observation understanding during development. It is a development instrument, not a measured product accuracy rate, and we do not publish one. The Expert layer's answers are not guaranteed to be identical between runs on identical input.",
+   "evidence": "The benchmark exists and is still described. §158 for the instability; the formal evaluation failed and was not accepted, so no rate is published."
+  },
+  {
+   "n": 4,
+   "surface": "/unlock",
+   "category": "security",
+   "old": "Create a PIN to protect encrypted local inspection reports on this device.",
+   "whyExceeded": "AES-GCM is real, but getDeviceKey() writes 32 random bytes base64 in CLEARTEXT to localStorage beside the ciphertext, and pinSecurity.ts stores a salted SHA-256 of the PIN in the same store and never touches the key. The PIN does not gate decryption.",
+   "replacement": "Add a PIN lock for local inspection reports on this device. / This PIN is a lock screen for this device. Local reports are stored encrypted on the device, and the key is held on the device too — so the PIN keeps a passer-by out of the app, and it is not protection against someone who has the device itself. Your inspections on your Safety InSite account are not affected by this PIN.",
+   "evidence": "lib/encryption.ts and lib/pinSecurity.ts, traced at §318. The MECHANISM WAS NOT CHANGED."
+  },
+  {
+   "n": 5,
+   "surface": "/hazlenz",
+   "category": "regulatory",
+   "old": "Matches structured observations against approved MSHA and OSHA (General Industry and Construction) regulatory frameworks to surface potentially applicable standard families and standards-informed references for qualified safety review.",
+   "whyExceeded": "Citation selection is code-resident and corpus-independent (KG-3F: 'citation SELECTION entirely in code with no database access'). 132 rule-declared citations have no governed record at all.",
+   "replacement": "Applies governed applicability rules to the observation to suggest potentially applicable MSHA and OSHA (General Industry and Construction) standards for qualified review. It shows how confident it is and whether the regulatory text for each citation has completed source review. It does not decide which standard legally applies.",
+   "evidence": "standard-applicability.rules.ts; KG-3F's rule-to-corpus map; the product's own confidenceLimitReason."
+  }
+ ],
+ "hazlenzPage": {
+  "restructured": true,
+  "groups": [
+   "Governed analysis, without the AI (the deterministic engine that runs every time)",
+   "HazLenz Expert, and the third-party model behind it",
+   "A person decides, every time",
+   "What HazLenz does not do"
+  ],
+  "distinguishes": [
+   "HazLenz overall",
+   "deterministic/governed capability",
+   "Expert-layer capability",
+   "provider contribution (Anthropic, named)",
+   "human confirmation",
+   "known limitations"
+  ],
+  "heroScoped": "§318 finding 7 closed — scoped to 'For the hazard families its knowledge base covers'",
+  "autonomousImplicationRemoved": true,
+  "doesNotImply": [
+   "every HazLenz result is AI-generated — the page states the deterministic engine reaches a finding without the provider",
+   "full autonomy",
+   "independent compliance determination",
+   "identification of every hazard — 'It does not find every hazard' is its own section",
+   "that it always selects the legally applicable standard — 'It does not decide which standard legally applies'"
+  ],
+  "charsBefore": 2870,
+  "charsAfter": 6116
+ },
+ "cm2": {
+  "headingOld": "Applicable standard(s)",
+  "headingNew": "Suggested standard(s)",
+  "badgeOld": "Applies",
+  "badgeNew": "Supported by the evidence",
+  "candidateBadgeUnchanged": true,
+  "reviewSummaryOld": "· applies",
+  "reviewSummaryNew": "· supported by the evidence",
+  "addedQualification": "Suggested for your review, not a determination that the standard legally applies. Applicability depends on facts, jurisdiction and the current authoritative source.",
+  "alsoAligned": [
+   "/pricing and /upgrade: 'Applicable MSHA and OSHA standards are suggested' -> 'Potentially applicable … for your review'"
+  ],
+  "threeWayDistinction": "suggested citation (what the engine does) / verified legal applicability (what a qualified person does) / compliance determination (what the product explicitly does not do)"
+ },
+ "cs2": {
+  "instancesFound": 6,
+  "instancesCountedAt318": 3,
+  "reworded": [
+   "Dashboards, analytics, and audit trail -> Report revision history — reissuing a report keeps the one it replaced",
+   "Advanced review controls and audit trail -> Human review recorded against each finding",
+   "the /hazlenz Reasoning Trace sentence -> the recorded basis a reviewer can open"
+  ],
+  "removed": [
+   "Inspection planning and assignment tools (Pro list)",
+   "Inspection planning and assignment tools (comparison table)",
+   "Advanced dashboards"
+  ],
+  "residual": "The entitlement flags inspectionAssignments, analytics and auditTrail remain true for Pro in the API. Nothing on a customer path reads them, so nothing is promised; making them agree is registered rather than done in a pricing file."
+ },
+ "sr1": {
+  "evaluated": [
+   "/hazlenz",
+   "HazLenz analysis/review step",
+   "regulatory citation presentation",
+   "inspection review/confirmation",
+   "/reports",
+   "/about",
+   "/pricing",
+   "/safety-calendar",
+   "corrective-action surfaces"
+  ],
+  "changed": [
+   "/hazlenz (a whole 'What HazLenz does not do' group)",
+   "the citation presentation",
+   "the review/confirmation step",
+   "/reports",
+   "the workspace advisory banner's disclosure link"
+  ],
+  "alreadyCarriedIt": [
+   "/about",
+   "/pricing — §318's placement table listed both as absent; re-derivation found the boundary already present. Recorded as a correction."
+  ],
+  "deliberatelyNotChanged": [
+   "/safety-calendar",
+   "corrective-action surfaces — they show work that follows a decision already made and represent no HazLenz conclusion. §319 asks for decision-relevant placement, not a disclaimer wall."
+  ],
+  "counselSensitive": "The clause 'Saving this finding does not move any safety or regulatory responsibility from you or your organisation' is a statement about where responsibility sits. Marked for counsel; not approved."
+ },
+ "aiTerminology": {
+  "hazlenzAiBefore": 84,
+  "hazlenzAiAfterOnSharedSurfaces": 61,
+  "hazlenzAiOnHazlenzPage": "7 -> 6",
+  "globallyRemoved": false,
+  "approach": "§319 did NOT strip 'AI'. It made the qualification reachable and the deterministic/Expert distinction explicit, so a reader is not led to believe every HazLenz output is produced by an autonomous AI.",
+  "prohibitedTermsInRenderedCopy": 0
+ },
+ "disclosureAccessibility": {
+  "before": "reachable from NO customer surface",
+  "after": "the substance is on /hazlenz; the workspace advisory banner links to it in context",
+  "entryPoints": [
+   "the inspection workspace advisory banner (data-testid=hazlenz-disclosure-link)",
+   "the public footer 'HazLenz AI' link",
+   "the signed-in account menu"
+  ],
+  "verified": "present and reaching /hazlenz in all four theme/width combinations",
+  "buriedInTermsOnly": false
+ },
+ "hz11": {
+  "numericalDisclosureAdded": false,
+  "unlimitedAvailabilityImplication": "REMOVED — /hazlenz now states 'Expert review is available on Pro and is subject to usage limits during the Beta. Your deterministic HazLenz analysis is unaffected when Expert review is unavailable.'",
+  "placeholderForTheNumber": "that sentence, once the product owner decides the ceiling and the Beta mode"
+ },
+ "claimsRegression": {
+  "prohibitedTermsChecked": 23,
+  "prohibitedTermsPresent": 0,
+  "requiredReplacementStringsChecked": 14,
+  "requiredReplacementStringsPresent": 14,
+  "surfacesCaptured": 25,
+  "result": "PASS",
+  "newUnsupportedClaimsIntroduced": 0
+ },
+ "functionalRegression": {
+  "measurements": 56,
+  "surfaces": 13,
+  "widths": [
+   390,
+   1280
+  ],
+  "themes": [
+   "light",
+   "dark"
+  ],
+  "horizontalOverflow": 0,
+  "unnamedControls": 0,
+  "unlabelledFields": 0,
+  "rawServerErrors": 0,
+  "stuckLoading": 0,
+  "hydrationDefectsAttributableTo319": 0,
+  "knownResidual": "1 React #418 in 4 /settings visits — the §318 intermittent, on a page §319 did not touch",
+  "disclosureNavigation": "present and reached, 4/4 combinations"
+ },
+ "postRepairClaimPosition": {
+  "materialClaims": 41,
+  "SUPPORTED_AS_WRITTEN": 29,
+  "SUPPORTED_WITH_QUALIFICATION": 9,
+  "NEEDS_SUBSTANTIATION": 0,
+  "MISLEADING_OR_OVERSTATED": 0,
+  "COUNSEL_REVIEW_REQUIRED_standalone": 3,
+  "REMOVE_BEFORE_EXTERNAL_BETA": 0,
+  "note": "The five overstated and the two needing substantiation moved to supported or supported-with-qualification. The counsel set is UNCHANGED and is not closed by §319 — CM-1 and CM-2 remain counsel-dependent."
+ },
+ "registerAfter": {
+  "total": 134,
+  "thresholdA": 0,
+  "thresholdB": 0,
+  "thresholdC": 16,
+  "P0": 9,
+  "P1": 16,
+  "P2": 71,
+  "P3": 38,
+  "byStatus": {
+   "BLOCKED": 2,
+   "CLOSED": 80,
+   "DEFERRED": 9,
+   "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED": 1,
+   "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED": 1,
+   "OPEN": 41
+  },
+  "note": "Threshold C unchanged at 16. Every one of CM-1, CM-2, CM-3, CS-2 and SR-1 stays open — on deployment, and on counsel."
+ },
+ "notAuthorisedAndNotDone": [
+  "brand rename",
+  "legal document activation",
+  "HZ-11 decision",
+  "HZ-12 decision",
+  "Beta pricing decision",
+  "Expert ceiling change",
+  "standards architecture redesign",
+  "provider changes",
+  "email activation",
+  "Stripe changes",
+  "database migration",
+  "the final page-by-page review"
+ ]
+}

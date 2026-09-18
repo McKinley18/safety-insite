@@ -2685,9 +2685,25 @@ export default function InspectionWorkspacePage() {
             sky-700 is the same hue family and measures 5.26:1. */}
         <p className="text-xs font-bold uppercase tracking-widest text-sky-700 dark:text-sky-300">Safety InSite</p>
         <h1 className="mt-2 text-3xl font-black">{inspection?.title || "Inspection"}</h1>
+        {/*
+          * §319 (disclosure accessibility). §318 found the AI provider disclosure reachable from NO
+          * customer surface, while "HazLenz AI" appears 84 times across 28 of them. The substance
+          * now lives on /hazlenz, and this is the surface where a customer actually MEETS HazLenz —
+          * so the banner that already states the advisory boundary is the natural place to make the
+          * fuller explanation reachable. One link, on the page where the question arises, rather
+          * than a disclosure buried in Terms.
+          */}
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
           HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified
-          safety professional must verify every finding before finalization.
+          safety professional must verify every finding before finalization.{" "}
+          <a
+            href="/hazlenz"
+            data-testid="hazlenz-disclosure-link"
+            className="font-black underline underline-offset-2"
+          >
+            What HazLenz does, and what it does not
+          </a>
+          .
         </p>
       </header>
 
@@ -3203,11 +3219,34 @@ export default function InspectionWorkspacePage() {
               Collapsed to citation number + title. Expanding one fetches its regulatory text on
               demand. Confidence sits on each standard, and opening it offers the questions that
               would raise it -- clarification is pulled by the reviewer, never pushed at them. */}
-          <div className="space-y-2" aria-label="Applicable standards" data-testid="applicable-standards">
+          {/*
+            * §319 (CM-2). THE VOCABULARY NOW MATCHES THE MECHANISM.
+            *
+            * §318 traced what produces this list: a governed applicability RULE matches patterns in
+            * the observation, an exclusion rule does not fire, and a named predicate may be settled
+            * by ONE human answer. That is a suggestion for review. It is not a determination that
+            * the provision governs this workplace — which depends on facts, jurisdiction and the
+            * current authoritative source, including facts the system was never given.
+            *
+            * The heading said "Applicable standard(s)". Everything AROUND it was already careful —
+            * "Candidate standards are not confirmed violations", "Applicability depends on verified
+            * facts, jurisdiction, and the current authoritative source" — so the heading was the
+            * one place asserting, as a label, the thing every neighbouring sentence declined to
+            * assert. The product's own /hazlenz page already had the right words: "potentially
+            * applicable … for qualified safety review".
+            *
+            * IT IS NOT REPLACED WITH CAUTION TEXT. "Suggested standards" is shorter than what it
+            * replaces, is what a safety professional actually wants to read, and is true.
+            */}
+          <div className="space-y-2" aria-label="Suggested standards" data-testid="applicable-standards">
             <h3 className="font-black">
-              Applicable standard{findingStandards.length === 1 ? "" : "s"}
+              Suggested standard{findingStandards.length === 1 ? "" : "s"}
               {findingStandards.length > 0 && ` (${findingStandards.length})`}
             </h3>
+            <p className="guided-muted text-xs leading-5">
+              Suggested for your review, not a determination that the standard legally applies.
+              Applicability depends on facts, jurisdiction and the current authoritative source.
+            </p>
             {findingStandards.length === 0 && (
               <p className="guided-muted text-sm">
                 {selectedIsUserAuthored
@@ -3257,10 +3296,19 @@ export default function InspectionWorkspacePage() {
                   </div>
 
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-bold">
+                    {/*
+                      * §319 (CM-2). "Applies" was the strongest word in the product and it was
+                      * reached by a rule match plus, at most, one human yes/no. "Supported by the
+                      * evidence" says exactly what the engine established — that the evidence
+                      * recorded supports the suggestion — without claiming the legal conclusion
+                      * that only a qualified person, with facts this system does not hold, can
+                      * reach. The two-state distinction a reviewer relies on is preserved, and so
+                      * is the colour: the useful signal was never the word.
+                      */}
                     <span className={candidate.applicability === "direct"
                       ? "rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-900"
                       : "rounded-full bg-amber-100 px-2 py-0.5 text-amber-900"}>
-                      {candidate.applicability === "direct" ? "Applies" : "Candidate"}
+                      {candidate.applicability === "direct" ? "Supported by the evidence" : "Candidate"}
                     </span>
                     {backing.verifiedBadge && (
                       <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-800">{backing.verifiedBadge}</span>
@@ -3685,6 +3733,31 @@ export default function InspectionWorkspacePage() {
               Saving records your review against this finding. You can reopen and change it until
               the report is generated.
             </p>
+            {/*
+              * §319 (SR-1). THE CANONICAL AID BOUNDARY, PLACED WHERE THE DECISION IS MADE.
+              *
+              * §318 found this language on /legal, the signup checkbox, the report footer and the
+              * workspace banner — and absent from the surfaces where a person actually commits to a
+              * conclusion. This is the moment of commitment: the reviewer is about to put their name
+              * against a finding, its standard and its corrective action. §319 places it here rather
+              * than on every page, because SR-1's direction is decision-relevant placement and not a
+              * disclaimer wall.
+              *
+              * COUNSEL-SENSITIVE. The wording states engineering facts only and deliberately
+              * contains no waiver, no limitation of liability and no allocation of legal
+              * responsibility beyond what the product already says elsewhere. Final contractual
+              * wording is counsel's — see the §319 counsel handoff.
+              */}
+            <p
+              data-testid="review-authority-boundary"
+              className="mt-2 rounded-lg border border-slate-300 bg-slate-50 p-2 text-xs font-semibold leading-5 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+            >
+              HazLenz assists this analysis; the judgement is yours. A suggested standard is for your
+              review rather than a determination that it legally applies, and the assessment can only
+              use facts it was given — conditions you did not record, and facts about this site or
+              jurisdiction it does not hold, are not part of it. Saving this finding does not move
+              any safety or regulatory responsibility from you or your organisation.
+            </p>
           </div>
 
           <div className="guided-subcard space-y-3">
@@ -3714,7 +3787,9 @@ export default function InspectionWorkspacePage() {
                   <li key={candidate.citation}>
                     <strong>{candidate.citation}</strong>
                     {candidate.title ? ` — ${candidate.title}` : ""}
-                    <span className="guided-muted"> · {candidate.applicability === "direct" ? "applies" : "candidate"}</span>
+                    {/* §319 (CM-2). The review step's summary carried the same word as the badge
+                        and needed the same correction. */}
+                    <span className="guided-muted"> · {candidate.applicability === "direct" ? "supported by the evidence" : "candidate"}</span>
                   </li>
                 ))}
               </ul>

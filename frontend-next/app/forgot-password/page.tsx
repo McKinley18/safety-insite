@@ -98,8 +98,25 @@ export default function ForgotPasswordPage() {
             Reset access.
           </h1>
 
+          {/*
+            * §319. THE HERO WAS STALE AGAINST THE NOTICE §317 PUT ON THE SAME PAGE.
+            *
+            * §317 stopped the form promising an email the service cannot send, and did it in the
+            * form column. The hero still said "Enter your email to start a secure password reset",
+            * so the page invited an action three lines above the notice explaining that the action
+            * would not reach anyone. Neither half was false on its own; together they contradicted.
+            *
+            * The hero now reads from the SAME capability the notice reads, so the two cannot drift
+            * apart again — and it falls back to the original sentence when the capability is
+            * unknown, for the same reason the form does: a recovery surface must never be withdrawn
+            * because a health probe did not answer.
+            *
+            * No email is activated and EM-2 is untouched.
+            */}
           <p className="relative mt-3 max-w-sm text-sm font-semibold leading-6 text-slate-300">
-            Enter your email to start a secure password reset.
+            {capability === "UNAVAILABLE"
+              ? "Password reset by email is not switched on yet, so this form cannot reach you. If you cannot sign in, contact the person who invited you."
+              : "Enter your email to start a secure password reset."}
           </p>
 
         </div>

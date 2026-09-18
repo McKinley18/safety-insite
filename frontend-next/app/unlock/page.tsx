@@ -55,19 +55,52 @@ export default function UnlockPage() {
 
   return (
     <section className="mx-auto max-w-md space-y-6">
+      {/*
+        * §319 (CM-3). THE PIN DOES NOT GATE DECRYPTION, AND THE OLD COPY SAID IT DID.
+        *
+        * §318 traced the mechanism. The encryption is REAL: AES-GCM through `crypto.subtle` in
+        * `lib/encryption.ts`. But `getDeviceKey()` generates 32 random bytes and writes them
+        * base64 IN CLEARTEXT to `localStorage`, in the same origin store as the ciphertext; and
+        * `lib/pinSecurity.ts` stores a salted SHA-256 of the PIN in that same store and compares
+        * it client-side. It never touches the key. So anyone holding the device holds both halves
+        * and can clear the PIN hash.
+        *
+        * "Create a PIN to protect encrypted local inspection reports" invited a reader to conclude
+        * that the PIN was what stood between an intruder and the reports. It was not.
+        *
+        * THE COPY IS CORRECTED RATHER THAN THE MECHANISM REBUILT, per §319's direction: deriving
+        * the key from the PIN is a real cryptographic change with a consequence — a forgotten PIN
+        * would then mean permanently unrecoverable local reports — and that is a product decision,
+        * not a wording fix. CM-3 stays open for that decision; what closes here is the claim.
+        *
+        * What is said instead is exactly what is true: the lock is on this device, the reports are
+        * stored encrypted at rest, and the key is held on the device too.
+        */}
       <PageHeader
         eyebrow="Protected Mode"
         title={pinExists ? "Unlock Safety InSite" : "Create Local PIN"}
         description={
           pinExists
-            ? "Enter your PIN to unlock encrypted local inspection reports on this device."
-            : "Create a PIN to protect encrypted local inspection reports on this device."
+            ? "Enter your PIN to unlock this device's local inspection reports."
+            : "Add a PIN lock for local inspection reports on this device."
         }
       />
 
       <AppPanel variant="dark" padding="md" className="rounded-[24px] p-5 sm:p-5">
         <p className="mb-2 text-[11px] font-black uppercase tracking-[1px] text-[#C2410C] dark:text-[#F97316]">
           Local Security
+        </p>
+
+        {/*
+          * §319 (CM-3). The boundary, stated where the control is, rather than left for the reader
+          * to infer. Deliberately not hedged into meaninglessness: at-rest encryption is real and
+          * worth saying, and so is the fact that the key lives on the same device.
+          */}
+        <p className="mb-4 text-xs font-semibold leading-5 text-slate-200">
+          This PIN is a lock screen for this device. Local reports are stored encrypted on the
+          device, and the key is held on the device too — so the PIN keeps a passer-by out of the
+          app, and it is not protection against someone who has the device itself. Your inspections
+          on your Safety InSite account are not affected by this PIN.
         </p>
 
         <label className="block">

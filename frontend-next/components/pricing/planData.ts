@@ -104,13 +104,43 @@ export const LAUNCH_PLANS: readonly LaunchPlan[] = [
           "Human review before a finding is accepted",
         ],
       },
+      /*
+       * §319 (CS-2). TWO ADVERTISED CAPABILITIES HAD NO CUSTOMER-REACHABLE SURFACE.
+       *
+       * §318 verified it three ways: there is no frontend caller for the assignment API, no
+       * frontend caller for `/dashboard/*`, and the string `auditTrail` appeared in exactly one
+       * file in the whole frontend — this one. A participant paying $24.99/month read "inspection
+       * planning and assignment tools" and "dashboards, analytics, and audit trail", signed in, and
+       * found neither.
+       *
+       * This is CS-1's defect on different words. §305A swept the customer surface for TEAM
+       * vocabulary and removed the "team members" promise; these survived because they are not
+       * team-worded.
+       *
+       * §319's direction is to PREFER FACTUAL REWORDING over deletion where useful information
+       * survives — so each line is treated on its own merits rather than struck as a group:
+       *
+       *   "Inspection planning and assignment tools" — DELETED. Assignment is Company/Team, which
+       *   §305A deferred deliberately, and there is no planning surface to describe instead.
+       *   Nothing true remains to say, so nothing is said.
+       *
+       *   "Dashboards, analytics, and audit trail" — REWORDED. The real capability underneath it is
+       *   report revision history (D-046, §286): finishing an inspection again issues a new revision
+       *   and keeps the one it replaced, so a report already filed stays available exactly as
+       *   issued. That is the record-keeping property the line was gesturing at, it is Pro-gated,
+       *   and it is worth naming.
+       *
+       * The entitlement flags (`inspectionAssignments`, `analytics`, `auditTrail`) are NOT touched
+       * here. They remain true for Pro and are harmless while nothing on a customer path reads
+       * them; making them agree with this copy is registered under CS-2 rather than done in a
+       * pricing file.
+       */
       {
         title: "Reports and records",
         items: [
           "Professional inspection reports",
           "Cloud reports",
-          "Inspection planning and assignment tools",
-          "Dashboards, analytics, and audit trail",
+          "Report revision history — reissuing a report keeps the one it replaced",
         ],
       },
     ],
@@ -131,7 +161,9 @@ export const PRO_HEADLINE_BENEFITS: readonly { title: string; detail: string }[]
   {
     title: "Findings cite the standard",
     detail:
-      "Applicable MSHA and OSHA standards are suggested for the hazard so the finding has something behind it.",
+      // §319 (CM-2 consistency). "Applicable … are suggested" mixed the two vocabularies in one
+      // sentence. The verb was already right; the adjective is now consistent with the workflow.
+      "Potentially applicable MSHA and OSHA standards are suggested for the hazard, for your review, so the finding has something behind it.",
   },
   {
     title: "Corrective actions get tracked",
@@ -170,8 +202,21 @@ export const COMPARISON_ROWS: readonly (readonly [string, string, string])[] = [
   ["Recorded findings and risk scoring", "No", "Yes"],
   ["Corrective action reasoning and tracking", "No", "Yes"],
   ["Generated inspection reports", "No", "Yes"],
+  /*
+   * §319 (CS-2). THE COMPARISON TABLE CARRIED THREE MORE INSTANCES THAN §318 COUNTED, and
+   * re-deriving them was the point of being told to re-derive rather than to work from the list.
+   *
+   *   "Advanced review controls and audit trail" -> REWORDED. Human review recorded against each
+   *   finding is real: the reviewer's decision, rationale and the facts they settled are persisted
+   *   on the finding and appear in the report. That is what a reader wanted from "audit trail" and
+   *   it is the part that exists.
+   *
+   *   "Inspection planning and assignment tools" -> DELETED, for the reason above.
+   *
+   *   "Advanced dashboards" -> DELETED. There is no advanced dashboard, and the dashboard that
+   *   does exist is available on Free, so listing it as a Pro differentiator would be wrong twice.
+   */
   ["Cloud reports", "No", "Yes"],
-  ["Advanced review controls and audit trail", "No", "Yes"],
-  ["Inspection planning and assignment tools", "No", "Yes"],
-  ["Advanced dashboards", "No", "Yes"],
+  ["Report revision history", "No", "Yes"],
+  ["Human review recorded against each finding", "No", "Yes"],
 ] as const;
