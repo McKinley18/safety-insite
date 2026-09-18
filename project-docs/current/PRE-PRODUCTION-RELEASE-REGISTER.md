@@ -6,6 +6,51 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§318 — CM-1 AUDITED. THE LIMITATION COPY IS STRONG; FIVE CLAIMS ARE NOT.** 38 customer-facing
+surfaces were captured as **rendered text** on a production build of the deployed code, in both
+entitlement states, with every disclosure opened — not read from source, and not limited to the four
+public pages `CM-1` named. **41 material claims**: 24 supported as written, 7 with qualification, 2
+needing substantiation, **5 misleading or overstated**, 3 standalone counsel questions.
+
+**The favourable result deserves to be first.** There are **zero safety-outcome claims** anywhere in
+the product — no "prevents injuries", no "keeps workers safe" — and **zero numerical accuracy
+claims**. The workspace states its own limits per analysis, names the provenance of every fact it
+used, and says *"unknown facts stay unknown"*. That is the opposite of the failure mode CM-1 was
+opened against.
+
+**Five claims exceed the evidence, and four are on one page.** *"Every finding includes a full visual
+and step-by-step AI Reasoning Trace"* — the string appears in the entire frontend **exactly once, in
+that sentence**, and no such surface exists. *"Autonomously identifies…"* — the project's own
+guardrails **prohibit** the word, and this is its only live use, on the feature whose whole purpose
+is to stop and ask a person. *"repeatable validation and reasoning consistency"* — refuted by §158's
+own measurement of different verdicts on byte-identical input. *"A PIN to protect **encrypted** local
+inspection reports"* — the encryption is real, and **the key is written in cleartext beside the
+ciphertext while the PIN never touches it**. *"Matches against **approved** regulatory frameworks"* —
+citation selection is code-resident and corpus-independent.
+
+**The §317 standards observation is traced, and it is neither success nor failure.** The citation
+came from a **code-resident applicability rule**, not from a provider (0 calls, none reachable) and
+not from the corpus (every table empty). **KG-3F had already recorded it**: *"citation SELECTION
+entirely in code with no database access"*. The citation is correct and is `APPROVED_GOVERNED_CONTENT`
+in production. Existence is **not verified per request**, and **132 rule-declared citations have no
+governed record at all**. **No engine defect is registered.**
+
+**Two claims items open.** `CM-2` — the only two strings in the workflow whose vocabulary outruns the
+mechanism, `Applicable standard (N)` and `Applies`; everything around them is exemplary and the
+remedy may legitimately be *no change* once counsel reads it. `CM-3` — the `/unlock` security
+presentation.
+
+**Four register entries were stale against the rendered product and are corrected.** "HazLenz AI" is
+**84 occurrences across 28 surfaces**, not 57. "AI-powered" and "learns" are **not in use** — source
+comments only. "autonomous" is **1** live use, not 6. "real-time" is an offline-restriction *label*,
+not a claim.
+
+**Threshold C: 14 → 16.** §318 changed no customer-facing copy, deployed nothing, and made 0 provider
+calls, 0 Expert calls, 0 production mutations and $0.00 spend. **The five overstated claims are live
+in production today.**
+
+**Evidence:** [`verification/current/claims-substantiation-318/`](../../verification/current/claims-substantiation-318/).
+
 **§317A — THE §317 RUNTIME IS IN PRODUCTION, AND THE PROOF IS THE SERVED BYTES.** Frontend
 `dpl_EoZwh4xHZwxm38oYGLfpDJJNZf7D`, target production, git sha `5c84f1d0`, aliased to
 `safety-insite.vercel.app`. The production HTML names the deployment in its own asset query strings

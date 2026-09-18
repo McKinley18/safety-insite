@@ -1,0 +1,183 @@
+{
+ "artifact": "SAFETY_INSITE_SECTION_318_CLAIMS_SUBSTANTIATION",
+ "section": "§318",
+ "startingHead": "2fb3f9d950cb8435bff8801ee5fe882dd7a5469e",
+ "runtimeCodeChanged": false,
+ "deployment": "NONE",
+ "productionCustomerMutations": 0,
+ "expertCalls": 0,
+ "providerCalls": 0,
+ "realChargesUsd": 0.0,
+ "spendUsd": 0.0,
+ "productionFrontend": "5c84f1d0 (dpl_EoZwh4xHZwxm38oYGLfpDJJNZf7D)",
+ "productionBackend": "ed37e34b",
+ "method": {
+  "surfacesSwept": 38,
+  "capture": "RENDERED TEXT from a production build of the deployed code against a migration-only disposable database, all development bypasses off, every <details> opened, both entitlement states (Free and a comped Pro grant). Not read from source.",
+  "additional": "the generated report's backend-authored claim block, which renders to PDF rather than to a page",
+  "section317InventoryTreatedAsExhaustive": false,
+  "note": "The §317 inventory covered 9 public surfaces. Four of the five material findings are on surfaces it did not reach."
+ },
+ "claimCounts": {
+  "materialClaims": 41,
+  "SUPPORTED_AS_WRITTEN": 24,
+  "SUPPORTED_WITH_QUALIFICATION": 7,
+  "NEEDS_SUBSTANTIATION": 2,
+  "MISLEADING_OR_OVERSTATED": 5,
+  "COUNSEL_REVIEW_REQUIRED_standalone": 3,
+  "COUNSEL_REVIEW_REQUIRED_carried": 9,
+  "REMOVE_BEFORE_EXTERNAL_BETA_sole": 0
+ },
+ "categoryOccurrences": {
+  "aiTerminology": 99,
+  "regulatory": 104,
+  "accuracyReliability": 1,
+  "safetyOutcome": 0,
+  "securityPrivacy": 3,
+  "offline": 20,
+  "subscriptionBeta": 75
+ },
+ "terminologyVerdicts": {
+  "AI": "SUPPORTED_WITH_QUALIFICATION — an AI layer exists; the reasoning model is third-party",
+  "artificial intelligence": "NOT IN USE",
+  "AI-powered": "SUPPORTED_AS_WRITTEN if used — literally true, claims no ownership. NOT IN USE in rendered copy (source comment only)",
+  "AI-assisted": "SUPPORTED_AS_WRITTEN if used — the most accurate available term. NOT IN USE",
+  "expert system": "NOT IN USE. Would be MISLEADING — 'Expert' is an internal layer name and the formal evaluation failed",
+  "safety intelligence": "SUPPORTED_WITH_QUALIFICATION — 14 uses, all in the footer tagline. Descriptive rather than a capability claim",
+  "reasoning engine": "NOT IN USE. Would be SUPPORTED_WITH_QUALIFICATION for the deterministic engine only",
+  "autonomous / autonomously": "MISLEADING_OR_OVERSTATED — 1 live use on /hazlenz; prohibited by the project's own guardrails",
+  "independent": "NOT IN USE as a claim. The single occurrence is 'independently tracked findings', which is benign",
+  "self-learning": "NOT IN USE. Prohibited",
+  "adaptive": "NOT IN USE. Prohibited"
+ },
+ "contribution": {
+  "provider": "Semantic authoring in the Expert layer only. Ceiling-limited to 1 analysis/user/24h in production and may be disabled.",
+  "hazlenzOwned": "Applicability rules, predicate model, unresolved-fact detection, citation selection, risk banding, corrective-action families, evidence boundary, admission/refusal/authority gates, governed knowledge base, provenance, lifecycle.",
+  "humanConfirmation": "Predicate settlement, risk cell, corrective-action wording, finalization. Nothing auto-finalizes.",
+  "keyConsequence": "The deterministic path is customer-authoritative and reaches a finding, citation, risk band and corrective action with NO provider involvement — proven at §317 on a corpus-free database. 'HazLenz AI' is attached 84 times to a product whose main path is not the AI."
+ },
+ "capabilityBoundary": {
+  "naturalLanguageUnderstanding": "BOUNDED",
+  "hazardGeneration": "BOUNDED (electrical is a KNOWN LIMITATION, D-030)",
+  "multiHazardReasoning": "PARTIAL",
+  "clarification": "PROVEN",
+  "unresolvedPropertyHandling": "PROVEN",
+  "riskSeverity": "BOUNDED — a governed scoring model, not a measured prediction",
+  "correctiveActionSupport": "PROVEN as advisory",
+  "oshaApplicability": "PARTIAL",
+  "mshaApplicability": "PARTIAL, weaker than OSHA",
+  "evidenceGrounding": "PROVEN",
+  "humanSettlement": "PRODUCTION-PROVEN as a mechanism",
+  "traceability": "BOUNDED — and over-claimed; no 'Reasoning Trace' surface exists",
+  "contradictionHandling": "IMPLEMENTED, NOT MEASURED HERE",
+  "negation": "PROVEN",
+  "decisionCriticalFacts": "PROVEN",
+  "consistencyRepeatability": "KNOWN LIMITATION",
+  "accuracyRate": "NOT PROVEN",
+  "silentDegradationDisclosure": "KNOWN LIMITATION (HZ-12)"
+ },
+ "regulatoryVerdicts": {
+  "applicable standard": "NEEDS_SUBSTANTIATION as a UI label (CM-2). SUPPORTED as 'potentially applicable'",
+  "correct standard": "NOT IN USE. Would be MISLEADING",
+  "compliance": "SUPPORTED — all 5 uses are NEGATIVE ('does not determine compliance')",
+  "ensures compliance": "NOT IN USE. Prohibited",
+  "all applicable standards": "NOT IN USE. Prohibited",
+  "complete inspection": "NOT IN USE. Prohibited"
+ },
+ "standardsCitationTrace": {
+  "origin": "A code-resident applicability rule in standard-applicability.rules.ts, selected by regex over the observation text. NOT a provider (none reachable, 0 calls) and NOT the database (every corpus table empty).",
+  "notANewFinding": "KG-3F recorded the same property: 'citation SELECTION entirely in code with no database access'. §317's observation re-observes it.",
+  "existenceVerification": "NOT PERFORMED AT REQUEST TIME. citation-structure.ts validates STRUCTURE only. Existence is a governance-time property.",
+  "kg3fMeasurements": {
+   "distinctDeclared": 160,
+   "emitted": 23,
+   "emittedAndApproved": 22,
+   "emittedWithNoGovernedRecord": 1,
+   "ruleCitationsWithNoGovernedRecordAtAll": 132,
+   "parentChildAmbiguities": 39
+  },
+  "applicabilityVerification": "Lexical matching plus optional human predicate settlement. NOT a legal determination.",
+  "thisCitationInProduction": "29 CFR 1910.212(a)(1) — APPROVED_GOVERNED_CONTENT, exact match, authoritative text available, remediation NONE",
+  "uiAuthorityImplication": "Hedging is strong and correct almost everywhere. Two strings are the exception: the heading 'Applicable standard (N)' and the state 'Applies'. Registered as CM-2.",
+  "newEngineDefect": false,
+  "transparencyInversion": "The unseeded environment was MORE transparent than production: the 'has not completed source review' notice is suppressed for approved content."
+ },
+ "accuracyClaims": {
+  "numericalFound": 0,
+  "unsupportedLanguageFound": 1,
+  "detail": "The single 'accuracy' occurrence is on /legal and is the USER's responsibility for the accuracy of what they enter — not a product claim.",
+  "futureValidationRequired": "Stated per claim type in HAZLENZ-CAPABILITY-BOUNDARY.md. No percentage was manufactured and no development result was extrapolated."
+ },
+ "safetyOutcomeClaims": {
+  "found": 0,
+  "unsupportedLanguage": 0,
+  "note": "A clean result. The prohibition is recorded preventively in CLAIM-VOCABULARY.md."
+ },
+ "securityPrivacyVerdicts": {
+  "secure": "SUPPORTED_WITH_QUALIFICATION — 2 uses, both about Stripe-hosted checkout and the reset flow, not about the product's own security",
+  "encrypted": "MISLEADING_OR_OVERSTATED as presented (CM-3). AES-GCM is real; the key sits in cleartext beside the ciphertext and the PIN does not gate decryption",
+  "private": "NOT IN USE",
+  "deleted": "SUPPORTED_WITH_QUALIFICATION — must state that backups and recovery generations retain data for their window",
+  "permanently deleted": "NOT IN USE. Would require the backup qualification",
+  "backed up": "SUPPORTED_WITH_QUALIFICATION — subject to the laptop-scheduler limitation",
+  "recoverable": "SUPPORTED_WITH_QUALIFICATION",
+  "monitored": "SUPPORTED_WITH_QUALIFICATION — an alerting channel on a 5-in-5 aggregation, not uptime monitoring",
+  "tamper-proof": "NOT IN USE. PROHIBITED — integrity verification is detective, not preventive",
+  "immutable": "NOT IN USE. PROHIBITED"
+ },
+ "offline": {
+  "blanketClaimVerdict": "NO BLANKET CLAIM EXISTS — 'works offline' is scoped to Field Capture in both occurrences, and the same card states that HazLenz analysis and reports need a connection",
+  "actualBoundary": "IN: field capture, drafts, photo evidence, device-local storage. OUT: HazLenz analysis, reports, corrective actions, sync-on-demand only."
+ },
+ "betaDisclosure": {
+  "betaOccurrencesInProduct": 1,
+  "where": "the registration acknowledgement only",
+  "needed": [
+   "Beta status persistently visible",
+   "known limitations",
+   "HazLenz usage ceiling (HZ-11)",
+   "provider dependency where material",
+   "transactional-email limitation (EM-2) — already placed at §317",
+   "offline limitations — already scoped correctly",
+   "support path"
+  ]
+ },
+ "artifacts": {
+  "approvedVocabulary": "CLAIM-VOCABULARY.md section A",
+  "prohibitedVocabulary": "CLAIM-VOCABULARY.md section B — carried forward from CLAIMS-GUARDRAILS.md and extended with 5 §318 entries",
+  "qualificationRequired": "CLAIM-VOCABULARY.md section C",
+  "capabilityBoundaries": "HAZLENZ-CAPABILITY-BOUNDARY.md",
+  "limitations": "HAZLENZ-CAPABILITY-BOUNDARY.md + CM-1-CLAIMS-SUBSTANTIATION.md",
+  "disclosurePlacement": "CLAIM-VOCABULARY.md section D",
+  "counselHandoff": "COUNSEL-HANDOFF.md — 8 questions, each with the engineering facts attached"
+ },
+ "registerAfter": {
+  "total": 134,
+  "P0": 9,
+  "P1": 16,
+  "P2": 71,
+  "P3": 38,
+  "thresholdA": 0,
+  "thresholdB": 0,
+  "thresholdC": 16,
+  "byStatus": {
+   "BLOCKED": 2,
+   "CLOSED": 80,
+   "DEFERRED": 9,
+   "ENGINEERING_COMPLETE_COUNSEL_PUBLICATION_REQUIRED": 1,
+   "ENGINEERING_COMPLETE_OWNER_CONFIGURATION_REQUIRED": 1,
+   "OPEN": 41
+  },
+  "thresholdCTrail": "14 after §317A -> 16 after §318 (CM-2 and CM-3 opened by the audit)"
+ },
+ "newDefects": [
+  "CM-2 — legal-applicability vocabulary on a lexical decision",
+  "CM-3 — the PIN does not gate decryption and the key sits beside the ciphertext"
+ ],
+ "staleClaimsCorrectedInRegister": [
+  "CAPABILITY-REGISTER.md recorded 'HazLenz AI' at 57 occurrences (§156). §318 measures 84 across 28 rendered surfaces.",
+  "It recorded 'AI-powered' and 'learns' as IN USE. §318 finds both only in source comments — neither is rendered.",
+  "It recorded 'autonomous' at 6 occurrences. §318 finds exactly 1 in rendered customer copy, on /hazlenz.",
+  "It recorded 'real-time' as in use as a claim. §318 finds the single occurrence is an offline-restriction LABEL ('Real-time assessment unavailable'), which is a limitation rather than a claim."
+ ]
+}
