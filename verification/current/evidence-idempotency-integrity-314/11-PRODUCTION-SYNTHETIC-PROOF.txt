@@ -1,0 +1,41 @@
+synthetic payload A sha=b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9 len=69
+synthetic payload B sha=35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe len=69
+PASS  A and B differ in content  — different
+PASS  A and B are EQUAL byte length  — 69
+
+==================== SIGNUP THROUGH THE REAL GOVERNED ROUTE ====================
+  reusing the synthetic account already created by the previous attempt: s314a-synthetic-1789693254@internal-acceptance.invalid
+PASS  registration (already done on the first attempt)  — reused
+PASS  login returned a session  — yes
+  site d01b7ee1-136a-4976-8803-539c7a9c58c7 | inspection f2342d0c-c944-45fd-b096-179b7b8d8ba0 | second inspection 2be50c73-0e6e-4925-a555-60f5378fc9b2
+
+==================== A. INITIAL UPLOAD (clientRequestId X, payload A) ====================
+  object eda0bad5-57c2-4cc2-93c9-6c7dfe72d263
+PASS  upload succeeded  — yes
+PASS  server-recorded digest is sha256(A)  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  it is downloadable  — 200
+PASS  the served bytes ARE A  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+
+==================== B. EXACT REPLAY (X + A) ====================
+PASS  same storage_object returned  — eda0bad5-57c2-4cc2-93c9-6c7dfe72d263
+PASS  same digest  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  served bytes unchanged  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+
+==================== C. DIVERGENT REPLAY (X + B, equal length) ====================
+  response: {"statusCode":409,"error":"Conflict","message":"This upload identifier was already used for different file contents.","reason":"PAYLOAD_MISMATCH"}
+PASS  refused with 409  — 409
+PASS  reason is PAYLOAD_MISMATCH  — PAYLOAD_MISMATCH
+PASS  no object id handed back  — 
+PASS  A REMAINS AUTHORITATIVE — served bytes are still A  — b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9
+PASS  served bytes are NOT B  — 'b51e83fb1f9fecc974e8f957dc49f709974ce93dc496780560d0712c6f8d6fd9' != '35e651466b266e2198e7e7a9c092cf04e885c5cd30438ea3afc289a7a4bdcefe'
+
+==================== D. OPERATION MISMATCH (same X, different inspection) ====================
+  response: {"statusCode":409,"error":"Conflict","message":"This upload identifier was already used for a different upload.","reason":"OPERATION_MISMATCH"}
+PASS  refused with 409  — 409
+PASS  reason is OPERATION_MISMATCH  — OPERATION_MISMATCH
+PASS  the other inspection's object was NOT handed back  — 
+
+==================== SUMMARY ====================
+synthetic object id: eda0bad5-57c2-4cc2-93c9-6c7dfe72d263
+synthetic account:   s314a-synthetic-1789693254@internal-acceptance.invalid
+19 passed, 0 failed

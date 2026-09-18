@@ -1,0 +1,175 @@
+{
+  "artifact": "SECTION-314A-PRODUCTION-PROOF",
+  "role": "BR-8 production closure. The §314 repair deployed, and the behaviour it repaired proven through the REAL production route.",
+  "section": "§314A",
+
+  "candidateSelection": {
+    "repositoryHead": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+    "codeBearingRepair": "4dab23d8ab61a98253eaa075865547c6781d62ac",
+    "selected": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+    "codeEquivalence": "YES",
+    "howEstablished": [
+      "Only two paths differ between 4dab23d8 and ed37e34b, and both are register/documentation: project-docs/current/PRE-PRODUCTION-RELEASE-REGISTER.md and verification/current/PRE-PRODUCTION-RELEASE-REGISTER.json. Neither is inside the digest file pattern.",
+      "backend/src tree object-for-object identical at both commits (d8808c8c…) — that is the ACTUAL compiled input, since backend/tsconfig.json has include: [\"src/**/*\"] and rootDir ./src.",
+      "frontend-next tree identical at both commits (bc8d9b63…).",
+      "applicationSourceDigest is 5c939e74… at BOTH commits, equal to the authorized value."
+    ],
+    "reasonSelected": "Both commits produce the authorized digest, so the §314A rule selects ed37e34b to keep release identity and repository identity aligned.",
+    "authorizedDigest": "5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3"
+  },
+
+  "frontendDeploy": {
+    "required": false,
+    "why": "The frontend-next tree is byte-identical between the previously deployed 32653cac and the candidate ed37e34b — §314 changed no frontend path at all. This is a backend-only deployment, which satisfies the §314A constraint of no frontend behaviour change without deploying anything to Vercel."
+  },
+
+  "preDeploy": {
+    "localHead": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+    "remoteHead": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+    "productionSha": "32653cac2f04cab79269ad5bfeea8f4629eaf8c0",
+    "productionApplicationSourceDigest": "e0349820b1e6f3e48a6326f670c2598f0f0b1692e559e8422f6538c1a2d7c65f",
+    "ready": "ready — database available, schema current",
+    "unexpected5xx": 0,
+    "schemaHead": "1800000026000",
+    "migrations": "58/58",
+    "aheadOfBuild": [],
+    "canonicalSchema": "PASS — 68 tables, 0 material differences",
+    "entityContract": "PASS",
+    "section274Identity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee — UNCHANGED",
+    "securityBoundary307": "334 passed, 0 failed",
+    "section314Suite": "61 passed, 0 failed (re-run at ed37e34b)",
+    "br7RegressionGates": "26 passed, 0 failed (re-run at ed37e34b)",
+    "secretScan": "PASS"
+  },
+
+  "recoveryPrecondition": {
+    "database": "HEALTHY (FRESH) — last successful backup 3.0h before deployment",
+    "evidence": "PROTECTED — LIVE_MATCHED=5",
+    "aggregate": "HEALTHY (exit 0)"
+  },
+
+  "deployment": {
+    "service": "srv-d7kl74jeo5us73deaor0 (safety-insite-backend)",
+    "deploymentId": "dep-dam8no2jnfac73e7oamg",
+    "commit": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+    "trigger": "api",
+    "status": "live",
+    "startedAt": "2026-09-18T00:54:56.267131Z",
+    "finishedAt": "2026-09-18T00:58:52.430189Z",
+    "migrationExecuted": false,
+    "synchronizeUsed": false,
+    "environmentChanged": false,
+    "credentialsChanged": false,
+    "expertConfigChanged": false,
+    "buildTimestampNote": "The §289 runbook sets BUILD_TIMESTAMP immediately before triggering a deploy. §314A forbids environment change, so it was DELIBERATELY NOT SET. The consequence is stated rather than hidden: /health/version still reports buildTimestamp 2026-09-17T01:14:37.000Z, the §313 build time. buildTimestampSourceStatus remains BUILD_TIMESTAMP (not BUILD_FALLBACK), so the runbook's own pass condition still holds, and release identity is carried by gitCommit, which Render supplies (versionSourceStatus RENDER_GIT_COMMIT) and which cannot go stale."
+  },
+
+  "postDeployIdentity": {
+    "method": "Five consecutive stable reads of GET /health/version.",
+    "gitCommit": "ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee",
+    "stableReads": 5,
+    "versionSourceStatus": "RENDER_GIT_COMMIT",
+    "buildTimestampSourceStatus": "BUILD_TIMESTAMP",
+    "nodeVersion": "v24.14.1",
+    "liveApplicationSourceDigest": "5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3",
+    "digestDerivation": "/health/version does not report a digest, so the live binding is proven the way §311 did it: read the live gitCommit from the running service, then recompute the documented digest AT that commit. Live commit ed37e34b yields 5c939e74…, equal to the authorized value.",
+    "ready": "ready",
+    "schemaHead": "1800000026000",
+    "migrations": "58/58",
+    "aheadOfBuild": [],
+    "monitoring": "CONFIGURED (webhook), serverErrorsInWindow 0"
+  },
+
+  "productionIntegrityGate": {
+    "tool": "backend/scripts/ops/verify-evidence-digest-integrity.js",
+    "deepFlagNote": "§314A names a --deep mode. The tool has none, because it is DEEP BY CONSTRUCTION: it always downloads and re-hashes every object in full (mode READ_ONLY_FULL_REHASH) and has no shallow path to opt out of. Passing --deep was verified to be a no-op producing byte-identical results. It is therefore the exact safe production read-only equivalent §314A asks for.",
+    "immediatelyAfterDeploy": { "totalRows": 6, "MATCHED": 5, "ERASURE_AUTHORIZED": 1, "MISMATCHED": 0, "MISSING": 0, "RESURRECTED": 0, "UNKNOWN": 0, "outcome": "INVARIANT_HOLDS" },
+    "afterAllSyntheticWork": { "totalRows": 7, "MATCHED": 5, "ERASURE_AUTHORIZED": 2, "MISMATCHED": 0, "MISSING": 0, "RESURRECTED": 0, "UNKNOWN": 0, "outcome": "INVARIANT_HOLDS" },
+    "expectedPopulationMet": true
+  },
+
+  "syntheticProductionProof": {
+    "accounts": 1,
+    "account": "s314a-synthetic-…@internal-acceptance.invalid, created through normal governed signup with the real registration agreement",
+    "storageObject": "eda0bad5-57c2-4cc2-93c9-6c7dfe72d263",
+    "payloads": "Two valid 1x1 PNGs, DIFFERENT content, IDENTICAL byte length (69 bytes each). Equal length is the case BR-8 names when it says content length is not integrity.",
+    "assertions": "19 passed, 0 failed",
+    "A_initialUpload": "201. Server-recorded digest is sha256(A); downloading the object returns bytes whose sha256 IS A.",
+    "B_exactReplay": "Same storage_object id, same digest, served bytes unchanged. storage_objects rows carrying the identifier: 1. file_upload_completed audit rows: 1 — unchanged by the replay, so there was no second material PUT and no duplicate audit side effect.",
+    "C_divergentReplay": "409 Conflict, reason PAYLOAD_MISMATCH. No object id returned. Evidence A REMAINS AUTHORITATIVE: the served bytes are still A and are provably not B, and the recorded digest still describes A.",
+    "D_operationMismatch": "409 Conflict, reason OPERATION_MISMATCH. The other inspection's object was NOT handed back.",
+    "E_recovery": "Reconciler: PROTECTED, LIVE_MATCHED=6 (5 real + synthetic), DIGEST_MISMATCH=0, LIVE_UNBACKED=0, RECOVERY_ONLY_SUSPECT=0, UNKNOWN=0. Exactly one recovery generation was captured, for the synthetic object; none for any real customer object.",
+    "destructiveTestingAvoided": "No race storm, no induced infrastructure failure, no forced interruption. Concurrency and interruption boundaries remain where §314 proved them — on the disposable rig."
+  },
+
+  "syntheticCleanupAndBr7": {
+    "route": "DELETE /auth/me — the BR-7 route closed at §313A",
+    "result": "Account deleted successfully",
+    "assertions": "7 passed, 0 failed",
+    "rowTombstoned": "status=deleted, deletedAt set",
+    "downloadNameScrubbed": "erased",
+    "liveEvidenceErased": "absent from insite-production",
+    "erasureAudit": "account_evidence_erased written for the object",
+    "accountCannotAuthenticate": "HTTP 401 on the previously valid session",
+    "recoveryErasureAuthority": "The reconciler wrote 1 erasure tombstone. The object then classifies MISSING_LIVE_ERASURE_AUTHORIZED — not MISSING_LIVE_RECOVERABLE — and RECOVERY_ONLY_SUSPECT is 0, so recovery storage does not offer the erased evidence back.",
+    "resurrectionRefused": "Closed on two independent mechanisms. (1) The §314 repair makes a retired row terminal: any replay of its clientRequestId is refused with EVIDENCE_RETIRED, proven on the rig at 02-AFTER §4 and 04-BR7 §3. (2) In production the deleted account cannot authenticate at all (401), so the route is unreachable to it. STATED PRECISELY: the EVIDENCE_RETIRED refusal was NOT re-exercised against production in §314A, because deleting the account revoked the session needed to attempt it and §314A authorises only one synthetic account. The production statement is the erasure and its authority, not a second live replay attempt."
+  },
+
+  "realCustomerObjects": {
+    "baselineCapturedBeforeSyntheticWork": true,
+    "rowsInBaseline": 6,
+    "rowsChanged": 0,
+    "rowsMissing": 0,
+    "newRows": ["eda0bad5-57c2-4cc2-93c9-6c7dfe72d263 (the synthetic object, now erased)"],
+    "fiveRealObjects": "5/5 MATCHED by full re-hash, digests and sizes identical to the pre-§314A baseline",
+    "modified": 0
+  },
+
+  "monitoring": {
+    "ready": "ready, both before and after",
+    "unexpected5xx": 0,
+    "errorSeverityOperationalEvents": 0,
+    "serviceErrorRateExceeded": 0,
+    "mo1": "CONFIGURED (webhook); no alert fired; serverErrorsInWindow 0",
+    "storageEventsObservedLiveInProduction": {
+      "storage.idempotent_replay": 1,
+      "storage.idempotency_conflict": 4,
+      "storage.operation_failed": 0,
+      "detail": "1 RETURNED_COMMITTED; 2 PAYLOAD_MISMATCH and 2 OPERATION_MISMATCH (each conflict case was issued twice — once to read the body, once to read the status code)."
+    },
+    "redaction": "Checked against the captured production log lines: no 64-hex digest, no object key, no download name, no token, no email address. Identifiers, category, parentType and the reason code only."
+  },
+
+  "productionChanges": {
+    "customerObjectsModified": 0,
+    "customerDbRowsModified": 0,
+    "syntheticOnlyMutations": "1 synthetic account created, 1 site, 2 inspections, 1 synthetic evidence object uploaded then erased with the account. Plus 1 recovery generation captured for that synthetic object and then erasure-tombstoned.",
+    "configChanges": 0,
+    "migrations": 0,
+    "credentialChanges": 0,
+    "charges": 0
+  },
+
+  "expert": { "expertCalls": 0, "providerCalls": 0, "spendUsd": 0 },
+
+  "br9": {
+    "state": "OPEN — NOT repaired in §314A, by instruction.",
+    "recordedPrecisely": "The scheduled recovery monitor (reconcile-evidence-recovery.js, activated at §312A) does not independently hash live production bytes. It compares the live object's SIZE from a bucket listing, then compares recovery-generation digests against the ROW digest, so divergence at equal byte length is invisible to it.",
+    "whatDetectsIt": "verify-object-consistency.js --deep, and the §314 gate verify-evidence-digest-integrity.js, which is the authoritative live-byte integrity check used by this section.",
+    "notWiredIn": "The new gate was deliberately NOT wired into the scheduler in §314A. That is the next bounded section.",
+    "notRepresentedAsFixed": true
+  },
+
+  "br8Closure": {
+    "authorizedCandidateLive": true,
+    "expectedDigestLive": true,
+    "deepScanClean": "0 MISMATCHED, 0 MISSING, 0 UNKNOWN",
+    "exactReplayIdempotent": true,
+    "equalLengthDivergentReplayRefused": true,
+    "committedEvidenceAByteIdentical": true,
+    "recoveryProtected": true,
+    "br7CleanupCorrect": true,
+    "noCustomerEvidenceModified": true,
+    "verdict": "ALL NINE CLOSURE CONDITIONS MET — BR-8 CLOSES."
+  }
+}

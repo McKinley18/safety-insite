@@ -6,6 +6,43 @@ because there are three separate thresholds and they do not have the same blocke
 
 Established at **§288**, live evidence **§289**, **deployed §290**, Threshold-B engineering **§291**, configuration closure **§292**, owner-input gate **§293**, monitoring-channel repair **§294**, owner-configuration handoff **§295**, webhook architecture **§296**, live receiver proof **§297A**, MO-1 live closure **§297B**, Expert HazLenz production activation **§298**, backup and disaster-recovery readiness **§311**.
 
+**§314A — `BR-8` IS CLOSED IN PRODUCTION.** `ed37e34b` is live, chosen only after establishing it is
+**code-identical** to the code-bearing repair `4dab23d8`: just two register/documentation paths differ,
+the `backend/src` tree is object-for-object identical (`d8808c8c…` — and that is the *actual* compiled
+input, since `tsconfig.json` is `include: ["src/**/*"]`), the frontend tree is identical, and both
+commits produce the authorized `applicationSourceDigest` `5c939e74…`. **No frontend deployment was
+needed at all** — that tree was already byte-identical to the deployed `32653cac`. Deploy
+`dep-dam8no2jnfac73e7oamg` went live with **no migration, no synchronize, no environment change, no
+credential change, no Expert configuration change**. Identity was read back from the running service
+over **five stable reads**: `gitCommit ed37e34b`, and the digest recomputed *at that commit* is the
+authorized value.
+
+**The repaired behaviour was then proven through the real production route, 19/19**, on one disposable
+synthetic `.invalid` account. An exact replay returned the same object, the same digest and the same
+served bytes while leaving `file_upload_completed` at **1** — so there was no second material `PUT` and
+no duplicate audit. A divergent replay carrying a payload of **identical byte length** was refused
+**409 `PAYLOAD_MISMATCH`**, with evidence A still authoritative and provably not B. A replay against a
+different inspection was refused **409 `OPERATION_MISMATCH`** without handing back the other
+inspection's object. The synthetic account was then deleted through the `BR-7` route, **7/7** —
+evidence erased from R2, row tombstoned, `downloadName` scrubbed, erasure audited, session dead at 401
+— and the reconciler wrote the erasure tombstone, so recovery classifies it
+`MISSING_LIVE_ERASURE_AUTHORIZED` with `RECOVERY_ONLY_SUSPECT` **0**.
+
+**The deep read-only integrity gate over production is clean:** 7 rows — **5 `MATCHED`, 2
+`ERASURE_AUTHORIZED`, 0 `MISMATCHED`, 0 `MISSING`, 0 `RESURRECTED`, 0 `UNKNOWN`**. The **five real
+customer objects are byte-for-byte unchanged** against a baseline taken before any synthetic work, **0
+modified**. Recovery stayed `PROTECTED` and the aggregate `HEALTHY`; **0 unexpected 5xx**; `MO-1` fired
+no alert. Live observability was confirmed from production logs — one `storage.idempotent_replay`
+(`RETURNED_COMMITTED`) and four `storage.idempotency_conflict` — carrying **no digest, key, filename,
+token or address**.
+
+**`BR-9` remains OPEN and was deliberately not repaired.** Scheduled recovery monitoring still does not
+independently hash live production bytes; the new gate was **not** wired into the scheduler, which is
+the next bounded section. *One note recorded rather than hidden:* `BUILD_TIMESTAMP` was **not** updated,
+because §314A forbids environment change — so `/health/version` still reports the §313 build time, while
+`buildTimestampSourceStatus` stays `BUILD_TIMESTAMP` (not `BUILD_FALLBACK`) and identity rests on the
+platform-supplied `gitCommit`, which cannot go stale. **Threshold C is unchanged at 14.**
+
 **§314 — `BR-8` IS CLOSED IN ENGINEERING, AND IS NOT DEPLOYED.** The defect was **reproduced first**,
 against unmodified code, over real HTTP, on a real S3-semantics object store: the object store was
 stopped so the first `PUT` genuinely failed, and replaying the same `clientRequestId` with different
@@ -184,12 +221,11 @@ equivalent, generated from the same entry list so the two cannot disagree:
 | | |
 |---|---|
 | Candidate — **product source commit** | the §294 repair commit on `beta/expert-hazlenz-validated-candidate-2026-09-12` — gates run on Node v24.14.1 |
-| **Candidate commit** | `4dab23d8ab61a98253eaa075865547c6781d62ac` — the §314 repair, gates and evidence. Recorded by the following commit; a commit cannot contain its own hash. |
-| **Release binding — CANDIDATE, NOT DEPLOYED** | `applicationSourceDigest` = `5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3` — **§314**. Three files changed and nothing else: `storage.service.ts`, `operational-events.ts`, and the new `scripts/ops/verify-evidence-digest-integrity.js`. **No migration**; schema `1800000026000`, 58/58. The method was checked against a known answer before use — recomputed at `75b5a149` it reproduced `bacfdb70…` exactly. |
-| **Release binding — DEPLOYED** | `applicationSourceDigest` = `e0349820b1e6f3e48a6326f670c2598f0f0b1692e559e8422f6538c1a2d7c65f` at `32653cac`, read back from production (`/health/version`, three stable reads). *This row had been left at §310A's `87bb6eaa…` while production moved through §311, §312 and §313; §314 reconciled it to the measured value rather than restating either. `87bb6eaa…` was correct for `b8a6fd9c`/`be5bb4c4` and is recorded below.* |
-| Superseded binding | `bacfdb70…` at `75b5a149…` — the §309 candidate; never the deployed value after §313 |
+| **Candidate commit** | `ed37e34bbd5c3e69faa5fa1bb695a9ba8f4860ee` — code-identical to the code-bearing repair `4dab23d8`; now also the DEPLOYED commit. |
+| **Release binding — DEPLOYED (§314A)** | `applicationSourceDigest` = `5c939e74c6c4c9f98ef878ec48f7ea2f05020d5e061f45862939eb68320310c3` — **LIVE since §314A**, proven by recomputing the digest at the `gitCommit` the running service reports over five stable reads. Three files changed and nothing else: `storage.service.ts`, `operational-events.ts`, and the new `scripts/ops/verify-evidence-digest-integrity.js`. **No migration**; schema `1800000026000`, 58/58, `aheadOfBuild: []`. The method was checked against a known answer before use — recomputed at `75b5a149` it reproduced `bacfdb70…` exactly. |
+| Superseded binding | `e0349820…` at `32653cac` — §313A, what production ran until §314A. |
 | Superseded binding | `87bb6eaa…` at `b8a6fd9c…` — §310A, what production ran until §313 |
-| Superseded binding | `bacfdb70…` at `8fe86790…` — §309 (SC-2), read back over five stable reads at schema `1800000025000`, 57/57 |
+| Superseded binding | `bacfdb70…` at `75b5a149…` — §309 (SC-2), read back over five stable reads at schema `1800000025000`, 57/57. *This row named `8fe86790` until §314A, which recomputed both: `8fe86790` is `aa85802d…`, and `bacfdb70…` belongs to `75b5a149`. Corrected against measurement, and the duplicate row above removed.* |
 | Superseded binding | `0f2edbaf…` at `e48a42f3…` — §303 SE-5 |
 | Superseded binding | `20b59cc2…` at `9242d157…` — §303's first deploy |
 | Superseded binding | `51db8f96…` at `61828222…` — §302 EN-3 |
