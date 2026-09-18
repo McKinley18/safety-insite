@@ -571,6 +571,56 @@ function actionDraftFromReviewerActions(actions: ReviewerAction[]) {
   };
 }
 
+/**
+ * §317 — THE GOVERNED RISK URGENCY POLICY, READ BACK OFF THE DURABLE RECORD.
+ *
+ * The policy is authored by the SERVER when a human review is saved and is persisted inside that
+ * review's `reviewedConclusion`. It is therefore already present on every read of the inspection,
+ * and this reads it from there rather than depending on the page having been the one that saved it.
+ * See the long note at its call site in `complete()` for what that dependency cost.
+ *
+ * WHICH REVIEW. The one belonging to the FIRST reportable finding, which is the same review the
+ * in-session path took its policy from (`firstReview`) in the single-finding case and the natural
+ * generalization of it otherwise. Deliberately NOT a per-finding policy: making the due date vary
+ * per finding would be a behaviour change beyond the defect, and this function exists to restore
+ * an answer that was lost, not to choose a different one.
+ *
+ * THE SHAPE IS VALIDATED RATHER THAN CAST. `reviewedConclusion` is server JSON, so `dueDays` is
+ * checked to be a finite number before it is used to build a date. A malformed policy returns null
+ * and the caller's refusal stands, which is the correct outcome: a due date computed from `NaN` is
+ * an Invalid Date written onto a corrective action and a calendar task.
+ */
+function riskPolicyFromRecord(
+  inspection: {
+    observations?: Array<{ id: string; reviews?: Array<{ id: string }> }>;
+    findings?: Array<{ id: string; observationId: string; finalReviewId?: string | null }>;
+  } | null,
+  reportableFindingIds: string[],
+): { modelVersion: string; priority: "low" | "medium" | "high" | "urgent"; dueDays: number; closeoutEvidenceRequired: boolean } | null {
+  if (!inspection) return null;
+  for (const findingId of reportableFindingIds) {
+    const finding = (inspection.findings || []).find((item) => item.id === findingId);
+    if (!finding?.finalReviewId) continue;
+    const observation = (inspection.observations || [])
+      .find((item) => item.id === finding.observationId);
+    const review = (observation?.reviews || [])
+      .find((item) => item.id === finding.finalReviewId) as
+        | { reviewedConclusion?: { riskPolicy?: Record<string, unknown> } }
+        | undefined;
+    const policy = review?.reviewedConclusion?.riskPolicy;
+    if (!policy) continue;
+    const dueDays = Number(policy.dueDays);
+    if (!Number.isFinite(dueDays)) continue;
+    return {
+      modelVersion: String(policy.modelVersion || ""),
+      priority: (policy.priority as "low" | "medium" | "high" | "urgent") || "medium",
+      dueDays,
+      closeoutEvidenceRequired: Boolean(policy.closeoutEvidenceRequired),
+    };
+  }
+  return null;
+}
+
 // The band shown here and the band saved on the finding must be the same number. Both come from
 // the ONE shared table in lib/inspection/riskBands.ts, which mirrors risk-profiles.ts and is held
 // to it by `npm run check:risk-band-parity`. See that module for the defect this replaced.
@@ -2126,9 +2176,35 @@ export default function InspectionWorkspacePage() {
       ? "Finishing the inspection and generating the report…"
       : "Saving corrective actions, calendar tasks, and the report…");
     try {
-      // §286. Narrowed once, here, so the loop below can read it without re-asserting. An
-      // inspection with nothing to report never reaches the loop and never needs a policy.
-      const policy = riskPolicy;
+      /**
+       * §317 — THE POLICY IS REHYDRATED FROM THE RECORD, NOT ONLY FROM THIS SESSION.
+       *
+       * THE DEFECT THIS FIXES, AND WHY NO PAGE REVIEW HAD SEEN IT. `riskPolicy` was written in
+       * exactly one place: the response to SAVING a review, in this browser, in this session. It
+       * was never derived when an existing inspection was LOADED. Every review of this workflow up
+       * to §316 walked it end to end without leaving the page, so the value was always in memory
+       * and the gate below never fired.
+       *
+       * §317 walked it as an external participant would. Save a finding, close the tab or press
+       * refresh, reopen the inspection from `Saved history`, press `Finish inspection` -- and the
+       * inspection can never be finished. No report is generated, the corrective action is never
+       * created, the calendar task never appears, and what the customer is told is
+       * "The governed risk urgency policy was not returned by the server", which is both untrue
+       * (the server returned it, on the review, and returns it again on every read of the
+       * inspection) and not a sentence written for them. The report is the product's deliverable,
+       * so this stranded the core journey on a browser refresh.
+       *
+       * THE POLICY IS DURABLE AND ALWAYS HAS BEEN. It is persisted inside the human review's
+       * `reviewedConclusion` and served on every read of the inspection, which is the same object
+       * the loop below already reads the reviewer's corrective action out of. So this derives the
+       * value from the record rather than inventing a fallback: if no review carries a policy,
+       * the refusal below still stands, because that genuinely means no reviewed finding exists to
+       * price.
+       *
+       * THE HELD VALUE STILL WINS when there is one, so the in-session path is byte-for-byte
+       * unchanged and this can only ever turn a refusal into the answer that refusal was missing.
+       */
+      const policy = riskPolicy ?? riskPolicyFromRecord(inspection, reportableFindingIds);
       if (reportableFindingIds.length > 0 && !policy) {
         throw new Error("The governed risk urgency policy was not returned by the server.");
       }

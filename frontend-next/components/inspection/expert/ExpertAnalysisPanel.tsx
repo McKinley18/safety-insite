@@ -76,7 +76,32 @@ export default function ExpertAnalysisPanel({
   const [loading, setLoading] = useState(true);
   const [running, setRunning] = useState(false);
   const [settling, setSettling] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  /**
+   * §317 — TWO ERROR CHANNELS, BECAUSE THE READ IS ALLOWED TO CLEAR ONLY ITS OWN.
+   *
+   * THE DEFECT THIS SPLIT FIXES. `runAnalysis` caught a refused EXECUTION, called `setError` with
+   * the server's sentence, and then called `refresh()` to reconcile the durable state. `refresh()`
+   * succeeds in exactly this case -- the READ is fine, only the execution was refused -- and its
+   * success path called `setError(null)`. So the refusal was set and wiped within the same
+   * continuation, and the `role="alert"` block never rendered. §317 measured it on the real
+   * product: the server answered 503 with "Expert analysis is temporarily unavailable..." and
+   * `providerCallsMade: 0`, and the page showed NOTHING AT ALL -- the same "Run Expert review"
+   * button, no message, no change. An inspector's only available reading of that is that the
+   * product is broken, and their next move is to press it again.
+   *
+   * IT IS NOT A HYPOTHETICAL STATE. Production carries EXPERT_DAILY_ANALYSIS_LIMIT_PER_WORKSPACE=1
+   * (HZ-11), so the SECOND Expert request any external Beta participant makes in a day is refused
+   * on this exact path. Raising the ceiling does not fix this; it only moves which request lands
+   * on the silence.
+   *
+   * WHY A SECOND CHANNEL RATHER THAN A FLAG ON `refresh`. `settlementError` is already a separate
+   * channel for exactly this reason, and it already works for exactly this reason: `refresh()`
+   * does not clear it. This makes the execution path match the settlement path instead of adding a
+   * parameter that a future caller has to remember to pass. Each channel is owned by the action
+   * that sets it, and no action clears another's.
+   */
+  const [readError, setReadError] = useState<string | null>(null);
+  const [runError, setRunError] = useState<string | null>(null);
   const [settlementError, setSettlementError] = useState<string | null>(null);
   // §284 (S-15). Seeded from the refusal the SERVER has already given this session, so walking a
   // dozen observations does not re-ask a settled question on every one. It can only ever start
@@ -101,7 +126,10 @@ export default function ExpertAnalysisPanel({
       // A SUCCESS clears any held refusal. This is the shape an upgrade takes when it reaches
       // this surface, and it is the only thing that may clear the memo early.
       recordExpertEntitled();
-      setError(null);
+      // §317. Clears the READ's own error and nothing else. A successful read says the state could
+      // be learned; it says nothing about whether the last EXECUTION was refused, and it is not
+      // the authority to withdraw that refusal from the screen.
+      setReadError(null);
     } catch (caught) {
       if (caught instanceof ExpertApiError
         && caught.code === EXPERT_ANALYSIS_ERROR.NOT_ENTITLED) {
@@ -112,7 +140,7 @@ export default function ExpertAnalysisPanel({
       // A failed READ is a failure to learn the state, and it is reported as exactly that. It is
       // never allowed to render as "no analysis" -- the panel would then be asserting an absence
       // it does not know about.
-      setError(caught instanceof Error ? caught.message : "The analysis state could not be read.");
+      setReadError(caught instanceof Error ? caught.message : "The analysis state could not be read.");
     }
   }, [observationId]);
 
@@ -135,7 +163,7 @@ export default function ExpertAnalysisPanel({
 
   const runAnalysis = useCallback(async () => {
     setRunning(true);
-    setError(null);
+    setRunError(null);
     // DROP THE PREVIOUS RESULT FIRST. See the header: a result from an earlier run must not be on
     // screen while a new one is in flight.
     setRead(null);
@@ -159,7 +187,12 @@ export default function ExpertAnalysisPanel({
         setNotEntitled(true);
       } else {
         attempt.current += 1;
-        setError(caught instanceof Error
+        // §317. The server's own sentence, verbatim. Both refusals it can produce here are written
+        // for the inspector rather than for a log -- the kill switch's and the ceiling's both end
+        // "No analysis was run and nothing was charged" -- so relaying them is more truthful than
+        // replacing them with a generic failure. The fallback stands only for a failure that
+        // carried no message at all.
+        setRunError(caught instanceof Error
           ? caught.message
           : "The Expert analysis could not be started.");
       }
@@ -294,9 +327,21 @@ export default function ExpertAnalysisPanel({
             {presentation.statement}
           </p>
 
-          {error && (
-            <p role="alert" className="mt-3 rounded-lg border border-red-300 bg-red-50 p-2 text-xs font-black text-red-900 dark:border-red-800 dark:bg-red-950/40 dark:text-red-100">
-              {error}
+          {/*
+            * §317. BOTH CHANNELS RENDER, AND EACH SURVIVES THE OTHER'S RECONCILING READ.
+            *
+            * `data-testid` is on each, because the §317 gate has to distinguish "the read failed"
+            * from "the run was refused" -- the two produce different sentences and only one of
+            * them means the analysis state on screen is untrustworthy.
+            */}
+          {runError && (
+            <p role="alert" data-testid="expert-run-error" className="mt-3 rounded-lg border border-red-300 bg-red-50 p-2 text-xs font-black text-red-900 dark:border-red-800 dark:bg-red-950/40 dark:text-red-100">
+              {runError}
+            </p>
+          )}
+          {readError && (
+            <p role="alert" data-testid="expert-read-error" className="mt-3 rounded-lg border border-red-300 bg-red-50 p-2 text-xs font-black text-red-900 dark:border-red-800 dark:bg-red-950/40 dark:text-red-100">
+              {readError}
             </p>
           )}
 

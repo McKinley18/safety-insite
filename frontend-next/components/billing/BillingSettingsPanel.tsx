@@ -68,6 +68,16 @@ export default function BillingSettingsPanel({
   const tierLabel = getBillingTierDisplayName(tier);
   const tierPrice = getBillingTierPrice(tier);
   const canManage = Boolean(billing?.stripeCustomerId && billing?.billingConfigured);
+  /**
+   * §317. A PRICE IS A STATEMENT ABOUT WHAT THIS ACCOUNT PAYS, NOT ABOUT WHAT THE TIER COSTS.
+   *
+   * This rendered the catalogue price for the tier unconditionally, so an account holding Pro
+   * through a pilot or support GRANT -- which is how every comped Beta participant would hold it
+   * -- was told "$24.99/month" beside a subscription status of `none`, having never paid anything
+   * and having no payment method on file. The catalogue price is still shown wherever it is the
+   * truth; where the tier came from a grant it is replaced by what the account is actually on.
+   */
+  const grantedAccess = billing?.tierSource === "grant";
   const lifecycleCopy = useMemo(
     () => getBillingLifecycleCopy(billing || ({ status: "none" } as BillingResponse)),
     [billing],
@@ -136,8 +146,19 @@ export default function BillingSettingsPanel({
           <p className="mt-1 text-lg font-black text-slate-950 dark:text-white">
             {loading ? "Loading..." : tierLabel}
           </p>
+          {/*
+            * NO `loading` BRANCH HERE, DELIBERATELY. The tier defaults to `free` before the read
+            * lands, so this renders "$0.00/month" during loading -- which is exactly the text the
+            * pre-§317 code rendered and exactly what the statically prerendered HTML contains.
+            * Adding an empty branch would have introduced a text node that is present on one side
+            * of hydration and absent on the other, in a panel whose effect can resolve inside the
+            * hydration window. The correction this line exists for is the GRANT case, and it needs
+            * no loading branch to make it.
+            */}
           <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
-            ${tierPrice.toFixed(2)}/month
+            {grantedAccess
+              ? "Included — nothing is billed to this account"
+              : `$${tierPrice.toFixed(2)}/month`}
           </p>
         </div>
 
@@ -160,9 +181,16 @@ export default function BillingSettingsPanel({
         </p>
       )}
 
+      {/*
+        * §317 (CPF-3 / O-11). The previous sentence named the payment processor and the word
+        * "environment" to the customer -- an internal vendor dependency and a deployment concept,
+        * neither of which is the customer's to understand or act on. What they need is what is
+        * true for them: nothing can be purchased here yet, and nothing they have is affected.
+        */}
       {!billing?.billingConfigured && !loading ? (
         <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/30 dark:text-amber-200">
-          Billing is not configured on this environment yet. Plan details still load, but checkout and portal actions are unavailable until the Stripe environment is set.
+          Payment is not available yet, so upgrades and subscription management cannot be opened
+          from here. Your plan, your records and everything you have captured are unaffected.
         </p>
       ) : null}
 

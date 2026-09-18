@@ -324,11 +324,24 @@ export default function InspectionsPage() {
       </HeroPanel>
 
       <AppPanel padding="lg" className="inspections-start-panel overflow-visible">
-        <SectionHeader
-          eyebrow="Start"
-          title="Choose inspection type"
-          description="Use Quick Capture to record and store an observation on Free, or Full Inspection for the guided Pro workflow with HazLenz AI review, standards support, corrective actions, and report generation."
-        />
+        {/*
+          * §317 (CPF-3 / O-4). ONE LEFT EDGE INSIDE ONE CARD.
+          *
+          * The heading sat at the panel's own padding and the form block below it was centred to
+          * `max-w-3xl`, so at 1280 the headings began at 105px and the controls at 256px -- two
+          * different left margins inside a single card, which is what batch 1 recorded. The
+          * heading is given the SAME measure as the form rather than the form being widened,
+          * because widening the form would stretch two selects across 1440px to fix a 151px
+          * misalignment. `SectionHeader` itself is untouched: it is shared by every panel in the
+          * product and this is a layout decision belonging to this one.
+          */}
+        <div className="mx-auto max-w-3xl">
+          <SectionHeader
+            eyebrow="Start"
+            title="Choose inspection type"
+            description="Use Quick Capture to record and store an observation on Free, or Full Inspection for the guided Pro workflow with HazLenz AI review, standards support, corrective actions, and report generation."
+          />
+        </div>
 
         <div className="mx-auto mt-5 mb-6 max-w-3xl border-b border-slate-200 pb-6 dark:border-white/15">
           <div>
@@ -398,9 +411,16 @@ export default function InspectionsPage() {
               Set once for this inspection. Every finding inherits it, so HazLenz will not ask which agency applies for each one.
             </span>
           </label>
+          {/*
+            * §317 (CPF-3 / O-7). "persisted" is the word the code uses for the same idea and it
+            * was reaching the customer. The count is what the line is for, so the count stays and
+            * the vocabulary changes; "on your account" is also the distinction this page actually
+            * needs to draw, because the sentence beside it is about Field Capture holding work on
+            * the DEVICE.
+            */}
           <p role="status" className="mt-3 text-xs font-semibold text-slate-600">
-            {persistenceStatus} · {persistedInspections.length} persisted inspection
-            {persistedInspections.length === 1 ? "" : "s"}
+            {persistenceStatus} · {persistedInspections.length} inspection
+            {persistedInspections.length === 1 ? "" : "s"} on your account
           </p>
         </div>
         {/*
@@ -479,7 +499,17 @@ export default function InspectionsPage() {
                     <h3 className="mt-1 text-base font-black leading-tight text-slate-900 dark:text-white">
                       {workflow.title}
                     </h3>
-                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-300">
+                    {/*
+                      * §317 (CPF-3 / O-5). `line-clamp-2` clipped both descriptions at EVERY
+                      * width measured (390/768/1280/1440: scrollHeight 60 and 80 against a
+                      * clientHeight of 40), so the CSS ellipsis landed mid-sentence and the text
+                      * read "...notes.…" -- a full stop immediately followed by an ellipsis. The
+                      * clipped sentence is the description of the choice this page exists to
+                      * offer, so the clamp is removed rather than the sentence shortened. The card
+                      * is already `h-auto` and the button `min-h-[138px]`, so it grows rather than
+                      * overflowing.
+                      */}
+                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-300">
                       {workflow.description}
                     </p>
                   </div>
@@ -609,18 +639,50 @@ export default function InspectionsPage() {
           )}
         </div>
 
-        <p className="mx-auto mt-4 max-w-sm text-center text-xs font-semibold leading-5 text-slate-500">
-          The regulatory context above defaults from{" "}
-          <AppTextLink
-            href="/settings"
-            className="!text-xs !leading-5 font-black"
-            style={{ textDecoration: "underline", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}
-          >
-            Settings
-          </AppTextLink>
-          {" "}({regulatoryContextLabel(regulatoryContextFromSettingsScope(regulatoryScope))}) and is saved with this inspection as{" "}
-          <span className="font-black text-slate-700">{regulatoryContextLabel(regulatoryContext)}</span>.
-        </p>
+        {/*
+          * §317 (CPF-3 / O-6). TWO DEFECTS IN ONE FOOTNOTE, BOTH AS BATCH 1 RECORDED THEM.
+          *
+          * THE REPETITION. The sentence named the Settings default AND the value saved on this
+          * inspection. Before either is chosen they are the same value, so a new account read
+          * "Regulatory context not established" twice within three lines -- and the second
+          * occurrence carried no information the first had not already given. The two are now
+          * stated separately only when they actually DIFFER, which is the only case in which
+          * naming both tells the reader anything.
+          *
+          * THE ALIGNMENT. It was the only centred text on a left-aligned page, and it is now on
+          * the same measure and the same left edge as the form it describes.
+          */}
+        {(() => {
+          const settingsDefault = regulatoryContextLabel(regulatoryContextFromSettingsScope(regulatoryScope));
+          const savedWithInspection = regulatoryContextLabel(regulatoryContext);
+          const settingsLink = (
+            <AppTextLink
+              href="/settings"
+              className="!text-xs !leading-5 font-black"
+              style={{ textDecoration: "underline", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}
+            >
+              Settings
+            </AppTextLink>
+          );
+          return (
+            <p className="mx-auto mt-4 max-w-3xl text-xs font-semibold leading-5 text-slate-500">
+              {settingsDefault === savedWithInspection ? (
+                <>
+                  This inspection is saved as{" "}
+                  <span className="font-black text-slate-700">{savedWithInspection}</span>, which is
+                  the default from {settingsLink}.
+                </>
+              ) : (
+                <>
+                  This inspection is saved as{" "}
+                  <span className="font-black text-slate-700">{savedWithInspection}</span>, rather
+                  than the {settingsLink} default of{" "}
+                  <span className="font-black text-slate-700">{settingsDefault}</span>.
+                </>
+              )}
+            </p>
+          );
+        })()}
 
 
       </AppPanel>

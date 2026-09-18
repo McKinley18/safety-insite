@@ -335,8 +335,30 @@ export default function RegisterPage() {
           </div>
         </div>
 
+        {/*
+          * §317 — EVERY FIELD ON THIS FORM WAS LABELLED ONLY BY ITS PLACEHOLDER.
+          *
+          * §317's sweep measured all six inputs here -- first name, last name, email, password,
+          * confirm password and the promo code -- with no programmatic label of any kind. A
+          * placeholder is not a label: it is announced inconsistently, it disappears the moment the
+          * field has a value, and it leaves a screen-reader user re-reading a filled form with no
+          * way to tell which field is which. This is the FIRST surface a newly invited external
+          * participant meets and the only one standing between them and an account, so a screen
+          * reader user could not reliably create one.
+          *
+          * `aria-label` rather than a visible `<label>`, deliberately: the placeholder IS the
+          * visible label in this design, and adding a second visible one would change a layout
+          * §317 has no authority to redesign. The name given matches the placeholder exactly, so
+          * the announced name and the seen name are the same words.
+          *
+          * The email field also gains `type="email"`, which is the same defect batch 1 recorded on
+          * /login as O-14 and which is worse here: a participant who mistypes their own address at
+          * REGISTRATION owns an account at an address that does not exist, and password recovery
+          * cannot reach them.
+          */}
         <div className="mt-5 space-y-3">
           <AppInput
+            aria-label="First Name"
             autoComplete="given-name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -344,6 +366,7 @@ export default function RegisterPage() {
           />
 
           <AppInput
+            aria-label="Last Name"
             autoComplete="family-name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -351,6 +374,8 @@ export default function RegisterPage() {
           />
 
           <AppInput
+            aria-label="Email"
+            type="email"
             autoComplete="email"
             inputMode="email"
             value={email}
@@ -374,6 +399,7 @@ export default function RegisterPage() {
 
           <div className="relative">
             <AppInput
+              aria-label="Password"
               autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -392,6 +418,7 @@ export default function RegisterPage() {
           </div>
 
           <AppInput
+            aria-label="Confirm Password"
             autoComplete="new-password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -406,6 +433,7 @@ export default function RegisterPage() {
             </summary>
             <div className="mt-2 space-y-2">
               <AppInput
+                aria-label="Promo Code"
                 autoComplete="off"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
@@ -477,10 +505,20 @@ export default function RegisterPage() {
             visitor deciding whether to create an account is exactly who needs to be able to read
             them, and "there is nothing published yet" is itself information they are entitled to.
           */}
-          <p className="text-center text-xs font-bold text-slate-500 dark:text-slate-400">
-            <a href="/terms" className="hover:text-[#1D72B8] dark:hover:text-[#5DB7FF]">Terms</a>
-            <span className="mx-2 opacity-60">·</span>
-            <a href="/privacy" className="hover:text-[#1D72B8] dark:hover:text-[#5DB7FF]">Privacy</a>
+          {/*
+            * §317. The same treatment /login's action links were given at §281, for the same
+            * reason and against the same measurement: these are STANDALONE links rather than words
+            * inside a sentence, and they measured 35x14 and 43x14 at 390px -- well under the 44px
+            * both mobile platforms publish and under this product's own 36px floor. §308 requires
+            * Terms and Privacy to be reachable without authentication from the public account
+            * surfaces; a link a thumb cannot land on is not reachable in the sense that requirement
+            * means. Only the tap target changes: the text, the placement and the visual size are
+            * untouched.
+            */}
+          <p className="flex flex-wrap items-center justify-center text-center text-xs font-bold text-slate-500 dark:text-slate-400">
+            <a href="/terms" className="inline-flex min-h-11 items-center justify-center rounded-xl px-3 hover:text-[#1D72B8] dark:hover:text-[#5DB7FF]">Terms</a>
+            <span className="opacity-60">·</span>
+            <a href="/privacy" className="inline-flex min-h-11 items-center justify-center rounded-xl px-3 hover:text-[#1D72B8] dark:hover:text-[#5DB7FF]">Privacy</a>
           </p>
 
           <div className="flex justify-center pt-1">

@@ -1,15 +1,72 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppTextLink } from "@/components/ui/AppTextLink";
 import { API_BASE_URL } from "@/lib/hazlenzClient";
 
+/**
+ * §317 (CPF-2, recovery) — THIS PAGE MAY NOT PROMISE AN EMAIL THE SERVICE CANNOT SEND.
+ *
+ * ==================== WHAT §317 MEASURED ====================
+ *
+ * Production sets PASSWORD_RESET_PROVIDER but holds no provider credential (EM-2), so a reset
+ * request today does all of this and none of it matters: it mints a token, fails to deliver, and
+ * then -- correctly, per §306 -- ROLLS THE TOKEN BACK so no live credential is stranded on an
+ * account whose owner never received it. Nothing is written and nothing is sent. The page then
+ * told the visitor "If that account exists, password reset instructions will be sent."
+ *
+ * For an external Beta participant who has forgotten their password that sentence is the whole
+ * problem. It is not merely unhelpful; it is the reason they will wait for an email instead of
+ * asking for help, and there is no other recovery route in the product. §317 states the rule
+ * directly: do not pretend password recovery is operational if email cannot be delivered.
+ *
+ * ==================== WHY THIS DOES NOT LEAK WHETHER AN ACCOUNT EXISTS ====================
+ *
+ * The distinction that matters is WHOSE fact is being disclosed. §306 proved byte-identical
+ * responses for known, unknown and case-variant addresses, plus a timing comparison, and none of
+ * that is touched here: the request, the response and the wording of the generic answer are
+ * unchanged, and this page still never learns whether the address it submitted exists.
+ *
+ * What is disclosed instead is a property of the SERVICE -- whether it can send password-reset
+ * email at all -- which is the same answer for every visitor, is account-independent, and is
+ * already served publicly by /health/ready. A capability statement that is identical for all
+ * callers cannot distinguish one account from another.
+ *
+ * ==================== AND IT FAILS TOWARDS THE FORM ====================
+ *
+ * If the capability cannot be read -- the probe fails, the shape changes, the service is mid-
+ * deploy -- the page behaves exactly as it did before. A recovery surface must never be withdrawn
+ * because a health check did not answer; the cost of wrongly offering the form is a visitor who
+ * waits, and the cost of wrongly withdrawing it is a visitor who cannot recover an account that
+ * could have recovered itself.
+ */
+type RecoveryCapability = "UNKNOWN" | "CONFIGURED" | "UNAVAILABLE";
+
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [capability, setCapability] = useState<RecoveryCapability>("UNKNOWN");
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        // A 503 from readiness still carries the body, so the status is not checked -- only
+        // whether the field this page depends on is present and says what it says.
+        const response = await fetch(`${API_BASE_URL}/health/ready`);
+        const body = await response.json() as { passwordResetEmail?: { state?: string } };
+        const state = body?.passwordResetEmail?.state;
+        if (!active || typeof state !== "string") return;
+        setCapability(state === "CONFIGURED" ? "CONFIGURED" : "UNAVAILABLE");
+      } catch {
+        // Deliberately leaves UNKNOWN, which renders the form. See the header.
+      }
+    })();
+    return () => { active = false; };
+  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,8 +111,29 @@ export default function ForgotPasswordPage() {
             </h2>
 
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
-              We’ll send reset instructions to the email connected to your account.
+              {capability === "UNAVAILABLE"
+                ? "Password reset by email is not switched on yet."
+                : "We’ll send reset instructions to the email connected to your account."}
             </p>
+
+            {capability === "UNAVAILABLE" ? (
+              <div
+                role="status"
+                data-testid="recovery-unavailable"
+                className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-900"
+              >
+                <p className="font-black">No reset email can be sent right now.</p>
+                <p className="mt-1">
+                  Sending is not configured on this service, so submitting this form would not
+                  reach you. Nothing is wrong with your account and nothing you have captured is
+                  affected.
+                </p>
+                <p className="mt-2">
+                  If you cannot sign in, contact the person who invited you to Safety InSite and
+                  they will arrange access. Do not send anyone your password.
+                </p>
+              </div>
+            ) : null}
 
             <div className="mt-5 space-y-4 sm:mt-6">
               <AppInput
@@ -74,7 +152,7 @@ export default function ForgotPasswordPage() {
               <div className="flex justify-center pt-1">
                 <AppButton
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || capability === "UNAVAILABLE"}
                   size="md"
                   className="min-h-11 bg-[#1D72B8] px-6 text-sm text-white shadow-sm shadow-blue-900/20 hover:bg-[#0B1320] active:scale-[0.98]"
                 >

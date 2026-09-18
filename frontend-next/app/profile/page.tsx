@@ -21,6 +21,7 @@ import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SummaryRow from "@/components/ui/SummaryRow";
 import BillingSettingsPanel from "@/components/billing/BillingSettingsPanel";
+import { getBillingTierDisplayName } from "@/lib/billing";
 
 type UserProfile = {
   email?: string;
@@ -174,9 +175,17 @@ export default function ProfilePage() {
   const displayName =
     [firstName, lastName].filter(Boolean).join(" ").trim() || "Safety InSite User";
 
-  const planLabel = String(
+  /**
+   * §317 (CPF-2, the O-10 class on the account surface). `subscriptionTier` and friends are plan
+   * CODES -- `free`, `pro` -- and both places this value is shown rendered the code itself, so the
+   * account page read "PLAN free" and "free plan" in a column of title-case values. The same
+   * display name the rest of the product uses is applied here, from the one shared function, so
+   * the account surface and the billing panel cannot drift apart into two spellings of one plan.
+   */
+  const planCode = String(
     user.subscriptionTier || user.billingTier || user.planCode || user.type || "free",
   );
+  const planLabel = getBillingTierDisplayName(planCode as Parameters<typeof getBillingTierDisplayName>[0]);
 
   return (
     <section className="sentinel-page-shell space-y-6">

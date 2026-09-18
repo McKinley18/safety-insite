@@ -49,6 +49,21 @@ export type BillingResponse = {
   stripePriceId: string | null;
   entitlements: Partial<Record<EntitlementKey, boolean | string>>;
   billingConfigured?: boolean;
+  /**
+   * §317. THREE FIELDS THE SERVER HAS ALWAYS SENT AND THIS TYPE DID NOT DECLARE.
+   *
+   * `tierSource` and `accessSource` say WHERE the tier came from and `entitlementExpiresAt` says
+   * when a granted one ends. `BillingService.getBillingStatus` emits all three (§302 / EN-3), but
+   * they were absent here, so nothing on a customer surface could read them -- and the account
+   * surfaces rendered a comped account as though it were a paying one: "Pro · $24.99/month" beside
+   * "Subscription status: none", with the end date the server already knew nowhere on the page.
+   *
+   * They are typed here rather than cast at the one call site, because the reason they were
+   * invisible is that they were not in the contract the interface programs against.
+   */
+  tierSource?: "subscription" | "grant" | "account" | "none";
+  accessSource?: "subscription" | "free" | "pilot" | "support" | string;
+  entitlementExpiresAt?: string | null;
   planCatalog?: Array<{
     tier: BillingTier;
     label: string;
@@ -230,9 +245,47 @@ function formatBillingDate(value?: string | null) {
 }
 
 /**
+ * §317 (CPF-3 / O-10) — THE STATUS CODE IS NOT THE STATUS LABEL.
+ *
+ * `status` is the normalized Stripe vocabulary and it was rendered straight onto the account
+ * surfaces, so a new account read a lower-case `none` in a row of title-case values, and a
+ * struggling payment read `past_due`. These are the words the payment processor uses, not the
+ * words a customer needs. Anything unmapped falls back to the raw value with its underscores
+ * removed rather than to a guess, so a status this build has never seen still renders as text a
+ * human can read and is never silently relabelled as something else.
+ */
+const BILLING_STATUS_LABELS: Record<string, string> = {
+  none: "No subscription",
+  active: "Active",
+  trialing: "Trial",
+  past_due: "Payment overdue",
+  canceled: "Cancelled",
+  unpaid: "Unpaid",
+  incomplete: "Payment incomplete",
+  incomplete_expired: "Payment incomplete",
+  paused: "Paused",
+};
+
+export function billingStatusLabel(status: string | null | undefined): string {
+  const key = String(status || "none");
+  return BILLING_STATUS_LABELS[key]
+    || key.replace(/_/g, " ").replace(/^./, (c) => c.toUpperCase());
+}
+
+/**
  * Truthful status/renewal copy driven by the Stripe-derived lifecycle state.
  * Never says "Renews" once a cancellation is scheduled, and never fabricates
  * an end date when Stripe hasn't given us one yet.
+ *
+ * §317 — AND A GRANTED TIER IS NOT A SUBSCRIPTION, SO IT NO LONGER READS AS ONE.
+ *
+ * A comped or support-granted account has no Stripe subscription at all: `lifecycleState` is null
+ * and `status` is `none`, so before §317 it fell through to the last branch and was described as
+ * having no subscription and no renewal -- which is literally true and, for someone who has been
+ * given Pro for a fixed number of days, tells them nothing they need and implies something they
+ * would reasonably misread. The grant is checked FIRST, for the same reason the server checks it
+ * first when deriving `tierSource`: the authority is the grant, and a description that names the
+ * absent subscription instead is describing the wrong thing.
  */
 export function getBillingLifecycleCopy(status: BillingResponse): {
   statusLabel: string;
@@ -240,6 +293,18 @@ export function getBillingLifecycleCopy(status: BillingResponse): {
 } {
   const lifecycleState = status.lifecycleState ?? null;
   const endDate = formatBillingDate(status.cancelAt || status.currentPeriodEnd);
+
+  if (status.tierSource === "grant") {
+    const grantEnds = formatBillingDate(status.entitlementExpiresAt);
+    return {
+      statusLabel: "Included access",
+      // The end date is stated because it is the one fact a granted account needs and cannot
+      // otherwise discover: access stops on that day with no further notice.
+      renewalLabel: grantEnds
+        ? `Granted access, ends ${grantEnds}. No payment method is on this account.`
+        : "Granted access. No payment method is on this account.",
+    };
+  }
 
   if (lifecycleState === "active_cancel_scheduled") {
     return {
@@ -250,13 +315,13 @@ export function getBillingLifecycleCopy(status: BillingResponse): {
 
   if (lifecycleState === "active_renewing") {
     return {
-      statusLabel: status.status || "active",
+      statusLabel: billingStatusLabel(status.status || "active"),
       renewalLabel: endDate ? `Renews ${endDate}` : "Renewal date not available yet.",
     };
   }
 
   return {
-    statusLabel: status.status || "none",
+    statusLabel: billingStatusLabel(status.status),
     renewalLabel: "Not available",
   };
 }

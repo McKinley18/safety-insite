@@ -219,10 +219,17 @@ export default function UpgradeContent() {
               Billed monthly. Manage or cancel from your billing portal at any time.
             </p>
 
+            {/*
+              * §317 (CPF-2, the O-11 class on the payment surface). "environment" is a deployment
+              * word and it was the explanation offered to a customer for why they cannot buy the
+              * thing the page is selling. The replacement says the same true thing in words the
+              * reader can act on, and keeps the reassurance, which is the part that matters most
+              * to someone who has already captured work on a Free account.
+              */}
             {!resolved.billingConfigured && (
               <p className="mt-3 rounded-2xl bg-amber-50 px-4 py-3 text-xs font-bold leading-5 text-amber-900 ring-1 ring-amber-200">
-                Checkout is not available on this environment yet. Your account and records
-                are unaffected.
+                Payment is not available yet, so Pro cannot be purchased from here for now. Your
+                account, your inspections and everything you have captured are unaffected.
               </p>
             )}
           </div>

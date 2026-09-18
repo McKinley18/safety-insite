@@ -68,7 +68,14 @@ export default function ApplicationVersionPanel() {
         type="button"
         onClick={() => setShowSupportDetail((open) => !open)}
         aria-expanded={showSupportDetail}
-        className="mt-2 rounded text-xs font-bold text-[#1D72B8] underline underline-offset-2 hover:text-[#0B1320] dark:text-[#5DB7FF]"
+        /*
+         * §317. Measured at 87x16 on a phone -- under this product's own 36px control floor. It is
+         * the disclosure that reveals the build and server identity a support conversation starts
+         * with, and during an invitation-only Beta support IS the recovery route for anyone who
+         * cannot sign in, so a control that is hard to land on here is not cosmetic. `min-h-11` and
+         * a horizontal pad give it a real target; the label and the underline are unchanged.
+         */
+        className="mt-2 -ml-1 inline-flex min-h-11 items-center rounded px-1 text-xs font-bold text-[#1D72B8] underline underline-offset-2 hover:text-[#0B1320] dark:text-[#5DB7FF]"
       >
         {showSupportDetail ? "Hide support details" : "Support details"}
       </button>

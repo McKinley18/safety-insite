@@ -167,7 +167,16 @@ export default function LoginPage() {
                 <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
                   Email
                 </span>
+                {/*
+                  * §317 (CPF-3 / O-14). `type="email"`, which batch 1 recorded as missing and
+                  * which nothing since had added. `inputMode="email"` only chooses the phone
+                  * keyboard; it performs no validation and offers no autofill affordance. Without
+                  * the type, a mistyped address is submitted and comes back as the same generic
+                  * "Invalid credentials" that a wrong password produces -- so a new external
+                  * participant who fat-fingers their own email has no way to tell the two apart.
+                  */}
                 <AppInput
+                  type="email"
                   autoComplete="email"
                   inputMode="email"
                   value={email}
