@@ -435,6 +435,7 @@
     "test:306-password-recovery": "ts-node scripts/test-306-password-recovery.ts",
     "security:deps": "ts-node scripts/security-dependency-gate.ts",
     "security:deps:strict": "ts-node scripts/security-dependency-gate.ts --strict",
+    "test:sec010-http-transport-deps": "ts-node scripts/test-sec010-http-transport-deps.ts",
     "test:307-security-boundary": "ts-node scripts/test-307-security-boundary.ts",
     "test:307-security-boundary:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:307-security-boundary",
     "check:legal-documents": "ts-node scripts/check-legal-documents.ts",
